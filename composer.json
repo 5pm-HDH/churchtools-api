@@ -2,6 +2,12 @@
     "name": "5pm-hdh/churchtools-api",
     "description": "API-client for churchtools",
     "type": "library",
+    "autoload": {
+        "classmap": [
+            "src/",
+            "tests/"
+        ]
+    },
     "require": {
         "guzzlehttp/guzzle": "7.3",
         "php": ">=8.0"
