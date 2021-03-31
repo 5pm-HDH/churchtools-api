@@ -1,26 +1,42 @@
 # Churchtools (CT) API-Client
 
-## Configuration
+## Installation
 
-Before you can start to request data from the API you need to configure the CT-Client with the `Config`-interface:
+Go to your project-root and install churchtools-api via [composer](https://getcomposer.org/):
+```
+composer require 5pm-hdh/churchtools-api
+```
+
+Load all the dependency-packages into your PHP-Project with the command:
+
+```php
+<?php
+
+include_once 'vendor/autoload.php';
+```
+
+## Usage
+
+Before you can start to request data from the API you need to **configure the CT-Client (churchtools client)** with the `CTConfig`-interface:
 ```php
 use \CTApi\CTConfig;
 
     //set the url of your churchtools application api
 CTConfig::setApiUrl("https://example.church.tools/api");
 
-    //authenticates the application and retrieve the api-key
+    //authenticates the application and load the api-key into the config
 CTConfig::authWithCredentials(
     "example.email@gmx.de",
     "myPassword1234"
 );
 
-    // if everything works fine, the $apiKey wont be null anymore
+    // if everything works fine, the api-key is stored in your config
 $apiKey = CTConfig::getApiKey();
 ```
+From now on you can use all the features fo the churchtools-api:
 
-## Retrieve persons
-To retrieve data from the api you can use the Requests-Interfaces. They will provide filter options ("where"-clause) and concatenation of filtering through the fluent api.
+### 1. Person-Api
+To retrieve data from the api you can use the Requests-Interfaces. They will provide filter options ("where"-clause) and concatenation of filter through the fluent api.
 ```php
 use CTApi\Requests\PersonRequest;
 
@@ -42,5 +58,7 @@ foreach($teenager as $teenPerson){
 // Get specific Person
 $personA = PersonRequest::find(21);     // returns "null" if id is invalid
 $personB = PersonRequest::findOrFail(22); // throws exception if id is invalid
-
 ```
+
+## License
+This project is licensed under MIT-License feel free to use it or to contribute.
