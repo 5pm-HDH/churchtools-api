@@ -29,7 +29,7 @@ class CTClient extends Client
 
     public static function getClient(): CTClient
     {
-        if (isNull(self::$client)) {
+        if (is_null(self::$client)) {
             self::$client = new CTClient();
         }
         return self::$client;
