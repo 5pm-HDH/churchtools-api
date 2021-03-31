@@ -21,7 +21,10 @@ class CTConfig
         //set default value for guzzle request
         $this->requestOptions = [
             "cookies" => new CookieJar(),   //enable cookie storage
-            "http_errors" => false          //disable Exceptions on 4xx & 5xx http-response
+            "http_errors" => false,          //disable Exceptions on 4xx & 5xx http-response
+            "headers" => [
+                'Content-Type' => 'application/json'
+            ]
         ];
     }
 

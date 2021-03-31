@@ -5,7 +5,7 @@ use CTApi\CTConfig;
 use CTApi\Requests\AuthRequest;
 use PHPUnit\Framework\TestCase;
 
-class AuthApiTest extends TestCase
+class AuthRequestTest extends TestCase
 {
 
     public function setUp(): void

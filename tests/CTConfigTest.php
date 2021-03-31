@@ -13,7 +13,8 @@ class CTConfigTest extends TestCase
         CTConfig::clearConfig();
     }
 
-    public function fillConfigWithExampleData(){
+    public function fillConfigWithExampleData()
+    {
         CTConfig::setApiUrl("https://example.com/api");
     }
 
@@ -31,9 +32,9 @@ class CTConfigTest extends TestCase
     {
         // INVALID CONFIG
         $exceptionThrown = false;
-        try{
+        try {
             CTConfig::validateConfig();
-        }catch(ConfigException){
+        } catch (ConfigException) {
             $exceptionThrown = true;
         }
         $this->assertTrue($exceptionThrown);
@@ -42,9 +43,9 @@ class CTConfigTest extends TestCase
 
         // VALID CONFIG
         $exceptionThrown = false;
-        try{
+        try {
             CTConfig::validateConfig();
-        }catch(ConfigException){
+        } catch (ConfigException) {
             $exceptionThrown = true;
         }
         $this->assertFalse($exceptionThrown);
@@ -78,9 +79,9 @@ class CTConfigTest extends TestCase
         $wrongAuthPassword = "wrongPassword";
 
         $exceptionIsThrown = false;
-        try{
+        try {
             CTConfig::authWithCredentials($wrongAuthEmail, $wrongAuthPassword);
-        }catch(AuthException $e){
+        } catch (AuthException $e) {
             $exceptionIsThrown = true;
             $this->assertInstanceOf(AuthException::class, $e);
         }
@@ -97,15 +98,16 @@ class CTConfigTest extends TestCase
         $authPassword = TestData::getValue("AUTH_PASSWORD");
 
         $exceptionThrown = false;
-        try{
+        try {
             CTConfig::authWithCredentials($authEmail, $authPassword);
-        }catch(ConfigException){
+        } catch (ConfigException) {
             $exceptionThrown = true; // Auth is invalid, because API-Url must be set
         }
         $this->assertTrue($exceptionThrown);
     }
 
-    public function testDebuggingMode(){
+    public function testDebuggingMode()
+    {
         $this->fillConfigWithExampleData();
 
         CTConfig::enableDebugging();
