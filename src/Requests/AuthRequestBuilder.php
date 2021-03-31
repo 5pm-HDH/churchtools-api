@@ -42,9 +42,9 @@ class AuthRequestBuilder
             $this->retrieveLoginToken();
         } else {
             $jsonResponse = json_decode($response->getBody());
-            if(isset($jsonResponse->message)){
-                throw new AuthException("Authentication was not successfully: ".$jsonResponse->message);
-            }else{
+            if (isset($jsonResponse->message)) {
+                throw new AuthException("Authentication was not successfully: " . $jsonResponse->message);
+            } else {
                 throw new AuthException("Authentication was not successfully. HTTP Status Code is not 200.");
             }
         }
