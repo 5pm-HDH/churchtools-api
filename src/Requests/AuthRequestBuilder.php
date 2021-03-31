@@ -18,6 +18,8 @@ class AuthRequestBuilder
     {
         $client = CTClient::getClient();
 
+        $response = null;
+
         try {
             $response = $client->post('/api/login', [
                 'json' => [
@@ -39,7 +41,12 @@ class AuthRequestBuilder
 
             $this->retrieveLoginToken();
         } else {
-            throw new AuthException("Authentication was not successfully. Login returned invalid HTTP-Code.");
+            $jsonResponse = json_decode($response->getBody());
+            if(isset($jsonResponse->message)){
+                throw new AuthException("Authentication was not successfully: ".$jsonResponse->message);
+            }else{
+                throw new AuthException("Authentication was not successfully. HTTP Status Code is not 200.");
+            }
         }
 
         return $this->get();
@@ -48,7 +55,7 @@ class AuthRequestBuilder
     private function retrieveLoginToken(): void
     {
         if ($this->userId == null) {
-            throw new AuthException("Authentication was not successfully. UserId was not defined.");
+            throw new AuthException("Authentication was not successfully. UserId is not defined.");
         }
 
         $client = CTClient::getClient();
