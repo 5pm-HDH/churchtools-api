@@ -25,15 +25,18 @@ trait Pagination
         $metaInformation = CTResponseUtil::metaAsArray($response);
         $collectedData = array_merge($collectedData, CTResponseUtil::dataAsArray($response));
 
-        $lastPage = $metaInformation["pagination"]["lastPage"];
 
-        // Collect Date from Second till Last page
-        for ($i = 2; $i <= $lastPage; $i++) {
-            $options["json"]["page"] = $i;
+        if (array_key_exists("pagination", $metaInformation)) {
+            $lastPage = $metaInformation["pagination"]["lastPage"];
 
-            $response = $client->get($url, $options);
+            // Collect Date from Second till Last page
+            for ($i = 2; $i <= $lastPage; $i++) {
+                $options["json"]["page"] = $i;
 
-            $collectedData = array_merge($collectedData, CTResponseUtil::dataAsArray($response));
+                $response = $client->get($url, $options);
+
+                $collectedData = array_merge($collectedData, CTResponseUtil::dataAsArray($response));
+            }
         }
 
         return $collectedData;

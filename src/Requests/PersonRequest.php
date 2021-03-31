@@ -3,7 +3,6 @@
 
 namespace CTApi\Requests;
 
-
 use CTApi\Models\Person;
 
 class PersonRequest

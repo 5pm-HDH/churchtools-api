@@ -6,7 +6,6 @@ namespace CTApi;
 
 use GuzzleHttp\Client;
 use Psr\Http\Message\ResponseInterface;
-use function PHPUnit\Framework\isNull;
 
 class CTClient extends Client
 {

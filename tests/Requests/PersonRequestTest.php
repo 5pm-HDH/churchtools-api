@@ -32,7 +32,7 @@ class PersonRequestTest extends TestCaseAuthenticated
 
         $exceptionThrown = false;
         try {
-            $noPerson = PersonRequest::findOrFail(0);
+            PersonRequest::findOrFail(0);
         } catch (Exception) {
             $exceptionThrown = true;
         }
@@ -45,5 +45,12 @@ class PersonRequestTest extends TestCaseAuthenticated
 
         $this->assertNotNull($allPersons);
         $this->assertInstanceOf(Person::class, $allPersons[0]);
+    }
+
+    public function testWhere()
+    {
+        $selectedPersons = PersonRequest::where('ids', [4463, 616, 474, 99999])->get();
+
+        $this->assertTrue(sizeof($selectedPersons) <= 4);
     }
 }

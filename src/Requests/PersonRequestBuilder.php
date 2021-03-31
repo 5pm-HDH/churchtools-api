@@ -3,19 +3,17 @@
 
 namespace CTApi\Requests;
 
-
 use CTApi\CTClient;
 use CTApi\Models\Person;
 use CTApi\Requests\Traits\Pagination;
+use CTApi\Requests\Traits\WhereCondition;
 use CTApi\Utils\CTResponseUtil;
 use Exception;
 use GuzzleHttp\Exception\GuzzleException;
 
 class PersonRequestBuilder
 {
-    use Pagination;
-
-    private array $whereCriteria = [];
+    use Pagination, WhereCondition;
 
     public function whoami(): Person
     {
@@ -26,10 +24,7 @@ class PersonRequestBuilder
 
             $data = CTResponseUtil::dataAsArray($response);
 
-            $person = new Person();
-            $person->fillWithData($data);
-
-            return $person;
+            return Person::createModelFromData($data);
         } catch (GuzzleException $e) {
             throw new Exception($e);
         }
@@ -38,13 +33,7 @@ class PersonRequestBuilder
     public function all(): array
     {
         $data = $this->collectDataFromPages('/api/persons', []);
-        return $this->convertDataArrayToPersonArray($data);
-    }
-
-    public function where(string $key, $value): PersonRequestBuilder
-    {
-        $this->whereCriteria[$key] = $value;
-        return $this;
+        return Person::createModelsFromArray($data);
     }
 
     public function findOrFail(int $id): Person
@@ -61,13 +50,11 @@ class PersonRequestBuilder
     {
         $response = CTClient::getClient()->get('/api/persons/' . $id);
 
-        $person = new Person();
         $personData = CTResponseUtil::dataAsArray($response);
         if (empty($personData)) {
             return null;
         } else {
-            $person->fillWithData($personData);
-            return $person;
+            return Person::createModelFromData($personData);
         }
     }
 
@@ -78,21 +65,10 @@ class PersonRequestBuilder
         ];
 
         //Where-Clauses
-        foreach ($this->whereCriteria as $whereKey => $whereValue) {
-            $options["json"][$whereKey] = $whereValue;
-        }
+        $this->addWhereConditionsToOption($options);
 
         $data = $this->collectDataFromPages('/api/persons', $options);
 
-        return $this->convertDataArrayToPersonArray($data);
-    }
-
-    private function convertDataArrayToPersonArray(array $personDataArray): array
-    {
-        return array_map(function ($personRecord) {
-            $person = new Person();
-            $person->fillWithData($personRecord);
-            return $person;
-        }, $personDataArray);
+        return Person::createModelsFromArray($data);
     }
 }
