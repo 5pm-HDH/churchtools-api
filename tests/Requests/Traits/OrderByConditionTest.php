@@ -12,8 +12,8 @@ class OrderByConditionTest extends TestCase
     protected array $data = [
         ["id" => 21, "name" => "Joe", "tags" => [21, 23, 42]],
         ["id" => 3, "name" => "Sam", "tags" => [39]],
-        ["id" => 50, "name" => "Lucy", "tags" => []],
-        ["id" => 30, "name" => "Xaver", "tags" => [192, 923, 9328, 392]],
+        ["id" => 50, "name" => "Joe", "tags" => []],
+        ["id" => 3, "name" => "Xaver", "tags" => [192, 923, 9328, 392]],
     ];
 
     protected array $criticData = [
@@ -67,6 +67,29 @@ class OrderByConditionTest extends TestCase
         $this->exampleRequestBuilder->orderBy('name', false);
         $this->exampleRequestBuilder->orderMyData($this->data);
         $this->assertEquals("Xaver", $this->data[0]['name']);
+    }
+
+    public function testTwoStepSearch()
+    {
+        //First sort id --> then Sort Name
+        $this->exampleRequestBuilder->orderBy('id')->orderBy('name');
+
+        $this->exampleRequestBuilder->orderMyData($this->data);
+
+        $this->assertEquals(21, $this->data[0]['id']);
+        $this->assertEquals("Joe", $this->data[0]['name']);
+
+        $this->clearSortingCriteria();
+
+        //First sort for Name -> then Sort Id
+        $this->exampleRequestBuilder->orderBy('name')->orderBy('id');
+
+        $this->exampleRequestBuilder->orderMyData($this->data);
+
+        $this->assertEquals(3, $this->data[0]['id']);
+        $this->assertEquals("Sam", $this->data[0]['name']);
+
+
     }
 
     public function testInvalidSort()

@@ -49,8 +49,6 @@ trait OrderByCondition
                     return 0;
                 }
             });
-
-            //print_r($data);
         }
     }
 }

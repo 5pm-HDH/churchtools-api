@@ -6,6 +6,7 @@ namespace CTApi\Requests;
 use CTApi\CTClient;
 use CTApi\Exceptions\CTModelException;
 use CTApi\Models\Person;
+use CTApi\Requests\Traits\OrderByCondition;
 use CTApi\Requests\Traits\Pagination;
 use CTApi\Requests\Traits\WhereCondition;
 use CTApi\Utils\CTResponseUtil;
@@ -13,7 +14,7 @@ use GuzzleHttp\Exception\GuzzleException;
 
 class PersonRequestBuilder
 {
-    use Pagination, WhereCondition;
+    use Pagination, WhereCondition, OrderByCondition;
 
     public function whoami(): Person
     {
@@ -73,6 +74,8 @@ class PersonRequestBuilder
         $this->addWhereConditionsToOption($options);
 
         $data = $this->collectDataFromPages('/api/persons', $options);
+
+        $this->orderRawData($data);
 
         return Person::createModelsFromArray($data);
     }

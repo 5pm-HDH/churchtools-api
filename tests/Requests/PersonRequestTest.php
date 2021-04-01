@@ -53,4 +53,24 @@ class PersonRequestTest extends TestCaseAuthenticated
 
         $this->assertTrue(sizeof($selectedPersons) <= 4);
     }
+
+    public function testOrderBy()
+    {
+        $personsAsc = PersonRequest::orderBy('firstName')->get();
+        $personsDesc = PersonRequest::orderBy('firstName', false)->get();
+        $personsDesc2 = PersonRequest::where('ignore', 'ignore')->orderBy('firstName', false)->get();
+
+        $this->assertEquals(sizeof($personsAsc), sizeof($personsDesc));
+        $this->assertEquals(sizeof($personsAsc), sizeof($personsDesc2));
+
+        //Sort first name by hand
+        $firstNames = array_map(function ($person) {
+            return $person->getFirstName();
+        }, $personsAsc);
+        sort($firstNames);
+
+        $this->assertEquals($firstNames[0], $personsAsc[0]->getFirstName());
+        $this->assertEquals(end($firstNames), $personsDesc[0]->getFirstName());
+        $this->assertEquals(end($firstNames), $personsDesc2[0]->getFirstName());
+    }
 }

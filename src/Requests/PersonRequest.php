@@ -22,6 +22,11 @@ class PersonRequest
         return (new PersonRequestBuilder())->where($key, $value);
     }
 
+    public static function orderBy(string $key, $orderAscending = true): PersonRequestBuilder
+    {
+        return (new PersonRequestBuilder())->orderBy($key, $orderAscending);
+    }
+
     public static function findOrFail(int $id): Person
     {
         return (new PersonRequestBuilder())->findOrFail($id);

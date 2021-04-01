@@ -7,6 +7,7 @@ namespace CTApi\Requests;
 use CTApi\CTClient;
 use CTApi\Exceptions\CTModelException;
 use CTApi\Models\Event;
+use CTApi\Requests\Traits\OrderByCondition;
 use CTApi\Requests\Traits\Pagination;
 use CTApi\Requests\Traits\WhereCondition;
 use CTApi\Utils\CTResponseUtil;
@@ -14,7 +15,7 @@ use GuzzleHttp\Exception\GuzzleException;
 
 class EventRequestBuilder
 {
-    use Pagination, WhereCondition;
+    use Pagination, WhereCondition, OrderByCondition;
 
     public function all(): array
     {
@@ -55,6 +56,8 @@ class EventRequestBuilder
         $this->addWhereConditionsToOption($options);
 
         $data = $this->collectDataFromPages('/api/events', $options);
+
+        $this->orderRawData($data);
 
         return Event::createModelsFromArray($data);
     }

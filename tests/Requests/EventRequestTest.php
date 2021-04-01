@@ -52,4 +52,35 @@ class EventRequestTest extends TestCaseAuthenticated
         $this->expectException(CTModelException::class);
         EventRequest::findOrFail(99999999);
     }
+
+    public function testOrderByEvents()
+    {
+        $eventOrderAscending = EventRequest::where('from', TestData::getValue("EVENT_START_DATE"))
+            ->where('to', TestData::getValue("EVENT_END_DATE"))
+            ->orderBy('startDate')
+            ->get();
+
+        $eventOrderDescending = EventRequest::where('from', TestData::getValue("EVENT_START_DATE"))
+            ->where('to', TestData::getValue("EVENT_END_DATE"))
+            ->orderBy('startDate', false)
+            ->get();
+
+        $eventOrderDescending2 = EventRequest::orderBy('startDate', false)
+            ->where('from', TestData::getValue("EVENT_START_DATE"))
+            ->where('to', TestData::getValue("EVENT_END_DATE"))
+            ->get();
+
+        $this->assertEquals(sizeof($eventOrderAscending), sizeof($eventOrderDescending));
+        $this->assertEquals(sizeof($eventOrderAscending), sizeof($eventOrderDescending2));
+
+        //create own startDate and sort it
+        $startDateOfEvents = array_map(function ($record) {
+            return $record->getStartDate();
+        }, $eventOrderDescending);
+        sort($startDateOfEvents);
+
+        $this->assertEquals($startDateOfEvents[0], $eventOrderAscending[0]->getStartDate());
+        $this->assertEquals(end($startDateOfEvents), $eventOrderDescending[0]->getStartDate());
+        $this->assertEquals(end($startDateOfEvents), $eventOrderDescending2[0]->getStartDate());
+    }
 }
