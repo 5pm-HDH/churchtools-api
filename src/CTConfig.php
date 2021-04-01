@@ -2,7 +2,7 @@
 
 namespace CTApi;
 
-use CTApi\Exceptions\ConfigException;
+use CTApi\Exceptions\CTConfigException;
 use CTApi\Requests\AuthRequest;
 use GuzzleHttp\Cookie\CookieJar;
 
@@ -72,7 +72,7 @@ class CTConfig
     {
         $apiUrl = self::getRequestOption('base_uri');
         if ($apiUrl == null) {
-            throw new ConfigException("CTConfig invalid: ApiUrl cannot be null. Set it with: CTConfig::setApiUrl('https://example.com/api')");
+            throw new CTConfigException("CTConfig invalid: ApiUrl cannot be null. Set it with: CTConfig::setApiUrl('https://example.com/api')");
         }
     }
 

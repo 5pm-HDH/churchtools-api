@@ -3,6 +3,7 @@
 ## Installation
 
 Go to your project-root and install churchtools-api via [composer](https://getcomposer.org/):
+
 ```
 composer require 5pm-hdh/churchtools-api
 ```
@@ -17,7 +18,9 @@ include_once 'vendor/autoload.php';
 
 ## Usage
 
-Before you can start to request data from the API you need to **configure the CT-Client (churchtools client)** with the `CTConfig`-interface:
+Before you can start to request data from the API you need to **configure the CT-Client (churchtools client)** with
+the `CTConfig`-interface:
+
 ```php
 use \CTApi\CTConfig;
 
@@ -33,10 +36,14 @@ CTConfig::authWithCredentials(
     // if everything works fine, the api-key is stored in your config
 $apiKey = CTConfig::getApiKey();
 ```
+
 From now on you can use all the features fo the churchtools-api:
 
 ### 1. Person-Api
-To retrieve data from the api you can use the Requests-Interfaces. They will provide filter options ("where"-clause) and concatenation of filter through the fluent api.
+
+To retrieve data from the api you can use the Requests-Interfaces. They will provide filter options ("where"-clause) and
+concatenation of filter through the fluent api.
+
 ```php
 use CTApi\Requests\PersonRequest;
 
@@ -61,4 +68,5 @@ $personB = PersonRequest::findOrFail(22); // throws exception if id is invalid
 ```
 
 ## License
+
 This project is licensed under MIT-License feel free to use it or to contribute.

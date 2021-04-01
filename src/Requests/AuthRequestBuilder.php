@@ -3,7 +3,7 @@
 namespace CTApi\Requests;
 
 use CTApi\CTClient;
-use CTApi\Exceptions\AuthException;
+use CTApi\Exceptions\CTAuthException;
 use CTApi\Models\Auth;
 use GuzzleHttp\Exception\GuzzleException;
 use JetBrains\PhpStorm\Pure;
@@ -28,7 +28,7 @@ class AuthRequestBuilder
                 ]
             ]);
         } catch (GuzzleException $e) {
-            throw new AuthException(
+            throw new CTAuthException(
                 "Authentication was not successfully. HTTP Exception occurred.",
                 null,
                 $e);
@@ -43,9 +43,9 @@ class AuthRequestBuilder
         } else {
             $jsonResponse = json_decode($response->getBody());
             if (isset($jsonResponse->message)) {
-                throw new AuthException("Authentication was not successfully: " . $jsonResponse->message);
+                throw new CTAuthException("Authentication was not successfully: " . $jsonResponse->message);
             } else {
-                throw new AuthException("Authentication was not successfully. HTTP Status Code is not 200.");
+                throw new CTAuthException("Authentication was not successfully. HTTP Status Code is not 200.");
             }
         }
 
@@ -55,14 +55,14 @@ class AuthRequestBuilder
     private function retrieveLoginToken(): void
     {
         if ($this->userId == null) {
-            throw new AuthException("Authentication was not successfully. UserId is not defined.");
+            throw new CTAuthException("Authentication was not successfully. UserId is not defined.");
         }
 
         $client = CTClient::getClient();
         try {
             $response = $client->get('/api/persons/' . $this->userId . '/logintoken');
         } catch (GuzzleException $e) {
-            throw new AuthException(
+            throw new CTAuthException(
                 "Authentication was not successfully. Could not retrieve login token.",
                 null,
                 $e

@@ -1,8 +1,8 @@
 <?php
 
 use CTApi\CTConfig;
-use CTApi\Exceptions\AuthException;
-use CTApi\Exceptions\ConfigException;
+use CTApi\Exceptions\CTAuthException;
+use CTApi\Exceptions\CTConfigException;
 use PHPUnit\Framework\TestCase;
 
 class CTConfigTest extends TestCase
@@ -22,7 +22,7 @@ class CTConfigTest extends TestCase
     {
         $this->assertNull(CTConfig::getApiUrl());
 
-        $exampleUrl = "http://api.church.tools/";
+        $exampleUrl = "https://api.church.tools/";
         CTConfig::setApiUrl($exampleUrl);
 
         $this->assertEquals($exampleUrl, CTConfig::getApiUrl());
@@ -34,7 +34,7 @@ class CTConfigTest extends TestCase
         $exceptionThrown = false;
         try {
             CTConfig::validateConfig();
-        } catch (ConfigException) {
+        } catch (CTConfigException) {
             $exceptionThrown = true;
         }
         $this->assertTrue($exceptionThrown);
@@ -45,7 +45,7 @@ class CTConfigTest extends TestCase
         $exceptionThrown = false;
         try {
             CTConfig::validateConfig();
-        } catch (ConfigException) {
+        } catch (CTConfigException) {
             $exceptionThrown = true;
         }
         $this->assertFalse($exceptionThrown);
@@ -81,9 +81,9 @@ class CTConfigTest extends TestCase
         $exceptionIsThrown = false;
         try {
             CTConfig::authWithCredentials($wrongAuthEmail, $wrongAuthPassword);
-        } catch (AuthException $e) {
+        } catch (CTAuthException $e) {
             $exceptionIsThrown = true;
-            $this->assertInstanceOf(AuthException::class, $e);
+            $this->assertInstanceOf(CTAuthException::class, $e);
         }
         $this->assertTrue($exceptionIsThrown, "AuthException has not been thrown.");
 
@@ -100,7 +100,7 @@ class CTConfigTest extends TestCase
         $exceptionThrown = false;
         try {
             CTConfig::authWithCredentials($authEmail, $authPassword);
-        } catch (ConfigException) {
+        } catch (CTConfigException) {
             $exceptionThrown = true; // Auth is invalid, because API-Url must be set
         }
         $this->assertTrue($exceptionThrown);

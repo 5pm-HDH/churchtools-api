@@ -3,10 +3,9 @@
 
 namespace CTApi\Exceptions;
 
-
 use RuntimeException;
 
-class ConfigException extends RuntimeException
+class CTAuthException extends RuntimeException
 {
 
 }

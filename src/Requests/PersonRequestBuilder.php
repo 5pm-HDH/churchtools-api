@@ -4,11 +4,11 @@
 namespace CTApi\Requests;
 
 use CTApi\CTClient;
+use CTApi\Exceptions\CTModelException;
 use CTApi\Models\Person;
 use CTApi\Requests\Traits\Pagination;
 use CTApi\Requests\Traits\WhereCondition;
 use CTApi\Utils\CTResponseUtil;
-use Exception;
 use GuzzleHttp\Exception\GuzzleException;
 
 class PersonRequestBuilder
@@ -26,7 +26,7 @@ class PersonRequestBuilder
 
             return Person::createModelFromData($data);
         } catch (GuzzleException $e) {
-            throw new Exception($e);
+            throw new CTModelException("Person could not be found.", null, $e);
         }
     }
 
@@ -42,15 +42,20 @@ class PersonRequestBuilder
         if ($person != null) {
             return $person;
         } else {
-            throw new Exception("Failed! Person not found!");
+            throw new CTModelException("Person could not be found!");
         }
     }
 
     public function find(int $id): ?Person
     {
-        $response = CTClient::getClient()->get('/api/persons/' . $id);
+        $personData = null;
+        try {
+            $response = CTClient::getClient()->get('/api/persons/' . $id);
+            $personData = CTResponseUtil::dataAsArray($response);
+        } catch (GuzzleException $e) {
+            //ignore
+        }
 
-        $personData = CTResponseUtil::dataAsArray($response);
         if (empty($personData)) {
             return null;
         } else {

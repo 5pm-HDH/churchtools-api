@@ -5,11 +5,12 @@ namespace CTApi\Requests;
 
 
 use CTApi\CTClient;
+use CTApi\Exceptions\CTModelException;
 use CTApi\Models\Event;
 use CTApi\Requests\Traits\Pagination;
 use CTApi\Requests\Traits\WhereCondition;
 use CTApi\Utils\CTResponseUtil;
-use Exception;
+use GuzzleHttp\Exception\GuzzleException;
 
 class EventRequestBuilder
 {
@@ -27,15 +28,20 @@ class EventRequestBuilder
         if ($event != null) {
             return $event;
         } else {
-            throw new Exception("Failed! Person not found!");
+            throw new CTModelException("Could not retrieve model!");
         }
     }
 
     public function find(int $id): ?Event
     {
-        $response = CTClient::getClient()->get('/api/events/' . $id);
+        $eventData = null;
+        try {
+            $response = CTClient::getClient()->get('/api/events/' . $id);
+            $eventData = CTResponseUtil::dataAsArray($response);
+        } catch (GuzzleException $e) {
+            // ignore
+        }
 
-        $eventData = CTResponseUtil::dataAsArray($response);
         if (empty($eventData)) {
             return null;
         } else {
