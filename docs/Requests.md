@@ -44,7 +44,7 @@ $twoPersons = PersonRequest::where('ids', [219, 318])->get();
 
 ## Details
 
-* [PersonRequest](#person-request)
+* [PersonRequest](#personrequest)
 * [EventRequest](#eventrequest)
 
 
