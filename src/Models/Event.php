@@ -5,6 +5,8 @@ namespace CTApi\Models;
 
 
 use CTApi\Models\Traits\FillWithData;
+use CTApi\Requests\EventAgendaRequest;
+use CTApi\Requests\EventAgendaRequestBuilder;
 
 class Event
 {
@@ -19,10 +21,18 @@ class Event
     protected ?string $chatStatus;
     protected ?array $permissions;
     protected ?array $calendar;
+    protected ?EventAgenda $agenda;
+
 
     protected function parseArray(string $key, array $data)
     {
-        $this->{$key} = $data;
+        switch ($key){
+            case "agenda":
+                $this->setAgenda(EventAgenda::createModelFromData($data));
+                break;
+            default:
+                $this->{$key} = $data;
+        }
     }
 
     /**
@@ -185,6 +195,31 @@ class Event
     {
         $this->calendar = $calendar;
         return $this;
+    }
+
+    /**
+     * @return EventAgenda|null
+     */
+    public function getAgenda(): ?EventAgenda
+    {
+        return $this->agenda;
+    }
+
+    /**
+     * @param EventAgenda|null $agenda
+     * @return Event
+     */
+    public function setAgenda(?EventAgenda $agenda): Event
+    {
+        $this->agenda = $agenda;
+        return $this;
+    }
+
+    public function requestAgenda(): EventAgenda
+    {
+        $agenda = (new EventAgendaRequestBuilder($this->getId()))->get();
+        $this->setAgenda($agenda);
+        return $this->getAgenda();
     }
 
 }
