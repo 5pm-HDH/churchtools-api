@@ -1,14 +1,16 @@
 # Churchtools (CT) API-Client
 
+Churchtools API-Client is a php based wrapper of the churchtools api. This api is tested with the churchtools version v3.71.0.
+
 ## Installation
 
-Go to your project-root and install churchtools-api via [composer](https://getcomposer.org/):
+Go to the project-root and install churchtools-api via [composer](https://getcomposer.org/):
 
 ```
 composer require 5pm-hdh/churchtools-api
 ```
 
-Load all the dependency-packages into your PHP-Project with the command:
+Load all the dependency-packages into the PHP-Project with the command:
 
 ```php
 <?php
@@ -25,7 +27,8 @@ the `CTConfig`-interface:
 use \CTApi\CTConfig;
 
     //set the url of your churchtools application api
-CTConfig::setApiUrl("https://example.church.tools/api");
+    //important! ApiUrl must end with Top-Level-Domain. No paths allowed!
+CTConfig::setApiUrl("https://example.church.tools");
 
     //authenticates the application and load the api-key into the config
 CTConfig::authWithCredentials(
@@ -36,12 +39,12 @@ CTConfig::authWithCredentials(
     // if everything works fine, the api-key is stored in your config
 $apiKey = CTConfig::getApiKey();
 ```
-
-From now on you can use all the features fo the churchtools-api:
+For more information visit the [CTConfig documentation](/docs/CTConfig.md)
+From now on all features of the churchtools-api are available. More information to the RequestApi's a in the [Requests-Documentation](/docs/Requests.md).
 
 ### 1. Person-Api
 
-To retrieve data from the api you can use the Requests-Interfaces. They will provide filter options ("where"-clause) and
+To retrieve data from the api use the Requests-Interfaces. They will provide filter options ("where"-clause) and
 concatenation of filter through the fluent api.
 
 ```php
