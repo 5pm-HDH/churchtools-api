@@ -42,13 +42,17 @@ $apiKey = CTConfig::getApiKey();
 ```
 
 For more information visit the [CTConfig documentation](/docs/CTConfig.md)
-From now on all features of the churchtools-api are available. More information to the RequestApi's a in
-the [Requests-Documentation](/docs/Requests.md).
+From now on all features of the churchtools-api are available.
 
-### 1. Person-Api
+### Requests and Models
 
-To retrieve data from the api use the Requests-Interfaces. They will provide filter options ("where"-clause) and
-concatenation of filter through the fluent api.
+The whole churchtools-api client is build on top of the Requests and Models. [Requests](/docs/Requests.md) provide an
+interface to specify your api call by adding filtering and sorting. [Models](/docs/Models.md) represent the data, that
+the Requests retrieve. More informations can be found in the documentation.
+
+The following examples show the power of this churchtools-api client and gives a rough overview over the possibilities:
+
+#### Example: Person-API
 
 ```php
 use CTApi\Requests\PersonRequest;
@@ -74,27 +78,40 @@ $personA = PersonRequest::find(21);     // returns "null" if id is invalid
 $personB = PersonRequest::findOrFail(22); // throws exception if id is invalid
 ```
 
-### 2. Event-Api
+#### Example: Event-API
 
 ```php
+use CTApi\Requests\EventAgendaRequest;
 use CTApi\Requests\EventRequest;
 
 // Retrieve all events
 $allEvents = EventRequest::all();
+
+// Get specific Event
+$event = EventRequest::find(21);     // returns "null" if id is invalid
+$event = EventRequest::findOrFail(22); // throws exception if id is invalid
 
 // Filter events in period
 $christmasServices = EventRequest::where('from', '2020-12-24')
                     ->where('to', '2020-12-26')
                     ->orderBy('id')
                     ->get();
-                    
-foreach($christmasServices as $service){
-    echo "Christmas service: " . $service->getName();
-}
+  
+$christmasService = $christmasServices[0];
+  
+// get the Agenda with event id...
+$eventId = $christmasServices->getId();
+$agenda = EventAgendaRequest::fromEvent($eventId)->get();
 
-// Get specific Person
-$eventRequest = EventRequest::find(21);     // returns "null" if id is invalid
-$eventRequest = EventRequest::findOrFail(22); // throws exception if id is invalid
+// ...or direct on event-Model
+$agenda = $event->requestAgenda()->get();
+
+// Use Songs-API
+$songsOnChristmas = $agenda->getSongs();
+
+foreach($songsOnChristmas as $song){
+    echo $song->getTitle() . " - (Key: " .$song->getKey() . ")";
+}
 ```
 
 ## License

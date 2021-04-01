@@ -31,7 +31,7 @@ the `CTConfig::authWithCredentials` method:
 
 ```php
 $email = "someEmail@example.com";
-$password = "1234churchtools"
+$password = "1234churchtools";
 
 CTConfig::authWithCredentials($email, $password);
 ```

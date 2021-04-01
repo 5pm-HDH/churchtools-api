@@ -4,7 +4,7 @@ All Request are build similar and share the same methods to request the data fro
 the common methods to be used. More specific information to the different Request-Apis are listed in
 the [Details](#details) section.
 
-## Use Requests-Api
+## Use Requests
 
 **Get all data**
 
@@ -69,6 +69,7 @@ $twoPersons = PersonRequest::where('ids', [219, 318])->get();
 * [AuthRequest](#authrequest)
 * [PersonRequest](#personrequest)
 * [EventRequest](#eventrequest)
+* [EventRequestAgenda](#eventrequestagenda)
 
 ### AuthRequest
 
@@ -107,3 +108,12 @@ $twoPersons = PersonRequest::where('ids', [219, 318])->get();
 | --- | --- | --- |
 | from | date-string (YYYY-MM-DD) | select events beginning with date |
 | to | date-string (YYYY-MM-DD) | select events ending with date |
+
+### EventRequestAgenda
+
+* ✅ get
+
+```php 
+$agenda = EventAgendaRequest::fromEvent($eventId)->get();
+$agenda = $event->requestAgenda()->get();
+```

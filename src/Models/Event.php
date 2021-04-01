@@ -5,28 +5,27 @@ namespace CTApi\Models;
 
 
 use CTApi\Models\Traits\FillWithData;
-use CTApi\Requests\EventAgendaRequest;
 use CTApi\Requests\EventAgendaRequestBuilder;
 
 class Event
 {
     use FillWithData;
 
-    protected ?string $id;
-    protected ?string $guid;
-    protected ?string $name;
-    protected ?string $description;
-    protected ?string $startDate;
-    protected ?string $endDate;
-    protected ?string $chatStatus;
-    protected ?array $permissions;
-    protected ?array $calendar;
-    protected ?EventAgenda $agenda;
+    protected ?string $id = null;
+    protected ?string $guid = null;
+    protected ?string $name = null;
+    protected ?string $description = null;
+    protected ?string $startDate = null;
+    protected ?string $endDate = null;
+    protected ?string $chatStatus = null;
+    protected ?array $permissions = null;
+    protected ?array $calendar = null;
+    protected ?EventAgenda $agenda = null;
 
 
     protected function parseArray(string $key, array $data)
     {
-        switch ($key){
+        switch ($key) {
             case "agenda":
                 $this->setAgenda(EventAgenda::createModelFromData($data));
                 break;
@@ -215,11 +214,9 @@ class Event
         return $this;
     }
 
-    public function requestAgenda(): EventAgenda
+    public function requestAgenda(): EventAgendaRequestBuilder
     {
-        $agenda = (new EventAgendaRequestBuilder($this->getId()))->get();
-        $this->setAgenda($agenda);
-        return $this->getAgenda();
+        return (new EventAgendaRequestBuilder($this->getId()));
     }
 
 }

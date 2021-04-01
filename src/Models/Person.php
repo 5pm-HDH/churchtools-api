@@ -10,29 +10,29 @@ class Person
 {
     use FillWithData;
 
-    protected ?string $id;
-    protected ?string $guid;
-    protected ?string $firstName;
-    protected ?string $lastName;
-    protected ?string $nickname;
-    protected ?string $job;
-    protected ?string $street;
-    protected ?string $addressAddition;
-    protected ?string $zip;
-    protected ?string $city;
-    protected ?string $country;
+    protected ?string $id = null;
+    protected ?string $guid = null;
+    protected ?string $firstName = null;
+    protected ?string $lastName = null;
+    protected ?string $nickname = null;
+    protected ?string $job = null;
+    protected ?string $street = null;
+    protected ?string $addressAddition = null;
+    protected ?string $zip = null;
+    protected ?string $city = null;
+    protected ?string $country = null;
 
-    protected ?string $phonePrivate;
-    protected ?string $phoneWork;
-    protected ?string $mobile;
-    protected ?string $fax;
+    protected ?string $phonePrivate = null;
+    protected ?string $phoneWork = null;
+    protected ?string $mobile = null;
+    protected ?string $fax = null;
 
-    protected ?string $birthName;
-    protected ?string $birthplace;
-    protected ?string $birthday;
-    protected ?string $imageUrl;
-    protected ?string $sexId;
-    protected ?string $email;
+    protected ?string $birthName = null;
+    protected ?string $birthplace = null;
+    protected ?string $birthday = null;
+    protected ?string $imageUrl = null;
+    protected ?string $sexId = null;
+    protected ?string $email = null;
 
     //... TODO: add further properties
 
