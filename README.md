@@ -67,6 +67,28 @@ $personA = PersonRequest::find(21);     // returns "null" if id is invalid
 $personB = PersonRequest::findOrFail(22); // throws exception if id is invalid
 ```
 
+### 2. Event-Api
+
+```php
+use CTApi\Requests\EventRequest;
+
+// Retrieve all events
+$allEvents = EventRequest::all();
+
+// Filter events in period
+$christmasServices = EventRequest::where('from', '2020-12-24')
+                    ->where('to', '2020-12-26')
+                    ->get();
+                    
+foreach($christmasServices as $service){
+    echo "Christmas service: " . $service->getName();
+}
+
+// Get specific Person
+$eventRequest = EventRequest::find(21);     // returns "null" if id is invalid
+$eventRequest = EventRequest::findOrFail(22); // throws exception if id is invalid
+```
+
 ## License
 
 This project is licensed under MIT-License feel free to use it or to contribute.
