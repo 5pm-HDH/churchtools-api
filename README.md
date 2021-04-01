@@ -1,6 +1,7 @@
 # Churchtools (CT) API-Client
 
-Churchtools API-Client is a php based wrapper of the churchtools api. This api is tested with the churchtools version v3.71.0.
+Churchtools API-Client is a php based wrapper of the churchtools api. This api is tested with the churchtools version
+v3.71.0.
 
 ## Installation
 
@@ -39,8 +40,10 @@ CTConfig::authWithCredentials(
     // if everything works fine, the api-key is stored in your config
 $apiKey = CTConfig::getApiKey();
 ```
+
 For more information visit the [CTConfig documentation](/docs/CTConfig.md)
-From now on all features of the churchtools-api are available. More information to the RequestApi's a in the [Requests-Documentation](/docs/Requests.md).
+From now on all features of the churchtools-api are available. More information to the RequestApi's a in
+the [Requests-Documentation](/docs/Requests.md).
 
 ### 1. Person-Api
 
@@ -59,6 +62,7 @@ $allPersons = PersonRequest::all();
 // Filter Data with Where-Clause
 $teenager = PersonRequest::where('birthday_before', '2007-01-01')
                     ->where('birthday_after', '2003-01-01')
+                    ->orderBy('birthday')
                     ->get();
                     
 foreach($teenager as $teenPerson){
@@ -81,6 +85,7 @@ $allEvents = EventRequest::all();
 // Filter events in period
 $christmasServices = EventRequest::where('from', '2020-12-24')
                     ->where('to', '2020-12-26')
+                    ->orderBy('id')
                     ->get();
                     
 foreach($christmasServices as $service){

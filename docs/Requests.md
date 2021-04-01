@@ -1,6 +1,9 @@
 # Requests
 
-All Request are build similar and share the same methods to request the data from churchtools. The first part describes the common methods to be used. More specific information to the different Request-Apis are listed in the [Details](#details) section.
+All Request are build similar and share the same methods to request the data from churchtools. The first part describes
+the common methods to be used. More specific information to the different Request-Apis are listed in
+the [Details](#details) section.
+
 ## Use Requests-Api
 
 **Get all data**
@@ -11,7 +14,8 @@ $allPersons = PersonRequest::all();
 
 **Get single record**
 
-The `find`-method returns the Model. If there is no record with the given id, it will return null. The `findOrFail`-method throw an `CTModelException` if no record with the given in id could be found.
+The `find`-method returns the Model. If there is no record with the given id, it will return null. The `findOrFail`
+-method throw an `CTModelException` if no record with the given in id could be found.
 
 ```php
 $joe = PersonRequest::find(291);
@@ -23,9 +27,10 @@ try{
 }
 ```
 
-**Where filter** 
+**Where filter**
 
-The `where`-method allows filtering and set custom filter criteria to the request. Where-clauses can also be concatenated for more complex filtering. All available filter-criteria are described in the [detail-section](#details)
+The `where`-method allows filtering and set custom filter criteria to the request. Where-clauses can also be
+concatenated for more complex filtering. All available filter-criteria are described in the [detail-section](#details)
 
 ```php
 $teenager = PersonRequest::where('birthday_before', '2007-01-01')
@@ -34,9 +39,26 @@ $teenager = PersonRequest::where('birthday_before', '2007-01-01')
 
 ```
 
-**Get-Method** 
+**OrderBy - Sort data**
 
-The `get`-method executes the created query and retrieved the data. This method must be the last method to be called on a created Request. In this example we get the two persons with the ids 219 and 318.
+Sort the data with the `orderBy`-method. The first parameter defines the key to be sorted. The second parameter defines
+the sort direction (ascending or descending).
+
+The second example first selects three persons, then sort them by their birthday and secondly by their sex.
+
+```php
+$sortedPerson = PersonRequest::orderBy('birthday')->get();
+
+$sortedEvents = PersonRequest::where('ids', [29, 42, 92])
+                    ->orderBy('birthday')
+                    ->orderBy('sexId')
+                    ->get();
+```
+
+**Get-Method**
+
+The `get`-method executes the created query and retrieved the data. This method must be the last method to be called on
+a created Request. In this example we get the two persons with the ids 219 and 318.
 
 ```php
 $twoPersons = PersonRequest::where('ids', [219, 318])->get();
@@ -44,11 +66,22 @@ $twoPersons = PersonRequest::where('ids', [219, 318])->get();
 
 ## Details
 
+* [AuthRequest](#authrequest)
 * [PersonRequest](#personrequest)
 * [EventRequest](#eventrequest)
 
+### AuthRequest
+
+* ✅ authWithEmailAndPassword
+* ❌ all; find / findOrFail; where; orderBy; limit
 
 ### PersonRequest
+
+* ✅ whoami
+* ✅ all
+* ✅ find / findOrFail
+* ✅ where
+* ✅ orderBy
 
 **Where filter criteria:**
 
@@ -62,6 +95,11 @@ $twoPersons = PersonRequest::where('ids', [219, 318])->get();
 | is_archived | boolean | show only archived people |
 
 ### EventRequest
+
+* ✅ all
+* ✅ find / findOrFail
+* ✅ where
+* ✅ orderBy
 
 **Where filter criteria:**
 
