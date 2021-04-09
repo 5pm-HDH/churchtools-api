@@ -24,6 +24,7 @@ class Song
     protected ?string $key = null;
     protected ?string $bpm = null;
     protected ?string $isDefault = null;
+    protected array $meta = [];
 
     protected function fillArrayType(string $key, array $data)
     {
@@ -306,6 +307,24 @@ class Song
     public function setIsDefault(?string $isDefault): Song
     {
         $this->isDefault = $isDefault;
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getMeta(): array
+    {
+        return $this->meta;
+    }
+
+    /**
+     * @param array $meta
+     * @return Song
+     */
+    public function setMeta(array $meta): Song
+    {
+        $this->meta = $meta;
         return $this;
     }
 }

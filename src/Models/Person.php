@@ -34,7 +34,6 @@ class Person
     protected ?string $sexId = null;
     protected ?string $email = null;
 
-    //... TODO: add further properties
 
     /**
      * @return string|null

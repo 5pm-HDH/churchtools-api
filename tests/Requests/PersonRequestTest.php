@@ -13,7 +13,6 @@ class PersonRequestTest extends TestCaseAuthenticated
 
         $this->assertNotNull($person);
         $this->assertEquals(TestData::getValue('AUTH_FIRST_NAME'), $person->getFirstName());
-
     }
 
     public function testFindOrFail()
