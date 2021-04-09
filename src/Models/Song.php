@@ -10,35 +10,194 @@ class Song
 {
     use FillWithData;
 
-    protected ?string $songId = null;
+    protected ?string $id = null;
     protected ?string $arrangementId = null;
-    protected ?string $title = null;
+    protected ?string $name = null;
     protected ?string $arrangement = null;
-    protected ?string $category = null;
+    protected array $arrangements = [];
+    protected ?SongCategory $category = null;
+    protected ?string $shouldPractice = null;
+    protected ?string $author = null;
+    protected ?string $ccli = null;
+    protected ?string $copyright = null;
+    protected ?string $note = null;
     protected ?string $key = null;
     protected ?string $bpm = null;
     protected ?string $isDefault = null;
 
-    protected function parseArray(string $key, array $data)
+    protected function fillArrayType(string $key, array $data)
     {
-        $this->{$key} = $data;
+        switch ($key) {
+            case "category":
+                $this->setCategory(SongCategory::createModelFromData($data));
+                break;
+            case "arrangements":
+                $this->setArrangements(SongArrangement::createModelsFromArray($data));
+                break;
+            default:
+                $this->{$key} = $data;
+        }
+    }
+
+    protected function fillNonArrayType(string $key, $value)
+    {
+        switch ($key) {
+            case "songId":
+                $this->setId($value);
+                break;
+            case "title":
+                $this->setName($value);
+                break;
+            case "category":
+                $category = SongCategory::createModelFromData(["name" => $value]);
+                $this->setCategory($category);
+                break;
+            default:
+                $this->{$key} = $value;
+        }
     }
 
     /**
      * @return string|null
      */
-    public function getSongId(): ?string
+    public function getShouldPractice(): ?string
     {
-        return $this->songId;
+        return $this->shouldPractice;
     }
 
     /**
-     * @param string|null $songId
+     * @param string|null $shouldPractice
      * @return Song
      */
-    public function setSongId(?string $songId): Song
+    public function setShouldPractice(?string $shouldPractice): Song
     {
-        $this->songId = $songId;
+        $this->shouldPractice = $shouldPractice;
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getArrangements(): array
+    {
+        return $this->arrangements;
+    }
+
+    /**
+     * @param array $arrangements
+     * @return Song
+     */
+    public function setArrangements(array $arrangements): Song
+    {
+        $this->arrangements = $arrangements;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getAuthor(): ?string
+    {
+        return $this->author;
+    }
+
+    /**
+     * @param string|null $author
+     * @return Song
+     */
+    public function setAuthor(?string $author): Song
+    {
+        $this->author = $author;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getCcli(): ?string
+    {
+        return $this->ccli;
+    }
+
+    /**
+     * @param string|null $ccli
+     * @return Song
+     */
+    public function setCcli(?string $ccli): Song
+    {
+        $this->ccli = $ccli;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getCopyright(): ?string
+    {
+        return $this->copyright;
+    }
+
+    /**
+     * @param string|null $copyright
+     * @return Song
+     */
+    public function setCopyright(?string $copyright): Song
+    {
+        $this->copyright = $copyright;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getNote(): ?string
+    {
+        return $this->note;
+    }
+
+    /**
+     * @param string|null $note
+     * @return Song
+     */
+    public function setNote(?string $note): Song
+    {
+        $this->note = $note;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getId(): ?string
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param string|null $id
+     * @return Song
+     */
+    public function setId(?string $id): Song
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string|null $name
+     * @return Song
+     */
+    public function setName(?string $name): Song
+    {
+        $this->name = $name;
         return $this;
     }
 
@@ -63,24 +222,6 @@ class Song
     /**
      * @return string|null
      */
-    public function getTitle(): ?string
-    {
-        return $this->title;
-    }
-
-    /**
-     * @param string|null $title
-     * @return Song
-     */
-    public function setTitle(?string $title): Song
-    {
-        $this->title = $title;
-        return $this;
-    }
-
-    /**
-     * @return string|null
-     */
     public function getArrangement(): ?string
     {
         return $this->arrangement;
@@ -97,18 +238,18 @@ class Song
     }
 
     /**
-     * @return string|null
+     * @return SongCategory|null
      */
-    public function getCategory(): ?string
+    public function getCategory(): ?SongCategory
     {
         return $this->category;
     }
 
     /**
-     * @param string|null $category
+     * @param SongCategory|null $category
      * @return Song
      */
-    public function setCategory(?string $category): Song
+    public function setCategory(?SongCategory $category): Song
     {
         $this->category = $category;
         return $this;

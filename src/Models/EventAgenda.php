@@ -21,7 +21,7 @@ class EventAgenda
     protected array $items = [];
 
 
-    protected function parseArray(string $key, array $data)
+    protected function fillArrayType(string $key, array $data)
     {
         switch ($key) {
             case "items":

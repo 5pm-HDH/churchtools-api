@@ -36,11 +36,6 @@ class Person
 
     //... TODO: add further properties
 
-    protected function parseArray(string $key, array $data)
-    {
-        $this->{$key} = $data;
-    }
-
     /**
      * @return string|null
      */

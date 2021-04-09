@@ -117,3 +117,19 @@ $twoPersons = PersonRequest::where('ids', [219, 318])->get();
 $agenda = EventAgendaRequest::fromEvent($eventId)->get();
 $agenda = $event->requestAgenda()->get();
 ```
+
+### SongRequest
+
+* ✅ all
+* ✅ find / findOrFail
+* ✅ where
+* ✅ orderBy
+
+**Where filter criteria:**
+
+| Criteria | Value | Description |
+| --- | --- | --- |
+| ids | int-array | select only records with given in id's |
+| song_category_ids | int-array | select only records with given category id's |
+| practice | boolean | filter by field shouldPractice |
+| key_of_arrangement | string | Filter by arrangement key. (Song + all Arrangements are returned, if one arrangement fulfills the filter) |
