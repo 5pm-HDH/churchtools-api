@@ -4,7 +4,9 @@
 namespace CTApi\Models;
 
 
+use CTApi\CTClient;
 use CTApi\Models\Traits\FillWithData;
+use GuzzleHttp\Exception\GuzzleException;
 
 class File
 {
@@ -15,6 +17,28 @@ class File
     protected ?string $name;
     protected ?string $filename;
     protected ?string $fileUrl;
+
+    public function downloadToPath($path): bool
+    {
+        return file_put_contents($path . '/' . $this->name, $this->getFileContent());
+    }
+
+    public function downloadToClient(): void
+    {
+        header("Content-disposition: attachment;filename=" . $this->name);
+        echo $this->getFileContent();
+    }
+
+    private function getFileContent(): bool|string
+    {
+        try {
+            $response = CTClient::getClient()->get($this->fileUrl);
+            return $response->getBody();
+        } catch (GuzzleException $e) {
+            //ignore
+            return false;
+        }
+    }
 
     /**
      * @return string|null
