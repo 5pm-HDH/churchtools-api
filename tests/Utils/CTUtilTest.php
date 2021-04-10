@@ -19,13 +19,16 @@ class CTUtilTest extends TestCase
             ],
             "tags" => [
                 "pizza", "coke", "lasagne"
-            ]
+            ],
+            "base_uri" => "https://url.com",
+            "fake" => null
         ];
     }
 
     public function testArrayPathGetter()
     {
 
+        $this->assertEquals("https://url.com", CTUtil::arrayPathGet($this->exampleArray, 'base_uri'));
         $this->assertEquals("Steve", CTUtil::arrayPathGet($this->exampleArray, 'name'));
         $this->assertEquals("Software Engineer", CTUtil::arrayPathGet($this->exampleArray, 'job.name'));
         $this->assertEquals(20000, CTUtil::arrayPathGet($this->exampleArray, 'job.selling'));
@@ -54,5 +57,17 @@ class CTUtilTest extends TestCase
         //append Element to Array
         CTUtil::arrayPathSet($this->exampleArray, 'job', ["isPrimary" => true]);
         $this->assertTrue($this->exampleArray["job"]["isPrimary"]);
+    }
+
+    public function testArrayPathCreateElement()
+    {
+        CTUtil::arrayPathSet($this->exampleArray, 'age', 21);
+        $this->assertEquals(21, $this->exampleArray['age']);
+    }
+
+    public function testArrayPathSetFake()
+    {
+        CTUtil::arrayPathSet($this->exampleArray, 'fake.age', 21);
+        $this->assertEquals(21, $this->exampleArray['fake']['age']);
     }
 }

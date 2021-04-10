@@ -20,7 +20,7 @@ class CTResponseUtil
         if ($object == null) {
             return [];
         } else {
-            return $object;
+            return (array)$object;
         }
     }
 

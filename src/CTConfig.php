@@ -4,6 +4,8 @@ namespace CTApi;
 
 use CTApi\Exceptions\CTConfigException;
 use CTApi\Requests\AuthRequest;
+use CTApi\Requests\PersonRequest;
+use CTApi\Utils\CTUtil;
 use GuzzleHttp\Cookie\CookieJar;
 
 class CTConfig
@@ -33,6 +35,11 @@ class CTConfig
         self::$config = null;
     }
 
+    public static function clearCookies(): void
+    {
+        self::setRequestOption("cookies", new CookieJar());
+    }
+
     public static function getConfig(): CTConfig
     {
         if (is_null(self::$config)) {
@@ -60,17 +67,17 @@ class CTConfig
     public static function authWithCredentials(string $email, string $password)
     {
         $auth = AuthRequest::authWithEmailAndPassword($email, $password);
-        self::setRequestOption('login_token', $auth->apiKey);
+        self::setRequestOption('query.login_token', $auth->apiKey);
     }
 
     public static function setApiKey(string $apiKey)
     {
-        self::setRequestOption("login_token", $apiKey);
+        self::setRequestOption('query.login_token', $apiKey);
     }
 
     public static function getApiKey(): ?string
     {
-        return self::getRequestOption('login_token');
+        return self::getRequestOption('query.login_token');
     }
 
     public static function validateConfig()
@@ -81,14 +88,25 @@ class CTConfig
         }
     }
 
-    private static function setRequestOption(string $key, $value)
+    public static function validateApiKey(): bool
     {
-        self::getConfig()->requestOptions[$key] = $value;
+        $ctUser = PersonRequest::whoami();
+        if ($ctUser->getId() == -1 || $ctUser->getId() == null) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
-    private static function getRequestOption(string $key)
+    private static function setRequestOption(string $path, $value)
     {
-        return isset(self::getConfig()->requestOptions[$key]) ? self::getConfig()->requestOptions[$key] : null;
+        CTUtil::arrayPathSet(self::getConfig()->requestOptions, $path, $value);
+    }
+
+    private static function getRequestOption(string $path)
+    {
+        $array = self::getConfig()->requestOptions;
+        return CTUtil::arrayPathGet($array, $path);
     }
 
     public static function enableDebugging()

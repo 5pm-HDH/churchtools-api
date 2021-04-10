@@ -43,3 +43,20 @@ getter method:
 ```php
 $apiToken = CTConfig::getApiKey();
 ```
+
+The api key can also be set manually with the setter method:
+
+```php
+$apiToken = CTConfig::setApiKey("...");
+```
+
+To validate if the api key is still valid, call the validateApiKey method:
+
+```php
+$isValid = CTConfig::validateApiKey();
+if($isValid){
+    echo "ApiKey is still valid!";
+}else{
+    echo "ApiKey is not valid anymore!";
+}
+```

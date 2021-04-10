@@ -31,7 +31,7 @@ class CTUtil
      */
     public static function arrayIsListContainer(array $data): bool
     {
-        return !CTUtil::arrayIsDataContainer($data);
+        return (!CTUtil::arrayIsDataContainer($data) && !empty($data));
     }
 
     /**
@@ -48,11 +48,17 @@ class CTUtil
             $key = $pathArray[0];
             array_shift($pathArray);
 
+            if (!array_key_exists($key, $array) || is_null($array[$key])) {
+                $array[$key] = [];
+            }
+
             self::arrayPathSet($array[$key], implode('.', $pathArray), $value);
         } else {
             $key = $pathArray[0];
 
-            if (is_array($array[$key])) {
+            if (!array_key_exists($key, $array)) {
+                $array[$key] = $value;
+            } else if (is_array($array[$key])) {
                 if (is_array($value)) {
                     $array[$key] = array_merge(
                         $array[$key],
@@ -65,7 +71,6 @@ class CTUtil
                 $array[$key] = $value;
             }
         }
-
     }
 
     /**
@@ -76,10 +81,23 @@ class CTUtil
      */
     public static function arrayPathGet(array &$array, string $path)
     {
-        $currentElement = $array;
-        foreach (explode('.', $path) as $key) {
-            $currentElement = &$currentElement[$key];
+        $pathArray = explode('.', $path);
+        $key = $pathArray[0];
+
+        if (!array_key_exists($key, $array)) {
+            return null;
         }
-        return $currentElement;
+
+        if (sizeof($pathArray) > 1) {
+            array_shift($pathArray);
+
+            if (!is_array($array[$key])) {
+                return $array[$key];
+            }
+
+            return self::arrayPathGet($array[$key], implode('.', $pathArray));
+        } else {
+            return $array[$key];
+        }
     }
 }

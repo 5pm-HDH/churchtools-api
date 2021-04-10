@@ -119,4 +119,26 @@ class CTConfigTest extends TestCase
         $requestConfig = CTConfig::getRequestConfig();
         $this->assertFalse($requestConfig['debug']);
     }
+
+    public function testValidateApiKey()
+    {
+
+        $authEmail = TestData::getValue("AUTH_EMAIL");
+        $authPassword = TestData::getValue("AUTH_PASSWORD");
+        $apiUrl = TestData::getValue("API_URL");
+
+        CTConfig::setApiUrl($apiUrl);
+        CTConfig::authWithCredentials($authEmail, $authPassword);
+
+        $apiKey = CTConfig::getApiKey();
+
+        //set false API-Key
+        CTConfig::setApikey("notvalid-api-key");
+        CTConfig::clearCookies();
+        $this->assertFalse(CTConfig::validateApiKey());
+
+        //set working API-Key
+        CTConfig::setApiKey($apiKey);
+        $this->assertTrue(CTConfig::validateApiKey());
+    }
 }
