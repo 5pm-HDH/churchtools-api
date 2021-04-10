@@ -34,4 +34,52 @@ class CTUtil
         return !CTUtil::arrayIsDataContainer($data);
     }
 
+    /**
+     * @param array $array
+     * @param string $path
+     * @param $value
+     *
+     * Sets the value in a array path.
+     */
+    public static function arrayPathSet(array &$array, string $path, $value)
+    {
+        $pathArray = explode('.', $path);
+        if (sizeof($pathArray) > 1) {
+            $key = $pathArray[0];
+            array_shift($pathArray);
+
+            self::arrayPathSet($array[$key], implode('.', $pathArray), $value);
+        } else {
+            $key = $pathArray[0];
+
+            if (is_array($array[$key])) {
+                if (is_array($value)) {
+                    $array[$key] = array_merge(
+                        $array[$key],
+                        $value
+                    );
+                } else {
+                    array_push($array[$key], $value);
+                }
+            } else {
+                $array[$key] = $value;
+            }
+        }
+
+    }
+
+    /**
+     * @param array $array
+     * @param string $path
+     *
+     * Gets the value in a array path.
+     */
+    public static function arrayPathGet(array &$array, string $path)
+    {
+        $currentElement = $array;
+        foreach (explode('.', $path) as $key) {
+            $currentElement = &$currentElement[$key];
+        }
+        return $currentElement;
+    }
 }
