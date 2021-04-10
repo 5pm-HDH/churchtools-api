@@ -31,7 +31,73 @@ class CTUtil
      */
     public static function arrayIsListContainer(array $data): bool
     {
-        return !CTUtil::arrayIsDataContainer($data);
+        return (!CTUtil::arrayIsDataContainer($data) && !empty($data));
     }
 
+    /**
+     * @param array $array
+     * @param string $path
+     * @param $value
+     *
+     * Sets the value in a array path.
+     */
+    public static function arrayPathSet(array &$array, string $path, $value)
+    {
+        $pathArray = explode('.', $path);
+        if (sizeof($pathArray) > 1) {
+            $key = $pathArray[0];
+            array_shift($pathArray);
+
+            if (!array_key_exists($key, $array) || is_null($array[$key])) {
+                $array[$key] = [];
+            }
+
+            self::arrayPathSet($array[$key], implode('.', $pathArray), $value);
+        } else {
+            $key = $pathArray[0];
+
+            if (!array_key_exists($key, $array)) {
+                $array[$key] = $value;
+            } else if (is_array($array[$key])) {
+                if (is_array($value)) {
+                    $array[$key] = array_merge(
+                        $array[$key],
+                        $value
+                    );
+                } else {
+                    array_push($array[$key], $value);
+                }
+            } else {
+                $array[$key] = $value;
+            }
+        }
+    }
+
+    /**
+     * @param array $array
+     * @param string $path
+     *
+     * Gets the value in a array path.
+     */
+    public static function arrayPathGet(array &$array, string $path)
+    {
+        $pathArray = explode('.', $path);
+        $key = $pathArray[0];
+
+        if (!array_key_exists($key, $array)) {
+            return null;
+        }
+
+        if (sizeof($pathArray) > 1) {
+            array_shift($pathArray);
+
+            if (!is_array($array[$key])) {
+                return $array[$key];
+            }
+
+            return self::arrayPathGet($array[$key], implode('.', $pathArray));
+        } else {
+            return $array[$key];
+        }
+    }
 }
