@@ -63,6 +63,11 @@ class CTConfig
         self::setRequestOption('login_token', $auth->apiKey);
     }
 
+    public static function setApiKey(string $apiKey)
+    {
+        self::setRequestOption("login_token", $apiKey);
+    }
+
     public static function getApiKey(): ?string
     {
         return self::getRequestOption('login_token');
