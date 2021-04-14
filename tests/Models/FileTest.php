@@ -1,6 +1,7 @@
 <?php
 
 
+use CTApi\CTConfig;
 use CTApi\Models\File;
 use CTApi\Requests\SongRequest;
 
@@ -38,5 +39,21 @@ class FileTest extends TestCaseAuthenticated
             ||
             file_exists($this->DOWNLOAD_FOLDER . '/' . $file->getName())
         );
+    }
+
+    public function testGetFileUrlAuthenticated()
+    {
+        CTConfig::clearConfig();
+        $file = new File();
+
+        $this->assertNull($file->getFileUrlAuthenticated());
+
+        $file->setFileUrl("https//file.com/?id=291");
+
+        $this->assertNull($file->getFileUrlAuthenticated());
+
+        CTConfig::setApiKey("TESTAPIKEY");
+
+        $this->assertEquals("https//file.com/?id=291&login_token=TESTAPIKEY", $file->getFileUrlAuthenticated());
     }
 }
