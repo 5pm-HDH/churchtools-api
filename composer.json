@@ -9,7 +9,7 @@
     ]
   },
   "require": {
-    "guzzlehttp/guzzle": "7.3",
+    "guzzlehttp/guzzle": "7.3.*",
     "php": ">=8.0"
   },
   "require-dev": {
