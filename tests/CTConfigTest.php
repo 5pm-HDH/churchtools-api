@@ -51,7 +51,7 @@ class CTConfigTest extends TestCase
         $this->assertFalse($exceptionThrown);
     }
 
-    public function testAuthWithCredentialsSuccessfully()
+    /*public function testAuthWithCredentialsSuccessfully()
     {
         $this->assertNull(CTConfig::getApiKey());
 
@@ -87,15 +87,15 @@ class CTConfigTest extends TestCase
         }
         $this->assertTrue($exceptionIsThrown, "AuthException has not been thrown.");
 
-    }
+    }*/
 
     public function testAuthWithCredentialsFailingBecauseApiUrlIsEmpty()
     {
         $this->assertNull(CTConfig::getApiUrl());
 
         //that are the right credentials
-        $authEmail = TestData::getValue("AUTH_EMAIL");
-        $authPassword = TestData::getValue("AUTH_PASSWORD");
+        $authEmail = "some@thing.gg";
+        $authPassword = "s3cur3";
 
         $exceptionThrown = false;
         try {
@@ -120,7 +120,7 @@ class CTConfigTest extends TestCase
         $this->assertFalse($requestConfig['debug']);
     }
 
-    public function testValidateApiKey()
+    /*public function testValidateApiKey()
     {
 
         $authEmail = TestData::getValue("AUTH_EMAIL");
@@ -140,5 +140,5 @@ class CTConfigTest extends TestCase
         //set working API-Key
         CTConfig::setApiKey($apiKey);
         $this->assertTrue(CTConfig::validateApiKey());
-    }
+    }*/
 }

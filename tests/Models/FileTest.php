@@ -9,14 +9,14 @@ class FileTest extends TestCaseAuthenticated
 {
     private string $DOWNLOAD_FOLDER = __DIR__ . "/download-folder";
 
-    public function testDownloadFileToPath()
+    /*public function testDownloadFileToPath()
     {
         $exampleFile = $this->collectFile();
 
         $exampleFile->downloadToPath($this->DOWNLOAD_FOLDER);
 
         $this->assertFileExistsInDownloadFolder($exampleFile);
-    }
+    }*/
 
     private function collectFile(): File
     {

@@ -11,9 +11,9 @@ class TestCaseAuthenticated extends TestCase
         parent::setUpBeforeClass();
 
         CTConfig::setApiUrl(TestData::getValue('API_URL'));
-        CTConfig::authWithCredentials(
+        /*CTConfig::authWithCredentials(
             TestData::getValue('AUTH_EMAIL'),
             TestData::getValue('AUTH_PASSWORD')
-        );
+        );*/
     }
 }

@@ -7,7 +7,7 @@ use CTApi\Requests\PersonRequest;
 
 class PersonRequestTest extends TestCaseAuthenticated
 {
-    public function testWhoAmI()
+    /*public function testWhoAmI()
     {
         $person = PersonRequest::whoami();
 
@@ -44,7 +44,7 @@ class PersonRequestTest extends TestCaseAuthenticated
 
         $this->assertNotNull($allPersons);
         $this->assertInstanceOf(Person::class, $allPersons[0]);
-    }
+    }*/
 
     public function testWhere()
     {
@@ -53,7 +53,7 @@ class PersonRequestTest extends TestCaseAuthenticated
         $this->assertTrue(sizeof($selectedPersons) <= 4);
     }
 
-    public function testOrderBy()
+    /*public function testOrderBy()
     {
         $personsAsc = PersonRequest::orderBy('firstName')->get();
         $personsDesc = PersonRequest::orderBy('firstName', false)->get();
@@ -71,5 +71,5 @@ class PersonRequestTest extends TestCaseAuthenticated
         $this->assertEquals($firstNames[0], $personsAsc[0]->getFirstName());
         $this->assertEquals(end($firstNames), $personsDesc[0]->getFirstName());
         $this->assertEquals(end($firstNames), $personsDesc2[0]->getFirstName());
-    }
+    }*/
 }
