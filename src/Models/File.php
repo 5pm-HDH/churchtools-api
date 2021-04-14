@@ -5,6 +5,7 @@ namespace CTApi\Models;
 
 
 use CTApi\CTClient;
+use CTApi\CTConfig;
 use CTApi\Models\Traits\FillWithData;
 use GuzzleHttp\Exception\GuzzleException;
 
@@ -12,11 +13,11 @@ class File
 {
     use FillWithData;
 
-    protected ?string $domainType;
-    protected ?string $domainId;
-    protected ?string $name;
-    protected ?string $filename;
-    protected ?string $fileUrl;
+    protected ?string $domainType = null;
+    protected ?string $domainId = null;
+    protected ?string $name = null;
+    protected ?string $filename = null;
+    protected ?string $fileUrl = null;
 
     public function downloadToPath($path): bool
     {
@@ -118,6 +119,17 @@ class File
     public function getFileUrl(): ?string
     {
         return $this->fileUrl;
+    }
+
+    public function getFileUrlAuthenticated(): ?string
+    {
+        $fileUrl = $this->getFileUrl();
+        $apiKey = CTConfig::getApiKey();
+        if (is_null($fileUrl) || is_null($apiKey)) {
+            return null;
+        }
+
+        return $fileUrl . "&login_token=" . $apiKey;
     }
 
     /**
