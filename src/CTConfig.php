@@ -32,7 +32,7 @@ class CTConfig
 
     public static function clearConfig(): void
     {
-        self::$config = null;
+        self::$config = new CTConfig();
     }
 
     public static function clearCookies(): void

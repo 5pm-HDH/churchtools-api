@@ -23,6 +23,8 @@
     }
   ],
   "scripts": {
-    "test": "./vendor/bin/phpunit tests"
+    "test": "./vendor/bin/phpunit tests",
+    "test-integration": "vendor\\bin\\phpunit.bat --testsuite integration",
+    "test-unit": "vendor\\bin\\phpunit.bat --testsuite unit"
   }
 }
