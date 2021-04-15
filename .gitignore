@@ -3,7 +3,7 @@
 composer.phar
 
 # ignore testdata with credentials
-/tests/testdata.ini
+/tests/integration/testdata.ini
 
 # ignore ide configuration
 .idea/
