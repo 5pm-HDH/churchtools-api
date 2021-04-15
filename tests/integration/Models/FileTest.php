@@ -9,14 +9,14 @@ class FileTest extends TestCaseAuthenticated
 {
     private string $DOWNLOAD_FOLDER = __DIR__ . "/download-folder";
 
-    /*public function testDownloadFileToPath()
+    public function testDownloadFileToPath()
     {
         $exampleFile = $this->collectFile();
 
         $exampleFile->downloadToPath($this->DOWNLOAD_FOLDER);
 
         $this->assertFileExistsInDownloadFolder($exampleFile);
-    }*/
+    }
 
     private function collectFile(): File
     {
@@ -30,6 +30,7 @@ class FileTest extends TestCaseAuthenticated
                 }
             }
         }
+        return new File();
     }
 
     private function assertFileExistsInDownloadFolder(File $file)
@@ -43,17 +44,12 @@ class FileTest extends TestCaseAuthenticated
 
     public function testGetFileUrlAuthenticated()
     {
-        CTConfig::clearConfig();
         $file = new File();
 
         $this->assertNull($file->getFileUrlAuthenticated());
 
+        $apiToken = CTConfig::getApiKey();
         $file->setFileUrl("https//file.com/?id=291");
-
-        $this->assertNull($file->getFileUrlAuthenticated());
-
-        CTConfig::setApiKey("TESTAPIKEY");
-
-        $this->assertEquals("https//file.com/?id=291&login_token=TESTAPIKEY", $file->getFileUrlAuthenticated());
+        $this->assertEquals("https//file.com/?id=291&login_token=" . $apiToken, $file->getFileUrlAuthenticated());
     }
 }
