@@ -31,4 +31,4 @@ jobs:
       run: composer install --prefer-dist --no-progress
 
     - name: Run test suite
-      run: cp tests/testdata.example.ini tests/testdata.ini && composer run-script test
+      run: composer run-script test-unit
