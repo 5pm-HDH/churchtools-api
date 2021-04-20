@@ -28,6 +28,9 @@ class SongArrangement
             case "files":
                 $this->setFiles(File::createModelsFromArray($data));
                 break;
+            case "links":
+                $this->setLinks(File::createModelsFromArray($data));
+                break;
             case "meta":
                 $this->setMeta(Meta::createModelFromData($data));
                 break;
