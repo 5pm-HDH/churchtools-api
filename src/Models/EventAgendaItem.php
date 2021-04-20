@@ -5,10 +5,11 @@ namespace CTApi\Models;
 
 
 use CTApi\Models\Traits\FillWithData;
+use CTApi\Models\Traits\MetaAttribute;
 
 class EventAgendaItem
 {
-    use FillWithData;
+    use FillWithData, MetaAttribute;
 
     protected ?string $id = null;
     protected ?string $position = null;
@@ -20,7 +21,6 @@ class EventAgendaItem
     protected ?string $isBeforeEvent = null;
     protected ?array $responsible = null;
     protected ?array $serviceGroupNotes = null;
-    protected ?array $meta = null;
     protected ?Song $song = null;
 
 
@@ -29,6 +29,9 @@ class EventAgendaItem
         switch ($key) {
             case "song":
                 $this->setSong(Song::createModelFromData($data));
+                break;
+            case "meta":
+                $this->setMeta(Meta::createModelFromData($data));
                 break;
             default:
                 $this->{$key} = $data;
@@ -216,14 +219,6 @@ class EventAgendaItem
     }
 
     /**
-     * @return array|null
-     */
-    public function getMeta(): ?array
-    {
-        return $this->meta;
-    }
-
-    /**
      * @return Song|null
      */
     public function getSong(): ?Song
@@ -238,16 +233,6 @@ class EventAgendaItem
     public function setSong(?Song $song): EventAgendaItem
     {
         $this->song = $song;
-        return $this;
-    }
-
-    /**
-     * @param array|null $meta
-     * @return EventAgendaItem
-     */
-    public function setMeta(?array $meta): EventAgendaItem
-    {
-        $this->meta = $meta;
         return $this;
     }
 }

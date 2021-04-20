@@ -47,17 +47,28 @@ $person->getLastName();
 $person->setLastName("Joe");
 ```
 
-**`request`-methods**
+**`request`-method (one-to-one - singular)**
 
-Any `requestXYZ`-method returns a RequestBuilder and allow you to access the [Requests](Requests.md) methods and type:
+Any `requestXYZ`-method that requests a single model, will request all information from the api and returns the model
+directly:
 
 ```php 
-$agenda = $event->requestAgenda()->get();
+$agenda = $event->requestAgenda();
 
-//Not implemented yet, but soon it will be:
-$responsiblePerson = $eventAgenda->requestSongs()
+echo "Event Agenda: " . $agenda->getName();
+```
+
+**`request`-method (one-to-many - plural)**
+
+Any `requestXYZ`-method that returns multiple models, returns a RequestBuilder and allow you to access
+the [Requests](Requests.md) methods and type:
+
+```php 
+$songs = $eventAgenda->requestSongs()
                         ->where('practice', true)
                         ->orderBy('key')
                         ->get();
-
 ```
+
+A "one-to-many" relation can be easily identified by check if the `requestXYZ`-method ends with an "s" (e.q.:
+requestSong**s**, requestFile**s**, ...).

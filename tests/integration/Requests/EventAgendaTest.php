@@ -2,6 +2,8 @@
 
 
 use CTApi\Models\EventAgenda;
+use CTApi\Models\Song;
+use CTApi\Models\SongArrangement;
 use CTApi\Requests\EventAgendaRequest;
 use CTApi\Requests\EventRequest;
 
@@ -30,7 +32,7 @@ class EventAgendaTest extends TestCaseAuthenticated
 
         $event = EventRequest::findOrFail($eventId);
 
-        $agenda = $event->requestAgenda()->get();
+        $agenda = $event->requestAgenda();
         $this->assertAgendaIsValid($agenda);
     }
 
@@ -70,16 +72,69 @@ class EventAgendaTest extends TestCaseAuthenticated
         $this->assertTestSongIsInSongArray($songs);
     }
 
-    private function assertTestSongIsInSongArray($songArray)
+    public function testRequestSongsOfAgenda()
+    {
+        $eventId = TestData::getValue("EVENT_AGENDA_EVENT_ID");
+
+        $agenda = EventAgendaRequest::fromEvent($eventId)->get();
+
+        $songs = $agenda->requestSongs()->get();
+
+        $this->assertTestSongIsInSongArray($songs, false);
+    }
+
+    public function testRequestSelectedArrangementOfSong()
+    {
+        $songId = TestData::getValue("EVENT_AGENDA_SONG_ID");
+        $arrangementId = TestData::getValue("EVENT_AGENDA_SONG_ARRANGEMENT_ID");
+
+        $song = new Song();
+
+        $this->assertNull($song->requestSelectedArrangement());
+        $song->setId($songId);
+
+        $this->assertNull($song->requestSelectedArrangement());
+        $song->setArrangementId($arrangementId);
+
+        $arrangement = $song->requestSelectedArrangement();
+
+        $this->assertEquals($arrangementId, $arrangement->getId());
+        $this->assertEquals(TestData::getValue("EVENT_AGENDA_SONG_ARRANGEMENT"), $arrangement->getName());
+    }
+
+    public function testRequestArrangementsOfAgenda()
+    {
+        $eventId = TestData::getValue("EVENT_AGENDA_EVENT_ID");
+        $agenda = EventAgendaRequest::fromEvent($eventId)->get();
+
+        $arrangements = $agenda->requestArrangements()->get();
+
+        foreach ($arrangements as $arrangement) {
+            $this->assertInstanceOf(SongArrangement::class, $arrangement);
+        }
+    }
+
+    private function assertTestSongIsInSongArray($songArray, $checkForArrangement = true)
     {
         $foundSong = false;
         foreach ($songArray as $song) {
             if (is_null($song)) continue;
             if (
-                $song->getName() == TestData::getValue("EVENT_AGENDA_SONG_NAME") &&
-                $song->getArrangement() == TestData::getValue("EVENT_AGENDA_SONG_ARRANGEMENT")
+                $song->getName() == TestData::getValue("EVENT_AGENDA_SONG_NAME")
             ) {
-                $foundSong = true;
+
+                print_r($song);
+
+                if ($checkForArrangement) {
+                    if ($song->getArrangement() == TestData::getValue("EVENT_AGENDA_SONG_ARRANGEMENT")) {
+                        $foundSong = true;
+                    } else {
+                        $foundSong = false;
+                    }
+                } else {
+                    $foundSong = true;
+                }
+
             }
         }
         $this->assertTrue($foundSong, "Could not find song in Agenda!");

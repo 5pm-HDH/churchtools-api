@@ -5,10 +5,14 @@ namespace CTApi\Models;
 
 
 use CTApi\Models\Traits\FillWithData;
+use CTApi\Models\Traits\MetaAttribute;
+use CTApi\Requests\SongArrangementRequestBuilder;
+use CTApi\Requests\SongRequest;
+use CTApi\Requests\SongRequestBuilder;
 
 class EventAgenda
 {
-    use FillWithData;
+    use FillWithData, MetaAttribute;
 
     protected ?string $id = null;
     protected ?string $name = null;
@@ -17,7 +21,6 @@ class EventAgenda
     protected ?string $eventStartPosition = null;
     protected ?string $calendarId = null;
     protected ?string $total = null;
-    protected array $meta = [];
     protected array $items = [];
 
 
@@ -26,6 +29,9 @@ class EventAgenda
         switch ($key) {
             case "items":
                 $this->setItems(EventAgendaItem::createModelsFromArray($data));
+                break;
+            case "meta":
+                $this->setMeta(Meta::createModelFromData($data));
                 break;
             default:
                 $this->{$key} = $data;
@@ -40,6 +46,35 @@ class EventAgenda
         return array_filter($songs, function ($song) {
             return !is_null($song);
         });
+    }
+
+    /**
+     * Attention: This method will lose the information, which arrangement is selected in the EventAgenda.
+     * @return SongRequestBuilder
+     */
+    public function requestSongs(): SongRequestBuilder
+    {
+        $songs = $this->getSongs();
+        $songIds = array_map(function ($song) {
+            return $song->getId();
+        }, $songs);
+
+        return SongRequest::where('ids', $songIds);
+    }
+
+    /**
+     * Returns all arrangements of the event.
+     * Attention: This method will lose the song information that the arrangements belong to.
+     *
+     * @return SongArrangementRequestBuilder
+     */
+    public function requestArrangements(): SongArrangementRequestBuilder
+    {
+        $arrangements = array_map(function (Song $song) {
+            return $song->requestSelectedArrangement();
+        }, $this->getSongs());
+
+        return new SongArrangementRequestBuilder($arrangements);
     }
 
     /**
@@ -165,24 +200,6 @@ class EventAgenda
     public function setTotal(?string $total): EventAgenda
     {
         $this->total = $total;
-        return $this;
-    }
-
-    /**
-     * @return array
-     */
-    public function getMeta(): array
-    {
-        return $this->meta;
-    }
-
-    /**
-     * @param array $meta
-     * @return EventAgenda
-     */
-    public function setMeta(array $meta): EventAgenda
-    {
-        $this->meta = $meta;
         return $this;
     }
 

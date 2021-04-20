@@ -5,10 +5,11 @@ namespace CTApi\Models;
 
 
 use CTApi\Models\Traits\FillWithData;
+use CTApi\Models\Traits\MetaAttribute;
 
 class SongArrangement
 {
-    use FillWithData;
+    use FillWithData, MetaAttribute;
 
     protected ?string $id;
     protected ?string $name;
@@ -26,6 +27,9 @@ class SongArrangement
         switch ($key) {
             case "files":
                 $this->setFiles(File::createModelsFromArray($data));
+                break;
+            case "meta":
+                $this->setMeta(Meta::createModelFromData($data));
                 break;
             default:
                 $this->{$key} = $data;

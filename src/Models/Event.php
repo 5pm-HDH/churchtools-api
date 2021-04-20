@@ -214,9 +214,9 @@ class Event
         return $this;
     }
 
-    public function requestAgenda(): EventAgendaRequestBuilder
+    public function requestAgenda(): EventAgenda
     {
-        return (new EventAgendaRequestBuilder($this->getId()));
+        return (new EventAgendaRequestBuilder($this->getId()))->get();
     }
 
 }
