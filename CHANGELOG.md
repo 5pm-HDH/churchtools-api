@@ -14,7 +14,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
  - TODO
 
 ### Fixed
- - TODO
+- File: `requestFirstLink($url)` filters in the attribute fileUrl not in attribute name
 
 ## [1.0.0] - 2021-04-20
 
