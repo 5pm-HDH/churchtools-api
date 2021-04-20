@@ -6,6 +6,8 @@ namespace CTApi\Models;
 
 use CTApi\Models\Traits\FillWithData;
 use CTApi\Models\Traits\MetaAttribute;
+use CTApi\Requests\SongRequest;
+use CTApi\Requests\SongRequestBuilder;
 
 class EventAgenda
 {
@@ -43,6 +45,20 @@ class EventAgenda
         return array_filter($songs, function ($song) {
             return !is_null($song);
         });
+    }
+
+    /**
+     * Attention: This method will lose the information, which arrangement is selected in the EventAgenda.
+     * @return SongRequestBuilder
+     */
+    public function requestSongs(): SongRequestBuilder
+    {
+        $songs = $this->getSongs();
+        $songIds = array_map(function ($song) {
+            return $song->getId();
+        }, $songs);
+
+        return SongRequest::where('ids', $songIds);
     }
 
     /**

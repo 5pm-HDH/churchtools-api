@@ -70,16 +70,35 @@ class EventAgendaTest extends TestCaseAuthenticated
         $this->assertTestSongIsInSongArray($songs);
     }
 
-    private function assertTestSongIsInSongArray($songArray)
+    public function testRequestSongsOfAgenda()
+    {
+        $eventId = TestData::getValue("EVENT_AGENDA_EVENT_ID");
+
+        $agenda = EventAgendaRequest::fromEvent($eventId)->get();
+
+        $songs = $agenda->requestSongs()->get();
+
+        $this->assertTestSongIsInSongArray($songs, false);
+    }
+
+    private function assertTestSongIsInSongArray($songArray, $checkForArrangement = true)
     {
         $foundSong = false;
         foreach ($songArray as $song) {
             if (is_null($song)) continue;
             if (
-                $song->getName() == TestData::getValue("EVENT_AGENDA_SONG_NAME") &&
-                $song->getArrangement() == TestData::getValue("EVENT_AGENDA_SONG_ARRANGEMENT")
+                $song->getName() == TestData::getValue("EVENT_AGENDA_SONG_NAME")
             ) {
-                $foundSong = true;
+                if ($checkForArrangement) {
+                    if ($song->getArrangement() == TestData::getValue("EVENT_AGENDA_SONG_ARRANGEMENT")) {
+                        $foundSong = true;
+                    } else {
+                        $foundSong = false;
+                    }
+                } else {
+                    $foundSong = true;
+                }
+
             }
         }
         $this->assertTrue($foundSong, "Could not find song in Agenda!");
