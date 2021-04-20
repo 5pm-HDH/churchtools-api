@@ -30,5 +30,8 @@ jobs:
       if: steps.composer-cache.outputs.cache-hit != 'true'
       run: composer install --prefer-dist --no-progress
 
+    - name: Composer dump-autoload to load all files
+      run: composer dump-autoload
+
     - name: Run test suite
       run: composer run-script test-unit
