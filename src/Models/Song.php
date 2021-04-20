@@ -6,6 +6,7 @@ namespace CTApi\Models;
 
 use CTApi\Models\Traits\FillWithData;
 use CTApi\Models\Traits\MetaAttribute;
+use CTApi\Requests\SongRequest;
 
 class Song
 {
@@ -59,6 +60,31 @@ class Song
             default:
                 $this->{$key} = $value;
         }
+    }
+
+    public function requestSelectedArrangement(): ?SongArrangement
+    {
+        $songId = $this->getId();
+        $selectedArrangementId = $this->getArrangementId();
+
+        if (is_null($songId) || is_null($selectedArrangementId)) {
+            return null;
+        }
+
+        $song = SongRequest::find($songId);
+
+        if (is_null($song)) {
+            return null;
+        }
+
+        $selectedArrangement = null;
+        foreach ($song->getArrangements() as $arrangement) {
+            if ($arrangement->getId() == $selectedArrangementId) {
+                $selectedArrangement = $arrangement;
+            }
+        }
+
+        return $selectedArrangement;
     }
 
     /**
