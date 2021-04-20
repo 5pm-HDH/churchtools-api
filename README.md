@@ -104,7 +104,7 @@ $eventId = $christmasServices->getId();
 $agenda = EventAgendaRequest::fromEvent($eventId)->get();
 
 // ...or direct on event-Model
-$agenda = $event->requestAgenda()->get();
+$agenda = $event->requestAgenda();
 
 // Use Songs-API
 $songsOnChristmas = $agenda->getSongs();

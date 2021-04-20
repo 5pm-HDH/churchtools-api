@@ -30,7 +30,7 @@ class EventAgendaTest extends TestCaseAuthenticated
 
         $event = EventRequest::findOrFail($eventId);
 
-        $agenda = $event->requestAgenda()->get();
+        $agenda = $event->requestAgenda();
         $this->assertAgendaIsValid($agenda);
     }
 
