@@ -28,12 +28,56 @@ class SongArrangement
             case "files":
                 $this->setFiles(File::createModelsFromArray($data));
                 break;
+            case "links":
+                $this->setLinks(File::createModelsFromArray($data));
+                break;
             case "meta":
                 $this->setMeta(Meta::createModelFromData($data));
                 break;
             default:
                 $this->{$key} = $data;
         }
+    }
+
+    /**
+     * Method returns the first file that matches the filename and the file extension.
+     *
+     * @param string $filename
+     * @param string|null $fileExtension
+     * @return File|null
+     */
+    public function requestFirstFile(string $filename, ?string $fileExtension = null): ?File
+    {
+        $files = $this->getFiles();
+
+        if (!is_null($fileExtension)) {
+            $files = array_filter($files, function ($file) use ($fileExtension) {
+                return str_ends_with($file->getName(), $fileExtension);
+            });
+        }
+
+        return $this->filterFileArray($files, $filename);
+    }
+
+    /**
+     * Method returns first Link that matches the given in url.
+     *
+     * @param string $url
+     * @return File|null
+     */
+    public function requestFirstLink(string $url): ?File
+    {
+        return $this->filterFileArray($this->getLinks(), $url);
+    }
+
+    private function filterFileArray($fileArray, $filename): ?File
+    {
+        foreach ($fileArray as $file) {
+            if (str_contains(strtolower($file->getName()), strtolower($filename))) {
+                return $file;
+            }
+        }
+        return null;
     }
 
     /**

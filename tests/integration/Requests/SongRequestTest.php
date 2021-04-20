@@ -1,16 +1,29 @@
 <?php
 
 
+use CTApi\Models\File;
 use CTApi\Models\Song;
+use CTApi\Models\SongArrangement;
 use CTApi\Requests\SongRequest;
 
 class SongRequestTest extends TestCaseAuthenticated
 {
+    private string $SONG_ID = "";
+    private string $SONG_NAME = "";
+    private string $SONG_ARRANGEMENT_ID = "";
+    private string $SONG_ARRANGEMENT_NAME = "";
+
     protected function setUp(): void
     {
         if (!TestData::getValue("SONG_SHOULD_TEST") == "YES") {
             $this->markTestSkipped("Test suite is disabled in testdata.ini");
         }
+
+        $this->SONG_ID = TestData::getValue("SONG_ID") ?? "";
+        $this->SONG_NAME = TestData::getValue("SONG_NAME") ?? "";
+        $this->SONG_ARRANGEMENT_ID = TestData::getValue("SONG_ARRANGEMENT_ID") ?? "";
+        $this->SONG_ARRANGEMENT_NAME = TestData::getValue("SONG_ARRANGEMENT_NAME") ?? "";
+
     }
 
     public function testGetAllSongs()
@@ -84,4 +97,37 @@ class SongRequestTest extends TestCaseAuthenticated
         );
     }
 
+    private function getSong(): Song
+    {
+        $song = SongRequest::findOrFail($this->SONG_ID);
+        $this->assertNotNull($song);
+        $this->selectTestArrangementInSong($song);
+        return $song;
+    }
+
+    private function selectTestArrangementInSong(Song $song): SongArrangement
+    {
+        foreach($song->getArrangements() as $arrangement){
+            if($this->SONG_ARRANGEMENT_ID == $arrangement->getId()){
+                return $arrangement;
+            }
+        }
+        $this->fail("Could not select the test arrangement in the given in song.");
+    }
+
+    public function testSongFilesAndLinks()
+    {
+        $song = $this->getSong();
+        $arrangement = $this->selectTestArrangementInSong($song);
+
+        $this->assertNotNull($arrangement->getLinks());
+        foreach ($arrangement->getLinks() as $link) {
+            $this->assertInstanceOf(File::class, $link);
+        }
+
+        $this->assertNotNull($arrangement->getFiles());
+        foreach ($arrangement->getFiles() as $file) {
+            $this->assertInstanceOf(File::class, $file);
+        }
+    }
 }
