@@ -5,10 +5,11 @@ namespace CTApi\Models;
 
 
 use CTApi\Models\Traits\FillWithData;
+use CTApi\Models\Traits\MetaAttribute;
 
 class Person
 {
-    use FillWithData;
+    use FillWithData, MetaAttribute;
 
     protected ?string $id = null;
     protected ?string $guid = null;
@@ -34,6 +35,18 @@ class Person
     protected ?string $sexId = null;
     protected ?string $email = null;
 
+    protected ?Meta $meta = null;
+
+    protected function fillArrayType(string $key, array $data): void
+    {
+        switch ($key) {
+            case "meta":
+                $this->setMeta(Meta::createModelFromData($data));
+                break;
+            default:
+                $this->{$key} = $data;
+        }
+    }
 
     /**
      * @return string|null

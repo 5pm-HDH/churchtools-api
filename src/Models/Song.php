@@ -5,10 +5,11 @@ namespace CTApi\Models;
 
 
 use CTApi\Models\Traits\FillWithData;
+use CTApi\Models\Traits\MetaAttribute;
 
 class Song
 {
-    use FillWithData;
+    use FillWithData, MetaAttribute;
 
     protected ?string $id = null;
     protected ?string $arrangementId = null;
@@ -24,7 +25,6 @@ class Song
     protected ?string $key = null;
     protected ?string $bpm = null;
     protected ?string $isDefault = null;
-    protected array $meta = [];
 
     protected function fillArrayType(string $key, array $data)
     {
@@ -34,6 +34,9 @@ class Song
                 break;
             case "arrangements":
                 $this->setArrangements(SongArrangement::createModelsFromArray($data));
+                break;
+            case "meta":
+                $this->setMeta(Meta::createModelFromData($data));
                 break;
             default:
                 $this->{$key} = $data;
@@ -307,24 +310,6 @@ class Song
     public function setIsDefault(?string $isDefault): Song
     {
         $this->isDefault = $isDefault;
-        return $this;
-    }
-
-    /**
-     * @return array
-     */
-    public function getMeta(): array
-    {
-        return $this->meta;
-    }
-
-    /**
-     * @param array $meta
-     * @return Song
-     */
-    public function setMeta(array $meta): Song
-    {
-        $this->meta = $meta;
         return $this;
     }
 }
