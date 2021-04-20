@@ -56,7 +56,12 @@ class SongArrangement
             });
         }
 
-        return $this->filterFileArray($files, $filename);
+        foreach ($files as $file) {
+            if (str_contains(strtolower($file->getName()), strtolower($filename))) {
+                return $file;
+            }
+        }
+        return null;
     }
 
     /**
@@ -67,14 +72,9 @@ class SongArrangement
      */
     public function requestFirstLink(string $url): ?File
     {
-        return $this->filterFileArray($this->getLinks(), $url);
-    }
-
-    private function filterFileArray($fileArray, $filename): ?File
-    {
-        foreach ($fileArray as $file) {
-            if (str_contains(strtolower($file->getName()), strtolower($filename))) {
-                return $file;
+        foreach ($this->getLinks() as $link) {
+            if (str_contains(strtolower($link->getFileUrl()), strtolower($url))) {
+                return $link;
             }
         }
         return null;
