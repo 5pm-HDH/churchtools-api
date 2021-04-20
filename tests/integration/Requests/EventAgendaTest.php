@@ -3,6 +3,7 @@
 
 use CTApi\Models\EventAgenda;
 use CTApi\Models\Song;
+use CTApi\Models\SongArrangement;
 use CTApi\Requests\EventAgendaRequest;
 use CTApi\Requests\EventRequest;
 
@@ -99,6 +100,18 @@ class EventAgendaTest extends TestCaseAuthenticated
 
         $this->assertEquals($arrangementId, $arrangement->getId());
         $this->assertEquals(TestData::getValue("EVENT_AGENDA_SONG_ARRANGEMENT"), $arrangement->getName());
+    }
+
+    public function testRequestArrangementsOfAgenda()
+    {
+        $eventId = TestData::getValue("EVENT_AGENDA_EVENT_ID");
+        $agenda = EventAgendaRequest::fromEvent($eventId)->get();
+
+        $arrangements = $agenda->requestArrangements()->get();
+
+        foreach ($arrangements as $arrangement) {
+            $this->assertInstanceOf(SongArrangement::class, $arrangement);
+        }
     }
 
     private function assertTestSongIsInSongArray($songArray, $checkForArrangement = true)

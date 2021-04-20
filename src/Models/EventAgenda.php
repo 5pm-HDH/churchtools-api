@@ -6,6 +6,7 @@ namespace CTApi\Models;
 
 use CTApi\Models\Traits\FillWithData;
 use CTApi\Models\Traits\MetaAttribute;
+use CTApi\Requests\SongArrangementRequestBuilder;
 use CTApi\Requests\SongRequest;
 use CTApi\Requests\SongRequestBuilder;
 
@@ -59,6 +60,21 @@ class EventAgenda
         }, $songs);
 
         return SongRequest::where('ids', $songIds);
+    }
+
+    /**
+     * Returns all arrangements of the event.
+     * Attention: This method will lose the song information that the arrangements belong to.
+     *
+     * @return SongArrangementRequestBuilder
+     */
+    public function requestArrangements(): SongArrangementRequestBuilder
+    {
+        $arrangements = array_map(function (Song $song) {
+            return $song->requestSelectedArrangement();
+        }, $this->getSongs());
+
+        return new SongArrangementRequestBuilder($arrangements);
     }
 
     /**
