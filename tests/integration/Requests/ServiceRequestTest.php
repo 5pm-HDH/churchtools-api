@@ -44,6 +44,26 @@ class ServiceRequestTest extends TestCaseAuthenticated
         }
     }
 
+    public function testServiceRequestServiceGroup()
+    {
+        $serviceId = TestData::getValue("SERVICE_ID");
+        $serviceGroupId = TestData::getValue("SERVICE_GROUP_ID");
+        $serviceGroupName = TestData::getValue("SERVICE_GROUP_NAME");
+
+        $service = ServiceRequest::findOrFail($serviceId);
+        $this->assertNotNull($service);
+
+        $serviceGroup = $service->requestServiceGroup();
+
+        $this->assertInstanceOf(ServiceGroup::class, $serviceGroup);
+        $this->assertEquals($serviceGroup->getId(), $serviceGroupId);
+        $this->assertEquals($serviceGroup->getName(), $serviceGroupName);
+
+        $nullService = new Service();
+
+        $this->assertNull($nullService->requestServiceGroup());
+    }
+
     public function testFindServiceGroup()
     {
         $serviceGroupId = TestData::getValue("SERVICE_GROUP_ID");

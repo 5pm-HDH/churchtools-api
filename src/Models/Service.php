@@ -5,6 +5,7 @@ namespace CTApi\Models;
 
 
 use CTApi\Models\Traits\FillWithData;
+use CTApi\Requests\ServiceGroupRequest;
 
 class Service
 {
@@ -27,6 +28,14 @@ class Service
     protected ?string $tagIds = null;
     protected ?string $calTextTemplate = null;
     protected ?string $allowChat = null;
+
+    public function requestServiceGroup(): ?ServiceGroup
+    {
+        if (!is_null($this->getServiceGroupId())) {
+            return ServiceGroupRequest::find($this->getServiceGroupId());
+        }
+        return null;
+    }
 
     /**
      * @return string|null
