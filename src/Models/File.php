@@ -6,6 +6,7 @@ namespace CTApi\Models;
 
 use CTApi\CTClient;
 use CTApi\CTConfig;
+use CTApi\CTLog;
 use CTApi\Models\Traits\FillWithData;
 use GuzzleHttp\Exception\GuzzleException;
 
@@ -36,6 +37,7 @@ class File
             $response = CTClient::getClient()->get($this->fileUrl);
             return $response->getBody();
         } catch (GuzzleException $e) {
+            CTLog::getLog()->error('File: Could not retrieve file-content.');
             //ignore
             return false;
         }
