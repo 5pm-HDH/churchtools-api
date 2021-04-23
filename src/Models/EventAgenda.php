@@ -4,6 +4,7 @@
 namespace CTApi\Models;
 
 
+use CTApi\CTLog;
 use CTApi\Models\Traits\FillWithData;
 use CTApi\Models\Traits\MetaAttribute;
 use CTApi\Requests\SongArrangementRequestBuilder;
@@ -40,6 +41,7 @@ class EventAgenda
 
     public function getSongs(): array
     {
+        CTLog::getLog()->info('EventAgenda: Collect all songs from agenda.');
         $songs = array_map(function ($agendaItem) {
             return $agendaItem->getSong();
         }, $this->getItems());
@@ -54,6 +56,7 @@ class EventAgenda
      */
     public function requestSongs(): SongRequestBuilder
     {
+        CTLog::getLog()->info("EventAgenda: Request songs from agenda.");
         $songs = $this->getSongs();
         $songIds = array_map(function ($song) {
             return $song->getId();
