@@ -7,6 +7,7 @@ use CTApi\Requests\AuthRequest;
 use CTApi\Requests\PersonRequest;
 use CTApi\Utils\CTUtil;
 use GuzzleHttp\Cookie\CookieJar;
+use GuzzleHttp\TransferStats;
 
 class CTConfig
 {
@@ -111,12 +112,27 @@ class CTConfig
 
     public static function enableDebugging()
     {
+        CTLog::setConsoleLogLevelDebug();
         self::setRequestOption("debug", true);
+        self::setRequestOption('on_stats', function (TransferStats $stats) {
+
+            CTLog::getLog()->debug('TransferStats: EffectiveUri: ' . $stats->getEffectiveUri());
+            CTLog::getLog()->debug('TransferStats: TransferTime: ' . $stats->getTransferTime());
+            CTLog::getLog()->debug('TransferStats: Request Method: ' . $stats->getRequest()->getMethod());
+
+            if ($stats->hasResponse()) {
+                CTLog::getLog()->debug('TransferStats: StatusCode: ' . $stats->getResponse()->getStatusCode());
+            } else {
+                CTLog::getLog()->debug('TransferStats: ErrorData: ' . var_export($stats->getHandlerErrorData(), true));
+            }
+        });
     }
 
     public static function disableDebugging()
     {
+        CTLog::setConsoleLogLevelError();
         self::setRequestOption("debug", false);
+        self::setRequestOption('on_stats', null);
     }
 
 }

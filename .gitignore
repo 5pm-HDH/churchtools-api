@@ -10,3 +10,6 @@ composer.phar
 
 # ignore phpunit-cache
 .phpunit.result.cache
+
+# ignore log-files
+*.log

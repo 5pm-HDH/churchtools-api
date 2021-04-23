@@ -18,11 +18,13 @@ class CTClient extends Client
 
     public function get($uri, array $options = []): ResponseInterface
     {
+        CTLog::getLog()->debug('CTClient: GET-Request URI:' . $uri, ["options" => $options, "mergedOptions" => self::mergeOptions($options)]);
         return parent::get($uri, self::mergeOptions($options));
     }
 
     public function post($uri, array $options = []): ResponseInterface
     {
+        CTLog::getLog()->debug('CTClient: POST-Request URI:' . $uri, ["options" => $options, "mergedOptions" => self::mergeOptions($options)]);
         return parent::post($uri, self::mergeOptions($options));
     }
 
