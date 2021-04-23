@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased] - 2021-04-21
 
 ### Added
- - TODO
+ - CTLog: [add Monolog as Logger-Framework](https://github.com/5pm-HDH/churchtools-api/issues/25)
 
 ### Changed
  - TODO

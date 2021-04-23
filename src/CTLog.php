@@ -31,7 +31,7 @@ class CTLog
         self::$logger = new Logger('CTApi');
 
         if (self::$fileLogEnabled) {
-            self::$logger->pushHandler(new StreamHandler(self::LOG_FILE));
+            self::$logger->pushHandler(new StreamHandler(self::LOG_FILE, Logger::INFO));
         }
         if (self::$consoleLogEnabled) {
             self::$logger->pushHandler(new StreamHandler('php://stdout', self::$consoleLogLevel));
