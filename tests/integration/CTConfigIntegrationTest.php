@@ -2,7 +2,6 @@
 
 use CTApi\CTConfig;
 use CTApi\Exceptions\CTAuthException;
-use CTApi\Exceptions\CTConfigException;
 use PHPUnit\Framework\TestCase;
 
 class CTConfigIntegrationTest extends TestCase

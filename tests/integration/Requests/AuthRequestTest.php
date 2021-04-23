@@ -12,6 +12,7 @@ class AuthRequestTest extends TestCase
     {
         $apiUrl = TestData::getValue("API_URL");
         CTConfig::setApiUrl($apiUrl);
+        CTConfig::enableDebugging();
     }
 
 
