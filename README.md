@@ -115,7 +115,9 @@ foreach($songsOnChristmas as $song){
 ```
 
 ### CTLog - Logging Request
-The CTLog provides a facade to log Informations. By default it logs all important infos, warnings and errors in the log-file: `churchtools-api.log`. The creation of a logfile can be enabled and disabled with the method:
+
+The CTLog provides a facade to log Informations. By default it logs all important infos, warnings and errors in the
+log-file: `churchtools-api.log`. The creation of a logfile can be enabled and disabled with the method:
 
 ```php
 use CTApi\CTLog;
@@ -123,7 +125,9 @@ use CTApi\CTLog;
 CTLog::enableFileLog( false ); //disable logfile
 CTLog::enableFileLog(); // enable logfile
 ```
-By default, all Error, Critical, Alert and Emergency logs will be displayed in the console. If you want to show further log-levels on the console you can use the CTConfig-Debug Option or set it direct in the CTLog facade:
+
+By default, all Error, Critical, Alert and Emergency logs will be displayed in the console. If you want to show further
+log-levels on the console you can use the CTConfig-Debug Option or set it direct in the CTLog facade:
 
 ```php 
 CTConfig::enableDebug();

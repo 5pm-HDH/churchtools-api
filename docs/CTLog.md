@@ -70,3 +70,22 @@ CTLog::getLog()->alert("...");
 CTLog::getLog()->emergency("...");
 
 ```
+
+## How Log-levels are used in churchtools-api:
+
+A log-message must contain the class where the log takes place. For
+example: `CTConfig: Authenticate CTConfig with credentials.`
+
+* **DEBUG** - technically information that helps to find bugs
+    * log `get` / `post`-Request in CTClient
+    * *Example message*: `CTClient: GET-Request URI:/api/persons/5132/logintoken {"options":[],"mergedOptions":[...]}`
+* **INFO** - information that helps to identify what happened
+    * log call of Request-Methods
+    * *Example message*: `CTApi.INFO: AuthRequest: Authenticate CTConfig with credentials.`
+
+* **NOTICE** - information of deprecated features or alternatives
+* **WARNING** - information of possible fault
+    * logs when a exception is created
+    * *Example
+      message*: `CTAuthException: Authentication was not successfully: Username or password wrong for some.wrong.email@wrong-provider.com`
+* **ERROR** - error occurs

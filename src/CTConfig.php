@@ -67,7 +67,6 @@ class CTConfig
 
     public static function authWithCredentials(string $email, string $password)
     {
-        CTLog::getLog()->info('CTConfig: Authenticate CTConfig with credentials.');
         $auth = AuthRequest::authWithEmailAndPassword($email, $password);
         self::setRequestOption('query.login_token', $auth->apiKey);
     }

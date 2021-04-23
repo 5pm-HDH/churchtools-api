@@ -107,8 +107,8 @@ class SongRequestTest extends TestCaseAuthenticated
 
     private function selectTestArrangementInSong(Song $song): SongArrangement
     {
-        foreach($song->getArrangements() as $arrangement){
-            if($this->SONG_ARRANGEMENT_ID == $arrangement->getId()){
+        foreach ($song->getArrangements() as $arrangement) {
+            if ($this->SONG_ARRANGEMENT_ID == $arrangement->getId()) {
                 return $arrangement;
             }
         }
