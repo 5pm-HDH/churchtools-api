@@ -5,6 +5,7 @@ namespace CTApi\Models;
 
 
 use CTApi\Models\Traits\FillWithData;
+use CTApi\Requests\ServiceFromServiceGroupBuilder;
 
 class ServiceGroup
 {
@@ -16,6 +17,14 @@ class ServiceGroup
     protected ?string $viewAll = null;
     protected ?string $campusId = null;
     protected ?string $onlyVisibleInCampusFilter = null;
+
+    public function requestServices(): ?ServiceFromServiceGroupBuilder
+    {
+        if (!is_null($this->getId())) {
+            return new ServiceFromServiceGroupBuilder($this->getId());
+        }
+        return null;
+    }
 
     /**
      * @return string|null

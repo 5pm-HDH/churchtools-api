@@ -91,4 +91,22 @@ class ServiceRequestTest extends TestCaseAuthenticated
         }
     }
 
+    public function testRequestServicesFromServiceGroup()
+    {
+        $serviceGroupId = TestData::getValue("SERVICE_GROUP_ID");
+        $serviceId = TestData::getValue("SERVICE_ID");
+        $serviceName = TestData::getValue("SERVICE_NAME");
+
+        $serviceGroup = ServiceGroupRequest::findOrFail($serviceGroupId);
+
+        $services = $serviceGroup->requestServices()->get();
+
+        $foundService = false;
+        foreach ($services as $service) {
+            if ($service->getId() == $serviceId && $service->getName() == $serviceName) {
+                $foundService = true;
+            }
+        }
+        $this->assertTrue($foundService, "Service could not be retrieved from requestServices-method");
+    }
 }
