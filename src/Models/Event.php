@@ -43,6 +43,16 @@ class Event
         return (new EventAgendaRequestBuilder($this->getId()))->get();
     }
 
+    public function requestEventServiceWithServiceId(int $serviceId): ?EventService
+    {
+        $eventServices = array_filter($this->getEventServices(), function ($eventService) use ($serviceId) {
+            return $eventService->getServiceId() == $serviceId;
+        });
+        if (!empty($eventServices)) {
+            return $eventServices[array_key_first($eventServices)];
+        }
+        return null;
+    }
 
     /**
      * @return string|null

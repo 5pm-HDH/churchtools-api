@@ -113,4 +113,14 @@ class EventRequestTest extends TestCaseAuthenticated
             $this->assertEquals($serviceOfEventService->getId(), $eventService->getServiceId());
         }
     }
+
+    public function testRequestEventServiceWithServiceId()
+    {
+        $eventId = TestData::getValue("EVENT_FIRST_ID");
+
+        $event = EventRequest::find($eventId);
+
+        $eventService = $event->requestEventServiceWithServiceId(92814821428);
+        $this->assertNull($eventService);
+    }
 }
