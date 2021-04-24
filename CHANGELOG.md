@@ -10,7 +10,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 
 - CTLog: [add Monolog as Logger-Framework](https://github.com/5pm-HDH/churchtools-api/issues/25)
-
+- Models:
+  - [Service / ServiceGroup - Models](https://github.com/5pm-HDH/churchtools-api/issues/23)
+  - [EventService](https://github.com/5pm-HDH/churchtools-api/issues/23) to retrieve the Services of an Event
+- Requests:
+  - [ServiceRequest / ServiceGroupRequest](https://github.com/5pm-HDH/churchtools-api/issues/23)
+  
 ### Changed
 
 - TODO
