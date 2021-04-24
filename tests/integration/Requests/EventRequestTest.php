@@ -112,6 +112,5 @@ class EventRequestTest extends TestCaseAuthenticated
             $this->assertInstanceOf(Service::class, $serviceOfEventService);
             $this->assertEquals($serviceOfEventService->getId(), $eventService->getServiceId());
         }
-        print_r($eventService);
     }
 }
