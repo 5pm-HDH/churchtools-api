@@ -18,7 +18,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
   
 ### Changed
 
-- TODO
+- Models:
+  - Person: add [requestEvents-Method](https://github.com/5pm-HDH/churchtools-api/issues/24) to retrieve upcoming events for person
 
 ### Fixed
 - File: `requestFirstLink($url)` filters in the attribute fileUrl not in attribute name code
