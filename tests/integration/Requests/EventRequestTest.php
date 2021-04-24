@@ -3,6 +3,8 @@
 
 use CTApi\Exceptions\CTModelException;
 use CTApi\Models\Event;
+use CTApi\Models\Person;
+use CTApi\Models\Service;
 use CTApi\Requests\EventRequest;
 
 class EventRequestTest extends TestCaseAuthenticated
@@ -83,5 +85,33 @@ class EventRequestTest extends TestCaseAuthenticated
         $this->assertEquals($startDateOfEvents[0], $eventOrderAscending[0]->getStartDate());
         $this->assertEquals(end($startDateOfEvents), $eventOrderDescending[0]->getStartDate());
         $this->assertEquals(end($startDateOfEvents), $eventOrderDescending2[0]->getStartDate());
+    }
+
+    public function testEventServiceGroups()
+    {
+        $eventId = TestData::getValue("EVENT_FIRST_ID");
+
+        $event = EventRequest::find($eventId);
+
+        $eventService = $event->getEventServices()[0];
+
+        if (!is_null($eventService->getPerson())) {
+            $this->assertInstanceOf(Person::class, $eventService->getPerson());
+        }
+        if (!is_null($eventService->requestPerson())) {
+            $this->assertInstanceOf(Person::class, $eventService->requestPerson());
+        }
+        if (!is_null($eventService->getRequesterPerson())) {
+            $this->assertInstanceOf(Person::class, $eventService->getRequesterPerson());
+        }
+        if (!is_null($eventService->requestRequesterPerson())) {
+            $this->assertInstanceOf(Person::class, $eventService->requestRequesterPerson());
+        }
+        $serviceOfEventService = $eventService->requestService();
+        if (!is_null($serviceOfEventService)) {
+            $this->assertInstanceOf(Service::class, $serviceOfEventService);
+            $this->assertEquals($serviceOfEventService->getId(), $eventService->getServiceId());
+        }
+        print_r($eventService);
     }
 }

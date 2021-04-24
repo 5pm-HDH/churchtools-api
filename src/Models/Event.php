@@ -21,7 +21,7 @@ class Event
     protected ?array $permissions = null;
     protected ?array $calendar = null;
     protected ?EventAgenda $agenda = null;
-
+    protected ?array $eventServices = [];
 
     protected function fillArrayType(string $key, array $data)
     {
@@ -29,10 +29,20 @@ class Event
             case "agenda":
                 $this->setAgenda(EventAgenda::createModelFromData($data));
                 break;
+            case "eventServices":
+                $this->setEventServices(EventService::createModelsFromArray($data));
+                break;
             default:
                 $this->{$key} = $data;
         }
     }
+
+
+    public function requestAgenda(): EventAgenda
+    {
+        return (new EventAgendaRequestBuilder($this->getId()))->get();
+    }
+
 
     /**
      * @return string|null
@@ -214,9 +224,21 @@ class Event
         return $this;
     }
 
-    public function requestAgenda(): EventAgenda
+    /**
+     * @return array|null
+     */
+    public function getEventServices(): ?array
     {
-        return (new EventAgendaRequestBuilder($this->getId()))->get();
+        return $this->eventServices;
     }
 
+    /**
+     * @param array|null $eventServices
+     * @return Event
+     */
+    public function setEventServices(?array $eventServices): Event
+    {
+        $this->eventServices = $eventServices;
+        return $this;
+    }
 }
