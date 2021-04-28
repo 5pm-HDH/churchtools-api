@@ -66,18 +66,4 @@ class CTConfigUnitTest extends TestCase
         }
         $this->assertTrue($exceptionThrown);
     }
-
-    public function testDebuggingMode()
-    {
-        $this->fillConfigWithExampleData();
-
-        CTConfig::enableDebugging();
-        $requestConfig = CTConfig::getRequestConfig();
-        $this->assertTrue($requestConfig['debug']);
-
-
-        CTConfig::disableDebugging();
-        $requestConfig = CTConfig::getRequestConfig();
-        $this->assertFalse($requestConfig['debug']);
-    }
 }
