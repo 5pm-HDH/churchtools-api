@@ -9,19 +9,23 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
+- CTConfig: [add Cache mechanism](https://github.com/5pm-HDH/churchtools-api/issues/29)
+
 - CTLog: [add Monolog as Logger-Framework](https://github.com/5pm-HDH/churchtools-api/issues/25)
 - Models:
-  - [Service / ServiceGroup - Models](https://github.com/5pm-HDH/churchtools-api/issues/23)
-  - [EventService](https://github.com/5pm-HDH/churchtools-api/issues/23) to retrieve the Services of an Event
+    - [Service / ServiceGroup - Models](https://github.com/5pm-HDH/churchtools-api/issues/23)
+    - [EventService](https://github.com/5pm-HDH/churchtools-api/issues/23) to retrieve the Services of an Event
 - Requests:
-  - [ServiceRequest / ServiceGroupRequest](https://github.com/5pm-HDH/churchtools-api/issues/23)
-  
+    - [ServiceRequest / ServiceGroupRequest](https://github.com/5pm-HDH/churchtools-api/issues/23)
+
 ### Changed
 
 - Models:
-  - Person: add [requestEvents-Method](https://github.com/5pm-HDH/churchtools-api/issues/24) to retrieve upcoming events for person
+    - Person: add [requestEvents-Method](https://github.com/5pm-HDH/churchtools-api/issues/24) to retrieve upcoming
+      events for person
 
 ### Fixed
+
 - File: `requestFirstLink($url)` filters in the attribute fileUrl not in attribute name code
 
 ## [1.0.0] - 2021-04-20
