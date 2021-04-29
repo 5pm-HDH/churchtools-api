@@ -37,13 +37,13 @@ class CTCacheMiddleware
 
     public function saveResponseToCache(?string $cacheId, ResponseInterface $response)
     {
-        if (!is_null($cacheId) && !($response instanceof CTResponse)) {
+        if (!is_null($cacheId) && !($response instanceof CTResponse) && !$this->cacheIsDisabledInHeader($response)) {
             CTLog::getLog()->debug("CTCacheMiddleware: Save response to cache.");
 
             $cacheContent = CTResponseUtil::jsonToArray($response);
             self::getCacheDriver()->save($cacheId, $cacheContent);
         } else {
-            CTLog::getLog()->debug("CTCacheMiddleware: Could store response.");
+            CTLog::getLog()->debug("CTCacheMiddleware: Could not store response.");
         }
     }
 
