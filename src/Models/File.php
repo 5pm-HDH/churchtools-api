@@ -22,25 +22,74 @@ class File
 
     public function downloadToPath($path): bool
     {
-        return file_put_contents($path . '/' . $this->name, $this->getFileContent());
+        return file_put_contents($path . '/' . $this->name, $this->requestFileContent());
     }
 
     public function downloadToClient(): void
     {
         header("Content-disposition: attachment;filename=" . $this->name);
-        echo $this->getFileContent();
+        echo $this->requestFileContent();
     }
 
-    private function getFileContent(): bool|string
+    public function requestFileContent(): bool|string
     {
         try {
-            $response = CTClient::getClient()->get($this->fileUrl);
+            $response = CTClient::getClient()->get($this->getFileUrlBaseUrl(), [
+                'headers' => [
+                    'Cache-Control' => 'no-cache'
+                ],
+                'query' => $this->getFileUrlQueryParameters()
+            ]);
             return $response->getBody();
         } catch (GuzzleException $e) {
             CTLog::getLog()->error('File: Could not retrieve file-content.');
             //ignore
             return false;
         }
+    }
+
+
+    public function getFileUrlAuthenticated(): ?string
+    {
+        $fileUrl = $this->getFileUrl();
+        $apiKey = CTConfig::getApiKey();
+        if (is_null($fileUrl) || is_null($apiKey)) {
+            return null;
+        }
+
+        return $fileUrl . "&login_token=" . $apiKey;
+    }
+
+    public function getFileUrlBaseUrl(): ?string
+    {
+        $fileUrlBase = null;
+
+        $parsedUrl = parse_url($this->getFileUrl());
+        if (array_key_exists('scheme', $parsedUrl) && array_key_exists('host', $parsedUrl)) {
+            $fileUrlBase = $parsedUrl['scheme'] . '://' . $parsedUrl['host'];
+
+            if (array_key_exists('path', $parsedUrl)) {
+                $fileUrlBase .= $parsedUrl['path'];
+            }
+        }
+        return $fileUrlBase;
+    }
+
+    public function getFileUrlQueryParameters(): array
+    {
+        $query = [];
+        $parsedUrl = parse_url($this->getFileUrl());
+        if (array_key_exists('query', $parsedUrl)) {
+            $queryString = $parsedUrl['query'];
+
+            foreach (explode('&', $queryString) as $querySubstring) {
+                $querySubstringArray = explode('=', $querySubstring);
+                if (sizeof($querySubstringArray) == 2) {
+                    $query[$querySubstringArray[0]] = $querySubstringArray[1];
+                }
+            }
+        }
+        return $query;
     }
 
     /**
@@ -121,17 +170,6 @@ class File
     public function getFileUrl(): ?string
     {
         return $this->fileUrl;
-    }
-
-    public function getFileUrlAuthenticated(): ?string
-    {
-        $fileUrl = $this->getFileUrl();
-        $apiKey = CTConfig::getApiKey();
-        if (is_null($fileUrl) || is_null($apiKey)) {
-            return null;
-        }
-
-        return $fileUrl . "&login_token=" . $apiKey;
     }
 
     /**
