@@ -5,6 +5,7 @@ namespace CTApi\Models;
 
 
 use CTApi\Models\Traits\FillWithData;
+use CTApi\Requests\WikiPageRequestBuilder;
 
 class WikiCategory
 {
@@ -18,6 +19,34 @@ class WikiCategory
     protected ?string $inMenu = null;
     protected ?string $fileAccessWithoutPermission = null;
     protected array $permissions = [];
+
+    protected function fillNonArrayType(string $key, $value)
+    {
+        switch ($key) {
+            case "permissions":
+                break;
+            default:
+                $this->{$key} = $value;
+        }
+    }
+
+    public function requestPages(): ?WikiPageRequestBuilder
+    {
+        if (!is_null($this->getId())) {
+            return new WikiPageRequestBuilder($this->getId());
+        } else {
+            return null;
+        }
+    }
+
+    public function requestPage(string $identifier): ?WikiPage
+    {
+        if (!is_null($this->getId())) {
+            return WikiPageRequestBuilder::requestPageFromCategoryAndIdentifier($this->getId(), $identifier);
+        } else {
+            return null;
+        }
+    }
 
     /**
      * @return string|null
