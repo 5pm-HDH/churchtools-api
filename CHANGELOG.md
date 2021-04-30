@@ -15,8 +15,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Models:
     - [Service / ServiceGroup - Models](https://github.com/5pm-HDH/churchtools-api/issues/23)
     - [EventService](https://github.com/5pm-HDH/churchtools-api/issues/23) to retrieve the Services of an Event
+    - [WikiCategory / WikiPage / WikiSearchResult](https://github.com/5pm-HDH/churchtools-api/issues/33)
 - Requests:
     - [ServiceRequest / ServiceGroupRequest](https://github.com/5pm-HDH/churchtools-api/issues/23)
+    - [WikiCategoryRequest / WikiSearchRequest](https://github.com/5pm-HDH/churchtools-api/issues/33)
 
 ### Changed
 
