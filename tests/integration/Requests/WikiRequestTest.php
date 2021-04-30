@@ -4,6 +4,7 @@
 use CTApi\Models\WikiCategory;
 use CTApi\Models\WikiPage;
 use CTApi\Requests\WikiCategoryRequest;
+use CTApi\Requests\WikiSearchRequest;
 
 class WikiRequestTest extends TestCaseAuthenticated
 {
@@ -12,6 +13,7 @@ class WikiRequestTest extends TestCaseAuthenticated
     private string $CATEGORY_NAME = "";
     private string $PAGE_IDENTIFIER = "";
     private string $PAGE_TITLE = "";
+    private string $SEARCH_QUERY = "";
 
     protected function setUp(): void
     {
@@ -23,6 +25,7 @@ class WikiRequestTest extends TestCaseAuthenticated
         $this->CATEGORY_NAME = TestData::getValue("WIKI_CATEGORY_NAME") ?? "";
         $this->PAGE_IDENTIFIER = TestData::getValue("WIKI_PAGE_IDENTIFIER") ?? "";
         $this->PAGE_TITLE = TestData::getValue("WIKI_PAGE_TITLE") ?? "";
+        $this->SEARCH_QUERY = TestData::getValue("WIKI_SEARCH_QUERY") ?? "";
     }
 
     public function testWikiCategories()
@@ -149,4 +152,15 @@ class WikiRequestTest extends TestCaseAuthenticated
         $this->assertNull($versions);
     }
 
+    public function testWikiSearch()
+    {
+        $searchResults = WikiSearchRequest::search($this->SEARCH_QUERY)->get();
+
+        $this->assertGreaterThan(0, sizeof($searchResults));
+
+        $result = $searchResults[0];
+
+        $page = $result->requestWikiPage();
+        $this->assertInstanceOf(WikiPage::class, $page);
+    }
 }
