@@ -6,6 +6,7 @@ namespace CTApi\Models;
 
 use CTApi\Models\Traits\FillWithData;
 use CTApi\Models\Traits\MetaAttribute;
+use CTApi\Requests\WikiPageVersionRequestBuilder;
 
 class WikiPage
 {
@@ -48,6 +49,26 @@ class WikiPage
             default:
                 $this->{$key} = $value;
         }
+    }
+
+    public function requestVersions(): ?WikiPageVersionRequestBuilder
+    {
+        $wikiCategory = $this->getWikiCategory()?->getId();
+        $identifier = $this->getIdentifier();
+        if (!is_null($wikiCategory) && !is_null($identifier)) {
+            return new WikiPageVersionRequestBuilder($wikiCategory, $identifier);
+        }
+        return null;
+    }
+
+    public function requestVersion(int $versionId): ?WikiPage
+    {
+        $wikiCategory = $this->getWikiCategory()?->getId();
+        $identifier = $this->getIdentifier();
+        if (!is_null($wikiCategory) && !is_null($identifier)) {
+            return WikiPageVersionRequestBuilder::requestPageVersion($wikiCategory, $identifier, $versionId);
+        }
+        return null;
     }
 
     /**

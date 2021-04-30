@@ -94,4 +94,59 @@ class WikiRequestTest extends TestCaseAuthenticated
         $this->assertNull($page);
     }
 
+    public function testRequestWikiPageVersions()
+    {
+        $category = WikiCategoryRequest::find($this->CATEGORY_ID);
+        $page = $category->requestPage($this->PAGE_IDENTIFIER);
+
+        $versions = $page->requestVersions()->get();
+
+        $this->assertNotNull($versions);
+        foreach ($versions as $page) {
+            $this->assertInstanceOf(WikiPage::class, $page);
+        }
+    }
+
+    public function testRequestWikiPageVersionsFailed()
+    {
+        $page = new WikiPage();
+
+        $versions = $page->requestVersions()->get();
+        $this->assertIsArray($versions);
+        $this->assertEquals(0, sizeof($versions));
+    }
+
+    public function testRequestWikiPageVersion()
+    {
+        $category = WikiCategoryRequest::find($this->CATEGORY_ID);
+        $page = $category->requestPage($this->PAGE_IDENTIFIER);
+
+        $versions = $page->requestVersions()->get();
+
+        $this->assertNotNull($versions);
+
+        $failedVersion = $page->requestVersion(-2913);
+        $this->assertNull($failedVersion);
+
+        if (sizeof($versions) > 0) {
+            $version = $versions[0];
+
+            $versionRequested = $page->requestVersion($version->getVersion());
+
+            $this->assertEquals($version->getIdentifier(), $versionRequested->getIdentifier());
+            $this->assertEquals($version->getVersion(), $versionRequested->getVersion());
+            $this->assertEquals($version->getText(), $versionRequested->getText());
+        } else {
+            $this->fail();
+        }
+    }
+
+    public function testRequestWikiPageVersionFailed()
+    {
+        $page = new WikiPage();
+
+        $versions = $page->requestVersion(921);
+        $this->assertNull($versions);
+    }
+
 }
