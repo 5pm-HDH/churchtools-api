@@ -163,4 +163,13 @@ class WikiRequestTest extends TestCaseAuthenticated
         $page = $result->requestWikiPage();
         $this->assertInstanceOf(WikiPage::class, $page);
     }
+
+    public function testWikiTree()
+    {
+        $category = WikiCategoryRequest::find($this->CATEGORY_ID);
+        $rootNode = $category->requestWikiPageTree();
+
+        $rootOverLink = $rootNode->getChildNodes()[0]->getParentNode();
+        $this->assertEquals($rootNode, $rootOverLink);
+    }
 }

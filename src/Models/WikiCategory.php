@@ -48,6 +48,12 @@ class WikiCategory
         }
     }
 
+    public function requestWikiPageTree(): ?WikiPageTreeNode
+    {
+        $pages = $this->requestPages()->get();
+        return WikiPageTreeNode::processWikiPagesReturnRootNode($pages);
+    }
+
     /**
      * @return string|null
      */
