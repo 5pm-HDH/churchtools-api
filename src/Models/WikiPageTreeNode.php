@@ -53,7 +53,7 @@ class WikiPageTreeNode
             }
         }
 
-        uasort($subPagesArray, function ($entryA, $entryB) {
+        usort($subPagesArray, function ($entryA, $entryB) {
             return $entryA['stringPos'] - $entryB['stringPos'];
         });
 
