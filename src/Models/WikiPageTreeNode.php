@@ -37,16 +37,30 @@ class WikiPageTreeNode
             $page->requestText();
         }
 
+        $subPagesArray = []; // ["stringPos" => 29, "node" => ... ]
+
         foreach ($pages as $subPage) {
             if (!is_null($subPage)) {
                 $linkString = '[[' . htmlentities($subPage->getTitle()) . ']]';
 
                 // => Found Link to $subPage   <=
                 if (str_contains($page->getText(), $linkString)) {
-                    $pageTreeNode->addChildNode(self::processWikiPage($subPage, $pages, $pageTreeNode));
+                    $subPagesArray[] = [
+                        'stringPos' => strpos($page->getText(), $linkString),
+                        'node' => self::processWikiPage($subPage, $pages, $pageTreeNode)
+                    ];
                 }
             }
         }
+
+        uasort($subPagesArray, function ($entryA, $entryB) {
+            return $entryA['stringPos'] - $entryB['stringPos'];
+        });
+
+        $pageTreeNode->setChildNodes(array_map(function ($entry) {
+            return $entry['node'];
+        }, $subPagesArray));
+
         return $pageTreeNode;
     }
 
