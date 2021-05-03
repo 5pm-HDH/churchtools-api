@@ -114,6 +114,61 @@ foreach($songsOnChristmas as $song){
 }
 ```
 
+#### Example: Wiki-API
+
+```php
+use CTApi\Requests\WikiCategoryRequest;
+
+$wikiCategory = WikiCategoryRequest::find(21);
+
+$rootNodeWiki = $wikiCategory->requestWikiPageTree();
+
+echo "<h1>Table of content:</h1>";
+echo "<ul class='first-level'>";
+    // First Level
+foreach($rootNodeWiki->getChildNodes() as $node){
+    echo "<li>";
+    echo $node->getWikiPage()->getTitle();
+    
+    echo "<ul class='second-level'>";
+    foreach($node->getChildNodes() as $nodeSecondLevel){
+        echo "<li>";
+        echo $nodeSecondLevel->getWikiPage()->getTitle();
+        echo "</li>";
+    }   
+    echo "</ul>";
+    
+    echo "</li>";
+
+}
+echo "</ul>";
+```
+
+Result:
+
+```html
+<h1>Table of content:</h1>
+<ul class="first-level">
+    <li>
+        Instruments
+        <ul class="second-level">
+            <li>Piano</li>
+            <li>Guitar</li>
+        </ul>
+    </li>
+    <li>
+        Chordsheets
+    </li>
+    <li>
+        Groups
+        <ul class="second-level">
+            <li>Worship-Teams</li>
+            <li>Service-Teams</li>
+        </ul>
+    </li>
+</ul>
+```
+
 ### CTLog - Logging Request
 
 The CTLog provides a facade to log Informations. By default it logs all important infos, warnings and errors in the
