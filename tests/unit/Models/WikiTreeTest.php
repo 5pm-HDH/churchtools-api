@@ -16,7 +16,7 @@ class WikiTreeTest extends TestCase
     {
         $this->rootPage = $this->addWikiPage("main", "Main Page [[fruits]] then a text [[vegetable]]");
 
-        $this->addWikiPage("fruits", "Grocery list:\n - [[apple]], [[banana]], [[grape]]");
+        $this->addWikiPage("fruits", "Grocery list:\n - [[banana]], [[apple]], [[grape]]");
         $this->applePage = $this->addWikiPage("apple", "Apple Text");
         $this->addWikiPage("banana", "Banana Text");
         $this->addWikiPage("grape", "Grape Text");
@@ -41,7 +41,7 @@ class WikiTreeTest extends TestCase
         $this->assertEquals($rootPageNode->getWikiPage(), $this->rootPage);
 
         // main -> fruits -> apple
-        $applePage = $rootPageNode->getChildNodes()[0]->getChildNodes()[0]->getWikiPage();
+        $applePage = $rootPageNode->getChildNodes()[0]->getChildNodes()[1]->getWikiPage();
         $this->assertEquals($applePage, $this->applePage);
 
         // links to parent nodes
@@ -55,10 +55,25 @@ class WikiTreeTest extends TestCase
         $rootPageNode = WikiPageTreeNode::processWikiPagesReturnRootNode([]);
     }
 
-    public function testFailedTreeSecond()
+    public function testOrderChildNodesLikeAppearanceOfTextString()
     {
-        $rootPageNode = WikiPageTreeNode::processWikiPagesReturnRootNode([$this->rootPage]);
-        $this->assertEmpty($rootPageNode->getChildNodes());
+        $rootPageNode = WikiPageTreeNode::processWikiPagesReturnRootNode($this->pages);
+
+        $this->assertEquals("banana", $rootPageNode?->getChildNodes()[0]->getChildNodes()[0]->getWikiPage()->getTitle());
+        $this->assertEquals("apple", $rootPageNode?->getChildNodes()[0]->getChildNodes()[1]->getWikiPage()->getTitle());
+        $this->assertEquals("grape", $rootPageNode?->getChildNodes()[0]->getChildNodes()[2]->getWikiPage()->getTitle());
+    }
+
+    public function testSpecialUmlauteSupport()
+    {
+        $rootPage = (new WikiPage())->setTitle("main")->setText("# Main-Page\n [[Einf&uuml;hrung]]");
+        $subPage = (new WikiPage())->setTitle("Einführung")->setText("Test Sub-Page with content einf&uuml;hrung");
+
+        $rootPageNode = WikiPageTreeNode::processWikiPagesReturnRootNode([$rootPage, $subPage]);
+
+        $this->assertNotNull($rootPageNode);
+        $this->assertEquals(1, sizeof($rootPageNode->getChildNodes()));
+        $this->assertEquals($subPage, $rootPageNode->getChildNodes()[0]->getWikiPage());
     }
 
 }
