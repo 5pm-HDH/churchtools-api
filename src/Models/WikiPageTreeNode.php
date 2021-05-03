@@ -39,7 +39,7 @@ class WikiPageTreeNode
 
         foreach ($pages as $subPage) {
             if (!is_null($subPage)) {
-                $linkString = '[[' . $subPage->getTitle() . ']]';
+                $linkString = '[[' . htmlentities($subPage->getTitle()) . ']]';
 
                 // => Found Link to $subPage   <=
                 if (str_contains($page->getText(), $linkString)) {
