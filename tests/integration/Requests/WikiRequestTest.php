@@ -172,4 +172,15 @@ class WikiRequestTest extends TestCaseAuthenticated
         $rootOverLink = $rootNode->getChildNodes()[0]->getParentNode();
         $this->assertEquals($rootNode, $rootOverLink);
     }
+
+    public function testWikiMeta()
+    {
+        $category = WikiCategoryRequest::find($this->CATEGORY_ID);
+        $pages = $category->requestPages()->get();
+
+        $this->assertNotEmpty($pages);
+        $page = $pages[0];
+
+        $this->assertNotNull($page->getMeta()->getModifiedPerson()->getId());
+    }
 }
