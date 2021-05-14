@@ -18,6 +18,7 @@ class CTCacheMiddleware
     private static ?CTCacheMiddleware $instance = null;
     private static ?CacheProvider $cacheDriver = null;
     private static string $cacheDir = __DIR__ . '/../../cache/';
+    private static int $timeToLive = 1800; //30 min
 
     public function fetchResponseFromCache(RequestInterface $request): ?CTCacheResponse
     {
@@ -25,9 +26,19 @@ class CTCacheMiddleware
             $cacheId = $this->createCacheIdFromRequest($request);
 
             if (self::getCacheDriver()->contains($cacheId)) {
-                CTLog::getLog()->debug("CTCacheMiddleware: Fetch response from cache and prevent http-request.");
-                $data = self::getCacheDriver()->fetch($cacheId);
-                return CTCacheResponse::createFromRequestAndData($request, $data);
+                CTLog::getLog()->debug("CTCacheMiddleware: Fetch response from cache.");
+                $cacheData = self::getCacheDriver()->fetch($cacheId);
+
+                $currentTime = time();
+                $timeTillExpiring = $currentTime - $cacheData['expires'];
+
+                if ($timeTillExpiring < 0) {
+                    CTLog::getLog()->debug("CTCacheMiddleware: Cache data is not expired. Prevent HTTP-Request and return cache-data.");
+                    return CTCacheResponse::createFromRequestAndData($request, $cacheData['data']);
+                } else {
+                    CTLog::getLog()->debug("CTCacheMiddleware: Cache data expired.");
+                }
+
             } else {
                 CTLog::getLog()->debug("CTCacheMiddleware: Cache does not contains data with given cache id");
             }
@@ -40,7 +51,10 @@ class CTCacheMiddleware
         if (!is_null($cacheId) && !($response instanceof CTCacheResponse) && !$this->cacheIsDisabledInHeader($response)) {
             CTLog::getLog()->debug("CTCacheMiddleware: Save response to cache.");
 
-            $cacheContent = CTResponseUtil::jsonToArray($response);
+            $cacheContent = [
+                'data' => CTResponseUtil::jsonToArray($response),
+                'expires' => time() + self::getTimeToLive()
+            ];
             self::getCacheDriver()->save($cacheId, $cacheContent);
         } else {
             CTLog::getLog()->debug("CTCacheMiddleware: Could not store response.");
@@ -70,6 +84,16 @@ class CTCacheMiddleware
             self::$instance = new CTCacheMiddleware();
         }
         return self::$instance;
+    }
+
+    public static function getTimeToLive(): int
+    {
+        return self::$timeToLive;
+    }
+
+    public static function setTimeToLive(int $timeToLive)
+    {
+        self::$timeToLive = $timeToLive;
     }
 
     public static function getCacheDriver(): CacheProvider

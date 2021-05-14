@@ -26,7 +26,6 @@ class CTCacheMiddlewareTest extends TestCase
     public function setUp(): void
     {
         CTConfig::clearCache();
-        CTConfig::enableDebugging();
 
         $this->cacheProviderMock = new CacheProviderMock(__DIR__ . '/../../../cache/');
         CTCacheMiddleware::setCacheDriver($this->cacheProviderMock);
@@ -160,6 +159,39 @@ class CTCacheMiddlewareTest extends TestCase
         $this->assertEquals(2, $this->cacheProviderMock->getNumberOfFetches());
         $this->assertEquals(["Answer A"], CTResponseUtil::jsonToArray($responseA));
         $this->assertEquals(["Answer B"], CTResponseUtil::jsonToArray($responseB));
+    }
+
+    public function testTimeToLive()
+    {
+        CTCacheMiddleware::setTimeToLive(1);
+
+        $requestA = (new CTRequest())->withUri(new Uri('/api/events'));
+
+        // Store to Cache (T1)
+        $responseA = $this->invokeCacheMiddleware($requestA, [], ["Answer T1"])->wait();
+
+        $this->assertEquals(["Answer T1"], CTResponseUtil::jsonToArray($responseA));
+        $this->assertEquals(1, $this->cacheProviderMock->getNumberOfSaves());
+        $this->assertEquals(0, $this->cacheProviderMock->getNumberOfFetches());
+
+        // Fetch from Cache (T2) - Cache is not expired!
+        $this->cacheProviderMock->resetCount();
+        $responseA = $this->invokeCacheMiddleware($requestA, [], ["Answer T2"])->wait();
+
+        $this->assertEquals(["Answer T1"], CTResponseUtil::jsonToArray($responseA));
+        $this->assertEquals(0, $this->cacheProviderMock->getNumberOfSaves());
+        $this->assertEquals(1, $this->cacheProviderMock->getNumberOfFetches());
+
+        // Fetch from HTTP (T3) - Cache is expired!
+        sleep(2);
+        $this->cacheProviderMock->resetCount();
+
+        $responseA = $this->invokeCacheMiddleware($requestA, [], ["Answer T3"])->wait();
+
+        $this->assertEquals(["Answer T3"], CTResponseUtil::jsonToArray($responseA));
+        $this->assertEquals(1, $this->cacheProviderMock->getNumberOfSaves());
+        $this->assertEquals(1, $this->cacheProviderMock->getNumberOfFetches());
+
     }
 
     public function invokeCacheMiddleware(RequestInterface $request, $options, $httpReturnData): Promise
