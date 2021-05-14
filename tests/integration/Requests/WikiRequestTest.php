@@ -114,9 +114,8 @@ class WikiRequestTest extends TestCaseAuthenticated
     {
         $page = new WikiPage();
 
-        $versions = $page->requestVersions()->get();
-        $this->assertIsArray($versions);
-        $this->assertEquals(0, sizeof($versions));
+        $versions = $page->requestVersions();
+        $this->assertNull($versions);
     }
 
     public function testRequestWikiPageVersion()

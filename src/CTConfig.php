@@ -141,9 +141,13 @@ class CTConfig
         self::setRequestOption('on_stats', null);
     }
 
-    public static function enableCache()
+    public static function enableCache(?int $timeToLive = null)
     {
         $stack = HandlerStack::create();
+
+        if (!is_null($timeToLive)) {
+            CTCacheMiddleware::setTimeToLive($timeToLive);
+        }
 
         $stack->push(CTCacheMiddleware::create());
 

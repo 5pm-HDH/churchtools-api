@@ -2,6 +2,7 @@
 
 use CTApi\CTConfig;
 use CTApi\Exceptions\CTConfigException;
+use CTApi\Middleware\CTCacheMiddleware;
 use PHPUnit\Framework\TestCase;
 
 class CTConfigUnitTest extends TestCase
@@ -65,5 +66,14 @@ class CTConfigUnitTest extends TestCase
             $exceptionThrown = true; // Auth is invalid, because API-Url must be set
         }
         $this->assertTrue($exceptionThrown);
+    }
+
+    public function testCacheTimeToLive()
+    {
+        CTConfig::enableCache();
+        $this->assertNotNull(CTCacheMiddleware::getTimeToLive());
+
+        CTConfig::enableCache(291);
+        $this->assertEquals(291, CTCacheMiddleware::getTimeToLive());
     }
 }
