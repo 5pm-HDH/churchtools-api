@@ -4,7 +4,6 @@
 namespace CTApi\Utils;
 
 
-use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
 class CTResponseUtil
@@ -45,10 +44,5 @@ class CTResponseUtil
         } else {
             return [];
         }
-    }
-
-    public static function createResponse(RequestInterface $request, array $array): ResponseInterface
-    {
-        return CTResponse::createFromRequestAndData($request, $array);
     }
 }

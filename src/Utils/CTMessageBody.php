@@ -6,7 +6,7 @@ namespace CTApi\Utils;
 
 use Psr\Http\Message\StreamInterface;
 
-class CTResponseBody implements StreamInterface
+class CTMessageBody implements StreamInterface
 {
     private array $content;
 

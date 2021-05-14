@@ -3,7 +3,7 @@
 namespace CTApi\Middleware;
 
 use CTApi\CTLog;
-use CTApi\Utils\CTResponse;
+use CTApi\Utils\CTCacheResponse;
 use CTApi\Utils\CTResponseUtil;
 use Doctrine\Common\Cache\CacheProvider;
 use Doctrine\Common\Cache\FilesystemCache;
@@ -19,7 +19,7 @@ class CTCacheMiddleware
     private static ?CacheProvider $cacheDriver = null;
     private static string $cacheDir = __DIR__ . '/../../cache/';
 
-    public function fetchResponseFromCache(RequestInterface $request): ?ResponseInterface
+    public function fetchResponseFromCache(RequestInterface $request): ?CTCacheResponse
     {
         if ($request->getMethod() == "GET" && !$this->cacheIsDisabledInHeader($request)) {
             $cacheId = $this->createCacheIdFromRequest($request);
@@ -27,7 +27,7 @@ class CTCacheMiddleware
             if (self::getCacheDriver()->contains($cacheId)) {
                 CTLog::getLog()->debug("CTCacheMiddleware: Fetch response from cache and prevent http-request.");
                 $data = self::getCacheDriver()->fetch($cacheId);
-                return CTResponseUtil::createResponse($request, $data);
+                return CTCacheResponse::createFromRequestAndData($request, $data);
             } else {
                 CTLog::getLog()->debug("CTCacheMiddleware: Cache does not contains data with given cache id");
             }
@@ -37,7 +37,7 @@ class CTCacheMiddleware
 
     public function saveResponseToCache(?string $cacheId, ResponseInterface $response)
     {
-        if (!is_null($cacheId) && !($response instanceof CTResponse) && !$this->cacheIsDisabledInHeader($response)) {
+        if (!is_null($cacheId) && !($response instanceof CTCacheResponse) && !$this->cacheIsDisabledInHeader($response)) {
             CTLog::getLog()->debug("CTCacheMiddleware: Save response to cache.");
 
             $cacheContent = CTResponseUtil::jsonToArray($response);
@@ -78,6 +78,11 @@ class CTCacheMiddleware
             self::$cacheDriver = new FilesystemCache(self::$cacheDir);
         }
         return self::$cacheDriver;
+    }
+
+    public static function setCacheDriver(CacheProvider $cacheProvider)
+    {
+        self::$cacheDriver = $cacheProvider;
     }
 
     public static function create()

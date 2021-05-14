@@ -4,36 +4,23 @@
 namespace CTApi\Utils;
 
 
+use GuzzleHttp\Psr7\Uri;
 use Psr\Http\Message\RequestInterface;
-use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
+use Psr\Http\Message\UriInterface;
 
-class CTResponse implements ResponseInterface
+class CTRequest implements RequestInterface
 {
     private string $protocolVersion = "1.1";
     private array $headers = [];
     private StreamInterface $body;
-    private int $statusCode = 200;
-    private string $statusReasonPhrase = "OK";
+    private string $method = "GET";
+    private UriInterface $uri;
 
-    public function __construct($headers = [])
+    public function __construct()
     {
-        $body = new CTMessageBody([]);
-        $this->headers = $headers;
-    }
-
-    public static function createFromRequestAndData(RequestInterface $request, array $data): CTResponse
-    {
-        $response = new CTResponse($request->getHeaders());
-        $response->withBody(new CTMessageBody($data));
-        return $response;
-    }
-
-    public static function createEmpty(): CTResponse
-    {
-        $response = new CTResponse([]);
-        $response->withBody(new CTMessageBody([]));
-        return $response;
+        $this->uri = new Uri("https://intern.church.tools/");
+        $this->body = new CTMessageBody([]);
     }
 
     public function getProtocolVersion()
@@ -97,6 +84,7 @@ class CTResponse implements ResponseInterface
         return $this;
     }
 
+
     public function getBody()
     {
         return $this->body;
@@ -108,20 +96,36 @@ class CTResponse implements ResponseInterface
         return $this;
     }
 
-    public function getStatusCode()
+
+    public function getRequestTarget()
     {
-        return $this->statusCode;
+        return "";
     }
 
-    public function withStatus($code, $reasonPhrase = '')
+    public function withRequestTarget($requestTarget)
     {
-        $this->statusCode = $code;
-        $this->statusReasonPhrase = $reasonPhrase;
         return $this;
     }
 
-    public function getReasonPhrase()
+    public function getMethod()
     {
-        return $this->statusReasonPhrase;
+        return $this->method;
+    }
+
+    public function withMethod($method)
+    {
+        $this->method = $method;
+        return $this;
+    }
+
+    public function getUri()
+    {
+        return $this->uri;
+    }
+
+    public function withUri(UriInterface $uri, $preserveHost = false)
+    {
+        $this->uri = $uri;
+        return $this;
     }
 }
