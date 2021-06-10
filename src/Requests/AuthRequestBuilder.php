@@ -25,6 +25,9 @@ class AuthRequestBuilder
                 'json' => [
                     'username' => $email,
                     'password' => $password
+                ],
+                'headers' => [
+                    'Cache-Control' => 'no-cache'
                 ]
             ]);
         } catch (GuzzleException $e) {
@@ -60,7 +63,14 @@ class AuthRequestBuilder
 
         $client = CTClient::getClient();
         try {
-            $response = $client->get('/api/persons/' . $this->userId . '/logintoken');
+            $response = $client->get(
+                '/api/persons/' . $this->userId . '/logintoken',
+                [
+                    'headers' => [
+                        'Cache-Control' => 'no-cache'
+                    ]
+                ]
+            );
         } catch (GuzzleException $e) {
             throw new CTAuthException(
                 "Authentication was not successfully. Could not retrieve login token.",

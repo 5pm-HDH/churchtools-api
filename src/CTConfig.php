@@ -3,14 +3,23 @@
 namespace CTApi;
 
 use CTApi\Exceptions\CTConfigException;
+use CTApi\Middleware\CTCacheMiddleware;
 use CTApi\Requests\AuthRequest;
 use CTApi\Requests\PersonRequest;
 use CTApi\Utils\CTUtil;
 use GuzzleHttp\Cookie\CookieJar;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\TransferStats;
+use Kevinrob\GuzzleCache\CacheMiddleware;
+use Kevinrob\GuzzleCache\Storage\DoctrineCacheStorage;
+use Kevinrob\GuzzleCache\Storage\FlysystemStorage;
+use Kevinrob\GuzzleCache\Strategy\GreedyCacheStrategy;
+use League\Flysystem\Adapter\Local;
 
 class CTConfig
 {
     private static ?CTConfig $config = null;
+    private static string $cacheDir = __DIR__ . '/../cache/';
 
     /**
      * RequestOptions of Guzzle (https://docs.guzzlephp.org/en/stable/request-options.html)
@@ -111,12 +120,51 @@ class CTConfig
 
     public static function enableDebugging()
     {
-        self::setRequestOption("debug", true);
+        CTLog::setConsoleLogLevelDebug();
+        self::setRequestOption('on_stats', function (TransferStats $stats) {
+
+            CTLog::getLog()->debug('TransferStats: EffectiveUri: ' . $stats->getEffectiveUri());
+            CTLog::getLog()->debug('TransferStats: TransferTime: ' . $stats->getTransferTime());
+            CTLog::getLog()->debug('TransferStats: Request Method: ' . $stats->getRequest()->getMethod());
+
+            if ($stats->hasResponse()) {
+                CTLog::getLog()->debug('TransferStats: StatusCode: ' . $stats->getResponse()->getStatusCode());
+            } else {
+                CTLog::getLog()->debug('TransferStats: ErrorData: ' . var_export($stats->getHandlerErrorData(), true));
+            }
+        });
     }
 
     public static function disableDebugging()
     {
-        self::setRequestOption("debug", false);
+        CTLog::setConsoleLogLevelError();
+        self::setRequestOption('on_stats', null);
     }
 
+    public static function enableCache(?int $timeToLive = null)
+    {
+        $stack = HandlerStack::create();
+
+        if (!is_null($timeToLive)) {
+            CTCacheMiddleware::setTimeToLive($timeToLive);
+        }
+
+        $stack->push(CTCacheMiddleware::create());
+
+        CTLog::getLog()->info("CTConfig: Create cache-middleware and recreate CTClient");
+        CTClient::createClient($stack);
+    }
+
+    public static function disableCache()
+    {
+        CTLog::getLog()->info("CTConfig: Recreate CTClient without cache-middleware");
+        CTClient::createClient();
+    }
+
+    public static function clearCache()
+    {
+        CTLog::getLog()->info("CTConfig: Clear cache.");
+        CTCacheMiddleware::getCacheDriver()->deleteAll();
+        CTCacheMiddleware::getCacheDriver()->flushAll();
+    }
 }

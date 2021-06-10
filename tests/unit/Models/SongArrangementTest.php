@@ -23,8 +23,8 @@ class SongArrangementTest extends TestCase
                 ["name" => "bass-tabs.pdf"]
             ],
             "links" => [
-                ["name" => "https://multitracks.com/path/to/song"],
-                ["name" => "multitracks.com"],
+                ["fileUrl" => "https://multitracks.com/path/to/song"],
+                ["fileUrl" => "multitracks.com"],
             ]
         ]);
 
@@ -68,7 +68,7 @@ class SongArrangementTest extends TestCase
         $this->assertNull($firstLink);
 
         $multiTracksLink = $this->FULL_ARRANGEMENT->requestFirstLink("multitracks.com");
-        $this->assertEquals("https://multitracks.com/path/to/song", $multiTracksLink->getName());
+        $this->assertEquals("https://multitracks.com/path/to/song", $multiTracksLink->getFileUrl());
     }
 
 }

@@ -1,6 +1,7 @@
 <?php
 
 
+use CTApi\Models\Event;
 use CTApi\Models\Person;
 use CTApi\Requests\AuthRequest;
 use CTApi\Requests\PersonRequest;
@@ -71,5 +72,18 @@ class PersonRequestTest extends TestCaseAuthenticated
         $this->assertEquals($firstNames[0], $personsAsc[0]->getFirstName());
         $this->assertEquals(end($firstNames), $personsDesc[0]->getFirstName());
         $this->assertEquals(end($firstNames), $personsDesc2[0]->getFirstName());
+    }
+
+    public function testRequestEvents()
+    {
+        $person = PersonRequest::whoami();
+
+        $events = $person->requestEvents()->get();
+
+        $this->assertIsArray($events);
+        foreach ($events as $event) {
+            $this->assertInstanceOf(Event::class, $event);
+        }
+
     }
 }

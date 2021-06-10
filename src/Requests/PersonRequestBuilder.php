@@ -5,6 +5,7 @@ namespace CTApi\Requests;
 
 use CTApi\CTClient;
 use CTApi\Exceptions\CTModelException;
+use CTApi\Exceptions\CTRequestException;
 use CTApi\Models\Person;
 use CTApi\Requests\Traits\OrderByCondition;
 use CTApi\Requests\Traits\Pagination;
@@ -43,7 +44,7 @@ class PersonRequestBuilder
         if ($person != null) {
             return $person;
         } else {
-            throw new CTModelException("Person could not be found!");
+            throw new CTRequestException("Person could not be found!");
         }
     }
 

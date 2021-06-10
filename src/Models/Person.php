@@ -6,6 +6,7 @@ namespace CTApi\Models;
 
 use CTApi\Models\Traits\FillWithData;
 use CTApi\Models\Traits\MetaAttribute;
+use CTApi\Requests\PersonEventRequestBuilder;
 
 class Person
 {
@@ -47,6 +48,15 @@ class Person
                 $this->{$key} = $data;
         }
     }
+
+    public function requestEvents(): ?PersonEventRequestBuilder
+    {
+        if (!is_null($this->getId())) {
+            return new PersonEventRequestBuilder((int)$this->getId());
+        }
+        return null;
+    }
+
 
     /**
      * @return string|null

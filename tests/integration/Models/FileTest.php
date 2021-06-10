@@ -52,4 +52,39 @@ class FileTest extends TestCaseAuthenticated
         $file->setFileUrl("https//file.com/?id=291");
         $this->assertEquals("https//file.com/?id=291&login_token=" . $apiToken, $file->getFileUrlAuthenticated());
     }
+
+    public function testGetFileUrlBaseUrl()
+    {
+        $file = new File();
+
+        $baseUrl = $file->getFileUrlBaseUrl();
+        $this->assertNull($baseUrl);
+
+        $baseUrl = $file->setFileUrl('https://google.com')->getFileUrlBaseUrl();
+        $this->assertEquals('https://google.com', $baseUrl);
+
+        $baseUrl = $file->setFileUrl('https://google.com/searchresult')->getFileUrlBaseUrl();
+        $this->assertEquals('https://google.com/searchresult', $baseUrl);
+
+        $baseUrl = $file->setFileUrl('https://google.com/searchresult?q=2913')->getFileUrlBaseUrl();
+        $this->assertEquals('https://google.com/searchresult', $baseUrl);
+    }
+
+    public function testGetFileUrlQueryParameters()
+    {
+        $file = new File();
+
+        $query = $file->getFileUrlQueryParameters();
+        $this->assertEmpty($query);
+
+        $query = $file->setFileUrl('invalidurlwithnotquery')->getFileUrlQueryParameters();
+        $this->assertEmpty($query);
+
+        $query = $file->setFileUrl('https://google.com/?id=29123')->getFileUrlQueryParameters();
+        $this->assertEquals(29123, $query['id']);
+
+        $query = $file->setFileUrl('https://google.com/?id=29123&name=hans')->getFileUrlQueryParameters();
+        $this->assertEquals(29123, $query['id']);
+        $this->assertEquals("hans", $query['name']);
+    }
 }

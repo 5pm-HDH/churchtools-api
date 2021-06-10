@@ -50,7 +50,15 @@ The whole churchtools-api client is build on top of the Requests and Models. [Re
 interface to specify your api call by adding filtering and sorting. [Models](/docs/Models.md) represent the data, that
 the Requests retrieve. More informations can be found in the documentation.
 
-The following examples show the power of this churchtools-api client and gives a rough overview over the possibilities:
+All APIs with examples:
+* [Person-API](/docs/PersonAPI.md)
+* [Event-API](/docs/EventAPI.md)
+* [Song-API](/docs/SongAPI.md)
+* [Service-API](/docs/ServiceAPI.md)
+* [Wiki-API](/docs/WikiAPI.md)
+
+
+The following short examples show the power of this churchtools-api client and gives a rough overview over the possibilities:
 
 #### Example: Person-API
 
@@ -113,6 +121,96 @@ foreach($songsOnChristmas as $song){
     echo $song->getTitle() . " - (Key: " .$song->getKey() . ")";
 }
 ```
+
+#### Example: Wiki-API
+
+```php
+use CTApi\Requests\WikiCategoryRequest;
+
+$wikiCategory = WikiCategoryRequest::find(21);
+
+$rootNodeWiki = $wikiCategory->requestWikiPageTree();
+
+echo "<h1>Table of content:</h1>";
+echo "<ul class='first-level'>";
+    // First Level
+foreach($rootNodeWiki->getChildNodes() as $node){
+    echo "<li>";
+    echo $node->getWikiPage()->getTitle();
+    
+    echo "<ul class='second-level'>";
+    foreach($node->getChildNodes() as $nodeSecondLevel){
+        echo "<li>";
+        echo $nodeSecondLevel->getWikiPage()->getTitle();
+        echo "</li>";
+    }   
+    echo "</ul>";
+    
+    echo "</li>";
+
+}
+echo "</ul>";
+```
+
+Result:
+
+```html
+<h1>Table of content:</h1>
+<ul class="first-level">
+    <li>
+        Instruments
+        <ul class="second-level">
+            <li>Piano</li>
+            <li>Guitar</li>
+        </ul>
+    </li>
+    <li>
+        Chordsheets
+    </li>
+    <li>
+        Groups
+        <ul class="second-level">
+            <li>Worship-Teams</li>
+            <li>Service-Teams</li>
+        </ul>
+    </li>
+</ul>
+```
+
+### CTLog - Logging Request
+
+The CTLog provides a facade to log Informations. By default it logs all important infos, warnings and errors in the
+log-file: `churchtools-api.log`. The creation of a logfile can be enabled and disabled with the method:
+
+```php
+use CTApi\CTLog;
+
+CTLog::enableFileLog( false ); //disable logfile
+CTLog::enableFileLog(); // enable logfile
+```
+
+By default, all Error, Critical, Alert and Emergency logs will be displayed in the console. If you want to show further
+log-levels on the console you can use the CTConfig-Debug Option or set it direct in the CTLog facade:
+
+```php 
+CTConfig::enableDebug();
+
+//or use CTLog facade
+
+CTLog::setConsoleLogLevelDebug();
+CTLog::enableConsoleLog();
+```
+
+To log a message, use the getLog-method:
+
+```php
+use CTApi\CTLog;
+
+CTLog::getLog()->debug("Hello World!");
+CTLog::getLog()->error("Error accourd here!");
+```
+
+Further information on [CTLog-Page](/docs/CTLog.md):
 
 ## License
 

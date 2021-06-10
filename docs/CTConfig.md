@@ -60,3 +60,37 @@ if($isValid){
     echo "ApiKey is not valid anymore!";
 }
 ```
+
+## 3. Cache Requests
+
+To increase performance enable the caching-mechanism with:
+
+```php
+use CTApi\CTConfig;
+
+// enable caching of http-requests
+CTConfig::enableCache();
+
+// disable caching of http-requests
+CTConfig::disableCache();
+
+// clear stored cache
+CTConfig::clearCache();
+```
+
+By default the cache-files will be stored in the /cache directory. Only `GET`-Requests will be stored in the cache (
+not `POST`/`PUT`).
+
+You can disable the cache from single requests by adding the `Cache-Control`-Header with the value `no-cache`. Example
+Request:
+
+```php
+$response = $client->get(
+                '/api/persons/' . $this->userId . '/logintoken',
+                [
+                    'headers' => [
+                        'Cache-Control' => 'no-cache'
+                    ]
+                ]
+            );
+```

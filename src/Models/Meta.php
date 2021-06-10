@@ -6,6 +6,7 @@ namespace CTApi\Models;
 
 use CTApi\Models\Traits\FillWithData;
 use CTApi\Requests\PersonRequest;
+use CTApi\Utils\CTUtil;
 
 class Meta
 {
@@ -20,14 +21,39 @@ class Meta
     {
         switch ($key) {
             case "createdPerson":
-                $this->setCreatedPerson(Person::createModelFromData($data));
+                $this->setCreatedPerson($this->convertDataToPerson($data));
                 break;
             case "modifiedPerson":
-                $this->setModifiedPerson(Person::createModelFromData($data));
+                $this->setModifiedPerson($this->convertDataToPerson($data));
                 break;
             default:
                 $this->{$key} = $data;
         }
+    }
+
+    private function convertDataToPerson(array $data): Person
+    {
+        $person = Person::createModelFromData($data);
+
+        if (
+            !is_null(CTUtil::arrayPathGet($data, 'domainType')) &&
+            (CTUtil::arrayPathGet($data, 'domainType') == "person") &&
+            !is_null(CTUtil::arrayPathGet($data, 'domainIdentifier'))
+        ) {
+            $person->setId(CTUtil::arrayPathGet($data, 'domainIdentifier'));
+        }
+
+        if (!is_null(CTUtil::arrayPathGet($data, 'domainAttributes.firstName'))) {
+            $person->setFirstName(CTUtil::arrayPathGet($data, 'domainAttributes.firstName'));
+        }
+        if (!is_null(CTUtil::arrayPathGet($data, 'domainAttributes.lastName'))) {
+            $person->setLastName(CTUtil::arrayPathGet($data, 'domainAttributes.lastName'));
+        }
+        if (!is_null(CTUtil::arrayPathGet($data, 'domainAttributes.guid'))) {
+            $person->setGuid(CTUtil::arrayPathGet($data, 'domainAttributes.guid'));
+        }
+
+        return $person;
     }
 
     public function requestCreatedPerson(): ?Person

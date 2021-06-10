@@ -1,8 +1,8 @@
 <?php
 
 use CTApi\CTConfig;
-use CTApi\Exceptions\CTAuthException;
 use CTApi\Exceptions\CTConfigException;
+use CTApi\Middleware\CTCacheMiddleware;
 use PHPUnit\Framework\TestCase;
 
 class CTConfigUnitTest extends TestCase
@@ -68,17 +68,12 @@ class CTConfigUnitTest extends TestCase
         $this->assertTrue($exceptionThrown);
     }
 
-    public function testDebuggingMode()
+    public function testCacheTimeToLive()
     {
-        $this->fillConfigWithExampleData();
+        CTConfig::enableCache();
+        $this->assertNotNull(CTCacheMiddleware::getTimeToLive());
 
-        CTConfig::enableDebugging();
-        $requestConfig = CTConfig::getRequestConfig();
-        $this->assertTrue($requestConfig['debug']);
-
-
-        CTConfig::disableDebugging();
-        $requestConfig = CTConfig::getRequestConfig();
-        $this->assertFalse($requestConfig['debug']);
+        CTConfig::enableCache(291);
+        $this->assertEquals(291, CTCacheMiddleware::getTimeToLive());
     }
 }
