@@ -50,7 +50,15 @@ The whole churchtools-api client is build on top of the Requests and Models. [Re
 interface to specify your api call by adding filtering and sorting. [Models](/docs/Models.md) represent the data, that
 the Requests retrieve. More informations can be found in the documentation.
 
-The following examples show the power of this churchtools-api client and gives a rough overview over the possibilities:
+All APIs with examples:
+* [Person-API](/docs/PersonAPI.md)
+* [Event-API](/docs/EventAPI.md)
+* [Song-API](/docs/SongAPI.md)
+* [Service-API](/docs/ServiceAPI.md)
+* [Wiki-API](/docs/WikiAPI.md)
+
+
+The following short examples show the power of this churchtools-api client and gives a rough overview over the possibilities:
 
 #### Example: Person-API
 
