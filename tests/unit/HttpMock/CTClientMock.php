@@ -4,10 +4,12 @@
 use CTApi\CTClient;
 use CTApi\CTLog;
 use CTApi\Utils\CTCacheResponse;
+use CTApi\Utils\CTMessageBody;
+use CTApi\Utils\CTResponse;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
 
-abstract class CTClientMock extends CTClient
+class CTClientMock extends CTClient
 {
 
     private array $requestCalls = [];
@@ -16,22 +18,29 @@ abstract class CTClientMock extends CTClient
     public function get($uri, array $options = []): ResponseInterface
     {
         $this->addMethodCall("GET", $uri, $options);
-        parent::get($uri, $options);
-
         return $this->addResponse($this->convertGETRequestToResponse($uri, $options));
     }
 
     public function post($uri, array $options = []): ResponseInterface
     {
         $this->addMethodCall("POST", $uri, $options);
-        parent::post($uri, $options);
-
         return $this->addResponse($this->convertPOSTRequestToResponse($uri, $options));
     }
 
-    abstract protected function convertGETRequestToResponse($uri, $options): ResponseInterface;
+    protected function convertGETRequestToResponse($uri, $options): ResponseInterface
+    {
+        $responseData = HttpMockDataResolver::resolveEndpoint($uri);
 
-    abstract protected function convertPOSTRequestToResponse($uri, $options): ResponseInterface;
+        $ctResponse = CTResponse::createEmpty();
+        $ctResponse->withBody(new CTMessageBody($responseData));
+
+        return $ctResponse;
+    }
+
+    protected function convertPOSTRequestToResponse($uri, $options): ResponseInterface
+    {
+        return CTResponse::createEmpty();
+    }
 
     public function resetState()
     {

@@ -37,6 +37,11 @@ class CTClient extends Client
         return self::$client;
     }
 
+    public static function setClient(CTClient $client)
+    {
+        self::$client = $client;
+    }
+
     public static function createClient(?HandlerStack $handlerStack = null): void
     {
         if (is_null($handlerStack)) {
