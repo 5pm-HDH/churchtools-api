@@ -21,7 +21,6 @@ class CTConfig
     private const PATH_LOGIN_TOKEN = 'query.login_token';
 
     private static ?CTConfig $config = null;
-    private static string $cacheDir = __DIR__ . '/../cache/';
 
     /**
      * RequestOptions of Guzzle (https://docs.guzzlephp.org/en/stable/request-options.html)
