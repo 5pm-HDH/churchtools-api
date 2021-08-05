@@ -117,7 +117,9 @@ class EventAgendaTest extends TestCaseAuthenticated
     {
         $foundSong = false;
         foreach ($songArray as $song) {
-            if (is_null($song)) continue;
+            if (is_null($song)){
+                continue;
+            }
             if (
                 $song->getName() == TestData::getValue("EVENT_AGENDA_SONG_NAME")
             ) {
