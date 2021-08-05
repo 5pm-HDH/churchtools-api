@@ -54,30 +54,30 @@ class WikiPage
 
     public function requestVersions(): ?WikiPageVersionRequestBuilder
     {
-        $wikiCategory = $this->getWikiCategory()?->getId();
-        $identifier = $this->getIdentifier();
-        if (!is_null($wikiCategory) && !is_null($identifier)) {
-            return new WikiPageVersionRequestBuilder($wikiCategory, $identifier);
+        $requestedWikiCategory = $this->getWikiCategory()?->getId();
+        $requestedIdentifier = $this->getIdentifier();
+        if (!is_null($requestedWikiCategory) && !is_null($requestedIdentifier)) {
+            return new WikiPageVersionRequestBuilder($requestedWikiCategory, $requestedIdentifier);
         }
         return null;
     }
 
     public function requestVersion(int $versionId): ?WikiPage
     {
-        $wikiCategory = $this->getWikiCategory()?->getId();
-        $identifier = $this->getIdentifier();
-        if (!is_null($wikiCategory) && !is_null($identifier)) {
-            return WikiPageVersionRequestBuilder::requestPageVersion($wikiCategory, $identifier, $versionId);
+        $requestedWikiCategory = $this->getWikiCategory()?->getId();
+        $requestedIdentifier = $this->getIdentifier();
+        if (!is_null($requestedWikiCategory) && !is_null($requestedIdentifier)) {
+            return WikiPageVersionRequestBuilder::requestPageVersion($requestedWikiCategory, $requestedIdentifier, $versionId);
         }
         return null;
     }
 
     public function requestText(): self
     {
-        $wikiCategory = $this->getWikiCategory()?->getId();
-        $identifier = $this->getIdentifier();
-        if (!is_null($wikiCategory) && !is_null($identifier)) {
-            $page = WikiPageRequestBuilder::requestPageFromCategoryAndIdentifier($wikiCategory, $identifier);
+        $requestedWikiCategory = $this->getWikiCategory()?->getId();
+        $requestedIdentifier = $this->getIdentifier();
+        if (!is_null($requestedWikiCategory) && !is_null($requestedIdentifier)) {
+            $page = WikiPageRequestBuilder::requestPageFromCategoryAndIdentifier($requestedWikiCategory, $requestedIdentifier);
             $this->setText($page->getText());
         }
         return $this;

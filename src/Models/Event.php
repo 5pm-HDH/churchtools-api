@@ -45,11 +45,11 @@ class Event
 
     public function requestEventServiceWithServiceId(int $serviceId): ?EventService
     {
-        $eventServices = array_filter($this->getEventServices(), function ($eventService) use ($serviceId) {
+        $requestedEventServices = array_filter($this->getEventServices(), function ($eventService) use ($serviceId) {
             return $eventService->getServiceId() == $serviceId;
         });
-        if (!empty($eventServices)) {
-            return $eventServices[array_key_first($eventServices)];
+        if (!empty($requestedEventServices)) {
+            return $requestedEventServices[array_key_first($requestedEventServices)];
         }
         return null;
     }

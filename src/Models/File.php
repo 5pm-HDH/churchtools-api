@@ -51,13 +51,13 @@ class File
 
     public function getFileUrlAuthenticated(): ?string
     {
-        $fileUrl = $this->getFileUrl();
+        $fileUrl2 = $this->getFileUrl();
         $apiKey = CTConfig::getApiKey();
-        if (is_null($fileUrl) || is_null($apiKey)) {
+        if (is_null($fileUrl2) || is_null($apiKey)) {
             return null;
         }
 
-        return $fileUrl . "&login_token=" . $apiKey;
+        return $fileUrl2 . "&login_token=" . $apiKey;
     }
 
     public function getFileUrlBaseUrl(): ?string

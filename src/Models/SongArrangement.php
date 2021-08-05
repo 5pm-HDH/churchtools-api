@@ -48,15 +48,15 @@ class SongArrangement
      */
     public function requestFirstFile(string $filename, ?string $fileExtension = null): ?File
     {
-        $files = $this->getFiles();
+        $requestedFiles = $this->getFiles();
 
         if (!is_null($fileExtension)) {
-            $files = array_filter($files, function ($file) use ($fileExtension) {
+            $requestedFiles = array_filter($requestedFiles, function ($file) use ($fileExtension) {
                 return str_ends_with($file->getName(), $fileExtension);
             });
         }
 
-        foreach ($files as $file) {
+        foreach ($requestedFiles as $file) {
             if (str_contains(strtolower($file->getName()), strtolower($filename))) {
                 return $file;
             }
