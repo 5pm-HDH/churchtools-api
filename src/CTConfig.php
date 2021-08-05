@@ -18,6 +18,8 @@ use League\Flysystem\Adapter\Local;
 
 class CTConfig
 {
+    private const PATH_LOGIN_TOKEN = 'query.login_token';
+
     private static ?CTConfig $config = null;
     private static string $cacheDir = __DIR__ . '/../cache/';
 
@@ -76,17 +78,17 @@ class CTConfig
     public static function authWithCredentials(string $email, string $password)
     {
         $auth = AuthRequest::authWithEmailAndPassword($email, $password);
-        self::setRequestOption('query.login_token', $auth->apiKey);
+        self::setRequestOption(self::PATH_LOGIN_TOKEN, $auth->apiKey);
     }
 
     public static function setApiKey(string $apiKey)
     {
-        self::setRequestOption('query.login_token', $apiKey);
+        self::setRequestOption(self::PATH_LOGIN_TOKEN, $apiKey);
     }
 
     public static function getApiKey(): ?string
     {
-        return self::getRequestOption('query.login_token');
+        return self::getRequestOption(self::PATH_LOGIN_TOKEN);
     }
 
     public static function validateConfig()
