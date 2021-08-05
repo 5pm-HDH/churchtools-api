@@ -1,5 +1,7 @@
 <?php
 
+namespace Tests\Unit;
+
 use CTApi\CTConfig;
 use CTApi\Exceptions\CTConfigException;
 use CTApi\Middleware\CTCacheMiddleware;

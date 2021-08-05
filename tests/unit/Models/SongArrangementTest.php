@@ -1,5 +1,6 @@
 <?php
 
+namespace Tests\Unit\Models;
 
 use CTApi\Models\SongArrangement;
 use PHPUnit\Framework\TestCase;

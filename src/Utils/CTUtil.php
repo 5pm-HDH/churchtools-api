@@ -21,8 +21,11 @@ class CTUtil
      */
     public static function arrayIsDataContainer(array $data): bool
     {
-        if (array() === $data) return false;
-        return array_keys($data) !== range(0, count($data) - 1);
+        if (array() === $data) {
+            return false;
+        } else {
+            return array_keys($data) !== range(0, count($data) - 1);
+        }
     }
 
     /**

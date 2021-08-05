@@ -1,11 +1,14 @@
 <?php
 
+namespace Tests\Integration\Requests;
 
 use CTApi\Exceptions\CTModelException;
 use CTApi\Models\Event;
 use CTApi\Models\Person;
 use CTApi\Models\Service;
 use CTApi\Requests\EventRequest;
+use Tests\Integration\TestCaseAuthenticated;
+use Tests\Integration\TestData;
 
 class EventRequestTest extends TestCaseAuthenticated
 {
@@ -24,7 +27,6 @@ class EventRequestTest extends TestCaseAuthenticated
 
         $this->assertFalse(empty(sizeof($allEvents)));
         $this->assertInstanceOf(Event::class, $allEvents[0]);
-        ModelValidator::validateModel($allEvents[0]);
     }
 
     public function testGetWhereEvents()

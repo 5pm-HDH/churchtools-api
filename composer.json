@@ -28,6 +28,7 @@
     "test-unit": "./vendor/bin/phpunit --testsuite unit",
     "test-integration": "./vendor/bin/phpunit --testsuite-integration",
     "test-unit-w": "vendor\\bin\\phpunit.bat --testsuite unit",
-    "test-integration-w": "vendor\\bin\\phpunit.bat --testsuite integration"
+    "test-integration-w": "vendor\\bin\\phpunit.bat --testsuite integration",
+    "test-coverage-w": "vendor\\bin\\phpunit.bat --coverage-html .phpunit.cache/coverage-report"
   }
 }

@@ -1,5 +1,7 @@
 <?php
 
+namespace Tests\Unit\Models;
+
 use CTApi\Exceptions\CTModelException;
 use CTApi\Models\WikiPage;
 use CTApi\Models\WikiPageTreeNode;

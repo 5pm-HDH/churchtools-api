@@ -1,5 +1,6 @@
 <?php
 
+namespace Tests\Integration;
 
 use CTApi\CTConfig;
 use PHPUnit\Framework\TestCase;
@@ -15,6 +16,5 @@ class TestCaseAuthenticated extends TestCase
             TestData::getValue('AUTH_EMAIL'),
             TestData::getValue('AUTH_PASSWORD')
         );
-        //CTConfig::enableCache();
     }
 }

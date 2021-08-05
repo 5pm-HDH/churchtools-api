@@ -54,8 +54,7 @@ class Song
                 $this->setName($value);
                 break;
             case "category":
-                $category = SongCategory::createModelFromData(["name" => $value]);
-                $this->setCategory($category);
+                $this->setCategory(SongCategory::createModelFromData(["name" => $value]));
                 break;
             default:
                 $this->{$key} = $value;

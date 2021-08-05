@@ -1,0 +1,23 @@
+{
+  "data": {
+    "id": 21,
+    "guid": "guid21",
+    "name": "Sunday Service",
+    "description": "Service Description",
+    "startDate": "2021-09-02 20:15:00",
+    "endDate": "2021-09-02 22:00:00",
+    "chatStatus": false,
+    "agenda": {
+      "id": 291,
+      "name": "Sunday Service Agenda",
+      "series": "Series Number",
+      "isFinal": false,
+      "eventStartPosition": 2,
+      "calendarId": 2911,
+      "items": [
+        {"id": 2911, "title": "Opening Song", "type": "Song"},
+        {"id": 2912, "title": "First Worship Song", "type": "Song"}
+      ]
+    }
+  }
+}

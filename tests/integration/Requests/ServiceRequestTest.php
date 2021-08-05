@@ -1,11 +1,14 @@
 <?php
 
+namespace Tests\Integration\Requests;
 
 use CTApi\Exceptions\CTRequestException;
 use CTApi\Models\Service;
 use CTApi\Models\ServiceGroup;
 use CTApi\Requests\ServiceGroupRequest;
 use CTApi\Requests\ServiceRequest;
+use Tests\Integration\TestCaseAuthenticated;
+use Tests\Integration\TestData;
 
 class ServiceRequestTest extends TestCaseAuthenticated
 {
