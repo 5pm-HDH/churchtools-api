@@ -32,7 +32,6 @@ class SongRequestTest extends TestCaseAuthenticated
         $this->assertNotEmpty($allSongs);
 
         $this->assertInstanceOf(Song::class, $allSongs[0]);
-        ModelValidator::validateModel($allSongs[0]);
     }
 
     public function testGetOneSong()

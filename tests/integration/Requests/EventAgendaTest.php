@@ -23,7 +23,6 @@ class EventAgendaTest extends TestCaseAuthenticated
         $agenda = EventAgendaRequest::fromEvent($eventId)->get();
 
         $this->assertAgendaIsValid($agenda);
-        ModelValidator::validateModel($agenda);
     }
 
     public function testGetAgendaFromEvent()

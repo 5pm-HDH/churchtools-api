@@ -24,7 +24,6 @@ class EventRequestTest extends TestCaseAuthenticated
 
         $this->assertFalse(empty(sizeof($allEvents)));
         $this->assertInstanceOf(Event::class, $allEvents[0]);
-        ModelValidator::validateModel($allEvents[0]);
     }
 
     public function testGetWhereEvents()
