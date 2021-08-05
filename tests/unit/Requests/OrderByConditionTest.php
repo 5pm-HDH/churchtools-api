@@ -1,5 +1,6 @@
 <?php
 
+namespace Tests\Unit\Requests;
 
 use CTApi\Exceptions\CTRequestException;
 use CTApi\Requests\Traits\OrderByCondition;

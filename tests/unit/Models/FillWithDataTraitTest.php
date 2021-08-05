@@ -1,5 +1,7 @@
 <?php
 
+namespace Tests\Unit\Models;
+
 use CTApi\Models\Traits\FillWithData;
 use PHPUnit\Framework\TestCase;
 

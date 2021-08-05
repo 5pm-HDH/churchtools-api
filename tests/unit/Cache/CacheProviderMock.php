@@ -1,5 +1,6 @@
 <?php
 
+namespace Tests\Unit\Cache;
 
 use CTApi\CTLog;
 use Doctrine\Common\Cache\FilesystemCache;

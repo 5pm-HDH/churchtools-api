@@ -1,6 +1,9 @@
 <?php
 
+namespace Tests\Unit\Requests;
+
 use CTApi\Requests\EventRequest;
+use Tests\Unit\TestCaseHttpMocked;
 
 class EventRequestUnitTest extends TestCaseHttpMocked
 {

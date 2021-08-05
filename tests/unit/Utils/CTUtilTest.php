@@ -1,5 +1,6 @@
 <?php
 
+namespace Tests\Unit\Utils;
 
 use CTApi\Utils\CTUtil;
 use PHPUnit\Framework\TestCase;

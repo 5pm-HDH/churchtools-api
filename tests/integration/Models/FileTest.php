@@ -1,9 +1,11 @@
 <?php
 
+namespace Tests\Integration\Models;
 
 use CTApi\CTConfig;
 use CTApi\Models\File;
 use CTApi\Requests\SongRequest;
+use Tests\Integration\TestCaseAuthenticated;
 
 class FileTest extends TestCaseAuthenticated
 {

@@ -1,11 +1,14 @@
 <?php
 
+namespace Tests\Integration\Models;
 
 use CTApi\Models\Meta;
 use CTApi\Models\Person;
 use CTApi\Requests\EventAgendaRequest;
 use CTApi\Requests\PersonRequest;
 use CTApi\Requests\SongRequest;
+use Tests\Integration\TestCaseAuthenticated;
+use Tests\Integration\TestData;
 
 class MetaTest extends TestCaseAuthenticated
 {

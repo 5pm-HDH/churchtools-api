@@ -1,5 +1,6 @@
 <?php
 
+namespace Tests\Integration;
 
 class TestData
 {

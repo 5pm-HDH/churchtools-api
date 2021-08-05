@@ -1,5 +1,6 @@
 <?php
 
+namespace Tests\Unit\HttpMock;
 
 use CTApi\CTClient;
 use CTApi\CTLog;

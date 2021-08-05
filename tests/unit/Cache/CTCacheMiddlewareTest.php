@@ -1,5 +1,7 @@
 <?php
 
+namespace Tests\Unit\Cache;
+
 use CTApi\CTConfig;
 use CTApi\CTLog;
 use CTApi\Middleware\CTCacheMiddleware;
@@ -200,7 +202,7 @@ class CTCacheMiddlewareTest extends TestCase
 
         $executable = $cacheMiddleware(function (RequestInterface $tempRequest, $options) use ($httpReturnData) {
             CTLog::getLog()->debug("CTCacheMiddlewareTest: Invoke Handler");
-            $promise = new GuzzleHttp\Promise\Promise();
+            $promise = new Promise();
 
             $promise->resolve(CTResponse::createFromRequestAndData($tempRequest, $httpReturnData));
 

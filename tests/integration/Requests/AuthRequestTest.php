@@ -1,9 +1,11 @@
 <?php
 
+namespace Tests\Integration\Requests;
 
 use CTApi\CTConfig;
 use CTApi\Requests\AuthRequest;
 use PHPUnit\Framework\TestCase;
+use Tests\Integration\TestData;
 
 class AuthRequestTest extends TestCase
 {

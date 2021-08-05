@@ -1,10 +1,14 @@
 <?php
 
+namespace Tests\Integration\Requests;
 
 use CTApi\Models\Event;
 use CTApi\Models\Person;
 use CTApi\Requests\AuthRequest;
 use CTApi\Requests\PersonRequest;
+use Exception;
+use Tests\Integration\TestCaseAuthenticated;
+use Tests\Integration\TestData;
 
 class PersonRequestTest extends TestCaseAuthenticated
 {

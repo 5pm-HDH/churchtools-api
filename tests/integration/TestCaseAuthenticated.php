@@ -1,5 +1,6 @@
 <?php
 
+namespace Tests\Integration;
 
 use CTApi\CTConfig;
 use PHPUnit\Framework\TestCase;

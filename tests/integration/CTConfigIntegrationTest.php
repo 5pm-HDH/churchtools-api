@@ -1,5 +1,7 @@
 <?php
 
+namespace Tests\Integration;
+
 use CTApi\CTConfig;
 use CTApi\Exceptions\CTAuthException;
 use PHPUnit\Framework\TestCase;

@@ -1,11 +1,14 @@
 <?php
 
+namespace Tests\Integration\Requests;
 
 use CTApi\Models\EventAgenda;
 use CTApi\Models\Song;
 use CTApi\Models\SongArrangement;
 use CTApi\Requests\EventAgendaRequest;
 use CTApi\Requests\EventRequest;
+use Tests\Integration\TestCaseAuthenticated;
+use Tests\Integration\TestData;
 
 class EventAgendaTest extends TestCaseAuthenticated
 {
@@ -117,7 +120,7 @@ class EventAgendaTest extends TestCaseAuthenticated
     {
         $foundSong = false;
         foreach ($songArray as $song) {
-            if (is_null($song)){
+            if (is_null($song)) {
                 continue;
             }
             if (

@@ -1,9 +1,11 @@
 <?php
 
+namespace Tests\Unit;
 
 use CTApi\CTClient;
 use CTApi\CTConfig;
 use PHPUnit\Framework\TestCase;
+use Tests\Unit\HttpMock\CTClientMock;
 
 class TestCaseHttpMocked extends TestCase
 {

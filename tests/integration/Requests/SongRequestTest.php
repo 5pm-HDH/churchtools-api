@@ -1,10 +1,13 @@
 <?php
 
+namespace Tests\Integration\Requests;
 
 use CTApi\Models\File;
 use CTApi\Models\Song;
 use CTApi\Models\SongArrangement;
 use CTApi\Requests\SongRequest;
+use Tests\Integration\TestCaseAuthenticated;
+use Tests\Integration\TestData;
 
 class SongRequestTest extends TestCaseAuthenticated
 {

@@ -1,10 +1,13 @@
 <?php
 
+namespace Tests\Integration\Requests;
 
 use CTApi\Models\WikiCategory;
 use CTApi\Models\WikiPage;
 use CTApi\Requests\WikiCategoryRequest;
 use CTApi\Requests\WikiSearchRequest;
+use Tests\Integration\TestCaseAuthenticated;
+use Tests\Integration\TestData;
 
 class WikiRequestTest extends TestCaseAuthenticated
 {
