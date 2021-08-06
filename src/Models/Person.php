@@ -7,6 +7,7 @@ namespace CTApi\Models;
 use CTApi\Models\Traits\FillWithData;
 use CTApi\Models\Traits\MetaAttribute;
 use CTApi\Requests\PersonEventRequestBuilder;
+use CTApi\Requests\PersonGroupRequestBuilder;
 
 class Person
 {
@@ -53,6 +54,14 @@ class Person
     {
         if (!is_null($this->getId())) {
             return new PersonEventRequestBuilder((int)$this->getId());
+        }
+        return null;
+    }
+
+    public function requestGroups(): ?PersonGroupRequestBuilder
+    {
+        if(!is_null($this->getId())){
+            return new PersonGroupRequestBuilder( (int) $this->getId());
         }
         return null;
     }
