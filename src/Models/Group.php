@@ -10,137 +10,175 @@ class Group
 {
     use FillWithData;
 
-    protected ?string $title;
-    protected ?string $domainType;
-    protected ?string $domainIdentifier;
-    protected ?string $apiUrl;
-    protected ?string $frontendUrl;
-    protected ?string $imageUrl;
-    protected array $domainAttributes = [];
+    protected ?string $id;
+    protected ?string $guid;
+    protected ?string $name;
+    protected ?string $securityLevelForGroup;
+    protected array $permissions = [];
+    protected array $information = [];
+    protected array $settings = [];
+    protected array $followUp = [];
+    protected array $roles = [];
 
     /**
      * @return string|null
      */
-    public function getTitle(): ?string
+    public function getId(): ?string
     {
-        return $this->title;
+        return $this->id;
     }
 
     /**
-     * @param string|null $title
+     * @param string|null $id
      * @return Group
      */
-    public function setTitle(?string $title): Group
+    public function setId(?string $id): Group
     {
-        $this->title = $title;
+        $this->id = $id;
         return $this;
     }
 
     /**
      * @return string|null
      */
-    public function getDomainType(): ?string
+    public function getGuid(): ?string
     {
-        return $this->domainType;
+        return $this->guid;
     }
 
     /**
-     * @param string|null $domainType
+     * @param string|null $guid
      * @return Group
      */
-    public function setDomainType(?string $domainType): Group
+    public function setGuid(?string $guid): Group
     {
-        $this->domainType = $domainType;
+        $this->guid = $guid;
         return $this;
     }
 
     /**
      * @return string|null
      */
-    public function getDomainIdentifier(): ?string
+    public function getName(): ?string
     {
-        return $this->domainIdentifier;
+        return $this->name;
     }
 
     /**
-     * @param string|null $domainIdentifier
+     * @param string|null $name
      * @return Group
      */
-    public function setDomainIdentifier(?string $domainIdentifier): Group
+    public function setName(?string $name): Group
     {
-        $this->domainIdentifier = $domainIdentifier;
+        $this->name = $name;
         return $this;
     }
 
     /**
      * @return string|null
      */
-    public function getApiUrl(): ?string
+    public function getSecurityLevelForGroup(): ?string
     {
-        return $this->apiUrl;
+        return $this->securityLevelForGroup;
     }
 
     /**
-     * @param string|null $apiUrl
+     * @param string|null $securityLevelForGroup
      * @return Group
      */
-    public function setApiUrl(?string $apiUrl): Group
+    public function setSecurityLevelForGroup(?string $securityLevelForGroup): Group
     {
-        $this->apiUrl = $apiUrl;
-        return $this;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getFrontendUrl(): ?string
-    {
-        return $this->frontendUrl;
-    }
-
-    /**
-     * @param string|null $frontendUrl
-     * @return Group
-     */
-    public function setFrontendUrl(?string $frontendUrl): Group
-    {
-        $this->frontendUrl = $frontendUrl;
-        return $this;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getImageUrl(): ?string
-    {
-        return $this->imageUrl;
-    }
-
-    /**
-     * @param string|null $imageUrl
-     * @return Group
-     */
-    public function setImageUrl(?string $imageUrl): Group
-    {
-        $this->imageUrl = $imageUrl;
+        $this->securityLevelForGroup = $securityLevelForGroup;
         return $this;
     }
 
     /**
      * @return array
      */
-    public function getDomainAttributes(): array
+    public function getPermissions(): array
     {
-        return $this->domainAttributes;
+        return $this->permissions;
     }
 
     /**
-     * @param array $domainAttributes
+     * @param array $permissions
      * @return Group
      */
-    public function setDomainAttributes(array $domainAttributes): Group
+    public function setPermissions(array $permissions): Group
     {
-        $this->domainAttributes = $domainAttributes;
+        $this->permissions = $permissions;
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getInformation(): array
+    {
+        return $this->information;
+    }
+
+    /**
+     * @param array $information
+     * @return Group
+     */
+    public function setInformation(array $information): Group
+    {
+        $this->information = $information;
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getSettings(): array
+    {
+        return $this->settings;
+    }
+
+    /**
+     * @param array $settings
+     * @return Group
+     */
+    public function setSettings(array $settings): Group
+    {
+        $this->settings = $settings;
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getFollowUp(): array
+    {
+        return $this->followUp;
+    }
+
+    /**
+     * @param array $followUp
+     * @return Group
+     */
+    public function setFollowUp(array $followUp): Group
+    {
+        $this->followUp = $followUp;
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getRoles(): array
+    {
+        return $this->roles;
+    }
+
+    /**
+     * @param array $roles
+     * @return Group
+     */
+    public function setRoles(array $roles): Group
+    {
+        $this->roles = $roles;
         return $this;
     }
 }
