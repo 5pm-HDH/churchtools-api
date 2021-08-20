@@ -5,6 +5,7 @@ namespace CTApi\Models;
 
 
 use CTApi\Models\Traits\FillWithData;
+use CTApi\Requests\GroupRequest;
 
 class PersonGroup
 {
@@ -16,12 +17,22 @@ class PersonGroup
 
     protected function fillArrayType(string $key, array $data)
     {
-        switch($key){
+        switch ($key) {
             case "group":
                 $this->group = Group::createModelFromData($data);
                 break;
             default:
                 $this->{$key} = $data;
+        }
+    }
+
+    public function requestGroup(): ?Group
+    {
+        $id = $this->getGroup()?->getId();
+        if ($id != null) {
+            return GroupRequest::find($id);
+        } else {
+            return null;
         }
     }
 

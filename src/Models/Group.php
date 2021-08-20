@@ -21,6 +21,21 @@ class Group
     protected array $followUp = [];
     protected array $roles = [];
 
+
+    protected function fillNonArrayType(string $key, $value)
+    {
+        switch ($key) {
+            case "title":
+                $this->setName($value);
+                break;
+            case "domainIdentifier":
+                $this->setId($value);
+                break;
+            default:
+                $this->{$key} = $value;
+        }
+    }
+
     protected function fillArrayType(string $key, array $data)
     {
         switch ($key) {

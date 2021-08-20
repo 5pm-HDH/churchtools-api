@@ -3,10 +3,10 @@
 namespace Tests\Integration\Requests;
 
 use CTApi\Models\Event;
+use CTApi\Models\Group;
 use CTApi\Models\Person;
 use CTApi\Models\PersonGroup;
 use CTApi\Requests\AuthRequest;
-use CTApi\Requests\PersonGroupRequestBuilder;
 use CTApi\Requests\PersonRequest;
 use Exception;
 use Tests\Integration\TestCaseAuthenticated;
@@ -99,8 +99,10 @@ class PersonRequestTest extends TestCaseAuthenticated
         $groups = $person->requestGroups()->get();
 
         $this->assertIsArray($groups);
-        foreach($groups as $group){
+        foreach ($groups as $group) {
             $this->assertInstanceOf(PersonGroup::class, $group);
+            $this->assertInstanceOf(Group::class, $group->getGroup());
+            $this->assertInstanceOf(Group::class, $group->requestGroup());
         }
     }
 }
