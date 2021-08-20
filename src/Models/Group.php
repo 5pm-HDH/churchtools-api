@@ -5,6 +5,7 @@ namespace CTApi\Models;
 
 
 use CTApi\Models\Traits\FillWithData;
+use CTApi\Requests\GroupMemberRequestBuilder;
 
 class Group
 {
@@ -31,6 +32,16 @@ class Group
                 break;
             default:
                 $this->{$key} = $data;
+        }
+    }
+
+
+    public function requestMembers(): ?GroupMemberRequestBuilder
+    {
+        if ($this->getId() != null) {
+            return new GroupMemberRequestBuilder((int)$this->getId());
+        } else {
+            return null;
         }
     }
 
