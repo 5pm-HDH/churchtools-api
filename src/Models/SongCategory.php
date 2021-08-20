@@ -8,11 +8,11 @@ use CTApi\Models\Traits\FillWithData;
 
 class SongCategory
 {
-    protected ?string $id;
-    protected ?string $name;
-    protected ?string $nameTranslated;
-    protected ?string $sortKey;
-    protected ?string $campusId;
+    protected ?string $id = null;
+    protected ?string $name = null;
+    protected ?string $nameTranslated = null;
+    protected ?string $sortKey = null;
+    protected ?string $campusId = null;
 
     use FillWithData;
 

@@ -7,6 +7,7 @@ namespace CTApi\Models;
 use CTApi\Models\Traits\FillWithData;
 use CTApi\Models\Traits\MetaAttribute;
 use CTApi\Requests\PersonEventRequestBuilder;
+use CTApi\Requests\PersonGroupRequestBuilder;
 
 class Person
 {
@@ -38,14 +39,41 @@ class Person
 
     protected ?Meta $meta = null;
 
+    protected function fillNonArrayType(string $key, $value)
+    {
+        switch ($key) {
+            case "domainIdentifier":
+                $this->setId($value);
+                break;
+            default:
+                $this->{$key} = $value;
+        }
+    }
+
     protected function fillArrayType(string $key, array $data): void
     {
         switch ($key) {
             case "meta":
                 $this->setMeta(Meta::createModelFromData($data));
                 break;
+            case "domainAttributes":
+                $this->processDomainAttributes($data);
+                break;
             default:
                 $this->{$key} = $data;
+        }
+    }
+
+    private function processDomainAttributes(array $domainAttributes)
+    {
+        if (array_key_exists('firstName', $domainAttributes)) {
+            $this->setFirstName($domainAttributes['firstName']);
+        }
+        if (array_key_exists('lastName', $domainAttributes)) {
+            $this->setLastName($domainAttributes['lastName']);
+        }
+        if (array_key_exists('guid', $domainAttributes)) {
+            $this->setGuid($domainAttributes['guid']);
         }
     }
 
@@ -53,6 +81,14 @@ class Person
     {
         if (!is_null($this->getId())) {
             return new PersonEventRequestBuilder((int)$this->getId());
+        }
+        return null;
+    }
+
+    public function requestGroups(): ?PersonGroupRequestBuilder
+    {
+        if (!is_null($this->getId())) {
+            return new PersonGroupRequestBuilder((int)$this->getId());
         }
         return null;
     }
