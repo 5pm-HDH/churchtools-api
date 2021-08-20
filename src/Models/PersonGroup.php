@@ -16,10 +16,13 @@ class PersonGroup
 
     protected function fillArrayType(string $key, array $data)
     {
-        if ($key == 'group') {
-            $this->group = Group::createModelFromData($data);
+        switch($key){
+            case "group":
+                $this->group = Group::createModelFromData($data);
+                break;
+            default:
+                $this->{$key} = $data;
         }
-        $this->{$key} = $data;
     }
 
     /**
