@@ -10,15 +10,16 @@ class PersonGroup
 {
     use FillWithData;
 
-    protected ?Group $group;
-    protected ?int $groupTypeRoleId;
-    protected ?string $memberStartDate;
+    protected ?Group $group = null;
+    protected ?int $groupTypeRoleId = null;
+    protected ?string $memberStartDate = null;
 
     protected function fillArrayType(string $key, array $data)
     {
-        if($key == 'group'){
+        if ($key == 'group') {
             $this->group = Group::createModelFromData($data);
         }
+        $this->{$key} = $data;
     }
 
     /**

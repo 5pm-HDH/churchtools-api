@@ -11,14 +11,14 @@ class SongArrangement
 {
     use FillWithData, MetaAttribute;
 
-    protected ?string $id;
-    protected ?string $name;
-    protected ?string $isDefault;
-    protected ?string $keyOfArrangement;
-    protected ?string $bpm;
-    protected ?string $beat;
-    protected ?string $duration;
-    protected ?string $note;
+    protected ?string $id = null;
+    protected ?string $name = null;
+    protected ?string $isDefault = null;
+    protected ?string $keyOfArrangement = null;
+    protected ?string $bpm = null;
+    protected ?string $beat = null;
+    protected ?string $duration = null;
+    protected ?string $note = null;
     protected array $links = [];
     protected array $files = [];
 

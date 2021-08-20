@@ -10,15 +10,29 @@ class Group
 {
     use FillWithData;
 
-    protected ?string $id;
-    protected ?string $guid;
-    protected ?string $name;
-    protected ?string $securityLevelForGroup;
+    protected ?string $id = null;
+    protected ?string $guid = null;
+    protected ?string $name = null;
+    protected ?string $securityLevelForGroup = null;
     protected array $permissions = [];
     protected array $information = [];
-    protected array $settings = [];
+    protected ?GroupSettings $settings = null;
     protected array $followUp = [];
     protected array $roles = [];
+
+    protected function fillArrayType(string $key, array $data)
+    {
+        switch ($key) {
+            case "roles":
+                $this->setRoles(GroupRole::createModelsFromArray($data));
+                break;
+            case "settings":
+                $this->setSettings(GroupSettings::createModelFromData($data));
+                break;
+            default:
+                $this->{$key} = $data;
+        }
+    }
 
     /**
      * @return string|null
@@ -129,18 +143,18 @@ class Group
     }
 
     /**
-     * @return array
+     * @return GroupSettings|null
      */
-    public function getSettings(): array
+    public function getSettings(): ?GroupSettings
     {
         return $this->settings;
     }
 
     /**
-     * @param array $settings
+     * @param GroupSettings|null $settings
      * @return Group
      */
-    public function setSettings(array $settings): Group
+    public function setSettings(?GroupSettings $settings): Group
     {
         $this->settings = $settings;
         return $this;

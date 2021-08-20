@@ -60,8 +60,8 @@ class Person
 
     public function requestGroups(): ?PersonGroupRequestBuilder
     {
-        if(!is_null($this->getId())){
-            return new PersonGroupRequestBuilder( (int) $this->getId());
+        if (!is_null($this->getId())) {
+            return new PersonGroupRequestBuilder((int)$this->getId());
         }
         return null;
     }
