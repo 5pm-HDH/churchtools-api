@@ -12,39 +12,16 @@ use CTApi\Requests\Traits\Pagination;
 use CTApi\Utils\CTResponseUtil;
 use GuzzleHttp\Exception\GuzzleException;
 
-class ServiceGroupRequestBuilder
+class ServiceGroupRequestBuilder extends AbstractRequestBuilder
 {
-    use Pagination;
 
-    public function all(): array
+    protected function getApiEndpoint(): string
     {
-        $data = $this->collectDataFromPages('/api/servicegroups', []);
-        return ServiceGroup::createModelsFromArray($data);
+        return '/api/servicegroups';
     }
 
-    public function findOrFail(int $id): ServiceGroup
+    protected function getModelClass(): string
     {
-        $serviceGroup = $this->find($id);
-        if ($serviceGroup != null) {
-            return $serviceGroup;
-        } else {
-            throw new CTRequestException("ServiceGroup could not be found!");
-        }
-    }
-
-    public function find(int $id): ?ServiceGroup
-    {
-        $serviceGroupData = null;
-        try {
-            $serviceGroupData = CTResponseUtil::dataAsArray(CTClient::getClient()->get('/api/servicegroups/' . $id));
-        } catch (GuzzleException $e) {
-            CTLog::getLog()->info('ServiceGroupRequestBuilder: Could not get ServiceGroup with Id' . $id);
-        }
-
-        if (empty($serviceGroupData)) {
-            return null;
-        } else {
-            return ServiceGroup::createModelFromData($serviceGroupData);
-        }
+        return ServiceGroup::class;
     }
 }

@@ -19,7 +19,7 @@ trait WhereCondition
         return $this;
     }
 
-    private function addWhereConditionsToOption(&$options): void
+    protected function addWhereConditionsToOption(&$options): void
     {
         if (!array_key_exists("json", $options)) {
             $options["json"] = [];

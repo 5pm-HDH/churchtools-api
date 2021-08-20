@@ -2,6 +2,7 @@
 
 namespace Tests\Integration\Requests;
 
+use CTApi\Exceptions\CTModelException;
 use CTApi\Exceptions\CTRequestException;
 use CTApi\Models\Service;
 use CTApi\Models\ServiceGroup;
@@ -33,7 +34,7 @@ class ServiceRequestTest extends TestCaseAuthenticated
 
     public function testFindOrFailService()
     {
-        $this->expectException(CTRequestException::class);
+        $this->expectException(CTModelException::class);
         ServiceRequest::findOrFail(929192818291);
     }
 
@@ -80,7 +81,7 @@ class ServiceRequestTest extends TestCaseAuthenticated
 
     public function testFindOrFailServiceGroup()
     {
-        $this->expectException(CTRequestException::class);
+        $this->expectException(CTModelException::class);
         ServiceGroupRequest::findOrFail(929192818291);
     }
 

@@ -8,7 +8,7 @@ use CTApi\Utils\CTResponseUtil;
 trait Pagination
 {
 
-    private function collectDataFromPages(string $url, array $options = []): array
+    protected function collectDataFromPages(string $url, array $options = []): array
     {
         $client = CTClient::getClient();
         $collectedData = [];
