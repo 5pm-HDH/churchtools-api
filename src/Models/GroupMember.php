@@ -5,6 +5,7 @@ namespace CTApi\Models;
 
 
 use CTApi\Models\Traits\FillWithData;
+use CTApi\Requests\PersonRequest;
 
 class GroupMember
 {
@@ -29,6 +30,15 @@ class GroupMember
                 break;
             default:
                 $this->{$key} = $data;
+        }
+    }
+
+    public function requestPerson(): ?Person
+    {
+        if ($this->getPersonId() != null) {
+            return PersonRequest::find($this->getPersonId());
+        } else {
+            return null;
         }
     }
 

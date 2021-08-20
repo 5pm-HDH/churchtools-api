@@ -5,6 +5,8 @@ namespace Tests\Integration\Requests;
 
 
 use CTApi\Models\Group;
+use CTApi\Models\GroupMember;
+use CTApi\Models\Person;
 use CTApi\Requests\GroupRequest;
 use Tests\Integration\TestCaseAuthenticated;
 use Tests\Integration\TestData;
@@ -31,9 +33,22 @@ class GroupMemberRequestTest extends TestCaseAuthenticated
         $this->assertNotNull($myGroup);
         $this->assertInstanceOf(Group::class, $myGroup);
 
-        $members = $myGroup->requestMembers()->get();
+        $firstMember = $myGroup->requestMembers()->get()[0];
 
-        print_r($members);
+        $this->assertNotNull($firstMember->getPerson());
+        $this->assertInstanceOf(Person::class, $firstMember->getPerson());
+
+        $firstPerson = $firstMember->requestPerson();
+        $this->assertNotNull($firstPerson);
+        $this->assertInstanceOf(Person::class, $firstPerson);
+    }
+
+    public function testEmptyGroupMember()
+    {
+        $emptyGroupMember = GroupMember::createModelFromData([]);
+
+        $this->assertNull($emptyGroupMember->getPerson());
+        $this->assertNull($emptyGroupMember->requestPerson());
     }
 
 }
