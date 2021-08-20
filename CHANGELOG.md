@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased] - 2021-06-10
 
 ### Added
+- Group: [add Group-API](https://github.com/5pm-HDH/churchtools-api/pull/47)
 
 ### Changed
 - Refactoring: [refactor Code, introduce namespace to test-suites, update phpunit-configuration](https://github.com/5pm-HDH/churchtools-api/pull/46)
