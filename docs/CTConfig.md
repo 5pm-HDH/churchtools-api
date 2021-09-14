@@ -21,7 +21,7 @@ use CTApi\CTConfig;
 $apiUrl = "https://intern.church.tools";
 
 
-CTConfig::setApiUrl();
+CTConfig::setApiUrl($apiUrl);
 ```
 
 ## 2. Authentication

@@ -94,7 +94,7 @@ class CTConfig
     {
         $apiUrl = self::getRequestOption('base_uri');
         if ($apiUrl == null) {
-            throw new CTConfigException("CTConfig invalid: ApiUrl cannot be null. Set it with: CTConfig::setApiUrl('https://example.com/api')");
+            throw new CTConfigException("CTConfig invalid: ApiUrl cannot be null. Set it with: CTConfig::setApiUrl('https://example.com')");
         }
     }
 
