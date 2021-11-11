@@ -1,18 +1,20 @@
 # Error Handling
 
-**CTConfigException**
-- wrong Configuration (no API-Url is set)
+The Error-Handling-Concept divides an exception in five different categories:
 
 **CTConnectException**
-- technical Exception
-- the Server-Address could not be connected
+- technical Exception the ConnectException from Guzzle
+- error in Connection (timeout, undefined-host, ...)
+
+**CTConfigException**
+- wrong Configuration (e.q. no API-Url is set)
 
 **CTAuthException**
-- could not authenticate email and password
+- could not authenticate user
 - unauthorized access to resource
 
 **CTRequestException**
-- could not retrieve data (e.q. 404)
+- could not retrieve the models
 
 **CTModelException**
-- process Model (e.q. process wiki-pages return root node)
+- exception in model (e.q. process wiki-pages return root node)
