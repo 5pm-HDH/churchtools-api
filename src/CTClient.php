@@ -43,9 +43,7 @@ class CTClient extends Client
 
     private function handleResponse(ResponseInterface $response): ResponseInterface
     {
-        switch ($response->getStatusCode()){
-            case 404:
-                throw new CTConnectException("Page not found.", 404);
+        switch ($response->getStatusCode()) {
             case 401:
                 throw new CTAuthException("Unauthorized.", 401);
         }

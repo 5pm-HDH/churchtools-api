@@ -5,7 +5,7 @@ namespace CTApi\Requests;
 
 
 use CTApi\CTClient;
-use CTApi\Exceptions\CTModelException;
+use CTApi\Exceptions\CTRequestException;
 use CTApi\Models\AbstractModel;
 use CTApi\Requests\Traits\OrderByCondition;
 use CTApi\Requests\Traits\Pagination;
@@ -30,7 +30,7 @@ abstract class AbstractRequestBuilder
         if ($model != null) {
             return $model;
         } else {
-            throw new CTModelException("Could not retrieve model!");
+            throw CTRequestException::ofModelNotFound();
         }
     }
 
@@ -64,5 +64,6 @@ abstract class AbstractRequestBuilder
     }
 
     abstract protected function getApiEndpoint(): string;
+
     abstract protected function getModelClass(): string;
 }

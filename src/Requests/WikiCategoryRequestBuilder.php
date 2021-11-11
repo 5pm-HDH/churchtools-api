@@ -4,7 +4,7 @@
 namespace CTApi\Requests;
 
 
-use CTApi\Exceptions\CTModelException;
+use CTApi\Exceptions\CTRequestException;
 use CTApi\Models\WikiCategory;
 use CTApi\Requests\Traits\Pagination;
 
@@ -25,7 +25,7 @@ class WikiCategoryRequestBuilder
         if ($category != null) {
             return $category;
         } else {
-            throw new CTModelException("Could not retireve Category with id " . $id);
+            CTRequestException::ofModelNotFound("WikiCategory #" . $id);
         }
     }
 

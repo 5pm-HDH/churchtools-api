@@ -19,11 +19,4 @@ class ConnectExceptionTest extends TestCase
         CTConfig::setApiUrl("http://novalidsubdomain.lukasdumberger.de/");
         PersonRequest::whoami();
     }
-
-    public function testApiUrlPageNotFound()
-    {
-        $this->expectException(CTConnectException::class);
-        CTConfig::setApiUrl("https://lukasdumberger.de/");
-        PersonRequest::whoami();
-    }
 }

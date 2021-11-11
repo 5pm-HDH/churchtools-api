@@ -2,7 +2,7 @@
 
 namespace Tests\Integration\Requests;
 
-use CTApi\Exceptions\CTModelException;
+use CTApi\Exceptions\CTRequestException;
 use CTApi\Models\Calendar;
 use CTApi\Models\Event;
 use CTApi\Models\Person;
@@ -57,7 +57,7 @@ class EventRequestTest extends TestCaseAuthenticated
         $this->assertEquals($event, $eventTwo);
         $this->assertEquals(TestData::getValue("EVENT_FIRST_NAME"), $eventTwo->getName());
 
-        $this->expectException(CTModelException::class);
+        $this->expectException(CTRequestException::class);
         EventRequest::findOrFail(99999999);
     }
 
