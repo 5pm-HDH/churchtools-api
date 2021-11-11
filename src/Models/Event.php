@@ -19,7 +19,7 @@ class Event
     protected ?string $endDate = null;
     protected ?string $chatStatus = null;
     protected ?array $permissions = null;
-    protected ?array $calendar = null;
+    protected ?Calendar $calendar = null;
     protected ?EventAgenda $agenda = null;
     protected ?array $eventServices = [];
 
@@ -31,6 +31,9 @@ class Event
                 break;
             case "eventServices":
                 $this->setEventServices(EventService::createModelsFromArray($data));
+                break;
+            case "calendar":
+                $this->setCalendar(Calendar::createModelFromData($data));
                 break;
             default:
                 $this->{$key} = $data;
@@ -199,18 +202,18 @@ class Event
     }
 
     /**
-     * @return array|null
+     * @return Calendar|null
      */
-    public function getCalendar(): ?array
+    public function getCalendar(): ?Calendar
     {
         return $this->calendar;
     }
 
     /**
-     * @param array|null $calendar
+     * @param Calendar|null $calendar
      * @return Event
      */
-    public function setCalendar(?array $calendar): Event
+    public function setCalendar(?Calendar $calendar): Event
     {
         $this->calendar = $calendar;
         return $this;
