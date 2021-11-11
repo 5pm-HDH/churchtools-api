@@ -34,7 +34,7 @@ class ServiceRequestTest extends TestCaseAuthenticated
 
     public function testFindOrFailService()
     {
-        $this->expectException(CTModelException::class);
+        $this->expectException(CTRequestException::class);
         ServiceRequest::findOrFail(929192818291);
     }
 
@@ -81,7 +81,7 @@ class ServiceRequestTest extends TestCaseAuthenticated
 
     public function testFindOrFailServiceGroup()
     {
-        $this->expectException(CTModelException::class);
+        $this->expectException(CTRequestException::class);
         ServiceGroupRequest::findOrFail(929192818291);
     }
 

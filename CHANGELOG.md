@@ -16,8 +16,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Refactoring:
   - [introduce namespace to test-suites, update phpunit-configuration](https://github.com/5pm-HDH/churchtools-api/pull/46)
   - [create AbstractRequestBuilder to simplify RequestBuilder implementation](https://github.com/5pm-HDH/churchtools-api/pull/48)
-### Fixed
 
+### Fixed
+- Error Handling: [reorganize CTExceptions](https://github.com/5pm-HDH/churchtools-api/pull/53)
 
 ## [1.1.0] - 2021-06-10
 

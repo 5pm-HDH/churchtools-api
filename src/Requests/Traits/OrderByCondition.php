@@ -27,7 +27,7 @@ trait OrderByCondition
 
             usort($data, function ($recordA, $recordB) use ($key, $sortAscending) {
                 if (!array_key_exists($key, $recordA) || !array_key_exists($key, $recordB)) {
-                    throw new CTRequestException("Could not sort data. Key '" . $key . "' doest not exist in data.");
+                    throw new CTRequestException("Could not sort data by key: " . $key);
                 }
 
                 $valueA = $recordA[$key];

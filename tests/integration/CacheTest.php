@@ -62,11 +62,6 @@ class CacheTest extends TestCaseAuthenticated
             $startTime = microtime(true);
             $songRequest = SongRequest::orderBy('id')->get();
 
-            for ($j = 0; $j < sizeof($songRequest) - 1; $j++) {
-                $this->assertNotEquals($songRequest[$j]->getId(), $songRequest[$j + 1]->getId(), "Got same song that should be different!");
-            }
-
-
             $time = microtime(true) - $startTime;
             $time = $time * 100;
             $time = (int)$time;

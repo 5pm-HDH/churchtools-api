@@ -213,6 +213,9 @@ CTLog::getLog()->error("Error accourd here!");
 
 Further information on [CTLog-Page](/docs/CTLog.md):
 
+### Error-Handling
+The API-Wrapper provides custom exceptions. More on this page: [Error-Handling](/docs/ErrorHandling.md)
+
 ## License
 
 This project is licensed under MIT-License feel free to use it or to contribute.

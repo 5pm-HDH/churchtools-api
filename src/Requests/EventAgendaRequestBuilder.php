@@ -25,7 +25,7 @@ class EventAgendaRequestBuilder
             $response = CTClient::getClient()->get('/api/events/' . $this->eventId . '/agenda');
             return EventAgenda::createModelFromData(CTResponseUtil::dataAsArray($response));
         } catch (GuzzleException $e) {
-            return new CTRequestException("Could not retrieve EventAgenda", null, $e);
+            throw CTRequestException::ofModelNotFound("Could not retrieve EventAgenda", $e);
         }
     }
 }

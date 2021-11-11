@@ -4,12 +4,8 @@
 namespace CTApi\Requests;
 
 use CTApi\CTClient;
-use CTApi\Exceptions\CTModelException;
 use CTApi\Exceptions\CTRequestException;
 use CTApi\Models\Person;
-use CTApi\Requests\Traits\OrderByCondition;
-use CTApi\Requests\Traits\Pagination;
-use CTApi\Requests\Traits\WhereCondition;
 use CTApi\Utils\CTResponseUtil;
 use GuzzleHttp\Exception\GuzzleException;
 
@@ -26,7 +22,7 @@ class PersonRequestBuilder extends AbstractRequestBuilder
 
             return Person::createModelFromData($data);
         } catch (GuzzleException $e) {
-            throw new CTModelException("Person could not be found.", null, $e);
+            throw CTRequestException::ofModelNotFound("Person", $e);
         }
     }
 
