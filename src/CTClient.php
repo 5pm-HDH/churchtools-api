@@ -4,6 +4,7 @@
 namespace CTApi;
 
 
+use CTApi\Exceptions\CTAuthException;
 use CTApi\Exceptions\CTConnectException;
 use Exception;
 use GuzzleHttp\Client;
@@ -24,7 +25,7 @@ class CTClient extends Client
     {
         try {
             CTLog::getLog()->debug('CTClient: GET-Request URI:' . $uri, ["options" => $options, "mergedOptions" => self::mergeOptions($options)]);
-            return parent::get($uri, self::mergeOptions($options));
+            return $this->handleResponse(parent::get($uri, self::mergeOptions($options)));
         } catch (Exception $exception) {
             return $this->handleException($exception);
         }
@@ -34,10 +35,21 @@ class CTClient extends Client
     {
         try {
             CTLog::getLog()->debug('CTClient: POST-Request URI:' . $uri, ["options" => $options, "mergedOptions" => self::mergeOptions($options)]);
-            return parent::post($uri, self::mergeOptions($options));
+            return $this->handleResponse(parent::post($uri, self::mergeOptions($options)));
         } catch (Exception $exception) {
             return $this->handleException($exception);
         }
+    }
+
+    private function handleResponse(ResponseInterface $response): ResponseInterface
+    {
+        switch ($response->getStatusCode()){
+            case 404:
+                throw new CTConnectException("Page not found.", 404);
+            case 401:
+                throw new CTAuthException("Unauthorized.", 401);
+        }
+        return $response;
     }
 
     private function handleException(Exception $exception): ResponseInterface

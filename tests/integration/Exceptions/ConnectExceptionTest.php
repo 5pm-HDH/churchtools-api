@@ -1,0 +1,29 @@
+<?php
+
+
+use CTApi\CTConfig;
+use CTApi\Exceptions\CTConnectException;
+use CTApi\Requests\PersonRequest;
+use PHPUnit\Framework\TestCase;
+
+class ConnectExceptionTest extends TestCase
+{
+    protected function setUp(): void
+    {
+        CTConfig::clearConfig();
+    }
+
+    public function testApiUrlInvalidServer()
+    {
+        $this->expectException(CTConnectException::class);
+        CTConfig::setApiUrl("http://novalidsubdomain.lukasdumberger.de/");
+        PersonRequest::whoami();
+    }
+
+    public function testApiUrlPageNotFound()
+    {
+        $this->expectException(CTConnectException::class);
+        CTConfig::setApiUrl("https://lukasdumberger.de/");
+        PersonRequest::whoami();
+    }
+}
