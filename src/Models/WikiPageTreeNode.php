@@ -44,9 +44,9 @@ class WikiPageTreeNode
                 $linkString = '[[' . htmlentities($subPage->getTitle()) . ']]';
 
                 // => Found Link to $subPage   <=
-                if (str_contains($page->getText(), $linkString)) {
+                if (str_contains( (string) $page->getText(), $linkString)) {
                     $subPagesArray[] = [
-                        'stringPos' => strpos($page->getText(), $linkString),
+                        'stringPos' => strpos( (string) $page->getText(), $linkString),
                         'node' => self::processWikiPage($subPage, $pages, $pageTreeNode)
                     ];
                 }

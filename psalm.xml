@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <psalm
-    errorLevel="4"
+    errorLevel="3"
     resolveFromConfigFile="true"
     cacheDirectory="/cache"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -14,4 +14,16 @@
             <directory name="vendor" />
         </ignoreFiles>
     </projectFiles>
+    <issueHandlers>
+        <MoreSpecificReturnType>
+            <errorLevel type="suppress">
+                <directory name="src/Requests" />
+            </errorLevel>
+        </MoreSpecificReturnType>
+        <LessSpecificReturnStatement>
+            <errorLevel type="suppress">
+                <directory name="src/Requests" />
+            </errorLevel>
+        </LessSpecificReturnStatement>
+    </issueHandlers>
 </psalm>

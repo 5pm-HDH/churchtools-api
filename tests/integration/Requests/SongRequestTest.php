@@ -23,9 +23,9 @@ class SongRequestTest extends TestCaseAuthenticated
         }
 
         $this->SONG_ID = (int)TestData::getValue("SONG_ID");
-        $this->SONG_NAME = TestData::getValue("SONG_NAME") ?? "";
+        $this->SONG_NAME = TestData::getValue("SONG_NAME");
         $this->SONG_ARRANGEMENT_ID = (int)TestData::getValue("SONG_ARRANGEMENT_ID");
-        $this->SONG_ARRANGEMENT_NAME = TestData::getValue("SONG_ARRANGEMENT_NAME") ?? "";
+        $this->SONG_ARRANGEMENT_NAME = TestData::getValue("SONG_ARRANGEMENT_NAME");
 
     }
 
@@ -46,6 +46,7 @@ class SongRequestTest extends TestCaseAuthenticated
 
         //Retrieve from Find
         $oneSong = SongRequest::find($lastSong->getId());
+        $this->assertNotNull($oneSong);
         $this->assertEquals($lastSong->getName(), $oneSong->getName());
 
         //Retrieve from FindOrFail

@@ -133,7 +133,7 @@ class CTConfig
             CTLog::getLog()->debug('TransferStats: Request Method: ' . $stats->getRequest()->getMethod());
 
             if ($stats->hasResponse()) {
-                CTLog::getLog()->debug('TransferStats: StatusCode: ' . $stats->getResponse()->getStatusCode());
+                CTLog::getLog()->debug('TransferStats: StatusCode: ' . $stats->getResponse()?->getStatusCode());
             } else {
                 CTLog::getLog()->debug('TransferStats: ErrorData: ' . var_export($stats->getHandlerErrorData(), true));
             }

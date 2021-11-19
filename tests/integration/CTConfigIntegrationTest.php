@@ -70,6 +70,7 @@ class CTConfigIntegrationTest extends TestCase
         $this->assertFalse(CTConfig::validateApiKey());
 
         //set working API-Key
+        $this->assertNotNull($apiKey);
         CTConfig::setApiKey($apiKey);
         $this->assertTrue(CTConfig::validateApiKey());
     }

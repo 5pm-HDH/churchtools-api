@@ -59,7 +59,7 @@ class Meta
     public function requestCreatedPerson(): ?Person
     {
         if (!is_null($this->getCreatedPerson())) {
-            $id = $this->getCreatedPerson()->getId();
+            $id = $this->getCreatedPerson()?->getId();
             return $this->requestPerson($id);
         }
         return null;
@@ -68,7 +68,7 @@ class Meta
     public function requestModifiedPerson(): ?Person
     {
         if (!is_null($this->getCreatedPerson())) {
-            $id = $this->getModifiedPerson()->getId();
+            $id = $this->getModifiedPerson()?->getId();
             return $this->requestPerson($id);
         }
         return null;

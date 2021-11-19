@@ -77,7 +77,7 @@ class WikiPage
         $requestedIdentifier = $this->getIdentifier();
         if (!is_null($requestedWikiCategory) && !is_null($requestedIdentifier)) {
             $page = WikiPageRequestBuilder::requestPageFromCategoryAndIdentifier($requestedWikiCategory, $requestedIdentifier);
-            $this->setText($page->getText());
+            $this->setText($page?->getText());
         }
         return $this;
     }

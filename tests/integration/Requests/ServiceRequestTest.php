@@ -101,7 +101,9 @@ class ServiceRequestTest extends TestCaseAuthenticated
 
         $serviceGroup = ServiceGroupRequest::findOrFail($serviceGroupId);
 
-        $services = $serviceGroup->requestServices()->get();
+        $serviceRequestBuilder = $serviceGroup->requestServices();
+        $this->assertNotNull($serviceRequestBuilder);
+        $services = $serviceRequestBuilder->get();
 
         $foundService = false;
         foreach ($services as $service) {

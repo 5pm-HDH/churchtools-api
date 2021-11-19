@@ -52,6 +52,7 @@ class EventRequestTest extends TestCaseAuthenticated
         $event = EventRequest::find($eventId);
         $eventTwo = EventRequest::findOrFail($eventId);
 
+        $this->assertNotNull($event);
         $this->assertInstanceOf(Calendar::class, $event->getCalendar());
 
         $this->assertEquals($event, $eventTwo);
@@ -98,7 +99,10 @@ class EventRequestTest extends TestCaseAuthenticated
 
         $event = EventRequest::find($eventId);
 
-        $eventService = $event->getEventServices()[0];
+        $this->assertNotNull($event);
+        $eventServices = $event->getEventServices();
+        $this->assertNotNull($eventServices);
+        $eventService = $eventServices[0];
 
         if (!is_null($eventService->getPerson())) {
             $this->assertInstanceOf(Person::class, $eventService->getPerson());
@@ -125,6 +129,7 @@ class EventRequestTest extends TestCaseAuthenticated
 
         $event = EventRequest::find($eventId);
 
+        $this->assertNotNull($event);
         $eventService = $event->requestEventServiceWithServiceId(92814821428);
         $this->assertNull($eventService);
     }

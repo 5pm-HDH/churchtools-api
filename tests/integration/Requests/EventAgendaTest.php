@@ -100,6 +100,7 @@ class EventAgendaTest extends TestCaseAuthenticated
 
         $arrangement = $song->requestSelectedArrangement();
 
+        $this->assertNotNull($arrangement);
         $this->assertEquals($arrangementId, $arrangement->getId());
         $this->assertEquals(TestData::getValue("EVENT_AGENDA_SONG_ARRANGEMENT"), $arrangement->getName());
     }

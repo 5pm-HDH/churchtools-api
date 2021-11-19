@@ -48,7 +48,7 @@ class Event
 
     public function requestEventServiceWithServiceId(int $serviceId): ?EventService
     {
-        $requestedEventServices = array_filter($this->getEventServices(), function ($eventService) use ($serviceId) {
+        $requestedEventServices = array_filter($this->getEventServices() ?? [], function ($eventService) use ($serviceId) {
             return $eventService->getServiceId() == $serviceId;
         });
         if (!empty($requestedEventServices)) {

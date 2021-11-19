@@ -22,8 +22,8 @@ class GroupRequestTest extends TestCaseAuthenticated
         if (!TestData::getValue("GROUP_SHOULD_TEST") == "YES") {
             $this->markTestSkipped("Test suite is disabled in testdata.ini");
         } else {
-            $this->groupId = TestData::getValue("GROUP_ID") ?? "";
-            $this->groupName = TestData::getValue("GROUP_NAME") ?? "";
+            $this->groupId = TestData::getValue("GROUP_ID");
+            $this->groupName = TestData::getValue("GROUP_NAME");
         }
     }
 

@@ -30,6 +30,7 @@ class PersonRequestTest extends TestCaseAuthenticated
         );
 
         $person = PersonRequest::find($auth->userId);
+        $this->assertNotNull($person);
         $this->assertEquals(TestData::getValue('AUTH_FIRST_NAME'), $person->getFirstName());
 
         $noPerson = PersonRequest::find(0);
@@ -82,7 +83,9 @@ class PersonRequestTest extends TestCaseAuthenticated
     {
         $person = PersonRequest::whoami();
 
-        $events = $person->requestEvents()->get();
+        $requestEventBuilder = $person->requestEvents();
+        $this->assertNotNull($requestEventBuilder);
+        $events = $requestEventBuilder->get();
 
         if(sizeof($events) > 0){
             foreach ($events as $event) {
@@ -98,7 +101,9 @@ class PersonRequestTest extends TestCaseAuthenticated
     {
         $person = PersonRequest::whoami();
 
-        $groups = $person->requestGroups()->get();
+        $groupRequestBuilder = $person->requestGroups();
+        $this->assertNotNull($groupRequestBuilder);
+        $groups = $groupRequestBuilder->get();
 
         foreach ($groups as $group) {
             $this->assertInstanceOf(PersonGroup::class, $group);

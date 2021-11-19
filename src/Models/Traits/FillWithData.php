@@ -47,7 +47,7 @@ trait FillWithData
 
     /**
      * @param array $data
-     * @return static
+     * @return self
      *
      * Create single model from data-array. If a list of data-container is given in, it will take the first
      * data-container.
