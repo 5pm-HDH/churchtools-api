@@ -39,7 +39,7 @@ class Person
 
     protected ?Meta $meta = null;
 
-    protected function fillNonArrayType(string $key, $value)
+    protected function fillNonArrayType(string $key, $value): void
     {
         switch ($key) {
             case "domainIdentifier":
@@ -64,7 +64,7 @@ class Person
         }
     }
 
-    private function processDomainAttributes(array $domainAttributes)
+    private function processDomainAttributes(array $domainAttributes): void
     {
         if (array_key_exists('firstName', $domainAttributes)) {
             $this->setFirstName($domainAttributes['firstName']);

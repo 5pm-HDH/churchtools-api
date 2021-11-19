@@ -28,6 +28,9 @@ class CTRequest implements RequestInterface
         return $this->protocolVersion;
     }
 
+    /**
+     * @psalm-suppress InvalidReturnType
+     */
     public function withProtocolVersion($version)
     {
         $this->protocolVersion = $version;

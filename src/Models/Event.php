@@ -23,7 +23,7 @@ class Event
     protected ?EventAgenda $agenda = null;
     protected ?array $eventServices = [];
 
-    protected function fillArrayType(string $key, array $data)
+    protected function fillArrayType(string $key, array $data): void
     {
         switch ($key) {
             case "agenda":
@@ -43,12 +43,12 @@ class Event
 
     public function requestAgenda(): EventAgenda
     {
-        return (new EventAgendaRequestBuilder($this->getId()))->get();
+        return (new EventAgendaRequestBuilder((int)$this->getId()))->get();
     }
 
     public function requestEventServiceWithServiceId(int $serviceId): ?EventService
     {
-        $requestedEventServices = array_filter($this->getEventServices(), function ($eventService) use ($serviceId) {
+        $requestedEventServices = array_filter($this->getEventServices() ?? [], function ($eventService) use ($serviceId) {
             return $eventService->getServiceId() == $serviceId;
         });
         if (!empty($requestedEventServices)) {

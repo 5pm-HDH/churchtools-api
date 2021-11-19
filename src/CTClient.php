@@ -12,6 +12,9 @@ use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\HandlerStack;
 use Psr\Http\Message\ResponseInterface;
 
+/**
+ * @psalm-suppress InvalidExtendClass
+ */
 class CTClient extends Client
 {
     private static ?CTClient $client = null;
@@ -63,10 +66,13 @@ class CTClient extends Client
         if (is_null(self::$client)) {
             self::createClient();
         }
-        return self::$client;
+        if (isset(self::$client)) {
+            return self::$client;
+        }
+        return new CTClient();
     }
 
-    public static function setClient(CTClient $client)
+    public static function setClient(CTClient $client): void
     {
         self::$client = $client;
     }

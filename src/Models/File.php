@@ -25,7 +25,7 @@ class File
     protected ?string $filename = null;
     protected ?string $fileUrl = null;
 
-    protected function fillArrayType(string $key, array $data)
+    protected function fillArrayType(string $key, array $data): void
     {
         switch ($key) {
             case "meta":
@@ -36,7 +36,7 @@ class File
 
     public function downloadToPath($path): bool
     {
-        return file_put_contents($path . '/' . $this->name, $this->requestFileContent());
+        return (bool)file_put_contents($path . '/' . $this->name, $this->requestFileContent());
     }
 
     public function downloadToClient(): void
@@ -48,18 +48,21 @@ class File
     public function requestFileContent(): bool|string
     {
         try {
-            $response = CTClient::getClient()->get($this->getFileUrlBaseUrl(), [
-                'headers' => [
-                    'Cache-Control' => 'no-cache'
-                ],
-                'query' => $this->getFileUrlQueryParameters()
-            ]);
-            return $response->getBody();
+            $baseUrl = $this->getFileUrlBaseUrl();
+            if(!is_null($baseUrl)){
+                $response = CTClient::getClient()->get($baseUrl, [
+                    'headers' => [
+                        'Cache-Control' => 'no-cache'
+                    ],
+                    'query' => $this->getFileUrlQueryParameters()
+                ]);
+                return (string) $response->getBody();
+            }
         } catch (GuzzleException $e) {
             CTLog::getLog()->error('File: Could not retrieve file-content.');
-            //ignore
-            return false;
+            // ignore
         }
+        return false;
     }
 
 
@@ -78,7 +81,7 @@ class File
     {
         $fileUrlBase = null;
 
-        $parsedUrl = parse_url($this->getFileUrl());
+        $parsedUrl = parse_url((string) $this->getFileUrl());
         if (array_key_exists('scheme', $parsedUrl) && array_key_exists('host', $parsedUrl)) {
             $fileUrlBase = $parsedUrl['scheme'] . '://' . $parsedUrl['host'];
 
@@ -92,9 +95,9 @@ class File
     public function getFileUrlQueryParameters(): array
     {
         $query = [];
-        $parsedUrl = parse_url($this->getFileUrl());
+        $parsedUrl = parse_url((string) $this->getFileUrl());
         if (array_key_exists('query', $parsedUrl)) {
-            $queryString = $parsedUrl['query'];
+            $queryString = (string) $parsedUrl['query'];
 
             foreach (explode('&', $queryString) as $querySubstring) {
                 $querySubstringArray = explode('=', $querySubstring);

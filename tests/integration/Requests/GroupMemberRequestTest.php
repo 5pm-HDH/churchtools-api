@@ -22,18 +22,20 @@ class GroupMemberRequestTest extends TestCaseAuthenticated
         if (!TestData::getValue("GROUP_SHOULD_TEST") == "YES") {
             $this->markTestSkipped("Test suite is disabled in testdata.ini");
         } else {
-            $this->groupId = TestData::getValue("GROUP_ID") ?? "";
-            $this->groupName = TestData::getValue("GROUP_NAME") ?? "";
+            $this->groupId = TestData::getValue("GROUP_ID");
+            $this->groupName = TestData::getValue("GROUP_NAME");
         }
     }
 
-    public function testGetGroupMembers()
+    public function testGetGroupMembers(): void
     {
         $myGroup = GroupRequest::find((int)$this->groupId);
         $this->assertNotNull($myGroup);
         $this->assertInstanceOf(Group::class, $myGroup);
 
-        $firstMember = $myGroup->requestMembers()->get()[0];
+        $memberBuilder = $myGroup->requestMembers();
+        $this->assertNotNull($memberBuilder);
+        $firstMember = $memberBuilder->get()[0];
 
         $this->assertNotNull($firstMember->getPerson());
         $this->assertInstanceOf(Person::class, $firstMember->getPerson());
@@ -43,7 +45,7 @@ class GroupMemberRequestTest extends TestCaseAuthenticated
         $this->assertInstanceOf(Person::class, $firstPerson);
     }
 
-    public function testEmptyGroupMember()
+    public function testEmptyGroupMember(): void
     {
         $emptyGroupMember = GroupMember::createModelFromData([]);
 

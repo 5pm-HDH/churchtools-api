@@ -32,7 +32,7 @@ class Service
     public function requestServiceGroup(): ?ServiceGroup
     {
         if (!is_null($this->getServiceGroupId())) {
-            return ServiceGroupRequest::find($this->getServiceGroupId());
+            return ServiceGroupRequest::find((int)$this->getServiceGroupId());
         }
         return null;
     }

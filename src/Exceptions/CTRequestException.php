@@ -16,7 +16,7 @@ class CTRequestException extends RuntimeException
         CTLog::getLog()->warning("CTRequestException: " . $message);
     }
 
-    public static function ofModelNotFound(?string $modelName = null, ?Throwable $throwable = null)
+    public static function ofModelNotFound(?string $modelName = null, ?Throwable $throwable = null): self
     {
         if (is_null($modelName)) {
             return new CTRequestException("Could not retrieve Model", 0, $throwable);

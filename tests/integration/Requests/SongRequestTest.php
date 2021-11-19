@@ -11,9 +11,9 @@ use Tests\Integration\TestData;
 
 class SongRequestTest extends TestCaseAuthenticated
 {
-    private string $SONG_ID = "";
+    private int $SONG_ID = 0;
     private string $SONG_NAME = "";
-    private string $SONG_ARRANGEMENT_ID = "";
+    private int $SONG_ARRANGEMENT_ID = 0;
     private string $SONG_ARRANGEMENT_NAME = "";
 
     protected function setUp(): void
@@ -22,14 +22,14 @@ class SongRequestTest extends TestCaseAuthenticated
             $this->markTestSkipped("Test suite is disabled in testdata.ini");
         }
 
-        $this->SONG_ID = TestData::getValue("SONG_ID") ?? "";
-        $this->SONG_NAME = TestData::getValue("SONG_NAME") ?? "";
-        $this->SONG_ARRANGEMENT_ID = TestData::getValue("SONG_ARRANGEMENT_ID") ?? "";
-        $this->SONG_ARRANGEMENT_NAME = TestData::getValue("SONG_ARRANGEMENT_NAME") ?? "";
+        $this->SONG_ID = (int)TestData::getValue("SONG_ID");
+        $this->SONG_NAME = TestData::getValue("SONG_NAME");
+        $this->SONG_ARRANGEMENT_ID = (int)TestData::getValue("SONG_ARRANGEMENT_ID");
+        $this->SONG_ARRANGEMENT_NAME = TestData::getValue("SONG_ARRANGEMENT_NAME");
 
     }
 
-    public function testGetAllSongs()
+    public function testGetAllSongs(): void
     {
         $allSongs = SongRequest::all();
         $this->assertNotEmpty($allSongs);
@@ -37,7 +37,7 @@ class SongRequestTest extends TestCaseAuthenticated
         $this->assertInstanceOf(Song::class, $allSongs[0]);
     }
 
-    public function testGetOneSong()
+    public function testGetOneSong(): void
     {
         $allSongs = SongRequest::all();
         $this->assertNotEmpty($allSongs);
@@ -46,6 +46,7 @@ class SongRequestTest extends TestCaseAuthenticated
 
         //Retrieve from Find
         $oneSong = SongRequest::find($lastSong->getId());
+        $this->assertNotNull($oneSong);
         $this->assertEquals($lastSong->getName(), $oneSong->getName());
 
         //Retrieve from FindOrFail
@@ -54,7 +55,7 @@ class SongRequestTest extends TestCaseAuthenticated
     }
 
 
-    public function testWhereSongs()
+    public function testWhereSongs(): void
     {
         //Collect all Categories:
         $allSongs = SongRequest::all();
@@ -75,7 +76,7 @@ class SongRequestTest extends TestCaseAuthenticated
         }
     }
 
-    public function testOrderBy()
+    public function testOrderBy(): void
     {
         $allSongs = SongRequest::all();
         $allSongsName = array_map(function ($song) {
@@ -102,7 +103,6 @@ class SongRequestTest extends TestCaseAuthenticated
     private function getSong(): Song
     {
         $song = SongRequest::findOrFail($this->SONG_ID);
-        $this->assertNotNull($song);
         $this->selectTestArrangementInSong($song);
         return $song;
     }
@@ -117,7 +117,7 @@ class SongRequestTest extends TestCaseAuthenticated
         $this->fail("Could not select the test arrangement in the given in song.");
     }
 
-    public function testSongFilesAndLinks()
+    public function testSongFilesAndLinks(): void
     {
         $song = $this->getSong();
         $arrangement = $this->selectTestArrangementInSong($song);

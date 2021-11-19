@@ -44,9 +44,9 @@ class WikiPageTreeNode
                 $linkString = '[[' . htmlentities($subPage->getTitle()) . ']]';
 
                 // => Found Link to $subPage   <=
-                if (str_contains($page->getText(), $linkString)) {
+                if (str_contains( (string) $page->getText(), $linkString)) {
                     $subPagesArray[] = [
-                        'stringPos' => strpos($page->getText(), $linkString),
+                        'stringPos' => strpos( (string) $page->getText(), $linkString),
                         'node' => self::processWikiPage($subPage, $pages, $pageTreeNode)
                     ];
                 }
@@ -70,7 +70,7 @@ class WikiPageTreeNode
         for ($i = 0; $i < $level; $i++) {
             $tabString .= "\t";
         }
-        echo $tabString . '- ' . $wikiPageTreeNode?->getWikiPage()?->getTitle() . "\n";
+        echo $tabString . '- ' . $wikiPageTreeNode->getWikiPage()?->getTitle() . "\n";
 
         foreach ($wikiPageTreeNode->getChildNodes() as $node) {
             self::printWikiPageTreeNode($node, $level + 1);

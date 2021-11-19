@@ -24,7 +24,7 @@ class WikiPage
     protected ?string $isMarkdown = null;
     protected ?string $text = null;
 
-    protected function fillArrayType(string $key, array $data)
+    protected function fillArrayType(string $key, array $data): void
     {
         switch ($key) {
             case "wikiCategory":
@@ -34,16 +34,14 @@ class WikiPage
                 $this->setMeta(Meta::createModelFromData($data));
                 break;
             case "permissions":
-                if (is_array($data)) {
-                    $this->setPermissions($data);
-                }
+                $this->setPermissions($data);
                 break;
             default:
                 $this->{$key} = $data;
         }
     }
 
-    protected function fillNonArrayType(string $key, $value)
+    protected function fillNonArrayType(string $key, $value): void
     {
         switch ($key) {
             case "permissions":
@@ -79,7 +77,7 @@ class WikiPage
         $requestedIdentifier = $this->getIdentifier();
         if (!is_null($requestedWikiCategory) && !is_null($requestedIdentifier)) {
             $page = WikiPageRequestBuilder::requestPageFromCategoryAndIdentifier($requestedWikiCategory, $requestedIdentifier);
-            $this->setText($page->getText());
+            $this->setText($page?->getText());
         }
         return $this;
     }

@@ -21,7 +21,7 @@ class ServiceGroup
     public function requestServices(): ?ServiceFromServiceGroupBuilder
     {
         if (!is_null($this->getId())) {
-            return new ServiceFromServiceGroupBuilder($this->getId());
+            return new ServiceFromServiceGroupBuilder((int)$this->getId());
         }
         return null;
     }

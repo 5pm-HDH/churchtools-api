@@ -4,7 +4,6 @@
 namespace CTApi\Requests;
 
 
-use CTApi\Models\Event;
 use CTApi\Models\Group;
 
 class GroupRequest

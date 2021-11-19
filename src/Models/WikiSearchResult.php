@@ -17,7 +17,7 @@ class WikiSearchResult
     public function requestWikiPage(): ?WikiPage
     {
         if (!is_null($this->getApiUrl())) {
-            return WikiSearchRequestBuilder::requestWikiPageFromRawUrl($this->getApiUrl());
+            return WikiSearchRequestBuilder::requestWikiPageFromRawUrl( (string) $this->getApiUrl());
         }
         return null;
     }

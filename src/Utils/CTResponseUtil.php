@@ -10,7 +10,7 @@ class CTResponseUtil
 {
     public static function jsonToObject(ResponseInterface $response)
     {
-        return json_decode($response->getBody(), true);
+        return json_decode($response->getBody()->__toString(), true);
     }
 
     public static function jsonToArray(ResponseInterface $response): array

@@ -64,7 +64,7 @@ class CTConfig
         return self::getConfig()->requestOptions;
     }
 
-    public static function setApiUrl(string $apiUrl)
+    public static function setApiUrl(string $apiUrl): void
     {
         self::setRequestOption("base_uri", $apiUrl);
     }
@@ -74,13 +74,13 @@ class CTConfig
         return self::getRequestOption("base_uri");
     }
 
-    public static function authWithCredentials(string $email, string $password)
+    public static function authWithCredentials(string $email, string $password): void
     {
         $auth = AuthRequest::authWithEmailAndPassword($email, $password);
         self::setRequestOption(self::PATH_LOGIN_TOKEN, $auth->apiKey);
     }
 
-    public static function setApiKey(string $apiKey)
+    public static function setApiKey(string $apiKey): void
     {
         self::setRequestOption(self::PATH_LOGIN_TOKEN, $apiKey);
     }
@@ -90,7 +90,7 @@ class CTConfig
         return self::getRequestOption(self::PATH_LOGIN_TOKEN);
     }
 
-    public static function validateConfig()
+    public static function validateConfig(): void
     {
         $apiUrl = self::getRequestOption('base_uri');
         if ($apiUrl == null) {
@@ -100,19 +100,19 @@ class CTConfig
 
     public static function validateApiKey(): bool
     {
-        try{
+        try {
             $ctUser = PersonRequest::whoami();
             if ($ctUser->getId() == -1 || $ctUser->getId() == null) {
                 return false;
             } else {
                 return true;
             }
-        }catch(\Exception $exception){
+        } catch (\Exception $exception) {
             return false;
         }
     }
 
-    private static function setRequestOption(string $path, $value)
+    private static function setRequestOption(string $path, $value): void
     {
         CTUtil::arrayPathSet(self::getConfig()->requestOptions, $path, $value);
     }
@@ -123,7 +123,7 @@ class CTConfig
         return CTUtil::arrayPathGet($array, $path);
     }
 
-    public static function enableDebugging()
+    public static function enableDebugging(): void
     {
         CTLog::setConsoleLogLevelDebug();
         self::setRequestOption('on_stats', function (TransferStats $stats) {
@@ -133,20 +133,20 @@ class CTConfig
             CTLog::getLog()->debug('TransferStats: Request Method: ' . $stats->getRequest()->getMethod());
 
             if ($stats->hasResponse()) {
-                CTLog::getLog()->debug('TransferStats: StatusCode: ' . $stats->getResponse()->getStatusCode());
+                CTLog::getLog()->debug('TransferStats: StatusCode: ' . $stats->getResponse()?->getStatusCode());
             } else {
                 CTLog::getLog()->debug('TransferStats: ErrorData: ' . var_export($stats->getHandlerErrorData(), true));
             }
         });
     }
 
-    public static function disableDebugging()
+    public static function disableDebugging(): void
     {
         CTLog::setConsoleLogLevelError();
         self::setRequestOption('on_stats', null);
     }
 
-    public static function enableCache(?int $timeToLive = null)
+    public static function enableCache(?int $timeToLive = null): void
     {
         $stack = HandlerStack::create();
 
@@ -160,13 +160,13 @@ class CTConfig
         CTClient::createClient($stack);
     }
 
-    public static function disableCache()
+    public static function disableCache(): void
     {
         CTLog::getLog()->info("CTConfig: Recreate CTClient without cache-middleware");
         CTClient::createClient();
     }
 
-    public static function clearCache()
+    public static function clearCache(): void
     {
         CTLog::getLog()->info("CTConfig: Clear cache.");
         CTCacheMiddleware::getCacheDriver()->deleteAll();

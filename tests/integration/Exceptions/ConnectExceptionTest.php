@@ -13,7 +13,7 @@ class ConnectExceptionTest extends TestCase
         CTConfig::clearConfig();
     }
 
-    public function testApiUrlInvalidServer()
+    public function testApiUrlInvalidServer(): void
     {
         $this->expectException(CTConnectException::class);
         CTConfig::setApiUrl("http://novalidsubdomain.lukasdumberger.de/");

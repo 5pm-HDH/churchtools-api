@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 
 class ModelExceptionTest extends TestCase
 {
-    public function testNoRootWikiPage()
+    public function testNoRootWikiPage(): void
     {
         $this->expectException(CTModelException::class);
         WikiPageTreeNode::processWikiPagesReturnRootNode([]);

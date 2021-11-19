@@ -32,29 +32,35 @@ class CTMessageBody implements StreamInterface
 
     public function getSize()
     {
-        // TODO: Implement getSize() method.
+        return null;
     }
 
     public function tell()
     {
-        // TODO: Implement tell() method.
+        return 0;
     }
 
     public function eof()
     {
-        // TODO: Implement eof() method.
+        return false;
     }
 
     public function isSeekable()
     {
-        // TODO: Implement isSeekable() method.
+        return true;
     }
 
+    /**
+     * @return void
+     */
     public function seek($offset, $whence = SEEK_SET)
     {
         // TODO: Implement seek() method.
     }
 
+    /**
+     * @return void
+     */
     public function rewind()
     {
         // TODO: Implement rewind() method.
@@ -62,27 +68,27 @@ class CTMessageBody implements StreamInterface
 
     public function isWritable()
     {
-        // TODO: Implement isWritable() method.
+        return true;
     }
 
     public function write($string)
     {
-        // TODO: Implement write() method.
+        return 0;
     }
 
     public function isReadable()
     {
-        // TODO: Implement isReadable() method.
+        return true;
     }
 
     public function read($length)
     {
-        // TODO: Implement read() method.
+        return implode(',', $this->content);
     }
 
     public function getContents()
     {
-        // TODO: Implement getContents() method.
+        return implode(',', $this->content);
     }
 
     public function getMetadata($key = null)

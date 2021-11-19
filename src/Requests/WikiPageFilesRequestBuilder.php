@@ -15,7 +15,7 @@ class WikiPageFilesRequestBuilder
     {
     }
 
-    public function get()
+    public function get(): array
     {
         try {
             $response = CTClient::getClient()->get('/api/files/wiki_' . $this->wikiCategory . '/' . $this->pageIdentifier);

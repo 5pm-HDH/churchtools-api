@@ -16,7 +16,7 @@ class WikiPageVersionRequestBuilder
     {
     }
 
-    public function get()
+    public function get(): array
     {
         try {
             $response = CTClient::getClient()->get('/api/wiki/categories/' . $this->wikiCategory . '/pages/' . $this->pageIdentifier . '/versions');

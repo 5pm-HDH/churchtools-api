@@ -35,9 +35,9 @@ trait OrderByCondition
 
                 if (is_numeric($valueA) && is_numeric($valueB)) {
                     if ($sortAscending) {
-                        return $valueA > $valueB;
+                        return (int)($valueA - $valueB);
                     } else {
-                        return $valueB > $valueA;
+                        return (int)($valueB - $valueA);
                     }
                 } else if (is_string($valueA) || is_string($valueB)) {
                     if ($sortAscending) {

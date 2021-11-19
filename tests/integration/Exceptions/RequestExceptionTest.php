@@ -6,7 +6,7 @@ use Tests\Integration\TestCaseAuthenticated;
 
 class RequestExceptionTest extends TestCaseAuthenticated
 {
-    public function testModelNotFound()
+    public function testModelNotFound(): void
     {
         $this->expectException(CTRequestException::class);
         EventRequest::findOrFail(99999999);

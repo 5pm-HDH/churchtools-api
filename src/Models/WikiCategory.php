@@ -20,7 +20,7 @@ class WikiCategory
     protected ?string $fileAccessWithoutPermission = null;
     protected array $permissions = [];
 
-    protected function fillNonArrayType(string $key, $value)
+    protected function fillNonArrayType(string $key, $value): void
     {
         switch ($key) {
             case "permissions":
@@ -33,7 +33,7 @@ class WikiCategory
     public function requestPages(): ?WikiPageRequestBuilder
     {
         if (!is_null($this->getId())) {
-            return new WikiPageRequestBuilder($this->getId());
+            return new WikiPageRequestBuilder((int)$this->getId());
         } else {
             return null;
         }
@@ -42,7 +42,7 @@ class WikiCategory
     public function requestPage(string $identifier): ?WikiPage
     {
         if (!is_null($this->getId())) {
-            return WikiPageRequestBuilder::requestPageFromCategoryAndIdentifier($this->getId(), $identifier);
+            return WikiPageRequestBuilder::requestPageFromCategoryAndIdentifier( (string) $this->getId(), $identifier);
         } else {
             return null;
         }
@@ -50,7 +50,7 @@ class WikiCategory
 
     public function requestWikiPageTree(): ?WikiPageTreeNode
     {
-        $pages = $this->requestPages()->get();
+        $pages = $this->requestPages()?->get() ?? [];
         return WikiPageTreeNode::processWikiPagesReturnRootNode($pages);
     }
 

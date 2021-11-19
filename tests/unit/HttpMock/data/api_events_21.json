@@ -15,8 +15,16 @@
       "eventStartPosition": 2,
       "calendarId": 2911,
       "items": [
-        {"id": 2911, "title": "Opening Song", "type": "Song"},
-        {"id": 2912, "title": "First Worship Song", "type": "Song"}
+        {
+          "id": 2911,
+          "title": "Opening Song",
+          "type": "Song"
+        },
+        {
+          "id": 2912,
+          "title": "First Worship Song",
+          "type": "Song"
+        }
       ]
     }
   }

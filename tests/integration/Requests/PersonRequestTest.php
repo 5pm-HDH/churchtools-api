@@ -14,15 +14,14 @@ use Tests\Integration\TestData;
 
 class PersonRequestTest extends TestCaseAuthenticated
 {
-    public function testWhoAmI()
+    public function testWhoAmI(): void
     {
         $person = PersonRequest::whoami();
 
-        $this->assertNotNull($person);
         $this->assertEquals(TestData::getValue('AUTH_FIRST_NAME'), $person->getFirstName());
     }
 
-    public function testFindOrFail()
+    public function testFindOrFail(): void
     {
         //we need auth to retrieve userId
         $auth = AuthRequest::authWithEmailAndPassword(
@@ -31,6 +30,7 @@ class PersonRequestTest extends TestCaseAuthenticated
         );
 
         $person = PersonRequest::find($auth->userId);
+        $this->assertNotNull($person);
         $this->assertEquals(TestData::getValue('AUTH_FIRST_NAME'), $person->getFirstName());
 
         $noPerson = PersonRequest::find(0);
@@ -45,22 +45,21 @@ class PersonRequestTest extends TestCaseAuthenticated
         $this->assertTrue($exceptionThrown);
     }
 
-    public function testAll()
+    public function testAll(): void
     {
         $allPersons = PersonRequest::all();
 
-        $this->assertNotNull($allPersons);
         $this->assertInstanceOf(Person::class, $allPersons[0]);
     }
 
-    public function testWhere()
+    public function testWhere(): void
     {
         $selectedPersons = PersonRequest::where('ids', [4463, 616, 474, 99999])->get();
 
         $this->assertTrue(sizeof($selectedPersons) <= 4);
     }
 
-    public function testOrderBy()
+    public function testOrderBy(): void
     {
         $personsAsc = PersonRequest::orderBy('firstName')->get();
         $personsDesc = PersonRequest::orderBy('firstName', false)->get();
@@ -80,25 +79,32 @@ class PersonRequestTest extends TestCaseAuthenticated
         $this->assertEquals(end($firstNames), $personsDesc2[0]->getFirstName());
     }
 
-    public function testRequestEvents()
+    public function testRequestEvents(): void
     {
         $person = PersonRequest::whoami();
 
-        $events = $person->requestEvents()->get();
+        $requestEventBuilder = $person->requestEvents();
+        $this->assertNotNull($requestEventBuilder);
+        $events = $requestEventBuilder->get();
 
-        $this->assertIsArray($events);
-        foreach ($events as $event) {
-            $this->assertInstanceOf(Event::class, $event);
+        if(sizeof($events) > 0){
+            foreach ($events as $event) {
+                $this->assertInstanceOf(Event::class, $event);
+            }
+        }else{
+            $this->assertTrue(true,"Executed requestEvents of Person.");
         }
+
     }
 
-    public function testRequestGroups()
+    public function testRequestGroups(): void
     {
         $person = PersonRequest::whoami();
 
-        $groups = $person->requestGroups()->get();
+        $groupRequestBuilder = $person->requestGroups();
+        $this->assertNotNull($groupRequestBuilder);
+        $groups = $groupRequestBuilder->get();
 
-        $this->assertIsArray($groups);
         foreach ($groups as $group) {
             $this->assertInstanceOf(PersonGroup::class, $group);
             $this->assertInstanceOf(Group::class, $group->getGroup());

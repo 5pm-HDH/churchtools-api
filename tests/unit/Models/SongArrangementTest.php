@@ -34,42 +34,42 @@ class SongArrangementTest extends TestCase
 
     }
 
-    public function testGetFirstFile()
+    public function testGetFirstFile(): void
     {
         $firstFile = $this->EMPTY_ARRANGEMENT->requestFirstFile("test");
 
         $this->assertNull($firstFile);
 
         $chordsheet = $this->FULL_ARRANGEMENT->requestFirstFile("chords");
-        $this->assertEquals("chordsheet-1.pdf", $chordsheet->getName());
+        $this->assertEquals("chordsheet-1.pdf", $chordsheet?->getName());
 
         $chordsheetInPdfFile = $this->FULL_ARRANGEMENT->requestFirstFile("chords", "pdf");
-        $this->assertEquals("chordsheet-1.pdf", $chordsheetInPdfFile->getName());
+        $this->assertEquals("chordsheet-1.pdf", $chordsheetInPdfFile?->getName());
 
         $chordsheetInWordFile = $this->FULL_ARRANGEMENT->requestFirstFile("chords", "docx");
-        $this->assertEquals("chordsheet-1.docx", $chordsheetInWordFile->getName());
+        $this->assertEquals("chordsheet-1.docx", $chordsheetInWordFile?->getName());
 
         $fullName = $this->FULL_ARRANGEMENT->requestFirstFile("chordsheet-1.pdf");
-        $this->assertEquals("chordsheet-1.pdf", $fullName->getName());
+        $this->assertEquals("chordsheet-1.pdf", $fullName?->getName());
 
         $fullNameWithFileExtension = $this->FULL_ARRANGEMENT->requestFirstFile("chordsheet-1.pdf", "pdf");
-        $this->assertEquals("chordsheet-1.pdf", $fullNameWithFileExtension->getName());
+        $this->assertEquals("chordsheet-1.pdf", $fullNameWithFileExtension?->getName());
 
         $lyricsAsOnSongFile = $this->FULL_ARRANGEMENT->requestFirstFile("lyrics", "onsong");
         $this->assertNull($lyricsAsOnSongFile);
 
         $caseMismatch = $this->FULL_ARRANGEMENT->requestFirstFile("CHORDS", "pdf");
-        $this->assertEquals("chordsheet-1.pdf", $caseMismatch->getName());
+        $this->assertEquals("chordsheet-1.pdf", $caseMismatch?->getName());
     }
 
-    public function testGetFirstLink()
+    public function testGetFirstLink(): void
     {
         $firstLink = $this->EMPTY_ARRANGEMENT->requestFirstLink("test");
 
         $this->assertNull($firstLink);
 
         $multiTracksLink = $this->FULL_ARRANGEMENT->requestFirstLink("multitracks.com");
-        $this->assertEquals("https://multitracks.com/path/to/song", $multiTracksLink->getFileUrl());
+        $this->assertEquals("https://multitracks.com/path/to/song", $multiTracksLink?->getFileUrl());
     }
 
 }

@@ -25,7 +25,7 @@ class WikiCategoryRequestBuilder
         if ($category != null) {
             return $category;
         } else {
-            CTRequestException::ofModelNotFound("WikiCategory #" . $id);
+            throw CTRequestException::ofModelNotFound("WikiCategory #" . $id);
         }
     }
 

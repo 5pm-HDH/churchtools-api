@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Group: [add Group-API](https://github.com/5pm-HDH/churchtools-api/pull/47)
 - Event-Calendar: [add Calendar-Attribut for Event](https://github.com/5pm-HDH/churchtools-api/pull/52)
 - Wiki-Files: [request Files from Wiki-Page](https://github.com/5pm-HDH/churchtools-api/pull/54)
+- Static code analysis tool: [add Psalm as static code analysis tool](https://github.com/5pm-HDH/churchtools-api/pull/55)
 
 ### Changed
 - Refactoring:

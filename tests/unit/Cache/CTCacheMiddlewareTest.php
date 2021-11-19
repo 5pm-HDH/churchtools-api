@@ -10,7 +10,6 @@ use CTApi\Utils\CTMessageBody;
 use CTApi\Utils\CTRequest;
 use CTApi\Utils\CTResponse;
 use CTApi\Utils\CTResponseUtil;
-use Doctrine\Common\Cache\CacheProvider;
 use GuzzleHttp\Promise\Promise;
 use GuzzleHttp\Psr7\Uri;
 use PHPUnit\Framework\TestCase;
@@ -18,7 +17,7 @@ use Psr\Http\Message\RequestInterface;
 
 class CTCacheMiddlewareTest extends TestCase
 {
-    private CacheProvider $cacheProviderMock;
+    private CacheProviderMock $cacheProviderMock;
 
     private RequestInterface $eventRequest;
     private array $httpReturnData = [];
@@ -45,13 +44,13 @@ class CTCacheMiddlewareTest extends TestCase
         $this->eventModel = Event::createModelFromData($this->httpReturnData['data']);
     }
 
-    private function createEventRequest()
+    private function createEventRequest(): void
     {
         $this->eventRequest = new CTRequest();
         $this->eventRequest->withUri(new Uri('/events/29'));
     }
 
-    public function testRequestEventTwice()
+    public function testRequestEventTwice(): void
     {
         // This Invoke should store "this->returnData" to the Cache!
         $responsePromise = $this->invokeCacheMiddleware($this->eventRequest, [], $this->httpReturnData);
@@ -80,7 +79,7 @@ class CTCacheMiddlewareTest extends TestCase
         $this->assertEquals(1, $this->cacheProviderMock->getNumberOfFetches());
     }
 
-    public function testDontSaveNoCacheHeaderRequest()
+    public function testDontSaveNoCacheHeaderRequest(): void
     {
         // Request should not be stored!
         $this->eventRequest->withAddedHeader('Cache-Control', 'no-cache');
@@ -109,7 +108,7 @@ class CTCacheMiddlewareTest extends TestCase
         $this->assertEquals(0, $this->cacheProviderMock->getNumberOfFetches());
     }
 
-    public function testDontRetrieveNoCacheHeaderRequest()
+    public function testDontRetrieveNoCacheHeaderRequest(): void
     {
         // Request should be stored!
         $responsePromise = $this->invokeCacheMiddleware($this->eventRequest, [], $this->httpReturnData);
@@ -138,7 +137,7 @@ class CTCacheMiddlewareTest extends TestCase
         $this->assertEquals(0, $this->cacheProviderMock->getNumberOfFetches());
     }
 
-    public function testDifferRequestByBody()
+    public function testDifferRequestByBody(): void
     {
         $requestA = (new CTRequest())->withUri(new Uri('/api/events'))->withBody(new CTMessageBody(['page' => 2]));
         $requestB = (new CTRequest())->withUri(new Uri('/api/events'))->withBody(new CTMessageBody(['page' => 3]));
@@ -163,7 +162,7 @@ class CTCacheMiddlewareTest extends TestCase
         $this->assertEquals(["Answer B"], CTResponseUtil::jsonToArray($responseB));
     }
 
-    public function testTimeToLive()
+    public function testTimeToLive(): void
     {
         CTCacheMiddleware::setTimeToLive(1);
 

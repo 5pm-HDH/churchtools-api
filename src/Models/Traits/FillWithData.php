@@ -17,12 +17,12 @@ trait FillWithData
         }
     }
 
-    protected function fillNonArrayType(string $key, $value)
+    protected function fillNonArrayType(string $key, $value): void
     {
         $this->{$key} = $value;
     }
 
-    protected function fillArrayType(string $key, array $data)
+    protected function fillArrayType(string $key, array $data): void
     {
         $this->{$key} = $data;
     }
@@ -47,7 +47,7 @@ trait FillWithData
 
     /**
      * @param array $data
-     * @return static
+     * @return self
      *
      * Create single model from data-array. If a list of data-container is given in, it will take the first
      * data-container.

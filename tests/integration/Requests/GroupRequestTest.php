@@ -22,16 +22,15 @@ class GroupRequestTest extends TestCaseAuthenticated
         if (!TestData::getValue("GROUP_SHOULD_TEST") == "YES") {
             $this->markTestSkipped("Test suite is disabled in testdata.ini");
         } else {
-            $this->groupId = TestData::getValue("GROUP_ID") ?? "";
-            $this->groupName = TestData::getValue("GROUP_NAME") ?? "";
+            $this->groupId = TestData::getValue("GROUP_ID");
+            $this->groupName = TestData::getValue("GROUP_NAME");
         }
     }
 
-    public function testGetAllGroups()
+    public function testGetAllGroups(): void
     {
         $allGroups = GroupRequest::all();
 
-        $this->assertIsArray($allGroups);
         $foundMyGroup = false;
         foreach ($allGroups as $group) {
             $this->assertInstanceOf(Group::class, $group);
@@ -42,7 +41,7 @@ class GroupRequestTest extends TestCaseAuthenticated
         $this->assertTrue($foundMyGroup);
     }
 
-    public function testGetGroup()
+    public function testGetGroup(): void
     {
         $myGroup = GroupRequest::find((int)$this->groupId);
         $this->assertNotNull($myGroup);
@@ -59,7 +58,7 @@ class GroupRequestTest extends TestCaseAuthenticated
         $this->assertInstanceOf(GroupSettings::class, $myGroup->getSettings());
     }
 
-    public function testCreateEmptyGroup()
+    public function testCreateEmptyGroup(): void
     {
         $myGroup = Group::createModelFromData([]);
         $this->assertInstanceOf(Group::class, $myGroup);

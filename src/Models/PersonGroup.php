@@ -15,7 +15,7 @@ class PersonGroup
     protected ?int $groupTypeRoleId = null;
     protected ?string $memberStartDate = null;
 
-    protected function fillArrayType(string $key, array $data)
+    protected function fillArrayType(string $key, array $data): void
     {
         switch ($key) {
             case "group":
@@ -30,7 +30,7 @@ class PersonGroup
     {
         $id = $this->getGroup()?->getId();
         if ($id != null) {
-            return GroupRequest::find($id);
+            return GroupRequest::find((int)$id);
         } else {
             return null;
         }

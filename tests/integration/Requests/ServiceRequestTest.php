@@ -2,7 +2,6 @@
 
 namespace Tests\Integration\Requests;
 
-use CTApi\Exceptions\CTModelException;
 use CTApi\Exceptions\CTRequestException;
 use CTApi\Models\Service;
 use CTApi\Models\ServiceGroup;
@@ -21,9 +20,9 @@ class ServiceRequestTest extends TestCaseAuthenticated
         }
     }
 
-    public function testFindService()
+    public function testFindService(): void
     {
-        $serviceId = TestData::getValue("SERVICE_ID");
+        $serviceId = (int)TestData::getValue("SERVICE_ID");
         $serviceName = TestData::getValue("SERVICE_NAME");
 
         $service = ServiceRequest::find($serviceId);
@@ -32,13 +31,13 @@ class ServiceRequestTest extends TestCaseAuthenticated
         $this->assertEquals($serviceName, $service->getName());
     }
 
-    public function testFindOrFailService()
+    public function testFindOrFailService(): void
     {
         $this->expectException(CTRequestException::class);
         ServiceRequest::findOrFail(929192818291);
     }
 
-    public function testAllServices()
+    public function testAllServices(): void
     {
         $services = ServiceRequest::all();
 
@@ -48,14 +47,13 @@ class ServiceRequestTest extends TestCaseAuthenticated
         }
     }
 
-    public function testServiceRequestServiceGroup()
+    public function testServiceRequestServiceGroup(): void
     {
-        $serviceId = TestData::getValue("SERVICE_ID");
-        $serviceGroupId = TestData::getValue("SERVICE_GROUP_ID");
+        $serviceId = (int)TestData::getValue("SERVICE_ID");
+        $serviceGroupId = (int)TestData::getValue("SERVICE_GROUP_ID");
         $serviceGroupName = TestData::getValue("SERVICE_GROUP_NAME");
 
         $service = ServiceRequest::findOrFail($serviceId);
-        $this->assertNotNull($service);
 
         $serviceGroup = $service->requestServiceGroup();
 
@@ -68,9 +66,9 @@ class ServiceRequestTest extends TestCaseAuthenticated
         $this->assertNull($nullService->requestServiceGroup());
     }
 
-    public function testFindServiceGroup()
+    public function testFindServiceGroup(): void
     {
-        $serviceGroupId = TestData::getValue("SERVICE_GROUP_ID");
+        $serviceGroupId = (int)TestData::getValue("SERVICE_GROUP_ID");
         $serviceGroupName = TestData::getValue("SERVICE_GROUP_NAME");
 
         $serviceGroup = ServiceGroupRequest::find($serviceGroupId);
@@ -79,13 +77,13 @@ class ServiceRequestTest extends TestCaseAuthenticated
         $this->assertEquals($serviceGroupName, $serviceGroup->getName());
     }
 
-    public function testFindOrFailServiceGroup()
+    public function testFindOrFailServiceGroup(): void
     {
         $this->expectException(CTRequestException::class);
         ServiceGroupRequest::findOrFail(929192818291);
     }
 
-    public function testAllServiceGroups()
+    public function testAllServiceGroups(): void
     {
         $serviceGroups = ServiceGroupRequest::all();
 
@@ -95,15 +93,17 @@ class ServiceRequestTest extends TestCaseAuthenticated
         }
     }
 
-    public function testRequestServicesFromServiceGroup()
+    public function testRequestServicesFromServiceGroup(): void
     {
-        $serviceGroupId = TestData::getValue("SERVICE_GROUP_ID");
-        $serviceId = TestData::getValue("SERVICE_ID");
+        $serviceGroupId = (int)TestData::getValue("SERVICE_GROUP_ID");
+        $serviceId = (int)TestData::getValue("SERVICE_ID");
         $serviceName = TestData::getValue("SERVICE_NAME");
 
         $serviceGroup = ServiceGroupRequest::findOrFail($serviceGroupId);
 
-        $services = $serviceGroup->requestServices()->get();
+        $serviceRequestBuilder = $serviceGroup->requestServices();
+        $this->assertNotNull($serviceRequestBuilder);
+        $services = $serviceRequestBuilder->get();
 
         $foundService = false;
         foreach ($services as $service) {

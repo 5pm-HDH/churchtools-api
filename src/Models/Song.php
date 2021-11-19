@@ -27,7 +27,7 @@ class Song
     protected ?string $bpm = null;
     protected ?string $isDefault = null;
 
-    protected function fillArrayType(string $key, array $data)
+    protected function fillArrayType(string $key, array $data): void
     {
         switch ($key) {
             case "category":
@@ -44,7 +44,7 @@ class Song
         }
     }
 
-    protected function fillNonArrayType(string $key, $value)
+    protected function fillNonArrayType(string $key, $value): void
     {
         switch ($key) {
             case "songId":
@@ -70,7 +70,7 @@ class Song
             return null;
         }
 
-        $song = SongRequest::find($songId);
+        $song = SongRequest::find((int)$songId);
 
         if (is_null($song)) {
             return null;

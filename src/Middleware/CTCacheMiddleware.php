@@ -46,7 +46,7 @@ class CTCacheMiddleware
         return null;
     }
 
-    public function saveResponseToCache(?string $cacheId, ResponseInterface $response)
+    public function saveResponseToCache(?string $cacheId, ResponseInterface $response): void
     {
         if (!is_null($cacheId) && !($response instanceof CTCacheResponse) && !$this->cacheIsDisabledInHeader($response)) {
             CTLog::getLog()->debug("CTCacheMiddleware: Save response to cache.");
@@ -91,7 +91,7 @@ class CTCacheMiddleware
         return self::$timeToLive;
     }
 
-    public static function setTimeToLive(int $timeToLive)
+    public static function setTimeToLive(int $timeToLive): void
     {
         self::$timeToLive = $timeToLive;
     }
@@ -104,12 +104,15 @@ class CTCacheMiddleware
         return self::$cacheDriver;
     }
 
-    public static function setCacheDriver(CacheProvider $cacheProvider)
+    public static function setCacheDriver(CacheProvider $cacheProvider): void
     {
         self::$cacheDriver = $cacheProvider;
     }
 
-    public static function create()
+    /**
+     * @psalm-return \Closure(callable):\Closure(RequestInterface, array):(\GuzzleHttp\Promise\PromiseInterface|mixed)
+     */
+    public static function create(): \Closure
     {
         $middleware = CTCacheMiddleware::getInstance();
         return function (callable $handler) use ($middleware) {

@@ -11,7 +11,7 @@ class FileTest extends TestCaseAuthenticated
 {
     private string $DOWNLOAD_FOLDER = __DIR__ . "/download-folder";
 
-    public function testDownloadFileToPath()
+    public function testDownloadFileToPath(): void
     {
         $exampleFile = $this->collectFile();
 
@@ -35,7 +35,7 @@ class FileTest extends TestCaseAuthenticated
         return new File();
     }
 
-    private function assertFileExistsInDownloadFolder(File $file)
+    private function assertFileExistsInDownloadFolder(File $file): void
     {
         $this->assertTrue(
             file_exists($this->DOWNLOAD_FOLDER . '/' . $file->getFilename())
@@ -44,7 +44,7 @@ class FileTest extends TestCaseAuthenticated
         );
     }
 
-    public function testGetFileUrlAuthenticated()
+    public function testGetFileUrlAuthenticated(): void
     {
         $file = new File();
 
@@ -55,7 +55,7 @@ class FileTest extends TestCaseAuthenticated
         $this->assertEquals("https//file.com/?id=291&login_token=" . $apiToken, $file->getFileUrlAuthenticated());
     }
 
-    public function testGetFileUrlBaseUrl()
+    public function testGetFileUrlBaseUrl(): void
     {
         $file = new File();
 
@@ -72,7 +72,7 @@ class FileTest extends TestCaseAuthenticated
         $this->assertEquals('https://google.com/searchresult', $baseUrl);
     }
 
-    public function testGetFileUrlQueryParameters()
+    public function testGetFileUrlQueryParameters(): void
     {
         $file = new File();
 

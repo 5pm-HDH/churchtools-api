@@ -15,12 +15,12 @@ class CTConfigUnitTest extends TestCase
         CTConfig::clearConfig();
     }
 
-    public function fillConfigWithExampleData()
+    public function fillConfigWithExampleData(): void
     {
         CTConfig::setApiUrl("https://example.com/api");
     }
 
-    public function testApiUrl()
+    public function testApiUrl(): void
     {
         $this->assertNull(CTConfig::getApiUrl());
 
@@ -30,7 +30,7 @@ class CTConfigUnitTest extends TestCase
         $this->assertEquals($exampleUrl, CTConfig::getApiUrl());
     }
 
-    public function testValidateConfig()
+    public function testValidateConfig(): void
     {
         // INVALID CONFIG
         $exceptionThrown = false;
@@ -53,7 +53,7 @@ class CTConfigUnitTest extends TestCase
         $this->assertFalse($exceptionThrown);
     }
 
-    public function testAuthWithCredentialsFailingBecauseApiUrlIsEmpty()
+    public function testAuthWithCredentialsFailingBecauseApiUrlIsEmpty(): void
     {
         $this->assertNull(CTConfig::getApiUrl());
 
@@ -70,7 +70,7 @@ class CTConfigUnitTest extends TestCase
         $this->assertTrue($exceptionThrown);
     }
 
-    public function testCacheTimeToLive()
+    public function testCacheTimeToLive(): void
     {
         CTConfig::enableCache();
         $this->assertNotNull(CTCacheMiddleware::getTimeToLive());

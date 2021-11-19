@@ -4,16 +4,14 @@
 namespace CTApi\Models\Traits;
 
 
-use CTApi\Models\Meta;
-
 trait DomainAttribute
 {
-    protected ?String $title = null;
-    protected ?String $domainType = null;
-    protected ?String $domainIdentifier = null;
-    protected ?String $apiUrl = null;
-    protected ?String $frontendUrl = null;
-    protected ?String $imageUrl = null;
+    protected ?string $title = null;
+    protected ?string $domainType = null;
+    protected ?string $domainIdentifier = null;
+    protected ?string $apiUrl = null;
+    protected ?string $frontendUrl = null;
+    protected ?string $imageUrl = null;
     protected array $domainAttributes = [];
 
     /**
@@ -26,9 +24,9 @@ trait DomainAttribute
 
     /**
      * @param String|null $title
-     * @return DomainAttribute
+     * @return self
      */
-    public function setTitle(?string $title): DomainAttribute
+    public function setTitle(?string $title): self
     {
         $this->title = $title;
         return $this;
@@ -44,9 +42,9 @@ trait DomainAttribute
 
     /**
      * @param String|null $domainType
-     * @return DomainAttribute
+     * @return self
      */
-    public function setDomainType(?string $domainType): DomainAttribute
+    public function setDomainType(?string $domainType): self
     {
         $this->domainType = $domainType;
         return $this;
@@ -62,9 +60,9 @@ trait DomainAttribute
 
     /**
      * @param String|null $domainIdentifier
-     * @return DomainAttribute
+     * @return self
      */
-    public function setDomainIdentifier(?string $domainIdentifier): DomainAttribute
+    public function setDomainIdentifier(?string $domainIdentifier): self
     {
         $this->domainIdentifier = $domainIdentifier;
         return $this;
@@ -80,9 +78,9 @@ trait DomainAttribute
 
     /**
      * @param String|null $apiUrl
-     * @return DomainAttribute
+     * @return self
      */
-    public function setApiUrl(?string $apiUrl): DomainAttribute
+    public function setApiUrl(?string $apiUrl): self
     {
         $this->apiUrl = $apiUrl;
         return $this;
@@ -98,9 +96,9 @@ trait DomainAttribute
 
     /**
      * @param String|null $frontendUrl
-     * @return DomainAttribute
+     * @return self
      */
-    public function setFrontendUrl(?string $frontendUrl): DomainAttribute
+    public function setFrontendUrl(?string $frontendUrl): self
     {
         $this->frontendUrl = $frontendUrl;
         return $this;
@@ -116,9 +114,9 @@ trait DomainAttribute
 
     /**
      * @param String|null $imageUrl
-     * @return DomainAttribute
+     * @return self
      */
-    public function setImageUrl(?string $imageUrl): DomainAttribute
+    public function setImageUrl(?string $imageUrl): self
     {
         $this->imageUrl = $imageUrl;
         return $this;
@@ -134,9 +132,9 @@ trait DomainAttribute
 
     /**
      * @param array $domainAttributes
-     * @return DomainAttribute
+     * @return self
      */
-    public function setDomainAttributes(array $domainAttributes): DomainAttribute
+    public function setDomainAttributes(array $domainAttributes): self
     {
         $this->domainAttributes = $domainAttributes;
         return $this;

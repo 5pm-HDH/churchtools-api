@@ -19,18 +19,18 @@ class EventAgendaTest extends TestCaseAuthenticated
         }
     }
 
-    public function testGetAgenda()
+    public function testGetAgenda(): void
     {
-        $eventId = TestData::getValue("EVENT_AGENDA_EVENT_ID");
+        $eventId = (int)TestData::getValue("EVENT_AGENDA_EVENT_ID");
 
         $agenda = EventAgendaRequest::fromEvent($eventId)->get();
 
         $this->assertAgendaIsValid($agenda);
     }
 
-    public function testGetAgendaFromEvent()
+    public function testGetAgendaFromEvent(): void
     {
-        $eventId = TestData::getValue("EVENT_AGENDA_EVENT_ID");
+        $eventId = (int)TestData::getValue("EVENT_AGENDA_EVENT_ID");
 
         $event = EventRequest::findOrFail($eventId);
 
@@ -38,9 +38,9 @@ class EventAgendaTest extends TestCaseAuthenticated
         $this->assertAgendaIsValid($agenda);
     }
 
-    private function assertAgendaIsValid($agenda)
+    private function assertAgendaIsValid($agenda): void
     {
-        $agendaId = TestData::getValue("EVENT_AGENDA_ID");
+        $agendaId = (int)TestData::getValue("EVENT_AGENDA_ID");
         $numberOfItems = TestData::getValue("EVENT_AGENDA_NUMBER_OF_ITEMS");
 
 
@@ -49,9 +49,9 @@ class EventAgendaTest extends TestCaseAuthenticated
         $this->assertEquals($numberOfItems, sizeof($agenda->getItems()));
     }
 
-    public function testGetSongsOfAgenda()
+    public function testGetSongsOfAgenda(): void
     {
-        $eventId = TestData::getValue("EVENT_AGENDA_EVENT_ID");
+        $eventId = (int)TestData::getValue("EVENT_AGENDA_EVENT_ID");
 
         $agenda = EventAgendaRequest::fromEvent($eventId)->get();
 
@@ -64,9 +64,9 @@ class EventAgendaTest extends TestCaseAuthenticated
         $this->assertTestSongIsInSongArray($songArray);
     }
 
-    public function testCollectSongsOfAgenda()
+    public function testCollectSongsOfAgenda(): void
     {
-        $eventId = TestData::getValue("EVENT_AGENDA_EVENT_ID");
+        $eventId = (int)TestData::getValue("EVENT_AGENDA_EVENT_ID");
 
         $agenda = EventAgendaRequest::fromEvent($eventId)->get();
         $songs = $agenda->getSongs();
@@ -74,9 +74,9 @@ class EventAgendaTest extends TestCaseAuthenticated
         $this->assertTestSongIsInSongArray($songs);
     }
 
-    public function testRequestSongsOfAgenda()
+    public function testRequestSongsOfAgenda(): void
     {
-        $eventId = TestData::getValue("EVENT_AGENDA_EVENT_ID");
+        $eventId = (int)TestData::getValue("EVENT_AGENDA_EVENT_ID");
 
         $agenda = EventAgendaRequest::fromEvent($eventId)->get();
 
@@ -85,7 +85,7 @@ class EventAgendaTest extends TestCaseAuthenticated
         $this->assertTestSongIsInSongArray($songs, false);
     }
 
-    public function testRequestSelectedArrangementOfSong()
+    public function testRequestSelectedArrangementOfSong(): void
     {
         $songId = TestData::getValue("EVENT_AGENDA_SONG_ID");
         $arrangementId = TestData::getValue("EVENT_AGENDA_SONG_ARRANGEMENT_ID");
@@ -100,13 +100,14 @@ class EventAgendaTest extends TestCaseAuthenticated
 
         $arrangement = $song->requestSelectedArrangement();
 
+        $this->assertNotNull($arrangement);
         $this->assertEquals($arrangementId, $arrangement->getId());
         $this->assertEquals(TestData::getValue("EVENT_AGENDA_SONG_ARRANGEMENT"), $arrangement->getName());
     }
 
-    public function testRequestArrangementsOfAgenda()
+    public function testRequestArrangementsOfAgenda(): void
     {
-        $eventId = TestData::getValue("EVENT_AGENDA_EVENT_ID");
+        $eventId = (int)TestData::getValue("EVENT_AGENDA_EVENT_ID");
         $agenda = EventAgendaRequest::fromEvent($eventId)->get();
 
         $arrangements = $agenda->requestArrangements()->get();
@@ -116,7 +117,7 @@ class EventAgendaTest extends TestCaseAuthenticated
         }
     }
 
-    private function assertTestSongIsInSongArray($songArray, $checkForArrangement = true)
+    private function assertTestSongIsInSongArray($songArray, $checkForArrangement = true): void
     {
         $foundSong = false;
         foreach ($songArray as $song) {
