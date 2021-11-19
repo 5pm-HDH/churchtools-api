@@ -79,8 +79,16 @@ class CTConfigUnitTest extends TestCase
         $this->assertEquals(291, CTCacheMiddleware::getTimeToLive());
     }
 
-    public function testfailingTest(): void
+    public function testWrongCodeAnalysis()
     {
-        $this->assertFalse(true, "This is a failing test, to check if my actions are working.");
+        CTConfig::setApiUrl("test.com");
+        $url = CTConfig::getApiUrl();
+
+        $this->testFunction($url);
+        $this->assertTrue(true);
+    }
+
+    private function testFunction(string $string){
+
     }
 }
