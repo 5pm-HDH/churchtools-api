@@ -8,17 +8,31 @@ use CTApi\CTClient;
 use CTApi\CTConfig;
 use CTApi\CTLog;
 use CTApi\Models\Traits\FillWithData;
+use CTApi\Models\Traits\MetaAttribute;
 use GuzzleHttp\Exception\GuzzleException;
 
 class File
 {
-    use FillWithData;
+    use FillWithData, MetaAttribute;
 
+    protected ?string $id = null;
+    protected ?string $imageUrl = null;
+    protected ?string $type = null;
+    protected ?string $size = null;
     protected ?string $domainType = null;
     protected ?string $domainId = null;
     protected ?string $name = null;
     protected ?string $filename = null;
     protected ?string $fileUrl = null;
+
+    protected function fillArrayType(string $key, array $data)
+    {
+        switch ($key) {
+            case "meta":
+                $this->setMeta(Meta::createModelFromData($data));
+                break;
+        }
+    }
 
     public function downloadToPath($path): bool
     {
@@ -182,4 +196,75 @@ class File
         return $this;
     }
 
+    /**
+     * @return string|null
+     */
+    public function getId(): ?string
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param string|null $id
+     * @return File
+     */
+    public function setId(?string $id): File
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getImageUrl(): ?string
+    {
+        return $this->imageUrl;
+    }
+
+    /**
+     * @param string|null $imageUrl
+     * @return File
+     */
+    public function setImageUrl(?string $imageUrl): File
+    {
+        $this->imageUrl = $imageUrl;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param string|null $type
+     * @return File
+     */
+    public function setType(?string $type): File
+    {
+        $this->type = $type;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getSize(): ?string
+    {
+        return $this->size;
+    }
+
+    /**
+     * @param string|null $size
+     * @return File
+     */
+    public function setSize(?string $size): File
+    {
+        $this->size = $size;
+        return $this;
+    }
 }
