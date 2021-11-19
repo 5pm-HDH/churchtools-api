@@ -1,4 +1,4 @@
-name: PHP Composer
+name: Static Code Analysis
 
 on:
   push:
@@ -34,4 +34,4 @@ jobs:
       run: composer dump-autoload
 
     - name: Run test suite
-      run: composer run-script test-unit
+      run: composer run-script psalm
