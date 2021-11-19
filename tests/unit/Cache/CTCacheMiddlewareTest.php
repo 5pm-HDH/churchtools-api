@@ -18,7 +18,7 @@ use Psr\Http\Message\RequestInterface;
 
 class CTCacheMiddlewareTest extends TestCase
 {
-    private CacheProvider $cacheProviderMock;
+    private CacheProviderMock $cacheProviderMock;
 
     private RequestInterface $eventRequest;
     private array $httpReturnData = [];
