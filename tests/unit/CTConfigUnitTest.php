@@ -78,4 +78,9 @@ class CTConfigUnitTest extends TestCase
         CTConfig::enableCache(291);
         $this->assertEquals(291, CTCacheMiddleware::getTimeToLive());
     }
+
+    public function testfailingTest(): void
+    {
+        $this->assertFalse(true, "This is a failing test, to check if my actions are working.");
+    }
 }
