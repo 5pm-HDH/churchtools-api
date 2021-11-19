@@ -36,7 +36,7 @@ class File
 
     public function downloadToPath($path): bool
     {
-        return file_put_contents($path . '/' . $this->name, $this->requestFileContent());
+        return (bool) file_put_contents($path . '/' . $this->name, $this->requestFileContent());
     }
 
     public function downloadToClient(): void

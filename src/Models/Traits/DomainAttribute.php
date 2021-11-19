@@ -26,9 +26,9 @@ trait DomainAttribute
 
     /**
      * @param String|null $title
-     * @return DomainAttribute
+     * @return self
      */
-    public function setTitle(?string $title): DomainAttribute
+    public function setTitle(?string $title): self
     {
         $this->title = $title;
         return $this;
@@ -44,9 +44,9 @@ trait DomainAttribute
 
     /**
      * @param String|null $domainType
-     * @return DomainAttribute
+     * @return self
      */
-    public function setDomainType(?string $domainType): DomainAttribute
+    public function setDomainType(?string $domainType): self
     {
         $this->domainType = $domainType;
         return $this;
@@ -62,9 +62,9 @@ trait DomainAttribute
 
     /**
      * @param String|null $domainIdentifier
-     * @return DomainAttribute
+     * @return self
      */
-    public function setDomainIdentifier(?string $domainIdentifier): DomainAttribute
+    public function setDomainIdentifier(?string $domainIdentifier): self
     {
         $this->domainIdentifier = $domainIdentifier;
         return $this;
@@ -80,9 +80,9 @@ trait DomainAttribute
 
     /**
      * @param String|null $apiUrl
-     * @return DomainAttribute
+     * @return self
      */
-    public function setApiUrl(?string $apiUrl): DomainAttribute
+    public function setApiUrl(?string $apiUrl): self
     {
         $this->apiUrl = $apiUrl;
         return $this;
@@ -98,9 +98,9 @@ trait DomainAttribute
 
     /**
      * @param String|null $frontendUrl
-     * @return DomainAttribute
+     * @return self
      */
-    public function setFrontendUrl(?string $frontendUrl): DomainAttribute
+    public function setFrontendUrl(?string $frontendUrl): self
     {
         $this->frontendUrl = $frontendUrl;
         return $this;
@@ -116,9 +116,9 @@ trait DomainAttribute
 
     /**
      * @param String|null $imageUrl
-     * @return DomainAttribute
+     * @return self
      */
-    public function setImageUrl(?string $imageUrl): DomainAttribute
+    public function setImageUrl(?string $imageUrl): self
     {
         $this->imageUrl = $imageUrl;
         return $this;
@@ -134,9 +134,9 @@ trait DomainAttribute
 
     /**
      * @param array $domainAttributes
-     * @return DomainAttribute
+     * @return self
      */
-    public function setDomainAttributes(array $domainAttributes): DomainAttribute
+    public function setDomainAttributes(array $domainAttributes): self
     {
         $this->domainAttributes = $domainAttributes;
         return $this;

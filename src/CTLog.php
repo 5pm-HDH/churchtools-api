@@ -23,7 +23,10 @@ class CTLog
         if (is_null(self::$logger)) {
             self::createLog();
         }
-        return self::$logger;
+        if (isset(self::$logger)) {
+            return self::$logger;
+        }
+        return new Logger('CTLogger');
     }
 
     private static function createLog()

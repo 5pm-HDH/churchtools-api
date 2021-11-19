@@ -6,7 +6,6 @@ use CTApi\CTClient;
 use CTApi\Exceptions\CTAuthException;
 use CTApi\Models\Auth;
 use GuzzleHttp\Exception\GuzzleException;
-use JetBrains\PhpStorm\Pure;
 
 class AuthRequestBuilder
 {
@@ -83,7 +82,7 @@ class AuthRequestBuilder
         $this->apiKey = (isset($responseJson->data) ? $responseJson->data : null);
     }
 
-    #[Pure] public function get(): Auth
+    public function get(): Auth
     {
         return new Auth($this->userId, $this->apiKey);
     }

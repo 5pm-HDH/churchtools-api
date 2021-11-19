@@ -20,7 +20,7 @@ trait MetaAttribute
 
     /**
      * @param Meta|null $meta
-     * @return MetaAttribute
+     * @return self
      */
     public function setMeta(?Meta $meta): self
     {
