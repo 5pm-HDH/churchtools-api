@@ -20,7 +20,7 @@ class WikiCategory
     protected ?string $fileAccessWithoutPermission = null;
     protected array $permissions = [];
 
-    protected function fillNonArrayType(string $key, $value)
+    protected function fillNonArrayType(string $key, $value): void
     {
         switch ($key) {
             case "permissions":

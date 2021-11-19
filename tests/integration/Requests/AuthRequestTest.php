@@ -17,7 +17,7 @@ class AuthRequestTest extends TestCase
     }
 
 
-    public function testAuthWithEmailAndPassword()
+    public function testAuthWithEmailAndPassword(): void
     {
         $authEmail = TestData::getValue("AUTH_EMAIL");
         $authPassword = TestData::getValue("AUTH_PASSWORD");

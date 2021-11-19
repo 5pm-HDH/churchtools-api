@@ -17,12 +17,12 @@ trait FillWithData
         }
     }
 
-    protected function fillNonArrayType(string $key, $value)
+    protected function fillNonArrayType(string $key, $value): void
     {
         $this->{$key} = $value;
     }
 
-    protected function fillArrayType(string $key, array $data)
+    protected function fillArrayType(string $key, array $data): void
     {
         $this->{$key} = $data;
     }

@@ -10,7 +10,7 @@ class CacheTest extends TestCaseAuthenticated
 {
     private string $cacheDir = __DIR__ . '/../../cache/';
 
-    public function testCacheSpeedsUpRequest()
+    public function testCacheSpeedsUpRequest(): void
     {
         CTConfig::clearCache();
         $numberOfRequests = 2;
@@ -40,7 +40,7 @@ class CacheTest extends TestCaseAuthenticated
 
     }
 
-    public function testClearCacheDump()
+    public function testClearCacheDump(): void
     {
         CTConfig::enableCache();
         $this->runSongRequests(1);

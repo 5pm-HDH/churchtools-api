@@ -15,7 +15,7 @@ class PersonGroup
     protected ?int $groupTypeRoleId = null;
     protected ?string $memberStartDate = null;
 
-    protected function fillArrayType(string $key, array $data)
+    protected function fillArrayType(string $key, array $data): void
     {
         switch ($key) {
             case "group":

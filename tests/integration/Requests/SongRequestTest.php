@@ -29,7 +29,7 @@ class SongRequestTest extends TestCaseAuthenticated
 
     }
 
-    public function testGetAllSongs()
+    public function testGetAllSongs(): void
     {
         $allSongs = SongRequest::all();
         $this->assertNotEmpty($allSongs);
@@ -37,7 +37,7 @@ class SongRequestTest extends TestCaseAuthenticated
         $this->assertInstanceOf(Song::class, $allSongs[0]);
     }
 
-    public function testGetOneSong()
+    public function testGetOneSong(): void
     {
         $allSongs = SongRequest::all();
         $this->assertNotEmpty($allSongs);
@@ -54,7 +54,7 @@ class SongRequestTest extends TestCaseAuthenticated
     }
 
 
-    public function testWhereSongs()
+    public function testWhereSongs(): void
     {
         //Collect all Categories:
         $allSongs = SongRequest::all();
@@ -75,7 +75,7 @@ class SongRequestTest extends TestCaseAuthenticated
         }
     }
 
-    public function testOrderBy()
+    public function testOrderBy(): void
     {
         $allSongs = SongRequest::all();
         $allSongsName = array_map(function ($song) {
@@ -117,7 +117,7 @@ class SongRequestTest extends TestCaseAuthenticated
         $this->fail("Could not select the test arrangement in the given in song.");
     }
 
-    public function testSongFilesAndLinks()
+    public function testSongFilesAndLinks(): void
     {
         $song = $this->getSong();
         $arrangement = $this->selectTestArrangementInSong($song);

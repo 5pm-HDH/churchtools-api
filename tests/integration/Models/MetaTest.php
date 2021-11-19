@@ -12,7 +12,7 @@ use Tests\Integration\TestData;
 
 class MetaTest extends TestCaseAuthenticated
 {
-    public function testPersonMeta()
+    public function testPersonMeta(): void
     {
         $person = PersonRequest::whoami();
         $this->assertModelHasValidMeta($person);
@@ -20,7 +20,7 @@ class MetaTest extends TestCaseAuthenticated
 
     //Event has no Meta-Data
 
-    public function testEventAgendaMeta()
+    public function testEventAgendaMeta(): void
     {
         $this->checkIfTestShouldBeSkipped("EVENT_AGENDA_SHOULD_TEST");
 
@@ -35,7 +35,7 @@ class MetaTest extends TestCaseAuthenticated
         $this->assertModelHasValidMeta($agendaItem);
     }
 
-    public function testSongMeta()
+    public function testSongMeta(): void
     {
         $this->checkIfTestShouldBeSkipped("SONG_SHOULD_TEST");
 
@@ -53,14 +53,14 @@ class MetaTest extends TestCaseAuthenticated
         $this->assertModelHasValidMeta($arrangement);
     }
 
-    private function checkIfTestShouldBeSkipped($testIniKey)
+    private function checkIfTestShouldBeSkipped($testIniKey): void
     {
         if (!TestData::getValue($testIniKey) == "YES") {
             $this->markTestSkipped("Test is disabled in testdata.ini");
         }
     }
 
-    private function assertModelHasValidMeta($model)
+    private function assertModelHasValidMeta($model): void
     {
         $this->assertInstanceOf(Meta::class, $model->getMeta());
 

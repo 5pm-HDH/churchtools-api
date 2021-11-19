@@ -26,7 +26,7 @@ class CTUtilTest extends TestCase
         ];
     }
 
-    public function testArrayPathGetter()
+    public function testArrayPathGetter(): void
     {
 
         $this->assertEquals("https://url.com", CTUtil::arrayPathGet($this->exampleArray, 'base_uri'));
@@ -41,7 +41,7 @@ class CTUtilTest extends TestCase
 
     }
 
-    public function testArrayPathSetter()
+    public function testArrayPathSetter(): void
     {
         // set simple type
         CTUtil::arrayPathSet($this->exampleArray, 'name', "Carl");
@@ -60,13 +60,13 @@ class CTUtilTest extends TestCase
         $this->assertTrue($this->exampleArray["job"]["isPrimary"]);
     }
 
-    public function testArrayPathCreateElement()
+    public function testArrayPathCreateElement(): void
     {
         CTUtil::arrayPathSet($this->exampleArray, 'age', 21);
         $this->assertEquals(21, $this->exampleArray['age']);
     }
 
-    public function testArrayPathSetFake()
+    public function testArrayPathSetFake(): void
     {
         CTUtil::arrayPathSet($this->exampleArray, 'fake.age', 21);
         $this->assertEquals(21, $this->exampleArray['fake']['age']);

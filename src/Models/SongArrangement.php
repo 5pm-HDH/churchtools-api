@@ -22,7 +22,7 @@ class SongArrangement
     protected array $links = [];
     protected array $files = [];
 
-    protected function fillArrayType(string $key, array $data)
+    protected function fillArrayType(string $key, array $data): void
     {
         switch ($key) {
             case "files":

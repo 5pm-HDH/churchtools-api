@@ -27,7 +27,7 @@ class GroupMemberRequestTest extends TestCaseAuthenticated
         }
     }
 
-    public function testGetGroupMembers()
+    public function testGetGroupMembers(): void
     {
         $myGroup = GroupRequest::find((int)$this->groupId);
         $this->assertNotNull($myGroup);
@@ -43,7 +43,7 @@ class GroupMemberRequestTest extends TestCaseAuthenticated
         $this->assertInstanceOf(Person::class, $firstPerson);
     }
 
-    public function testEmptyGroupMember()
+    public function testEmptyGroupMember(): void
     {
         $emptyGroupMember = GroupMember::createModelFromData([]);
 

@@ -21,7 +21,7 @@ class ServiceRequestTest extends TestCaseAuthenticated
         }
     }
 
-    public function testFindService()
+    public function testFindService(): void
     {
         $serviceId = TestData::getValue("SERVICE_ID");
         $serviceName = TestData::getValue("SERVICE_NAME");
@@ -32,13 +32,13 @@ class ServiceRequestTest extends TestCaseAuthenticated
         $this->assertEquals($serviceName, $service->getName());
     }
 
-    public function testFindOrFailService()
+    public function testFindOrFailService(): void
     {
         $this->expectException(CTRequestException::class);
         ServiceRequest::findOrFail(929192818291);
     }
 
-    public function testAllServices()
+    public function testAllServices(): void
     {
         $services = ServiceRequest::all();
 
@@ -48,7 +48,7 @@ class ServiceRequestTest extends TestCaseAuthenticated
         }
     }
 
-    public function testServiceRequestServiceGroup()
+    public function testServiceRequestServiceGroup(): void
     {
         $serviceId = TestData::getValue("SERVICE_ID");
         $serviceGroupId = TestData::getValue("SERVICE_GROUP_ID");
@@ -68,7 +68,7 @@ class ServiceRequestTest extends TestCaseAuthenticated
         $this->assertNull($nullService->requestServiceGroup());
     }
 
-    public function testFindServiceGroup()
+    public function testFindServiceGroup(): void
     {
         $serviceGroupId = TestData::getValue("SERVICE_GROUP_ID");
         $serviceGroupName = TestData::getValue("SERVICE_GROUP_NAME");
@@ -79,13 +79,13 @@ class ServiceRequestTest extends TestCaseAuthenticated
         $this->assertEquals($serviceGroupName, $serviceGroup->getName());
     }
 
-    public function testFindOrFailServiceGroup()
+    public function testFindOrFailServiceGroup(): void
     {
         $this->expectException(CTRequestException::class);
         ServiceGroupRequest::findOrFail(929192818291);
     }
 
-    public function testAllServiceGroups()
+    public function testAllServiceGroups(): void
     {
         $serviceGroups = ServiceGroupRequest::all();
 
@@ -95,7 +95,7 @@ class ServiceRequestTest extends TestCaseAuthenticated
         }
     }
 
-    public function testRequestServicesFromServiceGroup()
+    public function testRequestServicesFromServiceGroup(): void
     {
         $serviceGroupId = TestData::getValue("SERVICE_GROUP_ID");
         $serviceId = TestData::getValue("SERVICE_ID");

@@ -72,7 +72,7 @@ class CTClient extends Client
         return new CTClient();
     }
 
-    public static function setClient(CTClient $client)
+    public static function setClient(CTClient $client): void
     {
         self::$client = $client;
     }

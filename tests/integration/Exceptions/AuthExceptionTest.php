@@ -14,28 +14,28 @@ class AuthExceptionTest extends TestCase
         CTConfig::clearConfig();
     }
 
-    public function testWrongEmail()
+    public function testWrongEmail(): void
     {
         $this->expectException(CTAuthException::class);
         CTConfig::setApiUrl(TestData::getValue("API_URL"));
         CTConfig::authWithCredentials("wrong-email@fail.com", "wrongPassword");
     }
 
-    public function testWrongPassword()
+    public function testWrongPassword(): void
     {
         $this->expectException(CTAuthException::class);
         CTConfig::setApiUrl(TestData::getValue("API_URL"));
         CTConfig::authWithCredentials(TestData::getValue("AUTH_EMAIL"), "wrongPassword");
     }
 
-    public function testSuccessfulAuth()
+    public function testSuccessfulAuth(): void
     {
         CTConfig::setApiUrl(TestData::getValue("API_URL"));
         CTConfig::authWithCredentials(TestData::getValue("AUTH_EMAIL"), TestData::getValue("AUTH_PASSWORD"));
         $this->assertNotNull(PersonRequest::whoami());
     }
 
-    public function testWrongApiKey()
+    public function testWrongApiKey(): void
     {
         $this->expectException(CTAuthException::class);
         CTConfig::setApiUrl(TestData::getValue("API_URL"));

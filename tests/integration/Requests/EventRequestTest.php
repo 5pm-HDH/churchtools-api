@@ -22,7 +22,7 @@ class EventRequestTest extends TestCaseAuthenticated
     }
 
 
-    public function testGetAllEvents()
+    public function testGetAllEvents(): void
     {
         $allEvents = EventRequest::all();
 
@@ -30,7 +30,7 @@ class EventRequestTest extends TestCaseAuthenticated
         $this->assertInstanceOf(Event::class, $allEvents[0]);
     }
 
-    public function testGetWhereEvents()
+    public function testGetWhereEvents(): void
     {
         $fromDate = TestData::getValue("EVENT_START_DATE");
         $toDate = TestData::getValue("EVENT_END_DATE");
@@ -45,7 +45,7 @@ class EventRequestTest extends TestCaseAuthenticated
         $this->assertEquals(TestData::getValue("EVENT_FIRST_NAME"), $events[0]->getName());
     }
 
-    public function testFindOrFail()
+    public function testFindOrFail(): void
     {
         $eventId = TestData::getValue("EVENT_FIRST_ID");
 
@@ -61,7 +61,7 @@ class EventRequestTest extends TestCaseAuthenticated
         EventRequest::findOrFail(99999999);
     }
 
-    public function testOrderByEvents()
+    public function testOrderByEvents(): void
     {
         $eventOrderAscending = EventRequest::where('from', TestData::getValue("EVENT_START_DATE"))
             ->where('to', TestData::getValue("EVENT_END_DATE"))
@@ -92,7 +92,7 @@ class EventRequestTest extends TestCaseAuthenticated
         $this->assertEquals(end($startDateOfEvents), $eventOrderDescending2[0]->getStartDate());
     }
 
-    public function testEventServiceGroups()
+    public function testEventServiceGroups(): void
     {
         $eventId = TestData::getValue("EVENT_FIRST_ID");
 
@@ -119,7 +119,7 @@ class EventRequestTest extends TestCaseAuthenticated
         }
     }
 
-    public function testRequestEventServiceWithServiceId()
+    public function testRequestEventServiceWithServiceId(): void
     {
         $eventId = TestData::getValue("EVENT_FIRST_ID");
 

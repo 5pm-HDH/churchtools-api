@@ -40,7 +40,7 @@ class CacheProviderMock extends FilesystemCache
         return $this->saveTimes;
     }
 
-    public function resetCount()
+    public function resetCount(): void
     {
         $this->saveTimes = 0;
         $this->fetchTimes = 0;

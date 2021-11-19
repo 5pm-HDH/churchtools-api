@@ -8,7 +8,7 @@ use Tests\Unit\TestCaseHttpMocked;
 class EventRequestUnitTest extends TestCaseHttpMocked
 {
 
-    public function testGetAllEvents()
+    public function testGetAllEvents(): void
     {
         $allEvents = EventRequest::all();
 
@@ -16,7 +16,7 @@ class EventRequestUnitTest extends TestCaseHttpMocked
         $this->assertEquals(3, sizeof($allEvents));
     }
 
-    public function testGetEvent()
+    public function testGetEvent(): void
     {
         $event = EventRequest::find(21);
 

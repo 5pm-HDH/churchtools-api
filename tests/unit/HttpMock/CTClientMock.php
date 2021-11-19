@@ -43,7 +43,7 @@ class CTClientMock extends CTClient
         return CTResponse::createEmpty();
     }
 
-    public function resetState()
+    public function resetState(): void
     {
         CTLog::getLog()->debug("CTClientMock: Reset state of CTClientMock-Object");
         $this->clearAllRequestCalls();
@@ -61,12 +61,12 @@ class CTClientMock extends CTClient
         return $this->responses;
     }
 
-    public function clearResponses()
+    public function clearResponses(): void
     {
         $this->responses = [];
     }
 
-    public function assertOnlyCacheResponse()
+    public function assertOnlyCacheResponse(): void
     {
         $onlyCacheResponse = true;
 
@@ -78,7 +78,7 @@ class CTClientMock extends CTClient
         TestCase::assertTrue($onlyCacheResponse, "None-Cache Response found!");
     }
 
-    public function assertOnlyNoneCacheResponse()
+    public function assertOnlyNoneCacheResponse(): void
     {
         $onlyNoneCacheResponse = true;
 
@@ -91,7 +91,7 @@ class CTClientMock extends CTClient
     }
 
 
-    private function addMethodCall($method, $uri, $options)
+    private function addMethodCall($method, $uri, $options): void
     {
         array_push($this->requestCalls, [
             'method' => $method,
@@ -100,12 +100,12 @@ class CTClientMock extends CTClient
         ]);
     }
 
-    public function assertRequestCallExists(string $method, $uri = null)
+    public function assertRequestCallExists(string $method, $uri = null): void
     {
         TestCase::assertTrue(sizeof($this->filterAllRequests($method, $uri)) > 0, "No Requests send with Method " . $method . " and Uri " . $uri);
     }
 
-    public function assertRequestCallNotExists(string $method, $uri = null)
+    public function assertRequestCallNotExists(string $method, $uri = null): void
     {
         TestCase::assertTrue(sizeof($this->filterAllRequests($method, $uri)) == 0, "Requests found with Method " . $method . " and Uri " . $uri);
     }
@@ -126,7 +126,7 @@ class CTClientMock extends CTClient
         return $this->requestCalls;
     }
 
-    public function clearAllRequestCalls()
+    public function clearAllRequestCalls(): void
     {
         $this->requestCalls = [];
     }

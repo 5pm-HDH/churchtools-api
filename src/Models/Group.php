@@ -22,7 +22,7 @@ class Group
     protected array $roles = [];
 
 
-    protected function fillNonArrayType(string $key, $value)
+    protected function fillNonArrayType(string $key, $value): void
     {
         switch ($key) {
             case "title":
@@ -36,7 +36,7 @@ class Group
         }
     }
 
-    protected function fillArrayType(string $key, array $data)
+    protected function fillArrayType(string $key, array $data): void
     {
         switch ($key) {
             case "roles":

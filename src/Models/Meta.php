@@ -17,7 +17,7 @@ class Meta
     protected ?string $modifiedDate = null;
     protected ?Person $modifiedPerson = null;
 
-    protected function fillArrayType(string $key, array $data)
+    protected function fillArrayType(string $key, array $data): void
     {
         switch ($key) {
             case "createdPerson":

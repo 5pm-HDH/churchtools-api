@@ -14,7 +14,7 @@ use Tests\Integration\TestData;
 
 class PersonRequestTest extends TestCaseAuthenticated
 {
-    public function testWhoAmI()
+    public function testWhoAmI(): void
     {
         $person = PersonRequest::whoami();
 
@@ -22,7 +22,7 @@ class PersonRequestTest extends TestCaseAuthenticated
         $this->assertEquals(TestData::getValue('AUTH_FIRST_NAME'), $person->getFirstName());
     }
 
-    public function testFindOrFail()
+    public function testFindOrFail(): void
     {
         //we need auth to retrieve userId
         $auth = AuthRequest::authWithEmailAndPassword(
@@ -45,7 +45,7 @@ class PersonRequestTest extends TestCaseAuthenticated
         $this->assertTrue($exceptionThrown);
     }
 
-    public function testAll()
+    public function testAll(): void
     {
         $allPersons = PersonRequest::all();
 
@@ -53,14 +53,14 @@ class PersonRequestTest extends TestCaseAuthenticated
         $this->assertInstanceOf(Person::class, $allPersons[0]);
     }
 
-    public function testWhere()
+    public function testWhere(): void
     {
         $selectedPersons = PersonRequest::where('ids', [4463, 616, 474, 99999])->get();
 
         $this->assertTrue(sizeof($selectedPersons) <= 4);
     }
 
-    public function testOrderBy()
+    public function testOrderBy(): void
     {
         $personsAsc = PersonRequest::orderBy('firstName')->get();
         $personsDesc = PersonRequest::orderBy('firstName', false)->get();
@@ -80,7 +80,7 @@ class PersonRequestTest extends TestCaseAuthenticated
         $this->assertEquals(end($firstNames), $personsDesc2[0]->getFirstName());
     }
 
-    public function testRequestEvents()
+    public function testRequestEvents(): void
     {
         $person = PersonRequest::whoami();
 
@@ -92,7 +92,7 @@ class PersonRequestTest extends TestCaseAuthenticated
         }
     }
 
-    public function testRequestGroups()
+    public function testRequestGroups(): void
     {
         $person = PersonRequest::whoami();
 

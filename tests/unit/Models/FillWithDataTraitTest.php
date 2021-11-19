@@ -20,7 +20,7 @@ class FillWithDataTraitTest extends TestCase
         ['id' => 24, 'name' => "Joe", 'age' => 32],
     ];
 
-    public function testCreateFromDataContainer()
+    public function testCreateFromDataContainer(): void
     {
         $model = ModelMock::createModelFromData(self::DATA_CONTAINER);
         $this->assertDataContainerIsValid($model);
@@ -30,12 +30,12 @@ class FillWithDataTraitTest extends TestCase
         $this->assertDataContainerIsValid($arrayWithModels[0]);
     }
 
-    private function assertDataContainerIsValid(ModelMock $model)
+    private function assertDataContainerIsValid(ModelMock $model): void
     {
         $this->assertModelEqualsData($model, self::DATA_CONTAINER);
     }
 
-    private function assertModelEqualsData(ModelMock $model, array $container)
+    private function assertModelEqualsData(ModelMock $model, array $container): void
     {
         $this->assertEquals($model->id, $container['id']);
         $this->assertEquals($model->name, $container['name']);
@@ -46,7 +46,7 @@ class FillWithDataTraitTest extends TestCase
         $this->assertEquals($model->age, $container['age']);
     }
 
-    public function testCreateFromDataList()
+    public function testCreateFromDataList(): void
     {
         $modelArray = ModelMock::createModelsFromArray(self::DATA_LIST);
         $this->assertDataListIsValid($modelArray);
@@ -55,7 +55,7 @@ class FillWithDataTraitTest extends TestCase
         $this->assertModelEqualsData($firstModel, self::DATA_LIST[0]);
     }
 
-    private function assertDataListIsValid(array $modelArray)
+    private function assertDataListIsValid(array $modelArray): void
     {
         $this->assertModelEqualsData($modelArray[0], self::DATA_LIST[0]);
         $this->assertModelEqualsData($modelArray[1], self::DATA_LIST[1]);

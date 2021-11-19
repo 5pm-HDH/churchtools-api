@@ -36,7 +36,7 @@ class WikiTreeTest extends TestCase
     }
 
 
-    public function testCreateTree()
+    public function testCreateTree(): void
     {
         $rootPageNode = WikiPageTreeNode::processWikiPagesReturnRootNode($this->pages);
 
@@ -51,13 +51,13 @@ class WikiTreeTest extends TestCase
         $this->assertEquals($rootPageNode, $rootPageFromLink);
     }
 
-    public function testFailedTree()
+    public function testFailedTree(): void
     {
         $this->expectException(CTModelException::class);
         $rootPageNode = WikiPageTreeNode::processWikiPagesReturnRootNode([]);
     }
 
-    public function testOrderChildNodesLikeAppearanceOfTextString()
+    public function testOrderChildNodesLikeAppearanceOfTextString(): void
     {
         $rootPageNode = WikiPageTreeNode::processWikiPagesReturnRootNode($this->pages);
 
@@ -66,7 +66,7 @@ class WikiTreeTest extends TestCase
         $this->assertEquals("grape", $rootPageNode?->getChildNodes()[0]->getChildNodes()[2]->getWikiPage()->getTitle());
     }
 
-    public function testSpecialUmlauteSupport()
+    public function testSpecialUmlauteSupport(): void
     {
         $rootPage = (new WikiPage())->setTitle("main")->setText("# Main-Page\n [[Einf&uuml;hrung]]");
         $subPage = (new WikiPage())->setTitle("Einführung")->setText("Test Sub-Page with content einf&uuml;hrung");

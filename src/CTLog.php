@@ -29,7 +29,7 @@ class CTLog
         return new Logger('CTLogger');
     }
 
-    private static function createLog()
+    private static function createLog(): void
     {
         self::$logger = new Logger('CTApi');
 
@@ -41,25 +41,25 @@ class CTLog
         }
     }
 
-    public static function enableFileLog($enabled = true)
+    public static function enableFileLog($enabled = true): void
     {
         self::$fileLogEnabled = $enabled;
         self::createLog();
     }
 
-    public static function enableConsoleLog($enabled = true)
+    public static function enableConsoleLog($enabled = true): void
     {
         self::$consoleLogEnabled = $enabled;
         self::createLog();
     }
 
-    public static function setConsoleLogLevelError()
+    public static function setConsoleLogLevelError(): void
     {
         self::$consoleLogLevel = Logger::ERROR;
         self::createLog();
     }
 
-    public static function setConsoleLogLevelDebug()
+    public static function setConsoleLogLevelDebug(): void
     {
         self::$consoleLogLevel = Logger::DEBUG;
         self::createLog();

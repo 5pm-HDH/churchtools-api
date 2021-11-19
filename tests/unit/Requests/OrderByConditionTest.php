@@ -42,7 +42,7 @@ class OrderByConditionTest extends TestCase
         $this->exampleRequestBuilder = new RequestBuilder();
     }
 
-    public function testNumericSort()
+    public function testNumericSort(): void
     {
         $this->exampleRequestBuilder->orderBy('id');
 
@@ -56,7 +56,7 @@ class OrderByConditionTest extends TestCase
         $this->assertEquals(50, $this->data[0]['id']);
     }
 
-    public function testStringSort()
+    public function testStringSort(): void
     {
         $this->exampleRequestBuilder->orderBy('name');
 
@@ -70,7 +70,7 @@ class OrderByConditionTest extends TestCase
         $this->assertEquals("Xaver", $this->data[0]['name']);
     }
 
-    public function testTwoStepSearch()
+    public function testTwoStepSearch(): void
     {
         //First sort id --> then Sort Name
         $this->exampleRequestBuilder->orderBy('id')->orderBy('name');
@@ -93,7 +93,7 @@ class OrderByConditionTest extends TestCase
 
     }
 
-    public function testInvalidSort()
+    public function testInvalidSort(): void
     {
         $this->exampleRequestBuilder->orderBy('id', false);
         $this->exampleRequestBuilder->orderMyData($this->criticData);
@@ -101,14 +101,14 @@ class OrderByConditionTest extends TestCase
         $this->assertEquals(5, $this->criticData[0]['id']);
     }
 
-    public function testInconsistentKeys()
+    public function testInconsistentKeys(): void
     {
         $this->exampleRequestBuilder->orderBy('id');
         $this->expectException(CTRequestException::class);
         $this->exampleRequestBuilder->orderMyData($this->inconsistentKeys);
     }
 
-    public function testInvalidKey()
+    public function testInvalidKey(): void
     {
         $this->exampleRequestBuilder->orderBy('invalidKeyBecauseItDoesNotExist');
         $this->expectException(CTRequestException::class);
@@ -121,7 +121,7 @@ class RequestBuilder
 {
     use OrderByCondition;
 
-    public function orderMyData(&$data)
+    public function orderMyData(&$data): void
     {
         $this->orderRawData($data);
     }

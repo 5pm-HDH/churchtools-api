@@ -24,7 +24,7 @@ class WikiPage
     protected ?string $isMarkdown = null;
     protected ?string $text = null;
 
-    protected function fillArrayType(string $key, array $data)
+    protected function fillArrayType(string $key, array $data): void
     {
         switch ($key) {
             case "wikiCategory":
@@ -43,7 +43,7 @@ class WikiPage
         }
     }
 
-    protected function fillNonArrayType(string $key, $value)
+    protected function fillNonArrayType(string $key, $value): void
     {
         switch ($key) {
             case "permissions":

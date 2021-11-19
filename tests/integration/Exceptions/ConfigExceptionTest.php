@@ -13,14 +13,14 @@ class ConfigExceptionTest extends TestCase
         CTConfig::clearConfig();
     }
 
-    public function testApiUrlEmpty()
+    public function testApiUrlEmpty(): void
     {
         $this->expectException(CTConfigException::class);
         // CTConfig: API-Url is not set
         PersonRequest::whoami();
     }
 
-    public function testApiUrlEmptyValidate()
+    public function testApiUrlEmptyValidate(): void
     {
         $this->expectException(CTConfigException::class);
         // CTConfig: API-Url is not set

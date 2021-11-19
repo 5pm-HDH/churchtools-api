@@ -27,7 +27,7 @@ class GroupRequestTest extends TestCaseAuthenticated
         }
     }
 
-    public function testGetAllGroups()
+    public function testGetAllGroups(): void
     {
         $allGroups = GroupRequest::all();
 
@@ -42,7 +42,7 @@ class GroupRequestTest extends TestCaseAuthenticated
         $this->assertTrue($foundMyGroup);
     }
 
-    public function testGetGroup()
+    public function testGetGroup(): void
     {
         $myGroup = GroupRequest::find((int)$this->groupId);
         $this->assertNotNull($myGroup);
@@ -59,7 +59,7 @@ class GroupRequestTest extends TestCaseAuthenticated
         $this->assertInstanceOf(GroupSettings::class, $myGroup->getSettings());
     }
 
-    public function testCreateEmptyGroup()
+    public function testCreateEmptyGroup(): void
     {
         $myGroup = Group::createModelFromData([]);
         $this->assertInstanceOf(Group::class, $myGroup);

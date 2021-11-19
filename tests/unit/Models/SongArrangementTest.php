@@ -34,7 +34,7 @@ class SongArrangementTest extends TestCase
 
     }
 
-    public function testGetFirstFile()
+    public function testGetFirstFile(): void
     {
         $firstFile = $this->EMPTY_ARRANGEMENT->requestFirstFile("test");
 
@@ -62,7 +62,7 @@ class SongArrangementTest extends TestCase
         $this->assertEquals("chordsheet-1.pdf", $caseMismatch->getName());
     }
 
-    public function testGetFirstLink()
+    public function testGetFirstLink(): void
     {
         $firstLink = $this->EMPTY_ARRANGEMENT->requestFirstLink("test");
 

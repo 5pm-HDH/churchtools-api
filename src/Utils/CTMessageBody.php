@@ -50,11 +50,17 @@ class CTMessageBody implements StreamInterface
         return true;
     }
 
+    /**
+     * @return void
+     */
     public function seek($offset, $whence = SEEK_SET)
     {
         // TODO: Implement seek() method.
     }
 
+    /**
+     * @return void
+     */
     public function rewind()
     {
         // TODO: Implement rewind() method.

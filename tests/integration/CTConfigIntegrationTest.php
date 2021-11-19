@@ -14,7 +14,7 @@ class CTConfigIntegrationTest extends TestCase
         CTConfig::clearConfig();
     }
 
-    public function testAuthWithCredentialsSuccessfully()
+    public function testAuthWithCredentialsSuccessfully(): void
     {
         $this->assertNull(CTConfig::getApiKey());
 
@@ -31,7 +31,7 @@ class CTConfigIntegrationTest extends TestCase
 
     }
 
-    public function testAuthWithCredentialsFailing()
+    public function testAuthWithCredentialsFailing(): void
     {
         $this->assertNull(CTConfig::getApiKey());
 
@@ -52,7 +52,7 @@ class CTConfigIntegrationTest extends TestCase
 
     }
 
-    public function testValidateApiKey()
+    public function testValidateApiKey(): void
     {
 
         $authEmail = TestData::getValue("AUTH_EMAIL");

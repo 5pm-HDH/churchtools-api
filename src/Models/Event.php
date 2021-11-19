@@ -23,7 +23,7 @@ class Event
     protected ?EventAgenda $agenda = null;
     protected ?array $eventServices = [];
 
-    protected function fillArrayType(string $key, array $data)
+    protected function fillArrayType(string $key, array $data): void
     {
         switch ($key) {
             case "agenda":

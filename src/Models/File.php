@@ -25,7 +25,7 @@ class File
     protected ?string $filename = null;
     protected ?string $fileUrl = null;
 
-    protected function fillArrayType(string $key, array $data)
+    protected function fillArrayType(string $key, array $data): void
     {
         switch ($key) {
             case "meta":
