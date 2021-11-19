@@ -35,6 +35,13 @@ echo "-".$page->getIsMarkdown();
 echo "-".$page->getText();
 echo "-".$page->requestText();
 
+foreach($page->requestFiles()->get() as $file){
+    echo "> ".$file->getName();
+    echo "> ".$file->downloadToClient();
+    // ...
+    // More methods in SongAPI.md in section File-Model
+}
+
 $pageVersions = $page->requestVersions()->get();
 $firstPageVersion = $page->requestVersion(1);
 
