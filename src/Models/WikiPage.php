@@ -6,6 +6,7 @@ namespace CTApi\Models;
 
 use CTApi\Models\Traits\FillWithData;
 use CTApi\Models\Traits\MetaAttribute;
+use CTApi\Requests\WikiPageFilesRequestBuilder;
 use CTApi\Requests\WikiPageRequestBuilder;
 use CTApi\Requests\WikiPageVersionRequestBuilder;
 
@@ -81,6 +82,16 @@ class WikiPage
             $this->setText($page->getText());
         }
         return $this;
+    }
+
+    public function requestFiles(): ?WikiPageFilesRequestBuilder
+    {
+        $requestedWikiCategory = $this->getWikiCategory()?->getId();
+        $requestedIdentifier = $this->getIdentifier();
+        if (!is_null($requestedWikiCategory) && !is_null($requestedIdentifier)) {
+            return (new WikiPageFilesRequestBuilder($requestedWikiCategory, $requestedIdentifier));
+        }
+        return null;
     }
 
     /**

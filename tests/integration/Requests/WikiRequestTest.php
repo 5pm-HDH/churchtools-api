@@ -2,6 +2,8 @@
 
 namespace Tests\Integration\Requests;
 
+use CTApi\CTConfig;
+use CTApi\Models\File;
 use CTApi\Models\WikiCategory;
 use CTApi\Models\WikiPage;
 use CTApi\Requests\WikiCategoryRequest;
@@ -17,6 +19,7 @@ class WikiRequestTest extends TestCaseAuthenticated
     private string $PAGE_IDENTIFIER = "";
     private string $PAGE_TITLE = "";
     private string $SEARCH_QUERY = "";
+    private bool $PAGE_HAS_FILES = false;
 
     protected function setUp(): void
     {
@@ -29,6 +32,7 @@ class WikiRequestTest extends TestCaseAuthenticated
         $this->PAGE_IDENTIFIER = TestData::getValue("WIKI_PAGE_IDENTIFIER") ?? "";
         $this->PAGE_TITLE = TestData::getValue("WIKI_PAGE_TITLE") ?? "";
         $this->SEARCH_QUERY = TestData::getValue("WIKI_SEARCH_QUERY") ?? "";
+        $this->PAGE_HAS_FILES = (bool) TestData::getValue("WIKI_PAGE_HAS_FILES") ?? false;
     }
 
     public function testWikiCategories()
@@ -90,6 +94,26 @@ class WikiRequestTest extends TestCaseAuthenticated
 
         $this->assertInstanceOf(WikiPage::class, $page);
         $this->assertNotNull($page->getText());
+    }
+
+    public function testRequestWikiPageFiles()
+    {
+        if(!$this->PAGE_HAS_FILES){
+            $this->markTestSkipped('Wiki Page has no files. The Test is skipped.');
+        }
+
+        $category = WikiCategoryRequest::find($this->CATEGORY_ID);
+        $page = $category->requestPage($this->PAGE_IDENTIFIER);
+
+        $files = $page->requestFiles()->get();
+
+        $this->assertTrue(is_array($files));
+        $this->assertTrue(sizeof($files) > 0, "There should be files.");
+
+        foreach($files as $file){
+            $this->assertNotNull($file);
+            $this->assertInstanceOf(File::class, $file);
+        }
     }
 
     public function testRequestWikiPageFailed()
