@@ -70,7 +70,7 @@ class Song
             return null;
         }
 
-        $song = SongRequest::find($songId);
+        $song = SongRequest::find((int)$songId);
 
         if (is_null($song)) {
             return null;

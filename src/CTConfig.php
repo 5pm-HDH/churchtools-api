@@ -100,14 +100,14 @@ class CTConfig
 
     public static function validateApiKey(): bool
     {
-        try{
+        try {
             $ctUser = PersonRequest::whoami();
             if ($ctUser->getId() == -1 || $ctUser->getId() == null) {
                 return false;
             } else {
                 return true;
             }
-        }catch(\Exception $exception){
+        } catch (\Exception $exception) {
             return false;
         }
     }

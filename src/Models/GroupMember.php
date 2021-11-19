@@ -36,7 +36,7 @@ class GroupMember
     public function requestPerson(): ?Person
     {
         if ($this->getPersonId() != null) {
-            return PersonRequest::find($this->getPersonId());
+            return PersonRequest::find((int)$this->getPersonId());
         } else {
             return null;
         }

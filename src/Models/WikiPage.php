@@ -34,9 +34,7 @@ class WikiPage
                 $this->setMeta(Meta::createModelFromData($data));
                 break;
             case "permissions":
-                if (is_array($data)) {
-                    $this->setPermissions($data);
-                }
+                $this->setPermissions($data);
                 break;
             default:
                 $this->{$key} = $data;

@@ -4,13 +4,7 @@
 namespace CTApi\Requests;
 
 
-use CTApi\CTClient;
-use CTApi\CTLog;
-use CTApi\Exceptions\CTRequestException;
 use CTApi\Models\Service;
-use CTApi\Requests\Traits\Pagination;
-use CTApi\Utils\CTResponseUtil;
-use GuzzleHttp\Exception\GuzzleException;
 
 class ServiceRequestBuilder extends AbstractRequestBuilder
 {

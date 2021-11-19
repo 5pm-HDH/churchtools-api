@@ -4,11 +4,9 @@
 namespace CTApi\Requests;
 
 
-use CTApi\Models\Group;
 use CTApi\Models\PersonGroup;
 use CTApi\Requests\Traits\OrderByCondition;
 use CTApi\Requests\Traits\Pagination;
-use CTApi\Requests\Traits\WhereCondition;
 
 class PersonGroupRequestBuilder
 {

@@ -2,7 +2,6 @@
 
 namespace Tests\Integration\Requests;
 
-use CTApi\CTConfig;
 use CTApi\Models\File;
 use CTApi\Models\WikiCategory;
 use CTApi\Models\WikiPage;
@@ -14,7 +13,7 @@ use Tests\Integration\TestData;
 class WikiRequestTest extends TestCaseAuthenticated
 {
 
-    private string $CATEGORY_ID = "";
+    private int $CATEGORY_ID = 0;
     private string $CATEGORY_NAME = "";
     private string $PAGE_IDENTIFIER = "";
     private string $PAGE_TITLE = "";
@@ -27,12 +26,12 @@ class WikiRequestTest extends TestCaseAuthenticated
             $this->markTestSkipped("Test suite is disabled in testdata.ini");
         }
 
-        $this->CATEGORY_ID = TestData::getValue("WIKI_CATEGORY_ID") ?? "";
+        $this->CATEGORY_ID = (int)TestData::getValue("WIKI_CATEGORY_ID");
         $this->CATEGORY_NAME = TestData::getValue("WIKI_CATEGORY_NAME") ?? "";
         $this->PAGE_IDENTIFIER = TestData::getValue("WIKI_PAGE_IDENTIFIER") ?? "";
         $this->PAGE_TITLE = TestData::getValue("WIKI_PAGE_TITLE") ?? "";
         $this->SEARCH_QUERY = TestData::getValue("WIKI_SEARCH_QUERY") ?? "";
-        $this->PAGE_HAS_FILES = (bool) TestData::getValue("WIKI_PAGE_HAS_FILES") ?? false;
+        $this->PAGE_HAS_FILES = (bool)TestData::getValue("WIKI_PAGE_HAS_FILES");
     }
 
     public function testWikiCategories(): void
@@ -81,9 +80,8 @@ class WikiRequestTest extends TestCaseAuthenticated
 
     public function testRequestWikiPagesFailed(): void
     {
-        $category = (new WikiCategory())->setId(-291);
+        $category = (new WikiCategory())->setId("-291");
         $pages = $category->requestPages()->get();
-        $this->assertIsArray($pages);
         $this->assertEquals(0, sizeof($pages));
     }
 
@@ -98,7 +96,7 @@ class WikiRequestTest extends TestCaseAuthenticated
 
     public function testRequestWikiPageFiles(): void
     {
-        if(!$this->PAGE_HAS_FILES){
+        if (!$this->PAGE_HAS_FILES) {
             $this->markTestSkipped('Wiki Page has no files. The Test is skipped.');
         }
 
@@ -107,10 +105,9 @@ class WikiRequestTest extends TestCaseAuthenticated
 
         $files = $page->requestFiles()->get();
 
-        $this->assertTrue(is_array($files));
         $this->assertTrue(sizeof($files) > 0, "There should be files.");
 
-        foreach($files as $file){
+        foreach ($files as $file) {
             $this->assertNotNull($file);
             $this->assertInstanceOf(File::class, $file);
         }
@@ -131,7 +128,6 @@ class WikiRequestTest extends TestCaseAuthenticated
 
         $versions = $page->requestVersions()->get();
 
-        $this->assertNotNull($versions);
         foreach ($versions as $page) {
             $this->assertInstanceOf(WikiPage::class, $page);
         }
@@ -151,8 +147,6 @@ class WikiRequestTest extends TestCaseAuthenticated
         $page = $category->requestPage($this->PAGE_IDENTIFIER);
 
         $versions = $page->requestVersions()->get();
-
-        $this->assertNotNull($versions);
 
         $failedVersion = $page->requestVersion(-2913);
         $this->assertNull($failedVersion);

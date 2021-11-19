@@ -26,7 +26,6 @@ class FillWithDataTraitTest extends TestCase
         $this->assertDataContainerIsValid($model);
 
         $arrayWithModels = ModelMock::createModelsFromArray(self::DATA_CONTAINER);
-        $this->assertIsArray($arrayWithModels);
         $this->assertDataContainerIsValid($arrayWithModels[0]);
     }
 

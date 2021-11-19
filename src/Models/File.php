@@ -36,7 +36,7 @@ class File
 
     public function downloadToPath($path): bool
     {
-        return (bool) file_put_contents($path . '/' . $this->name, $this->requestFileContent());
+        return (bool)file_put_contents($path . '/' . $this->name, $this->requestFileContent());
     }
 
     public function downloadToClient(): void
@@ -54,7 +54,7 @@ class File
                 ],
                 'query' => $this->getFileUrlQueryParameters()
             ]);
-            return $response->getBody();
+            return (string)$response->getBody();
         } catch (GuzzleException $e) {
             CTLog::getLog()->error('File: Could not retrieve file-content.');
             //ignore

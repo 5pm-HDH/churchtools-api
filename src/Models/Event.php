@@ -43,7 +43,7 @@ class Event
 
     public function requestAgenda(): EventAgenda
     {
-        return (new EventAgendaRequestBuilder($this->getId()))->get();
+        return (new EventAgendaRequestBuilder((int)$this->getId()))->get();
     }
 
     public function requestEventServiceWithServiceId(int $serviceId): ?EventService

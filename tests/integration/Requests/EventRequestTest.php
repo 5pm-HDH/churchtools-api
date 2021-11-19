@@ -47,7 +47,7 @@ class EventRequestTest extends TestCaseAuthenticated
 
     public function testFindOrFail(): void
     {
-        $eventId = TestData::getValue("EVENT_FIRST_ID");
+        $eventId = (int)TestData::getValue("EVENT_FIRST_ID");
 
         $event = EventRequest::find($eventId);
         $eventTwo = EventRequest::findOrFail($eventId);
@@ -94,7 +94,7 @@ class EventRequestTest extends TestCaseAuthenticated
 
     public function testEventServiceGroups(): void
     {
-        $eventId = TestData::getValue("EVENT_FIRST_ID");
+        $eventId = (int)TestData::getValue("EVENT_FIRST_ID");
 
         $event = EventRequest::find($eventId);
 
@@ -121,7 +121,7 @@ class EventRequestTest extends TestCaseAuthenticated
 
     public function testRequestEventServiceWithServiceId(): void
     {
-        $eventId = TestData::getValue("EVENT_FIRST_ID");
+        $eventId = (int)TestData::getValue("EVENT_FIRST_ID");
 
         $event = EventRequest::find($eventId);
 

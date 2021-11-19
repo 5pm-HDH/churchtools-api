@@ -70,7 +70,7 @@ class WikiPageTreeNode
         for ($i = 0; $i < $level; $i++) {
             $tabString .= "\t";
         }
-        echo $tabString . '- ' . $wikiPageTreeNode?->getWikiPage()?->getTitle() . "\n";
+        echo $tabString . '- ' . $wikiPageTreeNode->getWikiPage()?->getTitle() . "\n";
 
         foreach ($wikiPageTreeNode->getChildNodes() as $node) {
             self::printWikiPageTreeNode($node, $level + 1);

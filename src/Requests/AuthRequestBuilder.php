@@ -37,13 +37,13 @@ class AuthRequestBuilder
         }
 
         if ($response->getStatusCode() == 200) {
-            $jsonResponse = json_decode($response->getBody());
+            $jsonResponse = json_decode($response->getBody()->__toString());
 
             $this->userId = (isset($jsonResponse->data) ? $jsonResponse->data->personId : null);
 
             $this->retrieveLoginToken();
         } else {
-            $jsonResponse = json_decode($response->getBody());
+            $jsonResponse = json_decode($response->getBody()->__toString());
             if (isset($jsonResponse->message)) {
                 throw new CTAuthException("Authentication was not successfully: " . $jsonResponse->message);
             } else {
@@ -78,7 +78,7 @@ class AuthRequestBuilder
             );
         }
 
-        $responseJson = json_decode($response->getBody());
+        $responseJson = json_decode($response->getBody()->__toString());
         $this->apiKey = (isset($responseJson->data) ? $responseJson->data : null);
     }
 

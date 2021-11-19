@@ -72,7 +72,7 @@ class EventService
     public function requestPerson(): ?Person
     {
         if (!is_null($this->getPersonId())) {
-            return PersonRequest::find($this->getPersonId());
+            return PersonRequest::find((int)$this->getPersonId());
         }
         return null;
     }
@@ -80,7 +80,7 @@ class EventService
     public function requestRequesterPerson(): ?Person
     {
         if (!is_null($this->getRequesterPersonId())) {
-            return PersonRequest::find($this->getRequesterPersonId());
+            return PersonRequest::find((int)$this->getRequesterPersonId());
         }
         return null;
     }
@@ -88,7 +88,7 @@ class EventService
     public function requestService(): ?Service
     {
         if (!is_null($this->getServiceId())) {
-            return ServiceRequest::find($this->getServiceId());
+            return ServiceRequest::find((int)$this->getServiceId());
         }
         return null;
     }

@@ -41,7 +41,6 @@ class CTUtil
      * @param array $array
      * @param string $path
      * @param $value
-
      * Sets the value in a array path.
      */
     public static function arrayPathSet(array &$array, string $path, $value): void

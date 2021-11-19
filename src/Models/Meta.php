@@ -77,7 +77,7 @@ class Meta
     private function requestPerson(?string $id): ?Person
     {
         if (!is_null($id)) {
-            return PersonRequest::find($id);
+            return PersonRequest::find((int)$id);
         }
         return null;
     }

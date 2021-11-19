@@ -12,7 +12,6 @@ class EventRequestUnitTest extends TestCaseHttpMocked
     {
         $allEvents = EventRequest::all();
 
-        $this->assertIsArray($allEvents);
         $this->assertEquals(3, sizeof($allEvents));
     }
 

@@ -61,9 +61,9 @@ class WikiTreeTest extends TestCase
     {
         $rootPageNode = WikiPageTreeNode::processWikiPagesReturnRootNode($this->pages);
 
-        $this->assertEquals("banana", $rootPageNode?->getChildNodes()[0]->getChildNodes()[0]->getWikiPage()->getTitle());
-        $this->assertEquals("apple", $rootPageNode?->getChildNodes()[0]->getChildNodes()[1]->getWikiPage()->getTitle());
-        $this->assertEquals("grape", $rootPageNode?->getChildNodes()[0]->getChildNodes()[2]->getWikiPage()->getTitle());
+        $this->assertEquals("banana", $rootPageNode->getChildNodes()[0]->getChildNodes()[0]->getWikiPage()->getTitle());
+        $this->assertEquals("apple", $rootPageNode->getChildNodes()[0]->getChildNodes()[1]->getWikiPage()->getTitle());
+        $this->assertEquals("grape", $rootPageNode->getChildNodes()[0]->getChildNodes()[2]->getWikiPage()->getTitle());
     }
 
     public function testSpecialUmlauteSupport(): void
@@ -73,7 +73,6 @@ class WikiTreeTest extends TestCase
 
         $rootPageNode = WikiPageTreeNode::processWikiPagesReturnRootNode([$rootPage, $subPage]);
 
-        $this->assertNotNull($rootPageNode);
         $this->assertEquals(1, sizeof($rootPageNode->getChildNodes()));
         $this->assertEquals($subPage, $rootPageNode->getChildNodes()[0]->getWikiPage());
     }

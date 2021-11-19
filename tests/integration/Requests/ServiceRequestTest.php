@@ -2,7 +2,6 @@
 
 namespace Tests\Integration\Requests;
 
-use CTApi\Exceptions\CTModelException;
 use CTApi\Exceptions\CTRequestException;
 use CTApi\Models\Service;
 use CTApi\Models\ServiceGroup;
@@ -23,7 +22,7 @@ class ServiceRequestTest extends TestCaseAuthenticated
 
     public function testFindService(): void
     {
-        $serviceId = TestData::getValue("SERVICE_ID");
+        $serviceId = (int)TestData::getValue("SERVICE_ID");
         $serviceName = TestData::getValue("SERVICE_NAME");
 
         $service = ServiceRequest::find($serviceId);
@@ -50,12 +49,11 @@ class ServiceRequestTest extends TestCaseAuthenticated
 
     public function testServiceRequestServiceGroup(): void
     {
-        $serviceId = TestData::getValue("SERVICE_ID");
-        $serviceGroupId = TestData::getValue("SERVICE_GROUP_ID");
+        $serviceId = (int)TestData::getValue("SERVICE_ID");
+        $serviceGroupId = (int)TestData::getValue("SERVICE_GROUP_ID");
         $serviceGroupName = TestData::getValue("SERVICE_GROUP_NAME");
 
         $service = ServiceRequest::findOrFail($serviceId);
-        $this->assertNotNull($service);
 
         $serviceGroup = $service->requestServiceGroup();
 
@@ -70,7 +68,7 @@ class ServiceRequestTest extends TestCaseAuthenticated
 
     public function testFindServiceGroup(): void
     {
-        $serviceGroupId = TestData::getValue("SERVICE_GROUP_ID");
+        $serviceGroupId = (int)TestData::getValue("SERVICE_GROUP_ID");
         $serviceGroupName = TestData::getValue("SERVICE_GROUP_NAME");
 
         $serviceGroup = ServiceGroupRequest::find($serviceGroupId);
@@ -97,8 +95,8 @@ class ServiceRequestTest extends TestCaseAuthenticated
 
     public function testRequestServicesFromServiceGroup(): void
     {
-        $serviceGroupId = TestData::getValue("SERVICE_GROUP_ID");
-        $serviceId = TestData::getValue("SERVICE_ID");
+        $serviceGroupId = (int)TestData::getValue("SERVICE_GROUP_ID");
+        $serviceId = (int)TestData::getValue("SERVICE_ID");
         $serviceName = TestData::getValue("SERVICE_NAME");
 
         $serviceGroup = ServiceGroupRequest::findOrFail($serviceGroupId);

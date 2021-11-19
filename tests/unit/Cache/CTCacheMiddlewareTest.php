@@ -10,7 +10,6 @@ use CTApi\Utils\CTMessageBody;
 use CTApi\Utils\CTRequest;
 use CTApi\Utils\CTResponse;
 use CTApi\Utils\CTResponseUtil;
-use Doctrine\Common\Cache\CacheProvider;
 use GuzzleHttp\Promise\Promise;
 use GuzzleHttp\Psr7\Uri;
 use PHPUnit\Framework\TestCase;

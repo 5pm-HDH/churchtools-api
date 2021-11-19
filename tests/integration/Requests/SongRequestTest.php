@@ -11,9 +11,9 @@ use Tests\Integration\TestData;
 
 class SongRequestTest extends TestCaseAuthenticated
 {
-    private string $SONG_ID = "";
+    private int $SONG_ID = 0;
     private string $SONG_NAME = "";
-    private string $SONG_ARRANGEMENT_ID = "";
+    private int $SONG_ARRANGEMENT_ID = 0;
     private string $SONG_ARRANGEMENT_NAME = "";
 
     protected function setUp(): void
@@ -22,9 +22,9 @@ class SongRequestTest extends TestCaseAuthenticated
             $this->markTestSkipped("Test suite is disabled in testdata.ini");
         }
 
-        $this->SONG_ID = TestData::getValue("SONG_ID") ?? "";
+        $this->SONG_ID = (int)TestData::getValue("SONG_ID");
         $this->SONG_NAME = TestData::getValue("SONG_NAME") ?? "";
-        $this->SONG_ARRANGEMENT_ID = TestData::getValue("SONG_ARRANGEMENT_ID") ?? "";
+        $this->SONG_ARRANGEMENT_ID = (int)TestData::getValue("SONG_ARRANGEMENT_ID");
         $this->SONG_ARRANGEMENT_NAME = TestData::getValue("SONG_ARRANGEMENT_NAME") ?? "";
 
     }
@@ -102,7 +102,6 @@ class SongRequestTest extends TestCaseAuthenticated
     private function getSong(): Song
     {
         $song = SongRequest::findOrFail($this->SONG_ID);
-        $this->assertNotNull($song);
         $this->selectTestArrangementInSong($song);
         return $song;
     }

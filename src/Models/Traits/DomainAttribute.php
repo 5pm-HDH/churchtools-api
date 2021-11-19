@@ -4,16 +4,14 @@
 namespace CTApi\Models\Traits;
 
 
-use CTApi\Models\Meta;
-
 trait DomainAttribute
 {
-    protected ?String $title = null;
-    protected ?String $domainType = null;
-    protected ?String $domainIdentifier = null;
-    protected ?String $apiUrl = null;
-    protected ?String $frontendUrl = null;
-    protected ?String $imageUrl = null;
+    protected ?string $title = null;
+    protected ?string $domainType = null;
+    protected ?string $domainIdentifier = null;
+    protected ?string $apiUrl = null;
+    protected ?string $frontendUrl = null;
+    protected ?string $imageUrl = null;
     protected array $domainAttributes = [];
 
     /**

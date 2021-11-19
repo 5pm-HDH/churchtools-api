@@ -31,7 +31,6 @@ class GroupRequestTest extends TestCaseAuthenticated
     {
         $allGroups = GroupRequest::all();
 
-        $this->assertIsArray($allGroups);
         $foundMyGroup = false;
         foreach ($allGroups as $group) {
             $this->assertInstanceOf(Group::class, $group);

@@ -33,7 +33,7 @@ class WikiCategory
     public function requestPages(): ?WikiPageRequestBuilder
     {
         if (!is_null($this->getId())) {
-            return new WikiPageRequestBuilder($this->getId());
+            return new WikiPageRequestBuilder((int)$this->getId());
         } else {
             return null;
         }

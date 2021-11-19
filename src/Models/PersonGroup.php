@@ -30,7 +30,7 @@ class PersonGroup
     {
         $id = $this->getGroup()?->getId();
         if ($id != null) {
-            return GroupRequest::find($id);
+            return GroupRequest::find((int)$id);
         } else {
             return null;
         }
