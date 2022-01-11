@@ -3,6 +3,8 @@
 use CTApi\CTClient;
 use CTApi\CTConfig;
 use Tests\Unit\HttpMock\CTClientMock;
+use CTApi\Exceptions\CTAuthException;
+use CTApi\Exceptions\CTRequestException;
 
 require_once __DIR__ . "/../../vendor/autoload.php";
 
@@ -11,7 +13,11 @@ DocGenerator::generateDocs();
 
 function dd(mixed $value)
 {
-    array_push(DocGenerator::$ddBuffer, $value);
+    if(is_array($value)){
+        array_push(DocGenerator::$ddBuffer, json_encode($value));
+    }else{
+        array_push(DocGenerator::$ddBuffer, strval($value));
+    }
 }
 
 class DocGenerator
@@ -101,7 +107,7 @@ class DocGenerator
 
         try{
             eval($phpCode);
-        }catch (\CTApi\Exceptions\CTAuthException $exception){
+        }catch (CTAuthException|CTRequestException $exception){
             // ignore
         }catch (Exception $exception){
             //

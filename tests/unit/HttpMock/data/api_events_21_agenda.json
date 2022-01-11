@@ -1,6 +1,32 @@
 {
   "data": {
-    "id": 21,
-    "name": "Event Agenda"
+    "id": 291,
+    "name": "Sunday Service Agenda",
+    "series": "Series Number",
+    "isFinal": false,
+    "eventStartPosition": 2,
+    "calendarId": 2911,
+    "items": [
+      {
+        "id": 2911,
+        "title": "Opening Song",
+        "type": "Song"
+      },
+      {
+        "id": 2912,
+        "title": "First Worship Song",
+        "type": "Song",
+        "song": {
+          "id": 21,
+          "name": "We welcome you",
+          "arrangementId": "221"
+        }
+      },
+      {
+        "id": 2913,
+        "title": "Sermon",
+        "type": "Default"
+      }
+    ]
   }
 }

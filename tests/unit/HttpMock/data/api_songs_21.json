@@ -1,0 +1,13 @@
+{
+  "data": {
+    "id": 21,
+    "name": "We welcome you",
+    "arrangements": [
+      {
+        "id": 221,
+        "name": "In A-Dur",
+        "keyOfArrangement": "A"
+      }
+    ]
+  }
+}

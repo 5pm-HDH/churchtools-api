@@ -68,7 +68,7 @@ $event = \CTApi\Models\Event::createModelFromData(['id' => 21]);
 $agenda = $event->requestAgenda();
 
 echo ("Event Agenda: " . $agenda->getName());
-// OUTPUT: Event Agenda: Event Agenda
+// OUTPUT: Event Agenda: Sunday Service Agenda
 
 ```
 
