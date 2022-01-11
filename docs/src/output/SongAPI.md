@@ -100,8 +100,7 @@ echo ($customFile->getFileUrlBaseUrl());
 // OUTPUT: https://multitracks.com/path/to/song
 echo ($customFile->getFileUrlQueryParameters()); 
 // OUTPUT: {"id":"2912"}
-echo ($customFile->getFileUrlAuthenticated()); 
+echo ($customFile->getFileUrlAuthenticated());
 // OUTPUT: https://multitracks.com/path/to/song?id=2912&login_token=exampleapikey
-
 
 ```

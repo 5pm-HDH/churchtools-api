@@ -1,0 +1,24 @@
+{
+    "data": {
+        "id": "21",
+        "guid": "g21",
+        "name": "Sermon Group",
+        "securityLevelForGroup": "High",
+        "roles": [
+            {
+                "id": 21,
+                "groupTypeId": 21,
+                "name": "Admin",
+                "shorty": "Adm",
+                "sortKey": "name"
+            }
+        ],
+        "members": [
+            {
+                "id": 21,
+                "personId": 21,
+                "comment": "Hello World"
+            }
+        ]
+    }
+}
