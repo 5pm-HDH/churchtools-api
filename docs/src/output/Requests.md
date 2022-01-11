@@ -9,7 +9,11 @@ the [Details](#details) section.
 **Get all data**
 
 ```php
+use \CTApi\Requests\PersonRequest;
+
+
 $allPersons = PersonRequest::all();
+
 ```
 
 **Get single record**
@@ -18,13 +22,16 @@ The `find`-method returns the Model. If there is no record with the given id, it
 -method throw an `CTModelException` if no record with the given in id could be found.
 
 ```php
-$joe = PersonRequest::find(291);
+use \CTApi\Requests\PersonRequest;
+
+$joe = PersonRequest::find(21);
 
 try{
-    $joe = PersonRequest::findOrFail(291);
+    $joe = PersonRequest::findOrFail(21);
 }catch(CTModelException $exception){
     // handle exception
 }
+
 ```
 
 **Where filter**
@@ -33,9 +40,12 @@ The `where`-method allows filtering and set custom filter criteria to the reques
 concatenated for more complex filtering. All available filter-criteria are described in the [detail-section](#details)
 
 ```php
+use \CTApi\Requests\PersonRequest;
+
 $teenager = PersonRequest::where('birthday_before', '2007-01-01')
                     ->where('birthday_after', '2003-01-01')
                     ->get();
+
 
 ```
 
@@ -47,12 +57,15 @@ the sort direction (ascending or descending).
 The second example first selects three persons, then sort them by their birthday and secondly by their sex.
 
 ```php
+use \CTApi\Requests\PersonRequest;
+
 $sortedPerson = PersonRequest::orderBy('birthday')->get();
 
 $sortedEvents = PersonRequest::where('ids', [29, 42, 92])
                     ->orderBy('birthday')
                     ->orderBy('sexId')
                     ->get();
+
 ```
 
 **Get-Method**
@@ -61,7 +74,10 @@ The `get`-method executes the created query and retrieved the data. This method 
 a created Request. In this example we get the two persons with the ids 219 and 318.
 
 ```php
+use \CTApi\Requests\PersonRequest;
+
 $twoPersons = PersonRequest::where('ids', [219, 318])->get();
+
 ```
 
 ## Details
@@ -113,9 +129,16 @@ $twoPersons = PersonRequest::where('ids', [219, 318])->get();
 
 * ✅ get
 
-```php 
+```php
+use \CTApi\Requests\EventAgendaRequest;
+use \CTApi\Models\Event;
+
+$eventId = 21;
+$event = Event::createModelFromData(['id' => $eventId]);
+
 $agenda = EventAgendaRequest::fromEvent($eventId)->get();
-$agenda = $event->requestAgenda()->get();
+$agenda = $event->requestAgenda();
+
 ```
 
 ### SongRequest

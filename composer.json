@@ -32,6 +32,7 @@
     "test-integration-w": "vendor\\bin\\phpunit.bat --testsuite integration",
     "test-coverage-w": "vendor\\bin\\phpunit.bat --coverage-html .phpunit.cache/coverage-report",
     "psalm": "./vendor/bin/psalm",
-    "psalm-w": "vendor\\bin\\psalm.bat"
+    "psalm-w": "vendor\\bin\\psalm.bat",
+    "docs-generator": "php docs/src/DocGenerator.php"
   }
 }

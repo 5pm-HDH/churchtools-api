@@ -19,6 +19,7 @@ $data = [
 ];
 
 $person = Person::createModelFromData($data);
+
 ```
 
 Create a collection of models filled with data:
@@ -33,9 +34,13 @@ $dataPersons = [
 
 $personArray = Person::createModelsFromArray($dataPersons);
 
+$lastNames = "";
 foreach($personArray as $person){
-    echo "- ".$person->getLastName();
+    $lastNames .= $person->getLastName() . ", ";
 }
+echo ($lastNames);
+// OUTPUT: Kling, Maier, 
+
 ```
 
 **`get` and `set`-methods**
@@ -43,8 +48,13 @@ foreach($personArray as $person){
 The attributes of a model can be used accessed with getters and setter.
 
 ```php
+use CTApi\Models\Person;
+
+$person = new Person();
+
 $person->getLastName();
 $person->setLastName("Joe");
+
 ```
 
 **`request`-method (one-to-one - singular)**
@@ -52,10 +62,14 @@ $person->setLastName("Joe");
 Any `requestXYZ`-method that requests a single model, will request all information from the api and returns the model
 directly:
 
-```php 
+```php
+$event = \CTApi\Models\Event::createModelFromData(['id' => 21]);
+
 $agenda = $event->requestAgenda();
 
-echo "Event Agenda: " . $agenda->getName();
+echo ("Event Agenda: " . $agenda->getName());
+// OUTPUT: Event Agenda: Event Agenda
+
 ```
 
 **`request`-method (one-to-many - plural)**
@@ -63,11 +77,14 @@ echo "Event Agenda: " . $agenda->getName();
 Any `requestXYZ`-method that returns multiple models, returns a RequestBuilder and allow you to access
 the [Requests](Requests.md) methods and type:
 
-```php 
+```php
+$eventAgenda = \CTApi\Models\EventAgenda::createModelFromData(['id' => 21]);
+
 $songs = $eventAgenda->requestSongs()
                         ->where('practice', true)
                         ->orderBy('key')
                         ->get();
+
 ```
 
 A "one-to-many" relation can be easily identified by check if the `requestXYZ`-method ends with an "s" (e.q.:

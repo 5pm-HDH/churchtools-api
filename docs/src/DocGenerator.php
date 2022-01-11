@@ -27,9 +27,10 @@ class DocGenerator
     {
         $ressources = scandir(self::$RESOURCES_DIR, SCANDIR_SORT_ASCENDING);
 
-        self::createMockEnviroment();
+        CTConfig::enableDebugging();
 
         foreach ($ressources as $ressource) {
+            self::createMockEnviroment();
             self::processResource($ressource);
         }
 
@@ -50,13 +51,8 @@ class DocGenerator
         }
         $docName = self::parseResourceToDocName($resource);
 
-        $appendingContent = self::processResourceContent($resource);
-
-        if (!array_key_exists($docName, self::$DOCS)) {
-            self::$DOCS[$docName] = '';
-        }
-
-        self::$DOCS[$docName] .= $appendingContent . "\n";
+        $content = self::processResourceContent($resource);
+        self::$DOCS[$docName] = $content;
     }
 
     private static function storeDocsToDisk()
@@ -68,37 +64,49 @@ class DocGenerator
 
     private static function parseResourceToDocName(string $resource): string
     {
-        $array = explode('_', $resource);
+        $array = explode('.', $resource);
         array_pop($array);
         return implode($array);
     }
 
     private static function processResourceContent(string $resource): string
     {
-        $fileInfo = pathinfo(self::$RESOURCES_DIR . $resource);
+        $content = file_get_contents(self::$RESOURCES_DIR . $resource);
 
-        switch ($fileInfo['extension']) {
-            case "php":
-                return self::processResourceContentAsPhp($resource);
-                break;
-            case "md":
-                return self::processResourceContentAsMd($resource);
-                break;
-            default:
-                throw new Exception("File-Extension " . $fileInfo['extension'] . " is not supported!");
+        $contentParts = explode('```', $content);
+        $processedContent = "";
+
+        $isMarkdown = true;
+        foreach($contentParts as $contentPart){
+            if($isMarkdown){
+                $processedContent .= self::processContentAsMd($contentPart);
+            }else{
+                $processedContent .= self::processContentAsPhp($contentPart);
+            }
+
+            $isMarkdown = !$isMarkdown;
         }
+
+        return $processedContent;
     }
 
-    private static function processResourceContentAsPhp($resource): string
+    private static function processContentAsPhp($content): string
     {
         self::$ddBuffer = []; // Reset DD-Buffer
 
-        $phpCode = file_get_contents(self::$RESOURCES_DIR . $resource);
+        $phpCode = $content;
 
         // remove "<?php"-Tags
-        $phpCode = str_replace("<?php", "", $phpCode);
+        $phpCode = str_replace("php", "", $phpCode);
 
-        eval($phpCode);
+        try{
+            eval($phpCode);
+        }catch (\CTApi\Exceptions\CTAuthException $exception){
+            // ignore
+        }catch (Exception $exception){
+            //
+            $i = 1;
+        }
 
         $printCode = "";
 
@@ -106,19 +114,24 @@ class DocGenerator
         foreach (preg_split("/((\r?\n)|(\r\n?))/", $phpCode) as $line) {
             // replace "dd" with "echo" and print dd-Buffer-Content
             if (str_contains($line, "dd(")) {
-                $printCode .= str_replace('dd(', 'echo ', $line);
-                $printCode .= "\n// OUTPUT: " . self::$ddBuffer[$ddBufferIndex] . "\n";
+                $printCode .= str_replace('dd(', 'echo (', $line);
+                if(array_key_exists($ddBufferIndex, self::$ddBuffer)){
+                    $printCode .= "\n// OUTPUT: " . self::$ddBuffer[$ddBufferIndex] . "\n";
+                }else{
+                    throw new Exception("DD-Buffer is invalid!");
+                }
+
                 $ddBufferIndex++;
             } else {
                 $printCode .= $line . "\n";
             }
         }
 
-        return "```\n" . $printCode . "\n```";
+        return "```php" . $printCode . "```";
     }
 
-    private static function processResourceContentAsMd($resource): string
+    private static function processContentAsMd($content): string
     {
-        return file_get_contents(self::$RESOURCES_DIR . $resource);
+        return $content;
     }
 }

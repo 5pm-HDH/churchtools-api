@@ -30,6 +30,7 @@ CTLog::enableConsoleLog(true);
 // disable log
 CTLog::enableFileLog(false);
 CTLog::enableConsoleLog(false);
+
 ```
 
 ## Set log-level
@@ -37,12 +38,15 @@ CTLog::enableConsoleLog(false);
 Only the loglevel of the console-log can be changed:
 
 ```php 
+use CTApi\CTLog;
+
 // reacts to log-levels: ERROR, CRITICAL, ALERT, EMERGENCY
 // is default setting
 CTLog::setConsoleLogLevelError();
 
 // logs all available log-levels: DEBUG, INFO, NOTICE, WARNING, ERROR, CRITICAL, ALERT, EMERGENCY
 CTLog::setConsoleLogLevelDebug();
+
 ```
 
 ## Log messages
@@ -68,6 +72,7 @@ CTLog::getLog()->critical("...");
 CTLog::getLog()->alert("...");
 
 CTLog::getLog()->emergency("...");
+
 
 ```
 
