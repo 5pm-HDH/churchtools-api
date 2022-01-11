@@ -13,6 +13,9 @@ DocGenerator::generateDocs();
 
 function dd(mixed $value)
 {
+    if(is_object($value)){
+        $value = (array) $value;
+    }
     if(is_array($value)){
         array_push(DocGenerator::$ddBuffer, json_encode($value));
     }else{

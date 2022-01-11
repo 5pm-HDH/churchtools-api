@@ -1,0 +1,21 @@
+{
+  "data": [
+    {
+      "id": 21,
+      "title": "Page A",
+      "wikiCategory": {
+        "id": 21
+      },
+      "identifier": "Page21"
+    },
+    {
+      "id": 22,
+      "title": "main",
+      "wikiCategory": {
+        "id": 21
+      },
+      "identifier": "Page22"
+    }
+  ]
+
+}
