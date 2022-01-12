@@ -1,5 +1,10 @@
 # Churchtools (CT) API-Client
 
+![example workflow](https://github.com/5pm-HDH/churchtools-api/actions/workflows/unit-tests.yml/badge.svg)
+
+![example workflow](https://github.com/5pm-HDH/churchtools-api/actions/workflows/static-code-analysis.yml/badge.svg)
+
+
 Churchtools API-Client is a php based wrapper of the churchtools api. This api is tested with the churchtools version
 v3.71.0.
 
