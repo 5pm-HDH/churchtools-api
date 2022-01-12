@@ -6,7 +6,15 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 
-## [Unreleased] - 2021-06-10
+## [Unreleased]
+
+### Added
+
+### Changed
+
+### Fixed
+
+## [1.2.0] - 2022-01-12
 
 ### Added
 - Group: [add Group-API](https://github.com/5pm-HDH/churchtools-api/pull/47)
