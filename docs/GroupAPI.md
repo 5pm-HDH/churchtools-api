@@ -1,5 +1,7 @@
 # GroupAPI
 
+Group-Request & Group-Data:
+
 ```php
 use CTApi\Requests\GroupRequest;
 use CTApi\Requests\PersonRequest;
