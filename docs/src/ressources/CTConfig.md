@@ -20,7 +20,6 @@ use CTApi\CTConfig;
 $apiUrl = "https://intern.church.tools";
 
 CTConfig::setApiUrl($apiUrl);
-
 ```
 
 ## 2. Authentication
@@ -35,7 +34,6 @@ $email = "someEmail@example.com";
 $password = "1234churchtools";
 
 CTConfig::authWithCredentials($email, $password);
-
 ```
 
 This method will log in to the application to the churchtools api and retrieve the api key. For security reasons the
@@ -46,7 +44,6 @@ getter method:
 use CTApi\CTConfig;
 
 $apiToken = CTConfig::getApiKey();
-
 ```
 
 The api key can also be set manually with the setter method:
@@ -55,7 +52,6 @@ The api key can also be set manually with the setter method:
 use CTApi\CTConfig;
 
 $apiToken = CTConfig::setApiKey("...");
-
 ```
 
 To validate if the api key is still valid, call the validateApiKey method:
@@ -69,7 +65,6 @@ if($isValid){
 }else{
     echo "ApiKey is not valid anymore!";
 }
-
 ```
 
 ## 3. Cache Requests
@@ -87,7 +82,6 @@ CTConfig::disableCache();
 
 // clear stored cache
 CTConfig::clearCache();
-
 ```
 
 By default the cache-files will be stored in the /cache directory. Only `GET`-Requests will be stored in the cache (
@@ -108,5 +102,4 @@ $response = $client->get(
                     ]
                 ]
             );
-
 ```

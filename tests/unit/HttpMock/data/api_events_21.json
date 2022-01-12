@@ -6,7 +6,9 @@
     "description": "Service Description",
     "startDate": "2021-09-02 20:15:00",
     "endDate": "2021-09-02 22:00:00",
-    "chatStatus": false,
+    "chatStatus": "false",
+    "permissions": [],
+    "calendar": [],
     "agenda": {
       "id": 291,
       "name": "Sunday Service Agenda",
@@ -26,6 +28,27 @@
           "type": "Song"
         }
       ]
-    }
+    },
+    "eventServices": [
+      {
+        "id": 221,
+        "personId": 21,
+        "person": {
+          "lastName": "Smith"
+        },
+        "name": "Worship-Leader",
+        "serviceId": 21,
+        "agreed": true,
+        "isValid": true,
+        "requestedDate": "2001-01-02 02:02:12",
+        "requesterPersonId": 21,
+        "requesterPerson": {
+          "lastName": "Smith"
+        },
+        "comment": "No comment!",
+        "counter": "No counter!",
+        "allowChat": true
+      }
+    ]
   }
 }

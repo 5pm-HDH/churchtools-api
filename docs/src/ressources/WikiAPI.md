@@ -11,22 +11,14 @@ use CTApi\Requests\WikiSearchRequest;
 $wikiCategories = WikiCategoryRequest::all();
 $wikiCategory = WikiCategoryRequest::findOrFail(21);
 
-echo ($wikiCategory->getId());
-// OUTPUT: 21
-echo ($wikiCategory->getName());
-// OUTPUT: 
-echo ($wikiCategory->getNameTranslated());
-// OUTPUT: 
-echo ($wikiCategory->getSortKey());
-// OUTPUT: 
-echo ($wikiCategory->getCampusId());
-// OUTPUT: 
-echo ($wikiCategory->getInMenu());
-// OUTPUT: 
-echo ($wikiCategory->getFileAccessWithoutPermission());
-// OUTPUT: 
-echo ($wikiCategory->getPermissions());
-// OUTPUT: []
+dd($wikiCategory->getId());
+dd($wikiCategory->getName());
+dd($wikiCategory->getNameTranslated());
+dd($wikiCategory->getSortKey());
+dd($wikiCategory->getCampusId());
+dd($wikiCategory->getInMenu());
+dd($wikiCategory->getFileAccessWithoutPermission());
+dd($wikiCategory->getPermissions());
 
 $allPages = $wikiCategory->requestPages()->get();
 
@@ -35,22 +27,14 @@ $allPages = $wikiCategory->requestPages()->get();
  */
 $page = $allPages[0];
 
-echo ($page->getIdentifier());
-// OUTPUT: Page21
-echo ($page->getTitle());
-// OUTPUT: Page A
-echo ($page->getVersion());
-// OUTPUT: 
-echo ($page->getOnStartPage());
-// OUTPUT: 
-echo ($page->getRedirectTo());
-// OUTPUT: 
-echo ($page->getIsMarkdown());
-// OUTPUT: 
-echo ($page->getText());
-// OUTPUT: 
-echo ($page->requestText()->getText());
-// OUTPUT: 
+dd($page->getIdentifier());
+dd($page->getTitle());
+dd($page->getVersion());
+dd($page->getOnStartPage());
+dd($page->getRedirectTo());
+dd($page->getIsMarkdown());
+dd($page->getText());
+dd($page->requestText()->getText());
 
 $filesList = "";
 foreach($page->requestFiles()->get() as $file){
@@ -58,8 +42,7 @@ foreach($page->requestFiles()->get() as $file){
     // ...
     // More methods in SongAPI.md in section File-Model
 }
-echo ($filesList);
-// OUTPUT: 
+dd($filesList);
 
 $pageVersions = $page->requestVersions()->get();
 $firstPageVersion = $page->requestVersion(1);
@@ -96,7 +79,5 @@ foreach($rootNodeWiki->getChildNodes() as $node){
     $pageTreeList .= $node->getWikiPage()->getTitle() . ", ";
 }
 
-echo ($subPages);
-// OUTPUT: 
-
+dd($subPages);
 ```

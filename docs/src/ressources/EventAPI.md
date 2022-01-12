@@ -23,27 +23,16 @@ $christmasService = $christmasServices[0];
 /**
  * Event-Data
  */
-echo ($christmasService->getId());
-// OUTPUT: 21
-echo ($christmasService->getGuid());
-// OUTPUT: guid21
-echo ($christmasService->getName());
-// OUTPUT: Sunday Service
-echo ($christmasService->getDescription());
-// OUTPUT: Service Description
-echo ($christmasService->getStartDate());
-// OUTPUT: 2021-09-02 20:15:00
-echo ($christmasService->getEndDate());
-// OUTPUT: 2021-09-02 22:00:00
-echo ($christmasService->getChatStatus());
-// OUTPUT: 
-echo ($christmasService->getPermissions());
-// OUTPUT: 
-echo ($christmasService->getCalendar());
-// OUTPUT: 
-echo ($christmasService->getEventServices());
-// OUTPUT: []
-
+dd($christmasService->getId());
+dd($christmasService->getGuid());
+dd($christmasService->getName());
+dd($christmasService->getDescription());
+dd($christmasService->getStartDate());
+dd($christmasService->getEndDate());
+dd($christmasService->getChatStatus());
+dd($christmasService->getPermissions());
+dd($christmasService->getCalendar());
+dd($christmasService->getEventServices());
 
 ```
 
@@ -68,10 +57,8 @@ foreach($agenda->getItems() as $item){
     }
 }
 
-echo ($eventItemsList);
-// OUTPUT: Opening Song (Song), First Worship Song (Song), Sermon (Default), 
-echo ($eventSongsList);
-// OUTPUT: We welcome you, 
+dd($eventItemsList);
+dd($eventSongsList);
 
 $songs = $agenda->requestSongs();
 $arrangements = $agenda->requestArrangements();
@@ -84,9 +71,7 @@ foreach($songs as $song){
         .$selectedArrangement->getName()." ("
         .$selectedArrangement->getKeyOfArrangement()." - Dur) /";
 }
-echo ($songList);
-// OUTPUT: We welcome you - In A-Dur (A - Dur) /
-
+dd($songList);
 
 ```
 
@@ -100,41 +85,25 @@ $eventServices = $event->getEventServices();
 
 $eventService = $eventServices[0];
 
-echo ("SERVICE:");
-// OUTPUT: SERVICE:
-echo ($eventService->getId());
-// OUTPUT: 221
-echo ($eventService->getPersonId());
-// OUTPUT: 21
-echo ($eventService->getPerson()?->getLastName());
-// OUTPUT: Smith
-echo ($eventService->getName());
-// OUTPUT: Worship-Leader
-echo ($eventService->getServiceId());
-// OUTPUT: 21
-echo ($eventService->getAgreed());
-// OUTPUT: 1
-echo ($eventService->getIsValid());
-// OUTPUT: 1
-echo ($eventService->getRequestedDate());
-// OUTPUT: 2001-01-02 02:02:12
-echo ($eventService->getRequesterPersonId());
-// OUTPUT: 21
-echo ($eventService->getRequesterPerson()?->getLastName());
-// OUTPUT: Smith
-echo ($eventService->getComment());
-// OUTPUT: No comment!
-echo ($eventService->getCounter());
-// OUTPUT: No counter!
-echo ($eventService->getAllowChat());  
-// OUTPUT: 1
+dd("SERVICE:");
+dd($eventService->getId());
+dd($eventService->getPersonId());
+dd($eventService->getPerson()?->getLastName());
+dd($eventService->getName());
+dd($eventService->getServiceId());
+dd($eventService->getAgreed());
+dd($eventService->getIsValid());
+dd($eventService->getRequestedDate());
+dd($eventService->getRequesterPersonId());
+dd($eventService->getRequesterPerson()?->getLastName());
+dd($eventService->getComment());
+dd($eventService->getCounter());
+dd($eventService->getAllowChat());  
 
 $person = $eventService->requestPerson();
 $requester = $eventService->requestRequesterPerson();
 
 $service = $eventService->requestService();
-echo ($service->getName());
-// OUTPUT: Worship-Service
-
+dd($service->getName());
 
 ```

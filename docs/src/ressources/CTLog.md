@@ -30,7 +30,6 @@ CTLog::enableConsoleLog(true);
 // disable log
 CTLog::enableFileLog(false);
 CTLog::enableConsoleLog(false);
-
 ```
 
 ## Set log-level
@@ -46,7 +45,6 @@ CTLog::setConsoleLogLevelError();
 
 // logs all available log-levels: DEBUG, INFO, NOTICE, WARNING, ERROR, CRITICAL, ALERT, EMERGENCY
 CTLog::setConsoleLogLevelDebug();
-
 ```
 
 ## Log messages
@@ -72,7 +70,6 @@ CTLog::getLog()->critical("...");
 CTLog::getLog()->alert("...");
 
 CTLog::getLog()->emergency("...");
-
 
 ```
 

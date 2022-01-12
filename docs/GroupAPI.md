@@ -1,7 +1,10 @@
 # GroupAPI
 
+Group-Request & Group-Data:
+
 ```php
-use CTApi\Requests\GroupRequest;use CTApi\Requests\PersonRequest;
+use CTApi\Requests\GroupRequest;
+use CTApi\Requests\PersonRequest;
 
 /**
  * Group-Request
@@ -15,66 +18,116 @@ $myGroups = PersonRequest::whoami()?->requestGroups();
 
 // Get specific Group
 $group = GroupRequest::find(21);     // returns "null" if id is invalid
-$group = GroupRequest::findOrFail(22); // throws exception if id is invalid
+$group = GroupRequest::findOrFail(21); // throws exception if id is invalid
 
 
 /**
  * Group-Data
  */
-echo "-".$group->getId();
-echo "-".$group->getGuid();
-echo "-".$group->getName();
-print_r($group->getSecurityLevelForGroup());
-print_r($group->getPermissions());
-print_r($group->getInformation());
-print_r($group->getFollowUp());
-print_r($group->getRoles());
+echo ($group->getId());
+// OUTPUT: 21
+echo ($group->getGuid());
+// OUTPUT: g21
+echo ($group->getName());
+// OUTPUT: Sermon Group
+echo ($group->getSecurityLevelForGroup());
+// OUTPUT: High
+echo ($group->getPermissions());
+// OUTPUT: []
+echo ($group->getInformation());
+// OUTPUT: []
+echo ($group->getFollowUp());
+// OUTPUT: []
+echo ($group->getRoles());
+// OUTPUT: [{}]
 
-echo "GroupSettings\n";
-echo "-".$group->getSettings()?->getIsHidden();
-echo "-".$group->getSettings()?->getIsOpenForMembers();
-echo "-".$group->getSettings()?->getAllowSpouseRegistration();
-echo "-".$group->getSettings()?->getAllowChildRegistration();
-echo "-".$group->getSettings()?->getAllowSameEmailRegistration();
-echo "-".$group->getSettings()?->getAutoAccept();
-echo "-".$group->getSettings()?->getAllowWaitinglist();
-echo "-".$group->getSettings()?->getWaitinglistMaxPersons();
-echo "-".$group->getSettings()?->getAutomaticMoveUp();
-echo "-".$group->getSettings()?->getIsPublic();
-print_r($group->getSettings()?->getGroupMeeting());
-echo "-".$group->getSettings()?->getQrCodeCheckin();
-print_r($group->getSettings()?->getNewMember());
+echo ("GroupSettings\n");
+// OUTPUT: GroupSettings
 
-echo "GroupRoles\n";
+echo ($group->getSettings()?->getIsHidden());
+// OUTPUT: 
+echo ($group->getSettings()?->getIsOpenForMembers());
+// OUTPUT: 
+echo ($group->getSettings()?->getAllowSpouseRegistration());
+// OUTPUT: 
+echo ($group->getSettings()?->getAllowChildRegistration());
+// OUTPUT: 
+echo ($group->getSettings()?->getAllowSameEmailRegistration());
+// OUTPUT: 
+echo ($group->getSettings()?->getAutoAccept());
+// OUTPUT: 
+echo ($group->getSettings()?->getAllowWaitinglist());
+// OUTPUT: 
+echo ($group->getSettings()?->getWaitinglistMaxPersons());
+// OUTPUT: 
+echo ($group->getSettings()?->getAutomaticMoveUp());
+// OUTPUT: 
+echo ($group->getSettings()?->getIsPublic());
+// OUTPUT: 
+echo ($group->getSettings()?->getGroupMeeting());
+// OUTPUT: 
+echo ($group->getSettings()?->getQrCodeCheckin());
+// OUTPUT: 
+echo ($group->getSettings()?->getNewMember());
+// OUTPUT: 
+
+echo ("GroupRoles\n");
+// OUTPUT: GroupRoles
+
 $groupRole = $group->getRoles()[0];
-echo "-".$groupRole->getId();
-echo "-".$groupRole->getGroupTypeId();
-echo "-".$groupRole->getName();
-echo "-".$groupRole->getShorty();
-echo "-".$groupRole->getShortKey();
-echo "-".$groupRole->getToDelete();
-echo "-".$groupRole->getHasRequested();
-echo "-".$groupRole->getIsLeader();
-echo "-".$groupRole->getIsDefault();
-echo "-".$groupRole->getIsHidden();
-echo "-".$groupRole->getGrowPathId();
-echo "-".$groupRole->getGroupTypeRoleId();
-echo "-".$groupRole->getForceTwoFactorAuth();
-echo "-".$groupRole->getIsActive();
-echo "-".$groupRole->getCanReadChat();
-echo "-".$groupRole->getCanWriteChat();
+echo ($groupRole->getId());
+// OUTPUT: 21
+echo ($groupRole->getGroupTypeId());
+// OUTPUT: 21
+echo ($groupRole->getName());
+// OUTPUT: Admin
+echo ($groupRole->getShorty());
+// OUTPUT: Adm
+echo ($groupRole->getSortKey());
+// OUTPUT: name
+echo ($groupRole->getToDelete());
+// OUTPUT: 
+echo ($groupRole->getHasRequested());
+// OUTPUT: 
+echo ($groupRole->getIsLeader());
+// OUTPUT: 
+echo ($groupRole->getIsDefault());
+// OUTPUT: 
+echo ($groupRole->getIsHidden());
+// OUTPUT: 
+echo ($groupRole->getGrowPathId());
+// OUTPUT: 
+echo ($groupRole->getGroupTypeRoleId());
+// OUTPUT: 
+echo ($groupRole->getForceTwoFactorAuth());
+// OUTPUT: 
+echo ($groupRole->getIsActive());
+// OUTPUT: 
+echo ($groupRole->getCanReadChat());
+// OUTPUT: 
+echo ($groupRole->getCanWriteChat());
+// OUTPUT: 
 
-echo "GroupMembers";
-$groupMember = $group->requestMembers()[0];
+echo ("GroupMembers");
+// OUTPUT: GroupMembers
+$groupMember = $group->requestMembers()->get()[0];
 
-echo "-".$groupMember->getId();
-echo "-".$groupMember->getPersonId();
-echo "-".$groupMember->getGroupTypeRoleId();
-echo "-".$groupMember->getMemberStartDate();
-echo "-".$groupMember->getComment();
-echo "-".$groupMember->getMemberEndDate();
-echo "-".$groupMember->getWaitinglistPosition();
-print_r($groupMember->getFields());
+echo ($groupMember->getId());
+// OUTPUT: 21
+echo ($groupMember->getPersonId());
+// OUTPUT: 
+echo ($groupMember->getGroupTypeRoleId());
+// OUTPUT: 
+echo ($groupMember->getMemberStartDate());
+// OUTPUT: 
+echo ($groupMember->getComment());
+// OUTPUT: 
+echo ($groupMember->getMemberEndDate());
+// OUTPUT: 
+echo ($groupMember->getWaitinglistPosition());
+// OUTPUT: 
+echo ($groupMember->getFields());
+// OUTPUT: []
 
 $personGroupMember = $groupMember->getPerson();
 $personGroupMember = $groupMember->requestPerson();

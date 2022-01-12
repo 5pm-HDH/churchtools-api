@@ -1,4 +1,4 @@
-name: Unit-Tests
+name: Doc-Generator
 
 on:
   push:
@@ -38,5 +38,17 @@ jobs:
     - name: Composer dump-autoload to load all files
       run: composer dump-autoload
 
-    - name: Run test suite
-      run: composer run-script test-unit
+    - name: Generate Docs
+      run: composer run-script docs-generator
+
+    - name: Check if Docs are already generated
+      uses: tj-actions/verify-changed-files@v8.8
+      id: verify-changed-files
+      with:
+        files: |
+          docs
+
+    - name: Run step only when files change.
+      if: steps.verify-changed-files.outputs.files_changed == 'true'
+      run: |
+        core.setFailed('Inconsistent Docs. Please run DocGenerator and check in changed Files.')

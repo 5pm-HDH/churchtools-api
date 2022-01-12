@@ -13,7 +13,6 @@ use \CTApi\Requests\PersonRequest;
 
 
 $allPersons = PersonRequest::all();
-
 ```
 
 **Get single record**
@@ -31,7 +30,6 @@ try{
 }catch(CTModelException $exception){
     // handle exception
 }
-
 ```
 
 **Where filter**
@@ -45,7 +43,6 @@ use \CTApi\Requests\PersonRequest;
 $teenager = PersonRequest::where('birthday_before', '2007-01-01')
                     ->where('birthday_after', '2003-01-01')
                     ->get();
-
 
 ```
 
@@ -65,7 +62,6 @@ $sortedEvents = PersonRequest::where('ids', [29, 42, 92])
                     ->orderBy('birthday')
                     ->orderBy('sexId')
                     ->get();
-
 ```
 
 **Get-Method**
@@ -77,7 +73,6 @@ a created Request. In this example we get the two persons with the ids 219 and 3
 use \CTApi\Requests\PersonRequest;
 
 $twoPersons = PersonRequest::where('ids', [219, 318])->get();
-
 ```
 
 ## Details
@@ -138,7 +133,6 @@ $event = Event::createModelFromData(['id' => $eventId]);
 
 $agenda = EventAgendaRequest::fromEvent($eventId)->get();
 $agenda = $event->requestAgenda();
-
 ```
 
 ### SongRequest

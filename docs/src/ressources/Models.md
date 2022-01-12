@@ -19,7 +19,6 @@ $data = [
 ];
 
 $person = Person::createModelFromData($data);
-
 ```
 
 Create a collection of models filled with data:
@@ -38,9 +37,7 @@ $lastNames = "";
 foreach($personArray as $person){
     $lastNames .= $person->getLastName() . ", ";
 }
-echo ($lastNames);
-// OUTPUT: Kling, Maier, 
-
+dd($lastNames);
 ```
 
 **`get` and `set`-methods**
@@ -54,7 +51,6 @@ $person = new Person();
 
 $person->getLastName();
 $person->setLastName("Joe");
-
 ```
 
 **`request`-method (one-to-one - singular)**
@@ -67,9 +63,7 @@ $event = \CTApi\Models\Event::createModelFromData(['id' => 21]);
 
 $agenda = $event->requestAgenda();
 
-echo ("Event Agenda: " . $agenda->getName());
-// OUTPUT: Event Agenda: Sunday Service Agenda
-
+dd("Event Agenda: " . $agenda->getName());
 ```
 
 **`request`-method (one-to-many - plural)**
@@ -84,7 +78,6 @@ $songs = $eventAgenda->requestSongs()
                         ->where('practice', true)
                         ->orderBy('key')
                         ->get();
-
 ```
 
 A "one-to-many" relation can be easily identified by check if the `requestXYZ`-method ends with an "s" (e.q.:

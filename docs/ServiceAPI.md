@@ -1,7 +1,10 @@
 # ServiceAPI
 
 ```php
-use CTApi\Models\Service;use CTApi\Models\ServiceGroup;use CTApi\Requests\ServiceGroupRequest;use CTApi\Requests\ServiceRequest;
+use CTApi\Models\Service;
+use CTApi\Models\ServiceGroup;
+use CTApi\Requests\ServiceGroupRequest;
+use CTApi\Requests\ServiceRequest;
 
 $serviceGroups = ServiceGroupRequest::all();
 $services = ServiceRequest::all();
@@ -11,23 +14,40 @@ $services = ServiceRequest::all();
  */
 $service = new Service();
 
-echo "-".$service->getId();
-echo "-".$service->getName();
-echo "-".$service->getServiceGroupId();
-echo "-".$service->getCommentOnConfirmation();
-echo "-".$service->getSortKey();
-echo "-".$service->getAllowDecline();
-echo "-".$service->getAllowExchange();
-echo "-".$service->getComment();
-echo "-".$service->getStandard();
-echo "-".$service->getHidePersonName();
-echo "-".$service->getSendReminderMails();
-echo "-".$service->getSendServiceRequestEmails();
-echo "-".$service->getAllowControlLiveAgenda();
-echo "-".$service->getGroupIds();
-echo "-".$service->getTagIds();
-echo "-".$service->getCalTextTemplate();
-echo "-".$service->getAllowChat();
+echo ($service->getId());
+// OUTPUT: 
+echo ($service->getName());
+// OUTPUT: 
+echo ($service->getServiceGroupId());
+// OUTPUT: 
+echo ($service->getCommentOnConfirmation());
+// OUTPUT: 
+echo ($service->getSortKey());
+// OUTPUT: 
+echo ($service->getAllowDecline());
+// OUTPUT: 
+echo ($service->getAllowExchange());
+// OUTPUT: 
+echo ($service->getComment());
+// OUTPUT: 
+echo ($service->getStandard());
+// OUTPUT: 
+echo ($service->getHidePersonName());
+// OUTPUT: 
+echo ($service->getSendReminderMails());
+// OUTPUT: 
+echo ($service->getSendServiceRequestEmails());
+// OUTPUT: 
+echo ($service->getAllowControlLiveAgenda());
+// OUTPUT: 
+echo ($service->getGroupIds());
+// OUTPUT: 
+echo ($service->getTagIds());
+// OUTPUT: 
+echo ($service->getCalTextTemplate());
+// OUTPUT: 
+echo ($service->getAllowChat());
+// OUTPUT: 
 
 $serviceGroup = $service->requestServiceGroup();
 
@@ -36,13 +56,20 @@ $serviceGroup = $service->requestServiceGroup();
  */
 $serviceGroup = new ServiceGroup();
 
-echo "-".$serviceGroup->getId();
-echo "-".$serviceGroup->getName();
-echo "-".$serviceGroup->getSortKey();
-echo "-".$serviceGroup->getViewAll();
-echo "-".$serviceGroup->getCampusId();
-echo "-".$serviceGroup->getOnlyVisibleInCampusFilter();
+echo ($serviceGroup->getId());
+// OUTPUT: 
+echo ($serviceGroup->getName());
+// OUTPUT: 
+echo ($serviceGroup->getSortKey());
+// OUTPUT: 
+echo ($serviceGroup->getViewAll());
+// OUTPUT: 
+echo ($serviceGroup->getCampusId());
+// OUTPUT: 
+echo ($serviceGroup->getOnlyVisibleInCampusFilter());
+// OUTPUT: 
 
 $services = $serviceGroup->requestServices();
+
 
 ```

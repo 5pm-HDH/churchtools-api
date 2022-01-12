@@ -40,7 +40,12 @@ class CTClientMock extends CTClient
 
     protected function convertPOSTRequestToResponse($uri, $options): ResponseInterface
     {
-        return CTResponse::createEmpty();
+        $responseData = HttpMockDataResolver::resolveEndpoint($uri);
+
+        $ctResponse = CTResponse::createEmpty();
+        $ctResponse->withBody(new CTMessageBody($responseData));
+
+        return $ctResponse;
     }
 
     public function resetState(): void

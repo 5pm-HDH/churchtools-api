@@ -1,0 +1,39 @@
+{
+  "data": {
+    "id": 21,
+    "name": "We welcome you",
+    "arrangementId": "221",
+    "shouldPractice": true,
+    "author": "Michael W. Smith",
+    "ccli": "C9219",
+    "copyright": "Worship Music",
+    "note": "Nothing to note.",
+    "arrangements": [
+      {
+        "id": 221,
+        "name": "In A-Dur",
+        "isDefault": true,
+        "bpm": 120,
+        "beat": "4/4",
+        "duration": "210",
+        "note": "-",
+        "keyOfArrangement": "A",
+        "links": [
+          {
+            "id": 21,
+            "name": "Youtube-Link",
+            "fileUrl": "https://youtube.com/"
+          }
+        ],
+        "files": [
+          {
+            "id": 22,
+            "name": "chords-a.pdf",
+            "filename": "chords-a.pdf",
+            "fileUrl": "https://some-churchtools-api-url.com/"
+          }
+        ]
+      }
+    ]
+  }
+}
