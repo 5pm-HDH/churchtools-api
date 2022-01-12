@@ -177,6 +177,9 @@ Result:
     </li>
 </ul>
 ```
+## Support / Contribute
+
+Please feel free to Support or Contribute this project.
 
 ### CTLog - Logging Request
 
@@ -215,6 +218,9 @@ Further information on [CTLog-Page](/docs/CTLog.md):
 
 ### Error-Handling
 The API-Wrapper provides custom exceptions. More on this page: [Error-Handling](/docs/ErrorHandling.md)
+
+### Doc-Generator
+The Doc-Generator processes all Doc-Files and executes the PHP-Code examples to ensure that they are valid. More on this page: [Doc-Generator](/docs/Docs.md)
 
 ## License
 
