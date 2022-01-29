@@ -33,6 +33,10 @@ dd($group->getInformation());
 dd($group->getFollowUp());
 dd($group->getRoles());
 
+dd("GroupHierarchie\n");
+$childGroups = $group->requestGroupChildren()?->get();
+$parentGroups = $group->requestGroupParents()?->get();
+
 dd("GroupSettings\n");
 dd($group->getSettings()?->getIsHidden());
 dd($group->getSettings()?->getIsOpenForMembers());
