@@ -35,7 +35,7 @@ echo ($group->getSecurityLevelForGroup());
 echo ($group->getPermissions());
 // OUTPUT: []
 echo ($group->getInformation());
-// OUTPUT: []
+// OUTPUT: 
 echo ($group->getFollowUp());
 // OUTPUT: []
 echo ($group->getRoles());
