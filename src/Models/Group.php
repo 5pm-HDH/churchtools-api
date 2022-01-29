@@ -5,6 +5,8 @@ namespace CTApi\Models;
 
 
 use CTApi\Models\Traits\FillWithData;
+use CTApi\Requests\GroupHierarchieChildrenRequest;
+use CTApi\Requests\GroupHierarchieParentsRequest;
 use CTApi\Requests\GroupMemberRequestBuilder;
 
 class Group
@@ -55,6 +57,24 @@ class Group
     {
         if ($this->getId() != null) {
             return new GroupMemberRequestBuilder((int)$this->getId());
+        } else {
+            return null;
+        }
+    }
+
+    public function requestGroupParents(): ?GroupHierarchieParentsRequest
+    {
+        if ($this->getId() != null) {
+            return new GroupHierarchieParentsRequest((int)$this->getId());
+        } else {
+            return null;
+        }
+    }
+
+    public function requestGroupChildren(): ?GroupHierarchieChildrenRequest
+    {
+        if ($this->getId() != null) {
+            return new GroupHierarchieChildrenRequest((int)$this->getId());
         } else {
             return null;
         }
