@@ -41,6 +41,12 @@ echo ($group->getFollowUp());
 echo ($group->getRoles());
 // OUTPUT: [{}]
 
+echo ("GroupHierarchie\n");
+// OUTPUT: GroupHierarchie
+
+$childGroups = $group->requestGroupChildren()?->get();
+$parentGroups = $group->requestGroupParents()?->get();
+
 echo ("GroupSettings\n");
 // OUTPUT: GroupSettings
 
