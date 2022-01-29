@@ -26,5 +26,15 @@
                 <directory name="src/Requests" />
             </errorLevel>
         </LessSpecificReturnStatement>
+        <ImplementedReturnTypeMismatch>
+            <errorLevel type="suppress">
+                <file name="src/Models/Traits/FillWithData.php" />
+            </errorLevel>
+        </ImplementedReturnTypeMismatch>
+        <MethodSignatureMismatch>
+            <errorLevel type="suppress">
+                <file name="src/Models/Traits/FillWithData.php" />
+            </errorLevel>
+        </MethodSignatureMismatch>
     </issueHandlers>
 </psalm>

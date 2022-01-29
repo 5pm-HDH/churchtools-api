@@ -18,7 +18,7 @@ class Group
     protected ?string $name = null;
     protected ?string $securityLevelForGroup = null;
     protected array $permissions = [];
-    protected array $information = [];
+    protected ?GroupInformation $information = null;
     protected ?GroupSettings $settings = null;
     protected array $followUp = [];
     protected array $roles = [];
@@ -43,6 +43,9 @@ class Group
         switch ($key) {
             case "roles":
                 $this->setRoles(GroupRole::createModelsFromArray($data));
+                break;
+            case "information":
+                $this->setInformation(GroupInformation::createModelFromData($data));
                 break;
             case "settings":
                 $this->setSettings(GroupSettings::createModelFromData($data));
@@ -171,18 +174,18 @@ class Group
     }
 
     /**
-     * @return array
+     * @return GroupInformation|null
      */
-    public function getInformation(): array
+    public function getInformation(): ?GroupInformation
     {
         return $this->information;
     }
 
     /**
-     * @param array $information
+     * @param GroupInformation|null $information
      * @return Group
      */
-    public function setInformation(array $information): Group
+    public function setInformation(?GroupInformation $information): Group
     {
         $this->information = $information;
         return $this;
