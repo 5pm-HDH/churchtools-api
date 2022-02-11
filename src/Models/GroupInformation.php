@@ -12,11 +12,25 @@ class GroupInformation
 
     protected ?string $meetingTime = null;
     protected ?array $weekday = [];
-    protected ?array $groupCategory = [];
+    protected ?GroupCategory $groupCategory = null;
     protected ?array $ageGroups = [];
-    protected ?array $targetGroup = [];
+    protected ?TargetGroup $targetGroup = null;
     protected ?string $note = null;
     protected ?string $imageUrl = null;
+
+    protected function fillArrayType(string $key, array $data): void
+    {
+        switch ($key) {
+            case "groupCategory":
+                $this->groupCategory = GroupCategory::createModelFromData($data);
+                break;
+            case "targetGroup":
+                $this->targetGroup = TargetGroup::createModelFromData($data);
+                break;
+            default:
+                $this->{$key} = $data;
+        }
+    }
 
     /**
      * @return string|null
@@ -55,18 +69,18 @@ class GroupInformation
     }
 
     /**
-     * @return array|null
+     * @return GroupCategory|null
      */
-    public function getGroupCategory(): ?array
+    public function getGroupCategory(): ?GroupCategory
     {
         return $this->groupCategory;
     }
 
     /**
-     * @param array|null $groupCategory
+     * @param GroupCategory|null $groupCategory
      * @return GroupInformation
      */
-    public function setGroupCategory(?array $groupCategory): GroupInformation
+    public function setGroupCategory(?GroupCategory $groupCategory): GroupInformation
     {
         $this->groupCategory = $groupCategory;
         return $this;
@@ -91,18 +105,18 @@ class GroupInformation
     }
 
     /**
-     * @return array|null
+     * @return TargetGroup|null
      */
-    public function getTargetGroup(): ?array
+    public function getTargetGroup(): ?TargetGroup
     {
         return $this->targetGroup;
     }
 
     /**
-     * @param array|null $targetGroup
+     * @param TargetGroup|null $targetGroup
      * @return GroupInformation
      */
-    public function setTargetGroup(?array $targetGroup): GroupInformation
+    public function setTargetGroup(?TargetGroup $targetGroup): GroupInformation
     {
         $this->targetGroup = $targetGroup;
         return $this;

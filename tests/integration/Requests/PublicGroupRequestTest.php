@@ -4,6 +4,9 @@
 namespace Tests\Integration\Requests;
 
 
+use CTApi\Models\GroupCategory;
+use CTApi\Models\GroupInformation;
+use CTApi\Models\TargetGroup;
 use CTApi\Requests\PublicGroupRequest;
 use Tests\Integration\TestCaseAuthenticated;
 use Tests\Integration\TestData;
@@ -41,6 +44,15 @@ class PublicGroupRequestTest extends TestCaseAuthenticated
 
         $this->assertNotNull($foundGroup);
         $this->assertEquals($this->groupName, $foundGroup->getName());
+
+        $this->assertNotNull($foundGroup->getInformation());
+        $this->assertInstanceOf(GroupInformation::class, $foundGroup->getInformation());
+
+        $this->assertNotNull($foundGroup->getInformation()->getGroupCategory());
+        $this->assertInstanceOf(GroupCategory::class, $foundGroup->getInformation()->getGroupCategory());
+
+        $this->assertNotNull($foundGroup->getInformation()->getTargetGroup());
+        $this->assertInstanceOf(TargetGroup::class, $foundGroup->getInformation()->getTargetGroup());
     }
 
 }
