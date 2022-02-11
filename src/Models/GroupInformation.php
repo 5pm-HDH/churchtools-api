@@ -17,6 +17,7 @@ class GroupInformation
     protected ?TargetGroup $targetGroup = null;
     protected ?string $note = null;
     protected ?string $imageUrl = null;
+    protected ?GroupPlaces $groupPlaces = null;
 
     protected function fillArrayType(string $key, array $data): void
     {
@@ -26,6 +27,9 @@ class GroupInformation
                 break;
             case "targetGroup":
                 $this->targetGroup = TargetGroup::createModelFromData($data);
+                break;
+            case "groupPlaces":
+                $this->groupPlaces = GroupPlaces::createModelFromData($data);
                 break;
             default:
                 $this->{$key} = $data;
@@ -65,6 +69,24 @@ class GroupInformation
     public function setWeekday(?array $weekday): GroupInformation
     {
         $this->weekday = $weekday;
+        return $this;
+    }
+
+    /**
+     * @return GroupPlaces|null
+     */
+    public function getGroupPlaces(): ?GroupPlaces
+    {
+        return $this->groupPlaces;
+    }
+
+    /**
+     * @param GroupPlaces|null $groupPlaces
+     * @return GroupInformation
+     */
+    public function setGroupPlaces(?GroupPlaces $groupPlaces): GroupInformation
+    {
+        $this->groupPlaces = $groupPlaces;
         return $this;
     }
 
