@@ -80,6 +80,8 @@ class DocGenerator
 
     private static function processResourceContent(string $resource): string
     {
+        \CTApi\CTLog::enableConsoleLog();
+        \CTApi\CTLog::getLog()->emergency("GenerateDocs of: ".$resource);
         $content = file_get_contents(self::$RESOURCES_DIR . $resource);
 
         $contentParts = explode('```', $content);
