@@ -5,17 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-
 ## [Unreleased]
+
+### Added
+
+### Changed
+
+### Fixed
+
+## [1.3.0] - 2022-02-11
 
 ### Added
 
 - Group-Hierarchie: [add Group-Hierachie-API](https://github.com/5pm-HDH/churchtools-api/pull/58) to request Parents and Children of Groups.
 - Public Group: [add Public-Group-API](https://github.com/5pm-HDH/churchtools-api/pull/59)
-
-### Changed
-
-### Fixed
 
 ## [1.2.0] - 2022-01-12
 
