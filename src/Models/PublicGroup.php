@@ -4,6 +4,7 @@
 namespace CTApi\Models;
 
 
+use CTApi\CTConfig;
 use CTApi\Models\Traits\FillWithData;
 
 class PublicGroup extends Group
@@ -29,6 +30,21 @@ class PublicGroup extends Group
     protected function fillNonArrayType(string $key, $value): void
     {
         parent::fillNonArrayType($key, $value);
+    }
+
+    public function generateRegistrationLink(string $groupHash): string
+    {
+        $url = CTConfig::getApiUrl();
+
+        if (!is_null($url) && '/' != substr($url, -1)) {
+            $url .= '/';
+        }
+
+        $url .= 'publicgroup/' . $this->getId();
+
+        $url .= '?hash=' . $groupHash;
+
+        return $url;
     }
 
     /**

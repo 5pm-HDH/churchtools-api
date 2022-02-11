@@ -13,6 +13,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 
+## [1.3.1] - 2022-02-11
+
+### Fixed
+
+- add TargetGroup, GroupPlace to [Group-Information](https://github.com/5pm-HDH/churchtools-api/pull/64)
+- generate Registration-Link in [PublicGroup](https://github.com/5pm-HDH/churchtools-api/pull/64)
+
 ## [1.3.0] - 2022-02-11
 
 ### Added
