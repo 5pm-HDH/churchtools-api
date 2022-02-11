@@ -6,7 +6,7 @@ namespace CTApi\Models;
 
 use CTApi\Models\Traits\FillWithData;
 
-class GroupPlaces
+class GroupPlace
 {
     use FillWithData;
 
@@ -42,9 +42,9 @@ class GroupPlaces
 
     /**
      * @param string|null $name
-     * @return GroupPlaces
+     * @return GroupPlace
      */
-    public function setName(?string $name): GroupPlaces
+    public function setName(?string $name): GroupPlace
     {
         $this->name = $name;
         return $this;
@@ -60,9 +60,9 @@ class GroupPlaces
 
     /**
      * @param string|null $district
-     * @return GroupPlaces
+     * @return GroupPlace
      */
-    public function setDistrict(?string $district): GroupPlaces
+    public function setDistrict(?string $district): GroupPlace
     {
         $this->district = $district;
         return $this;
@@ -78,9 +78,9 @@ class GroupPlaces
 
     /**
      * @param string|null $postalcode
-     * @return GroupPlaces
+     * @return GroupPlace
      */
-    public function setPostalcode(?string $postalcode): GroupPlaces
+    public function setPostalcode(?string $postalcode): GroupPlace
     {
         $this->postalcode = $postalcode;
         return $this;
@@ -96,9 +96,9 @@ class GroupPlaces
 
     /**
      * @param string|null $city
-     * @return GroupPlaces
+     * @return GroupPlace
      */
-    public function setCity(?string $city): GroupPlaces
+    public function setCity(?string $city): GroupPlace
     {
         $this->city = $city;
         return $this;
@@ -114,9 +114,9 @@ class GroupPlaces
 
     /**
      * @param string|null $markerUrl
-     * @return GroupPlaces
+     * @return GroupPlace
      */
-    public function setMarkerUrl(?string $markerUrl): GroupPlaces
+    public function setMarkerUrl(?string $markerUrl): GroupPlace
     {
         $this->markerUrl = $markerUrl;
         return $this;
@@ -132,9 +132,9 @@ class GroupPlaces
 
     /**
      * @param string|null $geoLat
-     * @return GroupPlaces
+     * @return GroupPlace
      */
-    public function setGeoLat(?string $geoLat): GroupPlaces
+    public function setGeoLat(?string $geoLat): GroupPlace
     {
         $this->geoLat = $geoLat;
         return $this;
@@ -150,9 +150,9 @@ class GroupPlaces
 
     /**
      * @param string|null $geoLng
-     * @return GroupPlaces
+     * @return GroupPlace
      */
-    public function setGeoLng(?string $geoLng): GroupPlaces
+    public function setGeoLng(?string $geoLng): GroupPlace
     {
         $this->geoLng = $geoLng;
         return $this;
@@ -168,9 +168,9 @@ class GroupPlaces
 
     /**
      * @param string|null $createdDate
-     * @return GroupPlaces
+     * @return GroupPlace
      */
-    public function setCreatedDate(?string $createdDate): GroupPlaces
+    public function setCreatedDate(?string $createdDate): GroupPlace
     {
         $this->createdDate = $createdDate;
         return $this;
@@ -186,9 +186,9 @@ class GroupPlaces
 
     /**
      * @param Person|null $createdPerson
-     * @return GroupPlaces
+     * @return GroupPlace
      */
-    public function setCreatedPerson(?Person $createdPerson): GroupPlaces
+    public function setCreatedPerson(?Person $createdPerson): GroupPlace
     {
         $this->createdPerson = $createdPerson;
         return $this;

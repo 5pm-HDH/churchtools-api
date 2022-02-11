@@ -17,7 +17,7 @@ class GroupInformation
     protected ?TargetGroup $targetGroup = null;
     protected ?string $note = null;
     protected ?string $imageUrl = null;
-    protected ?GroupPlaces $groupPlaces = null;
+    protected ?array $groupPlaces = null;
 
     protected function fillArrayType(string $key, array $data): void
     {
@@ -29,7 +29,7 @@ class GroupInformation
                 $this->targetGroup = TargetGroup::createModelFromData($data);
                 break;
             case "groupPlaces":
-                $this->groupPlaces = GroupPlaces::createModelFromData($data);
+                $this->groupPlaces = GroupPlace::createModelsFromArray($data);
                 break;
             default:
                 $this->{$key} = $data;
@@ -73,18 +73,18 @@ class GroupInformation
     }
 
     /**
-     * @return GroupPlaces|null
+     * @return array|null
      */
-    public function getGroupPlaces(): ?GroupPlaces
+    public function getGroupPlaces(): ?array
     {
         return $this->groupPlaces;
     }
 
     /**
-     * @param GroupPlaces|null $groupPlaces
+     * @param array|null $groupPlaces
      * @return GroupInformation
      */
-    public function setGroupPlaces(?GroupPlaces $groupPlaces): GroupInformation
+    public function setGroupPlaces(?array $groupPlaces): GroupInformation
     {
         $this->groupPlaces = $groupPlaces;
         return $this;

@@ -1,0 +1,36 @@
+{
+  "data": {
+    "id": 21,
+    "randomUrl": "wryawBH318GLHasgm27awB0c241aj",
+    "groups": [
+      {
+        "id": 221,
+        "maxMemberCount": 42,
+        "currentMemberCount": 30,
+        "signUpHeadline": "Teilnahme beantragen",
+        "name": "Jugendwoche Kraftberg",
+        "information": {
+          "meetingTime": "Freitag, 01.03. um 16h bis Sonntag 03.03. um 24h",
+          "groupCategory": {
+            "name": "leisure",
+            "nameTranslated": "Freizeit"
+          },
+          "targetGroup": {
+            "name": "youth",
+            "nameTranslated": "Jugendliche"
+          },
+          "note": "Eine spannende Freizeit erwartet dich!",
+          "imageUrl": "https://test.church.tools/images/9281/2928912ioha8921ns891bs9",
+          "groupPlaces": [
+            {
+              "name": "Freizeitheim Rosenberg",
+              "city": "Heilbronn",
+              "geoLat": "92.2912",
+              "geoLng": "2.291"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
