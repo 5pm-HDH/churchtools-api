@@ -36,7 +36,7 @@ class PublicGroup extends Group
     {
         $url = CTConfig::getApiUrl();
 
-        if ('/' != substr($url, -1)) {
+        if (!is_null($url) && '/' != substr($url, -1)) {
             $url .= '/';
         }
 
