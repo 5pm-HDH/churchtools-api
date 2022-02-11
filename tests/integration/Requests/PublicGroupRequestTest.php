@@ -36,13 +36,10 @@ class PublicGroupRequestTest extends TestCaseAuthenticated
 
         $foundGroup = null;
         foreach ($publicGroup->getGroups() as $group) {
-            print_r($group);
             if ($group->getId() == $this->groupId) {
                 $foundGroup = $group;
             }
         }
-
-        print_r($foundGroup);
 
         $this->assertNotNull($foundGroup);
         $this->assertEquals($this->groupName, $foundGroup->getName());
