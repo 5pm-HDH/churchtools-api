@@ -6,7 +6,7 @@
 
 
 Churchtools API-Client is a php based wrapper of the churchtools api. This api is tested with the churchtools version
-v3.71.0.
+v3.81.0.
 
 ## Installation
 
