@@ -2,47 +2,56 @@
 
 ## Event-Request
 ```php
-use CTApi\Requests\EventAgendaRequest;
-use CTApi\Requests\EventRequest;
+        use CTApi\Requests\EventAgendaRequest;
+        use CTApi\Requests\EventRequest;
 
-// Retrieve all events
-$allEvents = EventRequest::all();
+        // Retrieve all events
+        $allEvents = EventRequest::all();
 
-// Get specific Event
-$event = EventRequest::find(21);     // returns "null" if id is invalid
-$event = EventRequest::findOrFail(21); // throws exception if id is invalid
+        // Get specific Event
+        $event = EventRequest::find(21);     // returns "null" if id is invalid
+        $event = EventRequest::findOrFail(21); // throws exception if id is invalid
 
-// Filter events in period
-$christmasServices = EventRequest::where('from', '2020-12-24')
-                    ->where('to', '2020-12-26')
-                    ->orderBy('id')
-                    ->get();
-  
-$christmasService = $christmasServices[0];
+        // Filter events in period
+        $christmasServices = EventRequest::where('from', '2020-12-24')
+            ->where('to', '2020-12-26')
+            ->orderBy('id')
+            ->get();
 
-/**
- * Event-Data
- */
-echo ($christmasService->getId());
-// OUTPUT: 21
-echo ($christmasService->getGuid());
-// OUTPUT: guid21
-echo ($christmasService->getName());
-// OUTPUT: Sunday Service
-echo ($christmasService->getDescription());
-// OUTPUT: Service Description
-echo ($christmasService->getStartDate());
-// OUTPUT: 2021-09-02 20:15:00
-echo ($christmasService->getEndDate());
-// OUTPUT: 2021-09-02 22:00:00
-echo ($christmasService->getChatStatus());
-// OUTPUT: 
-echo ($christmasService->getPermissions());
-// OUTPUT: 
-echo ($christmasService->getCalendar());
-// OUTPUT: 
-echo ($christmasService->getEventServices());
-// OUTPUT: []
+        $christmasService = $christmasServices[0];
+
+        /**
+         * Event-Data
+         */
+        var_dump( $christmasService->getId());
+        // Output: 21
+
+        var_dump( $christmasService->getGuid());
+        // Output: "guid21"
+
+        var_dump( $christmasService->getName());
+        // Output: "Sunday Service"
+
+        var_dump( $christmasService->getDescription());
+        // Output: "Service Description"
+
+        var_dump( $christmasService->getStartDate());
+        // Output: "2021-09-02 20:15:00"
+
+        var_dump( $christmasService->getEndDate());
+        // Output: "2021-09-02 22:00:00"
+
+        var_dump( $christmasService->getChatStatus());
+        // Output: null
+
+        var_dump( $christmasService->getPermissions());
+        // Output: null
+
+        var_dump( $christmasService->getCalendar());
+        // Output: null
+
+        var_dump( $christmasService->getEventServices());
+        // Output: []
 
 
 ```
@@ -50,42 +59,44 @@ echo ($christmasService->getEventServices());
 ## Event-Agenda
 
 ```php
-use CTApi\Requests\EventRequest;
-use CTApi\Requests\EventAgendaRequest;
+        use CTApi\Requests\EventAgendaRequest;
+        use CTApi\Requests\EventRequest;
 
-$event = EventRequest::find(21);
+        $event = EventRequest::find(21);
 
-$agenda = EventAgendaRequest::fromEvent(21)->get();
-$agenda = $event->requestAgenda();
+        $agenda = EventAgendaRequest::fromEvent(21)->get();
+        $agenda = $event->requestAgenda();
 
-$eventItemsList = "";
-$eventSongsList = "";
-foreach($agenda->getItems() as $item){
-    $eventItemsList .= $item->getTitle() . " (".$item->getType()."), ";
-    $song = $item->getSong();
-    if(!is_null($song)){
-        $eventSongsList.= $song->getName() . ", ";
-    }
-}
+        $eventItemsList = "";
+        $eventSongsList = "";
+        foreach($agenda->getItems() as $item){
+            $eventItemsList .= $item->getTitle() . " (".$item->getType()."), ";
+            $song = $item->getSong();
+            if(!is_null($song)){
+                $eventSongsList.= $song->getName() . ", ";
+            }
+        }
 
-echo ($eventItemsList);
-// OUTPUT: Opening Song (Song), First Worship Song (Song), Sermon (Default), 
-echo ($eventSongsList);
-// OUTPUT: We welcome you, 
+        var_dump( First Worship Song (Song), Sermon (Default), ", $eventItemsList);
+        // Output: "Opening Song (Song)
 
-$songs = $agenda->requestSongs();
-$arrangements = $agenda->requestArrangements();
+        var_dump( ", $eventSongsList);
+        // Output: "We welcome you
 
-$songs = $agenda->getSongs();
-$songList = "";
-foreach($songs as $song){
-    $selectedArrangement = $song->requestSelectedArrangement();
-    $songList .= $song->getName()." - "
-        .$selectedArrangement->getName()." ("
-        .$selectedArrangement->getKeyOfArrangement()." - Dur) /";
-}
-echo ($songList);
-// OUTPUT: We welcome you - In A-Dur (A - Dur) /
+
+        $songs = $agenda->requestSongs();
+        $arrangements = $agenda->requestArrangements();
+
+        $songs = $agenda->getSongs();
+        $songList = "";
+        foreach($songs as $song){
+            $selectedArrangement = $song->requestSelectedArrangement();
+            $songList .= $song->getName()." - "
+                .$selectedArrangement->getName()." ("
+                .$selectedArrangement->getKeyOfArrangement()." - Dur) /";
+        }
+        var_dump( $songList);
+        // Output: "We welcome you - In A-Dur (A - Dur) /"
 
 
 ```
@@ -93,48 +104,61 @@ echo ($songList);
 ## Event-Services of Event
 
 ```php
-use \CTApi\Requests\EventRequest;
+        use CTApi\Requests\EventAgendaRequest;
+        use CTApi\Requests\EventRequest;
 
-$event = EventRequest::find(21);
-$eventServices = $event->getEventServices();
+        $event = EventRequest::find(21);
+        $eventServices = $event->getEventServices();
 
-$eventService = $eventServices[0];
+        $eventService = $eventServices[0];
 
-echo ("SERVICE:");
-// OUTPUT: SERVICE:
-echo ($eventService->getId());
-// OUTPUT: 221
-echo ($eventService->getPersonId());
-// OUTPUT: 21
-echo ($eventService->getPerson()?->getLastName());
-// OUTPUT: Smith
-echo ($eventService->getName());
-// OUTPUT: Worship-Leader
-echo ($eventService->getServiceId());
-// OUTPUT: 21
-echo ($eventService->getAgreed());
-// OUTPUT: 1
-echo ($eventService->getIsValid());
-// OUTPUT: 1
-echo ($eventService->getRequestedDate());
-// OUTPUT: 2001-01-02 02:02:12
-echo ($eventService->getRequesterPersonId());
-// OUTPUT: 21
-echo ($eventService->getRequesterPerson()?->getLastName());
-// OUTPUT: Smith
-echo ($eventService->getComment());
-// OUTPUT: No comment!
-echo ($eventService->getCounter());
-// OUTPUT: No counter!
-echo ($eventService->getAllowChat());  
-// OUTPUT: 1
+        // SERVICE:
+        var_dump( $eventService->getId());
+        // Output: "221"
 
-$person = $eventService->requestPerson();
-$requester = $eventService->requestRequesterPerson();
+        var_dump( $eventService->getPersonId());
+        // Output: "21"
 
-$service = $eventService->requestService();
-echo ($service->getName());
-// OUTPUT: Worship-Service
+        var_dump( $eventService->getPerson()?->getLastName());
+        // Output: "Smith"
+
+        var_dump( $eventService->getName());
+        // Output: "Worship-Leader"
+
+        var_dump( $eventService->getServiceId());
+        // Output: "21"
+
+        var_dump( $eventService->getAgreed());
+        // Output: true
+
+        var_dump( $eventService->getIsValid());
+        // Output: true
+
+        var_dump( $eventService->getRequestedDate());
+        // Output: "2001-01-02 02:02:12"
+
+        var_dump( $eventService->getRequesterPersonId());
+        // Output: "21"
+
+        var_dump( $eventService->getRequesterPerson()?->getLastName());
+        // Output: "Smith"
+
+        var_dump( $eventService->getComment());
+        // Output: "No comment!"
+
+        var_dump( $eventService->getCounter());
+        // Output: "No counter!"
+
+        var_dump( $eventService->getAllowChat());
+        // Output: true
+
+
+        $person = $eventService->requestPerson();
+        $requester = $eventService->requestRequesterPerson();
+
+        $service = $eventService->requestService();
+        var_dump( $service->getName());
+        // Output: "Worship-Service"
 
 
 ```

@@ -2,9 +2,9 @@
 
 use CTApi\CTClient;
 use CTApi\CTConfig;
-use Tests\Unit\HttpMock\CTClientMock;
 use CTApi\Exceptions\CTAuthException;
 use CTApi\Exceptions\CTRequestException;
+use Tests\Unit\HttpMock\CTClientMock;
 
 require_once __DIR__ . "/../../vendor/autoload.php";
 
@@ -163,8 +163,8 @@ class DocGenerator
     }
 
     /**
-     * @param $testClass
-     * @param $methodName
+     * @param $testClass Class as String
+     * @param $methodName Methodname as String
      * @return string Markdown-Content
      */
     private static function processTestMethod($testClass, $methodName){
@@ -173,20 +173,50 @@ class DocGenerator
             $reflectionMethod = $reflectionClass->getMethod($methodName);
 
             $filename = $reflectionMethod->getFileName();
-            $start_line = $reflectionMethod->getStartLine();
+            $start_line = $reflectionMethod->getStartLine()+1; // curly bracket is in new line
             $end_line = $reflectionMethod->getEndLine()-1; // remove last brace
             $length = $end_line - $start_line;
 
             $testSourceCode = file($filename);
+
+            // Slice Method-Source-Code from whole file
             $methodSourceCode = implode("", array_slice($testSourceCode, $start_line, $length));
 
+            // Replace Asssert-Statements with "var_dump"-commands
             $methodSourceCode = self::processAsssertEqualsStatements($methodSourceCode);
 
-            return "```\n".$methodSourceCode."\n```";
+            // Add Import-Statements
+            $imports = self::extractImportsFromSourceCode(implode("", $testSourceCode));
+            $methodSourceCode = $imports . "\n" . $methodSourceCode;
+
+            // Wrap Markdown
+            $methodSourceCode = "```php\n".$methodSourceCode."\n```";
+
+            return $methodSourceCode;
         }catch (ReflectionException $exception){
             \CTApi\CTLog::getLog()->error("Could not read Test-Sourcecode: ", [$exception->getMessage()]);
             return "(EXAMPLE CODE IS MISSING)";
         }
+    }
+
+    /**
+     * @param $sourceCode
+     * @return string md with import-statements
+     */
+    private static function extractImportsFromSourceCode($sourceCode): string{
+        $imports = [];
+        preg_match_all('/use (.*?);/', $sourceCode, $imports);
+
+        $stringImports = "";
+        foreach($imports[0] as $key => $importStatement){
+            $importClass = $imports[1][$key];
+            if(!str_starts_with($importClass, "Tests")
+            && !str_starts_with($importClass, "PHPUnit")){
+                $stringImports .= "        ".$importStatement."\n";
+            }
+        }
+
+        return $stringImports;
     }
 
     private static function processAsssertEqualsStatements($testCode){

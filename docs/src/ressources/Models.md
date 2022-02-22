@@ -8,77 +8,32 @@ All Models are build similar and share the same structure of methods.
 
 Create a single model filled with data:
 
-```php
-use CTApi\Models\Person;
-
-$data = [
-    "id" => 21,
-    "firstName" => "Joe",
-    "lastName" => "Kling",
-    //...
-];
-
-$person = Person::createModelFromData($data);
-```
+{{ \Tests\Unit\Docs\ModelTest.testCreateModelFromData }}
 
 Create a collection of models filled with data:
 
-```php
-use CTApi\Models\Person;
-
-$dataPersons = [
-    ["id" => 21, "firstName" => "Joe", "lastName" => "Kling", /*...*/],
-    ["id" => 22, "firstName" => "Dieter", "lastName" => "Maier", /*...*/]    
-];
-
-$personArray = Person::createModelsFromArray($dataPersons);
-
-$lastNames = "";
-foreach($personArray as $person){
-    $lastNames .= $person->getLastName() . ", ";
-}
-dd($lastNames);
-```
+{{ \Tests\Unit\Docs\ModelTest.testCreateModelsFromArray }}
 
 **`get` and `set`-methods**
 
 The attributes of a model can be used accessed with getters and setter.
 
-```php
-use CTApi\Models\Person;
+{{ \Tests\Unit\Docs\ModelTest.testGetterAndSetter }}
 
-$person = new Person();
-
-$person->getLastName();
-$person->setLastName("Joe");
-```
 
 **`request`-method (one-to-one - singular)**
 
 Any `requestXYZ`-method that requests a single model, will request all information from the api and returns the model
 directly:
 
-```php
-$event = \CTApi\Models\Event::createModelFromData(['id' => 21]);
-
-$agenda = $event->requestAgenda();
-
-dd("Event Agenda: " . $agenda->getName());
-```
+{{ \Tests\Unit\Docs\ModelEventTest.testRequestMethod }}
 
 **`request`-method (one-to-many - plural)**
 
 Any `requestXYZ`-method that returns multiple models, returns a RequestBuilder and allow you to access
 the [Requests](Requests.md) methods and type:
 
-```php
-$eventAgenda = \CTApi\Models\EventAgenda::createModelFromData(['id' => 21]);
-
-$songs = $eventAgenda->requestSongs()
-                        ->where('practice', true)
-                        ->orderBy('key')
-                        ->get();
-```
+{{ \Tests\Unit\Docs\ModelEventTest.testRequestMethodPlural }}
 
 A "one-to-many" relation can be easily identified by check if the `requestXYZ`-method ends with an "s" (e.q.:
 requestSong**s**, requestFile**s**, ...).

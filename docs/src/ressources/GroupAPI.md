@@ -2,4 +2,4 @@
 
 Group-Request & Group-Data:
 
-{{ \Tests\Unit\Requests\DocsGroupRequestTest.testDocExample }}
+{{ \Tests\Unit\Docs\GroupRequestTest.testDocExample }}

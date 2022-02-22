@@ -1,16 +1,17 @@
 <?php
 
-namespace Tests\Unit\Requests;
+namespace Tests\Unit\Docs;
 
-use Tests\Unit\TestCaseDocExampleCode;
-use Tests\Unit\TestCaseHttpMocked;
 use CTApi\Requests\GroupRequest;
 use CTApi\Requests\PersonRequest;
+use Tests\Unit\TestCaseDocExampleCode;
+use Tests\Unit\TestCaseHttpMocked;
 
-class DocsGroupRequestTest extends TestCaseHttpMocked
+class GroupRequestTest extends TestCaseHttpMocked
 {
 
-    function testDocExample(){
+    function testDocExample()
+    {
         /**
          * Group-Request
          */

@@ -1,14 +1,21 @@
-# PersonAPI
+<?php
 
-```php
-        use CTApi\Requests\PersonRequest;
 
+namespace Tests\Unit\Docs;
+
+
+use CTApi\Requests\PersonRequest;
+use Tests\Unit\TestCaseHttpMocked;
+
+class PersonRequestTest extends TestCaseHttpMocked
+{
+
+    public function testExampleCode()
+    {
         // logged in user
         $myself = PersonRequest::whoami();
 
-        var_dump( "Logged in Person: " . $myself->getFirstName() . " " . $myself->getLastName());
-        // Output: "Logged in Person: Matthew Evangelist"
-
+        $this->assertEquals("Logged in Person: Matthew Evangelist", "Logged in Person: " . $myself->getFirstName() . " " . $myself->getLastName());
 
         // Get specific Person
         $personA = PersonRequest::find(21);     // returns "null" if id is invalid
@@ -20,9 +27,7 @@
         foreach ($allPersons as $person) {
             $personList .= $person->getFirstName() . ", ";
         }
-        var_dump( Mark, Luke, John, ", $personList);
-        // Output: "Matthew
-
+        $this->assertEquals("Matthew, Mark, Luke, John, ", $personList);
 
         // filter user
         $teenager = PersonRequest::where('birthday_before', '2007-01-01')
@@ -33,5 +38,5 @@
         // Request Event of Person
         $personA = PersonRequest::whoami();
         $events = $personA->requestEvents()->get();
-
-```
+    }
+}
