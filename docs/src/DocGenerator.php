@@ -81,10 +81,11 @@ class DocGenerator
     private static function processResourceContent(string $resource): string
     {
         \CTApi\CTLog::enableConsoleLog();
-        \CTApi\CTLog::getLog()->emergency("GenerateDocs of: ".$resource);
-        $content = file_get_contents(self::$RESOURCES_DIR . $resource);
+        \CTApi\CTLog::getLog()->debug("GenerateDocs of: ".$resource);
+        $methodContent = file_get_contents(self::$RESOURCES_DIR . $resource);
 
-        $contentParts = explode('```', $content);
+        // Process Code-Examples @deprecated
+        $contentParts = explode('```', $methodContent);
         $processedContent = "";
 
         $isMarkdown = true;
@@ -96,6 +97,21 @@ class DocGenerator
             }
 
             $isMarkdown = !$isMarkdown;
+        }
+
+        // Process Templating-Syntax
+        $templateTags = [];
+        preg_match_all('/{{(.*?)}}/', $processedContent, $templateTags);
+
+        foreach($templateTags[0] as $key => $tagWithBraces){
+            $tagWithoutBraces = $templateTags[1][$key];
+
+            $tagWithoutBracesParts = explode(".", $tagWithoutBraces);
+            $tagClass = trim($tagWithoutBracesParts[0]);
+            $tagMethod = trim($tagWithoutBracesParts[1]);
+
+            $methodContent = self::processTestMethod($tagClass, $tagMethod);
+            $processedContent = str_replace($tagWithBraces, $methodContent, $processedContent);
         }
 
         return $processedContent;
@@ -144,5 +160,60 @@ class DocGenerator
     private static function processContentAsMd($content): string
     {
         return $content;
+    }
+
+    /**
+     * @param $testClass
+     * @param $methodName
+     * @return string Markdown-Content
+     */
+    private static function processTestMethod($testClass, $methodName){
+        try{
+            $reflectionClass = new ReflectionClass($testClass);
+            $reflectionMethod = $reflectionClass->getMethod($methodName);
+
+            $filename = $reflectionMethod->getFileName();
+            $start_line = $reflectionMethod->getStartLine();
+            $end_line = $reflectionMethod->getEndLine()-1; // remove last brace
+            $length = $end_line - $start_line;
+
+            $testSourceCode = file($filename);
+            $methodSourceCode = implode("", array_slice($testSourceCode, $start_line, $length));
+
+            $methodSourceCode = self::processAsssertEqualsStatements($methodSourceCode);
+
+            return "```\n".$methodSourceCode."\n```";
+        }catch (ReflectionException $exception){
+            \CTApi\CTLog::getLog()->error("Could not read Test-Sourcecode: ", [$exception->getMessage()]);
+            return "(EXAMPLE CODE IS MISSING)";
+        }
+    }
+
+    private static function processAsssertEqualsStatements($testCode){
+        $matches = [];
+        $resultCode = $testCode;
+
+        preg_match_all('/\$this->assertEquals\((.*?),(.*?)\);/', $testCode, $matches);
+
+        $assertStatements = $matches[0];
+        $results = $matches[1];
+        $codes = $matches[2];
+
+        if(sizeof($assertStatements) != sizeof($results) || sizeof($assertStatements) != sizeof($codes)){
+            \CTApi\CTLog::getLog()->warning("Could not parse Assert-Statements.");
+            return $testCode;
+        }
+
+        for($index = 0; $index < sizeof($assertStatements); $index++){
+            $assertStatement = $assertStatements[$index];
+            $result = $results[$index];
+
+            $executionCode = "var_dump(".$codes[$index].");";
+            $replaceString = $executionCode."\n        // Output: ".$result."\n";
+
+            $resultCode = str_replace($assertStatement, $replaceString, $resultCode);
+        }
+
+        return $resultCode;
     }
 }

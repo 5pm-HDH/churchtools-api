@@ -2,11 +2,12 @@
 
 namespace Tests\Unit\Requests;
 
+use Tests\Unit\TestCaseDocExampleCode;
 use Tests\Unit\TestCaseHttpMocked;
 use CTApi\Requests\GroupRequest;
 use CTApi\Requests\PersonRequest;
 
-class GroupRequestTest extends TestCaseHttpMocked
+class DocsGroupRequestTest extends TestCaseHttpMocked
 {
 
     function testDocExample(){
@@ -28,8 +29,8 @@ class GroupRequestTest extends TestCaseHttpMocked
         /**
          * Group-Data
          */
-        $this->assertEquals(21, $group->getId(), 21);
-        $this->assertEquals("g21", $group->getGuid(), "g21");
+        $this->assertEquals(21, $group->getId());
+        $this->assertEquals("g21", $group->getGuid());
         $this->assertEquals("Sermon Group", $group->getName());
         $this->assertEquals("High", $group->getSecurityLevelForGroup());
         $this->assertEquals([], $group->getPermissions());
