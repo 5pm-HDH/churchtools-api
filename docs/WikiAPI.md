@@ -36,7 +36,7 @@
         // Output: []
 
 
-        $allPages = $wikiCategory->requestPages()->get();
+        $allPages = $wikiCategory->requestPages()?->get() ?? [];
 
         /**
          * WikiPages - Model
@@ -106,11 +106,12 @@
         $wikiCategory = WikiCategoryRequest::find(21);
 
 
-        $rootNodeWiki = $wikiCategory->requestWikiPageTree();
+        $rootNodeWiki = $wikiCategory?->requestWikiPageTree();
 
         $subPages = "";
-        foreach ($rootNodeWiki->getChildNodes() as $node) {
-            $pageTreeList .= $node->getWikiPage()->getTitle() . ", ";
+        $childNodes = $rootNodeWiki?->getChildNodes() ?? [];
+        foreach ($childNodes as $node) {
+            $subPages .= $node->getWikiPage()->getTitle() . ", ";
         }
         var_dump( $subPages);
         // Output: ""

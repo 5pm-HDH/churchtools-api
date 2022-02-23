@@ -14,7 +14,7 @@ Group-Request & Group-Data:
         $allGroups = GroupRequest::all();
         $allGroups = GroupRequest::orderBy('name')->get();
 
-        $myGroups = PersonRequest::whoami()?->requestGroups();
+        $myGroups = PersonRequest::whoami()->requestGroups();
 
         // Get specific Group
         $group = GroupRequest::find(21);     // returns "null" if id is invalid
@@ -146,34 +146,34 @@ Group-Request & Group-Data:
 
 
         // GroupMembers
-        $groupMember = $group->requestMembers()->get()[0];
+        $groupMember = $group->requestMembers()?->get()[0];
 
-        var_dump( $groupMember->getId());
+        var_dump( $groupMember?->getId());
         // Output: "21"
 
-        var_dump( $groupMember->getPersonId());
+        var_dump( $groupMember?->getPersonId());
         // Output: null
 
-        var_dump( $groupMember->getGroupTypeRoleId());
+        var_dump( $groupMember?->getGroupTypeRoleId());
         // Output: null
 
-        var_dump( $groupMember->getMemberStartDate());
+        var_dump( $groupMember?->getMemberStartDate());
         // Output: null
 
-        var_dump( $groupMember->getComment());
+        var_dump( $groupMember?->getComment());
         // Output: null
 
-        var_dump( $groupMember->getMemberEndDate());
+        var_dump( $groupMember?->getMemberEndDate());
         // Output: null
 
-        var_dump( $groupMember->getWaitinglistPosition());
+        var_dump( $groupMember?->getWaitinglistPosition());
         // Output: null
 
-        var_dump( $groupMember->getFields());
+        var_dump( $groupMember?->getFields());
         // Output: []
 
 
-        $personGroupMember = $groupMember->getPerson();
-        $personGroupMember = $groupMember->requestPerson();
+        $personGroupMember = $groupMember?->getPerson();
+        $personGroupMember = $groupMember?->requestPerson();
 
 ```

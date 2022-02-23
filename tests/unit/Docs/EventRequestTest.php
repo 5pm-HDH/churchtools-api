@@ -47,11 +47,12 @@ class EventRequestTest extends TestCaseHttpMocked
         $event = EventRequest::find(21);
 
         $agenda = EventAgendaRequest::fromEvent(21)->get();
-        $agenda = $event->requestAgenda();
+        $agenda = $event?->requestAgenda();
 
         $eventItemsList = "";
         $eventSongsList = "";
-        foreach ($agenda->getItems() as $item) {
+        $agendaItems = ($agenda?->getItems() ?? []);
+        foreach ($agendaItems as $item) {
             $eventItemsList .= $item->getTitle() . " (" . $item->getType() . "), ";
             $song = $item->getSong();
             if (!is_null($song)) {
@@ -62,10 +63,10 @@ class EventRequestTest extends TestCaseHttpMocked
         $this->assertEquals("Opening Song (Song), First Worship Song (Song), Sermon (Default), ", $eventItemsList);
         $this->assertEquals("We welcome you, ", $eventSongsList);
 
-        $songs = $agenda->requestSongs();
-        $arrangements = $agenda->requestArrangements();
+        $songs = $agenda?->requestSongs();
+        $arrangements = $agenda?->requestArrangements();
 
-        $songs = $agenda->getSongs();
+        $songs = $agenda?->getSongs() ?? [];
         $songList = "";
         foreach ($songs as $song) {
             $selectedArrangement = $song->requestSelectedArrangement();
@@ -79,29 +80,29 @@ class EventRequestTest extends TestCaseHttpMocked
     public function testEventServicesRequestDocExample()
     {
         $event = EventRequest::find(21);
-        $eventServices = $event->getEventServices();
+        $eventServices = $event?->getEventServices() ?? [];
 
         $eventService = $eventServices[0];
 
         // SERVICE:
-        $this->assertEquals("221", $eventService->getId());
-        $this->assertEquals("21", $eventService->getPersonId());
-        $this->assertEquals("Smith", $eventService->getPerson()?->getLastName());
-        $this->assertEquals("Worship-Leader", $eventService->getName());
-        $this->assertEquals("21", $eventService->getServiceId());
-        $this->assertEquals(true, $eventService->getAgreed());
-        $this->assertEquals(true, $eventService->getIsValid());
-        $this->assertEquals("2001-01-02 02:02:12", $eventService->getRequestedDate());
-        $this->assertEquals("21", $eventService->getRequesterPersonId());
-        $this->assertEquals("Smith", $eventService->getRequesterPerson()?->getLastName());
-        $this->assertEquals("No comment!", $eventService->getComment());
-        $this->assertEquals("No counter!", $eventService->getCounter());
-        $this->assertEquals(true, $eventService->getAllowChat());
+        $this->assertEquals("221", $eventService?->getId());
+        $this->assertEquals("21", $eventService?->getPersonId());
+        $this->assertEquals("Smith", $eventService?->getPerson()?->getLastName());
+        $this->assertEquals("Worship-Leader", $eventService?->getName());
+        $this->assertEquals("21", $eventService?->getServiceId());
+        $this->assertEquals(true, $eventService?->getAgreed());
+        $this->assertEquals(true, $eventService?->getIsValid());
+        $this->assertEquals("2001-01-02 02:02:12", $eventService?->getRequestedDate());
+        $this->assertEquals("21", $eventService?->getRequesterPersonId());
+        $this->assertEquals("Smith", $eventService?->getRequesterPerson()?->getLastName());
+        $this->assertEquals("No comment!", $eventService?->getComment());
+        $this->assertEquals("No counter!", $eventService?->getCounter());
+        $this->assertEquals(true, $eventService?->getAllowChat());
 
-        $person = $eventService->requestPerson();
-        $requester = $eventService->requestRequesterPerson();
+        $person = $eventService?->requestPerson();
+        $requester = $eventService?->requestRequesterPerson();
 
-        $service = $eventService->requestService();
-        $this->assertEquals("Worship-Service", $service->getName());
+        $service = $eventService?->requestService();
+        $this->assertEquals("Worship-Service", $service?->getName());
     }
 }

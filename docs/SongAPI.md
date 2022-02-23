@@ -58,38 +58,38 @@
         /**
          * Arrangement-Model
          */
-        var_dump( $selectedArrangement->getId());
+        var_dump( $selectedArrangement?->getId());
         // Output: "221"
 
-        var_dump( $selectedArrangement->getName());
+        var_dump( $selectedArrangement?->getName());
         // Output: "In A-Dur"
 
-        var_dump( $selectedArrangement->getIsDefault());
+        var_dump( $selectedArrangement?->getIsDefault());
         // Output: "1"
 
-        var_dump( $selectedArrangement->getKeyOfArrangement());
+        var_dump( $selectedArrangement?->getKeyOfArrangement());
         // Output: "A"
 
-        var_dump( $selectedArrangement->getBpm());
+        var_dump( $selectedArrangement?->getBpm());
         // Output: "120"
 
-        var_dump( $selectedArrangement->getBeat());
+        var_dump( $selectedArrangement?->getBeat());
         // Output: "4/4"
 
-        var_dump( $selectedArrangement->getDuration());
+        var_dump( $selectedArrangement?->getDuration());
         // Output: "210"
 
-        var_dump( $selectedArrangement->getNote());
+        var_dump( $selectedArrangement?->getNote());
         // Output: "-"
 
-        $selectedArrangement->getLinks();
-        $selectedArrangement->getFiles();
+        $selectedArrangement?->getLinks();
+        $selectedArrangement?->getFiles();
 
 
         /**
          *  File-Model
          */
-        foreach ($selectedArrangement->getFiles() as $file) {
+        foreach (($selectedArrangement?->getFiles() ?? []) as $file) {
             var_dump( $file->getDomainType());
         // Output: ""
 
@@ -107,8 +107,8 @@
 
         }
 
-        $chordsheet = $selectedArrangement->requestFirstFile('chord', 'pdf');
-        $youtubeLink = $selectedArrangement->requestFirstLink('youtube.com');
+        $chordsheet = $selectedArrangement?->requestFirstFile('chord', 'pdf');
+        $youtubeLink = $selectedArrangement?->requestFirstLink('youtube.com');
 
         // Download File:
         //$chordsheet->downloadToClient(); //downloads to client

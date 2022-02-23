@@ -73,16 +73,16 @@ Further the PublicGroup-Model contains the following Methods:
         // Output: "Bild-Url: https://test.church.tools/images/9281/2928912ioha8921ns891bs9"
 
 
-        var_dump( "Location: " . $group->getInformation()?->getGroupPlaces()[0]->getName());
+        var_dump( "Location: " . $group->getInformation()?->getGroupPlaces()[0]?->getName());
         // Output: "Location: Freizeitheim Rosenberg"
 
-        var_dump( "Stadt: " . $group->getInformation()?->getGroupPlaces()[0]->getCity());
+        var_dump( "Stadt: " . $group->getInformation()?->getGroupPlaces()[0]?->getCity());
         // Output: "Stadt: Heilbronn"
 
-        var_dump( "GeoLat: " . $group->getInformation()?->getGroupPlaces()[0]->getGeoLat());
+        var_dump( "GeoLat: " . $group->getInformation()?->getGroupPlaces()[0]?->getGeoLat());
         // Output: "GeoLat: 92.2912"
 
-        var_dump( "GeoLng: " . $group->getInformation()?->getGroupPlaces()[0]->getGeoLng());
+        var_dump( "GeoLng: " . $group->getInformation()?->getGroupPlaces()[0]?->getGeoLng());
         // Output: "GeoLng: 2.291"
 
 

@@ -20,7 +20,7 @@ class GroupRequestTest extends TestCaseHttpMocked
         $allGroups = GroupRequest::all();
         $allGroups = GroupRequest::orderBy('name')->get();
 
-        $myGroups = PersonRequest::whoami()?->requestGroups();
+        $myGroups = PersonRequest::whoami()->requestGroups();
 
         // Get specific Group
         $group = GroupRequest::find(21);     // returns "null" if id is invalid
@@ -78,18 +78,18 @@ class GroupRequestTest extends TestCaseHttpMocked
         $this->assertEquals(true, $groupRole->getCanWriteChat());
 
         // GroupMembers
-        $groupMember = $group->requestMembers()->get()[0];
+        $groupMember = $group->requestMembers()?->get()[0];
 
-        $this->assertEquals("21", $groupMember->getId());
-        $this->assertEquals(null, $groupMember->getPersonId());
-        $this->assertEquals(null, $groupMember->getGroupTypeRoleId());
-        $this->assertEquals(null, $groupMember->getMemberStartDate());
-        $this->assertEquals(null, $groupMember->getComment());
-        $this->assertEquals(null, $groupMember->getMemberEndDate());
-        $this->assertEquals(null, $groupMember->getWaitinglistPosition());
-        $this->assertEquals([], $groupMember->getFields());
+        $this->assertEquals("21", $groupMember?->getId());
+        $this->assertEquals(null, $groupMember?->getPersonId());
+        $this->assertEquals(null, $groupMember?->getGroupTypeRoleId());
+        $this->assertEquals(null, $groupMember?->getMemberStartDate());
+        $this->assertEquals(null, $groupMember?->getComment());
+        $this->assertEquals(null, $groupMember?->getMemberEndDate());
+        $this->assertEquals(null, $groupMember?->getWaitinglistPosition());
+        $this->assertEquals([], $groupMember?->getFields());
 
-        $personGroupMember = $groupMember->getPerson();
-        $personGroupMember = $groupMember->requestPerson();
+        $personGroupMember = $groupMember?->getPerson();
+        $personGroupMember = $groupMember?->requestPerson();
     }
 }

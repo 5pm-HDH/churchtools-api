@@ -25,9 +25,9 @@ class PersonRequestTest extends TestCaseHttpMocked
         $allPersons = PersonRequest::all();
         $personList = "";
         foreach ($allPersons as $person) {
-            $personList .= $person->getFirstName() . ", ";
+            $personList .= $person->getFirstName() . " / ";
         }
-        $this->assertEquals("Matthew, Mark, Luke, John, ", $personList);
+        $this->assertEquals("Matthew / Mark / Luke / John / ", $personList);
 
         // filter user
         $teenager = PersonRequest::where('birthday_before', '2007-01-01')
@@ -37,6 +37,6 @@ class PersonRequestTest extends TestCaseHttpMocked
 
         // Request Event of Person
         $personA = PersonRequest::whoami();
-        $events = $personA->requestEvents()->get();
+        $events = $personA->requestEvents()?->get();
     }
 }

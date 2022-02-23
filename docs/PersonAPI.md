@@ -18,10 +18,10 @@
         $allPersons = PersonRequest::all();
         $personList = "";
         foreach ($allPersons as $person) {
-            $personList .= $person->getFirstName() . ", ";
+            $personList .= $person->getFirstName() . " / ";
         }
-        var_dump( Mark, Luke, John, ", $personList);
-        // Output: "Matthew
+        var_dump( $personList);
+        // Output: "Matthew / Mark / Luke / John / "
 
 
         // filter user
@@ -32,6 +32,6 @@
 
         // Request Event of Person
         $personA = PersonRequest::whoami();
-        $events = $personA->requestEvents()->get();
+        $events = $personA->requestEvents()?->get();
 
 ```

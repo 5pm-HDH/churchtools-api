@@ -52,9 +52,9 @@ class PublicGroupRequestTest extends TestCaseHttpMocked
         $this->assertEquals("Beschreibung: Eine spannende Freizeit erwartet dich!", "Beschreibung: " . $group->getInformation()?->getNote());
         $this->assertEquals("Bild-Url: https://test.church.tools/images/9281/2928912ioha8921ns891bs9", "Bild-Url: " . $group->getInformation()?->getImageUrl());
 
-        $this->assertEquals("Location: Freizeitheim Rosenberg", "Location: " . $group->getInformation()?->getGroupPlaces()[0]->getName());
-        $this->assertEquals("Stadt: Heilbronn", "Stadt: " . $group->getInformation()?->getGroupPlaces()[0]->getCity());
-        $this->assertEquals("GeoLat: 92.2912", "GeoLat: " . $group->getInformation()?->getGroupPlaces()[0]->getGeoLat());
-        $this->assertEquals("GeoLng: 2.291", "GeoLng: " . $group->getInformation()?->getGroupPlaces()[0]->getGeoLng());
+        $this->assertEquals("Location: Freizeitheim Rosenberg", "Location: " . $group->getInformation()?->getGroupPlaces()[0]?->getName());
+        $this->assertEquals("Stadt: Heilbronn", "Stadt: " . $group->getInformation()?->getGroupPlaces()[0]?->getCity());
+        $this->assertEquals("GeoLat: 92.2912", "GeoLat: " . $group->getInformation()?->getGroupPlaces()[0]?->getGeoLat());
+        $this->assertEquals("GeoLng: 2.291", "GeoLng: " . $group->getInformation()?->getGroupPlaces()[0]?->getGeoLng());
     }
 }

@@ -27,7 +27,7 @@ class WikiRequestTest extends TestCaseHttpMocked
         $this->assertEquals("", $wikiCategory->getFileAccessWithoutPermission());
         $this->assertEquals([], $wikiCategory->getPermissions());
 
-        $allPages = $wikiCategory->requestPages()->get();
+        $allPages = $wikiCategory->requestPages()?->get() ?? [];
 
         /**
          * WikiPages - Model
@@ -79,11 +79,12 @@ class WikiRequestTest extends TestCaseHttpMocked
         $wikiCategory = WikiCategoryRequest::find(21);
 
 
-        $rootNodeWiki = $wikiCategory->requestWikiPageTree();
+        $rootNodeWiki = $wikiCategory?->requestWikiPageTree();
 
         $subPages = "";
-        foreach ($rootNodeWiki->getChildNodes() as $node) {
-            $pageTreeList .= $node->getWikiPage()->getTitle() . ", ";
+        $childNodes = $rootNodeWiki?->getChildNodes() ?? [];
+        foreach ($childNodes as $node) {
+            $subPages .= $node->getWikiPage()->getTitle() . ", ";
         }
         $this->assertEquals("", $subPages);
     }

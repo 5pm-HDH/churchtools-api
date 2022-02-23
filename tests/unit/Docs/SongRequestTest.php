@@ -45,22 +45,22 @@ class SongRequestTest extends TestCaseHttpMocked
         /**
          * Arrangement-Model
          */
-        $this->assertEquals("221", $selectedArrangement->getId());
-        $this->assertEquals("In A-Dur", $selectedArrangement->getName());
-        $this->assertEquals("1", $selectedArrangement->getIsDefault());
-        $this->assertEquals("A", $selectedArrangement->getKeyOfArrangement());
-        $this->assertEquals("120", $selectedArrangement->getBpm());
-        $this->assertEquals("4/4", $selectedArrangement->getBeat());
-        $this->assertEquals("210", $selectedArrangement->getDuration());
-        $this->assertEquals("-", $selectedArrangement->getNote());
-        $selectedArrangement->getLinks();
-        $selectedArrangement->getFiles();
+        $this->assertEquals("221", $selectedArrangement?->getId());
+        $this->assertEquals("In A-Dur", $selectedArrangement?->getName());
+        $this->assertEquals("1", $selectedArrangement?->getIsDefault());
+        $this->assertEquals("A", $selectedArrangement?->getKeyOfArrangement());
+        $this->assertEquals("120", $selectedArrangement?->getBpm());
+        $this->assertEquals("4/4", $selectedArrangement?->getBeat());
+        $this->assertEquals("210", $selectedArrangement?->getDuration());
+        $this->assertEquals("-", $selectedArrangement?->getNote());
+        $selectedArrangement?->getLinks();
+        $selectedArrangement?->getFiles();
 
 
         /**
          *  File-Model
          */
-        foreach ($selectedArrangement->getFiles() as $file) {
+        foreach (($selectedArrangement?->getFiles() ?? []) as $file) {
             $this->assertEquals("", $file->getDomainType());
             $this->assertEquals("", $file->getDomainId());
             $this->assertEquals("chords-a.pdf", $file->getName());
@@ -68,8 +68,8 @@ class SongRequestTest extends TestCaseHttpMocked
             $this->assertEquals("https://some-churchtools-api-url.com/", $file->getFileUrl());
         }
 
-        $chordsheet = $selectedArrangement->requestFirstFile('chord', 'pdf');
-        $youtubeLink = $selectedArrangement->requestFirstLink('youtube.com');
+        $chordsheet = $selectedArrangement?->requestFirstFile('chord', 'pdf');
+        $youtubeLink = $selectedArrangement?->requestFirstLink('youtube.com');
 
         // Download File:
         //$chordsheet->downloadToClient(); //downloads to client

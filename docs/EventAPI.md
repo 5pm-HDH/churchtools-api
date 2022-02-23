@@ -65,11 +65,12 @@
         $event = EventRequest::find(21);
 
         $agenda = EventAgendaRequest::fromEvent(21)->get();
-        $agenda = $event->requestAgenda();
+        $agenda = $event?->requestAgenda();
 
         $eventItemsList = "";
         $eventSongsList = "";
-        foreach ($agenda->getItems() as $item) {
+        $agendaItems = ($agenda?->getItems() ?? []);
+        foreach ($agendaItems as $item) {
             $eventItemsList .= $item->getTitle() . " (" . $item->getType() . "), ";
             $song = $item->getSong();
             if (!is_null($song)) {
@@ -84,10 +85,10 @@
         // Output: "We welcome you
 
 
-        $songs = $agenda->requestSongs();
-        $arrangements = $agenda->requestArrangements();
+        $songs = $agenda?->requestSongs();
+        $arrangements = $agenda?->requestArrangements();
 
-        $songs = $agenda->getSongs();
+        $songs = $agenda?->getSongs() ?? [];
         $songList = "";
         foreach ($songs as $song) {
             $selectedArrangement = $song->requestSelectedArrangement();
@@ -108,56 +109,56 @@
         use CTApi\Requests\EventRequest;
 
         $event = EventRequest::find(21);
-        $eventServices = $event->getEventServices();
+        $eventServices = $event?->getEventServices() ?? [];
 
         $eventService = $eventServices[0];
 
         // SERVICE:
-        var_dump( $eventService->getId());
+        var_dump( $eventService?->getId());
         // Output: "221"
 
-        var_dump( $eventService->getPersonId());
+        var_dump( $eventService?->getPersonId());
         // Output: "21"
 
-        var_dump( $eventService->getPerson()?->getLastName());
+        var_dump( $eventService?->getPerson()?->getLastName());
         // Output: "Smith"
 
-        var_dump( $eventService->getName());
+        var_dump( $eventService?->getName());
         // Output: "Worship-Leader"
 
-        var_dump( $eventService->getServiceId());
+        var_dump( $eventService?->getServiceId());
         // Output: "21"
 
-        var_dump( $eventService->getAgreed());
+        var_dump( $eventService?->getAgreed());
         // Output: true
 
-        var_dump( $eventService->getIsValid());
+        var_dump( $eventService?->getIsValid());
         // Output: true
 
-        var_dump( $eventService->getRequestedDate());
+        var_dump( $eventService?->getRequestedDate());
         // Output: "2001-01-02 02:02:12"
 
-        var_dump( $eventService->getRequesterPersonId());
+        var_dump( $eventService?->getRequesterPersonId());
         // Output: "21"
 
-        var_dump( $eventService->getRequesterPerson()?->getLastName());
+        var_dump( $eventService?->getRequesterPerson()?->getLastName());
         // Output: "Smith"
 
-        var_dump( $eventService->getComment());
+        var_dump( $eventService?->getComment());
         // Output: "No comment!"
 
-        var_dump( $eventService->getCounter());
+        var_dump( $eventService?->getCounter());
         // Output: "No counter!"
 
-        var_dump( $eventService->getAllowChat());
+        var_dump( $eventService?->getAllowChat());
         // Output: true
 
 
-        $person = $eventService->requestPerson();
-        $requester = $eventService->requestRequesterPerson();
+        $person = $eventService?->requestPerson();
+        $requester = $eventService?->requestRequesterPerson();
 
-        $service = $eventService->requestService();
-        var_dump( $service->getName());
+        $service = $eventService?->requestService();
+        var_dump( $service?->getName());
         // Output: "Worship-Service"
 
 
