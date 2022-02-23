@@ -14,6 +14,7 @@ class PublicGroupRequestTest extends TestCaseHttpMocked
 
     public function testExampleCodePublicGroupInit()
     {
+        CTLog::setConsoleLogLevelDebug();
         CTLog::enableConsoleLog(true);
 
         $groupHomepage = PublicGroupRequest::get("wryawBH318GLHasgm27awB0c241aj");
@@ -34,6 +35,9 @@ class PublicGroupRequestTest extends TestCaseHttpMocked
 
         // Array of PublicGroups:
         $groups = $groupHomepage->getGroups();
+
+        CTLog::setConsoleLogLevelError();
+        CTLog::enableConsoleLog(false);
     }
 
     public function testExampleCodePublicGroup()

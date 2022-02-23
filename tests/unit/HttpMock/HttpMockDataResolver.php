@@ -18,6 +18,7 @@ class HttpMockDataResolver
     private static function getData(string $endpoint): array
     {
         $jsonFileName = self::convertEndpointToFileName($endpoint);
+        CTLog::getLog()->debug("HttpMockDataResolver. Load Json-File: ".$jsonFileName);
         if (file_exists($jsonFileName)) {
             $fileContent = file_get_contents($jsonFileName);
             if ($fileContent != false) {
