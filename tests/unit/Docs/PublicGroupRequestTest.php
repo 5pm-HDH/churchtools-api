@@ -4,6 +4,7 @@
 namespace Tests\Unit\Docs;
 
 
+use CTApi\CTLog;
 use CTApi\Requests\PublicGroupRequest;
 use Tests\Unit\TestCaseHttpMocked;
 
@@ -11,11 +12,9 @@ class PublicGroupRequestTest extends TestCaseHttpMocked
 {
 
 
-    /**
-     * @doesNotPerformAssertions
-     */
     public function testExampleCodePublicGroupInit()
     {
+        CTLog::enableConsoleLog(true);
 
         $groupHomepage = PublicGroupRequest::get("wryawBH318GLHasgm27awB0c241aj");
 
@@ -29,6 +28,7 @@ class PublicGroupRequestTest extends TestCaseHttpMocked
         $groupHomepage->getOrderDirection();
 
         $hash = $groupHomepage->getRandomUrl();
+        $this->assertEquals("Hash: wryawBH318GLHasgm27awB0c241aj", "Hash: ".$hash);
 
         $groupHomepage->getMeta();
 

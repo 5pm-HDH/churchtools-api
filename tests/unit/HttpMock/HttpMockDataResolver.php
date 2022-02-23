@@ -2,6 +2,8 @@
 
 namespace Tests\Unit\HttpMock;
 
+use CTApi\CTLog;
+
 class HttpMockDataResolver
 {
 
@@ -9,6 +11,7 @@ class HttpMockDataResolver
 
     static function resolveEndpoint(string $endpoint): array
     {
+        CTLog::getLog()->debug("HttpMockDataResolver. Resolve endpoint: ".$endpoint);
         return self::getData($endpoint);
     }
 
@@ -21,6 +24,7 @@ class HttpMockDataResolver
                 return json_decode($fileContent, true);
             }
         }
+        CTLog::getLog()->debug("HttpMockDataResolver. Could not retrieve Json-File: ".$jsonFileName);
 
         return [];
     }

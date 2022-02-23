@@ -3,8 +3,10 @@
 Load Data of Group Homepage with Hash-String. This route is public, so no authentication of the CTConfig is necessary.
 
 ```php
+        use CTApi\CTLog;
         use CTApi\Requests\PublicGroupRequest;
 
+        CTLog::enableConsoleLog(true);
 
         $groupHomepage = PublicGroupRequest::get("wryawBH318GLHasgm27awB0c241aj");
 
@@ -18,6 +20,9 @@ Load Data of Group Homepage with Hash-String. This route is public, so no authen
         $groupHomepage->getOrderDirection();
 
         $hash = $groupHomepage->getRandomUrl();
+        var_dump( "Hash: ".$hash);
+        // Output: "Hash: wryawBH318GLHasgm27awB0c241aj"
+
 
         $groupHomepage->getMeta();
 
@@ -32,6 +37,7 @@ PublicGroup: [GroupAPI](GroupAPI.md)
 Further the PublicGroup-Model contains the following Methods:
 
 ```php
+        use CTApi\CTLog;
         use CTApi\Requests\PublicGroupRequest;
 
         $groupHomepage = PublicGroupRequest::get("wryawBH318GLHasgm27awB0c241aj");
