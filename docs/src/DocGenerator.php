@@ -163,6 +163,7 @@ class DocGenerator
     }
 
     /**
+     * Parase Template brackets `{{` [TestClass].[TestMethod] `}}`
      * @param $testClass Class as String
      * @param $methodName Methodname as String
      * @return string Markdown-Content
@@ -200,6 +201,7 @@ class DocGenerator
     }
 
     /**
+     * Extract `use`-Statements from PHP-File. Ignore imports from namespaces that start with Tests or PHPUnit.
      * @param $sourceCode
      * @return string md with import-statements
      */
@@ -219,6 +221,11 @@ class DocGenerator
         return $stringImports;
     }
 
+    /**
+     * Convert all `assertEquals`-Statements to var_dump methods.
+     * @param $testCode
+     * @return string
+     */
     private static function processAsssertEqualsStatements($testCode){
         $matches = [];
         $resultCode = $testCode;
