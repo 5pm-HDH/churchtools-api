@@ -36,6 +36,8 @@ class HttpMockDataResolver
         if ($endpoint[0] == '/') {
             $endpoint = substr($endpoint, 1);
         }
+        // convert string to lowercase
+        $endpoint = strtolower($endpoint);
 
         return self::HTTP_DATA_DIR . str_replace('/', '_', strtolower($endpoint)) . '.json';
     }
