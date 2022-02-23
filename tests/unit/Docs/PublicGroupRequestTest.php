@@ -26,7 +26,6 @@ class PublicGroupRequestTest extends TestCaseHttpMocked
         $groupHomepage->getOrderDirection();
 
         $hash = $groupHomepage->getRandomUrl();
-        $this->assertEquals("Hash: wryawBH318GLHasgm27awB0c241aj", "Hash: " . $hash);
 
         $groupHomepage->getMeta();
 
