@@ -36,7 +36,7 @@ CTLog::enableConsoleLog(false);
 
 Only the loglevel of the console-log can be changed:
 
-```php 
+```php
 use CTApi\CTLog;
 
 // reacts to log-levels: ERROR, CRITICAL, ALERT, EMERGENCY

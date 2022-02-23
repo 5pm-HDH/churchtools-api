@@ -9,37 +9,38 @@ All Models are build similar and share the same structure of methods.
 Create a single model filled with data:
 
 ```php
-use CTApi\Models\Person;
+        use CTApi\Models\Person;
 
-$data = [
-    "id" => 21,
-    "firstName" => "Joe",
-    "lastName" => "Kling",
-    //...
-];
+        $data = [
+            "id" => 21,
+            "firstName" => "Joe",
+            "lastName" => "Kling",
+            //...
+        ];
 
-$person = Person::createModelFromData($data);
+        $person = Person::createModelFromData($data);
 
 ```
 
 Create a collection of models filled with data:
 
 ```php
-use CTApi\Models\Person;
+        use CTApi\Models\Person;
 
-$dataPersons = [
-    ["id" => 21, "firstName" => "Joe", "lastName" => "Kling", /*...*/],
-    ["id" => 22, "firstName" => "Dieter", "lastName" => "Maier", /*...*/]    
-];
+        $dataPersons = [
+            ["id" => 21, "firstName" => "Joe", "lastName" => "Kling", /*...*/],
+            ["id" => 22, "firstName" => "Dieter", "lastName" => "Maier", /*...*/]
+        ];
 
-$personArray = Person::createModelsFromArray($dataPersons);
+        $personArray = Person::createModelsFromArray($dataPersons);
 
-$lastNames = "";
-foreach($personArray as $person){
-    $lastNames .= $person->getLastName() . ", ";
-}
-echo ($lastNames);
-// OUTPUT: Kling, Maier, 
+        $lastNames = "";
+        foreach ($personArray as $person) {
+            $lastNames .= $person->getLastName() . "/ ";
+        }
+        var_dump( $lastNames);
+        // Output: "Kling/ Maier/ "
+
 
 ```
 
@@ -48,14 +49,15 @@ echo ($lastNames);
 The attributes of a model can be used accessed with getters and setter.
 
 ```php
-use CTApi\Models\Person;
+        use CTApi\Models\Person;
 
-$person = new Person();
+        $person = new Person();
 
-$person->getLastName();
-$person->setLastName("Joe");
+        $person->getLastName();
+        $person->setLastName("Joe");
 
 ```
+
 
 **`request`-method (one-to-one - singular)**
 
@@ -63,12 +65,15 @@ Any `requestXYZ`-method that requests a single model, will request all informati
 directly:
 
 ```php
-$event = \CTApi\Models\Event::createModelFromData(['id' => 21]);
+        use CTApi\Models\Event;
+        use CTApi\Models\EventAgenda;
 
-$agenda = $event->requestAgenda();
+        $event = Event::createModelFromData(['id' => 21]);
+        $agenda = $event->requestAgenda();
 
-echo ("Event Agenda: " . $agenda->getName());
-// OUTPUT: Event Agenda: Sunday Service Agenda
+        var_dump( $agenda->getName());
+        // Output: "Sunday Service Agenda"
+
 
 ```
 
@@ -78,12 +83,15 @@ Any `requestXYZ`-method that returns multiple models, returns a RequestBuilder a
 the [Requests](Requests.md) methods and type:
 
 ```php
-$eventAgenda = \CTApi\Models\EventAgenda::createModelFromData(['id' => 21]);
+        use CTApi\Models\Event;
+        use CTApi\Models\EventAgenda;
 
-$songs = $eventAgenda->requestSongs()
-                        ->where('practice', true)
-                        ->orderBy('key')
-                        ->get();
+        $eventAgenda = EventAgenda::createModelFromData(['id' => 21]);
+
+        $songs = $eventAgenda->requestSongs()
+            ->where('practice', true)
+            ->orderBy('key')
+            ->get();
 
 ```
 

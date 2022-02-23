@@ -10,7 +10,11 @@
                 "groupTypeId": 21,
                 "name": "Admin",
                 "shorty": "Adm",
-                "sortKey": "name"
+                "sortKey": "name",
+                "toDelete": true,
+                "isActive": true,
+                "canReadChat": true,
+                "canWriteChat": true
             }
         ],
         "members": [
@@ -19,6 +23,21 @@
                 "personId": 21,
                 "comment": "Hello World"
             }
-        ]
+        ],
+        "settings": {
+            "isHidden": false,
+            "isOpenForMembers": true,
+            "allowSpouseRegistration": true,
+            "allowChildRegistration": true,
+            "allowSameEmailRegistration": true,
+            "autoAccept": true,
+            "allowWaitinglist": true,
+            "waitinglistMaxPersons": 21,
+            "automaticMoveUp": true,
+            "isPublic": false,
+            "groupMeeting": [],
+            "qrCodeCheckin": false,
+            "newMember": []
+        }
     }
 }

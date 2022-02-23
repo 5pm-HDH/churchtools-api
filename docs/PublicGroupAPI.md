@@ -3,27 +3,28 @@
 Load Data of Group Homepage with Hash-String. This route is public, so no authentication of the CTConfig is necessary.
 
 ```php
-use \CTApi\Requests\PublicGroupRequest;
+        use CTApi\Requests\PublicGroupRequest;
 
-$groupHomepage = PublicGroupRequest::get("wryawBH318GLHasgm27awB0c241aj");
+        $groupHomepage = PublicGroupRequest::get("wryawBH318GLHasgm27awB0c241aj");
 
-$groupHomepage->getId();
-$groupHomepage->getIsEnabled();
-$groupHomepage->getShowLeader();
-$groupHomepage->getShowMap();
-$groupHomepage->getShowFilter();
-$groupHomepage->getDefaultView();
-$groupHomepage->getSortBy();
-$groupHomepage->getOrderDirection();
+        $groupHomepage->getId();
+        $groupHomepage->getIsEnabled();
+        $groupHomepage->getShowLeader();
+        $groupHomepage->getShowMap();
+        $groupHomepage->getShowFilter();
+        $groupHomepage->getDefaultView();
+        $groupHomepage->getSortBy();
+        $groupHomepage->getOrderDirection();
 
-$hash = $groupHomepage->getRandomUrl();
-echo ("Hash: ".$hash);
-// OUTPUT: Hash: wryawBH318GLHasgm27awB0c241aj
+        $hash = $groupHomepage->getRandomUrl();
+        var_dump( "Hash: " . $hash);
+        // Output: "Hash: wryawBH318GLHasgm27awB0c241aj"
 
-$groupHomepage->getMeta();
 
-// Array of PublicGroups:
-$groups = $groupHomepage->getGroups();
+        $groupHomepage->getMeta();
+
+        // Array of PublicGroups:
+        $groups = $groupHomepage->getGroups();
 
 ```
 
@@ -33,42 +34,56 @@ PublicGroup: [GroupAPI](GroupAPI.md)
 Further the PublicGroup-Model contains the following Methods:
 
 ```php
-use \CTApi\Requests\PublicGroupRequest;
+        use CTApi\Requests\PublicGroupRequest;
 
-$groupHomepage = PublicGroupRequest::get("wryawBH318GLHasgm27awB0c241aj");
-$group = $groupHomepage->getGroups()[0];
+        $groupHomepage = PublicGroupRequest::get("wryawBH318GLHasgm27awB0c241aj");
+        $group = $groupHomepage->getGroups()[0];
 
-echo ("Id: ". $group->getId());
-// OUTPUT: Id: 221
-echo ("Headline: ". $group->getSignUpHeadline());
-// OUTPUT: Headline: Teilnahme beantragen
-echo ("Max. Teilnehmer: ". $group->getMaxMemberCount());
-// OUTPUT: Max. Teilnehmer: 42
-echo ("Akt. Teilnehmer: ". $group->getCurrentMemberCount());
-// OUTPUT: Akt. Teilnehmer: 30
-echo ("Name: ". $group->getName());
-// OUTPUT: Name: Jugendwoche Kraftberg
+        var_dump( "Id: " . $group->getId());
+        // Output: "Id: 221"
 
-// GroupInformation
-echo ("Termin: ".$group->getInformation()?->getMeetingTime());
-// OUTPUT: Termin: Freitag, 01.03. um 16h bis Sonntag 03.03. um 24h
-echo ("Kategorie: ".$group->getInformation()?->getGroupCategory()?->getNameTranslated());
-// OUTPUT: Kategorie: Freizeit
-echo ("Zielgruppe: ".$group->getInformation()?->getTargetGroup()?->getNameTranslated());
-// OUTPUT: Zielgruppe: Jugendliche
-echo ("Beschreibung: ".$group->getInformation()?->getNote());
-// OUTPUT: Beschreibung: Eine spannende Freizeit erwartet dich!
-echo ("Bild-Url: ".$group->getInformation()?->getImageUrl());
-// OUTPUT: Bild-Url: https://test.church.tools/images/9281/2928912ioha8921ns891bs9
+        var_dump( "Headline: " . $group->getSignUpHeadline());
+        // Output: "Headline: Teilnahme beantragen"
 
-echo ("Location: ".$group->getInformation()?->getGroupPlaces()[0]->getName());
-// OUTPUT: Location: Freizeitheim Rosenberg
-echo ("Stadt: ".$group->getInformation()?->getGroupPlaces()[0]->getCity());
-// OUTPUT: Stadt: Heilbronn
-echo ("GeoLat: ".$group->getInformation()?->getGroupPlaces()[0]->getGeoLat());
-// OUTPUT: GeoLat: 92.2912
-echo ("GeoLng: ".$group->getInformation()?->getGroupPlaces()[0]->getGeoLng());
-// OUTPUT: GeoLng: 2.291
+        var_dump( "Max. Teilnehmer: " . $group->getMaxMemberCount());
+        // Output: "Max. Teilnehmer: 42"
+
+        var_dump( "Akt. Teilnehmer: " . $group->getCurrentMemberCount());
+        // Output: "Akt. Teilnehmer: 30"
+
+        var_dump( "Name: " . $group->getName());
+        // Output: "Name: Jugendwoche Kraftberg"
+
+
+        // GroupInformation
+        var_dump( "Termin: " . $group->getInformation()?->getMeetingTime());
+        // Output: "Termin: Freitag 01.03. um 16h bis Sonntag 03.03. um 24h"
+
+        var_dump( "Kategorie: " . $group->getInformation()?->getGroupCategory()?->getNameTranslated());
+        // Output: "Kategorie: Freizeit"
+
+        var_dump( "Zielgruppe: " . $group->getInformation()?->getTargetGroup()?->getNameTranslated());
+        // Output: "Zielgruppe: Jugendliche"
+
+        var_dump( "Beschreibung: " . $group->getInformation()?->getNote());
+        // Output: "Beschreibung: Eine spannende Freizeit erwartet dich!"
+
+        var_dump( "Bild-Url: " . $group->getInformation()?->getImageUrl());
+        // Output: "Bild-Url: https://test.church.tools/images/9281/2928912ioha8921ns891bs9"
+
+
+        var_dump( "Location: " . $group->getInformation()?->getGroupPlaces()[0]?->getName());
+        // Output: "Location: Freizeitheim Rosenberg"
+
+        var_dump( "Stadt: " . $group->getInformation()?->getGroupPlaces()[0]?->getCity());
+        // Output: "Stadt: Heilbronn"
+
+        var_dump( "GeoLat: " . $group->getInformation()?->getGroupPlaces()[0]?->getGeoLat());
+        // Output: "GeoLat: 92.2912"
+
+        var_dump( "GeoLng: " . $group->getInformation()?->getGroupPlaces()[0]?->getGeoLng());
+        // Output: "GeoLng: 2.291"
+
 
 ```
 
