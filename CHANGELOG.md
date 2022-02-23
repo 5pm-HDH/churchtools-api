@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 
 ### Changed
+- refactor [DocGenerator](https://github.com/5pm-HDH/churchtools-api/pull/66): move PHP-Code to Unit-Tests.
 
 ### Fixed
 

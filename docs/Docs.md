@@ -8,8 +8,15 @@ composer run-script docs-generator
 
 The Generator will then execute every PHP-Code example to ensure that they are executable! The Template-Docs are stored in the `docs/src/ressources`-Directory.
 
-
 ## Template-Docs
+
+The Doc-Templates are MD-Files contain all the information the Doc should contain. PHP-Code examples can be included from Unit-Tests with the following Syntax:
+
+```
+{{ \Tests\Unit\Docs\EventRequestTest.testEventRequestDocExample }}
+```
+
+## PHP-Snippets (Deprecated)
 
 The Doc-Templates are MD-Files contain all the information the Doc should contain. Only the PHP-Code examples are processed by the DocGenerator-Script. This Script executes the Code-Examples and display the result in the generated Doc.
 
