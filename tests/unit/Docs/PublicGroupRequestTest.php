@@ -4,19 +4,13 @@
 namespace Tests\Unit\Docs;
 
 
-use CTApi\CTLog;
 use CTApi\Requests\PublicGroupRequest;
 use Tests\Unit\TestCaseHttpMocked;
 
 class PublicGroupRequestTest extends TestCaseHttpMocked
 {
-
-
     public function testExampleCodePublicGroupInit()
     {
-        CTLog::setConsoleLogLevelDebug();
-        CTLog::enableConsoleLog(true);
-
         $groupHomepage = PublicGroupRequest::get("wryawBH318GLHasgm27awB0c241aj");
 
         $groupHomepage->getId();
@@ -29,15 +23,12 @@ class PublicGroupRequestTest extends TestCaseHttpMocked
         $groupHomepage->getOrderDirection();
 
         $hash = $groupHomepage->getRandomUrl();
-        $this->assertEquals("Hash: wryawBH318GLHasgm27awB0c241aj", "Hash: ".$hash);
+        $this->assertEquals("Hash: wryawBH318GLHasgm27awB0c241aj", "Hash: " . $hash);
 
         $groupHomepage->getMeta();
 
         // Array of PublicGroups:
         $groups = $groupHomepage->getGroups();
-
-        CTLog::setConsoleLogLevelError();
-        CTLog::enableConsoleLog(false);
     }
 
     public function testExampleCodePublicGroup()
