@@ -18,9 +18,6 @@ Load Data of Group Homepage with Hash-String. This route is public, so no authen
         $groupHomepage->getOrderDirection();
 
         $hash = $groupHomepage->getRandomUrl();
-        var_dump( "Hash: " . $hash);
-        // Output: "Hash: wryawBH318GLHasgm27awB0c241aj"
-
 
         $groupHomepage->getMeta();
 
