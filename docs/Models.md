@@ -35,7 +35,7 @@ Create a collection of models filled with data:
         $personArray = Person::createModelsFromArray($dataPersons);
 
         $lastNames = "";
-        foreach($personArray as $person){
+        foreach ($personArray as $person) {
             $lastNames .= $person->getLastName() . "/ ";
         }
         var_dump( $lastNames);
@@ -51,6 +51,7 @@ The attributes of a model can be used accessed with getters and setter.
 ```php
         use CTApi\Models\Person;
 
+        $person = new Person();
 
         $person->getLastName();
         $person->setLastName("Joe");
@@ -67,6 +68,7 @@ directly:
         use CTApi\Models\Event;
         use CTApi\Models\EventAgenda;
 
+        $event = Event::createModelFromData(['id' => 21]);
         $agenda = $event->requestAgenda();
 
         var_dump( $agenda->getName());
@@ -84,6 +86,7 @@ the [Requests](Requests.md) methods and type:
         use CTApi\Models\Event;
         use CTApi\Models\EventAgenda;
 
+        $eventAgenda = EventAgenda::createModelFromData(['id' => 21]);
 
         $songs = $eventAgenda->requestSongs()
             ->where('practice', true)

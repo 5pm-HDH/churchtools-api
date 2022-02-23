@@ -6,13 +6,13 @@ namespace Tests\Unit\Docs;
 
 use CTApi\Models\Event;
 use CTApi\Models\EventAgenda;
-use PHPUnit\Framework\TestCase;
 use Tests\Unit\TestCaseHttpMocked;
 
 class ModelEventTest extends TestCaseHttpMocked
 {
 
-    public function testRequestMethod(){
+    public function testRequestMethod()
+    {
         $event = Event::createModelFromData(['id' => 21]);
         $agenda = $event->requestAgenda();
 
@@ -22,7 +22,8 @@ class ModelEventTest extends TestCaseHttpMocked
     /**
      * @doesNotPerformAssertions
      */
-    public function testRequestMethodPlural(){
+    public function testRequestMethodPlural()
+    {
         $eventAgenda = EventAgenda::createModelFromData(['id' => 21]);
 
         $songs = $eventAgenda->requestSongs()

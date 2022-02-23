@@ -69,11 +69,11 @@
 
         $eventItemsList = "";
         $eventSongsList = "";
-        foreach($agenda->getItems() as $item){
-            $eventItemsList .= $item->getTitle() . " (".$item->getType()."), ";
+        foreach ($agenda->getItems() as $item) {
+            $eventItemsList .= $item->getTitle() . " (" . $item->getType() . "), ";
             $song = $item->getSong();
-            if(!is_null($song)){
-                $eventSongsList.= $song->getName() . ", ";
+            if (!is_null($song)) {
+                $eventSongsList .= $song->getName() . ", ";
             }
         }
 
@@ -89,11 +89,11 @@
 
         $songs = $agenda->getSongs();
         $songList = "";
-        foreach($songs as $song){
+        foreach ($songs as $song) {
             $selectedArrangement = $song->requestSelectedArrangement();
-            $songList .= $song->getName()." - "
-                .$selectedArrangement->getName()." ("
-                .$selectedArrangement->getKeyOfArrangement()." - Dur) /";
+            $songList .= $song->getName() . " - "
+                . $selectedArrangement->getName() . " ("
+                . $selectedArrangement->getKeyOfArrangement() . " - Dur) /";
         }
         var_dump( $songList);
         // Output: "We welcome you - In A-Dur (A - Dur) /"

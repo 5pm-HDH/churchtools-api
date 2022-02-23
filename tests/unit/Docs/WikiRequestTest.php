@@ -1,9 +1,16 @@
-# Wiki-API
+<?php
 
-```php
-        use CTApi\Requests\WikiCategoryRequest;
-        use CTApi\Requests\WikiSearchRequest;
 
+namespace Tests\Unit\Docs;
+
+use CTApi\Requests\WikiCategoryRequest;
+use CTApi\Requests\WikiSearchRequest;
+use Tests\Unit\TestCaseHttpMocked;
+
+class WikiRequestTest extends TestCaseHttpMocked
+{
+    public function testExampleCode()
+    {
         /**
          * WikiCategory - Model
          */
@@ -11,30 +18,14 @@
         $wikiCategories = WikiCategoryRequest::all();
         $wikiCategory = WikiCategoryRequest::findOrFail(21);
 
-        var_dump( $wikiCategory->getId());
-        // Output: "21"
-
-        var_dump( $wikiCategory->getName());
-        // Output: ""
-
-        var_dump( $wikiCategory->getNameTranslated());
-        // Output: ""
-
-        var_dump( $wikiCategory->getSortKey());
-        // Output: ""
-
-        var_dump( $wikiCategory->getCampusId());
-        // Output: ""
-
-        var_dump( $wikiCategory->getInMenu());
-        // Output: ""
-
-        var_dump( $wikiCategory->getFileAccessWithoutPermission());
-        // Output: ""
-
-        var_dump( $wikiCategory->getPermissions());
-        // Output: []
-
+        $this->assertEquals("21", $wikiCategory->getId());
+        $this->assertEquals("", $wikiCategory->getName());
+        $this->assertEquals("", $wikiCategory->getNameTranslated());
+        $this->assertEquals("", $wikiCategory->getSortKey());
+        $this->assertEquals("", $wikiCategory->getCampusId());
+        $this->assertEquals("", $wikiCategory->getInMenu());
+        $this->assertEquals("", $wikiCategory->getFileAccessWithoutPermission());
+        $this->assertEquals([], $wikiCategory->getPermissions());
 
         $allPages = $wikiCategory->requestPages()->get();
 
@@ -43,30 +34,14 @@
          */
         $page = $allPages[0];
 
-        var_dump( $page->getIdentifier());
-        // Output: "Page21"
-
-        var_dump( $page->getTitle());
-        // Output: "Page A"
-
-        var_dump( $page->getVersion());
-        // Output: ""
-
-        var_dump( $page->getOnStartPage());
-        // Output: ""
-
-        var_dump( $page->getRedirectTo());
-        // Output: ""
-
-        var_dump( $page->getIsMarkdown());
-        // Output: ""
-
-        var_dump( $page->getText());
-        // Output: ""
-
-        var_dump( $page->requestText()->getText());
-        // Output: ""
-
+        $this->assertEquals("Page21", $page->getIdentifier());
+        $this->assertEquals("Page A", $page->getTitle());
+        $this->assertEquals("", $page->getVersion());
+        $this->assertEquals("", $page->getOnStartPage());
+        $this->assertEquals("", $page->getRedirectTo());
+        $this->assertEquals("", $page->getIsMarkdown());
+        $this->assertEquals("", $page->getText());
+        $this->assertEquals("", $page->requestText()->getText());
 
         $filesList = "";
         foreach ($page->requestFiles()->get() as $file) {
@@ -74,9 +49,7 @@
             // ...
             // More methods in SongAPI.md in section File-Model
         }
-        var_dump( $filesList);
-        // Output: ""
-
+        $this->assertEquals("", $filesList);
 
         $pageVersions = $page->requestVersions()->get();
         $firstPageVersion = $page->requestVersion(1);
@@ -112,8 +85,6 @@
         foreach ($rootNodeWiki->getChildNodes() as $node) {
             $pageTreeList .= $node->getWikiPage()->getTitle() . ", ";
         }
-        var_dump( $subPages);
-        // Output: ""
-
-
-```
+        $this->assertEquals("", $subPages);
+    }
+}

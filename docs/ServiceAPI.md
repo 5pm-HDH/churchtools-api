@@ -1,75 +1,98 @@
 # ServiceAPI
 
 ```php
-use CTApi\Models\Service;
-use CTApi\Models\ServiceGroup;
-use CTApi\Requests\ServiceGroupRequest;
-use CTApi\Requests\ServiceRequest;
+        use CTApi\Models\Service;
+        use CTApi\Models\ServiceGroup;
+        use CTApi\Requests\ServiceGroupRequest;
+        use CTApi\Requests\ServiceRequest;
 
-$serviceGroups = ServiceGroupRequest::all();
-$services = ServiceRequest::all();
 
-/**
- * Service-Model 
- */
-$service = new Service();
+        $serviceGroups = ServiceGroupRequest::all();
+        $services = ServiceRequest::all();
 
-echo ($service->getId());
-// OUTPUT: 
-echo ($service->getName());
-// OUTPUT: 
-echo ($service->getServiceGroupId());
-// OUTPUT: 
-echo ($service->getCommentOnConfirmation());
-// OUTPUT: 
-echo ($service->getSortKey());
-// OUTPUT: 
-echo ($service->getAllowDecline());
-// OUTPUT: 
-echo ($service->getAllowExchange());
-// OUTPUT: 
-echo ($service->getComment());
-// OUTPUT: 
-echo ($service->getStandard());
-// OUTPUT: 
-echo ($service->getHidePersonName());
-// OUTPUT: 
-echo ($service->getSendReminderMails());
-// OUTPUT: 
-echo ($service->getSendServiceRequestEmails());
-// OUTPUT: 
-echo ($service->getAllowControlLiveAgenda());
-// OUTPUT: 
-echo ($service->getGroupIds());
-// OUTPUT: 
-echo ($service->getTagIds());
-// OUTPUT: 
-echo ($service->getCalTextTemplate());
-// OUTPUT: 
-echo ($service->getAllowChat());
-// OUTPUT: 
+        /**
+         * Service-Model
+         */
+        $service = new Service();
 
-$serviceGroup = $service->requestServiceGroup();
+        var_dump( $service->getId());
+        // Output: ""
 
-/**
- * ServiceGroup-Model 
- */
-$serviceGroup = new ServiceGroup();
+        var_dump( $service->getName());
+        // Output: ""
 
-echo ($serviceGroup->getId());
-// OUTPUT: 
-echo ($serviceGroup->getName());
-// OUTPUT: 
-echo ($serviceGroup->getSortKey());
-// OUTPUT: 
-echo ($serviceGroup->getViewAll());
-// OUTPUT: 
-echo ($serviceGroup->getCampusId());
-// OUTPUT: 
-echo ($serviceGroup->getOnlyVisibleInCampusFilter());
-// OUTPUT: 
+        var_dump( $service->getServiceGroupId());
+        // Output: ""
 
-$services = $serviceGroup->requestServices();
+        var_dump( $service->getCommentOnConfirmation());
+        // Output: ""
 
+        var_dump( $service->getSortKey());
+        // Output: ""
+
+        var_dump( $service->getAllowDecline());
+        // Output: ""
+
+        var_dump( $service->getAllowExchange());
+        // Output: ""
+
+        var_dump( $service->getComment());
+        // Output: ""
+
+        var_dump( $service->getStandard());
+        // Output: ""
+
+        var_dump( $service->getHidePersonName());
+        // Output: ""
+
+        var_dump( $service->getSendReminderMails());
+        // Output: ""
+
+        var_dump( $service->getSendServiceRequestEmails());
+        // Output: ""
+
+        var_dump( $service->getAllowControlLiveAgenda());
+        // Output: ""
+
+        var_dump( $service->getGroupIds());
+        // Output: ""
+
+        var_dump( $service->getTagIds());
+        // Output: ""
+
+        var_dump( $service->getCalTextTemplate());
+        // Output: ""
+
+        var_dump( $service->getAllowChat());
+        // Output: ""
+
+
+        $serviceGroup = $service->requestServiceGroup();
+
+        /**
+         * ServiceGroup-Model
+         */
+        $serviceGroup = new ServiceGroup();
+
+        var_dump( $serviceGroup->getId());
+        // Output: ""
+
+        var_dump( $serviceGroup->getName());
+        // Output: ""
+
+        var_dump( $serviceGroup->getSortKey());
+        // Output: ""
+
+        var_dump( $serviceGroup->getViewAll());
+        // Output: ""
+
+        var_dump( $serviceGroup->getCampusId());
+        // Output: ""
+
+        var_dump( $serviceGroup->getOnlyVisibleInCampusFilter());
+        // Output: ""
+
+
+        $services = $serviceGroup->requestServices();
 
 ```

@@ -34,7 +34,7 @@ class ModelTest extends TestCase
         $personArray = Person::createModelsFromArray($dataPersons);
 
         $lastNames = "";
-        foreach($personArray as $person){
+        foreach ($personArray as $person) {
             $lastNames .= $person->getLastName() . "/ ";
         }
         $this->assertEquals("Kling/ Maier/ ", $lastNames);
@@ -43,7 +43,8 @@ class ModelTest extends TestCase
     /**
      * @doesNotPerformAssertions
      */
-    public function testGetterAndSetter(){
+    public function testGetterAndSetter()
+    {
         $person = new Person();
 
         $person->getLastName();
