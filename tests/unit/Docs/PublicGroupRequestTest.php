@@ -11,6 +11,9 @@ class PublicGroupRequestTest extends TestCaseHttpMocked
 {
 
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testExampleCodePublicGroupInit()
     {
 
