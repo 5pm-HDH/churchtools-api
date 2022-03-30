@@ -10,9 +10,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 
 ### Changed
+
+### Fixed
+
+## [1.3.2] - 2022-02-11
+
+### Added
+
+### Changed
 - refactor [DocGenerator](https://github.com/5pm-HDH/churchtools-api/pull/66): move PHP-Code to Unit-Tests.
 
 ### Fixed
+- Fix security issue: [
+  Improper Input Validation in guzzlehttp/psr7](https://github.com/5pm-HDH/churchtools-api/pull/67)
 
 ## [1.3.1] - 2022-02-11
 
