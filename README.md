@@ -183,6 +183,55 @@ Result:
     </li>
 </ul>
 ```
+
+### Manual pagination
+
+Usually the client will return all matching records at once. But this is not
+always desired. Instead you may want to load the results in smaller chunks. This
+is called *pagination*.
+
+For example if you like to get only the first 15 persons of ChurchTools:
+
+```php
+
+use CTApi\Requests\PersonRequest;
+
+$persons = PersonRequest::where('page', 1)
+    ->where('limit', 15)
+    ->get();
+
+// To get the next 15 persons query for the second page:
+$persons = PersonRequest::where('page', 2)
+    ->where('limit', 15)
+    ->get();
+```
+
+This is possible for the other APIs like event or group, too.
+
+
+#### Iterate over all pages
+
+Iterating over all records is quite easy.
+
+```php
+
+use CTApi\Requests\PersonRequest;
+
+$page = 1;
+$limit = 15;
+
+do {
+    $persons = PersonRequest::where('page', $page)
+        ->where('limit', $limit)
+        ->get();
+
+    // do some stuff with the persons
+
+    $page++;
+} while (count($persons) === $limit);
+```
+
+
 ## Support / Contribute
 
 Please feel free to Support or Contribute this project.
