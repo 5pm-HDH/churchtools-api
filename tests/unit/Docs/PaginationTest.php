@@ -30,6 +30,9 @@ class PaginationTest extends TestCaseHttpMocked
         $this->assertEquals(3, sizeof($eventsPage2));
     }
 
+    /**
+     * @psalm-suppress RedundantCondition
+     */
     public function testIteratePages()
     {
         $page = 1;
