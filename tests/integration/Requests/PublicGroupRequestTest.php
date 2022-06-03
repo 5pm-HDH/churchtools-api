@@ -6,7 +6,6 @@ namespace Tests\Integration\Requests;
 
 use CTApi\Models\GroupCategory;
 use CTApi\Models\GroupInformation;
-use CTApi\Models\GroupPlace;
 use CTApi\Models\TargetGroup;
 use CTApi\Requests\PublicGroupRequest;
 use Tests\Integration\TestCaseAuthenticated;
@@ -57,4 +56,24 @@ class PublicGroupRequestTest extends TestCaseAuthenticated
         $this->assertIsArray($foundGroup->getInformation()->getGroupPlaces());
     }
 
+    public function testGetPublicGroupImages()
+    {
+        $publicGroup = PublicGroupRequest::get($this->publicGroupHash);
+        $foundGroup = null;
+        foreach ($publicGroup->getGroups() as $group) {
+            if ($group->getId() == $this->groupId) {
+                $foundGroup = $group;
+            }
+        }
+
+        $groupInformation = $foundGroup?->getInformation();
+
+        $this->assertNotNull($groupInformation);
+
+        $imageSmall = $groupInformation->getImageUrl();
+        $imageWide = $groupInformation->getImageUrlBanner();
+
+        $this->assertNotNull($imageSmall);
+        $this->assertNotNull($imageWide);
+    }
 }
