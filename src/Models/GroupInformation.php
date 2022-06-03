@@ -171,6 +171,18 @@ class GroupInformation
     }
 
     /**
+     * Return Group-Image as Banner-Format.
+     * @return string|null
+     */
+    public function getImageUrlBanner(): ?string
+    {
+        if ($this->getImageUrl() != null) {
+            return $this->getImageUrl() . "?p=group-tile";
+        }
+        return null;
+    }
+
+    /**
      * @param string|null $imageUrl
      * @return GroupInformation
      */
