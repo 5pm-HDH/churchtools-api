@@ -52,7 +52,7 @@ From now on all features of the churchtools-api are available.
 ### Requests and Models
 
 The whole churchtools-api client is build on top of the Requests and Models. [Requests](/docs/Requests.md) provide an
-interface to specify your api call by adding filtering and sorting. [Models](/docs/Models.md) represent the data, that
+interface to specify your api call by adding filtering, pagination and sorting. [Models](/docs/Models.md) represent the data, that
 the Requests retrieve. More informations can be found in the documentation.
 
 All APIs with examples:
@@ -183,6 +183,7 @@ Result:
     </li>
 </ul>
 ```
+
 ## Support / Contribute
 
 Please feel free to Support or Contribute this project.
@@ -202,7 +203,7 @@ CTLog::enableFileLog(); // enable logfile
 By default, all Error, Critical, Alert and Emergency logs will be displayed in the console. If you want to show further
 log-levels on the console you can use the CTConfig-Debug Option or set it direct in the CTLog facade:
 
-```php 
+```php
 CTConfig::enableDebug();
 
 //or use CTLog facade

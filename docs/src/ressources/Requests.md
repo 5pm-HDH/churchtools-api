@@ -15,6 +15,22 @@ use \CTApi\Requests\PersonRequest;
 $allPersons = PersonRequest::all();
 ```
 
+**Manual pagination**
+
+Usually the client will return all matching records at once. But this is not
+always desired. Instead you may want to load the results in smaller chunks. This
+is called *pagination*.
+
+For example if you like to get only the first 3 events of ChurchTools:
+
+{{ \Tests\Unit\Docs\PaginationTest.testCollectSinglePage }}
+
+This is possible for the other APIs like event or group, too.
+
+Iterating over all records is quite easy.
+
+{{ \Tests\Unit\Docs\PaginationTest.testIteratePages }}
+
 **Get single record**
 
 The `find`-method returns the Model. If there is no record with the given id, it will return null. The `findOrFail`

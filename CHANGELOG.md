@@ -13,6 +13,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 - Cross-domain cookie leakage in Guzzle - [SecurityFix](https://github.com/5pm-HDH/churchtools-api/pull/71)
+- [Manual Pagination](https://github.com/5pm-HDH/churchtools-api/issues/68)
+
 ## [1.3.2] - 2022-02-11
 
 ### Added

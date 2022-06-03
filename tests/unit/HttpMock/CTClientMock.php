@@ -30,7 +30,7 @@ class CTClientMock extends CTClient
 
     protected function convertGETRequestToResponse($uri, $options): ResponseInterface
     {
-        $responseData = HttpMockDataResolver::resolveEndpoint($uri);
+        $responseData = HttpMockDataResolver::resolveEndpoint($uri, $options);
 
         $ctResponse = CTResponse::createEmpty();
         $ctResponse->withBody(new CTMessageBody($responseData));
@@ -40,7 +40,7 @@ class CTClientMock extends CTClient
 
     protected function convertPOSTRequestToResponse($uri, $options): ResponseInterface
     {
-        $responseData = HttpMockDataResolver::resolveEndpoint($uri);
+        $responseData = HttpMockDataResolver::resolveEndpoint($uri, $options);
 
         $ctResponse = CTResponse::createEmpty();
         $ctResponse->withBody(new CTMessageBody($responseData));
