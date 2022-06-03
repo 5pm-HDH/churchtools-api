@@ -36,7 +36,13 @@ class File
 
     public function downloadToPath($path): bool
     {
-        return (bool)file_put_contents($path . '/' . $this->name, $this->requestFileContent());
+        $fileContent = $this->requestFileContent();
+        if (is_string($fileContent)) {
+            return (bool)file_put_contents($path . '/' . $this->name, $fileContent);
+        } else {
+            CTLog::getLog()->warning("Could not download file-content to path. Invalid file content.");
+            return false;
+        }
     }
 
     public function downloadToClient(): void
