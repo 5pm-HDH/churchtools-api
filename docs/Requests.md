@@ -16,6 +16,59 @@ $allPersons = PersonRequest::all();
 
 ```
 
+**Manual pagination**
+
+Usually the client will return all matching records at once. But this is not
+always desired. Instead you may want to load the results in smaller chunks. This
+is called *pagination*.
+
+For example if you like to get only the first 3 events of ChurchTools:
+
+```php
+        use CTApi\Requests\EventRequest;
+
+        $eventsPage1 = EventRequest::where("page", 1)
+            ->where("limit", 3)->get();
+
+        var_dump( sizeof($eventsPage1));
+        // Output: 3
+
+
+        // To get the next 3 events query for the second page:
+        $eventsPage2 = EventRequest::where("page", 2)
+            ->where("limit", 3)->get();
+
+        var_dump( sizeof($eventsPage2));
+        // Output: 3
+
+
+```
+
+This is possible for the other APIs like event or group, too.
+
+Iterating over all records is quite easy.
+
+```php
+        use CTApi\Requests\EventRequest;
+
+        $page = 1;
+        $limit = 15;
+
+        do {
+            $events = EventRequest::where('page', $page)
+                ->where('limit', $limit)
+                ->get();
+
+            // do some stuff with the events
+            var_dump( is_array($events));
+        // Output: true
+
+
+            $page++;
+        } while (count($events) === $limit);
+
+```
+
 **Get single record**
 
 The `find`-method returns the Model. If there is no record with the given id, it will return null. The `findOrFail`

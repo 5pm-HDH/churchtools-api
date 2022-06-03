@@ -52,7 +52,7 @@ From now on all features of the churchtools-api are available.
 ### Requests and Models
 
 The whole churchtools-api client is build on top of the Requests and Models. [Requests](/docs/Requests.md) provide an
-interface to specify your api call by adding filtering and sorting. [Models](/docs/Models.md) represent the data, that
+interface to specify your api call by adding filtering, pagination and sorting. [Models](/docs/Models.md) represent the data, that
 the Requests retrieve. More informations can be found in the documentation.
 
 All APIs with examples:
@@ -184,54 +184,6 @@ Result:
 </ul>
 ```
 
-### Manual pagination
-
-Usually the client will return all matching records at once. But this is not
-always desired. Instead you may want to load the results in smaller chunks. This
-is called *pagination*.
-
-For example if you like to get only the first 15 persons of ChurchTools:
-
-```php
-
-use CTApi\Requests\PersonRequest;
-
-$persons = PersonRequest::where('page', 1)
-    ->where('limit', 15)
-    ->get();
-
-// To get the next 15 persons query for the second page:
-$persons = PersonRequest::where('page', 2)
-    ->where('limit', 15)
-    ->get();
-```
-
-This is possible for the other APIs like event or group, too.
-
-
-#### Iterate over all pages
-
-Iterating over all records is quite easy.
-
-```php
-
-use CTApi\Requests\PersonRequest;
-
-$page = 1;
-$limit = 15;
-
-do {
-    $persons = PersonRequest::where('page', $page)
-        ->where('limit', $limit)
-        ->get();
-
-    // do some stuff with the persons
-
-    $page++;
-} while (count($persons) === $limit);
-```
-
-
 ## Support / Contribute
 
 Please feel free to Support or Contribute this project.
@@ -251,7 +203,7 @@ CTLog::enableFileLog(); // enable logfile
 By default, all Error, Critical, Alert and Emergency logs will be displayed in the console. If you want to show further
 log-levels on the console you can use the CTConfig-Debug Option or set it direct in the CTLog facade:
 
-```php 
+```php
 CTConfig::enableDebug();
 
 //or use CTLog facade
