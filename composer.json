@@ -9,7 +9,7 @@
     ]
   },
   "require": {
-    "guzzlehttp/guzzle": "7.3.*",
+    "guzzlehttp/guzzle": "^7",
     "php": ">=8.0",
     "monolog/monolog": "^2.2",
     "doctrine/cache": "^1.11"
