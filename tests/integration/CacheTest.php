@@ -51,7 +51,7 @@ class CacheTest extends TestCaseAuthenticated
         CTConfig::clearCache();
 
         $files = glob($this->cacheDir . "*");
-        $this->assertEmpty($files);
+        $this->assertEqualsWithDelta(sizeof($files), 0, 1);
     }
 
     public function runSongRequests(int $numberOfRequests = 10): float
