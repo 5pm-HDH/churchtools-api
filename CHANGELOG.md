@@ -8,6 +8,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 
 ### Added
+
+### Changed
+
+### Fixed
+
+## [1.3.3] - 2022-06-03
+
+### Added
 - [Banner-Image for Group](https://github.com/5pm-HDH/churchtools-api/issues/65)
 
 ### Changed
