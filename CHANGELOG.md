@@ -12,7 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 
 ### Fixed
-
+- Cross-domain cookie leakage in Guzzle - [SecurityFix](https://github.com/5pm-HDH/churchtools-api/pull/71)
 ## [1.3.2] - 2022-02-11
 
 ### Added
