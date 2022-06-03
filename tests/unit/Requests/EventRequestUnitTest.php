@@ -12,7 +12,7 @@ class EventRequestUnitTest extends TestCaseHttpMocked
     {
         $allEvents = EventRequest::all();
 
-        $this->assertEquals(3, sizeof($allEvents));
+        $this->assertEquals(8, sizeof($allEvents));
     }
 
     public function testGetEvent(): void
