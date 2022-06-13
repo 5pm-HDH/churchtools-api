@@ -13,6 +13,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 
+- [Guzzle-Security Patch](https://github.com/5pm-HDH/churchtools-api/pull/76)
+
 ## [1.3.3] - 2022-06-03
 
 ### Added
