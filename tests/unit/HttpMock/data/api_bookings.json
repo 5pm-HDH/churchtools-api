@@ -1,0 +1,35 @@
+{
+  "data": [
+    {
+      "base": {
+        "id": 221,
+        "caption": "Sunday Service",
+        "note": "Sunday Morning Service",
+        "version": 8,
+        "personId": 21,
+        "showInCal": false,
+        "statusId": 2,
+        "startDate": "2021-02-24T06:00:00Z",
+        "endDate": "2022-05-23T11:00:00Z",
+        "allDay": false,
+        "repeatId": 1,
+        "repeatOption": 0,
+        "additionals": [],
+        "meta": {
+          "createdDate": "2022-05-03T14:05:25Z",
+          "createdPerson": {
+            "id": "4"
+          },
+          "modifiedDate": "2022-06-09T12:52:11Z",
+          "modifiedPerson": {
+            "id": "4"
+          }
+        }
+      },
+      "calculated": {
+        "startDate": "2021-02-24T06:00:00Z",
+        "endDate": "2022-06-01T11:00:00Z"
+      }
+    }
+  ]
+}

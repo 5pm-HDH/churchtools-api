@@ -4,6 +4,7 @@
 namespace Tests\Integration\Requests;
 
 
+use CTApi\CTConfig;
 use CTApi\Models\Resource;
 use CTApi\Models\ResourceBooking;
 use CTApi\Requests\BookingRequest;
@@ -12,7 +13,7 @@ use CTApi\Requests\ResourceRequest;
 use Tests\Integration\TestCaseAuthenticated;
 use Tests\Integration\TestData;
 
-class BookingRequestTest extends TestCaseAuthenticated
+class BookingsRequestTest extends TestCaseAuthenticated
 {
     private $resourceId1 = "";
     private $resourceId2 = "";
@@ -39,6 +40,7 @@ class BookingRequestTest extends TestCaseAuthenticated
 
     public function testRequestBookingsOfResource()
     {
+        CTConfig::enableDebugging();
         $resource = Resource::createModelFromData(["id" => $this->resourceId1]);
 
         $this->assertInstanceOf(Resource::class, $resource);
@@ -56,7 +58,7 @@ class BookingRequestTest extends TestCaseAuthenticated
     {
         $resourceIds = [$this->resourceId1, $this->resourceId2];
 
-        $bookings = ResourceBookingsRequest::forRessources($resourceIds)->get();
+        $bookings = ResourceBookingsRequest::forResources($resourceIds)->get();
 
         $this->assertTrue(sizeof($bookings) >= 1);
         $this->assertInstanceOf(ResourceBooking::class, end($bookings));
@@ -66,7 +68,7 @@ class BookingRequestTest extends TestCaseAuthenticated
             Resource::createModelFromData(["id" => $this->resourceId2]),
         ];
 
-        $bookings = ResourceBookingsRequest::forRessources($resources)->get();
+        $bookings = ResourceBookingsRequest::forResources($resources)->get();
 
         $this->assertTrue(sizeof($bookings) >= 1);
         $this->assertInstanceOf(ResourceBooking::class, end($bookings));

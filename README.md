@@ -58,6 +58,7 @@ the Requests retrieve. More informations can be found in the documentation.
 All APIs with examples:
 * [Person-API](/docs/PersonAPI.md)
 * [Group-API](/docs/GroupAPI.md)
+* [Resource- and Bookings-API](/docs/ResourceAPI.md)
 * [PublicGroup-API](/docs/PublicGroupAPI.md)
 * [Event-API](/docs/EventAPI.md)
 * [Song-API](/docs/SongAPI.md)

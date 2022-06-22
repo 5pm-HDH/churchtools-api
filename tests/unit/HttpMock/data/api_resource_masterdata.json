@@ -1,0 +1,30 @@
+{
+  "data": {
+    "resourceTypes": [
+      {
+        "id": 1,
+        "name": "Rooms",
+        "nameTranslated": "Rooms"
+      },
+      {
+        "id": 2,
+        "name": "Gear",
+        "nameTranslated": "Gear"
+      }
+    ],
+    "resources": [
+      {
+        "id": 21,
+        "name": "Worship Room",
+        "nameTranslated": "Worship Room",
+        "resourceTypeId": 1
+      },
+      {
+        "id": 22,
+        "name": "Speaker",
+        "nameTranslated": "Speaker",
+        "resourceTypeId": 2
+      }
+    ]
+  }
+}

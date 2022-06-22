@@ -8,7 +8,7 @@ use CTApi\Models\Resource;
 
 class ResourceBookingsRequest
 {
-    public static function forRessources(array $resources): ResourceBookingsRequestBuilder
+    public static function forResources(array $resources): ResourceBookingsRequestBuilder
     {
         $idArray = [];
 
