@@ -8,6 +8,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 
 ### Added
+
+### Changed
+
+### Fixed
+
+
+## [1.3.4] - 2022-06-22
+
+### Added
 - [Resource and Bookings - API](https://github.com/5pm-HDH/churchtools-api/pull/78)
 
 ### Changed
