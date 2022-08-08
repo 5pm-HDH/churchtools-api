@@ -15,9 +15,15 @@ use Psr\Http\Message\ResponseInterface;
 /**
  * @psalm-suppress InvalidExtendClass
  */
-class CTClient extends Client
+class CTClient
 {
+    private Client $guzzleClient;
     private static ?CTClient $client = null;
+
+    public function __construct(array $config = [])
+    {
+        $this->guzzleClient = new Client($config);
+    }
 
     protected static function mergeOptions(array $options): array
     {
@@ -28,7 +34,7 @@ class CTClient extends Client
     {
         try {
             CTLog::getLog()->debug('CTClient: GET-Request URI:' . $uri, ["options" => $options, "mergedOptions" => self::mergeOptions($options)]);
-            return $this->handleResponse(parent::get($uri, self::mergeOptions($options)));
+            return $this->handleResponse($this->guzzleClient->get($uri, self::mergeOptions($options)));
         } catch (Exception $exception) {
             return $this->handleException($exception);
         }
@@ -38,7 +44,7 @@ class CTClient extends Client
     {
         try {
             CTLog::getLog()->debug('CTClient: POST-Request URI:' . $uri, ["options" => $options, "mergedOptions" => self::mergeOptions($options)]);
-            return $this->handleResponse(parent::post($uri, self::mergeOptions($options)));
+            return $this->handleResponse($this->guzzleClient->post($uri, self::mergeOptions($options)));
         } catch (Exception $exception) {
             return $this->handleException($exception);
         }
