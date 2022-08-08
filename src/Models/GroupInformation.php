@@ -36,6 +36,17 @@ class GroupInformation
         }
     }
 
+    protected function fillNonArrayType(string $key, $value): void
+    {
+        switch ($key){
+            case "weekday":
+                $this->weekday = [$value];
+                break;
+            default:
+                $this->{$key} = $value;
+        }
+    }
+
     /**
      * @return string|null
      */
