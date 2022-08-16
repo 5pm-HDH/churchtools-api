@@ -3,8 +3,8 @@
 
 namespace CTApi\Exceptions;
 
-
 use CTApi\CTLog;
+use Psr\Http\Message\ResponseInterface;
 use RuntimeException;
 use Throwable;
 
@@ -23,5 +23,41 @@ class CTRequestException extends RuntimeException
         } else {
             return new CTRequestException("Could not retrieve Model: " . $modelName, 0, $throwable);
         }
+    }
+
+    public static function ofErrorResponse(ResponseInterface $response): self
+    {
+        $contents = \json_decode((string) $response->getBody(), true);
+
+        $msg = $contents['message'];
+
+        if (!empty($contents['errors'])) {
+            $errorDescriptions = [];
+
+            foreach ($contents['errors'] as $error) {
+                $wasValue = null;
+
+                if (array_key_exists('value', $error['args'])) {
+                    $wasValue = ' Received value was %s.';
+
+                    if (is_null($error['args']['value'])) {
+                        $wasValue = sprintf($wasValue, 'null');
+                    } else {
+                        $wasValue = sprintf($wasValue, '"' . $error['args']['value'] . '"');
+                    }
+                }
+
+                $errorDescriptions[] = sprintf(
+                    'Field "%s": %s %s',
+                    $error['fieldId'],
+                    $error['message'],
+                    $wasValue
+                );
+            }
+
+            $msg .= '. ' . implode(' ', $errorDescriptions);
+        }
+
+        return new self($msg);
     }
 }

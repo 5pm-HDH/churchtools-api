@@ -37,4 +37,18 @@ class PersonRequest
         return (new PersonRequestBuilder())->find($id);
     }
 
+    /**
+     * Update the person's data on churchtools.
+     *
+     * @param array $attributesToUpdate
+     *        Pass the attributes that should be updated as array. If nothing or
+     *        an empty array is passed, all data of the person will be sent to the API.
+     *        If an array is passed that looks like this:
+     *        <code>['firstName', 'lastName', 'nickname']</code>
+     *        only those attributes will be sent to the API.
+     */
+    public static function update(Person $person, array $attributesToUpdate = []): void
+    {
+        (new PersonRequestBuilder())->update($person, $attributesToUpdate);
+    }
 }

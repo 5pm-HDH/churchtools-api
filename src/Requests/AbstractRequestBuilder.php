@@ -63,6 +63,21 @@ abstract class AbstractRequestBuilder
         return $this->getModelClass()::createModelsFromArray($data);
     }
 
+    /**
+     * Update object's data in ChurchTools by the given objoct ID.
+     */
+    public function updateData(string $objectId, array $data): void
+    {
+        $url = $this->getApiEndpoint() . '/' . $objectId;
+
+        $client = CTClient::getClient();
+        $response = $client->patch($url, ['json' => $data]);
+
+        if ($response->getStatusCode() !== 200) {
+            throw CTRequestException::ofErrorResponse($response);
+        }
+    }
+
     abstract protected function getApiEndpoint(): string;
 
     abstract protected function getModelClass(): string;

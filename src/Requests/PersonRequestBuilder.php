@@ -42,6 +42,35 @@ class PersonRequestBuilder extends AbstractRequestBuilder
         return Person::createModelsFromArray($data);
     }
 
+    /**
+     * Update the person's data on churchtools.
+     *
+     * @param array $attributesToUpdate
+     *        Pass the attributes that should be updated as array. If nothing or
+     *        an empty array is passed, all data of the person will be sent to the API.
+     *        If an array is passed that looks like this:
+     *        <code>['firstName', 'lastName', 'nickname']</code>
+     *        only those attributes will be sent to the API.
+     */
+    public function update(Person $person, array $attributesToUpdate = []): void
+    {
+        if (empty($attributesToUpdate)) {
+            $attributesToUpdate = Person::MODIFIABLE_ATTRIBUTES;
+        } else {
+            $diff = array_diff($attributesToUpdate, Person::MODIFIABLE_ATTRIBUTES);
+
+            if ($diff) {
+                throw new \InvalidArgumentException('The attributes ' . implode(', ', $diff) . ' are not modifiable.');
+            }
+        }
+
+        $objectId = $person->getId();
+        $allData = $person->extractData();
+        $data = array_intersect_key($allData, array_flip($attributesToUpdate));
+
+        $this->updateData($objectId, $data);
+    }
+
     protected function getApiEndpoint(): string
     {
         return '/api/persons';

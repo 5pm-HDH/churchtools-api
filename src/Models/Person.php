@@ -4,6 +4,7 @@
 namespace CTApi\Models;
 
 
+use CTApi\Models\Traits\ExtractData;
 use CTApi\Models\Traits\FillWithData;
 use CTApi\Models\Traits\MetaAttribute;
 use CTApi\Requests\PersonEventRequestBuilder;
@@ -11,7 +12,49 @@ use CTApi\Requests\PersonGroupRequestBuilder;
 
 class Person
 {
-    use FillWithData, MetaAttribute;
+    use FillWithData, ExtractData, MetaAttribute;
+
+    const MODIFIABLE_ATTRIBUTES = [
+        'addressAddition',
+        'baptisedBy',
+        'birthday',
+        'birthName',
+        'birthplace',
+        'campusId',
+        'city',
+        'cmsUserId',
+        'country',
+        'dateOfBaptism',
+        'dateOfBelonging',
+        'dateOfEntry',
+        'dateOfResign',
+        'departmentIds',
+        'email',
+        'emails',
+        'familyStatusId',
+        'fax',
+        'firstContact',
+        'firstName',
+        'growPathId',
+        'job',
+        'lastName',
+        'mobile',
+        'nationalityId',
+        'nickname',
+        'optigemId',
+        'phonePrivate',
+        'phoneWork',
+        'placeOfBaptism',
+        'privacyPolicyAgreement',
+        'referredBy',
+        'referredTo',
+        'sexId',
+        'statusId',
+        'street',
+        'title',
+        'weddingDate',
+        'zip',
+    ];
 
     protected ?string $id = null;
     protected ?string $guid = null;

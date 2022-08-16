@@ -50,6 +50,16 @@ class CTClient
         }
     }
 
+    public function patch($uri, array $options = []): ResponseInterface
+    {
+        try {
+            CTLog::getLog()->debug('CTClient: PATCH-Request URI:' . $uri, ["options" => $options, "mergedOptions" => self::mergeOptions($options)]);
+            return $this->handleResponse($this->guzzleClient->patch($uri, self::mergeOptions($options)));
+        } catch (Exception $exception) {
+            return $this->handleException($exception);
+        }
+    }
+
     private function handleResponse(ResponseInterface $response): ResponseInterface
     {
         switch ($response->getStatusCode()) {
