@@ -14,45 +14,28 @@ class Person
 {
     use FillWithData, ExtractData, MetaAttribute;
 
+    /**
+     * List of attributes that are modifiable per API and available
+     * as property in this class.
+     */
     const MODIFIABLE_ATTRIBUTES = [
         'addressAddition',
-        'baptisedBy',
         'birthday',
         'birthName',
         'birthplace',
-        'campusId',
         'city',
-        'cmsUserId',
         'country',
-        'dateOfBaptism',
-        'dateOfBelonging',
-        'dateOfEntry',
-        'dateOfResign',
-        'departmentIds',
         'email',
-        'emails',
-        'familyStatusId',
         'fax',
-        'firstContact',
         'firstName',
-        'growPathId',
         'job',
         'lastName',
         'mobile',
-        'nationalityId',
         'nickname',
-        'optigemId',
         'phonePrivate',
         'phoneWork',
-        'placeOfBaptism',
-        'privacyPolicyAgreement',
-        'referredBy',
-        'referredTo',
         'sexId',
-        'statusId',
         'street',
-        'title',
-        'weddingDate',
         'zip',
     ];
 
