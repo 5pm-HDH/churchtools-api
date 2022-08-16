@@ -29,6 +29,10 @@ class CTRequestException extends RuntimeException
     {
         $contents = \json_decode((string) $response->getBody(), true);
 
+        if (!isset($contents['message'])) {
+            return new self($response->getReasonPhrase() ?: 'Unknown API error.');
+        }
+
         $msg = $contents['message'];
 
         if (!empty($contents['errors'])) {
