@@ -107,7 +107,7 @@ class PersonRequestBuilderTest extends TestCase
     private static function getNulledPersonDataArray(): array
     {
         return array_map(
-            function () {
+            function ($val) {
                 return null;
             },
             array_flip(Person::MODIFIABLE_ATTRIBUTES)

@@ -39,10 +39,10 @@ class CTRequestException extends RuntimeException
             $errorDescriptions = [];
 
             foreach ($contents['errors'] as $error) {
-                $wasValue = null;
+                $wasValue = '';
 
                 if (array_key_exists('value', $error['args'])) {
-                    $wasValue = ' Received value was %s.';
+                    $wasValue = 'Received value was %s.';
 
                     if (is_null($error['args']['value'])) {
                         $wasValue = sprintf($wasValue, 'null');

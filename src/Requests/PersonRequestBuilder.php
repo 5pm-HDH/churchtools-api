@@ -54,6 +54,12 @@ class PersonRequestBuilder extends AbstractRequestBuilder
      */
     public function update(Person $person, array $attributesToUpdate = []): void
     {
+        $objectId = $person->getId();
+
+        if ($objectId === null) {
+            throw new \LogicException('Only persons with an ID can be updated.');
+        }
+
         if (empty($attributesToUpdate)) {
             $attributesToUpdate = Person::MODIFIABLE_ATTRIBUTES;
         } else {
@@ -64,7 +70,6 @@ class PersonRequestBuilder extends AbstractRequestBuilder
             }
         }
 
-        $objectId = $person->getId();
         $allData = $person->extractData();
         $data = array_intersect_key($allData, array_flip($attributesToUpdate));
 
