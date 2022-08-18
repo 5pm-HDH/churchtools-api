@@ -4,10 +4,10 @@
 namespace Tests\Unit\Requests;
 
 
-use CTApi\CTConfig;
-use CTApi\CTLog;
 use CTApi\Exceptions\CTModelException;
 use CTApi\Models\Person;
+use CTApi\Models\Traits\ExtractData;
+use CTApi\Models\Traits\FillWithData;
 use CTApi\Requests\PersonRequest;
 use CTApi\Utils\CTUtil;
 
@@ -97,5 +97,47 @@ class PersonRequestBuilderUpdateTest extends \Tests\Unit\TestCaseHttpMocked
 
         PersonRequest::update($person, ["notExistingProperty", "notExistingPropertyTheSecond"]);
         $this->assertRequestCallNotExists("PATCH", "/api/persons/21");
+    }
+
+    /**
+     * Test what happens to Update-Method when the Model has ModifiableAttributes defined, that does not exist as
+     * Attributes. For this Test-Case the CarModelMock inherit all methods from the PersonModel-Class. The
+     * getModifiableAttributes return the key "numberOfWings", that does not exist as Attribut. The Test now checks
+     * that this Fake-Attribute is not send via to the REST-API.
+     */
+    public function testModelHasInvalidModifiableAttributes()
+    {
+        $car = CarModelMock::createModelFromData([
+            "id" => 82,
+            "color" => "red",
+            "numberOfDoors" => 4
+        ]);
+
+        PersonRequest::update($car);
+
+        $request = $this->assertRequestCallExists("PATCH", "/api/persons/82");
+        $jsonData = CTUtil::arrayPathGet($request, "options.json");
+
+        $this->assertEquals(sizeof($jsonData), 1, "Expected only one JSON-Attribut (Color)");
+        $this->assertArrayHasKey("color", $jsonData);
+        $this->assertEquals($jsonData["color"], "red");
+    }
+}
+
+
+class CarModelMock extends Person
+{
+    use FillWithData, ExtractData;
+
+    protected ?string $color = null;
+    protected ?string $brand = null;
+    protected ?int $numberOfDoors = null;
+
+    public function getModifiableAttributes(): array
+    {
+        return [
+            "color",
+            "numberOfWings" // illegal modifiable attribute => should be ignored
+        ];
     }
 }
