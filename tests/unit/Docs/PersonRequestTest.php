@@ -39,4 +39,25 @@ class PersonRequestTest extends TestCaseHttpMocked
         $personA = PersonRequest::whoami();
         $events = $personA->requestEvents()?->get();
     }
+
+    /**
+     * @doesNotPerformAssertions
+     */
+    public function testUpdatePerson(){
+        $person = PersonRequest::findOrFail(21);
+        $person->setEmail('new-mail@example.com');
+
+        PersonRequest::update($person);
+    }
+
+    /**
+     * @doesNotPerformAssertions
+     */
+    public function testUpdatePersonSingleAttrbute(){
+        $person = PersonRequest::findOrFail(21);
+        $person->setEmail('new-mail@example.com');
+        $person->setJob('This should not be persisted!');
+
+        PersonRequest::update($person, ['email']);
+    }
 }
