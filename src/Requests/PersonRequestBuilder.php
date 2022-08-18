@@ -4,6 +4,7 @@
 namespace CTApi\Requests;
 
 use CTApi\CTClient;
+use CTApi\Exceptions\CTModelException;
 use CTApi\Exceptions\CTRequestException;
 use CTApi\Models\Person;
 use CTApi\Utils\CTResponseUtil;
@@ -54,26 +55,12 @@ class PersonRequestBuilder extends AbstractRequestBuilder
      */
     public function update(Person $person, array $attributesToUpdate = []): void
     {
-        $objectId = $person->getId();
-
-        if ($objectId === null) {
-            throw new \LogicException('Only persons with an ID can be updated.');
-        }
-
-        if (empty($attributesToUpdate)) {
-            $attributesToUpdate = Person::MODIFIABLE_ATTRIBUTES;
+        $id = $person->getId();
+        if (is_null($id)) {
+            throw new CTModelException("ID of Person cannot be null.");
         } else {
-            $diff = array_diff($attributesToUpdate, Person::MODIFIABLE_ATTRIBUTES);
-
-            if ($diff) {
-                throw new \InvalidArgumentException('The attributes ' . implode(', ', $diff) . ' are not modifiable.');
-            }
+            $this->updateDataForModel($person, $id, $attributesToUpdate);
         }
-
-        $allData = $person->extractData();
-        $data = array_intersect_key($allData, array_flip($attributesToUpdate));
-
-        $this->updateData($objectId, $data);
     }
 
     protected function getApiEndpoint(): string

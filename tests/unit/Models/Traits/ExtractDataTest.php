@@ -31,6 +31,11 @@ class ModelMock
     protected string $lastName;
     public int $age;
 
+    public function getModifiableAttributes(): array
+    {
+        return []; // ignore for model-mock
+    }
+
     public function __construct(string $firstName, string $lastName, int $age)
     {
         $this->firstName = $firstName;

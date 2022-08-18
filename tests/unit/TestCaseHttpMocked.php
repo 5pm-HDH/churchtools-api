@@ -9,13 +9,27 @@ use Tests\Unit\HttpMock\CTClientMock;
 
 class TestCaseHttpMocked extends TestCase
 {
+    private $ctClientMock;
+
     protected function setUp(): void
     {
         parent::setUp();
 
+        $this->ctClientMock = new CTClientMock();
+
         CTConfig::setApiUrl("https://example.church.tools/");
         CTConfig::setApiKey("notnullapikey");
-        CTClient::setClient(new CTClientMock());
+        CTClient::setClient($this->ctClientMock);
+    }
+
+    protected function assertRequestCallExists(string $method, $uri = null): array
+    {
+        return $this->ctClientMock->assertRequestCallExists($method, $uri);
+    }
+
+    protected function assertRequestCallNotExists(string $method, $uri = null): void
+    {
+        $this->ctClientMock->assertRequestCallNotExists($method, $uri);
     }
 
     protected function tearDown(): void

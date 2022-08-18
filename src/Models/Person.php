@@ -14,31 +14,6 @@ class Person
 {
     use FillWithData, ExtractData, MetaAttribute;
 
-    /**
-     * List of attributes that are modifiable per API and available
-     * as property in this class.
-     */
-    const MODIFIABLE_ATTRIBUTES = [
-        'addressAddition',
-        'birthday',
-        'birthName',
-        'birthplace',
-        'city',
-        'country',
-        'email',
-        'fax',
-        'firstName',
-        'job',
-        'lastName',
-        'mobile',
-        'nickname',
-        'phonePrivate',
-        'phoneWork',
-        'sexId',
-        'street',
-        'zip',
-    ];
-
     protected ?string $id = null;
     protected ?string $guid = null;
     protected ?string $firstName = null;
@@ -88,6 +63,30 @@ class Person
             default:
                 $this->{$key} = $data;
         }
+    }
+
+    public function getModifiableAttributes(): array
+    {
+        return [
+            'addressAddition',
+            'birthday',
+            'birthName',
+            'birthplace',
+            'city',
+            'country',
+            'email',
+            'fax',
+            'firstName',
+            'job',
+            'lastName',
+            'mobile',
+            'nickname',
+            'phonePrivate',
+            'phoneWork',
+            'sexId',
+            'street',
+            'zip',
+        ];
     }
 
     private function processDomainAttributes(array $domainAttributes): void

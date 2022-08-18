@@ -8,4 +8,6 @@ trait ExtractData
     {
         return get_object_vars($this);
     }
+
+    public abstract function getModifiableAttributes(): array;
 }

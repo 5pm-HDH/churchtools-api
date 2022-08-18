@@ -28,6 +28,12 @@ class CTClientMock extends CTClient
         return $this->addResponse($this->convertPOSTRequestToResponse($uri, $options));
     }
 
+    public function patch($uri, array $options = []): ResponseInterface
+    {
+        $this->addMethodCall("PATCH", $uri, $options);
+        return CTResponse::createEmpty();
+    }
+
     protected function convertGETRequestToResponse($uri, $options): ResponseInterface
     {
         $responseData = HttpMockDataResolver::resolveEndpoint($uri, $options);
@@ -105,9 +111,11 @@ class CTClientMock extends CTClient
         ]);
     }
 
-    public function assertRequestCallExists(string $method, $uri = null): void
+    public function assertRequestCallExists(string $method, $uri = null): array
     {
-        TestCase::assertTrue(sizeof($this->filterAllRequests($method, $uri)) > 0, "No Requests send with Method " . $method . " and Uri " . $uri);
+        $request = $this->filterAllRequests($method, $uri);
+        TestCase::assertTrue(sizeof($request) > 0, "No Requests send with Method " . $method . " and Uri " . $uri);
+        return end($request);
     }
 
     public function assertRequestCallNotExists(string $method, $uri = null): void
