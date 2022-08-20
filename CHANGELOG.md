@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 
 ### Added
+- [Added method to update person data](https://github.com/5pm-HDH/churchtools-api/pull/84)
 
 ### Changed
 - [refactor CTClient:](https://github.com/5pm-HDH/churchtools-api/pull/83) transform inheritance from GuzzleClient to composition-relation

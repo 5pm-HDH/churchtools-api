@@ -4,6 +4,7 @@
 namespace CTApi\Models;
 
 
+use CTApi\Models\Traits\ExtractData;
 use CTApi\Models\Traits\FillWithData;
 use CTApi\Models\Traits\MetaAttribute;
 use CTApi\Requests\PersonEventRequestBuilder;
@@ -11,7 +12,7 @@ use CTApi\Requests\PersonGroupRequestBuilder;
 
 class Person
 {
-    use FillWithData, MetaAttribute;
+    use FillWithData, ExtractData, MetaAttribute;
 
     protected ?string $id = null;
     protected ?string $guid = null;
@@ -62,6 +63,30 @@ class Person
             default:
                 $this->{$key} = $data;
         }
+    }
+
+    public function getModifiableAttributes(): array
+    {
+        return [
+            'addressAddition',
+            'birthday',
+            'birthName',
+            'birthplace',
+            'city',
+            'country',
+            'email',
+            'fax',
+            'firstName',
+            'job',
+            'lastName',
+            'mobile',
+            'nickname',
+            'phonePrivate',
+            'phoneWork',
+            'sexId',
+            'street',
+            'zip',
+        ];
     }
 
     private function processDomainAttributes(array $domainAttributes): void
