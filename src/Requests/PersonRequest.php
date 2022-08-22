@@ -3,6 +3,7 @@
 
 namespace CTApi\Requests;
 
+use CTApi\Exceptions\CTModelException;
 use CTApi\Models\Person;
 
 class PersonRequest
@@ -57,6 +58,12 @@ class PersonRequest
      */
     public static function delete(Person $person): void
     {
-        (new PersonRequestBuilder())->delete($person->getId());
+        $id = $person->getId();
+
+        if (is_null($id)) {
+            throw new CTModelException("ID of Person cannot be null.");
+        }
+
+        (new PersonRequestBuilder())->delete($id);
     }
 }
