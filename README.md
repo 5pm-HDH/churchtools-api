@@ -5,12 +5,11 @@
 ![example workflow](https://github.com/5pm-HDH/churchtools-api/actions/workflows/static-code-analysis.yml/badge.svg)
 
 
-Churchtools API-Client is a php based wrapper of the churchtools api. This api is tested with the churchtools version
-v3.81.0.
+ChurchTools API-Client is a php based wrapper of the ChurchTools api. This api is tested with the ChurchTools version <version>3.89.0</version>
 
 ## Installation
 
-Go to the project-root and install churchtools-api via [composer](https://getcomposer.org/):
+Go to the project-root and install ChurchTools-api via [composer](https://getcomposer.org/):
 
 ```
 composer require 5pm-hdh/churchtools-api
@@ -26,13 +25,13 @@ include_once 'vendor/autoload.php';
 
 ## Usage
 
-Before you can start to request data from the API you need to **configure the CT-Client (churchtools client)** with
+Before you can start to request data from the API you need to **configure the CT-Client (ChurchTools client)** with
 the `CTConfig`-interface:
 
 ```php
 use \CTApi\CTConfig;
 
-    //set the url of your churchtools application api
+    //set the url of your ChurchTools application api
     //important! ApiUrl must end with Top-Level-Domain. No paths allowed!
 CTConfig::setApiUrl("https://example.church.tools");
 
@@ -46,27 +45,27 @@ CTConfig::authWithCredentials(
 $apiKey = CTConfig::getApiKey();
 ```
 
-For more information visit the [CTConfig documentation](/docs/CTConfig.md)
-From now on all features of the churchtools-api are available.
+For more information visit the [CTConfig documentation](/docs/out/CTConfig.md)
+From now on all features of the ChurchTools-api are available.
 
 ### Requests and Models
 
-The whole churchtools-api client is build on top of the Requests and Models. [Requests](/docs/Requests.md) provide an
-interface to specify your api call by adding filtering, pagination and sorting. [Models](/docs/Models.md) represent the data, that
+The whole ChurchTools-api client is build on top of the Requests and Models. [Requests](/docs/out/Requests.md) provide an
+interface to specify your api call by adding filtering, pagination and sorting. [Models](/docs/out/Models.md) represent the data, that
 the Requests retrieve. More informations can be found in the documentation.
 
 All APIs with examples:
-* [Person-API](/docs/PersonAPI.md)
-* [Group-API](/docs/GroupAPI.md)
-* [Resource- and Bookings-API](/docs/ResourceAPI.md)
-* [PublicGroup-API](/docs/PublicGroupAPI.md)
-* [Event-API](/docs/EventAPI.md)
-* [Song-API](/docs/SongAPI.md)
-* [Service-API](/docs/ServiceAPI.md)
-* [Wiki-API](/docs/WikiAPI.md)
+* [Person-API](/docs/out/PersonAPI.md)
+* [Group-API](/docs/out/GroupAPI.md)
+* [Resource- and Bookings-API](/docs/out/ResourceAPI.md)
+* [PublicGroup-API](/docs/out/PublicGroupAPI.md)
+* [Event-API](/docs/out/EventAPI.md)
+* [Song-API](/docs/out/SongAPI.md)
+* [Service-API](/docs/out/ServiceAPI.md)
+* [Wiki-API](/docs/out/WikiAPI.md)
 
 
-The following short examples show the power of this churchtools-api client and gives a rough overview over the possibilities:
+The following short examples show the power of this ChurchTools-api client and gives a rough overview over the possibilities:
 
 #### Example: Person-API
 
@@ -222,10 +221,10 @@ CTLog::getLog()->debug("Hello World!");
 CTLog::getLog()->error("Error accourd here!");
 ```
 
-Further information on [CTLog-Page](/docs/CTLog.md):
+Further information on [CTLog-Page](/docs/out/CTLog.md):
 
 ### Error-Handling
-The API-Wrapper provides custom exceptions. More on this page: [Error-Handling](/docs/ErrorHandling.md)
+The API-Wrapper provides custom exceptions. More on this page: [Error-Handling](/docs/out/ErrorHandling.md)
 
 ### Doc-Generator
 The Doc-Generator processes all Doc-Files and executes the PHP-Code examples to ensure that they are valid. More on this page: [Doc-Generator](/docs/Docs.md)

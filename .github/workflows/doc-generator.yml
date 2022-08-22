@@ -51,4 +51,4 @@ jobs:
     - name: Run step only when files change.
       if: steps.verify-changed-files.outputs.files_changed == 'true'
       run: |
-        core.setFailed('Inconsistent Docs. Please run DocGenerator and check in changed Files.')
+        core.setFailed('Inconsistent Docs. Please run DocGenerator locally and commit generated Doc-Files. See docs/Docs.md for more information.')
