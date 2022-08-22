@@ -110,6 +110,21 @@ abstract class AbstractRequestBuilder
         $this->updateData($modelId, $updateAttributes);
     }
 
+    /**
+     * Delete the object in ChurchTools by the given ID.
+     */
+    public function delete(string $modelId): void
+    {
+        $url = $this->getApiEndpoint() . '/' . $modelId;
+
+        $client = CTClient::getClient();
+        $response = $client->delete($url);
+
+        if (!in_array($response->getStatusCode(), [200, 204])) {
+            throw CTRequestException::ofErrorResponse($response);
+        }
+    }
+
     abstract protected function getApiEndpoint(): string;
 
     abstract protected function getModelClass(): string;

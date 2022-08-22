@@ -60,6 +60,16 @@ class CTClient
         }
     }
 
+    public function delete($uri, array $options = []): ResponseInterface
+    {
+        try {
+            CTLog::getLog()->debug('CTClient: DELETE-Request URI:' . $uri, ["options" => $options, "mergedOptions" => self::mergeOptions($options)]);
+            return $this->handleResponse($this->guzzleClient->delete($uri, self::mergeOptions($options)));
+        } catch (Exception $exception) {
+            return $this->handleException($exception);
+        }
+    }
+
     private function handleResponse(ResponseInterface $response): ResponseInterface
     {
         switch ($response->getStatusCode()) {

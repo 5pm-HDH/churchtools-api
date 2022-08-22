@@ -51,4 +51,12 @@ class PersonRequest
     {
         (new PersonRequestBuilder())->update($person, $attributesToUpdate);
     }
+
+    /**
+     * Delete the person on churchtools.
+     */
+    public static function delete(Person $person): void
+    {
+        (new PersonRequestBuilder())->delete($person->getId());
+    }
 }
