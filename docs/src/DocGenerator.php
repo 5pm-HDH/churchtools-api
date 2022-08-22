@@ -27,7 +27,7 @@ class DocGenerator
 {
 
     private static $RESOURCES_DIR = __DIR__ . "/ressources/";
-    private static $OUTPUT_DIR = __DIR__ . "/../";
+    private static $OUTPUT_DIR = __DIR__ . "/../out/";
     private static $DOCS = [];
 
     public static $ddBuffer = [];

@@ -46,24 +46,24 @@ CTConfig::authWithCredentials(
 $apiKey = CTConfig::getApiKey();
 ```
 
-For more information visit the [CTConfig documentation](/docs/CTConfig.md)
+For more information visit the [CTConfig documentation](/docs/out/CTConfig.md)
 From now on all features of the ChurchTools-api are available.
 
 ### Requests and Models
 
-The whole ChurchTools-api client is build on top of the Requests and Models. [Requests](/docs/Requests.md) provide an
-interface to specify your api call by adding filtering, pagination and sorting. [Models](/docs/Models.md) represent the data, that
+The whole ChurchTools-api client is build on top of the Requests and Models. [Requests](/docs/out/Requests.md) provide an
+interface to specify your api call by adding filtering, pagination and sorting. [Models](/docs/out/Models.md) represent the data, that
 the Requests retrieve. More informations can be found in the documentation.
 
 All APIs with examples:
-* [Person-API](/docs/PersonAPI.md)
-* [Group-API](/docs/GroupAPI.md)
-* [Resource- and Bookings-API](/docs/ResourceAPI.md)
-* [PublicGroup-API](/docs/PublicGroupAPI.md)
-* [Event-API](/docs/EventAPI.md)
-* [Song-API](/docs/SongAPI.md)
-* [Service-API](/docs/ServiceAPI.md)
-* [Wiki-API](/docs/WikiAPI.md)
+* [Person-API](/docs/out/PersonAPI.md)
+* [Group-API](/docs/out/GroupAPI.md)
+* [Resource- and Bookings-API](/docs/out/ResourceAPI.md)
+* [PublicGroup-API](/docs/out/PublicGroupAPI.md)
+* [Event-API](/docs/out/EventAPI.md)
+* [Song-API](/docs/out/SongAPI.md)
+* [Service-API](/docs/out/ServiceAPI.md)
+* [Wiki-API](/docs/out/WikiAPI.md)
 
 
 The following short examples show the power of this ChurchTools-api client and gives a rough overview over the possibilities:
@@ -222,10 +222,10 @@ CTLog::getLog()->debug("Hello World!");
 CTLog::getLog()->error("Error accourd here!");
 ```
 
-Further information on [CTLog-Page](/docs/CTLog.md):
+Further information on [CTLog-Page](/docs/out/CTLog.md):
 
 ### Error-Handling
-The API-Wrapper provides custom exceptions. More on this page: [Error-Handling](/docs/ErrorHandling.md)
+The API-Wrapper provides custom exceptions. More on this page: [Error-Handling](/docs/out/ErrorHandling.md)
 
 ### Doc-Generator
 The Doc-Generator processes all Doc-Files and executes the PHP-Code examples to ensure that they are valid. More on this page: [Doc-Generator](/docs/Docs.md)
