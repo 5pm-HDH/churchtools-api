@@ -5,8 +5,7 @@
 ![example workflow](https://github.com/5pm-HDH/churchtools-api/actions/workflows/static-code-analysis.yml/badge.svg)
 
 
-ChurchTools API-Client is a php based wrapper of the ChurchTools api. This api is tested with the ChurchTools version
-v3.81.0.
+ChurchTools API-Client is a php based wrapper of the ChurchTools api. This api is tested with the ChurchTools version <version>3.89.0</version>
 
 ## Installation
 
