@@ -69,3 +69,17 @@ data sent to the API, by adding a whitelist of attributes.
 
 Now, only the e-mail will be sent to the API. This may be used to reduce
 unnecessary traffic if you are going to do some bulk updates.
+
+The following attributes can be updated:
+
+```php
+        use CTApi\Requests\PersonRequest;
+
+
+        // Attributes that can be updated in ChurchTools-API
+        $listOfModifiableAttributes = implode("; ", $person->getModifiableAttributes());
+        var_dump( $listOfModifiableAttributes);
+        // Output: "addressAddition; birthday; birthName; birthplace; city; country; email; fax; firstName; job; lastName; mobile; nickname; phonePrivate; phoneWork; sexId; street; zip"
+
+
+```
