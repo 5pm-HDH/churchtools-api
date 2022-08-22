@@ -5,12 +5,12 @@
 ![example workflow](https://github.com/5pm-HDH/churchtools-api/actions/workflows/static-code-analysis.yml/badge.svg)
 
 
-Churchtools API-Client is a php based wrapper of the churchtools api. This api is tested with the churchtools version
+ChurchTools API-Client is a php based wrapper of the ChurchTools api. This api is tested with the ChurchTools version
 v3.81.0.
 
 ## Installation
 
-Go to the project-root and install churchtools-api via [composer](https://getcomposer.org/):
+Go to the project-root and install ChurchTools-api via [composer](https://getcomposer.org/):
 
 ```
 composer require 5pm-hdh/churchtools-api
@@ -26,13 +26,13 @@ include_once 'vendor/autoload.php';
 
 ## Usage
 
-Before you can start to request data from the API you need to **configure the CT-Client (churchtools client)** with
+Before you can start to request data from the API you need to **configure the CT-Client (ChurchTools client)** with
 the `CTConfig`-interface:
 
 ```php
 use \CTApi\CTConfig;
 
-    //set the url of your churchtools application api
+    //set the url of your ChurchTools application api
     //important! ApiUrl must end with Top-Level-Domain. No paths allowed!
 CTConfig::setApiUrl("https://example.church.tools");
 
@@ -47,11 +47,11 @@ $apiKey = CTConfig::getApiKey();
 ```
 
 For more information visit the [CTConfig documentation](/docs/CTConfig.md)
-From now on all features of the churchtools-api are available.
+From now on all features of the ChurchTools-api are available.
 
 ### Requests and Models
 
-The whole churchtools-api client is build on top of the Requests and Models. [Requests](/docs/Requests.md) provide an
+The whole ChurchTools-api client is build on top of the Requests and Models. [Requests](/docs/Requests.md) provide an
 interface to specify your api call by adding filtering, pagination and sorting. [Models](/docs/Models.md) represent the data, that
 the Requests retrieve. More informations can be found in the documentation.
 
@@ -66,7 +66,7 @@ All APIs with examples:
 * [Wiki-API](/docs/WikiAPI.md)
 
 
-The following short examples show the power of this churchtools-api client and gives a rough overview over the possibilities:
+The following short examples show the power of this ChurchTools-api client and gives a rough overview over the possibilities:
 
 #### Example: Person-API
 
