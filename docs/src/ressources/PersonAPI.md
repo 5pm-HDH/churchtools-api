@@ -20,3 +20,7 @@ data sent to the API, by adding a whitelist of attributes.
 
 Now, only the e-mail will be sent to the API. This may be used to reduce
 unnecessary traffic if you are going to do some bulk updates.
+
+The following attributes can be updated:
+
+{{ \Tests\Unit\Docs\PersonRequestTest.testUpdatePersonModifiableAttributes }}
