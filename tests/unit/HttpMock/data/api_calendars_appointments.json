@@ -1,0 +1,60 @@
+{
+  "data": [
+    {
+      "base": {
+        "id": 848,
+        "caption": "Service",
+        "note": "",
+        "version": 1,
+        "calendar": {
+          "id": 54,
+          "name": "Service Calendar",
+          "nameTranslated": "Service Calendar",
+          "sortKey": 2,
+          "color": "#f691b2",
+          "isPublic": true,
+          "isPrivate": false,
+          "randomUrl": "awdasdaw",
+          "iCalSourceUrl": "",
+          "campusId": 0,
+          "eventTemplateId": null,
+          "meta": {
+            "modifiedDate": "2020-07-29T09:12:19Z",
+            "modifiedPid": 108
+          }
+        },
+        "information": "",
+        "link": "",
+        "isInternal": false,
+        "startDate": "2022-08-07T15:00:00Z",
+        "endDate": "2022-08-07T16:00:00Z",
+        "allDay": false,
+        "repeatId": 0,
+        "repeatFrequency": 1,
+        "repeatUntil": null,
+        "repeatOption": null,
+        "additions": [],
+        "exceptions": [],
+        "signup": null,
+        "meta": {
+          "createdDate": "2021-11-18T07:56:26Z",
+          "createdPerson": {
+            "id": "108"
+          },
+          "modifiedDate": "2021-11-29T20:05:59Z",
+          "modifiedPerson": {
+            "id": "108"
+          }
+        },
+        "onBehalfOfPid": null
+      },
+      "calculated": {
+        "startDate": "2022-08-07T15:00:00Z",
+        "endDate": "2022-08-07T16:00:00Z"
+      }
+    }
+  ],
+  "meta": {
+    "count": 1
+  }
+}

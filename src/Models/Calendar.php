@@ -6,6 +6,7 @@ namespace CTApi\Models;
 
 use CTApi\Models\Traits\FillWithData;
 use CTApi\Models\Traits\MetaAttribute;
+use CTApi\Requests\AppointmentRequestBuilder;
 
 class Calendar
 {
@@ -30,6 +31,15 @@ class Calendar
             $this->meta = Meta::createModelFromData($data);
         } else {
             $this->{$key} = $data;
+        }
+    }
+
+    public function requestAppointments(): ?AppointmentRequestBuilder
+    {
+        if(!is_null($this->getId())){
+            return new AppointmentRequestBuilder([$this->getId()]);
+        }else{
+            return null;
         }
     }
 
