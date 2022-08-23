@@ -46,6 +46,7 @@ Follow this example:
 ```php
         use CTApi\Requests\PersonRequest;
 
+        $person = PersonRequest::findOrFail(21);
         $person->setEmail('new-mail@example.com');
 
         PersonRequest::update($person);
@@ -60,6 +61,7 @@ data sent to the API, by adding a whitelist of attributes.
 ```php
         use CTApi\Requests\PersonRequest;
 
+        $person = PersonRequest::findOrFail(21);
         $person->setEmail('new-mail@example.com');
         $person->setJob('This should not be persisted!');
 
@@ -75,11 +77,26 @@ The following attributes can be updated:
 ```php
         use CTApi\Requests\PersonRequest;
 
+        $person = PersonRequest::findOrFail(21);
 
         // Attributes that can be updated in ChurchTools-API
         $listOfModifiableAttributes = implode("; ", $person->getModifiableAttributes());
         var_dump( $listOfModifiableAttributes);
         // Output: "addressAddition; birthday; birthName; birthplace; city; country; email; fax; firstName; job; lastName; mobile; nickname; phonePrivate; phoneWork; sexId; street; zip"
 
+
+```
+
+## Delete person
+
+Delete person via PersonRequest:
+
+```php
+        use CTApi\Requests\PersonRequest;
+
+        $person = PersonRequest::findOrFail(21);
+
+        // delete person on churchtools
+        PersonRequest::delete($person);
 
 ```

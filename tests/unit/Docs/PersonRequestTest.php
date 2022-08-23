@@ -43,7 +43,8 @@ class PersonRequestTest extends TestCaseHttpMocked
     /**
      * @doesNotPerformAssertions
      */
-    public function testUpdatePerson(){
+    public function testUpdatePerson()
+    {
         $person = PersonRequest::findOrFail(21);
         $person->setEmail('new-mail@example.com');
 
@@ -53,7 +54,8 @@ class PersonRequestTest extends TestCaseHttpMocked
     /**
      * @doesNotPerformAssertions
      */
-    public function testUpdatePersonSingleAttrbute(){
+    public function testUpdatePersonSingleAttrbute()
+    {
         $person = PersonRequest::findOrFail(21);
         $person->setEmail('new-mail@example.com');
         $person->setJob('This should not be persisted!');
@@ -61,11 +63,23 @@ class PersonRequestTest extends TestCaseHttpMocked
         PersonRequest::update($person, ['email']);
     }
 
-    public function testUpdatePersonModifiableAttributes(){
+    public function testUpdatePersonModifiableAttributes()
+    {
         $person = PersonRequest::findOrFail(21);
 
         // Attributes that can be updated in ChurchTools-API
         $listOfModifiableAttributes = implode("; ", $person->getModifiableAttributes());
         $this->assertEquals("addressAddition; birthday; birthName; birthplace; city; country; email; fax; firstName; job; lastName; mobile; nickname; phonePrivate; phoneWork; sexId; street; zip", $listOfModifiableAttributes);
+    }
+
+    /**
+     * @doesNotPerformAssertions
+     */
+    public function testDeletePerson()
+    {
+        $person = PersonRequest::findOrFail(21);
+
+        // delete person on churchtools
+        PersonRequest::delete($person);
     }
 }
