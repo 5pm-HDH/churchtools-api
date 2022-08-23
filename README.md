@@ -57,6 +57,7 @@ the Requests retrieve. More informations can be found in the documentation.
 All APIs with examples:
 * [Person-API](/docs/out/PersonAPI.md)
 * [Group-API](/docs/out/GroupAPI.md)
+* [Calendar-API](/docs/out/CalendarAPI.md)
 * [Resource- and Bookings-API](/docs/out/ResourceAPI.md)
 * [PublicGroup-API](/docs/out/PublicGroupAPI.md)
 * [Event-API](/docs/out/EventAPI.md)
