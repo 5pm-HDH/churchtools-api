@@ -31,6 +31,17 @@ class Meta
         }
     }
 
+    protected function fillNonArrayType(string $key, $value): void
+    {
+        switch ($key) {
+            case "modifiedPid":
+                $this->setModifiedPerson(Person::createModelFromData(["id" => $value]));
+                break;
+            default:
+                $this->{$key} = $value;
+        }
+    }
+
     private function convertDataToPerson(array $data): Person
     {
         $person = Person::createModelFromData($data);

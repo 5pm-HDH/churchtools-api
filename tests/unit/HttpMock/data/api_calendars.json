@@ -1,0 +1,41 @@
+{
+  "data": [
+    {
+      "id": 3,
+      "name": "Jugend",
+      "nameTranslated": "Jugend",
+      "sortKey": 40,
+      "color": "#fa573c",
+      "isPublic": true,
+      "isPrivate": false,
+      "randomUrl": "awasdawasdawdasdawdasd",
+      "iCalSourceUrl": "",
+      "campusId": 0,
+      "eventTemplateId": null,
+      "meta": {
+        "modifiedDate": "2015-02-13T23:00:00Z",
+        "modifiedPid": -1
+      }
+    },
+    {
+      "id": 53,
+      "name": "Sunday Service",
+      "nameTranslated": "Sunday Service",
+      "sortKey": 0,
+      "color": "#3e7000",
+      "isPublic": false,
+      "isPrivate": false,
+      "randomUrl": "ionastionasiono",
+      "iCalSourceUrl": "",
+      "campusId": 0,
+      "eventTemplateId": null,
+      "meta": {
+        "modifiedDate": "2020-03-31T14:28:45Z",
+        "modifiedPid": 60
+      }
+    }
+  ],
+  "meta": {
+    "count": 2
+  }
+}
