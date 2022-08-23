@@ -24,3 +24,9 @@ unnecessary traffic if you are going to do some bulk updates.
 The following attributes can be updated:
 
 {{ \Tests\Unit\Docs\PersonRequestTest.testUpdatePersonModifiableAttributes }}
+
+## Delete person
+
+Delete person via PersonRequest:
+
+{{ \Tests\Unit\Docs\PersonRequestTest.testDeletePerson }}
