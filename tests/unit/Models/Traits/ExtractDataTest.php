@@ -2,6 +2,7 @@
 
 namespace Tests\Unit\Models\Traits;
 
+use CTApi\Models\PostableModelInterface;
 use CTApi\Models\Traits\ExtractData;
 use PHPUnit\Framework\TestCase;
 
@@ -23,7 +24,7 @@ class ExtractDataTest extends TestCase
     }
 }
 
-class ModelMock
+class ModelMock implements PostableModelInterface
 {
     use ExtractData;
 
@@ -31,7 +32,7 @@ class ModelMock
     protected string $lastName;
     public int $age;
 
-    public function getModifiableAttributes(): array
+    public static function getModifiableAttributes(): array
     {
         return []; // ignore for model-mock
     }
