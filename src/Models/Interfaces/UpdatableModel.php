@@ -6,7 +6,7 @@ namespace CTApi\Models\Interfaces;
  * This interface has to be implemented by all models to be used for
  * create or update methods.
  */
-interface PostableModelInterface
+interface UpdatableModel
 {
     /**
      * Extracts all properties and their values from the object and returns them

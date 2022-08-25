@@ -6,7 +6,7 @@ namespace CTApi\Requests;
 use CTApi\CTClient;
 use CTApi\Exceptions\CTModelException;
 use CTApi\Exceptions\CTRequestException;
-use CTApi\Models\Interfaces\PostableModelInterface;
+use CTApi\Models\Interfaces\UpdatableModel;
 use CTApi\Requests\Traits\OrderByCondition;
 use CTApi\Requests\Traits\Pagination;
 use CTApi\Requests\Traits\WhereCondition;
@@ -83,7 +83,7 @@ abstract class AbstractRequestBuilder
     /**
      * Send Update-Request for given Model. Only update Attributes that are given with the updateAttributes-Parameter.
      *
-     * @param PostableModelInterface $model Model
+     * @param UpdatableModel $model Model
      * @param string $modelId Id of Model
      * @param array $updateAttributes Pass the attributes that should be updated as array. If nothing or
      *        an empty array is passed, all data of the person will be sent to the API.
@@ -91,7 +91,7 @@ abstract class AbstractRequestBuilder
      *        <code>['firstName', 'lastName', 'nickname']</code>
      *        only those attributes will be sent to the API.
      */
-    protected function updateDataForModel(PostableModelInterface $model, string $modelId, array $updateAttributes): void
+    protected function updateDataForModel(UpdatableModel $model, string $modelId, array $updateAttributes): void
     {
         if (empty($updateAttributes)) {
             $updateAttributes = $model->getModifiableAttributes();

@@ -23,7 +23,7 @@ class ExtractDataTest extends TestCase
     }
 }
 
-class ModelMock implements \CTApi\Models\Interfaces\PostableModelInterface
+class ModelMock implements \CTApi\Models\Interfaces\UpdatableModel
 {
     use ExtractData;
 

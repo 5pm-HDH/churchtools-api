@@ -4,14 +4,14 @@
 namespace CTApi\Models;
 
 
-use CTApi\Models\Interfaces\PostableModelInterface;
+use CTApi\Models\Interfaces\UpdatableModel;
 use CTApi\Models\Traits\ExtractData;
 use CTApi\Models\Traits\FillWithData;
 use CTApi\Models\Traits\MetaAttribute;
 use CTApi\Requests\PersonEventRequestBuilder;
 use CTApi\Requests\PersonGroupRequestBuilder;
 
-class Person implements PostableModelInterface
+class Person implements UpdatableModel
 {
     use FillWithData, ExtractData, MetaAttribute;
 
