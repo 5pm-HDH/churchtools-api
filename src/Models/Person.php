@@ -4,7 +4,7 @@
 namespace CTApi\Models;
 
 
-use CTApi\Models\PostableModelInterface;
+use CTApi\Models\Interfaces\PostableModelInterface;
 use CTApi\Models\Traits\ExtractData;
 use CTApi\Models\Traits\FillWithData;
 use CTApi\Models\Traits\MetaAttribute;

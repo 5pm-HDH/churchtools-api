@@ -2,7 +2,6 @@
 
 namespace Tests\Unit\Models\Traits;
 
-use CTApi\Models\PostableModelInterface;
 use CTApi\Models\Traits\ExtractData;
 use PHPUnit\Framework\TestCase;
 
@@ -24,7 +23,7 @@ class ExtractDataTest extends TestCase
     }
 }
 
-class ModelMock implements PostableModelInterface
+class ModelMock implements \CTApi\Models\Interfaces\PostableModelInterface
 {
     use ExtractData;
 

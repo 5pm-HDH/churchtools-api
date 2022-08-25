@@ -6,7 +6,7 @@ namespace CTApi\Requests;
 use CTApi\CTClient;
 use CTApi\Exceptions\CTModelException;
 use CTApi\Exceptions\CTRequestException;
-use CTApi\Models\PostableModelInterface;
+use CTApi\Models\Interfaces\PostableModelInterface;
 use CTApi\Requests\Traits\OrderByCondition;
 use CTApi\Requests\Traits\Pagination;
 use CTApi\Requests\Traits\WhereCondition;

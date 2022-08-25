@@ -1,6 +1,6 @@
 <?php
 
-namespace CTApi\Models;
+namespace CTApi\Models\Interfaces;
 
 /**
  * This interface has to be implemented by all models to be used for
