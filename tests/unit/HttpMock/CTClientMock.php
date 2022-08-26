@@ -34,6 +34,12 @@ class CTClientMock extends CTClient
         return CTResponse::createEmpty();
     }
 
+    public function delete($uri, array $options = []): ResponseInterface
+    {
+        $this->addMethodCall("DELETE", $uri, $options);
+        return CTResponse::createEmpty();
+    }
+
     protected function convertGETRequestToResponse($uri, $options): ResponseInterface
     {
         $responseData = HttpMockDataResolver::resolveEndpoint($uri, $options);
