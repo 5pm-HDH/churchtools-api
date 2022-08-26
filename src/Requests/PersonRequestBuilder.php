@@ -54,6 +54,17 @@ class PersonRequestBuilder extends AbstractRequestBuilder
         }
     }
 
+    public function delete(Person $person): void
+    {
+        $id = $person->getId();
+
+        if (is_null($id)) {
+            throw new CTModelException("ID of Person cannot be null.");
+        }
+
+        $this->deleteData($id);
+    }
+
     protected function getApiEndpoint(): string
     {
         return '/api/persons';

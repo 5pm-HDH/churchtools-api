@@ -63,19 +63,6 @@ abstract class AbstractRequestBuilder
     }
 
     /**
-     * Update object's data in ChurchTools by the given object ID.
-     * @param string $objectId
-     * @param array $data Key-Value pair with attributes
-     */
-    protected function updateData(string $objectId, array $data): void
-    {
-        $url = $this->getApiEndpoint() . '/' . $objectId;
-
-        $client = CTClient::getClient();
-        $client->patch($url, ['json' => $data]);
-    }
-
-    /**
      * Send Update-Request for given Model. Only update Attributes that are given with the updateAttributes-Parameter.
      *
      * @param UpdatableModel $model Model
@@ -104,10 +91,25 @@ abstract class AbstractRequestBuilder
         $this->updateData($modelId, $updateAttributes);
     }
 
+
     /**
-     * Delete the object in ChurchTools by the given ID.
+     * Update object's data in ChurchTools by the given object ID.
+     * @param string $objectId
+     * @param array $data Key-Value pair with attributes
      */
-    public function delete(string $modelId): void
+    protected function updateData(string $objectId, array $data): void
+    {
+        $url = $this->getApiEndpoint() . '/' . $objectId;
+
+        $client = CTClient::getClient();
+        $client->patch($url, ['json' => $data]);
+    }
+
+    /**
+     * Delete the object in ChurchTools by given Id.
+     * @param string $modelId
+     */
+    public function deleteData(string $modelId): void
     {
         $url = $this->getApiEndpoint() . '/' . $modelId;
 
