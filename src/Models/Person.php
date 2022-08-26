@@ -4,13 +4,14 @@
 namespace CTApi\Models;
 
 
+use CTApi\Models\Interfaces\UpdatableModel;
 use CTApi\Models\Traits\ExtractData;
 use CTApi\Models\Traits\FillWithData;
 use CTApi\Models\Traits\MetaAttribute;
 use CTApi\Requests\PersonEventRequestBuilder;
 use CTApi\Requests\PersonGroupRequestBuilder;
 
-class Person
+class Person implements UpdatableModel
 {
     use FillWithData, ExtractData, MetaAttribute;
 
@@ -65,7 +66,10 @@ class Person
         }
     }
 
-    public function getModifiableAttributes(): array
+    /**
+     * {@inheritDoc}
+     */
+    public static function getModifiableAttributes(): array
     {
         return [
             'addressAddition',

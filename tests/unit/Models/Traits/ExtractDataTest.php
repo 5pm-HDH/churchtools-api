@@ -23,7 +23,7 @@ class ExtractDataTest extends TestCase
     }
 }
 
-class ModelMock
+class ModelMock implements \CTApi\Models\Interfaces\UpdatableModel
 {
     use ExtractData;
 
@@ -31,7 +31,7 @@ class ModelMock
     protected string $lastName;
     public int $age;
 
-    public function getModifiableAttributes(): array
+    public static function getModifiableAttributes(): array
     {
         return []; // ignore for model-mock
     }

@@ -133,7 +133,7 @@ class CarModelMock extends Person
     protected ?string $brand = null;
     protected ?int $numberOfDoors = null;
 
-    public function getModifiableAttributes(): array
+    public static function getModifiableAttributes(): array
     {
         return [
             "color",
