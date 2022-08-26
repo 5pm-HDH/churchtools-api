@@ -3,6 +3,7 @@
 namespace CTApi;
 
 use CTApi\Exceptions\CTConfigException;
+use CTApi\Exceptions\CTRequestException;
 use CTApi\Middleware\CTCacheMiddleware;
 use CTApi\Requests\AuthRequest;
 use CTApi\Requests\PersonRequest;
@@ -107,7 +108,7 @@ class CTConfig
             } else {
                 return true;
             }
-        } catch (\Exception $exception) {
+        } catch (CTRequestException $exception) {
             return false;
         }
     }

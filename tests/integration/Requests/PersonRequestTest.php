@@ -2,6 +2,7 @@
 
 namespace Tests\Integration\Requests;
 
+use CTApi\Exceptions\CTRequestException;
 use CTApi\Models\Event;
 use CTApi\Models\Group;
 use CTApi\Models\Person;
@@ -39,7 +40,7 @@ class PersonRequestTest extends TestCaseAuthenticated
         $exceptionThrown = false;
         try {
             PersonRequest::findOrFail(0);
-        } catch (Exception) {
+        } catch (CTRequestException) {
             $exceptionThrown = true;
         }
         $this->assertTrue($exceptionThrown);

@@ -2,10 +2,15 @@
 
 By default, there are two log types:
 
-**File-Log:**
+**File-Log (Info):**
 
 - Logs the log-levels: INFO, NOTICE, WARNING, ERROR, CRITICAL, ALERT, EMERGENCY
 - Log is stored to the file `churchtools-api.log`
+
+**File-Log (Warning):**
+
+- Logs the log-levels: WARNING, ERROR, CRITICAL, ALERT, EMERGENCY
+- Log is stored to the file `churchtools-api-warning.log`
 
 **Console-Log:**
 

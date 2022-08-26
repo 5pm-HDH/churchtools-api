@@ -4,11 +4,13 @@
 namespace CTApi;
 
 
-use CTApi\Exceptions\CTAuthException;
 use CTApi\Exceptions\CTConnectException;
+use CTApi\Exceptions\CTPermissionException;
+use CTApi\Exceptions\CTRequestException;
 use Exception;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ConnectException;
+use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\HandlerStack;
 use Psr\Http\Message\ResponseInterface;
 
@@ -72,17 +74,24 @@ class CTClient
 
     private function handleResponse(ResponseInterface $response): ResponseInterface
     {
-        switch ($response->getStatusCode()) {
-            case 401:
-                throw new CTAuthException("Unauthorized.", 401);
+        $responseCode = (int)$response->getStatusCode();
+        if ($responseCode == 401 || $responseCode == 403) {
+            throw new CTPermissionException("Unauthorized or Forbidden.", $responseCode);
         }
-        return $response;
+
+        if ($responseCode >= 200 && $responseCode <= 299) {
+            return $response;
+        }
+
+        throw CTRequestException::ofErrorResponse($response);
     }
 
     private function handleException(Exception $exception): ResponseInterface
     {
         if ($exception instanceof ConnectException) {
             throw new CTConnectException($exception->getMessage(), $exception->getCode(), $exception);
+        } else if ($exception instanceof GuzzleException) {
+            throw new CTRequestException($exception->getMessage(), $exception->getCode(), $exception);
         }
         throw $exception;
     }

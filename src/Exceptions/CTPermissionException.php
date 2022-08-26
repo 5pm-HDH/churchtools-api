@@ -5,18 +5,17 @@ namespace CTApi\Exceptions;
 
 
 use CTApi\CTLog;
-use RuntimeException;
 use Throwable;
 
 /**
- * Class CTModelException is thrown when the model data is invalid.
+ * Class CTPermissionException is a CTRequestException that indicates a permission error.
  * @package CTApi\Exceptions
  */
-class CTModelException extends RuntimeException
+class CTPermissionException extends CTRequestException
 {
     public function __construct($message = "", $code = 0, Throwable $previous = null)
     {
         parent::__construct($message, $code, $previous);
-        CTLog::getLog()->warning("CTModelException: " . $message);
+        CTLog::getLog()->warning("CTPermissionException: " . $message);
     }
 }

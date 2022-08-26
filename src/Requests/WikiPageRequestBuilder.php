@@ -5,6 +5,7 @@ namespace CTApi\Requests;
 
 
 use CTApi\CTClient;
+use CTApi\Exceptions\CTRequestException;
 use CTApi\Models\WikiPage;
 use CTApi\Utils\CTResponseUtil;
 use GuzzleHttp\Exception\GuzzleException;
@@ -23,7 +24,7 @@ class WikiPageRequestBuilder
         try {
             $data = CTClient::getClient()->get('/api/wiki/categories/' . $this->categoryId . '/pages');
             return WikiPage::createModelsFromArray(CTResponseUtil::dataAsArray($data));
-        } catch (GuzzleException $e) {
+        } catch (CTRequestException $e) {
             return [];
         }
     }
@@ -36,7 +37,7 @@ class WikiPageRequestBuilder
             if (!empty($data)) {
                 return WikiPage::createModelFromData($data);
             }
-        } catch (GuzzleException $e) {
+        } catch (CTRequestException $e) {
             //ignore
         }
         return null;

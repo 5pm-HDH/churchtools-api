@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - [Refactor CTClient:](https://github.com/5pm-HDH/churchtools-api/pull/83) transform inheritance from GuzzleClient to composition-relation
 - [Move generated Doc-Files to `out`-Folder](https://github.com/5pm-HDH/churchtools-api/pull/89)
 - [Create UpdatableMode-Interface for type safety](https://github.com/5pm-HDH/churchtools-api/pull/93)
+- [Status-Code handling and Exception-handling](https://github.com/5pm-HDH/churchtools-api/pull/99)
 
 ### Fixed
 

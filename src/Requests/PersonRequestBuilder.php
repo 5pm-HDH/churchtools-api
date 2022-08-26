@@ -5,26 +5,17 @@ namespace CTApi\Requests;
 
 use CTApi\CTClient;
 use CTApi\Exceptions\CTModelException;
-use CTApi\Exceptions\CTRequestException;
 use CTApi\Models\Person;
 use CTApi\Utils\CTResponseUtil;
-use GuzzleHttp\Exception\GuzzleException;
 
 class PersonRequestBuilder extends AbstractRequestBuilder
 {
     public function whoami(): Person
     {
         $client = CTClient::getClient();
-
-        try {
-            $response = $client->get('/api/whoami');
-
-            $data = CTResponseUtil::dataAsArray($response);
-
-            return Person::createModelFromData($data);
-        } catch (GuzzleException $e) {
-            throw CTRequestException::ofModelNotFound("Person", $e);
-        }
+        $response = $client->get('/api/whoami');
+        $data = CTResponseUtil::dataAsArray($response);
+        return Person::createModelFromData($data);
     }
 
     public function get(): array

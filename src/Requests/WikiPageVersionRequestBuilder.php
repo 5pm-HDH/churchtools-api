@@ -5,6 +5,7 @@ namespace CTApi\Requests;
 
 
 use CTApi\CTClient;
+use CTApi\Exceptions\CTRequestException;
 use CTApi\Models\WikiPage;
 use CTApi\Utils\CTResponseUtil;
 use GuzzleHttp\Exception\GuzzleException;
@@ -24,7 +25,7 @@ class WikiPageVersionRequestBuilder
             if (!empty($data)) {
                 return WikiPage::createModelsFromArray($data);
             }
-        } catch (GuzzleException $e) {
+        } catch (CTRequestException $e) {
             //ingore
         }
         return [];
@@ -38,7 +39,7 @@ class WikiPageVersionRequestBuilder
             if (!empty($data)) {
                 return WikiPage::createModelFromData($data);
             }
-        } catch (GuzzleException $e) {
+        } catch (CTRequestException $e) {
             //ingore
         }
         return null;

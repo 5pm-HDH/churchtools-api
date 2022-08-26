@@ -2,19 +2,28 @@
 
 The Error-Handling-Concept divides an exception in five different categories:
 
-**CTConnectException**
+## CTConfigException
+
+- wrong Configuration (e.q. no API-Url is set)
+
+## CTModelException
+
+- exception in model (e.q. process wiki-pages return root node)
+
+## CTRequestException
+
+- could not retrieve the models
+
+### CTConnectException extends CTRequestException
+
 - technical Exception the ConnectException from Guzzle
 - error in Connection (timeout, undefined-host, ...)
 
-**CTConfigException**
-- wrong Configuration (e.q. no API-Url is set)
+### CTAuthException extends CTRequestException
 
-**CTAuthException**
 - could not authenticate user
-- unauthorized access to resource
 
-**CTRequestException**
-- could not retrieve the models
+### CTPermissionException extends CTRequestException
 
-**CTModelException**
-- exception in model (e.q. process wiki-pages return root node)
+- unauthorized access to resource (401)
+- forbidden api-call (403)

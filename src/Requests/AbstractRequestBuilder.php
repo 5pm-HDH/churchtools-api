@@ -11,7 +11,6 @@ use CTApi\Requests\Traits\OrderByCondition;
 use CTApi\Requests\Traits\Pagination;
 use CTApi\Requests\Traits\WhereCondition;
 use CTApi\Utils\CTResponseUtil;
-use GuzzleHttp\Exception\GuzzleException;
 
 abstract class AbstractRequestBuilder
 {
@@ -30,7 +29,7 @@ abstract class AbstractRequestBuilder
         if ($model != null) {
             return $model;
         } else {
-            throw CTRequestException::ofModelNotFound();
+            throw CTRequestException::ofModelNotFound($this->getModelClass());
         }
     }
 
@@ -40,7 +39,7 @@ abstract class AbstractRequestBuilder
         try {
             $response = CTClient::getClient()->get($this->getApiEndpoint() . '/' . $id);
             $modelData = CTResponseUtil::dataAsArray($response);
-        } catch (GuzzleException $e) {
+        } catch (CTRequestException $e) {
             // ignore
         }
 
@@ -73,11 +72,7 @@ abstract class AbstractRequestBuilder
         $url = $this->getApiEndpoint() . '/' . $objectId;
 
         $client = CTClient::getClient();
-        $response = $client->patch($url, ['json' => $data]);
-
-        if ($response->getStatusCode() !== 200) {
-            throw CTRequestException::ofErrorResponse($response);
-        }
+        $client->patch($url, ['json' => $data]);
     }
 
     /**
@@ -117,11 +112,7 @@ abstract class AbstractRequestBuilder
         $url = $this->getApiEndpoint() . '/' . $modelId;
 
         $client = CTClient::getClient();
-        $response = $client->delete($url);
-
-        if (!in_array($response->getStatusCode(), [200, 204])) {
-            throw CTRequestException::ofErrorResponse($response);
-        }
+        $client->delete($url);
     }
 
     abstract protected function getApiEndpoint(): string;

@@ -10,6 +10,7 @@ use Monolog\Logger;
 class CTLog
 {
     private const LOG_FILE = __DIR__ . '/../churchtools-api.log';
+    private const LOG_FILE_WARNING = __DIR__ . '/../churchtools-api-warning.log';
 
     private static ?Logger $logger = null;
     private static bool $fileLogEnabled = true;
@@ -35,6 +36,7 @@ class CTLog
 
         if (self::$fileLogEnabled) {
             self::$logger->pushHandler(new StreamHandler(self::LOG_FILE, Logger::INFO));
+            self::$logger->pushHandler(new StreamHandler(self::LOG_FILE_WARNING, Logger::WARNING));
         }
         if (self::$consoleLogEnabled) {
             self::$logger->pushHandler(new StreamHandler('php://stdout', self::$consoleLogLevel));
