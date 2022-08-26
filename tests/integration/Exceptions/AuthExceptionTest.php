@@ -3,6 +3,7 @@
 
 use CTApi\CTConfig;
 use CTApi\Exceptions\CTAuthException;
+use CTApi\Exceptions\CTPermissionException;
 use CTApi\Requests\PersonRequest;
 use PHPUnit\Framework\TestCase;
 use Tests\Integration\TestData;
@@ -37,7 +38,7 @@ class AuthExceptionTest extends TestCase
 
     public function testWrongApiKey(): void
     {
-        $this->expectException(CTAuthException::class);
+        $this->expectException(CTPermissionException::class);
         CTConfig::setApiUrl(TestData::getValue("API_URL"));
         CTConfig::setApiKey("wrong-api-key");
         $person = PersonRequest::whoami();

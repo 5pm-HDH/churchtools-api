@@ -5,10 +5,8 @@ namespace CTApi\Requests;
 
 
 use CTApi\CTClient;
-use CTApi\Exceptions\CTRequestException;
 use CTApi\Models\EventAgenda;
 use CTApi\Utils\CTResponseUtil;
-use GuzzleHttp\Exception\GuzzleException;
 
 class EventAgendaRequestBuilder
 {
@@ -21,11 +19,7 @@ class EventAgendaRequestBuilder
 
     public function get(): EventAgenda
     {
-        try {
-            $response = CTClient::getClient()->get('/api/events/' . $this->eventId . '/agenda');
-            return EventAgenda::createModelFromData(CTResponseUtil::dataAsArray($response));
-        } catch (GuzzleException $e) {
-            throw CTRequestException::ofModelNotFound("Could not retrieve EventAgenda", $e);
-        }
+        $response = CTClient::getClient()->get('/api/events/' . $this->eventId . '/agenda');
+        return EventAgenda::createModelFromData(CTResponseUtil::dataAsArray($response));
     }
 }

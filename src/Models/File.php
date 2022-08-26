@@ -7,6 +7,7 @@ namespace CTApi\Models;
 use CTApi\CTClient;
 use CTApi\CTConfig;
 use CTApi\CTLog;
+use CTApi\Exceptions\CTRequestException;
 use CTApi\Models\Traits\FillWithData;
 use CTApi\Models\Traits\MetaAttribute;
 use GuzzleHttp\Exception\GuzzleException;
@@ -55,16 +56,16 @@ class File
     {
         try {
             $baseUrl = $this->getFileUrlBaseUrl();
-            if(!is_null($baseUrl)){
+            if (!is_null($baseUrl)) {
                 $response = CTClient::getClient()->get($baseUrl, [
                     'headers' => [
                         'Cache-Control' => 'no-cache'
                     ],
                     'query' => $this->getFileUrlQueryParameters()
                 ]);
-                return (string) $response->getBody();
+                return (string)$response->getBody();
             }
-        } catch (GuzzleException $e) {
+        } catch (CTRequestException $e) {
             CTLog::getLog()->error('File: Could not retrieve file-content.');
             // ignore
         }
@@ -87,7 +88,7 @@ class File
     {
         $fileUrlBase = null;
 
-        $parsedUrl = parse_url((string) $this->getFileUrl());
+        $parsedUrl = parse_url((string)$this->getFileUrl());
         if (array_key_exists('scheme', $parsedUrl) && array_key_exists('host', $parsedUrl)) {
             $fileUrlBase = $parsedUrl['scheme'] . '://' . $parsedUrl['host'];
 
@@ -101,9 +102,9 @@ class File
     public function getFileUrlQueryParameters(): array
     {
         $query = [];
-        $parsedUrl = parse_url((string) $this->getFileUrl());
+        $parsedUrl = parse_url((string)$this->getFileUrl());
         if (array_key_exists('query', $parsedUrl)) {
-            $queryString = (string) $parsedUrl['query'];
+            $queryString = (string)$parsedUrl['query'];
 
             foreach (explode('&', $queryString) as $querySubstring) {
                 $querySubstringArray = explode('=', $querySubstring);

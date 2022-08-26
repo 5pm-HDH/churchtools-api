@@ -8,6 +8,10 @@ use Psr\Http\Message\ResponseInterface;
 use RuntimeException;
 use Throwable;
 
+/**
+ * Class CTRequestException is thrown when communication with ChurchTools api fails.
+ * @package CTApi\Exceptions
+ */
 class CTRequestException extends RuntimeException
 {
     public function __construct($message = "", $code = 0, Throwable $previous = null)
@@ -27,7 +31,7 @@ class CTRequestException extends RuntimeException
 
     public static function ofErrorResponse(ResponseInterface $response): self
     {
-        $contents = \json_decode((string) $response->getBody(), true);
+        $contents = \json_decode((string)$response->getBody(), true);
 
         if (!isset($contents['message'])) {
             return new self($response->getReasonPhrase() ?: 'Unknown API error.');
@@ -41,7 +45,7 @@ class CTRequestException extends RuntimeException
             foreach ($contents['errors'] as $error) {
                 $wasValue = '';
 
-                if (array_key_exists('value', $error['args'])) {
+                if (array_key_exists('args', $error) && array_key_exists('value', $error['args'])) {
                     $wasValue = 'Received value was %s.';
 
                     if (is_null($error['args']['value'])) {
@@ -51,12 +55,16 @@ class CTRequestException extends RuntimeException
                     }
                 }
 
-                $errorDescriptions[] = sprintf(
-                    'Field "%s": %s %s',
-                    $error['fieldId'],
-                    $error['message'],
-                    $wasValue
-                );
+                if (array_key_exists('fieldId', $error)) {
+                    $errorDescriptions[] = sprintf(
+                        'Field "%s": %s %s',
+                        $error['fieldId'],
+                        $error['message'],
+                        $wasValue
+                    );
+                } else {
+                    $errorDescriptions[] = $error['message'];
+                }
             }
 
             $msg .= '. ' . implode(' ', $errorDescriptions);

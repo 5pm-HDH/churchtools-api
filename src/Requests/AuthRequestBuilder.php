@@ -4,8 +4,8 @@ namespace CTApi\Requests;
 
 use CTApi\CTClient;
 use CTApi\Exceptions\CTAuthException;
+use CTApi\Exceptions\CTRequestException;
 use CTApi\Models\Auth;
-use GuzzleHttp\Exception\GuzzleException;
 
 class AuthRequestBuilder
 {
@@ -29,7 +29,7 @@ class AuthRequestBuilder
                     'Cache-Control' => 'no-cache'
                 ]
             ]);
-        } catch (GuzzleException $e) {
+        } catch (CTRequestException $e) {
             throw new CTAuthException(
                 "Authentication was not successfully. HTTP Exception occurred.",
                 null,
@@ -70,7 +70,7 @@ class AuthRequestBuilder
                     ]
                 ]
             );
-        } catch (GuzzleException $e) {
+        } catch (CTRequestException $e) {
             throw new CTAuthException(
                 "Authentication was not successfully. Could not retrieve login token.",
                 null,

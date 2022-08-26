@@ -5,6 +5,7 @@ namespace CTApi\Requests;
 
 
 use CTApi\CTClient;
+use CTApi\Exceptions\CTRequestException;
 use CTApi\Models\File;
 use CTApi\Utils\CTResponseUtil;
 use GuzzleHttp\Exception\GuzzleException;
@@ -23,7 +24,7 @@ class WikiPageFilesRequestBuilder
             if (!empty($data)) {
                 return File::createModelsFromArray($data);
             }
-        } catch (GuzzleException $e) {
+        } catch (CTRequestException $e) {
             //ingore
         }
         return [];

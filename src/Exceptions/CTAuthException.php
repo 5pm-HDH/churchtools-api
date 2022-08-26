@@ -4,10 +4,13 @@
 namespace CTApi\Exceptions;
 
 use CTApi\CTLog;
-use RuntimeException;
 use Throwable;
 
-class CTAuthException extends RuntimeException
+/**
+ * Class CTAuthException is a CTRequestException. It Indicates a failed authentification.
+ * @package CTApi\Exceptions
+ */
+class CTAuthException extends CTRequestException
 {
     public function __construct($message = "", $code = 0, Throwable $previous = null)
     {

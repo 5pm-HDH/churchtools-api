@@ -5,6 +5,7 @@ namespace CTApi\Requests;
 
 
 use CTApi\CTClient;
+use CTApi\Exceptions\CTRequestException;
 use CTApi\Models\WikiPage;
 use CTApi\Models\WikiSearchResult;
 use CTApi\Requests\Traits\OrderByCondition;
@@ -50,7 +51,7 @@ class WikiSearchRequestBuilder
             if (!empty($data)) {
                 return WikiPage::createModelFromData($data);
             }
-        } catch (GuzzleException $e) {
+        } catch (CTRequestException $e) {
             // ignore
         }
         return null;
