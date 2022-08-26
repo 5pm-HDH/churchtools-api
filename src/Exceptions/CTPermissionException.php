@@ -5,6 +5,7 @@ namespace CTApi\Exceptions;
 
 
 use CTApi\CTLog;
+use Throwable;
 
 /**
  * Class CTPermissionException is a CTRequestException that indicates a permission error.
