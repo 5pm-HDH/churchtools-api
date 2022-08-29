@@ -27,7 +27,7 @@ class Meta
                 $this->setModifiedPerson($this->convertDataToPerson($data));
                 break;
             default:
-                $this->{$key} = $data;
+                $this->fillDefault($key, $data);
         }
     }
 
@@ -38,7 +38,7 @@ class Meta
                 $this->setModifiedPerson(Person::createModelFromData(["id" => $value]));
                 break;
             default:
-                $this->{$key} = $value;
+                $this->fillDefault($key, $value);
         }
     }
 

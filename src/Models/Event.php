@@ -36,7 +36,7 @@ class Event
                 $this->setCalendar(DomainAttributeModel::createModelFromData($data));
                 break;
             default:
-                $this->{$key} = $data;
+                $this->fillDefault($key, $data);
         }
     }
 

@@ -40,7 +40,7 @@ class Song
                 $this->setMeta(Meta::createModelFromData($data));
                 break;
             default:
-                $this->{$key} = $data;
+                $this->fillDefault($key, $data);
         }
     }
 
@@ -57,7 +57,7 @@ class Song
                 $this->setCategory(SongCategory::createModelFromData(["name" => $value]));
                 break;
             default:
-                $this->{$key} = $value;
+                $this->fillDefault($key, $value);
         }
     }
 

@@ -32,7 +32,7 @@ class Resource
                 // adminIds cannot be filled with non-array-type
                 break;
             default:
-                $this->{$key} = $value;
+                $this->fillDefault($key, $value);
         }
     }
 

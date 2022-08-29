@@ -43,7 +43,7 @@ class Appointment
                 $this->meta = Meta::createModelFromData($data);
                 break;
             default:
-                $this->{$key} = $data;
+                $this->fillDefault($key, $data);
         }
     }
 

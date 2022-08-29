@@ -28,7 +28,7 @@ class GroupPlace
                 $this->createdPerson = Person::createModelFromData($data);
                 break;
             default:
-                $this->{$key} = $data;
+                $this->fillDefault($key, $data);
         }
     }
 

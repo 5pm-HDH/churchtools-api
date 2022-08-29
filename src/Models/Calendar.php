@@ -30,7 +30,7 @@ class Calendar
         if ($key == "meta") {
             $this->meta = Meta::createModelFromData($data);
         } else {
-            $this->{$key} = $data;
+            $this->fillDefault($key, $data);
         }
     }
 

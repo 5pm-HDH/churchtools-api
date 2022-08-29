@@ -26,7 +26,7 @@ class WikiCategory
             case "permissions":
                 break;
             default:
-                $this->{$key} = $value;
+                $this->fillDefault($key, $value);
         }
     }
 

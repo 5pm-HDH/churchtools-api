@@ -39,7 +39,7 @@ class EventService
                 $this->setRequesterPerson(Person::createModelFromData($personData));
                 break;
             default:
-                $this->{$key} = $data;
+                $this->fillDefault($key, $data);
         }
     }
 

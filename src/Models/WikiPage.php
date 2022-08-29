@@ -37,7 +37,7 @@ class WikiPage
                 $this->setPermissions($data);
                 break;
             default:
-                $this->{$key} = $data;
+                $this->fillDefault($key, $data);
         }
     }
 
@@ -47,7 +47,7 @@ class WikiPage
             case "permissions":
                 break;
             default:
-                $this->{$key} = $value;
+                $this->fillDefault($key, $value);
         }
     }
 
