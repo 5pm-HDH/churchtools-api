@@ -13,7 +13,7 @@ class GroupHomepage
 
     protected ?string $id = null;
     protected ?string $parentGroup = null;
-    protected ?string $isEnabled = null;
+    protected ?bool $isEnabled = null;
     protected ?string $showLeader = null;
     protected ?string $showGroupImages = null;
     protected ?string $showMap = null;
@@ -36,7 +36,7 @@ class GroupHomepage
                 $this->setMeta(Meta::createModelFromData($data));
                 break;
             default:
-                $this->{$key} = $data;
+                $this->fillDefault($key, $data);
         }
     }
 
@@ -77,18 +77,18 @@ class GroupHomepage
     }
 
     /**
-     * @return string|null
+     * @return bool|null
      */
-    public function getIsEnabled(): ?string
+    public function getIsEnabled(): ?bool
     {
         return $this->isEnabled;
     }
 
     /**
-     * @param string|null $isEnabled
+     * @param bool|null $isEnabled
      * @return GroupHomepage
      */
-    public function setIsEnabled(?string $isEnabled): GroupHomepage
+    public function setIsEnabled(?bool $isEnabled): GroupHomepage
     {
         $this->isEnabled = $isEnabled;
         return $this;

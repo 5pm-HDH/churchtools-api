@@ -34,7 +34,7 @@ class Group
                 $this->setId($value);
                 break;
             default:
-                $this->{$key} = $value;
+                $this->fillDefault($key, $value);
         }
     }
 
@@ -51,7 +51,7 @@ class Group
                 $this->setSettings(GroupSettings::createModelFromData($data));
                 break;
             default:
-                $this->{$key} = $data;
+                $this->fillDefault($key, $data);
         }
     }
 

@@ -48,7 +48,7 @@ class Person implements UpdatableModel
                 $this->setId($value);
                 break;
             default:
-                $this->{$key} = $value;
+                $this->fillDefault($key, $value);
         }
     }
 
@@ -62,7 +62,7 @@ class Person implements UpdatableModel
                 $this->processDomainAttributes($data);
                 break;
             default:
-                $this->{$key} = $data;
+                $this->fillDefault($key, $data);
         }
     }
 

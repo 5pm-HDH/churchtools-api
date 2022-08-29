@@ -18,7 +18,7 @@ class EventAgenda
     protected ?string $id = null;
     protected ?string $name = null;
     protected ?string $series = null;
-    protected ?string $isFinal = null;
+    protected ?bool $isFinal = null;
     protected ?string $eventStartPosition = null;
     protected ?string $calendarId = null;
     protected ?string $total = null;
@@ -35,7 +35,7 @@ class EventAgenda
                 $this->setMeta(Meta::createModelFromData($data));
                 break;
             default:
-                $this->{$key} = $data;
+                $this->fillDefault($key, $data);
         }
     }
 
@@ -135,18 +135,18 @@ class EventAgenda
     }
 
     /**
-     * @return string|null
+     * @return bool|null
      */
-    public function getIsFinal(): ?string
+    public function getIsFinal(): ?bool
     {
         return $this->isFinal;
     }
 
     /**
-     * @param string|null $isFinal
+     * @param bool|null $isFinal
      * @return EventAgenda
      */
-    public function setIsFinal(?string $isFinal): EventAgenda
+    public function setIsFinal(?bool $isFinal): EventAgenda
     {
         $this->isFinal = $isFinal;
         return $this;

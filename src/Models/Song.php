@@ -18,14 +18,14 @@ class Song
     protected ?string $arrangement = null;
     protected array $arrangements = [];
     protected ?SongCategory $category = null;
-    protected ?string $shouldPractice = null;
+    protected ?bool $shouldPractice = null;
     protected ?string $author = null;
     protected ?string $ccli = null;
     protected ?string $copyright = null;
     protected ?string $note = null;
     protected ?string $key = null;
     protected ?string $bpm = null;
-    protected ?string $isDefault = null;
+    protected ?bool $isDefault = null;
 
     protected function fillArrayType(string $key, array $data): void
     {
@@ -40,7 +40,7 @@ class Song
                 $this->setMeta(Meta::createModelFromData($data));
                 break;
             default:
-                $this->{$key} = $data;
+                $this->fillDefault($key, $data);
         }
     }
 
@@ -57,7 +57,7 @@ class Song
                 $this->setCategory(SongCategory::createModelFromData(["name" => $value]));
                 break;
             default:
-                $this->{$key} = $value;
+                $this->fillDefault($key, $value);
         }
     }
 
@@ -89,18 +89,72 @@ class Song
     /**
      * @return string|null
      */
-    public function getShouldPractice(): ?string
+    public function getId(): ?string
     {
-        return $this->shouldPractice;
+        return $this->id;
     }
 
     /**
-     * @param string|null $shouldPractice
+     * @param string|null $id
      * @return Song
      */
-    public function setShouldPractice(?string $shouldPractice): Song
+    public function setId(?string $id): Song
     {
-        $this->shouldPractice = $shouldPractice;
+        $this->id = $id;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getArrangementId(): ?string
+    {
+        return $this->arrangementId;
+    }
+
+    /**
+     * @param string|null $arrangementId
+     * @return Song
+     */
+    public function setArrangementId(?string $arrangementId): Song
+    {
+        $this->arrangementId = $arrangementId;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string|null $name
+     * @return Song
+     */
+    public function setName(?string $name): Song
+    {
+        $this->name = $name;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getArrangement(): ?string
+    {
+        return $this->arrangement;
+    }
+
+    /**
+     * @param string|null $arrangement
+     * @return Song
+     */
+    public function setArrangement(?string $arrangement): Song
+    {
+        $this->arrangement = $arrangement;
         return $this;
     }
 
@@ -119,6 +173,42 @@ class Song
     public function setArrangements(array $arrangements): Song
     {
         $this->arrangements = $arrangements;
+        return $this;
+    }
+
+    /**
+     * @return SongCategory|null
+     */
+    public function getCategory(): ?SongCategory
+    {
+        return $this->category;
+    }
+
+    /**
+     * @param SongCategory|null $category
+     * @return Song
+     */
+    public function setCategory(?SongCategory $category): Song
+    {
+        $this->category = $category;
+        return $this;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function getShouldPractice(): ?bool
+    {
+        return $this->shouldPractice;
+    }
+
+    /**
+     * @param bool|null $shouldPractice
+     * @return Song
+     */
+    public function setShouldPractice(?bool $shouldPractice): Song
+    {
+        $this->shouldPractice = $shouldPractice;
         return $this;
     }
 
@@ -197,96 +287,6 @@ class Song
     /**
      * @return string|null
      */
-    public function getId(): ?string
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param string|null $id
-     * @return Song
-     */
-    public function setId(?string $id): Song
-    {
-        $this->id = $id;
-        return $this;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
-
-    /**
-     * @param string|null $name
-     * @return Song
-     */
-    public function setName(?string $name): Song
-    {
-        $this->name = $name;
-        return $this;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getArrangementId(): ?string
-    {
-        return $this->arrangementId;
-    }
-
-    /**
-     * @param string|null $arrangementId
-     * @return Song
-     */
-    public function setArrangementId(?string $arrangementId): Song
-    {
-        $this->arrangementId = $arrangementId;
-        return $this;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getArrangement(): ?string
-    {
-        return $this->arrangement;
-    }
-
-    /**
-     * @param string|null $arrangement
-     * @return Song
-     */
-    public function setArrangement(?string $arrangement): Song
-    {
-        $this->arrangement = $arrangement;
-        return $this;
-    }
-
-    /**
-     * @return SongCategory|null
-     */
-    public function getCategory(): ?SongCategory
-    {
-        return $this->category;
-    }
-
-    /**
-     * @param SongCategory|null $category
-     * @return Song
-     */
-    public function setCategory(?SongCategory $category): Song
-    {
-        $this->category = $category;
-        return $this;
-    }
-
-    /**
-     * @return string|null
-     */
     public function getKey(): ?string
     {
         return $this->key;
@@ -321,18 +321,18 @@ class Song
     }
 
     /**
-     * @return string|null
+     * @return bool|null
      */
-    public function getIsDefault(): ?string
+    public function getIsDefault(): ?bool
     {
         return $this->isDefault;
     }
 
     /**
-     * @param string|null $isDefault
+     * @param bool|null $isDefault
      * @return Song
      */
-    public function setIsDefault(?string $isDefault): Song
+    public function setIsDefault(?bool $isDefault): Song
     {
         $this->isDefault = $isDefault;
         return $this;

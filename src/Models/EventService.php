@@ -18,14 +18,14 @@ class EventService
     protected ?Person $person = null;
     protected ?string $name = null;
     protected ?string $serviceId = null;
-    protected ?string $agreed = null;
-    protected ?string $isValid = null;
+    protected ?bool $agreed = null;
+    protected ?bool $isValid = null;
     protected ?string $requestedDate = null;
     protected ?string $requesterPersonId = null;
     protected ?Person $requesterPerson = null;
     protected ?string $comment = null;
     protected ?string $counter = null;
-    protected ?string $allowChat = null;
+    protected ?bool $allowChat = null;
 
     protected function fillArrayType(string $key, array $data): void
     {
@@ -39,7 +39,7 @@ class EventService
                 $this->setRequesterPerson(Person::createModelFromData($personData));
                 break;
             default:
-                $this->{$key} = $data;
+                $this->fillDefault($key, $data);
         }
     }
 
@@ -130,7 +130,7 @@ class EventService
     }
 
     /**
-     * @return ?Person
+     * @return Person|null
      */
     public function getPerson(): ?Person
     {
@@ -138,10 +138,10 @@ class EventService
     }
 
     /**
-     * @param Person $person
+     * @param Person|null $person
      * @return EventService
      */
-    public function setPerson(Person $person): EventService
+    public function setPerson(?Person $person): EventService
     {
         $this->person = $person;
         return $this;
@@ -184,36 +184,36 @@ class EventService
     }
 
     /**
-     * @return string|null
+     * @return bool|null
      */
-    public function getAgreed(): ?string
+    public function getAgreed(): ?bool
     {
         return $this->agreed;
     }
 
     /**
-     * @param string|null $agreed
+     * @param bool|null $agreed
      * @return EventService
      */
-    public function setAgreed(?string $agreed): EventService
+    public function setAgreed(?bool $agreed): EventService
     {
         $this->agreed = $agreed;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return bool|null
      */
-    public function getIsValid(): ?string
+    public function getIsValid(): ?bool
     {
         return $this->isValid;
     }
 
     /**
-     * @param string|null $isValid
+     * @param bool|null $isValid
      * @return EventService
      */
-    public function setIsValid(?string $isValid): EventService
+    public function setIsValid(?bool $isValid): EventService
     {
         $this->isValid = $isValid;
         return $this;
@@ -256,7 +256,7 @@ class EventService
     }
 
     /**
-     * @return ?Person
+     * @return Person|null
      */
     public function getRequesterPerson(): ?Person
     {
@@ -264,10 +264,10 @@ class EventService
     }
 
     /**
-     * @param Person $requesterPerson
+     * @param Person|null $requesterPerson
      * @return EventService
      */
-    public function setRequesterPerson(Person $requesterPerson): EventService
+    public function setRequesterPerson(?Person $requesterPerson): EventService
     {
         $this->requesterPerson = $requesterPerson;
         return $this;
@@ -310,21 +310,20 @@ class EventService
     }
 
     /**
-     * @return string|null
+     * @return bool|null
      */
-    public function getAllowChat(): ?string
+    public function getAllowChat(): ?bool
     {
         return $this->allowChat;
     }
 
     /**
-     * @param string|null $allowChat
+     * @param bool|null $allowChat
      * @return EventService
      */
-    public function setAllowChat(?string $allowChat): EventService
+    public function setAllowChat(?bool $allowChat): EventService
     {
         $this->allowChat = $allowChat;
         return $this;
     }
-
 }

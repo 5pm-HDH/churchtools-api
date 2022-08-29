@@ -12,13 +12,13 @@ class PublicGroup extends Group
     use FillWithData;
 
     protected ?string $autoAccept = null;
-    protected ?string $allowWaitinglist = null;
+    protected ?bool $allowWaitinglist = null;
     protected ?string $waitinglistMaxPersons = null;
     protected ?string $maxMemberCount = null;
     protected ?string $currentMemberCount = null;
     protected ?string $requestedPlacesCount = null;
     protected ?string $requestedWaitinglistPlacesCount = null;
-    protected ?string $canSignUp = null;
+    protected ?bool $canSignUp = null;
     protected array $signUpConditions = [];
     protected ?string $signUpHeadline = null;
 
@@ -66,18 +66,18 @@ class PublicGroup extends Group
     }
 
     /**
-     * @return string|null
+     * @return bool|null
      */
-    public function getAllowWaitinglist(): ?string
+    public function getAllowWaitinglist(): ?bool
     {
         return $this->allowWaitinglist;
     }
 
     /**
-     * @param string|null $allowWaitinglist
+     * @param bool|null $allowWaitinglist
      * @return PublicGroup
      */
-    public function setAllowWaitinglist(?string $allowWaitinglist): PublicGroup
+    public function setAllowWaitinglist(?bool $allowWaitinglist): PublicGroup
     {
         $this->allowWaitinglist = $allowWaitinglist;
         return $this;
@@ -174,18 +174,18 @@ class PublicGroup extends Group
     }
 
     /**
-     * @return string|null
+     * @return bool|null
      */
-    public function getCanSignUp(): ?string
+    public function getCanSignUp(): ?bool
     {
         return $this->canSignUp;
     }
 
     /**
-     * @param string|null $canSignUp
+     * @param bool|null $canSignUp
      * @return PublicGroup
      */
-    public function setCanSignUp(?string $canSignUp): PublicGroup
+    public function setCanSignUp(?bool $canSignUp): PublicGroup
     {
         $this->canSignUp = $canSignUp;
         return $this;

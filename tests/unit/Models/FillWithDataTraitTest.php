@@ -38,11 +38,6 @@ class FillWithDataTraitTest extends TestCase
     {
         $this->assertEquals($model->id, $container['id']);
         $this->assertEquals($model->name, $container['name']);
-        /**
-         * @psalm-suppress UndefinedPropertyFetch
-         * Age Attribute will be added in "createModelFromData"-Method
-         */
-        $this->assertEquals($model->age, $container['age']);
     }
 
     public function testCreateFromDataList(): void

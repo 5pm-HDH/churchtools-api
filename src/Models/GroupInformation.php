@@ -32,7 +32,7 @@ class GroupInformation
                 $this->groupPlaces = GroupPlace::createModelsFromArray($data);
                 break;
             default:
-                $this->{$key} = $data;
+                $this->fillDefault($key, $data);
         }
     }
 
@@ -43,7 +43,7 @@ class GroupInformation
                 $this->weekday = [$value];
                 break;
             default:
-                $this->{$key} = $value;
+                $this->fillDefault($key, $value);
         }
     }
 
