@@ -57,7 +57,7 @@ trait FillWithData
 
             $castedValue = $this->castValueToPropertyType($reflectedProperty, $propertyType, $value, $valueType);
 
-            if ($castedValue != null) {
+            if (!is_null($castedValue)) {
                 $reflectedProperty->setAccessible(true);
                 $reflectedProperty->setValue($this, $castedValue);
             } else {
@@ -75,7 +75,7 @@ trait FillWithData
 
     /**
      * Case given value to type of property.
-     * Types can be "integer", "int", "string", "array", "Models\Actor"
+     * Types can be "bool", "integer", "int", "float", "string", "array", "Models\Actor"
      *
      *
      * @param \ReflectionProperty $reflectionProperty
@@ -85,12 +85,62 @@ trait FillWithData
      */
     private function castValueToPropertyType(\ReflectionProperty $reflectionProperty, string $propertyType, $value, $valueType)
     {
-        $propertyType = $propertyType == "integer" ? "int" : $propertyType; // convert "integer" to "int"
-        $valueType = $valueType == "integer" ? "int" : $valueType;
+        $typeTranslator = [
+            // translate to new value
+            "integer" => "int",
+            "boolean" => "bool",
+            "double" => "float"
+        ];
+
+        if (array_key_exists($valueType, $typeTranslator)) {
+            $valueType = $typeTranslator[$valueType];
+        }
+        if (array_key_exists($propertyType, $typeTranslator)) {
+            $propertyType = $typeTranslator[$propertyType];
+        }
 
         if ($valueType == $propertyType) {      // type matches
             return $value;
-        } else if ($propertyType == "int" && $valueType == "string") {    // try to cast integer
+        }
+
+        switch ($propertyType) {
+            case "bool":
+                return $this->castToBool($valueType, $value);
+            case "int":
+                return $this->castToInt($valueType, $value);
+            case "float":
+                return $this->castToFloat($valueType, $value);
+            case "string":
+                return $this->castToString($valueType, $value);
+            default:
+                return null;
+        }
+    }
+
+    private function castToBool(string $valueType, $value): ?bool
+    {
+        if ($valueType == "string") {
+            switch (strtolower($value)) {
+                case "true":
+                    return true;
+                case "false":
+                    return false;
+            }
+        }
+        if ($valueType == "int") {
+            switch (intval($value)) {
+                case 1:
+                    return true;
+                case 0:
+                    return false;
+            }
+        }
+        return null;
+    }
+
+    private function castToInt(string $valueType, $value): ?int
+    {
+        if ($valueType == "string") {
             $castedInteger = intval($value);
             $backCastedInteger = strval($castedInteger);
             if ($backCastedInteger == $value) {
@@ -98,7 +148,31 @@ trait FillWithData
             } else {
                 return null;
             }
-        } else if ($propertyType == "string" && $valueType == "int") {    // cast string
+        }
+
+        if ($valueType == "bool" || $valueType == "float") {
+            return intval($value);
+        }
+
+        return null;
+    }
+
+    private function castToFloat(string $valueType, $value): ?float
+    {
+        if ($valueType == "int") {
+            return floatval($value);
+        }
+        if ($valueType == "string" && is_numeric($value)) {
+            return floatval($value);
+        }
+        return null;
+    }
+
+    private function castToString(string $valueType, $value): ?string
+    {
+        if ($valueType == "bool") {
+            return $value ? "true" : "false";
+        } else if ($valueType == "int" || $valueType == "float") {
             return strval($value);
         }
 

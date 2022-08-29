@@ -31,6 +31,8 @@ class FillWithDataTraitTypeMissmatchTest extends TestCase
     const TYPE_CLASS = 3;
     const TYPE_NULL = 4;
     const TYPE_NONE = 5;
+    const TYPE_BOOL = 6;
+    const TYPE_FLOAT = 7;
 
     /**
      * Test: String
@@ -69,6 +71,27 @@ class FillWithDataTraitTypeMissmatchTest extends TestCase
         $movie->assertProperty("undefinedProperty", self::TYPE_NONE);
     }
 
+    public function testStringToBool()
+    {
+        $movie = Movie::createModelFromData(["isReleased" => "true"]);
+        $movie->assertProperty("isReleased", self::TYPE_BOOL, true);
+
+        $movie = Movie::createModelFromData(["isReleased" => "false"]);
+        $movie->assertProperty("isReleased", self::TYPE_BOOL, false);
+
+        $movie = Movie::createModelFromData(["isReleased" => "invalid"]);
+        $movie->assertProperty("isReleased", self::TYPE_NULL);
+    }
+
+    public function testStringToFloat()
+    {
+        $movie = Movie::createModelFromData(["price" => "1.70"]);
+        $movie->assertProperty("price", self::TYPE_FLOAT, 1.7);
+
+        $movie = Movie::createModelFromData(["price" => "invalid"]);
+        $movie->assertProperty("price", self::TYPE_NULL);
+    }
+
     /**
      * Test: Int
      */
@@ -103,6 +126,24 @@ class FillWithDataTraitTypeMissmatchTest extends TestCase
         $movie->assertProperty("undefinedProperty", self::TYPE_NONE);
     }
 
+    public function testIntToBool()
+    {
+        $movie = Movie::createModelFromData(["isReleased" => 1]);
+        $movie->assertProperty("isReleased", self::TYPE_BOOL, true);
+
+        $movie = Movie::createModelFromData(["isReleased" => 0]);
+        $movie->assertProperty("isReleased", self::TYPE_BOOL, false);
+
+        $movie = Movie::createModelFromData(["isReleased" => 2]);
+        $movie->assertProperty("isReleased", self::TYPE_NULL);
+    }
+
+    public function testIntToFloat()
+    {
+        $movie = Movie::createModelFromData(["price" => 224]);
+        $movie->assertProperty("price", self::TYPE_FLOAT, 224);
+    }
+
     /**
      * Test: Array
      */
@@ -135,6 +176,18 @@ class FillWithDataTraitTypeMissmatchTest extends TestCase
     {
         $movie = Movie::createModelFromData(["undefinedProperty" => ["id" => 21]]);
         $movie->assertProperty("undefinedProperty", self::TYPE_NONE);
+    }
+
+    public function testArrayToBool()
+    {
+        $movie = Movie::createModelFromData(["isReleased" => [true, false, true]]);
+        $movie->assertProperty("isReleased", self::TYPE_NULL);
+    }
+
+    public function testArrayToFloat()
+    {
+        $movie = Movie::createModelFromData(["price" => [22.4, 22]]);
+        $movie->assertProperty("price", self::TYPE_NULL);
     }
 
     /**
@@ -176,6 +229,20 @@ class FillWithDataTraitTypeMissmatchTest extends TestCase
         $movie->assertProperty("undefinedProperty", self::TYPE_NONE);
     }
 
+    public function testClassToBool()
+    {
+        $actor = (new Actor())->setId(21)->setName("Little Kid");
+        $movie = Movie::createModelFromData(["isReleased" => $actor]);
+        $movie->assertProperty("isReleased", self::TYPE_NULL);
+    }
+
+    public function testClassToFloat()
+    {
+        $actor = (new Actor())->setId(21)->setName("Little Kid");
+        $movie = Movie::createModelFromData(["price" => $actor]);
+        $movie->assertProperty("price", self::TYPE_NULL);
+    }
+
     /**
      * Test: Null
      */
@@ -213,6 +280,125 @@ class FillWithDataTraitTypeMissmatchTest extends TestCase
         $movie = Movie::createModelFromData(["undefinedProperty" => null]);
         $movie->assertProperty("undefinedProperty", self::TYPE_NONE);
     }
+
+    public function testNullToBool()
+    {
+        $movie = Movie::createModelFromData(["isReleased" => null]);
+        $movie->assertProperty("isReleased", self::TYPE_NULL);
+    }
+
+    public function testNullToFloat()
+    {
+        $movie = Movie::createModelFromData(["price" => null]);
+        $movie->assertProperty("price", self::TYPE_NULL);
+    }
+
+    /**
+     * Test: Bool
+     */
+
+    public function testBoolToString()
+    {
+        $movie = Movie::createModelFromData(["title" => true]);
+        $movie->assertProperty("title", self::TYPE_STRING, "true");
+
+        $movie = Movie::createModelFromData(["title" => false]);
+        $movie->assertProperty("title", self::TYPE_STRING, "false");
+    }
+
+    public function testBoolToInt()
+    {
+        $movie = Movie::createModelFromData(["id" => true]);
+        $movie->assertProperty("id", self::TYPE_INT, 1);
+
+        $movie = Movie::createModelFromData(["id" => false]);
+        $movie->assertProperty("id", self::TYPE_INT, 0);
+    }
+
+    public function testBoolToArray()
+    {
+        $movie = Movie::createModelFromData(["starRatings" => true]);
+        $movie->assertProperty("starRatings", self::TYPE_ARRAY, []);
+    }
+
+    public function testBoolToClass()
+    {
+        $movie = Movie::createModelFromData(["mainActor" => true]);
+        $movie->assertProperty("mainActor", self::TYPE_NULL);
+    }
+
+    public function testBoolToNone()
+    {
+        $movie = Movie::createModelFromData(["undefinedProperty" => true]);
+        $movie->assertProperty("undefinedProperty", self::TYPE_NONE);
+    }
+
+    public function testBoolToBool()
+    {
+        $movie = Movie::createModelFromData(["isReleased" => true]);
+        $movie->assertProperty("isReleased", self::TYPE_BOOL, true);
+
+        $movie = Movie::createModelFromData(["isReleased" => false]);
+        $movie->assertProperty("isReleased", self::TYPE_BOOL, false);
+    }
+
+    public function testBoolToFloat()
+    {
+        $movie = Movie::createModelFromData(["price" => true]);
+        $movie->assertProperty("price", self::TYPE_NULL);
+
+        $movie = Movie::createModelFromData(["price" => false]);
+        $movie->assertProperty("price", self::TYPE_NULL);
+    }
+
+    /**
+     * Test: Float
+     */
+
+    public function testFloatToString()
+    {
+        $movie = Movie::createModelFromData(["title" => 21.21]);
+        $movie->assertProperty("title", self::TYPE_STRING, "21.21");
+    }
+
+    public function testFloatToInt()
+    {
+        $movie = Movie::createModelFromData(["id" => 9.21]);
+        $movie->assertProperty("id", self::TYPE_INT, 9);
+    }
+
+    public function testFloatToArray()
+    {
+        $movie = Movie::createModelFromData(["starRatings" => 921.21]);
+        $movie->assertProperty("starRatings", self::TYPE_ARRAY, []);
+    }
+
+    public function testFloatToClass()
+    {
+        $movie = Movie::createModelFromData(["mainActor" => 22.2]);
+        $movie->assertProperty("mainActor", self::TYPE_NULL);
+    }
+
+    public function testFloatToNone()
+    {
+        $movie = Movie::createModelFromData(["undefinedProperty" => 9.2]);
+        $movie->assertProperty("undefinedProperty", self::TYPE_NONE);
+    }
+
+    public function testFloatToBool()
+    {
+        $movie = Movie::createModelFromData(["isReleased" => 1.5]);
+        $movie->assertProperty("isReleased", self::TYPE_NULL);
+
+        $movie = Movie::createModelFromData(["isReleased" => 0.5]);
+        $movie->assertProperty("isReleased", self::TYPE_NULL);
+    }
+
+    public function testFloatToFloat()
+    {
+        $movie = Movie::createModelFromData(["price" => 225.2]);
+        $movie->assertProperty("price", self::TYPE_FLOAT, 225.2);
+    }
 }
 
 class Movie
@@ -226,6 +412,9 @@ class Movie
     protected ?Actor $mainActor = null;
     protected array $starRatings = []; // array with "*"-strings
     protected ?array $starRatingsNullable = [];
+
+    protected ?bool $isReleased = null;
+    protected ?float $price = null;
 
     public function assertProperty(string $propertyKey, int $propertyType, $value = null)
     {
@@ -254,6 +443,12 @@ class Movie
                 break;
             case FillWithDataTraitTypeMissmatchTest::TYPE_NULL:
                 TestCase::assertTrue(is_null($property), "Property " . $propertyKey . " is not from type null as expected: " . gettype($property));
+                break;
+            case FillWithDataTraitTypeMissmatchTest::TYPE_BOOL:
+                TestCase::assertTrue(is_bool($property), "Property " . $propertyKey . " is not from type bool as expected: " . gettype($property));
+                break;
+            case FillWithDataTraitTypeMissmatchTest::TYPE_FLOAT:
+                TestCase::assertTrue(is_float($property), "Property " . $propertyKey . " is not from type float as expected: " . gettype($property));
                 break;
             default:
                 TestCase::fail("Given in PropertyType is invalid: " . $propertyType);
