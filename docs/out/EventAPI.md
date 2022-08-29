@@ -42,7 +42,7 @@
         // Output: "2021-09-02 22:00:00"
 
         var_dump( $christmasService->getChatStatus());
-        // Output: null
+        // Output: false
 
         var_dump( $christmasService->getPermissions());
         // Output: null
