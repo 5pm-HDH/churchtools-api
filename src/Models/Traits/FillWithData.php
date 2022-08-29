@@ -39,7 +39,7 @@ trait FillWithData
      * Fill the property of $key with the $value. Try to cast between types if possible.
      *
      * @param string $key property-name
-     * @param any $value value for property
+     * @param mixed $value value for property
      */
     protected function fillDefault(string $key, $value): void
     {
