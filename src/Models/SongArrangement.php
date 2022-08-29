@@ -13,7 +13,7 @@ class SongArrangement
 
     protected ?string $id = null;
     protected ?string $name = null;
-    protected ?string $isDefault = null;
+    protected ?bool $isDefault = null;
     protected ?string $keyOfArrangement = null;
     protected ?string $bpm = null;
     protected ?string $beat = null;
@@ -117,18 +117,18 @@ class SongArrangement
     }
 
     /**
-     * @return string|null
+     * @return bool|null
      */
-    public function getIsDefault(): ?string
+    public function getIsDefault(): ?bool
     {
         return $this->isDefault;
     }
 
     /**
-     * @param string|null $isDefault
+     * @param bool|null $isDefault
      * @return SongArrangement
      */
-    public function setIsDefault(?string $isDefault): SongArrangement
+    public function setIsDefault(?bool $isDefault): SongArrangement
     {
         $this->isDefault = $isDefault;
         return $this;
@@ -259,5 +259,4 @@ class SongArrangement
         $this->files = $files;
         return $this;
     }
-
 }

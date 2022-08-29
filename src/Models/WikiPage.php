@@ -18,10 +18,10 @@ class WikiPage
     protected ?string $title = null;
     protected ?WikiCategory $wikiCategory = null;
     protected ?string $version = null;
-    protected ?string $onStartpage = null;
+    protected ?bool $onStartpage = null;
     protected ?string $redirectTo = null;
     protected array $permissions = [];
-    protected ?string $isMarkdown = null;
+    protected ?bool $isMarkdown = null;
     protected ?string $text = null;
 
     protected function fillArrayType(string $key, array $data): void
@@ -165,18 +165,18 @@ class WikiPage
     }
 
     /**
-     * @return string|null
+     * @return bool|null
      */
-    public function getOnStartpage(): ?string
+    public function getOnStartpage(): ?bool
     {
         return $this->onStartpage;
     }
 
     /**
-     * @param string|null $onStartpage
+     * @param bool|null $onStartpage
      * @return WikiPage
      */
-    public function setOnStartpage(?string $onStartpage): WikiPage
+    public function setOnStartpage(?bool $onStartpage): WikiPage
     {
         $this->onStartpage = $onStartpage;
         return $this;
@@ -219,18 +219,18 @@ class WikiPage
     }
 
     /**
-     * @return string|null
+     * @return bool|null
      */
-    public function getIsMarkdown(): ?string
+    public function getIsMarkdown(): ?bool
     {
         return $this->isMarkdown;
     }
 
     /**
-     * @param string|null $isMarkdown
+     * @param bool|null $isMarkdown
      * @return WikiPage
      */
-    public function setIsMarkdown(?string $isMarkdown): WikiPage
+    public function setIsMarkdown(?bool $isMarkdown): WikiPage
     {
         $this->isMarkdown = $isMarkdown;
         return $this;

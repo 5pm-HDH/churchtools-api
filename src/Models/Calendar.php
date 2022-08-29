@@ -17,8 +17,8 @@ class Calendar
     protected ?string $nameTranslated = null;
     protected ?string $sortKey = null;
     protected ?string $color = null;
-    protected ?string $isPublic = null;
-    protected ?string $isPrivate = null;
+    protected ?bool $isPublic = null;
+    protected ?bool $isPrivate = null;
     protected ?string $randomUrl = null;
     protected ?string $iCalSourceUrl = null;
     protected ?string $campusId = null;
@@ -134,36 +134,36 @@ class Calendar
     }
 
     /**
-     * @return string|null
+     * @return bool|null
      */
-    public function getIsPublic(): ?string
+    public function getIsPublic(): ?bool
     {
         return $this->isPublic;
     }
 
     /**
-     * @param string|null $isPublic
+     * @param bool|null $isPublic
      * @return Calendar
      */
-    public function setIsPublic(?string $isPublic): Calendar
+    public function setIsPublic(?bool $isPublic): Calendar
     {
         $this->isPublic = $isPublic;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return bool|null
      */
-    public function getIsPrivate(): ?string
+    public function getIsPrivate(): ?bool
     {
         return $this->isPrivate;
     }
 
     /**
-     * @param string|null $isPrivate
+     * @param bool|null $isPrivate
      * @return Calendar
      */
-    public function setIsPrivate(?string $isPrivate): Calendar
+    public function setIsPrivate(?bool $isPrivate): Calendar
     {
         $this->isPrivate = $isPrivate;
         return $this;

@@ -10,160 +10,160 @@ class GroupSettings
 {
     use FillWithData;
 
-    protected ?string $isHidden = null;
-    protected ?string $isOpenForMembers = null;
-    protected ?string $allowSpouseRegistration = null;
-    protected ?string $allowChildRegistration = null;
-    protected ?string $allowSameEmailRegistration = null;
-    protected ?string $allowOtherRegistration = null;
-    protected ?string $autoAccept = null;
-    protected ?string $allowWaitinglist = null;
+    protected ?bool $isHidden = null;
+    protected ?bool $isOpenForMembers = null;
+    protected ?bool $allowSpouseRegistration = null;
+    protected ?bool $allowChildRegistration = null;
+    protected ?bool $allowSameEmailRegistration = null;
+    protected ?bool $allowOtherRegistration = null;
+    protected ?bool $autoAccept = null;
+    protected ?bool $allowWaitinglist = null;
     protected ?string $waitinglistMaxPersons = null;
-    protected ?string $automaticMoveUp = null;
-    protected ?string $isPublic = null;
+    protected ?bool $automaticMoveUp = null;
+    protected ?bool $isPublic = null;
     protected array $groupMeeting = [];
-    protected ?string $qrCodeCheckin = null;
+    protected ?bool $qrCodeCheckin = null;
     protected array $newMember = [];
 
     /**
-     * @return string|null
+     * @return bool|null
      */
-    public function getIsHidden(): ?string
+    public function getIsHidden(): ?bool
     {
         return $this->isHidden;
     }
 
     /**
-     * @param string|null $isHidden
+     * @param bool|null $isHidden
      * @return GroupSettings
      */
-    public function setIsHidden(?string $isHidden): GroupSettings
+    public function setIsHidden(?bool $isHidden): GroupSettings
     {
         $this->isHidden = $isHidden;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return bool|null
      */
-    public function getIsOpenForMembers(): ?string
+    public function getIsOpenForMembers(): ?bool
     {
         return $this->isOpenForMembers;
     }
 
     /**
-     * @param string|null $isOpenForMembers
+     * @param bool|null $isOpenForMembers
      * @return GroupSettings
      */
-    public function setIsOpenForMembers(?string $isOpenForMembers): GroupSettings
+    public function setIsOpenForMembers(?bool $isOpenForMembers): GroupSettings
     {
         $this->isOpenForMembers = $isOpenForMembers;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return bool|null
      */
-    public function getAllowSpouseRegistration(): ?string
+    public function getAllowSpouseRegistration(): ?bool
     {
         return $this->allowSpouseRegistration;
     }
 
     /**
-     * @param string|null $allowSpouseRegistration
+     * @param bool|null $allowSpouseRegistration
      * @return GroupSettings
      */
-    public function setAllowSpouseRegistration(?string $allowSpouseRegistration): GroupSettings
+    public function setAllowSpouseRegistration(?bool $allowSpouseRegistration): GroupSettings
     {
         $this->allowSpouseRegistration = $allowSpouseRegistration;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return bool|null
      */
-    public function getAllowChildRegistration(): ?string
+    public function getAllowChildRegistration(): ?bool
     {
         return $this->allowChildRegistration;
     }
 
     /**
-     * @param string|null $allowChildRegistration
+     * @param bool|null $allowChildRegistration
      * @return GroupSettings
      */
-    public function setAllowChildRegistration(?string $allowChildRegistration): GroupSettings
+    public function setAllowChildRegistration(?bool $allowChildRegistration): GroupSettings
     {
         $this->allowChildRegistration = $allowChildRegistration;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return bool|null
      */
-    public function getAllowSameEmailRegistration(): ?string
+    public function getAllowSameEmailRegistration(): ?bool
     {
         return $this->allowSameEmailRegistration;
     }
 
     /**
-     * @param string|null $allowSameEmailRegistration
+     * @param bool|null $allowSameEmailRegistration
      * @return GroupSettings
      */
-    public function setAllowSameEmailRegistration(?string $allowSameEmailRegistration): GroupSettings
+    public function setAllowSameEmailRegistration(?bool $allowSameEmailRegistration): GroupSettings
     {
         $this->allowSameEmailRegistration = $allowSameEmailRegistration;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return bool|null
      */
-    public function getAllowOtherRegistration(): ?string
+    public function getAllowOtherRegistration(): ?bool
     {
         return $this->allowOtherRegistration;
     }
 
     /**
-     * @param string|null $allowOtherRegistration
+     * @param bool|null $allowOtherRegistration
      * @return GroupSettings
      */
-    public function setAllowOtherRegistration(?string $allowOtherRegistration): GroupSettings
+    public function setAllowOtherRegistration(?bool $allowOtherRegistration): GroupSettings
     {
         $this->allowOtherRegistration = $allowOtherRegistration;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return bool|null
      */
-    public function getAutoAccept(): ?string
+    public function getAutoAccept(): ?bool
     {
         return $this->autoAccept;
     }
 
     /**
-     * @param string|null $autoAccept
+     * @param bool|null $autoAccept
      * @return GroupSettings
      */
-    public function setAutoAccept(?string $autoAccept): GroupSettings
+    public function setAutoAccept(?bool $autoAccept): GroupSettings
     {
         $this->autoAccept = $autoAccept;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return bool|null
      */
-    public function getAllowWaitinglist(): ?string
+    public function getAllowWaitinglist(): ?bool
     {
         return $this->allowWaitinglist;
     }
 
     /**
-     * @param string|null $allowWaitinglist
+     * @param bool|null $allowWaitinglist
      * @return GroupSettings
      */
-    public function setAllowWaitinglist(?string $allowWaitinglist): GroupSettings
+    public function setAllowWaitinglist(?bool $allowWaitinglist): GroupSettings
     {
         $this->allowWaitinglist = $allowWaitinglist;
         return $this;
@@ -188,36 +188,36 @@ class GroupSettings
     }
 
     /**
-     * @return string|null
+     * @return bool|null
      */
-    public function getAutomaticMoveUp(): ?string
+    public function getAutomaticMoveUp(): ?bool
     {
         return $this->automaticMoveUp;
     }
 
     /**
-     * @param string|null $automaticMoveUp
+     * @param bool|null $automaticMoveUp
      * @return GroupSettings
      */
-    public function setAutomaticMoveUp(?string $automaticMoveUp): GroupSettings
+    public function setAutomaticMoveUp(?bool $automaticMoveUp): GroupSettings
     {
         $this->automaticMoveUp = $automaticMoveUp;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return bool|null
      */
-    public function getIsPublic(): ?string
+    public function getIsPublic(): ?bool
     {
         return $this->isPublic;
     }
 
     /**
-     * @param string|null $isPublic
+     * @param bool|null $isPublic
      * @return GroupSettings
      */
-    public function setIsPublic(?string $isPublic): GroupSettings
+    public function setIsPublic(?bool $isPublic): GroupSettings
     {
         $this->isPublic = $isPublic;
         return $this;
@@ -242,18 +242,18 @@ class GroupSettings
     }
 
     /**
-     * @return string|null
+     * @return bool|null
      */
-    public function getQrCodeCheckin(): ?string
+    public function getQrCodeCheckin(): ?bool
     {
         return $this->qrCodeCheckin;
     }
 
     /**
-     * @param string|null $qrCodeCheckin
+     * @param bool|null $qrCodeCheckin
      * @return GroupSettings
      */
-    public function setQrCodeCheckin(?string $qrCodeCheckin): GroupSettings
+    public function setQrCodeCheckin(?bool $qrCodeCheckin): GroupSettings
     {
         $this->qrCodeCheckin = $qrCodeCheckin;
         return $this;

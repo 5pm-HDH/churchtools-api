@@ -19,9 +19,9 @@ class Resource
     protected ?ResourceType $resourceType = null;
     protected ?string $location = null;
     protected ?string $iCalLocation = null;
-    protected ?string $isAutoAccept = null;
-    protected ?string $doesRequireCalEntry = null;
-    protected ?string $isVirtual = null;
+    protected ?bool $isAutoAccept = null;
+    protected ?bool $doesRequireCalEntry = null;
+    protected ?bool $isVirtual = null;
     protected array $adminIds = [];
     protected ?string $randomString = null;
 
@@ -189,54 +189,54 @@ class Resource
     }
 
     /**
-     * @return string|null
+     * @return bool|null
      */
-    public function getIsAutoAccept(): ?string
+    public function getIsAutoAccept(): ?bool
     {
         return $this->isAutoAccept;
     }
 
     /**
-     * @param string|null $isAutoAccept
+     * @param bool|null $isAutoAccept
      * @return Resource
      */
-    public function setIsAutoAccept(?string $isAutoAccept): Resource
+    public function setIsAutoAccept(?bool $isAutoAccept): Resource
     {
         $this->isAutoAccept = $isAutoAccept;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return bool|null
      */
-    public function getDoesRequireCalEntry(): ?string
+    public function getDoesRequireCalEntry(): ?bool
     {
         return $this->doesRequireCalEntry;
     }
 
     /**
-     * @param string|null $doesRequireCalEntry
+     * @param bool|null $doesRequireCalEntry
      * @return Resource
      */
-    public function setDoesRequireCalEntry(?string $doesRequireCalEntry): Resource
+    public function setDoesRequireCalEntry(?bool $doesRequireCalEntry): Resource
     {
         $this->doesRequireCalEntry = $doesRequireCalEntry;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return bool|null
      */
-    public function getIsVirtual(): ?string
+    public function getIsVirtual(): ?bool
     {
         return $this->isVirtual;
     }
 
     /**
-     * @param string|null $isVirtual
+     * @param bool|null $isVirtual
      * @return Resource
      */
-    public function setIsVirtual(?string $isVirtual): Resource
+    public function setIsVirtual(?bool $isVirtual): Resource
     {
         $this->isVirtual = $isVirtual;
         return $this;

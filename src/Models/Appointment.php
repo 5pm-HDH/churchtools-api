@@ -17,7 +17,7 @@ class Appointment
     protected ?Calendar $calendar = null;
     protected ?string $information = null;
     protected ?string $link = null;
-    protected ?string $isInternal = null;
+    protected ?bool $isInternal = null;
     protected ?string $startDate = null;
     protected ?string $endDate = null;
     protected ?string $allDay = null;
@@ -174,18 +174,18 @@ class Appointment
     }
 
     /**
-     * @return string|null
+     * @return bool|null
      */
-    public function getIsInternal(): ?string
+    public function getIsInternal(): ?bool
     {
         return $this->isInternal;
     }
 
     /**
-     * @param string|null $isInternal
+     * @param bool|null $isInternal
      * @return Appointment
      */
-    public function setIsInternal(?string $isInternal): Appointment
+    public function setIsInternal(?bool $isInternal): Appointment
     {
         $this->isInternal = $isInternal;
         return $this;

@@ -16,18 +16,18 @@ class Service
     protected ?string $serviceGroupId = null;
     protected ?string $commentOnConfirmation = null;
     protected ?string $sortKey = null;
-    protected ?string $allowDecline = null;
-    protected ?string $allowExchange = null;
+    protected ?bool $allowDecline = null;
+    protected ?bool $allowExchange = null;
     protected ?string $comment = null;
     protected ?string $standard = null;
     protected ?string $hidePersonName = null;
-    protected ?string $sendReminderMails = null;
-    protected ?string $sendServiceRequestEmails = null;
-    protected ?string $allowControlLiveAgenda = null;
+    protected ?bool $sendReminderMails = null;
+    protected ?bool $sendServiceRequestEmails = null;
+    protected ?bool $allowControlLiveAgenda = null;
     protected ?string $groupIds = null;
     protected ?string $tagIds = null;
     protected ?string $calTextTemplate = null;
-    protected ?string $allowChat = null;
+    protected ?bool $allowChat = null;
 
     public function requestServiceGroup(): ?ServiceGroup
     {
@@ -128,36 +128,36 @@ class Service
     }
 
     /**
-     * @return string|null
+     * @return bool|null
      */
-    public function getAllowDecline(): ?string
+    public function getAllowDecline(): ?bool
     {
         return $this->allowDecline;
     }
 
     /**
-     * @param string|null $allowDecline
+     * @param bool|null $allowDecline
      * @return Service
      */
-    public function setAllowDecline(?string $allowDecline): Service
+    public function setAllowDecline(?bool $allowDecline): Service
     {
         $this->allowDecline = $allowDecline;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return bool|null
      */
-    public function getAllowExchange(): ?string
+    public function getAllowExchange(): ?bool
     {
         return $this->allowExchange;
     }
 
     /**
-     * @param string|null $allowExchange
+     * @param bool|null $allowExchange
      * @return Service
      */
-    public function setAllowExchange(?string $allowExchange): Service
+    public function setAllowExchange(?bool $allowExchange): Service
     {
         $this->allowExchange = $allowExchange;
         return $this;
@@ -218,54 +218,54 @@ class Service
     }
 
     /**
-     * @return string|null
+     * @return bool|null
      */
-    public function getSendReminderMails(): ?string
+    public function getSendReminderMails(): ?bool
     {
         return $this->sendReminderMails;
     }
 
     /**
-     * @param string|null $sendReminderMails
+     * @param bool|null $sendReminderMails
      * @return Service
      */
-    public function setSendReminderMails(?string $sendReminderMails): Service
+    public function setSendReminderMails(?bool $sendReminderMails): Service
     {
         $this->sendReminderMails = $sendReminderMails;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return bool|null
      */
-    public function getSendServiceRequestEmails(): ?string
+    public function getSendServiceRequestEmails(): ?bool
     {
         return $this->sendServiceRequestEmails;
     }
 
     /**
-     * @param string|null $sendServiceRequestEmails
+     * @param bool|null $sendServiceRequestEmails
      * @return Service
      */
-    public function setSendServiceRequestEmails(?string $sendServiceRequestEmails): Service
+    public function setSendServiceRequestEmails(?bool $sendServiceRequestEmails): Service
     {
         $this->sendServiceRequestEmails = $sendServiceRequestEmails;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return bool|null
      */
-    public function getAllowControlLiveAgenda(): ?string
+    public function getAllowControlLiveAgenda(): ?bool
     {
         return $this->allowControlLiveAgenda;
     }
 
     /**
-     * @param string|null $allowControlLiveAgenda
+     * @param bool|null $allowControlLiveAgenda
      * @return Service
      */
-    public function setAllowControlLiveAgenda(?string $allowControlLiveAgenda): Service
+    public function setAllowControlLiveAgenda(?bool $allowControlLiveAgenda): Service
     {
         $this->allowControlLiveAgenda = $allowControlLiveAgenda;
         return $this;
@@ -326,18 +326,18 @@ class Service
     }
 
     /**
-     * @return string|null
+     * @return bool|null
      */
-    public function getAllowChat(): ?string
+    public function getAllowChat(): ?bool
     {
         return $this->allowChat;
     }
 
     /**
-     * @param string|null $allowChat
+     * @param bool|null $allowChat
      * @return Service
      */
-    public function setAllowChat(?string $allowChat): Service
+    public function setAllowChat(?bool $allowChat): Service
     {
         $this->allowChat = $allowChat;
         return $this;

@@ -17,7 +17,7 @@ class Event
     protected ?string $description = null;
     protected ?string $startDate = null;
     protected ?string $endDate = null;
-    protected ?string $chatStatus = null;
+    protected ?bool $chatStatus = null;
     protected ?array $permissions = null;
     protected ?DomainAttributeModel $calendar = null;
     protected ?EventAgenda $agenda = null;
@@ -166,18 +166,18 @@ class Event
     }
 
     /**
-     * @return string|null
+     * @return bool|null
      */
-    public function getChatStatus(): ?string
+    public function getChatStatus(): ?bool
     {
         return $this->chatStatus;
     }
 
     /**
-     * @param string|null $chatStatus
+     * @param bool|null $chatStatus
      * @return Event
      */
-    public function setChatStatus(?string $chatStatus): Event
+    public function setChatStatus(?bool $chatStatus): Event
     {
         $this->chatStatus = $chatStatus;
         return $this;

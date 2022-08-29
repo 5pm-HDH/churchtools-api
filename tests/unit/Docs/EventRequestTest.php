@@ -36,7 +36,7 @@ class EventRequestTest extends TestCaseHttpMocked
         $this->assertEquals("Service Description", $christmasService->getDescription());
         $this->assertEquals("2021-09-02 20:15:00", $christmasService->getStartDate());
         $this->assertEquals("2021-09-02 22:00:00", $christmasService->getEndDate());
-        $this->assertEquals(null, $christmasService->getChatStatus());
+        $this->assertEquals(false, $christmasService->getChatStatus());
         $this->assertEquals(null, $christmasService->getPermissions());
         $this->assertEquals(null, $christmasService->getCalendar());
         $this->assertEquals([], $christmasService->getEventServices());

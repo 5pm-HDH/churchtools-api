@@ -15,17 +15,17 @@ class GroupRole
     protected ?string $name = null;
     protected ?string $shorty = null;
     protected ?string $sortKey = null;
-    protected ?string $toDelete = null;
-    protected ?string $hasRequested = null;
-    protected ?string $isLeader = null;
-    protected ?string $isDefault = null;
-    protected ?string $isHidden = null;
+    protected ?bool $toDelete = null;
+    protected ?bool $hasRequested = null;
+    protected ?bool $isLeader = null;
+    protected ?bool $isDefault = null;
+    protected ?bool $isHidden = null;
     protected ?string $growPathId = null;
     protected ?string $groupTypeRoleId = null;
-    protected ?string $forceTwoFactorAuth = null;
-    protected ?string $isActive = null;
-    protected ?string $canReadChat = null;
-    protected ?string $canWriteChat = null;
+    protected ?bool $forceTwoFactorAuth = null;
+    protected ?bool $isActive = null;
+    protected ?bool $canReadChat = null;
+    protected ?bool $canWriteChat = null;
 
     /**
      * @return string|null
@@ -118,90 +118,90 @@ class GroupRole
     }
 
     /**
-     * @return string|null
+     * @return bool|null
      */
-    public function getToDelete(): ?string
+    public function getToDelete(): ?bool
     {
         return $this->toDelete;
     }
 
     /**
-     * @param string|null $toDelete
+     * @param bool|null $toDelete
      * @return GroupRole
      */
-    public function setToDelete(?string $toDelete): GroupRole
+    public function setToDelete(?bool $toDelete): GroupRole
     {
         $this->toDelete = $toDelete;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return bool|null
      */
-    public function getHasRequested(): ?string
+    public function getHasRequested(): ?bool
     {
         return $this->hasRequested;
     }
 
     /**
-     * @param string|null $hasRequested
+     * @param bool|null $hasRequested
      * @return GroupRole
      */
-    public function setHasRequested(?string $hasRequested): GroupRole
+    public function setHasRequested(?bool $hasRequested): GroupRole
     {
         $this->hasRequested = $hasRequested;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return bool|null
      */
-    public function getIsLeader(): ?string
+    public function getIsLeader(): ?bool
     {
         return $this->isLeader;
     }
 
     /**
-     * @param string|null $isLeader
+     * @param bool|null $isLeader
      * @return GroupRole
      */
-    public function setIsLeader(?string $isLeader): GroupRole
+    public function setIsLeader(?bool $isLeader): GroupRole
     {
         $this->isLeader = $isLeader;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return bool|null
      */
-    public function getIsDefault(): ?string
+    public function getIsDefault(): ?bool
     {
         return $this->isDefault;
     }
 
     /**
-     * @param string|null $isDefault
+     * @param bool|null $isDefault
      * @return GroupRole
      */
-    public function setIsDefault(?string $isDefault): GroupRole
+    public function setIsDefault(?bool $isDefault): GroupRole
     {
         $this->isDefault = $isDefault;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return bool|null
      */
-    public function getIsHidden(): ?string
+    public function getIsHidden(): ?bool
     {
         return $this->isHidden;
     }
 
     /**
-     * @param string|null $isHidden
+     * @param bool|null $isHidden
      * @return GroupRole
      */
-    public function setIsHidden(?string $isHidden): GroupRole
+    public function setIsHidden(?bool $isHidden): GroupRole
     {
         $this->isHidden = $isHidden;
         return $this;
@@ -244,75 +244,74 @@ class GroupRole
     }
 
     /**
-     * @return string|null
+     * @return bool|null
      */
-    public function getForceTwoFactorAuth(): ?string
+    public function getForceTwoFactorAuth(): ?bool
     {
         return $this->forceTwoFactorAuth;
     }
 
     /**
-     * @param string|null $forceTwoFactorAuth
+     * @param bool|null $forceTwoFactorAuth
      * @return GroupRole
      */
-    public function setForceTwoFactorAuth(?string $forceTwoFactorAuth): GroupRole
+    public function setForceTwoFactorAuth(?bool $forceTwoFactorAuth): GroupRole
     {
         $this->forceTwoFactorAuth = $forceTwoFactorAuth;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return bool|null
      */
-    public function getIsActive(): ?string
+    public function getIsActive(): ?bool
     {
         return $this->isActive;
     }
 
     /**
-     * @param string|null $isActive
+     * @param bool|null $isActive
      * @return GroupRole
      */
-    public function setIsActive(?string $isActive): GroupRole
+    public function setIsActive(?bool $isActive): GroupRole
     {
         $this->isActive = $isActive;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return bool|null
      */
-    public function getCanReadChat(): ?string
+    public function getCanReadChat(): ?bool
     {
         return $this->canReadChat;
     }
 
     /**
-     * @param string|null $canReadChat
+     * @param bool|null $canReadChat
      * @return GroupRole
      */
-    public function setCanReadChat(?string $canReadChat): GroupRole
+    public function setCanReadChat(?bool $canReadChat): GroupRole
     {
         $this->canReadChat = $canReadChat;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return bool|null
      */
-    public function getCanWriteChat(): ?string
+    public function getCanWriteChat(): ?bool
     {
         return $this->canWriteChat;
     }
 
     /**
-     * @param string|null $canWriteChat
+     * @param bool|null $canWriteChat
      * @return GroupRole
      */
-    public function setCanWriteChat(?string $canWriteChat): GroupRole
+    public function setCanWriteChat(?bool $canWriteChat): GroupRole
     {
         $this->canWriteChat = $canWriteChat;
         return $this;
     }
-
 }

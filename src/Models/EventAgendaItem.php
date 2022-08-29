@@ -18,7 +18,7 @@ class EventAgendaItem
     protected ?string $note = null;
     protected ?string $duration = null;
     protected ?string $start = null;
-    protected ?string $isBeforeEvent = null;
+    protected ?bool $isBeforeEvent = null;
     protected ?array $responsible = null;
     protected ?array $serviceGroupNotes = null;
     protected ?Song $song = null;
@@ -165,18 +165,18 @@ class EventAgendaItem
     }
 
     /**
-     * @return string|null
+     * @return bool|null
      */
-    public function getIsBeforeEvent(): ?string
+    public function getIsBeforeEvent(): ?bool
     {
         return $this->isBeforeEvent;
     }
 
     /**
-     * @param string|null $isBeforeEvent
+     * @param bool|null $isBeforeEvent
      * @return EventAgendaItem
      */
-    public function setIsBeforeEvent(?string $isBeforeEvent): EventAgendaItem
+    public function setIsBeforeEvent(?bool $isBeforeEvent): EventAgendaItem
     {
         $this->isBeforeEvent = $isBeforeEvent;
         return $this;
