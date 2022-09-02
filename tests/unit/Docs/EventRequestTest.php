@@ -53,15 +53,15 @@ class EventRequestTest extends TestCaseHttpMocked
         $eventSongsList = "";
         $agendaItems = ($agenda?->getItems() ?? []);
         foreach ($agendaItems as $item) {
-            $eventItemsList .= $item->getTitle() . " (" . $item->getType() . "), ";
+            $eventItemsList .= $item->getTitle() . " (" . $item->getType() . "); ";
             $song = $item->getSong();
             if (!is_null($song)) {
-                $eventSongsList .= $song->getName() . ", ";
+                $eventSongsList .= $song->getName() . "; ";
             }
         }
 
-        $this->assertEquals("Opening Song (Song), First Worship Song (Song), Sermon (Default), ", $eventItemsList);
-        $this->assertEquals("We welcome you, ", $eventSongsList);
+        $this->assertEquals("Opening Song (Song); First Worship Song (Song); Sermon (Default); ", $eventItemsList);
+        $this->assertEquals("We welcome you; ", $eventSongsList);
 
         $songs = $agenda?->requestSongs();
         $arrangements = $agenda?->requestArrangements();

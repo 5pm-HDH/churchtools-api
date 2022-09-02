@@ -22,4 +22,15 @@ class TestData
             return "";
         }
     }
+
+    public static function getValueAsBool(string $key): bool
+    {
+        $value = self::getValue($key);
+        if ($value == "true" || $value == "1") {
+            return true;
+        } else if ($value == "false" || $value == "0" || $value == "") {
+            return false;
+        }
+        throw new \InvalidArgumentException("TestData for value " . $key . " is invalid. Bool value excepted.");
+    }
 }

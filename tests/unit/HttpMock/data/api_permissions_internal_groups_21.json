@@ -1,0 +1,23 @@
+{
+  "data": {
+    "churchdb": {
+      "+see persons": 2,
+      "+see group": 3,
+      "+see group tags": true,
+      "+add person": true,
+      "+edit groupmemberstatus": true,
+      "+get emails": true,
+      "+do followup": true,
+      "+do group meeting": true,
+      "+export group members": true,
+      "+mail group members": true,
+      "+edit group hierachy": false,
+      "+see hidden group": false,
+      "+edit group": true,
+      "+admin group fields": true,
+      "+admin automatic emails": true,
+      "+remove from group": true,
+      "+admin group chat": true
+    }
+  }
+}

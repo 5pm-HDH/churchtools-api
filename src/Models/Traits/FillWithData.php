@@ -43,6 +43,8 @@ trait FillWithData
      */
     protected function fillDefault(string $key, $value): void
     {
+        $key = str_replace(" ", "_", $key); // replace space with undescore
+
         $reflectedClass = new \ReflectionClass(self::class);
 
         if ($reflectedClass->hasProperty($key)) {
