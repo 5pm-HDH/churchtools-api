@@ -1,0 +1,207 @@
+{
+  "data": {
+    "churchcore": {
+      "administer settings": true,
+      "edit public relations": false,
+      "edit translations masterdata": false,
+      "edit languages": [],
+      "administer persons": true,
+      "view logfile": true,
+      "invite persons": false,
+      "simulate persons": true
+    },
+    "churchdb": {
+      "view birthdaylist": false,
+      "view memberliste": false,
+      "view": true,
+      "security level person": [
+        2
+      ],
+      "security level group": [
+        4
+      ],
+      "security level view own data": [
+        4
+      ],
+      "security level edit own data": [
+        4
+      ],
+      "view grouptype": [
+        1,
+        2,
+        4,
+        6,
+        7,
+        8,
+        9
+      ],
+      "view statistics": false,
+      "view tags": true,
+      "view history": false,
+      "view comments": [],
+      "view archive": false,
+      "complex filter": true,
+      "administer global filters": false,
+      "push\/pull archive": false,
+      "edit relations": false,
+      "edit groups": false,
+      "create person": true,
+      "delete persons": false,
+      "export data": false,
+      "write access": false,
+      "view alldata": [],
+      "send sms": false,
+      "view station": [],
+      "edit bulkletter": false,
+      "create print labels": false,
+      "view group": [
+        1,
+        2,
+        4,
+        6
+      ],
+      "administer groups": true,
+      "edit masterdata": false
+    },
+    "churchcal": {
+      "view": true,
+      "view category": [
+        1,
+        2
+      ],
+      "edit category": [
+        1
+      ],
+      "edit calendar entry template": [
+        1
+      ],
+      "assistance mode": false,
+      "create personal category": false,
+      "admin personal category": false,
+      "create group category": true,
+      "admin group category": false,
+      "admin church category": false
+    },
+    "churchresource": {
+      "view": true,
+      "view resource": [
+        1,
+        3,
+        4,
+        5,
+        6,
+        7,
+        9,
+        10
+      ],
+      "create bookings": [
+        1,
+        3,
+        4,
+        5
+      ],
+      "create virtual bookings": false,
+      "administer bookings": [],
+      "assistance mode": false,
+      "edit masterdata": false
+    },
+    "churchservice": {
+      "view": true,
+      "view servicegroup": [
+        4,
+        1,
+        2,
+        3
+      ],
+      "edit servicegroup": [
+        4,
+        2,
+        3,
+        1
+      ],
+      "view history": false,
+      "view events": [
+        2,
+        54,
+        37
+      ],
+      "edit events": [
+        54,
+        37
+      ],
+      "edit template": true,
+      "manage absent": true,
+      "view fact": [
+        1,
+        3,
+        2
+      ],
+      "edit fact": [
+        1,
+        3,
+        2
+      ],
+      "export facts": true,
+      "view agenda": [
+        2,
+        54
+      ],
+      "edit agenda": [
+        54
+      ],
+      "edit agenda templates": [
+        54
+      ],
+      "view songcategory": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      "edit songcategory": [
+        13,
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "view song statistics": true,
+      "use ccli": true,
+      "edit masterdata": true
+    },
+    "churchwiki": {
+      "view": true,
+      "view category": [
+        2
+      ],
+      "edit category": [
+        2
+      ],
+      "edit masterdata": true
+    },
+    "churchcheckin": {
+      "view": false,
+      "create person": false,
+      "edit masterdata": false
+    }
+  }
+}

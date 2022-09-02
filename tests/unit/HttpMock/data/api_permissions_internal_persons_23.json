@@ -1,0 +1,11 @@
+{
+  "data": {
+    "churchdb": {
+      "+see persons": 2,
+      "+invite person": true,
+      "+see tags": true,
+      "+edit persons": true,
+      "+do followup": true
+    }
+  }
+}
