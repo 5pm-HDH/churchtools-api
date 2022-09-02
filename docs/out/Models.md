@@ -44,6 +44,25 @@ Create a collection of models filled with data:
 
 ```
 
+**Convert Model to data**
+
+Convert a model with the `toData`-method (FillWithData-Trait):
+
+```php
+        use CTApi\Models\Person;
+
+        $data = $this->person->toData();
+
+        var_dump( $data["firstName"]);
+        // Output: "John"
+
+        var_dump( $data["meta"]["createdPerson"]["firstName"]);
+        // Output: "Simon"
+
+
+```
+
+
 **`get` and `set`-methods**
 
 The attributes of a model can be used accessed with getters and setter.

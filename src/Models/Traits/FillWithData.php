@@ -7,6 +7,49 @@ use CTApi\Utils\CTUtil;
 
 trait FillWithData
 {
+    /**
+     * Serialize the Model-Data to associative array. Also converts all properties that are objects to associative array.
+     * @return array data
+     */
+    public function toData(): array
+    {
+        $data = get_object_vars($this);
+        $castedData = [];
+        foreach ($data as $propertyKey => $propertyValue) {
+            $castedData[$propertyKey] = $this->castPropertyToData($propertyValue);
+        }
+        return $castedData;
+    }
+
+    private function castPropertyToData($propertyValue)
+    {
+        if (is_object($propertyValue)) { // cast objects
+            return $this->castObjectToData($propertyValue);
+        } else if (is_array($propertyValue)) {
+            return $this->castArrayToData($propertyValue);
+        } else {
+            return $propertyValue;
+        }
+    }
+
+    private function castArrayToData(array $array): array
+    {
+        return array_map(function ($entry) {
+            return $this->castPropertyToData($entry);
+        }, $array);
+    }
+
+    private function castObjectToData(object $object): ?array
+    {
+        $reflectionClass = new \ReflectionClass($object);
+        $usedTraits = $reflectionClass->getTraitNames();
+
+        if (in_array(FillWithData::class, $usedTraits)) {
+            return $object->toData();
+        }
+        return null;
+    }
+
     private function fillWithData(array $array): void
     {
         foreach ($array as $key => $value) {
