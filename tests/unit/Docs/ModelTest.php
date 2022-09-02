@@ -9,6 +9,23 @@ use PHPUnit\Framework\TestCase;
 
 class ModelTest extends TestCase
 {
+    private $person;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->person = Person::createModelFromData([
+            "id" => 21,
+            "firstName" => "John",
+            "lastName" => "Doe",
+            "meta" => [
+                "createdPerson" => [
+                    "firstName" => "Simon"
+                ]
+            ]
+        ]);
+    }
+
     /**
      * @doesNotPerformAssertions
      */
@@ -38,6 +55,14 @@ class ModelTest extends TestCase
             $lastNames .= $person->getLastName() . "/ ";
         }
         $this->assertEquals("Kling/ Maier/ ", $lastNames);
+    }
+
+    public function testConvertModelToData()
+    {
+        $data = $this->person->toData();
+
+        $this->assertEquals("John", $data["firstName"]);
+        $this->assertEquals("Simon", $data["meta"]["createdPerson"]["firstName"]);
     }
 
     /**

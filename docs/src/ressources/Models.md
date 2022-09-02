@@ -14,6 +14,13 @@ Create a collection of models filled with data:
 
 {{ \Tests\Unit\Docs\ModelTest.testCreateModelsFromArray }}
 
+**Convert Model to data**
+
+Convert a model with the `toData`-method (FillWithData-Trait):
+
+{{ \Tests\Unit\Docs\ModelTest.testConvertModelToData }}
+
+
 **`get` and `set`-methods**
 
 The attributes of a model can be used accessed with getters and setter.
