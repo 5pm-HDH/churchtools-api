@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - [Added Calendar-Request](https://github.com/5pm-HDH/churchtools-api/pull/92)
 - [Added Permission-Request](https://github.com/5pm-HDH/churchtools-api/pull/102)
 - [Serialize Models to Data-Array for JSON-Export](https://github.com/5pm-HDH/churchtools-api/pull/103)
+- [Retrieve Birthdays](https://github.com/5pm-HDH/churchtools-api/pull/104)
 
 ### Changed
 - [Refactor CTClient:](https://github.com/5pm-HDH/churchtools-api/pull/83) transform inheritance from GuzzleClient to composition-relation
