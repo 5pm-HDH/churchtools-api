@@ -36,6 +36,41 @@
 
 ```
 
+## Retrieve Birthdays
+
+```php
+        use CTApi\Requests\PersonRequest;
+
+        $birthdayPersons = PersonRequest::birthdays()
+            ->where("start_date", "2022-01-01")
+            ->where("end_date", "2022-12-31")
+            ->where("my_groups", true)
+            ->get();
+
+        $lastBirthdayPerson = end($birthdayPersons);
+
+        var_dump( $lastBirthdayPerson->getPerson()?->getId());
+        // Output: "21"
+
+        var_dump( $lastBirthdayPerson->getPerson()?->getFirstName());
+        // Output: "John"
+
+        var_dump( $lastBirthdayPerson->getPerson()?->getLastName());
+        // Output: "Snow"
+
+
+        var_dump( $lastBirthdayPerson->getAnniversaryInitialDate());
+        // Output: "1997-03-01"
+
+        var_dump( $lastBirthdayPerson->getAnniversary());
+        // Output: "2022-03-01"
+
+        var_dump( $lastBirthdayPerson->getAge());
+        // Output: "25"
+
+
+```
+
 ## Update a person's data
 
 Use the setters of the person model to modify its data and utilize the

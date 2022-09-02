@@ -82,4 +82,23 @@ class PersonRequestTest extends TestCaseHttpMocked
         // delete person on churchtools
         PersonRequest::delete($person);
     }
+
+    public function testBirthdayRequest()
+    {
+        $birthdayPersons = PersonRequest::birthdays()
+            ->where("start_date", "2022-01-01")
+            ->where("end_date", "2022-12-31")
+            ->where("my_groups", true)
+            ->get();
+
+        $lastBirthdayPerson = end($birthdayPersons);
+
+        $this->assertEquals("21", $lastBirthdayPerson->getPerson()?->getId());
+        $this->assertEquals("John", $lastBirthdayPerson->getPerson()?->getFirstName());
+        $this->assertEquals("Snow", $lastBirthdayPerson->getPerson()?->getLastName());
+
+        $this->assertEquals("1997-03-01", $lastBirthdayPerson->getAnniversaryInitialDate());
+        $this->assertEquals("2022-03-01", $lastBirthdayPerson->getAnniversary());
+        $this->assertEquals("25", $lastBirthdayPerson->getAge());
+    }
 }

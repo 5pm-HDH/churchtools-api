@@ -1,0 +1,28 @@
+{
+  "data": [
+    {
+      "type": "birthday",
+      "date": "1997-03-01",
+      "anniversaryInitialDate": "1997-03-01",
+      "anniversary": "2022-03-01",
+      "age": 25,
+      "person": {
+        "title": "John Snow",
+        "domainType": "person",
+        "domainIdentifier": "21",
+        "apiUrl": "https:\/\/intern.church.tools\/api\/persons\/21",
+        "frontendUrl": "https:\/\/intern.church.tools\/?q=churchdb#PersonView\/searchEntry:%21\/",
+        "imageUrl": "https:\/\/intern.church.tools\/images\/24\/w2aswaswas",
+        "icon": "user",
+        "domainAttributes": {
+          "firstName": "John",
+          "lastName": "Snow",
+          "guid": "ions090asdnawionklasd"
+        }
+      }
+    }
+  ],
+  "meta": {
+    "count": 1
+  }
+}
