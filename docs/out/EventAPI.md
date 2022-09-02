@@ -71,18 +71,18 @@
         $eventSongsList = "";
         $agendaItems = ($agenda?->getItems() ?? []);
         foreach ($agendaItems as $item) {
-            $eventItemsList .= $item->getTitle() . " (" . $item->getType() . "), ";
+            $eventItemsList .= $item->getTitle() . " (" . $item->getType() . "); ";
             $song = $item->getSong();
             if (!is_null($song)) {
-                $eventSongsList .= $song->getName() . ", ";
+                $eventSongsList .= $song->getName() . "; ";
             }
         }
 
-        var_dump( First Worship Song (Song), Sermon (Default), ", $eventItemsList);
-        // Output: "Opening Song (Song)
+        var_dump( $eventItemsList);
+        // Output: "Opening Song (Song); First Worship Song (Song); Sermon (Default); "
 
-        var_dump( ", $eventSongsList);
-        // Output: "We welcome you
+        var_dump( $eventSongsList);
+        // Output: "We welcome you; "
 
 
         $songs = $agenda?->requestSongs();

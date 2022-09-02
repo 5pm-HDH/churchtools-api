@@ -64,7 +64,7 @@ All APIs with examples:
 * [Song-API](/docs/out/SongAPI.md)
 * [Service-API](/docs/out/ServiceAPI.md)
 * [Wiki-API](/docs/out/WikiAPI.md)
-
+* [Permission-API](/docs/out/PermissionAPI.md)
 
 The following short examples show the power of this ChurchTools-api client and gives a rough overview over the possibilities:
 
