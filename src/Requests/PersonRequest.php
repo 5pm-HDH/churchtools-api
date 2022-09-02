@@ -12,6 +12,11 @@ class PersonRequest
         return (new PersonRequestBuilder())->whoami();
     }
 
+    public static function birthdays(): PersonBirthdayRequestBuilder
+    {
+        return new PersonBirthdayRequestBuilder();
+    }
+
     public static function all(): array
     {
         return (new PersonRequestBuilder())->all();
