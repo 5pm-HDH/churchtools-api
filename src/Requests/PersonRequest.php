@@ -43,6 +43,14 @@ class PersonRequest
     }
 
     /**
+     * Add the person to ChurchTools.
+     */
+    public static function create(Person $person): void
+    {
+        (new PersonRequestBuilder())->create($person);
+    }
+
+    /**
      * Update the person's data on churchtools.
      *
      * @param array $attributesToUpdate

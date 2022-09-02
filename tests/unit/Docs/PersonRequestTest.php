@@ -69,7 +69,7 @@ class PersonRequestTest extends TestCaseHttpMocked
 
         // Attributes that can be updated in ChurchTools-API
         $listOfModifiableAttributes = implode("; ", $person->getModifiableAttributes());
-        $this->assertEquals("addressAddition; birthday; birthName; birthplace; city; country; email; fax; firstName; job; lastName; mobile; nickname; phonePrivate; phoneWork; sexId; street; zip", $listOfModifiableAttributes);
+        $this->assertEquals("addressAddition; birthday; birthName; birthplace; campusId; city; country; departmentIds; email; fax; firstName; job; lastName; mobile; nickname; phonePrivate; phoneWork; sexId; statusId; street; zip", $listOfModifiableAttributes);
     }
 
     /**

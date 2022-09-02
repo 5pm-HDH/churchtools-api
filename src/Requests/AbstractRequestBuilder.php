@@ -63,6 +63,52 @@ abstract class AbstractRequestBuilder
     }
 
     /**
+     * Send Create-Request for given Model.
+     *
+     * @param UpdatableModel $model Model
+     */
+    protected function createDataForModel(UpdatableModel $model): void
+    {
+        $createAttributes = $model->getModifiableAttributes();
+
+        $allData = $model->extractData();
+        $data = array_intersect_key($allData, array_flip($createAttributes));
+
+        // We can remove null values from the data, because they are irrelevant
+        // for the creation of a new data record.
+        $data = array_filter($data, function ($value) {
+            return !is_null($value);
+        });
+
+        $responseData = $this->createData($data);
+
+        // Some data like the ID is created on Churchtools and we have to sync it
+        // back to the model.
+        foreach ($responseData as $prop => $value) {
+            $setter = 'set' . ucfirst($prop);
+            if (method_exists($model, $setter) && 'meta' !== $prop) {
+                $model->$setter($value);
+            }
+        }
+    }
+
+    /**
+     * Sends the data to the API endpoint to create a new record at ChurchTools.
+     * When the action was successfull, the actual data from ChurchTools is returned
+     * as an array.
+     */
+    protected function createData(array $data): array
+    {
+        $url = $this->getApiEndpoint();
+
+        $client = CTClient::getClient();
+        $response = $client->post($url, ['json' => $data]);
+
+        $response->getBody();
+        return CTResponseUtil::dataAsArray($response);
+    }
+
+    /**
      * Send Update-Request for given Model. Only update Attributes that are given with the updateAttributes-Parameter.
      *
      * @param UpdatableModel $model Model

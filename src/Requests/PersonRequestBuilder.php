@@ -34,6 +34,17 @@ class PersonRequestBuilder extends AbstractRequestBuilder
         return Person::createModelsFromArray($data);
     }
 
+
+    public function create(Person $person): void
+    {
+        $id = $person->getId();
+        if (!is_null($id)) {
+            throw new CTModelException("ID of a new Person has to be null.");
+        }
+
+        $this->createDataForModel($person);
+    }
+
     /**
      * Update the person's data on churchtools.
      *
