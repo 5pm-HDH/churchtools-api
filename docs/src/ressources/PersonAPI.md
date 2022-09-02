@@ -2,6 +2,10 @@
 
 {{ \Tests\Unit\Docs\PersonRequestTest.testExampleCode }}
 
+## Retrieve Birthdays
+
+{{ \Tests\Unit\Docs\PersonRequestTest.testBirthdayRequest }}
+
 ## Update a person's data
 
 Use the setters of the person model to modify its data and utilize the

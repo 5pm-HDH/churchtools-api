@@ -40,7 +40,6 @@ class BookingsRequestTest extends TestCaseAuthenticated
 
     public function testRequestBookingsOfResource()
     {
-        CTConfig::enableDebugging();
         $resource = Resource::createModelFromData(["id" => $this->resourceId1]);
 
         $this->assertInstanceOf(Resource::class, $resource);

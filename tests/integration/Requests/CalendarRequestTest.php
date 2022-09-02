@@ -50,7 +50,6 @@ class CalendarRequestTest extends TestCaseAuthenticated
 
     public function testGetAppointments()
     {
-        CTConfig::enableDebugging();
         $allAppointments = AppointmentRequest::forCalendar((int)$this->calendarId)
             ->where("from", $this->appointmentFrom)
             ->where("to", $this->appointmentTo)->get();

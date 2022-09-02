@@ -19,8 +19,6 @@ class APIVersionTest extends TestCase
     protected function setUp(): void
     {
         CTConfig::setApiUrl(TestData::getValue('API_URL'));
-        CTConfig::enableDebugging();
-        CTLog::enableConsoleLog();
     }
 
     /**
