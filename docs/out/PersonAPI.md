@@ -117,7 +117,7 @@ The following attributes can be updated:
         // Attributes that can be updated in ChurchTools-API
         $listOfModifiableAttributes = implode("; ", $person->getModifiableAttributes());
         var_dump( $listOfModifiableAttributes);
-        // Output: "addressAddition; birthday; birthName; birthplace; city; country; email; fax; firstName; job; lastName; mobile; nickname; phonePrivate; phoneWork; sexId; street; zip"
+        // Output: "addressAddition; birthday; birthName; birthplace; campusId; city; country; departmentIds; email; fax; firstName; job; lastName; mobile; nickname; phonePrivate; phoneWork; sexId; statusId; street; zip"
 
 
 ```
