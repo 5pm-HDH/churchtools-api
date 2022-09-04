@@ -4,6 +4,7 @@
 namespace Tests\Unit\Docs;
 
 
+use CTApi\Models\Person;
 use CTApi\Requests\PersonRequest;
 use Tests\Unit\TestCaseHttpMocked;
 
@@ -38,6 +39,21 @@ class PersonRequestTest extends TestCaseHttpMocked
         // Request Event of Person
         $personA = PersonRequest::whoami();
         $events = $personA->requestEvents()?->get();
+    }
+
+
+    /**
+     * @doesNotPerformAssertions
+     */
+    public function testCreatePerson()
+    {
+        $newPerson = new Person();
+        $newPerson->setFirstName("John")
+            ->setLastName("Doe")
+            ->setBirthName("Smith");
+        //add further attributes
+
+        PersonRequest::create($newPerson);
     }
 
     /**

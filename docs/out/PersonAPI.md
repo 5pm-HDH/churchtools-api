@@ -1,6 +1,7 @@
 # PersonAPI
 
 ```php
+        use CTApi\Models\Person;
         use CTApi\Requests\PersonRequest;
 
         // logged in user
@@ -39,6 +40,7 @@
 ## Retrieve Birthdays
 
 ```php
+        use CTApi\Models\Person;
         use CTApi\Requests\PersonRequest;
 
         $birthdayPersons = PersonRequest::birthdays()
@@ -71,6 +73,22 @@
 
 ```
 
+## Create person
+
+```php
+        use CTApi\Models\Person;
+        use CTApi\Requests\PersonRequest;
+
+        $newPerson = new Person();
+        $newPerson->setFirstName("John")
+            ->setLastName("Doe")
+            ->setBirthName("Smith");
+        //add further attributes
+
+        PersonRequest::create($newPerson);
+
+```
+
 ## Update a person's data
 
 Use the setters of the person model to modify its data and utilize the
@@ -79,6 +97,7 @@ Use the setters of the person model to modify its data and utilize the
 Follow this example:
 
 ```php
+        use CTApi\Models\Person;
         use CTApi\Requests\PersonRequest;
 
         $person = PersonRequest::findOrFail(21);
@@ -94,6 +113,7 @@ If you know that only a specific set of attributes is changed, you can limit the
 data sent to the API, by adding a whitelist of attributes.
 
 ```php
+        use CTApi\Models\Person;
         use CTApi\Requests\PersonRequest;
 
         $person = PersonRequest::findOrFail(21);
@@ -110,6 +130,7 @@ unnecessary traffic if you are going to do some bulk updates.
 The following attributes can be updated:
 
 ```php
+        use CTApi\Models\Person;
         use CTApi\Requests\PersonRequest;
 
         $person = PersonRequest::findOrFail(21);
@@ -127,6 +148,7 @@ The following attributes can be updated:
 Delete person via PersonRequest:
 
 ```php
+        use CTApi\Models\Person;
         use CTApi\Requests\PersonRequest;
 
         $person = PersonRequest::findOrFail(21);
