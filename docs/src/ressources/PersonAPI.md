@@ -6,6 +6,10 @@
 
 {{ \Tests\Unit\Docs\PersonRequestTest.testBirthdayRequest }}
 
+## Create person
+
+{{ \Tests\Unit\Docs\PersonRequestTest.testCreatePerson }}
+
 ## Update a person's data
 
 Use the setters of the person model to modify its data and utilize the

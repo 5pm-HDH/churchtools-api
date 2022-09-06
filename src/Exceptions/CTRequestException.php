@@ -39,36 +39,58 @@ class CTRequestException extends RuntimeException
 
         $msg = $contents['message'];
 
-        if (!empty($contents['errors'])) {
-            $errorDescriptions = [];
+        if (empty($contents['errors'])) {
+            return new self($msg);
+        }
 
-            foreach ($contents['errors'] as $error) {
-                $wasValue = '';
+        $errorDescriptions = [];
 
-                if (array_key_exists('args', $error) && array_key_exists('value', $error['args'])) {
-                    $wasValue = 'Received value was %s.';
-
-                    if (is_null($error['args']['value'])) {
-                        $wasValue = sprintf($wasValue, 'null');
-                    } else {
-                        $wasValue = sprintf($wasValue, '"' . $error['args']['value'] . '"');
-                    }
-                }
-
-                if (array_key_exists('fieldId', $error)) {
-                    $errorDescriptions[] = sprintf(
-                        'Field "%s": %s %s',
-                        $error['fieldId'],
-                        $error['message'],
-                        $wasValue
-                    );
-                } else {
-                    $errorDescriptions[] = $error['message'];
-                }
+        foreach ($contents['errors'] as $error) {
+            if (!is_array($error) || !isset($error['message']) || !isset($error['messageKey'])) {
+                continue;
             }
 
-            $msg .= '. ' . implode(' ', $errorDescriptions);
+            $messageKey = $error['messageKey'];
+
+            if (!isset($error['fieldId'])) {
+                $errorDescriptions[] = sprintf('%s: %s', $messageKey, $error['message']);
+
+                continue;
+            }
+
+            if ('validation.not.empty' === $messageKey) {
+                $errorDescriptions[] = sprintf('Field "%s" must not be empty.', $error['fieldId']);
+
+                continue;
+            }
+
+            if ('validation.db.field.option' === $messageKey) {
+                $errorDescriptions[] = sprintf(
+                    'Field "%s" has to be one of the options "%s".',
+                    $error['fieldId'],
+                    $error['args']['validOptions'] ?? ''
+                );
+
+                continue;
+            }
+
+            if ('validation.string' === $messageKey) {
+                $description = sprintf('Field "%s" has to be of type string. ', $error['fieldId']);
+
+                if (array_key_exists('args', $error) && array_key_exists('value', $error['args'])) {
+                    $value = $error['args']['value'];
+                    $description .= sprintf('Provided value was of type "%s".', gettype($value));
+                } else {
+                    $description .= 'Provided value is unknown.';
+                }
+
+                $errorDescriptions[] = $description;
+
+                continue;
+            }
         }
+
+        $msg .= '. ' . implode(' ', $errorDescriptions);
 
         return new self($msg);
     }

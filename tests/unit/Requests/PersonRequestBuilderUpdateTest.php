@@ -20,6 +20,7 @@ class PersonRequestBuilderUpdateTest extends \Tests\Unit\TestCaseHttpMocked
             'firstName' => 'Jane',
             'lastName' => 'Mustermann',
             'birthName' => 'Doe',
+            'departmentIds' => [1],
         ]);
 
         PersonRequest::update($person);
@@ -47,6 +48,9 @@ class PersonRequestBuilderUpdateTest extends \Tests\Unit\TestCaseHttpMocked
                     break;
                 case "birthName":
                     $this->assertEquals("Doe", $value);
+                    break;
+                case "departmentIds":
+                    $this->assertEquals([1], $value);
                     break;
                 default:
                     $this->assertNull($value);

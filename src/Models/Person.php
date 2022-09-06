@@ -39,6 +39,10 @@ class Person implements UpdatableModel
     protected ?string $sexId = null;
     protected ?string $email = null;
 
+    protected array $departmentIds = [];
+    protected ?int $statusId = null;
+    protected ?int $campusId = null;
+
     protected ?Meta $meta = null;
 
     protected function fillNonArrayType(string $key, $value): void
@@ -76,8 +80,10 @@ class Person implements UpdatableModel
             'birthday',
             'birthName',
             'birthplace',
+            'campusId',
             'city',
             'country',
+            'departmentIds',
             'email',
             'fax',
             'firstName',
@@ -88,6 +94,7 @@ class Person implements UpdatableModel
             'phonePrivate',
             'phoneWork',
             'sexId',
+            'statusId',
             'street',
             'zip',
         ];
@@ -500,4 +507,61 @@ class Person implements UpdatableModel
         $this->email = $email;
         return $this;
     }
+
+    /**
+     * Get the list of department IDs.
+     *
+     * @return int[]
+     */
+    public function getDepartmentIds(): array
+    {
+        return $this->departmentIds;
+    }
+
+    /**
+     * Add a department ID.
+     */
+    public function addDepartmentId(int $departmentId): Person
+    {
+        if (!in_array($departmentId, $this->departmentIds, true)) {
+            $this->departmentIds[] = $departmentId;
+        }
+
+        return $this;
+    }
+
+    public function removeDepartmentId(int $departmentId): Person
+    {
+        $position = array_search($departmentId, $this->departmentIds, true);
+
+        if ($position !== false) {
+            array_splice($this->departmentIds, $position, 1);
+        }
+
+        return $this;
+    }
+
+    public function getStatusId(): ?int
+    {
+        return $this->statusId;
+    }
+
+    public function setStatusId(int $statusId): self
+    {
+        $this->statusId = $statusId;
+        return $this;
+    }
+
+    public function getCampusId(): ?int
+    {
+        return $this->campusId;
+    }
+
+    public function setCampusId(int $campusId): self
+    {
+        $this->campusId = $campusId;
+        return $this;
+    }
+
+
 }

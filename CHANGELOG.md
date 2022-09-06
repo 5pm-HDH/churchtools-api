@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - [Added method to update person data](https://github.com/5pm-HDH/churchtools-api/pull/84)
 - [Added modifiable-attributes to person-api docs](https://github.com/5pm-HDH/churchtools-api/pull/88)
 - [Added method to delete person records](https://github.com/5pm-HDH/churchtools-api/pull/91)
+- [Added method to create a new person at ChurchTools](https://github.com/5pm-HDH/churchtools-api/pull/105)
 - [Added Calendar-Request](https://github.com/5pm-HDH/churchtools-api/pull/92)
 - [Added Permission-Request](https://github.com/5pm-HDH/churchtools-api/pull/102)
 - [Serialize Models to Data-Array for JSON-Export](https://github.com/5pm-HDH/churchtools-api/pull/103)

@@ -4,6 +4,7 @@
 namespace Tests\Unit\Docs;
 
 
+use CTApi\Models\Person;
 use CTApi\Requests\PersonRequest;
 use Tests\Unit\TestCaseHttpMocked;
 
@@ -40,6 +41,21 @@ class PersonRequestTest extends TestCaseHttpMocked
         $events = $personA->requestEvents()?->get();
     }
 
+
+    /**
+     * @doesNotPerformAssertions
+     */
+    public function testCreatePerson()
+    {
+        $newPerson = new Person();
+        $newPerson->setFirstName("John")
+            ->setLastName("Doe")
+            ->setBirthName("Smith");
+        //add further attributes
+
+        PersonRequest::create($newPerson);
+    }
+
     /**
      * @doesNotPerformAssertions
      */
@@ -69,7 +85,7 @@ class PersonRequestTest extends TestCaseHttpMocked
 
         // Attributes that can be updated in ChurchTools-API
         $listOfModifiableAttributes = implode("; ", $person->getModifiableAttributes());
-        $this->assertEquals("addressAddition; birthday; birthName; birthplace; city; country; email; fax; firstName; job; lastName; mobile; nickname; phonePrivate; phoneWork; sexId; street; zip", $listOfModifiableAttributes);
+        $this->assertEquals("addressAddition; birthday; birthName; birthplace; campusId; city; country; departmentIds; email; fax; firstName; job; lastName; mobile; nickname; phonePrivate; phoneWork; sexId; statusId; street; zip", $listOfModifiableAttributes);
     }
 
     /**

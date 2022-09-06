@@ -22,6 +22,11 @@ class TestCaseHttpMocked extends TestCase
         CTClient::setClient($this->ctClientMock);
     }
 
+    protected function setClientMock(CTClientMock $clientMock){
+        $this->ctClientMock = $clientMock;
+        CTClient::setClient($this->ctClientMock);
+    }
+
     protected function assertRequestCallExists(string $method, $uri = null): array
     {
         return $this->ctClientMock->assertRequestCallExists($method, $uri);
