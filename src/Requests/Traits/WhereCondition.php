@@ -21,12 +21,12 @@ trait WhereCondition
 
     protected function addWhereConditionsToOption(&$options): void
     {
-        if (!array_key_exists("json", $options)) {
-            $options["json"] = [];
+        if (!array_key_exists("query", $options)) {
+            $options["query"] = [];
         }
 
         foreach ($this->whereCriteria as $whereKey => $whereValue) {
-            $options["json"][$whereKey] = $whereValue;
+            $options["query"][$whereKey] = $whereValue;
         }
     }
 }

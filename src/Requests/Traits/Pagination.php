@@ -13,14 +13,14 @@ trait Pagination
         $client = CTClient::getClient();
         $collectedData = [];
 
-        if (isset($options["json"]["page"])) {
+        if (isset($options["query"]["page"])) {
             $manualPagination = true;
         } else {
             // Add Page Information to Options
-            if (!array_key_exists("json", $options)) {
-                $options["json"] = [];
+            if (!array_key_exists("query", $options)) {
+                $options["query"] = [];
             }
-            $options["json"]["page"] = 1;
+            $options["query"]["page"] = 1;
 
             $manualPagination = false;
         }
@@ -37,7 +37,7 @@ trait Pagination
 
             // Collect Date from Second till Last page
             for ($i = 2; $i <= $lastPage; $i++) {
-                $options["json"]["page"] = $i;
+                $options["query"]["page"] = $i;
 
                 $response = $client->get($url, $options);
 
