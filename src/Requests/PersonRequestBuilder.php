@@ -34,15 +34,23 @@ class PersonRequestBuilder extends AbstractRequestBuilder
         return Person::createModelsFromArray($data);
     }
 
-
-    public function create(Person $person): void
+    /**
+     * Add the person to ChurchTools.
+     *
+     * @param bool $force
+     *        If the request fails because a duplicate is found (person with same name)
+     *        set the $force param to `true` to create this person even if a
+     *        duplicate is found.
+     * @throws CTModelException If the passed person already has an ID.
+     */
+    public function create(Person $person, bool $force = false): void
     {
         $id = $person->getId();
         if (!is_null($id)) {
             throw new CTModelException("ID of a new Person has to be null.");
         }
 
-        $this->createDataForModel($person);
+        $this->createDataForModel($person, $force);
     }
 
     /**
