@@ -14,6 +14,16 @@
 
 {{ \Tests\Unit\Docs\PersonRequestTest.testCreatePerson }}
 
+Sometimes it will happen that you have to add a person with the same name
+as an existing one. ChurchTools will respond with an error to prevent you from
+adding duplicates accidently.
+
+Therefore you can add the `force` parameter and set it to `true`.
+
+{{ \Tests\Unit\Docs\PersonRequestTest.testCreatePersonWithEqualName }}
+
+This will make ChurchTools to insert the record, even if there is a second John Doe.
+
 ## Update a person's data
 
 Use the setters of the person model to modify its data and utilize the

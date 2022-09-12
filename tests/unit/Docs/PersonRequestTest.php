@@ -59,6 +59,20 @@ class PersonRequestTest extends TestCaseHttpMocked
     /**
      * @doesNotPerformAssertions
      */
+    public function testCreatePersonWithEqualName()
+    {
+        $newPerson = new Person();
+        $newPerson->setFirstName("John")
+            ->setLastName("Doe")
+            ->setBirthday("1970-01-01");
+        //add further attributes
+
+        PersonRequest::create($newPerson, force: true);
+    }
+
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testUpdatePerson()
     {
         $person = PersonRequest::findOrFail(21);
