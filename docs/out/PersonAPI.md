@@ -37,6 +37,50 @@
 
 ```
 
+## Request Tags from Person
+
+```php
+        use CTApi\Models\Person;
+        use CTApi\Requests\PersonRequest;
+
+        $person = (new Person())->setId("21");
+
+        $tags = $person->requestTags()?->get();
+
+        if ($tags == null) {
+            $tags = [];
+        }
+
+        $musicDirectorTag = null;
+        foreach ($tags as $tag) {
+            if ($tag->getName() == "Music Director") {
+                $musicDirectorTag = $tag;
+            }
+        }
+        // Tag-Data
+        var_dump( $musicDirectorTag?->getId());
+        // Output: 5
+
+        var_dump( $musicDirectorTag?->getName());
+        // Output: "Music Director"
+
+        var_dump( $musicDirectorTag?->getCount());
+        // Output: 9
+
+
+        // Meta-Data
+        var_dump( $musicDirectorTag?->getModifiedAt());
+        // Output: "2021-05-19T06:21:02Z"
+
+        var_dump( $musicDirectorTag?->getModifiedBy());
+        // Output: 21
+
+        var_dump( $musicDirectorTag?->requestModifier()?->getFirstName());
+        // Output: "Matthew"
+
+
+```
+
 ## Retrieve Birthdays
 
 ```php
