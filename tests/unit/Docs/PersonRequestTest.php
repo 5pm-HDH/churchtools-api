@@ -117,4 +117,27 @@ class PersonRequestTest extends TestCaseHttpMocked
         $this->assertEquals("2022-03-01", $lastBirthdayPerson->getAnniversary());
         $this->assertEquals("25", $lastBirthdayPerson->getAge());
     }
+
+    public function testRequestTags()
+    {
+        $person = (new Person())->setId(21);
+
+        $tags = $person->requestTags()->get();
+
+        $musicDirectorTag = null;
+        foreach ($tags as $tag) {
+            if ($tag->getName() == "Music Director") {
+                $musicDirectorTag = $tag;
+            }
+        }
+        // Tag-Data
+        $this->assertEquals(5, $musicDirectorTag->getId());
+        $this->assertEquals("Music Director", $musicDirectorTag->getName());
+        $this->assertEquals(9, $musicDirectorTag->getCount());
+
+        // Meta-Data
+        $this->assertEquals("2021-05-19T06:21:02Z", $musicDirectorTag->getModifiedAt());
+        $this->assertEquals(21, $musicDirectorTag->getModifiedBy());
+        $this->assertEquals("Matthew", $musicDirectorTag->requestModifier()?->getFirstName());
+    }
 }
