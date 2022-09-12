@@ -29,7 +29,7 @@ class PersonUpdateRequestTest extends TestCaseAuthenticated
 
         // Update Birthname
         $me->setBirthName($newBirthName);
-        PersonRequest::update($me);
+        PersonRequest::update($me, ["birthName", "firstName", "lastName"]);
 
         // Reload Person-Object
         $meReloaded = PersonRequest::whoami();
