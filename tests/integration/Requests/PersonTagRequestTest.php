@@ -31,16 +31,14 @@ class PersonTagRequestTest extends TestCaseAuthenticated
     public function testRequestIds()
     {
         CTConfig::enableDebugging();
-        $person = PersonRequest::findOrFail( (int) $this->personId);
-
-        $this->assertNotNull($person);
+        $person = PersonRequest::findOrFail((int)$this->personId);
 
         $tags = $person->requestTags()?->get();
         $this->assertNotNull($tags);
 
         $testTag = null;
-        foreach($tags as $tag){
-            if($tag->getId() == $this->tagId){
+        foreach ($tags as $tag) {
+            if ($tag->getId() == $this->tagId) {
                 $testTag = $tag;
             }
         }
@@ -48,5 +46,4 @@ class PersonTagRequestTest extends TestCaseAuthenticated
         $this->assertNotNull($testTag, "Could not find tag.");
         $this->assertEquals($this->tagName, $testTag->getName());
     }
-
 }

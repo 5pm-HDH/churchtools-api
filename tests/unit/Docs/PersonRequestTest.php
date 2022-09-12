@@ -120,9 +120,13 @@ class PersonRequestTest extends TestCaseHttpMocked
 
     public function testRequestTags()
     {
-        $person = (new Person())->setId(21);
+        $person = (new Person())->setId("21");
 
-        $tags = $person->requestTags()->get();
+        $tags = $person->requestTags()?->get();
+
+        if ($tags == null) {
+            $tags = [];
+        }
 
         $musicDirectorTag = null;
         foreach ($tags as $tag) {
@@ -131,13 +135,13 @@ class PersonRequestTest extends TestCaseHttpMocked
             }
         }
         // Tag-Data
-        $this->assertEquals(5, $musicDirectorTag->getId());
-        $this->assertEquals("Music Director", $musicDirectorTag->getName());
-        $this->assertEquals(9, $musicDirectorTag->getCount());
+        $this->assertEquals(5, $musicDirectorTag?->getId());
+        $this->assertEquals("Music Director", $musicDirectorTag?->getName());
+        $this->assertEquals(9, $musicDirectorTag?->getCount());
 
         // Meta-Data
-        $this->assertEquals("2021-05-19T06:21:02Z", $musicDirectorTag->getModifiedAt());
-        $this->assertEquals(21, $musicDirectorTag->getModifiedBy());
-        $this->assertEquals("Matthew", $musicDirectorTag->requestModifier()?->getFirstName());
+        $this->assertEquals("2021-05-19T06:21:02Z", $musicDirectorTag?->getModifiedAt());
+        $this->assertEquals(21, $musicDirectorTag?->getModifiedBy());
+        $this->assertEquals("Matthew", $musicDirectorTag?->requestModifier()?->getFirstName());
     }
 }
