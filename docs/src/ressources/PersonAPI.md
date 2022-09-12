@@ -2,6 +2,10 @@
 
 {{ \Tests\Unit\Docs\PersonRequestTest.testExampleCode }}
 
+## Request Tags from Person
+
+{{ \Tests\Unit\Docs\PersonRequestTest.testRequestTags }}
+
 ## Retrieve Birthdays
 
 {{ \Tests\Unit\Docs\PersonRequestTest.testBirthdayRequest }}
