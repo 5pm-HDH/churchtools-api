@@ -24,6 +24,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - [Status-Code handling and Exception-handling](https://github.com/5pm-HDH/churchtools-api/pull/99)
 - [Refactor delete person](https://github.com/5pm-HDH/churchtools-api/pull/100)
 - [Refactor FillWithData](https://github.com/5pm-HDH/churchtools-api/pull/101)
+- [Refactor: Use Query-Parameters for Where-Clause](https://github.com/5pm-HDH/churchtools-api/pull/106)
 
 ### Fixed
 
