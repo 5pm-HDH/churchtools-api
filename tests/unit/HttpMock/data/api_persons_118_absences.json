@@ -1,0 +1,31 @@
+{
+  "data": [
+    {
+      "id": 10,
+      "comment": "Vacation in the alps",
+      "absenceReason": {
+        "id": 2,
+        "name": "Urlaub",
+        "nameTranslated": "Urlaub",
+        "sortKey": 1
+      },
+      "startDate": "2022-02-23",
+      "startTime": null,
+      "endDate": "2022-02-25",
+      "endTime": null,
+      "person": {
+        "title": "Matthew",
+        "domainType": "person",
+        "domainIdentifier": "21",
+        "icon": "user",
+        "domainAttributes": {
+          "firstName": "Matthew",
+          "lastName": "Doe"
+        }
+      }
+    }
+  ],
+  "meta": {
+    "count": 2
+  }
+}

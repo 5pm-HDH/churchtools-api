@@ -1,0 +1,25 @@
+{
+  "data": {
+    "id": 11,
+    "comment": "Meditation in the monastery.",
+    "absenceReason": {
+      "id": 2,
+      "name": "Urlaub",
+      "nameTranslated": "Urlaub",
+      "sortKey": 1
+    },
+    "startDate": "2020-09-13",
+    "startTime": null,
+    "endDate": "2020-09-14",
+    "endTime": null,
+    "person": {
+      "title": "Matthew",
+      "domainType": "person",
+      "domainIdentifier": "118",
+      "domainAttributes": {
+        "firstName": "Matthew",
+        "lastName": "Doe"
+      }
+    }
+  }
+}
