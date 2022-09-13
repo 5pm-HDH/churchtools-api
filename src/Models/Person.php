@@ -8,6 +8,7 @@ use CTApi\Models\Interfaces\UpdatableModel;
 use CTApi\Models\Traits\ExtractData;
 use CTApi\Models\Traits\FillWithData;
 use CTApi\Models\Traits\MetaAttribute;
+use CTApi\Requests\AbsencePersonRequestBuilder;
 use CTApi\Requests\PersonEventRequestBuilder;
 use CTApi\Requests\PersonGroupRequestBuilder;
 use CTApi\Requests\PersonTagRequestBuilder;
@@ -132,8 +133,16 @@ class Person implements UpdatableModel
 
     public function requestTags(): ?PersonTagRequestBuilder
     {
-        if(!is_null($this->getId())) {
-            return new PersonTagRequestBuilder( (int) $this->getId());
+        if (!is_null($this->getId())) {
+            return new PersonTagRequestBuilder((int)$this->getId());
+        }
+        return null;
+    }
+
+    public function requestAbsence(): ?AbsencePersonRequestBuilder
+    {
+        if (!is_null($this->getId())) {
+            return new AbsencePersonRequestBuilder((int)$this->getId());
         }
         return null;
     }
