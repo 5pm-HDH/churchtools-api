@@ -63,6 +63,7 @@ All APIs with examples:
 * [Event-API](/docs/out/EventAPI.md)
 * [Song-API](/docs/out/SongAPI.md)
 * [Service-API](/docs/out/ServiceAPI.md)
+* [Absence-API](/docs/out/AbsenceAPI.md)
 * [Wiki-API](/docs/out/WikiAPI.md)
 * [Permission-API](/docs/out/PermissionAPI.md)
 

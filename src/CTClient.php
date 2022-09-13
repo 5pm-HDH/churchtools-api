@@ -62,6 +62,16 @@ class CTClient
         }
     }
 
+    public function put($uri, array $options = []): ResponseInterface
+    {
+        try {
+            CTLog::getLog()->debug('CTClient: PUT-Request URI:' . $uri, ["options" => $options, "mergedOptions" => self::mergeOptions($options)]);
+            return $this->handleResponse($this->guzzleClient->put($uri, self::mergeOptions($options)));
+        } catch (Exception $exception) {
+            return $this->handleException($exception);
+        }
+    }
+
     public function delete($uri, array $options = []): ResponseInterface
     {
         try {

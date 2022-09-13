@@ -17,4 +17,11 @@ class TestCaseAuthenticated extends TestCase
             TestData::getValue('AUTH_PASSWORD')
         );
     }
+
+    protected function checkIfTestSuiteIsEnabled(string $testsuite)
+    {
+        if (!TestData::getValue($testsuite) == "YES") {
+            $this->markTestSkipped("Test suite " . $testsuite . " is disabled in testdata.ini");
+        }
+    }
 }

@@ -84,10 +84,14 @@ abstract class AbstractRequestBuilder
 
         // Some data like the ID is created on Churchtools and we have to sync it
         // back to the model.
-        foreach ($responseData as $prop => $value) {
-            $setter = 'set' . ucfirst($prop);
-            if (method_exists($model, $setter) && 'meta' !== $prop) {
-                $model->$setter($value);
+        if (method_exists($model, "fillWithData")) {
+            $model->fillWithData($responseData);
+        } else {
+            foreach ($responseData as $prop => $value) {
+                $setter = 'set' . ucfirst($prop);
+                if (method_exists($model, $setter) && 'meta' !== $prop) {
+                    $model->$setter($value);
+                }
             }
         }
     }
