@@ -4,9 +4,9 @@
 namespace Tests\Integration\Requests;
 
 
+use CTApi\CTConfig;
 use CTApi\Requests\PersonRequest;
 use Tests\Integration\TestCaseAuthenticated;
-use Tests\Integration\TestData;
 
 class PersonUpdateRequestTest extends TestCaseAuthenticated
 {
@@ -15,9 +15,10 @@ class PersonUpdateRequestTest extends TestCaseAuthenticated
 
     protected function setUp(): void
     {
-        if (!TestData::getValue("UPDATE_PERSON_SHOULD_TEST") == "YES") {
-            $this->markTestSkipped("Test suite is disabled in testdata.ini");
-        }
+        parent::setUp();
+        $this->checkIfTestSuiteIsEnabled("UPDATE_PERSON_SHOULD_TEST");
+        CTConfig::clearCache();
+        CTConfig::disableCache();
     }
 
     public function testUpdatePersonWholeObject()
@@ -39,6 +40,8 @@ class PersonUpdateRequestTest extends TestCaseAuthenticated
 
     public function testUpdatePersonReducedAttributes()
     {
+        self::reauthenticateChurchToolsUser();
+
         $me = PersonRequest::whoami();
 
         // select the birthname that is not the current

@@ -28,6 +28,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - [Refactor FillWithData](https://github.com/5pm-HDH/churchtools-api/pull/101)
 - [Refactor: Use Query-Parameters for Where-Clause](https://github.com/5pm-HDH/churchtools-api/pull/106)
 - [Fix Unit-Test for Person Update-Request](https://github.com/5pm-HDH/churchtools-api/pull/109)
+- [Fix Integration-Test: Cache Api-key](https://github.com/5pm-HDH/churchtools-api/pull/113)
 
 ### Fixed
 
