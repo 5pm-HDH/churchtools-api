@@ -39,7 +39,7 @@ class HttpMockDataResolver
         // convert string to lowercase
         $endpoint = strtolower($endpoint);
 
-        $pageNr = CTUtil::arrayPathGet($options, "json.page");
+        $pageNr = CTUtil::arrayPathGet($options, "query.page");
         if (!is_null($pageNr) && $pageNr > 1) {
             $endpoint .= "_page_" . $pageNr;
             CTLog::getLog()->debug("Append Page-Number to Endpoint-Filename: " . $endpoint);

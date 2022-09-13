@@ -21,7 +21,7 @@ class PersonRequestBuilder extends AbstractRequestBuilder
     public function get(): array
     {
         $options = [
-            "json" => []
+            "query" => []
         ];
 
         //Where-Clauses

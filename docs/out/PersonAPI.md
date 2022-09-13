@@ -37,6 +37,50 @@
 
 ```
 
+## Request Tags from Person
+
+```php
+        use CTApi\Models\Person;
+        use CTApi\Requests\PersonRequest;
+
+        $person = (new Person())->setId("21");
+
+        $tags = $person->requestTags()?->get();
+
+        if ($tags == null) {
+            $tags = [];
+        }
+
+        $musicDirectorTag = null;
+        foreach ($tags as $tag) {
+            if ($tag->getName() == "Music Director") {
+                $musicDirectorTag = $tag;
+            }
+        }
+        // Tag-Data
+        var_dump( $musicDirectorTag?->getId());
+        // Output: 5
+
+        var_dump( $musicDirectorTag?->getName());
+        // Output: "Music Director"
+
+        var_dump( $musicDirectorTag?->getCount());
+        // Output: 9
+
+
+        // Meta-Data
+        var_dump( $musicDirectorTag?->getModifiedAt());
+        // Output: "2021-05-19T06:21:02Z"
+
+        var_dump( $musicDirectorTag?->getModifiedBy());
+        // Output: 21
+
+        var_dump( $musicDirectorTag?->requestModifier()?->getFirstName());
+        // Output: "Matthew"
+
+
+```
+
 ## Retrieve Birthdays
 
 ```php
@@ -88,6 +132,28 @@
         PersonRequest::create($newPerson);
 
 ```
+
+Sometimes it will happen that you have to add a person with the same name
+as an existing one. ChurchTools will respond with an error to prevent you from
+adding duplicates accidently.
+
+Therefore you can add the `force` parameter and set it to `true`.
+
+```php
+        use CTApi\Models\Person;
+        use CTApi\Requests\PersonRequest;
+
+        $newPerson = new Person();
+        $newPerson->setFirstName("John")
+            ->setLastName("Doe")
+            ->setBirthday("1970-01-01");
+        //add further attributes
+
+        PersonRequest::create($newPerson, force: true);
+
+```
+
+This will make ChurchTools to insert the record, even if there is a second John Doe.
 
 ## Update a person's data
 

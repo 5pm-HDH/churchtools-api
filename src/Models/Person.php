@@ -10,6 +10,7 @@ use CTApi\Models\Traits\FillWithData;
 use CTApi\Models\Traits\MetaAttribute;
 use CTApi\Requests\PersonEventRequestBuilder;
 use CTApi\Requests\PersonGroupRequestBuilder;
+use CTApi\Requests\PersonTagRequestBuilder;
 
 class Person implements UpdatableModel
 {
@@ -129,6 +130,13 @@ class Person implements UpdatableModel
         return null;
     }
 
+    public function requestTags(): ?PersonTagRequestBuilder
+    {
+        if(!is_null($this->getId())) {
+            return new PersonTagRequestBuilder( (int) $this->getId());
+        }
+        return null;
+    }
 
     /**
      * @return string|null

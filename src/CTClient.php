@@ -76,7 +76,7 @@ class CTClient
     {
         $responseCode = (int)$response->getStatusCode();
         if ($responseCode == 401 || $responseCode == 403) {
-            throw new CTPermissionException("Unauthorized or Forbidden.", $responseCode);
+            throw CTPermissionException::ofErrorResponse($response);
         }
 
         if ($responseCode >= 200 && $responseCode <= 299) {

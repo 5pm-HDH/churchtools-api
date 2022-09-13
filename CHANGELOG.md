@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - [Added Permission-Request](https://github.com/5pm-HDH/churchtools-api/pull/102)
 - [Serialize Models to Data-Array for JSON-Export](https://github.com/5pm-HDH/churchtools-api/pull/103)
 - [Retrieve Birthdays](https://github.com/5pm-HDH/churchtools-api/pull/104)
+- [Retrieve Tags of Person](https://github.com/5pm-HDH/churchtools-api/pull/110)
 - [Added force flag to person creation, to add persons with same name](https://github.com/5pm-HDH/churchtools-api/pull/107)
 
 ### Changed
@@ -25,6 +26,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - [Status-Code handling and Exception-handling](https://github.com/5pm-HDH/churchtools-api/pull/99)
 - [Refactor delete person](https://github.com/5pm-HDH/churchtools-api/pull/100)
 - [Refactor FillWithData](https://github.com/5pm-HDH/churchtools-api/pull/101)
+- [Refactor: Use Query-Parameters for Where-Clause](https://github.com/5pm-HDH/churchtools-api/pull/106)
+- [Fix Unit-Test for Person Update-Request](https://github.com/5pm-HDH/churchtools-api/pull/109)
 
 ### Fixed
 
