@@ -50,7 +50,7 @@ trait FillWithData
         return null;
     }
 
-    private function fillWithData(array $array): void
+    public function fillWithData(array $array): void
     {
         foreach ($array as $key => $value) {
             if (is_object($value)) {
@@ -114,7 +114,7 @@ trait FillWithData
                 }
             }
         } else {
-            CTLog::getLog()->warning("FillWithData: Tried to fill undefined Property " . $key . " in class " . get_class($this) . " with data. Ignore this assignment.");
+            CTLog::getLog()->warning("FillWithData: Tried to fill data into class " . get_class($this) . " for undefined Property: " . $key . ". Ignore this assignment.");
         }
     }
 

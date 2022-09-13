@@ -19,19 +19,25 @@ class CTClientMock extends CTClient
     public function get($uri, array $options = []): ResponseInterface
     {
         $this->addMethodCall("GET", $uri, $options);
-        return $this->addResponse($this->convertGETRequestToResponse($uri, $options));
+        return $this->addResponse($this->convertRequestToResponse($uri, $options));
     }
 
     public function post($uri, array $options = []): ResponseInterface
     {
         $this->addMethodCall("POST", $uri, $options);
-        return $this->addResponse($this->convertPOSTRequestToResponse($uri, $options));
+        return $this->addResponse($this->convertRequestToResponse($uri, $options, "POST"));
     }
 
     public function patch($uri, array $options = []): ResponseInterface
     {
         $this->addMethodCall("PATCH", $uri, $options);
-        return CTResponse::createEmpty();
+        return $this->addResponse($this->convertRequestToResponse($uri, $options, "PATCH"));
+    }
+
+    public function put($uri, array $options = []): ResponseInterface
+    {
+        $this->addMethodCall("PATCH", $uri, $options);
+        return $this->addResponse($this->convertRequestToResponse($uri, $options, "PUT"));
     }
 
     public function delete($uri, array $options = []): ResponseInterface
@@ -40,19 +46,9 @@ class CTClientMock extends CTClient
         return CTResponse::createEmpty();
     }
 
-    protected function convertGETRequestToResponse($uri, $options): ResponseInterface
+    protected function convertRequestToResponse($uri, $options, string $method = "GET"): ResponseInterface
     {
-        $responseData = HttpMockDataResolver::resolveEndpoint($uri, $options);
-
-        $ctResponse = CTResponse::createEmpty();
-        $ctResponse->withBody(new CTMessageBody($responseData));
-
-        return $ctResponse;
-    }
-
-    protected function convertPOSTRequestToResponse($uri, $options): ResponseInterface
-    {
-        $responseData = HttpMockDataResolver::resolveEndpoint($uri, $options);
+        $responseData = HttpMockDataResolver::resolveEndpoint($uri, $options, $method);
 
         $ctResponse = CTResponse::createEmpty();
         $ctResponse->withBody(new CTMessageBody($responseData));
