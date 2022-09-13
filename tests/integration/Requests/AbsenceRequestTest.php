@@ -4,7 +4,6 @@
 namespace Tests\Integration\Requests;
 
 
-use CTApi\CTConfig;
 use CTApi\Models\Absence;
 use CTApi\Requests\AbsencePersonRequestBuilder;
 use CTApi\Requests\AbsenceRequest;
@@ -71,7 +70,6 @@ class AbsenceRequestTest extends TestCaseAuthenticated
     {
 
         $absence = $this->createAbsence();
-        CTConfig::enableDebugging();
         $this->updateAbsence($absence);
         $this->deleteAbsence($absence);
     }

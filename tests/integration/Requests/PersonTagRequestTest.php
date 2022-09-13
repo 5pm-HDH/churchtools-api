@@ -4,7 +4,6 @@
 namespace Tests\Integration\Requests;
 
 
-use CTApi\CTConfig;
 use CTApi\Requests\PersonRequest;
 use Tests\Integration\TestCaseAuthenticated;
 use Tests\Integration\TestData;
@@ -30,7 +29,6 @@ class PersonTagRequestTest extends TestCaseAuthenticated
 
     public function testRequestIds()
     {
-        CTConfig::enableDebugging();
         $person = PersonRequest::findOrFail((int)$this->personId);
 
         $tags = $person->requestTags()?->get();
