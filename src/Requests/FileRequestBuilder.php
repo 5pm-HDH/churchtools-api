@@ -23,15 +23,15 @@ class FileRequestBuilder
         return "/api/files/" . $this->domainType . "/" . $this->domainIdentifier;
     }
 
-    public function get(): ?File
+    public function get(): array
     {
         $ctClient = CTClient::getClient();
         $response = $ctClient->get($this->getApiEndpoint());
         $data = CTResponseUtil::dataAsArray($response);
         if (empty($data)) {
-            return null;
+            return [];
         } else {
-            return File::createModelFromData($data);
+            return File::createModelsFromArray($data);
         }
     }
 
