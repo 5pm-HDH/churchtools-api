@@ -52,7 +52,6 @@ class FileRequestTest extends TestCaseAuthenticated
             $this->markTestSkipped("The person with id " . $this->myselfId . " has no avatar.");
         }
 
-        $this->assertNotNull($avatar);
         $avatar->setName("avatar-test-case.jpg");
         $avatar->downloadToPath(__DIR__ . "/resources/");
         $this->assertFileExists(__DIR__ . "/resources/avatar-test-case.jpg");
