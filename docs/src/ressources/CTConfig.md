@@ -103,3 +103,7 @@ $response = $client->get(
                 ]
             );
 ```
+
+## 4. CSRF-Token
+
+{{ \Tests\Unit\Docs\CSRFTokenRequestTest.testGetCSRFToken }}

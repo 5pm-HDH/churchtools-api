@@ -48,7 +48,6 @@ class FileRequestTest extends TestCaseAuthenticated
         $avatar = FileRequest::forAvatar($this->myselfId)->upload(__DIR__ . "/resources/avatar-1.png");
         $this->assertNotNull($avatar);
         $this->assertEquals("avatar-1.png", $avatar->getName());
-        print_r($avatar);
         $this->assertAvatarIsPresent();
     }
 

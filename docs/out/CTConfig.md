@@ -110,3 +110,17 @@ $response = $client->get(
             );
 
 ```
+
+## 4. CSRF-Token
+
+```php
+        use CTApi\Requests\CSRFTokenRequest;
+
+        $nullableToken = CSRFTokenRequest::get(); // can be null|string
+        $notNullToken = CSRFTokenRequest::getOrFail(); // throws exception if null
+
+        var_dump( $notNullToken);
+        // Output: "db639402f593da794d99aa2706339314da62a7c0dbcc3bb8c505d82d6702b73e"
+
+
+```

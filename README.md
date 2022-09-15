@@ -66,6 +66,7 @@ All APIs with examples:
 * [Absence-API](/docs/out/AbsenceAPI.md)
 * [Wiki-API](/docs/out/WikiAPI.md)
 * [Permission-API](/docs/out/PermissionAPI.md)
+* [File-API](/docs/out/FileAPI.md)
 
 The following short examples show the power of this ChurchTools-api client and gives a rough overview over the possibilities:
 

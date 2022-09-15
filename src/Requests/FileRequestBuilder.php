@@ -18,13 +18,13 @@ use CTApi\Utils\CTUtil;
 class FileRequestBuilder
 {
     public function __construct(
-        private string $domainType,
-        private int $domainIdentifier
+        protected string $domainType,
+        protected int $domainIdentifier
     )
     {
     }
 
-    private function getApiEndpoint(): string
+    protected function getApiEndpoint(): string
     {
         return "/api/files/" . $this->domainType . "/" . $this->domainIdentifier;
     }
@@ -87,7 +87,7 @@ class FileRequestBuilder
             }
         } else {
             $ctResponse = CTResponse::createEmpty();
-            $ctResponse->withBody(new CTMessageBody($data));
+            $ctResponse->withBody(new CTMessageBody($data ?? []));
             throw CTRequestException::ofErrorResponse($ctResponse);
         }
     }
