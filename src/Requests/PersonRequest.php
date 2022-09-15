@@ -44,10 +44,15 @@ class PersonRequest
 
     /**
      * Add the person to ChurchTools.
+     *
+     * @param bool $force
+     *        If the request fails because a duplicate is found (person with same name)
+     *        set the $force param to `true` to create this person even if a
+     *        duplicate is found.
      */
-    public static function create(Person $person): void
+    public static function create(Person $person, bool $force = false): void
     {
-        (new PersonRequestBuilder())->create($person);
+        (new PersonRequestBuilder())->create($person, $force);
     }
 
     /**

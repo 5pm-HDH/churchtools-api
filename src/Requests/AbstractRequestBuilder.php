@@ -66,8 +66,12 @@ abstract class AbstractRequestBuilder
      * Send Create-Request for given Model.
      *
      * @param UpdatableModel $model Model
+     * @param bool $force
+     *        If the request fails because a duplicate is found (person with same name)
+     *        set the $force param to `true` to create this person even if a
+     *        duplicate is found.
      */
-    protected function createDataForModel(UpdatableModel $model): void
+    protected function createDataForModel(UpdatableModel $model, bool $force = false): void
     {
         $createAttributes = $model->getModifiableAttributes();
 
@@ -80,7 +84,7 @@ abstract class AbstractRequestBuilder
             return !is_null($value);
         });
 
-        $responseData = $this->createData($data);
+        $responseData = $this->createData($data, $force);
 
         // Some data like the ID is created on Churchtools and we have to sync it
         // back to the model.
@@ -100,13 +104,26 @@ abstract class AbstractRequestBuilder
      * Sends the data to the API endpoint to create a new record at ChurchTools.
      * When the action was successfull, the actual data from ChurchTools is returned
      * as an array.
+     *
+     * @param bool $force
+     *        If the request fails because a duplicate is found (person with same name)
+     *        set the $force param to `true` to create this person even if a
+     *        duplicate is found.
      */
-    protected function createData(array $data): array
+    protected function createData(array $data, bool $force = false): array
     {
         $url = $this->getApiEndpoint();
+        $query = [];
+
+        if ($force) {
+            $query['force'] = '1';
+        }
 
         $client = CTClient::getClient();
-        $response = $client->post($url, ['json' => $data]);
+        $response = $client->post($url, [
+            'query' => $query,
+            'json' => $data,
+        ]);
 
         $response->getBody();
         return CTResponseUtil::dataAsArray($response);
