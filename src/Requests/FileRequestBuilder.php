@@ -74,7 +74,7 @@ class FileRequestBuilder
         try {
             $data = json_decode($resultString, true);
         } catch (\Exception $e) {
-            CTLog::getLog()->warning("Could not convert upload response to JSON: ", $resultString);
+            CTLog::getLog()->warning("Could not convert upload response to JSON: ". $resultString);
             $data = [];
         }
 
