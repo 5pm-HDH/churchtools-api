@@ -71,9 +71,9 @@ Load bookings for multiple resoures:
         use CTApi\Requests\ResourceRequest;
 
         $bookings = ResourceBookingsRequest::forResources([21, 22, 23])
-                        ->where("from", "2021-02-22")
-                        ->where("status_ids", [2]) // only loads bookings with status id = 2 (Bestätigt)
-                        ->get();
+            ->where("from", "2021-02-22")
+            ->where("status_ids", [2]) // only loads bookings with status id = 2 (Bestätigt)
+            ->get();
 
         $firstBooking = $bookings[0];
 

@@ -73,7 +73,7 @@ class FileRequestTest extends TestCaseHttpMocked
         $files = FileRequest::forEvent(21)->get();
 
         foreach ($files as $file) {
-            if ($files->getName() == "birthday-kids.xlsx") {
+            if ($file->getName() == "birthday-kids.xlsx") {
                 FileRequest::deleteFile($file);
             }
         }
@@ -93,8 +93,8 @@ class FileRequestTest extends TestCaseHttpMocked
     {
         $newFile = (new FileRequestBuilder("avatar", 22))->upload(__DIR__ . "/../../integration/Requests/resources/avatar-1.png");
 
-        $this->assertEquals($newFile->getId(), 23);
-        $this->assertEquals($newFile->getName(), "avatar-1.png");
+        $this->assertEquals(23, $newFile?->getId());
+        $this->assertEquals("avatar-1.png", $newFile?->getName());
     }
 
 }

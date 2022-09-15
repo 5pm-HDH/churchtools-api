@@ -6,7 +6,6 @@ namespace Tests\Unit\Docs;
 
 use CTApi\Requests\ResourceBookingsRequest;
 use CTApi\Requests\ResourceRequest;
-use Tests\Integration\Requests\BookingsRequestTest;
 use Tests\Unit\TestCaseHttpMocked;
 
 class ResourceRequestTest extends TestCaseHttpMocked
@@ -50,9 +49,9 @@ class ResourceRequestTest extends TestCaseHttpMocked
     public function testLoadBookingsFromResourceIds()
     {
         $bookings = ResourceBookingsRequest::forResources([21, 22, 23])
-                        ->where("from", "2021-02-22")
-                        ->where("status_ids", [2]) // only loads bookings with status id = 2 (Bestätigt)
-                        ->get();
+            ->where("from", "2021-02-22")
+            ->where("status_ids", [2]) // only loads bookings with status id = 2 (Bestätigt)
+            ->get();
 
         $firstBooking = $bookings[0];
 

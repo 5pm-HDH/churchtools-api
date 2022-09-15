@@ -36,7 +36,7 @@
         $events = $personA->requestEvents()?->get();
 
         // Update Avatar: See File-API
-        $files = $personA->requestAvatar()->get();
+        $files = $personA->requestAvatar()?->get() ?? [];
         $avatar = end($files);
 
         var_dump( $avatar->getName());

@@ -114,7 +114,7 @@ If you want to delete one specific file you can use the delete-method:
         $files = FileRequest::forEvent(21)->get();
 
         foreach ($files as $file) {
-            if ($files->getName() == "birthday-kids.xlsx") {
+            if ($file->getName() == "birthday-kids.xlsx") {
                 FileRequest::deleteFile($file);
             }
         }
@@ -149,11 +149,11 @@ uploaded image. The Event-model e.q. also accepts multiple file-attachements.
 
         $newFile = (new FileRequestBuilder("avatar", 22))->upload(__DIR__ . "/../../integration/Requests/resources/avatar-1.png");
 
-        var_dump( 23);
-        // Output: $newFile->getId()
+        var_dump( $newFile?->getId());
+        // Output: 23
 
-        var_dump( "avatar-1.png");
-        // Output: $newFile->getName()
+        var_dump( $newFile?->getName());
+        // Output: "avatar-1.png"
 
 
 ```

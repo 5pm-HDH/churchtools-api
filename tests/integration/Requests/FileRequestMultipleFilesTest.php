@@ -52,8 +52,8 @@ class FileRequestMultipleFilesTest extends TestCaseAuthenticated
         // Upload Files
         $fileA = FileRequest::forEvent($this->eventId)->upload($this->pathFileA);
         $fileB = FileRequest::forEvent($this->eventId)->upload($this->pathFileB);
-
-        print_r(FileRequest::forEvent($this->eventId)->get());
+        $this->assertNotNull($fileA);
+        $this->assertNotNull($fileB);
 
         // Files should be uploaded:
         $this->assertFile($this->nameFileA, true);
@@ -63,8 +63,6 @@ class FileRequestMultipleFilesTest extends TestCaseAuthenticated
         FileRequest::deleteFile($fileA);
         $this->assertFile($this->nameFileA, false);
         $this->assertFile($this->nameFileB, true);
-
-        print_r(FileRequest::forEvent($this->eventId)->get());
 
         // Delete FileB
         FileRequest::deleteFile($fileB);
@@ -78,6 +76,7 @@ class FileRequestMultipleFilesTest extends TestCaseAuthenticated
     {
         // Upload File A
         $fileA = FileRequest::forEvent($this->eventId)->upload($this->pathFileA);
+        $this->assertNotNull($fileA);
         $this->assertFile($this->nameFileA, true);
 
         // Delete FileA the first time

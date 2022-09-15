@@ -41,7 +41,7 @@ class PersonRequestTest extends TestCaseHttpMocked
         $events = $personA->requestEvents()?->get();
 
         // Update Avatar: See File-API
-        $files = $personA->requestAvatar()->get();
+        $files = $personA->requestAvatar()?->get() ?? [];
         $avatar = end($files);
 
         $this->assertEquals("avatar-1.png", $avatar->getName());
