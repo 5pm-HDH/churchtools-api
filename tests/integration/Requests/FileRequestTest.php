@@ -4,9 +4,7 @@
 namespace Tests\Integration\Requests;
 
 
-use CTApi\CTConfig;
 use CTApi\Exceptions\CTModelException;
-use CTApi\Requests\EventRequest;
 use CTApi\Requests\FileRequest;
 use CTApi\Requests\PersonRequest;
 use CTApi\Requests\SongRequest;
@@ -30,17 +28,8 @@ class FileRequestTest extends TestCaseAuthenticated
         $this->myselfId = (int)$myself->getId();
         $this->songId = (int)TestData::getValue("FILE_SONG_ID");
         $this->songArrangementId = (int)TestData::getValue("FILE_SONG_ARRANGEMENT_ID");
-    }
 
-    public function testDeleteAvatar()
-    {
-        $this->markTestSkipped("Cannot restore Avatar after deletion.");
-        // TODO: Restore Image after deletion
-
-        FileRequest::forAvatar($this->myselfId)->delete();
-        $avatar = FileRequest::forAvatar($this->myselfId)->get();
-        $this->assertEmpty($avatar);
-
+        $this->assertAvatarIsPresent();
     }
 
     public function testUploadAvatarWrongFilePath()
@@ -49,12 +38,18 @@ class FileRequestTest extends TestCaseAuthenticated
         $avatar = FileRequest::forAvatar($this->myselfId)->upload("random-invalid-path.jpg");
     }
 
-    public function testUploadAvatar()
+    public function testDeleteAndUploadAvatar()
     {
-        // TODO: Implement upload mechanism.
-        $this->markTestSkipped("Implementation of File-Upload is no clear yet. See PR for more details.");
+        // Delete Avatar
+        FileRequest::forAvatar($this->myselfId)->delete();
+        $this->assertAvatarIsNotPresent();
+
+        // Upload new Avatar
         $avatar = FileRequest::forAvatar($this->myselfId)->upload(__DIR__ . "/resources/avatar-1.png");
-        $this->assertNotEmpty($avatar);
+        $this->assertNotNull($avatar);
+        $this->assertEquals("avatar-1.png", $avatar->getName());
+        print_r($avatar);
+        $this->assertAvatarIsPresent();
     }
 
     public function testDownloadAvatar()
@@ -89,9 +84,22 @@ class FileRequestTest extends TestCaseAuthenticated
         $this->assertEquals($newAvatarName, $avatarReloaded->getName());
     }
 
+    private function assertAvatarIsPresent()
+    {
+        $filesReloaded = FileRequest::forAvatar($this->myselfId)->get();
+        $this->assertNotEmpty($filesReloaded, "Avatar for user " . $this->myselfId . " is not present.");
+        $avatarReloaded = end($filesReloaded);
+        $this->assertNotNull($avatarReloaded);
+    }
+
+    private function assertAvatarIsNotPresent()
+    {
+        $filesReloaded = FileRequest::forAvatar($this->myselfId)->get();
+        $this->assertEmpty($filesReloaded);
+    }
+
     public function testGetMultipleFilesOfSongArrangement()
     {
-        CTConfig::enableDebugging();
         $song = SongRequest::findOrFail($this->songId);
 
         $arrangement = null;
@@ -104,17 +112,5 @@ class FileRequestTest extends TestCaseAuthenticated
 
         $files = FileRequest::forSongArrangement($this->songArrangementId)->get();
         $this->assertTrue(sizeof($files) > 1, "Arrangement contains less than 2 files.");
-    }
-
-    public function testFilesForEvent()
-    {
-        $events = EventRequest::where("from", "2022-09-14")->where("to", "2022-09-25")->get();
-        foreach($events as $event)
-        {
-            print_r([$event->getId(), $event->getStartDate()]);
-        }
-
-        $files = FileRequest::forEvent(7772)->get();
-        print_r($files);
     }
 }
