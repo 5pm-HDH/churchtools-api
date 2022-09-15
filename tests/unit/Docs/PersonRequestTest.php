@@ -39,6 +39,13 @@ class PersonRequestTest extends TestCaseHttpMocked
         // Request Event of Person
         $personA = PersonRequest::whoami();
         $events = $personA->requestEvents()?->get();
+
+        // Update Avatar: See File-API
+        $files = $personA->requestAvatar()->get();
+        $avatar = end($files);
+
+        $this->assertEquals("avatar-1.png", $avatar->getName());
+        //$personA->requestAvatar()->upload("new-avatar.png");
     }
 
 

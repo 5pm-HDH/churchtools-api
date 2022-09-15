@@ -40,6 +40,12 @@ class EventRequestTest extends TestCaseHttpMocked
         $this->assertEquals(null, $christmasService->getPermissions());
         $this->assertEquals(null, $christmasService->getCalendar());
         $this->assertEquals([], $christmasService->getEventServices());
+
+        /**
+         * Update Attachments -> see FileAPI
+         */
+        $files = $christmasService->requestFiles()?->get();
+        //$newFile = $christmasService->requestFiles()?->upload("new-file.png");
     }
 
     public function testEventAgendaRequestDocExample()

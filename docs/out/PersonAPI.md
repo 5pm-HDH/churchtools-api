@@ -35,6 +35,15 @@
         $personA = PersonRequest::whoami();
         $events = $personA->requestEvents()?->get();
 
+        // Update Avatar: See File-API
+        $files = $personA->requestAvatar()->get();
+        $avatar = end($files);
+
+        var_dump( $avatar->getName());
+        // Output: "avatar-1.png"
+
+        //$personA->requestAvatar()->upload("new-avatar.png");
+
 ```
 
 ## Request Tags from Person

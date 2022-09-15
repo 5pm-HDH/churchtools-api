@@ -54,6 +54,12 @@
         // Output: []
 
 
+        /**
+         * Update Attachments -> see FileAPI
+         */
+        $files = $christmasService->requestFiles()?->get();
+        //$newFile = $christmasService->requestFiles()?->upload("new-file.png");
+
 ```
 
 ## Event-Agenda

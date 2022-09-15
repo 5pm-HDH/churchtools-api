@@ -176,4 +176,15 @@ Group-Request & Group-Data:
         $personGroupMember = $groupMember?->getPerson();
         $personGroupMember = $groupMember?->requestPerson();
 
+        /**
+         * Upadate Group-Image: See FileAPI
+         */
+        $files = $group->requestGroupImage()?->get();
+        $groupImage = end($files);
+        var_dump( $groupImage->getName());
+        // Output: "image-1.png"
+
+
+        //$group->requestGroupImage()?->upload("new-group-image.png");
+
 ```

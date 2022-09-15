@@ -91,5 +91,14 @@ class GroupRequestTest extends TestCaseHttpMocked
 
         $personGroupMember = $groupMember?->getPerson();
         $personGroupMember = $groupMember?->requestPerson();
+
+        /**
+         * Upadate Group-Image: See FileAPI
+         */
+        $files = $group->requestGroupImage()?->get();
+        $groupImage = end($files);
+        $this->assertEquals("image-1.png", $groupImage->getName());
+
+        //$group->requestGroupImage()?->upload("new-group-image.png");
     }
 }
