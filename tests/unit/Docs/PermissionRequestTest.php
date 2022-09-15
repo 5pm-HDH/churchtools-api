@@ -4,7 +4,6 @@
 namespace Tests\Unit\Docs;
 
 
-use CTApi\CTConfig;
 use CTApi\Requests\PermissionRequest;
 use Tests\Unit\TestCaseHttpMocked;
 

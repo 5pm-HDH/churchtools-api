@@ -5,6 +5,8 @@ namespace CTApi\Models;
 
 
 use CTApi\Models\Traits\FillWithData;
+use CTApi\Requests\FileRequest;
+use CTApi\Requests\FileRequestBuilder;
 use CTApi\Requests\GroupHierarchieChildrenRequest;
 use CTApi\Requests\GroupHierarchieParentsRequest;
 use CTApi\Requests\GroupMemberRequestBuilder;
@@ -81,6 +83,14 @@ class Group
         } else {
             return null;
         }
+    }
+
+    public function requestGroupImage(): ?FileRequestBuilder
+    {
+        if (!is_null($this->getId())) {
+            return FileRequest::forGroupImage((int)$this->getId());
+        }
+        return null;
     }
 
     /**

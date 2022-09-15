@@ -1,0 +1,17 @@
+{
+  "data": {
+    "id": 23,
+    "domainType": "groupimage",
+    "domainId": "41",
+    "name": "image-1.png",
+    "filename": "eb0ee12cde07910144e3059177c42b9b46884e77368510e8178bd486b3a0748c",
+    "fileUrl": "https:\/\/intern.church.tools\/?q=public\/filedownload&id=11076&filename=eb0ee12cde07910144e3059177c42b9b46884e77368510e8178bd486b3a0748c",
+    "imageUrl": "https:\/\/intern.church.tools\/images\/11076\/fc95ccae02311467801819503fae71db26a4dc18e19e4eca916d30831db161c2",
+    "relativeUrl": "?q=public\/filedownload&id=11076&filename=eb0ee12cde07910144e3059177c42b9b46884e77368510e8178bd486b3a0748c",
+    "showOnlyWhenEditable": false,
+    "securityLevelId": "0",
+    "type": "file",
+    "size": null,
+    "additionalInfos": []
+  }
+}

@@ -10,7 +10,6 @@ use CTApi\CTLog;
 use CTApi\Exceptions\CTRequestException;
 use CTApi\Models\Traits\FillWithData;
 use CTApi\Models\Traits\MetaAttribute;
-use GuzzleHttp\Exception\GuzzleException;
 
 class File
 {
@@ -25,6 +24,9 @@ class File
     protected ?string $name = null;
     protected ?string $filename = null;
     protected ?string $fileUrl = null;
+    protected ?string $relativeUrl = null;
+    protected ?bool $showOnlyWhenEditable = null;
+    protected ?string $securityLevelId = null;
 
     protected function fillArrayType(string $key, array $data): void
     {
@@ -114,6 +116,60 @@ class File
             }
         }
         return $query;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getRelativeUrl(): ?string
+    {
+        return $this->relativeUrl;
+    }
+
+    /**
+     * @param string|null $relativeUrl
+     * @return File
+     */
+    public function setRelativeUrl(?string $relativeUrl): File
+    {
+        $this->relativeUrl = $relativeUrl;
+        return $this;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function getShowOnlyWhenEditable(): ?bool
+    {
+        return $this->showOnlyWhenEditable;
+    }
+
+    /**
+     * @param bool|null $showOnlyWhenEditable
+     * @return File
+     */
+    public function setShowOnlyWhenEditable(?bool $showOnlyWhenEditable): File
+    {
+        $this->showOnlyWhenEditable = $showOnlyWhenEditable;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getSecurityLevelId(): ?string
+    {
+        return $this->securityLevelId;
+    }
+
+    /**
+     * @param string|null $securityLevelId
+     * @return File
+     */
+    public function setSecurityLevelId(?string $securityLevelId): File
+    {
+        $this->securityLevelId = $securityLevelId;
+        return $this;
     }
 
     /**

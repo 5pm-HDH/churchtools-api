@@ -3,7 +3,6 @@
 ## Internal Group Permission
 
 ```php
-        use CTApi\CTConfig;
         use CTApi\Requests\PermissionRequest;
 
         $internalGroupPermission = PermissionRequest::forGroup(21)->get();
@@ -24,7 +23,6 @@
 ## Internal Person Permission
 
 ```php
-        use CTApi\CTConfig;
         use CTApi\Requests\PermissionRequest;
 
         $internalPersonPermission = PermissionRequest::forPerson(23)->get();
@@ -50,7 +48,6 @@
 ## Global Permission (for logged in user)
 
 ```php
-        use CTApi\CTConfig;
         use CTApi\Requests\PermissionRequest;
 
         $globalPermission = PermissionRequest::myPermissions()->get();
