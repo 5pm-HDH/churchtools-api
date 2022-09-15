@@ -1,13 +1,48 @@
 # FileAPI
 
-## Edit Person Avatar
+## Available Domain-Types:
 
-### Get Avatar
+The FileRequestBuilder can be accessed via the FileRequest-Facade:
+
 ```php
-        use CTApi\CTClient;
         use CTApi\Models\File;
         use CTApi\Requests\FileRequest;
-        use CTApi\Utils\CTResponseUtil;
+
+        FileRequest::forAvatar(21);
+        FileRequest::forGroupImage(21);
+        FileRequest::forLogo(21);
+        FileRequest::forAttatchment(21);
+        FileRequest::forHtmlTemplate(21);
+        FileRequest::forEvent(21);
+        FileRequest::forSongArrangement(21);
+        FileRequest::forImportTable(21);
+        FileRequest::forPerson(21);
+        FileRequest::forFamilyAvatar(21);
+
+```
+
+Or you can call the builder direct in the model. E.q. in the events-model:
+
+```php
+        use CTApi\Models\File;
+        use CTApi\Requests\FileRequest;
+
+        $event = new \CTApi\Models\Event();
+        $event->requestFiles()?->get();
+        $event->requestFiles()?->delete();
+        // ... see methods below
+
+```
+
+## FileRequestBuilder-Methods:
+
+### Get files
+
+Returns an array with all available files. The Avatar-Route only contains one file:
+
+```php
+        use CTApi\Models\File;
+        use CTApi\Requests\FileRequest;
 
         $files = FileRequest::forAvatar(21)->get();
         $avatar = end($files);
@@ -51,12 +86,13 @@
 
 ```
 
-### Delete Avatar
+### Delete all files
+
+Deletes all files that are attached to the domain-model.
+
 ```php
-        use CTApi\CTClient;
         use CTApi\Models\File;
         use CTApi\Requests\FileRequest;
-        use CTApi\Utils\CTResponseUtil;
 
         FileRequest::forAvatar(23)->delete();
 
@@ -67,12 +103,29 @@
 
 ```
 
-### Rename Avatar-File
+### Delete single file
+
+If you want to delete one specific file you can use the delete-method:
+
 ```php
-        use CTApi\CTClient;
         use CTApi\Models\File;
         use CTApi\Requests\FileRequest;
-        use CTApi\Utils\CTResponseUtil;
+
+        $files = FileRequest::forEvent(21)->get();
+
+        foreach ($files as $file) {
+            if ($files->getName() == "birthday-kids.xlsx") {
+                FileRequest::deleteFile($file);
+            }
+        }
+
+```
+
+### Rename file
+
+```php
+        use CTApi\Models\File;
+        use CTApi\Requests\FileRequest;
 
         $files = FileRequest::forAvatar(22)->get();
         $avatarFile = end($files);
@@ -85,14 +138,16 @@
 
 ```
 
-### Upload new Avatar
+### Upload file
+
+The avatar-model only accepts one image. If you upload a image the current used avatare will be replaced with the
+uploaded image. The Event-model e.q. also accepts multiple file-attachements.
+
 ```php
-        use CTApi\CTClient;
         use CTApi\Models\File;
         use CTApi\Requests\FileRequest;
-        use CTApi\Utils\CTResponseUtil;
 
-        $newFile = (new FileRequestBuilder("avatar", 22))->upload(__DIR__. "/../../integration/Requests/resources/avatar-1.png");
+        $newFile = (new FileRequestBuilder("avatar", 22))->upload(__DIR__ . "/../../integration/Requests/resources/avatar-1.png");
 
         var_dump( 23);
         // Output: $newFile->getId()

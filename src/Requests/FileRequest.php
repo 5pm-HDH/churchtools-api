@@ -78,4 +78,18 @@ class FileRequest
 
         $file->setName($newFilename);
     }
+
+    /**
+     * Deletes file.
+     * @param File $file
+     */
+    public static function deleteFile(File $file): void
+    {
+        if(is_null($file->getId())){
+            throw new CTModelException("Id in file is missing.");
+        }
+
+        $client = CTClient::getClient();
+        $client->delete('/api/files/' . $file->getId());
+    }
 }

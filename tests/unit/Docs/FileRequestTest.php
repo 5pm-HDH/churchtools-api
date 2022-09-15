@@ -3,15 +3,40 @@
 
 namespace Tests\Unit\Docs;
 
-
-use CTApi\CTClient;
 use CTApi\Models\File;
 use CTApi\Requests\FileRequest;
-use CTApi\Utils\CTResponseUtil;
 use Tests\Unit\TestCaseHttpMocked;
 
 class FileRequestTest extends TestCaseHttpMocked
 {
+
+    /**
+     * @doesNotPerformAssertions
+     */
+    public function testAvailableDomainTypes()
+    {
+        FileRequest::forAvatar(21);
+        FileRequest::forGroupImage(21);
+        FileRequest::forLogo(21);
+        FileRequest::forAttatchment(21);
+        FileRequest::forHtmlTemplate(21);
+        FileRequest::forEvent(21);
+        FileRequest::forSongArrangement(21);
+        FileRequest::forImportTable(21);
+        FileRequest::forPerson(21);
+        FileRequest::forFamilyAvatar(21);
+    }
+
+    /**
+     * @doesNotPerformAssertions
+     */
+    public function testRequestBuilderViaModel()
+    {
+        $event = new \CTApi\Models\Event();
+        $event->requestFiles()?->get();
+        $event->requestFiles()?->delete();
+        // ... see methods below
+    }
 
     public function testShowAvatar()
     {
@@ -40,6 +65,20 @@ class FileRequestTest extends TestCaseHttpMocked
         $this->assertEquals(true, empty($files));
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
+    public function testDeleteSingleFile()
+    {
+        $files = FileRequest::forEvent(21)->get();
+
+        foreach ($files as $file) {
+            if ($files->getName() == "birthday-kids.xlsx") {
+                FileRequest::deleteFile($file);
+            }
+        }
+    }
+
     public function testRenameAvatar()
     {
         $files = FileRequest::forAvatar(22)->get();
@@ -52,7 +91,7 @@ class FileRequestTest extends TestCaseHttpMocked
 
     public function testUploadAvatar()
     {
-        $newFile = (new FileRequestBuilder("avatar", 22))->upload(__DIR__. "/../../integration/Requests/resources/avatar-1.png");
+        $newFile = (new FileRequestBuilder("avatar", 22))->upload(__DIR__ . "/../../integration/Requests/resources/avatar-1.png");
 
         $this->assertEquals($newFile->getId(), 23);
         $this->assertEquals($newFile->getName(), "avatar-1.png");
@@ -60,7 +99,8 @@ class FileRequestTest extends TestCaseHttpMocked
 
 }
 
-class FileRequestBuilder extends \CTApi\Requests\FileRequestBuilder{
+class FileRequestBuilder extends \CTApi\Requests\FileRequestBuilder
+{
 
     public function __construct(string $domainType, int $domainIdentifier)
     {
@@ -69,9 +109,9 @@ class FileRequestBuilder extends \CTApi\Requests\FileRequestBuilder{
 
     public function upload(string $filePath): ?File
     {
-        $client = CTClient::getClient();
+        $client = \CTApi\CTClient::getClient();
         $response = $client->post($this->getApiEndpoint());
-        $data = CTResponseUtil::dataAsArray($response);
+        $data = \CTApi\Utils\CTResponseUtil::dataAsArray($response);
         return File::createModelFromData($data);
     }
 }

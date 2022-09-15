@@ -7,15 +7,11 @@ namespace Tests\Integration\Requests;
 use CTApi\Exceptions\CTModelException;
 use CTApi\Requests\FileRequest;
 use CTApi\Requests\PersonRequest;
-use CTApi\Requests\SongRequest;
 use Tests\Integration\TestCaseAuthenticated;
-use Tests\Integration\TestData;
 
-class FileRequestTest extends TestCaseAuthenticated
+class FileRequestAvatarTest extends TestCaseAuthenticated
 {
     private int $myselfId;
-    private int $songId;
-    private int $songArrangementId;
 
     private string $fileNameA = "avatar-image-1.jpg";
     private string $fileNameB = "avatar-image-2.jpg";
@@ -26,8 +22,6 @@ class FileRequestTest extends TestCaseAuthenticated
         $this->checkIfTestSuiteIsEnabled("FILE_AVATAR");
         $myself = PersonRequest::whoami();
         $this->myselfId = (int)$myself->getId();
-        $this->songId = (int)TestData::getValue("FILE_SONG_ID");
-        $this->songArrangementId = (int)TestData::getValue("FILE_SONG_ARRANGEMENT_ID");
 
         $this->assertAvatarIsPresent();
     }
@@ -95,21 +89,5 @@ class FileRequestTest extends TestCaseAuthenticated
     {
         $filesReloaded = FileRequest::forAvatar($this->myselfId)->get();
         $this->assertEmpty($filesReloaded);
-    }
-
-    public function testGetMultipleFilesOfSongArrangement()
-    {
-        $song = SongRequest::findOrFail($this->songId);
-
-        $arrangement = null;
-        foreach ($song->getArrangements() as $arrangementItem) {
-            if ($arrangementItem->getId() == $this->songArrangementId) {
-                $arrangement = $arrangementItem;
-            }
-        }
-        $this->assertNotNull($arrangement, "Could not find Arrangement with id " . $this->songArrangementId . " in song: " . $this->songId);
-
-        $files = FileRequest::forSongArrangement($this->songArrangementId)->get();
-        $this->assertTrue(sizeof($files) > 1, "Arrangement contains less than 2 files.");
     }
 }
