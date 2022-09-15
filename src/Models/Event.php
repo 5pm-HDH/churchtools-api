@@ -6,6 +6,8 @@ namespace CTApi\Models;
 
 use CTApi\Models\Traits\FillWithData;
 use CTApi\Requests\EventAgendaRequestBuilder;
+use CTApi\Requests\FileRequest;
+use CTApi\Requests\FileRequestBuilder;
 
 class Event
 {
@@ -44,6 +46,14 @@ class Event
     public function requestAgenda(): EventAgenda
     {
         return (new EventAgendaRequestBuilder((int)$this->getId()))->get();
+    }
+
+    public function requestFiles(): ?FileRequestBuilder
+    {
+        if (!is_null($this->getId())) {
+            return FileRequest::forEvent((int)$this->getId());
+        }
+        return null;
     }
 
     public function requestEventServiceWithServiceId(int $serviceId): ?EventService

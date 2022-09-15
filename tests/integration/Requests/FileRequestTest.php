@@ -6,6 +6,7 @@ namespace Tests\Integration\Requests;
 
 use CTApi\CTConfig;
 use CTApi\Exceptions\CTModelException;
+use CTApi\Requests\EventRequest;
 use CTApi\Requests\FileRequest;
 use CTApi\Requests\PersonRequest;
 use CTApi\Requests\SongRequest;
@@ -103,5 +104,17 @@ class FileRequestTest extends TestCaseAuthenticated
 
         $files = FileRequest::forSongArrangement($this->songArrangementId)->get();
         $this->assertTrue(sizeof($files) > 1, "Arrangement contains less than 2 files.");
+    }
+
+    public function testFilesForEvent()
+    {
+        $events = EventRequest::where("from", "2022-09-14")->where("to", "2022-09-25")->get();
+        foreach($events as $event)
+        {
+            print_r([$event->getId(), $event->getStartDate()]);
+        }
+
+        $files = FileRequest::forEvent(7772)->get();
+        print_r($files);
     }
 }

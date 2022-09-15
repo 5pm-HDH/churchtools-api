@@ -9,6 +9,8 @@ use CTApi\Models\Traits\ExtractData;
 use CTApi\Models\Traits\FillWithData;
 use CTApi\Models\Traits\MetaAttribute;
 use CTApi\Requests\AbsencePersonRequestBuilder;
+use CTApi\Requests\FileRequest;
+use CTApi\Requests\FileRequestBuilder;
 use CTApi\Requests\PersonEventRequestBuilder;
 use CTApi\Requests\PersonGroupRequestBuilder;
 use CTApi\Requests\PersonTagRequestBuilder;
@@ -127,6 +129,14 @@ class Person implements UpdatableModel
     {
         if (!is_null($this->getId())) {
             return new PersonGroupRequestBuilder((int)$this->getId());
+        }
+        return null;
+    }
+
+    public function requestAvatar(): ?FileRequestBuilder
+    {
+        if (!is_null($this->getId())) {
+            return FileRequest::forAvatar((int)$this->getId());
         }
         return null;
     }
