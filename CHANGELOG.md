@@ -20,6 +20,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - [Added force flag to person creation, to add persons with same name](https://github.com/5pm-HDH/churchtools-api/pull/107)
 - [Absence-API](https://github.com/5pm-HDH/churchtools-api/pull/111)
 - [File-API](https://github.com/5pm-HDH/churchtools-api/pull/114)
+- [Search-API](https://github.com/5pm-HDH/churchtools-api/pull/116)
 
 ### Changed
 - [Refactor CTClient:](https://github.com/5pm-HDH/churchtools-api/pull/83) transform inheritance from GuzzleClient to composition-relation
