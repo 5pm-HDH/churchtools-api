@@ -6,11 +6,10 @@ namespace CTApi\Models;
 
 use CTApi\Models\Traits\FillWithData;
 
-class GroupRole
+class GroupRole extends AbstractModel
 {
     use FillWithData;
 
-    protected ?string $id = null;
     protected ?string $groupTypeId = null;
     protected ?string $name = null;
     protected ?string $shorty = null;
@@ -26,14 +25,6 @@ class GroupRole
     protected ?bool $isActive = null;
     protected ?bool $canReadChat = null;
     protected ?bool $canWriteChat = null;
-
-    /**
-     * @return string|null
-     */
-    public function getId(): ?string
-    {
-        return $this->id;
-    }
 
     /**
      * @param string|null $id

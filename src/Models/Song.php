@@ -8,11 +8,10 @@ use CTApi\Models\Traits\FillWithData;
 use CTApi\Models\Traits\MetaAttribute;
 use CTApi\Requests\SongRequest;
 
-class Song
+class Song extends AbstractModel
 {
     use FillWithData, MetaAttribute;
 
-    protected ?string $id = null;
     protected ?string $arrangementId = null;
     protected ?string $name = null;
     protected ?string $arrangement = null;
@@ -84,14 +83,6 @@ class Song
         }
 
         return $selectedArrangement;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getId(): ?string
-    {
-        return $this->id;
     }
 
     /**

@@ -6,23 +6,14 @@ namespace CTApi\Models;
 
 use CTApi\Models\Traits\FillWithData;
 
-class SongCategory
+class SongCategory extends AbstractModel
 {
-    protected ?string $id = null;
     protected ?string $name = null;
     protected ?string $nameTranslated = null;
     protected ?string $sortKey = null;
     protected ?string $campusId = null;
 
     use FillWithData;
-
-    /**
-     * @return string|null
-     */
-    public function getId(): ?string
-    {
-        return $this->id;
-    }
 
     /**
      * @param string|null $id

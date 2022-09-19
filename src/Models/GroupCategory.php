@@ -6,22 +6,13 @@ namespace CTApi\Models;
 
 use CTApi\Models\Traits\FillWithData;
 
-class GroupCategory
+class GroupCategory extends AbstractModel
 {
     use FillWithData;
 
-    protected ?string $id = null;
     protected ?string $name = null;
     protected ?string $nameTranslated = null;
     protected ?string $sortKey = null;
-
-    /**
-     * @return string|null
-     */
-    public function getId(): ?string
-    {
-        return $this->id;
-    }
 
     /**
      * @param string|null $id

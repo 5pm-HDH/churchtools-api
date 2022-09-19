@@ -7,11 +7,10 @@ namespace CTApi\Models;
 use CTApi\Models\Traits\FillWithData;
 use CTApi\Models\Traits\MetaAttribute;
 
-class GroupHomepage
+class GroupHomepage extends AbstractModel
 {
     use FillWithData, MetaAttribute;
 
-    protected ?string $id = null;
     protected ?string $parentGroup = null;
     protected ?bool $isEnabled = null;
     protected ?string $showLeader = null;
@@ -38,14 +37,6 @@ class GroupHomepage
             default:
                 $this->fillDefault($key, $data);
         }
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getId(): ?string
-    {
-        return $this->id;
     }
 
     /**

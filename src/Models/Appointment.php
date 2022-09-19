@@ -6,11 +6,10 @@ namespace CTApi\Models;
 
 use CTApi\Models\Traits\FillWithData;
 
-class Appointment
+class Appointment extends AbstractModel
 {
     use FillWithData;
 
-    protected ?string $id = null;
     protected ?string $caption = null;
     protected ?string $note = null;
     protected ?string $version = null;
@@ -45,14 +44,6 @@ class Appointment
             default:
                 $this->fillDefault($key, $data);
         }
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getId(): ?string
-    {
-        return $this->id;
     }
 
     /**

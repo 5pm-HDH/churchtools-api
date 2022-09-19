@@ -7,15 +7,14 @@ namespace CTApi\Models;
 use CTApi\Models\Traits\FillWithData;
 use CTApi\Requests\PersonRequest;
 
-class Tag
+class Tag extends AbstractModel
 {
     use FillWithData;
 
-    protected ?string $id;
-    protected ?string $name;
-    protected ?string $modifiedAt;
-    protected ?string $modifiedBy;
-    protected ?string $count;
+    protected ?string $name = null;
+    protected ?string $modifiedAt = null;
+    protected ?string $modifiedBy = null;
+    protected ?string $count = null;
 
     public function requestModifier(): ?Person
     {
@@ -23,14 +22,6 @@ class Tag
             return PersonRequest::find((int)$this->modifiedBy);
         }
         return null;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getId(): ?string
-    {
-        return $this->id;
     }
 
     /**

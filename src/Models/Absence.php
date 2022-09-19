@@ -8,11 +8,10 @@ use CTApi\Models\Interfaces\UpdatableModel;
 use CTApi\Models\Traits\ExtractData;
 use CTApi\Models\Traits\FillWithData;
 
-class Absence implements UpdatableModel
+class Absence extends AbstractModel implements UpdatableModel
 {
     use FillWithData, ExtractData;
 
-    protected ?string $id = null;
     protected ?string $comment = null;
     protected ?string $absenceReasonId = null;
     protected ?AbsenceReason $absenceReason = null;
@@ -46,14 +45,6 @@ class Absence implements UpdatableModel
             "startDate",
             "startTime"
         ];
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getId(): ?string
-    {
-        return $this->id;
     }
 
     /**

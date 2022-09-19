@@ -11,11 +11,10 @@ use CTApi\Requests\GroupHierarchieChildrenRequest;
 use CTApi\Requests\GroupHierarchieParentsRequest;
 use CTApi\Requests\GroupMemberRequestBuilder;
 
-class Group
+class Group extends AbstractModel
 {
     use FillWithData;
 
-    protected ?string $id = null;
     protected ?string $guid = null;
     protected ?string $name = null;
     protected ?string $securityLevelForGroup = null;
@@ -91,14 +90,6 @@ class Group
             return FileRequest::forGroupImage((int)$this->getId());
         }
         return null;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getId(): ?string
-    {
-        return $this->id;
     }
 
     /**

@@ -11,11 +11,10 @@ use CTApi\Requests\SongArrangementRequestBuilder;
 use CTApi\Requests\SongRequest;
 use CTApi\Requests\SongRequestBuilder;
 
-class EventAgenda
+class EventAgenda extends AbstractModel
 {
     use FillWithData, MetaAttribute;
 
-    protected ?string $id = null;
     protected ?string $name = null;
     protected ?string $series = null;
     protected ?bool $isFinal = null;
@@ -78,14 +77,6 @@ class EventAgenda
         }, $this->getSongs());
 
         return new SongArrangementRequestBuilder($arrangements);
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getId(): ?string
-    {
-        return $this->id;
     }
 
     /**

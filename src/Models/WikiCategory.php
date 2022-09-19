@@ -7,11 +7,10 @@ namespace CTApi\Models;
 use CTApi\Models\Traits\FillWithData;
 use CTApi\Requests\WikiPageRequestBuilder;
 
-class WikiCategory
+class WikiCategory extends AbstractModel
 {
     use FillWithData;
 
-    protected ?string $id = null;
     protected ?string $name = null;
     protected ?string $nameTranslated = null;
     protected ?string $sortKey = null;
@@ -52,14 +51,6 @@ class WikiCategory
     {
         $pages = $this->requestPages()?->get() ?? [];
         return WikiPageTreeNode::processWikiPagesReturnRootNode($pages);
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getId(): ?string
-    {
-        return $this->id;
     }
 
     /**

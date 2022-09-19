@@ -15,11 +15,10 @@ use CTApi\Requests\PersonEventRequestBuilder;
 use CTApi\Requests\PersonGroupRequestBuilder;
 use CTApi\Requests\PersonTagRequestBuilder;
 
-class Person implements UpdatableModel
+class Person extends AbstractModel implements UpdatableModel
 {
     use FillWithData, ExtractData, MetaAttribute;
 
-    protected ?string $id = null;
     protected ?string $guid = null;
     protected ?string $firstName = null;
     protected ?string $lastName = null;
@@ -155,14 +154,6 @@ class Person implements UpdatableModel
             return new AbsencePersonRequestBuilder((int)$this->getId());
         }
         return null;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getId(): ?string
-    {
-        return $this->id;
     }
 
     /**
