@@ -20,7 +20,7 @@ class ServiceGroup extends AbstractModel
     public function requestServices(): ?ServiceFromServiceGroupBuilder
     {
         if (!is_null($this->getId())) {
-            return new ServiceFromServiceGroupBuilder((int)$this->getId());
+            return new ServiceFromServiceGroupBuilder($this->getIdAsInteger());
         }
         return null;
     }

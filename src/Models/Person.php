@@ -119,7 +119,7 @@ class Person extends AbstractModel implements UpdatableModel
     public function requestEvents(): ?PersonEventRequestBuilder
     {
         if (!is_null($this->getId())) {
-            return new PersonEventRequestBuilder((int)$this->getId());
+            return new PersonEventRequestBuilder($this->getIdAsInteger());
         }
         return null;
     }
@@ -127,7 +127,7 @@ class Person extends AbstractModel implements UpdatableModel
     public function requestGroups(): ?PersonGroupRequestBuilder
     {
         if (!is_null($this->getId())) {
-            return new PersonGroupRequestBuilder((int)$this->getId());
+            return new PersonGroupRequestBuilder($this->getIdAsInteger());
         }
         return null;
     }
@@ -135,7 +135,7 @@ class Person extends AbstractModel implements UpdatableModel
     public function requestAvatar(): ?FileRequestBuilder
     {
         if (!is_null($this->getId())) {
-            return FileRequest::forAvatar((int)$this->getId());
+            return FileRequest::forAvatar($this->getIdAsInteger());
         }
         return null;
     }
@@ -143,7 +143,7 @@ class Person extends AbstractModel implements UpdatableModel
     public function requestTags(): ?PersonTagRequestBuilder
     {
         if (!is_null($this->getId())) {
-            return new PersonTagRequestBuilder((int)$this->getId());
+            return new PersonTagRequestBuilder($this->getIdAsInteger());
         }
         return null;
     }
@@ -151,7 +151,7 @@ class Person extends AbstractModel implements UpdatableModel
     public function requestAbsence(): ?AbsencePersonRequestBuilder
     {
         if (!is_null($this->getId())) {
-            return new AbsencePersonRequestBuilder((int)$this->getId());
+            return new AbsencePersonRequestBuilder($this->getIdAsInteger());
         }
         return null;
     }

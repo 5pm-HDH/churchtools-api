@@ -60,7 +60,7 @@ class Group extends AbstractModel
     public function requestMembers(): ?GroupMemberRequestBuilder
     {
         if ($this->getId() != null) {
-            return new GroupMemberRequestBuilder((int)$this->getId());
+            return new GroupMemberRequestBuilder($this->getIdAsInteger());
         } else {
             return null;
         }
@@ -69,7 +69,7 @@ class Group extends AbstractModel
     public function requestGroupParents(): ?GroupHierarchieParentsRequest
     {
         if ($this->getId() != null) {
-            return new GroupHierarchieParentsRequest((int)$this->getId());
+            return new GroupHierarchieParentsRequest($this->getIdAsInteger());
         } else {
             return null;
         }
@@ -78,7 +78,7 @@ class Group extends AbstractModel
     public function requestGroupChildren(): ?GroupHierarchieChildrenRequest
     {
         if ($this->getId() != null) {
-            return new GroupHierarchieChildrenRequest((int)$this->getId());
+            return new GroupHierarchieChildrenRequest($this->getIdAsInteger());
         } else {
             return null;
         }
@@ -87,7 +87,7 @@ class Group extends AbstractModel
     public function requestGroupImage(): ?FileRequestBuilder
     {
         if (!is_null($this->getId())) {
-            return FileRequest::forGroupImage((int)$this->getId());
+            return FileRequest::forGroupImage($this->getIdAsInteger());
         }
         return null;
     }

@@ -21,7 +21,7 @@ class FileRequestAvatarTest extends TestCaseAuthenticated
         parent::setUp();
         $this->checkIfTestSuiteIsEnabled("FILE_AVATAR");
         $myself = PersonRequest::whoami();
-        $this->myselfId = (int)$myself->getId();
+        $this->myselfId = $myself->getIdAsInteger();
 
         $this->assertAvatarIsPresent();
     }

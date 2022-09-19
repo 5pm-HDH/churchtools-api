@@ -31,13 +31,13 @@ class AbsenceRequestTest extends TestCaseAuthenticated
         $this->absencePersonReason = TestData::getValue("ABSENCE_PERSON_REASON");
 
         $myself = PersonRequest::whoami();
-        $this->myselfId = (int)$myself->getId();
+        $this->myselfId = $myself->getIdAsInteger();
     }
 
     public function testRequestFacade()
     {
         $myself = PersonRequest::whoami();
-        $requestBuilder = AbsenceRequest::forPerson((int)$myself->getId());
+        $requestBuilder = AbsenceRequest::forPerson($myself->getIdAsInteger());
 
         $this->assertAbsenceExists($requestBuilder);
     }
@@ -89,7 +89,7 @@ class AbsenceRequestTest extends TestCaseAuthenticated
 
         $this->assertNotNull($absence->getId()); // id is filled with response data
 
-        $freshLoadedAbsence = AbsenceRequest::findOrFail($this->myselfId, (int)$absence->getId());
+        $freshLoadedAbsence = AbsenceRequest::findOrFail($this->myselfId, $absence->getIdAsInteger());
         $this->assertAbsenceIsEqual($absence, $freshLoadedAbsence);
 
 
@@ -110,12 +110,10 @@ class AbsenceRequestTest extends TestCaseAuthenticated
 
     private function deleteAbsence(Absence $absence)
     {
-        $absenceId = $absence->getId();
-        $this->assertNotNull($absenceId);
-
+        $absenceId = $absence->getIdAsInteger();
         AbsenceRequest::deleteAbsence($this->myselfId, $absence);
 
-        $freshLoadedAbsence = AbsenceRequest::find($this->myselfId, (int)$absenceId);
+        $freshLoadedAbsence = AbsenceRequest::find($this->myselfId, $absenceId);
         $this->assertNull($freshLoadedAbsence);
     }
 

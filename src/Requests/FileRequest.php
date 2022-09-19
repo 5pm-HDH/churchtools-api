@@ -67,12 +67,8 @@ class FileRequest
      */
     public static function updateName(File $file, string $newFilename): void
     {
-        if (is_null($file->getId())) {
-            throw new CTModelException("Id in file is missing.");
-        }
-
         $client = CTClient::getClient();
-        $client->patch('/api/files/' . $file->getId(), [
+        $client->patch('/api/files/' . $file->getIdOrFail(), [
             "json" => ["name" => $newFilename]
         ]);
 
@@ -85,11 +81,7 @@ class FileRequest
      */
     public static function deleteFile(File $file): void
     {
-        if(is_null($file->getId())){
-            throw new CTModelException("Id in file is missing.");
-        }
-
         $client = CTClient::getClient();
-        $client->delete('/api/files/' . $file->getId());
+        $client->delete('/api/files/' . $file->getIdOrFail());
     }
 }

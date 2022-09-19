@@ -44,13 +44,13 @@ class Event extends AbstractModel
 
     public function requestAgenda(): EventAgenda
     {
-        return (new EventAgendaRequestBuilder((int)$this->getId()))->get();
+        return (new EventAgendaRequestBuilder($this->getIdAsInteger()))->get();
     }
 
     public function requestFiles(): ?FileRequestBuilder
     {
         if (!is_null($this->getId())) {
-            return FileRequest::forEvent((int)$this->getId());
+            return FileRequest::forEvent($this->getIdAsInteger());
         }
         return null;
     }

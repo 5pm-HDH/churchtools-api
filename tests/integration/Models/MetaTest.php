@@ -26,7 +26,7 @@ class MetaTest extends TestCaseAuthenticated
     {
         $this->checkIfTestShouldBeSkipped("EVENT_AGENDA_SHOULD_TEST");
 
-        $eventId = (int)TestData::getValue("EVENT_AGENDA_EVENT_ID");
+        $eventId = TestData::getValueAsInteger("EVENT_AGENDA_EVENT_ID");
         $agenda = EventAgendaRequest::fromEvent($eventId)->get();
 
         $this->assertModelHasValidMeta($agenda);

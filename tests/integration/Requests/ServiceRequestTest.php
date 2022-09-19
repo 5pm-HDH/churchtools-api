@@ -22,7 +22,7 @@ class ServiceRequestTest extends TestCaseAuthenticated
 
     public function testFindService(): void
     {
-        $serviceId = (int)TestData::getValue("SERVICE_ID");
+        $serviceId = TestData::getValueAsInteger("SERVICE_ID");
         $serviceName = TestData::getValue("SERVICE_NAME");
 
         $service = ServiceRequest::find($serviceId);
@@ -49,8 +49,8 @@ class ServiceRequestTest extends TestCaseAuthenticated
 
     public function testServiceRequestServiceGroup(): void
     {
-        $serviceId = (int)TestData::getValue("SERVICE_ID");
-        $serviceGroupId = (int)TestData::getValue("SERVICE_GROUP_ID");
+        $serviceId = TestData::getValueAsInteger("SERVICE_ID");
+        $serviceGroupId = TestData::getValueAsInteger("SERVICE_GROUP_ID");
         $serviceGroupName = TestData::getValue("SERVICE_GROUP_NAME");
 
         $service = ServiceRequest::findOrFail($serviceId);
@@ -68,7 +68,7 @@ class ServiceRequestTest extends TestCaseAuthenticated
 
     public function testFindServiceGroup(): void
     {
-        $serviceGroupId = (int)TestData::getValue("SERVICE_GROUP_ID");
+        $serviceGroupId = TestData::getValueAsInteger("SERVICE_GROUP_ID");
         $serviceGroupName = TestData::getValue("SERVICE_GROUP_NAME");
 
         $serviceGroup = ServiceGroupRequest::find($serviceGroupId);
@@ -95,8 +95,8 @@ class ServiceRequestTest extends TestCaseAuthenticated
 
     public function testRequestServicesFromServiceGroup(): void
     {
-        $serviceGroupId = (int)TestData::getValue("SERVICE_GROUP_ID");
-        $serviceId = (int)TestData::getValue("SERVICE_ID");
+        $serviceGroupId = TestData::getValueAsInteger("SERVICE_GROUP_ID");
+        $serviceId = TestData::getValueAsInteger("SERVICE_ID");
         $serviceName = TestData::getValue("SERVICE_NAME");
 
         $serviceGroup = ServiceGroupRequest::findOrFail($serviceGroupId);
