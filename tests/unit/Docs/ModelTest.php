@@ -75,4 +75,16 @@ class ModelTest extends TestCase
         $person->getLastName();
         $person->setLastName("Joe");
     }
+
+    public function testGetId()
+    {
+        // can be null:
+        $this->assertEquals("21", $this->person->getId());
+
+        // throws CTModelException if id is null:
+        $this->assertEquals("21", $this->person->getIdOrFail());
+
+        // return int or throws CTModelException:
+        $this->assertEquals(21, $this->person->getIdAsInteger());
+    }
 }
