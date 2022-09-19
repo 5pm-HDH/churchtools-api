@@ -2,6 +2,8 @@
 
 namespace Tests\Integration;
 
+use phpDocumentor\Reflection\Types\Integer;
+
 class TestData
 {
 
@@ -32,5 +34,10 @@ class TestData
             return false;
         }
         throw new \InvalidArgumentException("TestData for value " . $key . " is invalid. Bool value excepted.");
+    }
+
+    public static function getValueAsInteger(string $key): int
+    {
+        return (int) self::getValue($key);
     }
 }

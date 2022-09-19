@@ -65,22 +65,13 @@ class PersonRequestBuilder extends AbstractRequestBuilder
      */
     public function update(Person $person, array $attributesToUpdate = []): void
     {
-        $id = $person->getId();
-        if (is_null($id)) {
-            throw new CTModelException("ID of Person cannot be null.");
-        } else {
-            $this->updateDataForModel($person, $id, $attributesToUpdate);
-        }
+        $id = $person->getIdOrFail();
+        $this->updateDataForModel($person, $id, $attributesToUpdate);
     }
 
     public function delete(Person $person): void
     {
-        $id = $person->getId();
-
-        if (is_null($id)) {
-            throw new CTModelException("ID of Person cannot be null.");
-        }
-
+        $id = $person->getIdOrFail();
         $this->deleteData($id);
     }
 

@@ -7,11 +7,10 @@ namespace CTApi\Models;
 use CTApi\Models\Traits\FillWithData;
 use CTApi\Models\Traits\MetaAttribute;
 
-class EventAgendaItem
+class EventAgendaItem extends AbstractModel
 {
     use FillWithData, MetaAttribute;
 
-    protected ?string $id = null;
     protected ?string $position = null;
     protected ?string $title = null;
     protected ?string $type = null;
@@ -36,14 +35,6 @@ class EventAgendaItem
             default:
                 $this->fillDefault($key, $data);
         }
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getId(): ?string
-    {
-        return $this->id;
     }
 
     /**

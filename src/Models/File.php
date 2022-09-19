@@ -11,11 +11,10 @@ use CTApi\Exceptions\CTRequestException;
 use CTApi\Models\Traits\FillWithData;
 use CTApi\Models\Traits\MetaAttribute;
 
-class File
+class File extends AbstractModel
 {
     use FillWithData, MetaAttribute;
 
-    protected ?string $id = null;
     protected ?string $imageUrl = null;
     protected ?string $type = null;
     protected ?string $size = null;
@@ -260,14 +259,6 @@ class File
     {
         $this->fileUrl = $fileUrl;
         return $this;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getId(): ?string
-    {
-        return $this->id;
     }
 
     /**

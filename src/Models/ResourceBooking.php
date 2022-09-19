@@ -8,11 +8,10 @@ use CTApi\Models\Traits\FillWithData;
 use CTApi\Models\Traits\MetaAttribute;
 use CTApi\Requests\PersonRequest;
 
-class ResourceBooking
+class ResourceBooking extends AbstractModel
 {
     use FillWithData, MetaAttribute;
 
-    protected ?string $id = null;
     protected ?string $caption = null;
     protected ?string $note = null;
     protected ?string $version = null;
@@ -59,14 +58,6 @@ class ResourceBooking
             return PersonRequest::find((int)$this->getPersonId());
         }
         return null;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getId(): ?string
-    {
-        return $this->id;
     }
 
     /**

@@ -15,11 +15,10 @@ use CTApi\Requests\PersonEventRequestBuilder;
 use CTApi\Requests\PersonGroupRequestBuilder;
 use CTApi\Requests\PersonTagRequestBuilder;
 
-class Person implements UpdatableModel
+class Person extends AbstractModel implements UpdatableModel
 {
     use FillWithData, ExtractData, MetaAttribute;
 
-    protected ?string $id = null;
     protected ?string $guid = null;
     protected ?string $firstName = null;
     protected ?string $lastName = null;
@@ -120,7 +119,7 @@ class Person implements UpdatableModel
     public function requestEvents(): ?PersonEventRequestBuilder
     {
         if (!is_null($this->getId())) {
-            return new PersonEventRequestBuilder((int)$this->getId());
+            return new PersonEventRequestBuilder($this->getIdAsInteger());
         }
         return null;
     }
@@ -128,7 +127,7 @@ class Person implements UpdatableModel
     public function requestGroups(): ?PersonGroupRequestBuilder
     {
         if (!is_null($this->getId())) {
-            return new PersonGroupRequestBuilder((int)$this->getId());
+            return new PersonGroupRequestBuilder($this->getIdAsInteger());
         }
         return null;
     }
@@ -136,7 +135,7 @@ class Person implements UpdatableModel
     public function requestAvatar(): ?FileRequestBuilder
     {
         if (!is_null($this->getId())) {
-            return FileRequest::forAvatar((int)$this->getId());
+            return FileRequest::forAvatar($this->getIdAsInteger());
         }
         return null;
     }
@@ -144,7 +143,7 @@ class Person implements UpdatableModel
     public function requestTags(): ?PersonTagRequestBuilder
     {
         if (!is_null($this->getId())) {
-            return new PersonTagRequestBuilder((int)$this->getId());
+            return new PersonTagRequestBuilder($this->getIdAsInteger());
         }
         return null;
     }
@@ -152,17 +151,9 @@ class Person implements UpdatableModel
     public function requestAbsence(): ?AbsencePersonRequestBuilder
     {
         if (!is_null($this->getId())) {
-            return new AbsencePersonRequestBuilder((int)$this->getId());
+            return new AbsencePersonRequestBuilder($this->getIdAsInteger());
         }
         return null;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getId(): ?string
-    {
-        return $this->id;
     }
 
     /**

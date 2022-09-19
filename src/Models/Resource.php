@@ -7,11 +7,10 @@ namespace CTApi\Models;
 use CTApi\Models\Traits\FillWithData;
 use CTApi\Requests\ResourceBookingsRequestBuilder;
 
-class Resource
+class Resource extends AbstractModel
 {
     use FillWithData;
 
-    protected ?string $id = null;
     protected ?string $name = null;
     protected ?string $nameTranslated = null;
     protected ?string $sortKey = null;
@@ -42,14 +41,6 @@ class Resource
             return new ResourceBookingsRequestBuilder([$this->getId()]);
         }
         return null;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getId(): ?string
-    {
-        return $this->id;
     }
 
     /**

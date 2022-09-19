@@ -56,12 +56,8 @@ class AbsencePersonRequestBuilder extends AbstractRequestBuilder
      */
     public function update(Absence $absence, array $attributesToUpdate = []): void
     {
-        $id = $absence->getId();
-        if (is_null($id)) {
-            throw new CTModelException("ID of Absence cannot be null.");
-        } else {
-            $this->updateDataForModel($absence, $id, $attributesToUpdate);
-        }
+        $id = $absence->getIdOrFail();
+        $this->updateDataForModel($absence, $id, $attributesToUpdate);
     }
 
     /**
@@ -79,12 +75,7 @@ class AbsencePersonRequestBuilder extends AbstractRequestBuilder
 
     public function delete(Absence $absence): void
     {
-        $id = $absence->getId();
-
-        if (is_null($id)) {
-            throw new CTModelException("ID of Absence cannot be null.");
-        }
-
+        $id = $absence->getIdOrFail();
         $this->deleteData($id);
     }
 

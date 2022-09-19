@@ -11,11 +11,10 @@ use CTApi\Requests\GroupHierarchieChildrenRequest;
 use CTApi\Requests\GroupHierarchieParentsRequest;
 use CTApi\Requests\GroupMemberRequestBuilder;
 
-class Group
+class Group extends AbstractModel
 {
     use FillWithData;
 
-    protected ?string $id = null;
     protected ?string $guid = null;
     protected ?string $name = null;
     protected ?string $securityLevelForGroup = null;
@@ -61,7 +60,7 @@ class Group
     public function requestMembers(): ?GroupMemberRequestBuilder
     {
         if ($this->getId() != null) {
-            return new GroupMemberRequestBuilder((int)$this->getId());
+            return new GroupMemberRequestBuilder($this->getIdAsInteger());
         } else {
             return null;
         }
@@ -70,7 +69,7 @@ class Group
     public function requestGroupParents(): ?GroupHierarchieParentsRequest
     {
         if ($this->getId() != null) {
-            return new GroupHierarchieParentsRequest((int)$this->getId());
+            return new GroupHierarchieParentsRequest($this->getIdAsInteger());
         } else {
             return null;
         }
@@ -79,7 +78,7 @@ class Group
     public function requestGroupChildren(): ?GroupHierarchieChildrenRequest
     {
         if ($this->getId() != null) {
-            return new GroupHierarchieChildrenRequest((int)$this->getId());
+            return new GroupHierarchieChildrenRequest($this->getIdAsInteger());
         } else {
             return null;
         }
@@ -88,17 +87,9 @@ class Group
     public function requestGroupImage(): ?FileRequestBuilder
     {
         if (!is_null($this->getId())) {
-            return FileRequest::forGroupImage((int)$this->getId());
+            return FileRequest::forGroupImage($this->getIdAsInteger());
         }
         return null;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getId(): ?string
-    {
-        return $this->id;
     }
 
     /**

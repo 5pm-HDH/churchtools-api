@@ -77,6 +77,27 @@ The attributes of a model can be used accessed with getters and setter.
 
 ```
 
+The model id can be retrieved with the `getId` getter. There is also a null-safe getter (`getIdOrFail`) and a integer casted getter (`getIdAsInteger`):
+
+```php
+        use CTApi\Models\Person;
+
+        // can be null:
+        var_dump( $this->person->getId());
+        // Output: "21"
+
+
+        // throws CTModelException if id is null:
+        var_dump( $this->person->getIdOrFail());
+        // Output: "21"
+
+
+        // return int or throws CTModelException:
+        var_dump( $this->person->getIdAsInteger());
+        // Output: 21
+
+
+```
 
 **`request`-method (one-to-one - singular)**
 

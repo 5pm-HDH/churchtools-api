@@ -135,23 +135,7 @@ $twoPersons = PersonRequest::where('ids', [219, 318])->get();
 
 ## Details
 
-* [AuthRequest](#authrequest)
-* [PersonRequest](#personrequest)
-* [EventRequest](#eventrequest)
-* [EventRequestAgenda](#eventrequestagenda)
-
-### AuthRequest
-
-* ✅ authWithEmailAndPassword
-* ❌ all; find / findOrFail; where; orderBy; limit
-
 ### PersonRequest
-
-* ✅ whoami
-* ✅ all
-* ✅ find / findOrFail
-* ✅ where
-* ✅ orderBy
 
 **Where filter criteria:**
 
@@ -166,11 +150,6 @@ $twoPersons = PersonRequest::where('ids', [219, 318])->get();
 
 ### EventRequest
 
-* ✅ all
-* ✅ find / findOrFail
-* ✅ where
-* ✅ orderBy
-
 **Where filter criteria:**
 
 | Criteria | Value | Description |
@@ -178,28 +157,7 @@ $twoPersons = PersonRequest::where('ids', [219, 318])->get();
 | from | date-string (YYYY-MM-DD) | select events beginning with date |
 | to | date-string (YYYY-MM-DD) | select events ending with date |
 
-### EventRequestAgenda
-
-* ✅ get
-
-```php
-use \CTApi\Requests\EventAgendaRequest;
-use \CTApi\Models\Event;
-
-$eventId = 21;
-$event = Event::createModelFromData(['id' => $eventId]);
-
-$agenda = EventAgendaRequest::fromEvent($eventId)->get();
-$agenda = $event->requestAgenda();
-
-```
-
 ### SongRequest
-
-* ✅ all
-* ✅ find / findOrFail
-* ✅ where
-* ✅ orderBy
 
 **Where filter criteria:**
 

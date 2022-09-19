@@ -7,11 +7,10 @@ namespace CTApi\Models;
 use CTApi\Models\Traits\FillWithData;
 use CTApi\Requests\PersonRequest;
 
-class GroupMember
+class GroupMember extends AbstractModel
 {
     use FillWithData;
 
-    protected ?string $id = null;
     protected ?string $personId = null;
     protected ?Person $person = null;
     protected ?string $groupTypeRoleId = null;
@@ -40,14 +39,6 @@ class GroupMember
         } else {
             return null;
         }
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getId(): ?string
-    {
-        return $this->id;
     }
 
     /**

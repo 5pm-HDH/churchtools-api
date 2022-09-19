@@ -9,11 +9,10 @@ use CTApi\Requests\EventAgendaRequestBuilder;
 use CTApi\Requests\FileRequest;
 use CTApi\Requests\FileRequestBuilder;
 
-class Event
+class Event extends AbstractModel
 {
     use FillWithData;
 
-    protected ?string $id = null;
     protected ?string $guid = null;
     protected ?string $name = null;
     protected ?string $description = null;
@@ -45,13 +44,13 @@ class Event
 
     public function requestAgenda(): EventAgenda
     {
-        return (new EventAgendaRequestBuilder((int)$this->getId()))->get();
+        return (new EventAgendaRequestBuilder($this->getIdAsInteger()))->get();
     }
 
     public function requestFiles(): ?FileRequestBuilder
     {
         if (!is_null($this->getId())) {
-            return FileRequest::forEvent((int)$this->getId());
+            return FileRequest::forEvent($this->getIdAsInteger());
         }
         return null;
     }
@@ -65,14 +64,6 @@ class Event
             return $requestedEventServices[array_key_first($requestedEventServices)];
         }
         return null;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getId(): ?string
-    {
-        return $this->id;
     }
 
     /**

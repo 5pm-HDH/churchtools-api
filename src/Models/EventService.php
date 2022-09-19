@@ -8,12 +8,11 @@ use CTApi\Models\Traits\FillWithData;
 use CTApi\Requests\PersonRequest;
 use CTApi\Requests\ServiceRequest;
 
-class EventService
+class EventService extends AbstractModel
 {
 
     use FillWithData;
 
-    protected ?string $id = null;
     protected ?string $personId = null;
     protected ?Person $person = null;
     protected ?string $name = null;
@@ -91,14 +90,6 @@ class EventService
             return ServiceRequest::find((int)$this->getServiceId());
         }
         return null;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getId(): ?string
-    {
-        return $this->id;
     }
 
     /**

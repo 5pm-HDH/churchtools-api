@@ -7,11 +7,10 @@ namespace CTApi\Models;
 use CTApi\Models\Traits\FillWithData;
 use CTApi\Models\Traits\MetaAttribute;
 
-class SongArrangement
+class SongArrangement extends AbstractModel
 {
     use FillWithData, MetaAttribute;
 
-    protected ?string $id = null;
     protected ?string $name = null;
     protected ?bool $isDefault = null;
     protected ?string $keyOfArrangement = null;
@@ -78,14 +77,6 @@ class SongArrangement
             }
         }
         return null;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getId(): ?string
-    {
-        return $this->id;
     }
 
     /**

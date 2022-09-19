@@ -27,6 +27,9 @@ The attributes of a model can be used accessed with getters and setter.
 
 {{ \Tests\Unit\Docs\ModelTest.testGetterAndSetter }}
 
+The model id can be retrieved with the `getId` getter. There is also a null-safe getter (`getIdOrFail`) and a integer casted getter (`getIdAsInteger`):
+
+{{ \Tests\Unit\Docs\ModelTest.testGetId }}
 
 **`request`-method (one-to-one - singular)**
 

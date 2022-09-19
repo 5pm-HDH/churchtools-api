@@ -23,7 +23,7 @@ class FileRequestMultipleFilesTest extends TestCaseAuthenticated
     {
         parent::setUp();
         $this->checkIfTestSuiteIsEnabled("FILE_EVENT");
-        $this->eventId = (int)TestData::getValue("FILE_EVENT_ID");
+        $this->eventId = TestData::getValueAsInteger("FILE_EVENT_ID");
 
         // No Files should be uploaded at the beginning of any unit-test
         FileRequest::forEvent($this->eventId)->delete();
@@ -69,7 +69,6 @@ class FileRequestMultipleFilesTest extends TestCaseAuthenticated
         $this->assertFile($this->nameFileA, false);
         $this->assertFile($this->nameFileB, false);
 
-        print_r(FileRequest::forEvent($this->eventId)->get());
     }
 
     public function testDeleteOneFileMultipleTimes()

@@ -21,7 +21,7 @@ class EventAgendaTest extends TestCaseAuthenticated
 
     public function testGetAgenda(): void
     {
-        $eventId = (int)TestData::getValue("EVENT_AGENDA_EVENT_ID");
+        $eventId = TestData::getValueAsInteger("EVENT_AGENDA_EVENT_ID");
 
         $agenda = EventAgendaRequest::fromEvent($eventId)->get();
 
@@ -30,7 +30,7 @@ class EventAgendaTest extends TestCaseAuthenticated
 
     public function testGetAgendaFromEvent(): void
     {
-        $eventId = (int)TestData::getValue("EVENT_AGENDA_EVENT_ID");
+        $eventId = TestData::getValueAsInteger("EVENT_AGENDA_EVENT_ID");
 
         $event = EventRequest::findOrFail($eventId);
 
@@ -40,7 +40,7 @@ class EventAgendaTest extends TestCaseAuthenticated
 
     private function assertAgendaIsValid($agenda): void
     {
-        $agendaId = (int)TestData::getValue("EVENT_AGENDA_ID");
+        $agendaId = TestData::getValueAsInteger("EVENT_AGENDA_ID");
         $numberOfItems = TestData::getValue("EVENT_AGENDA_NUMBER_OF_ITEMS");
 
 
@@ -51,7 +51,7 @@ class EventAgendaTest extends TestCaseAuthenticated
 
     public function testGetSongsOfAgenda(): void
     {
-        $eventId = (int)TestData::getValue("EVENT_AGENDA_EVENT_ID");
+        $eventId = TestData::getValueAsInteger("EVENT_AGENDA_EVENT_ID");
 
         $agenda = EventAgendaRequest::fromEvent($eventId)->get();
 
@@ -66,7 +66,7 @@ class EventAgendaTest extends TestCaseAuthenticated
 
     public function testCollectSongsOfAgenda(): void
     {
-        $eventId = (int)TestData::getValue("EVENT_AGENDA_EVENT_ID");
+        $eventId = TestData::getValueAsInteger("EVENT_AGENDA_EVENT_ID");
 
         $agenda = EventAgendaRequest::fromEvent($eventId)->get();
         $songs = $agenda->getSongs();
@@ -76,7 +76,7 @@ class EventAgendaTest extends TestCaseAuthenticated
 
     public function testRequestSongsOfAgenda(): void
     {
-        $eventId = (int)TestData::getValue("EVENT_AGENDA_EVENT_ID");
+        $eventId = TestData::getValueAsInteger("EVENT_AGENDA_EVENT_ID");
 
         $agenda = EventAgendaRequest::fromEvent($eventId)->get();
 
@@ -107,7 +107,7 @@ class EventAgendaTest extends TestCaseAuthenticated
 
     public function testRequestArrangementsOfAgenda(): void
     {
-        $eventId = (int)TestData::getValue("EVENT_AGENDA_EVENT_ID");
+        $eventId = TestData::getValueAsInteger("EVENT_AGENDA_EVENT_ID");
         $agenda = EventAgendaRequest::fromEvent($eventId)->get();
 
         $arrangements = $agenda->requestArrangements()->get();

@@ -26,7 +26,7 @@ class WikiRequestTest extends TestCaseAuthenticated
             $this->markTestSkipped("Test suite is disabled in testdata.ini");
         }
 
-        $this->CATEGORY_ID = (int)TestData::getValue("WIKI_CATEGORY_ID");
+        $this->CATEGORY_ID = TestData::getValueAsInteger("WIKI_CATEGORY_ID");
         $this->CATEGORY_NAME = TestData::getValue("WIKI_CATEGORY_NAME");
         $this->PAGE_IDENTIFIER = TestData::getValue("WIKI_PAGE_IDENTIFIER");
         $this->PAGE_TITLE = TestData::getValue("WIKI_PAGE_TITLE");

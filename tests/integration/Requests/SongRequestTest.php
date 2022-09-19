@@ -22,9 +22,9 @@ class SongRequestTest extends TestCaseAuthenticated
             $this->markTestSkipped("Test suite is disabled in testdata.ini");
         }
 
-        $this->SONG_ID = (int)TestData::getValue("SONG_ID");
+        $this->SONG_ID = TestData::getValueAsInteger("SONG_ID");
         $this->SONG_NAME = TestData::getValue("SONG_NAME");
-        $this->SONG_ARRANGEMENT_ID = (int)TestData::getValue("SONG_ARRANGEMENT_ID");
+        $this->SONG_ARRANGEMENT_ID = TestData::getValueAsInteger("SONG_ARRANGEMENT_ID");
         $this->SONG_ARRANGEMENT_NAME = TestData::getValue("SONG_ARRANGEMENT_NAME");
 
     }

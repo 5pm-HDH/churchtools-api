@@ -7,11 +7,10 @@ namespace CTApi\Models;
 use CTApi\Models\Traits\FillWithData;
 use CTApi\Requests\ServiceGroupRequest;
 
-class Service
+class Service extends AbstractModel
 {
     use FillWithData;
 
-    protected ?string $id = null;
     protected ?string $name = null;
     protected ?string $serviceGroupId = null;
     protected ?string $commentOnConfirmation = null;
@@ -35,14 +34,6 @@ class Service
             return ServiceGroupRequest::find((int)$this->getServiceGroupId());
         }
         return null;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getId(): ?string
-    {
-        return $this->id;
     }
 
     /**
