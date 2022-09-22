@@ -8,33 +8,28 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 
 ### Added
-- [Added method to update person data](https://github.com/5pm-HDH/churchtools-api/pull/84)
-- [Added modifiable-attributes to person-api docs](https://github.com/5pm-HDH/churchtools-api/pull/88)
-- [Added method to delete person records](https://github.com/5pm-HDH/churchtools-api/pull/91)
-- [Added method to create a new person at ChurchTools](https://github.com/5pm-HDH/churchtools-api/pull/105)
-- [Added Calendar-Request](https://github.com/5pm-HDH/churchtools-api/pull/92)
-- [Added Permission-Request](https://github.com/5pm-HDH/churchtools-api/pull/102)
-- [Serialize Models to Data-Array for JSON-Export](https://github.com/5pm-HDH/churchtools-api/pull/103)
-- [Retrieve Birthdays](https://github.com/5pm-HDH/churchtools-api/pull/104)
-- [Retrieve Tags of Person](https://github.com/5pm-HDH/churchtools-api/pull/110)
-- [Added force flag to person creation, to add persons with same name](https://github.com/5pm-HDH/churchtools-api/pull/107)
-- [Absence-API](https://github.com/5pm-HDH/churchtools-api/pull/111)
-- [File-API](https://github.com/5pm-HDH/churchtools-api/pull/114)
-- [Search-API](https://github.com/5pm-HDH/churchtools-api/pull/116)
+- Create, update and delete person ([PR84](https://github.com/5pm-HDH/churchtools-api/pull/84), [PR88](https://github.com/5pm-HDH/churchtools-api/pull/88), [PR91](https://github.com/5pm-HDH/churchtools-api/pull/91), [PR105](https://github.com/5pm-HDH/churchtools-api/pull/105), [PR107](https://github.com/5pm-HDH/churchtools-api/pull/107), [PR93](https://github.com/5pm-HDH/churchtools-api/pull/93), [PR100](https://github.com/5pm-HDH/churchtools-api/pull/100), [PR109](https://github.com/5pm-HDH/churchtools-api/pull/109))
+- New API-Requests
+  - [Calendar-API](https://github.com/5pm-HDH/churchtools-api/pull/92)
+  - [Permission-API](https://github.com/5pm-HDH/churchtools-api/pull/102)
+  - [Person-API - Retrieve Birthdays](https://github.com/5pm-HDH/churchtools-api/pull/104)
+  - [Person-API - Retrieve Tags](https://github.com/5pm-HDH/churchtools-api/pull/110)
+  - [Absence-API](https://github.com/5pm-HDH/churchtools-api/pull/111)
+  - [File-API](https://github.com/5pm-HDH/churchtools-api/pull/114)
+  - [Search-API](https://github.com/5pm-HDH/churchtools-api/pull/116)
+- Serialize Models to Data-Array for JSON-Export ([PR103](https://github.com/5pm-HDH/churchtools-api/pull/103))
 
 ### Changed
-- [Refactor CTClient:](https://github.com/5pm-HDH/churchtools-api/pull/83) transform inheritance from GuzzleClient to composition-relation
-- [Move generated Doc-Files to `out`-Folder](https://github.com/5pm-HDH/churchtools-api/pull/89)
-- [Create UpdatableMode-Interface for type safety](https://github.com/5pm-HDH/churchtools-api/pull/93)
-- [Status-Code handling and Exception-handling](https://github.com/5pm-HDH/churchtools-api/pull/99)
-- [Refactor delete person](https://github.com/5pm-HDH/churchtools-api/pull/100)
-- [Refactor FillWithData](https://github.com/5pm-HDH/churchtools-api/pull/101)
-- [Refactor: Use Query-Parameters for Where-Clause](https://github.com/5pm-HDH/churchtools-api/pull/106)
-- [Fix Unit-Test for Person Update-Request](https://github.com/5pm-HDH/churchtools-api/pull/109)
-- [Fix Integration-Test: Cache Api-key](https://github.com/5pm-HDH/churchtools-api/pull/113)
-- [Abstract Model](https://github.com/5pm-HDH/churchtools-api/pull/118)
+
+- Refactor: Move generated Doc-Files to out-Folder ([PR89](https://github.com/5pm-HDH/churchtools-api/pull/89))
+- Refactor: Cache Api-key over multiple Integration-Tests ([PR113](https://github.com/5pm-HDH/churchtools-api/pull/113))
+- Refactor FillWithData: Cast types ([PR101](https://github.com/5pm-HDH/churchtools-api/pull/101))
+- Refactor CTClient: transform inheritance from GuzzleClient to composition-relation ([PR83](https://github.com/5pm-HDH/churchtools-api/pull/83))
+- Refactor: Create Abstract Model to cast id ([PR118](https://github.com/5pm-HDH/churchtools-api/pull/118))
 
 ### Fixed
+- Fix: Status-Code handling and Exception-handling ([PR99](https://github.com/5pm-HDH/churchtools-api/pull/99))
+- Fix: Use Query-Parameters for Where-Clause ([PR106](https://github.com/5pm-HDH/churchtools-api/pull/106))
 
 
 ## [1.3.4] - 2022-06-22
