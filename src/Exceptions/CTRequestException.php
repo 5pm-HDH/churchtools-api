@@ -46,7 +46,12 @@ class CTRequestException extends RuntimeException
         $errorDescriptions = [];
 
         foreach ($contents['errors'] as $error) {
-            if (!is_array($error) || !isset($error['message']) || !isset($error['messageKey'])) {
+            if (!is_array($error) || !isset($error['message'])) {
+                continue;
+            }
+
+            if (!isset($error['messageKey'])) {
+                $errorDescriptions[] = $error['message'];
                 continue;
             }
 
