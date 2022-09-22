@@ -4,12 +4,14 @@
 namespace CTApi\Models;
 
 
+use CTApi\Models\Interfaces\UpdatableModel;
+use CTApi\Models\Traits\ExtractData;
 use CTApi\Models\Traits\FillWithData;
 use CTApi\Models\Traits\MetaAttribute;
 
-class SongArrangement extends AbstractModel
+class SongArrangement extends AbstractModel implements UpdatableModel
 {
-    use FillWithData, MetaAttribute;
+    use FillWithData, MetaAttribute, ExtractData;
 
     protected ?string $name = null;
     protected ?bool $isDefault = null;
@@ -20,6 +22,18 @@ class SongArrangement extends AbstractModel
     protected ?string $note = null;
     protected array $links = [];
     protected array $files = [];
+
+    static function getModifiableAttributes(): array
+    {
+        return [
+            "name",
+            "keyOfArrangement",
+            "bpm",
+            "beat",
+            "duration",
+            "note",
+        ];
+    }
 
     protected function fillArrayType(string $key, array $data): void
     {
