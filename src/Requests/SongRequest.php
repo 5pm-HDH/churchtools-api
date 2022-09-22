@@ -33,4 +33,9 @@ class SongRequest
         return (new SongRequestBuilder())->find($id);
     }
 
+    public static function update(Song $song)
+    {
+        return (new SongUpdateRequestBuilder())->update($song);
+    }
+
 }

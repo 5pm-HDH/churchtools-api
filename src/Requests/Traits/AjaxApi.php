@@ -33,7 +33,7 @@ trait AjaxApi
             $translatedData[$key] = $value;
         }
 
-        $translatedData["func"] = "editArrangement";
+        $translatedData["func"] = $ajaxFunction;
         $client = CTClient::getClient();
         return $client->post('/index.php', [
             "query" => [

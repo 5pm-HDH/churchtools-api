@@ -4,19 +4,22 @@
 namespace CTApi\Models;
 
 
+use CTApi\Models\Interfaces\UpdatableModel;
+use CTApi\Models\Traits\ExtractData;
 use CTApi\Models\Traits\FillWithData;
 use CTApi\Models\Traits\MetaAttribute;
 use CTApi\Requests\SongRequest;
 
-class Song extends AbstractModel
+class Song extends AbstractModel implements UpdatableModel
 {
-    use FillWithData, MetaAttribute;
+    use FillWithData, MetaAttribute, ExtractData;
 
     protected ?string $arrangementId = null;
     protected ?string $name = null;
     protected ?string $arrangement = null;
     protected array $arrangements = [];
     protected ?SongCategory $category = null;
+    protected ?string $category_id = null;
     protected ?bool $shouldPractice = null;
     protected ?string $author = null;
     protected ?string $ccli = null;
@@ -26,11 +29,24 @@ class Song extends AbstractModel
     protected ?string $bpm = null;
     protected ?bool $isDefault = null;
 
+    static function getModifiableAttributes(): array
+    {
+        return [
+            "name",
+            "category_id",
+            "shouldPractice",
+            "author",
+            "copyright",
+            "ccli"
+        ];
+    }
+
     protected function fillArrayType(string $key, array $data): void
     {
         switch ($key) {
             case "category":
                 $this->setCategory(SongCategory::createModelFromData($data));
+                $this->setCategoryId($this->getCategory()?->getId());
                 break;
             case "arrangements":
                 $this->setArrangements(SongArrangement::createModelsFromArray($data));
@@ -182,6 +198,24 @@ class Song extends AbstractModel
     public function setCategory(?SongCategory $category): Song
     {
         $this->category = $category;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getCategoryId(): ?string
+    {
+        return $this->category_id;
+    }
+
+    /**
+     * @param string|null $category_id
+     * @return Song
+     */
+    public function setCategoryId(?string $category_id): Song
+    {
+        $this->category_id = $category_id;
         return $this;
     }
 

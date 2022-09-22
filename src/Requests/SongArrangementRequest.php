@@ -10,6 +10,6 @@ class SongArrangementRequest
 {
     public static function update(SongArrangement $songArrangement): void
     {
-        (new SongArrangementUpdateRequest())->update($songArrangement);
+        (new SongArrangementUpdateRequestBuilder())->update($songArrangement);
     }
 }

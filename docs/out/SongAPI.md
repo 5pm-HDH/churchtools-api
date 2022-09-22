@@ -4,6 +4,8 @@
 
 ```php
         use CTApi\Models\File;
+        use CTApi\Models\Song;
+        use CTApi\Models\SongArrangement;
         use CTApi\Requests\SongArrangementRequest;
         use CTApi\Requests\SongRequest;
 
@@ -133,16 +135,47 @@
 
 ```
 
+
+## Update Song
+
+```php
+        use CTApi\Models\File;
+        use CTApi\Models\Song;
+        use CTApi\Models\SongArrangement;
+        use CTApi\Requests\SongArrangementRequest;
+        use CTApi\Requests\SongRequest;
+
+        $song = SongRequest::findOrFail(21);
+
+        // Attributes that can be updated with ChurchTools-Api
+        var_dump( implode("; ", Song::getModifiableAttributes()));
+        // Output: "name; category_id; shouldPractice; author; copyright; ccli"
+
+
+        $song->setName("New Arrangement Title");
+        $song->setShouldPractice(true);
+
+        SongRequest::update($song);
+
+```
+
 ## Update Song-Arrangement
 
 ```php
         use CTApi\Models\File;
+        use CTApi\Models\Song;
+        use CTApi\Models\SongArrangement;
         use CTApi\Requests\SongArrangementRequest;
         use CTApi\Requests\SongRequest;
 
         $song = SongRequest::findOrFail(21);
         $arrangements = $song->getArrangements();
         $arrangement = end($arrangements);
+
+        // Attributes that can be updated with ChurchTools-Api
+        var_dump( implode("; ", SongArrangement::getModifiableAttributes()));
+        // Output: "name; keyOfArrangement; bpm; beat; duration; note"
+
 
         $arrangement->setName("New Arrangement Title");
         SongArrangementRequest::update($arrangement);
