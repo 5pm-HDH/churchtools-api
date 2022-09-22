@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 
 ### Added
+- Request Ajax-Api ([AjaxApi-Trait](src/Requests/Traits/AjaxApi.php))
+- Update Song-Arrangement ([PR121](https://github.com/5pm-HDH/churchtools-api/pull/121))
 
 ### Changed
 

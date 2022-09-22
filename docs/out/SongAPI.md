@@ -140,7 +140,7 @@
         use CTApi\Requests\SongArrangementRequest;
         use CTApi\Requests\SongRequest;
 
-        $song = SongRequest::findOrFail("21");
+        $song = SongRequest::findOrFail(21);
         $arrangements = $song->getArrangements();
         $arrangement = end($arrangements);
 
