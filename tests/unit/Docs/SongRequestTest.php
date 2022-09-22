@@ -5,6 +5,7 @@ namespace Tests\Unit\Docs;
 
 
 use CTApi\Models\File;
+use CTApi\Requests\SongArrangementRequest;
 use CTApi\Requests\SongRequest;
 use Tests\Unit\TestCaseHttpMocked;
 
@@ -82,5 +83,18 @@ class SongRequestTest extends TestCaseHttpMocked
         $this->assertEquals("https://multitracks.com/path/to/song", $customFile->getFileUrlBaseUrl());
         $this->assertEquals(["id" => "2912"], $customFile->getFileUrlQueryParameters());
         $this->assertEquals("https://multitracks.com/path/to/song?id=2912&login_token=notnullapikey", $customFile->getFileUrlAuthenticated());
+    }
+
+    /**
+     * @doesNotPerformAssertions
+     */
+    public function testUpdateArrangement()
+    {
+        $song = SongRequest::findOrFail(21);
+        $arrangements = $song->getArrangements();
+        $arrangement = end($arrangements);
+
+        $arrangement->setName("New Arrangement Title");
+        SongArrangementRequest::update($arrangement);
     }
 }

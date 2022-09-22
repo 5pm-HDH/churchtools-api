@@ -1,7 +1,10 @@
 # SongAPI
 
+## Request Song
+
 ```php
         use CTApi\Models\File;
+        use CTApi\Requests\SongArrangementRequest;
         use CTApi\Requests\SongRequest;
 
         $allSongs = SongRequest::all();
@@ -127,5 +130,21 @@
         var_dump( $customFile->getFileUrlAuthenticated());
         // Output: "https://multitracks.com/path/to/song?id=2912&login_token=notnullapikey"
 
+
+```
+
+## Update Song-Arrangement
+
+```php
+        use CTApi\Models\File;
+        use CTApi\Requests\SongArrangementRequest;
+        use CTApi\Requests\SongRequest;
+
+        $song = SongRequest::findOrFail("21");
+        $arrangements = $song->getArrangements();
+        $arrangement = end($arrangements);
+
+        $arrangement->setName("New Arrangement Title");
+        SongArrangementRequest::update($arrangement);
 
 ```
