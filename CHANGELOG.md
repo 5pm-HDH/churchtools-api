@@ -8,6 +8,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 
 ### Added
+
+### Changed
+
+### Fixed
+
+## [1.3.5] - 2022-09-22
+
+### Added
 - Create, update and delete person ([PR84](https://github.com/5pm-HDH/churchtools-api/pull/84), [PR88](https://github.com/5pm-HDH/churchtools-api/pull/88), [PR91](https://github.com/5pm-HDH/churchtools-api/pull/91), [PR105](https://github.com/5pm-HDH/churchtools-api/pull/105), [PR107](https://github.com/5pm-HDH/churchtools-api/pull/107), [PR93](https://github.com/5pm-HDH/churchtools-api/pull/93), [PR100](https://github.com/5pm-HDH/churchtools-api/pull/100), [PR109](https://github.com/5pm-HDH/churchtools-api/pull/109))
 - New API-Requests
   - [Calendar-API](https://github.com/5pm-HDH/churchtools-api/pull/92)
