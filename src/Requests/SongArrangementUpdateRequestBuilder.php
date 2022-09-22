@@ -8,7 +8,7 @@ use CTApi\Models\SongArrangement;
 use CTApi\Requests\Traits\AjaxApi;
 use CTApi\Utils\CTResponseUtil;
 
-class SongArrangementUpdateRequest
+class SongArrangementUpdateRequestBuilder
 {
     use AjaxApi;
 
