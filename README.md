@@ -4,8 +4,8 @@
 
 ![example workflow](https://github.com/5pm-HDH/churchtools-api/actions/workflows/static-code-analysis.yml/badge.svg)
 
-
-ChurchTools-API Client is a php based wrapper of the ChurchTools api. This api is tested with the ChurchTools version <version>3.89.0</version>
+ChurchTools-API Client is a php based wrapper of the ChurchTools api. This api is tested with the ChurchTools
+version <version>3.90.0</version>
 
 ## Installation
 
@@ -50,11 +50,12 @@ From now on all features of the ChurchTools-api are available.
 
 ### Requests and Models
 
-The whole ChurchTools-api client is build on top of the Requests and Models. [Requests](/docs/out/Requests.md) provide an
-interface to specify your api call by adding filtering, pagination and sorting. [Models](/docs/out/Models.md) represent the data, that
-the Requests retrieve. More informations can be found in the documentation.
+The whole ChurchTools-api client is build on top of the Requests and Models. [Requests](/docs/out/Requests.md) provide
+an interface to specify your api call by adding filtering, pagination and sorting. [Models](/docs/out/Models.md)
+represent the data, that the Requests retrieve. More informations can be found in the documentation.
 
 All APIs with examples:
+
 * [Person-API](/docs/out/PersonAPI.md)
 * [Group-API](/docs/out/GroupAPI.md)
 * [Calendar-API](/docs/out/CalendarAPI.md)
@@ -69,7 +70,8 @@ All APIs with examples:
 * [File-API](/docs/out/FileAPI.md)
 * [Search-API](/docs/out/SearchAPI.md)
 
-The following short examples show the power of this ChurchTools-api client and gives a rough overview over the possibilities:
+The following short examples show the power of this ChurchTools-api client and gives a rough overview over the
+possibilities:
 
 #### Example: Person-API
 
@@ -228,10 +230,13 @@ CTLog::getLog()->error("Error accourd here!");
 Further information on [CTLog-Page](/docs/out/CTLog.md):
 
 ### Error-Handling
+
 The API-Wrapper provides custom exceptions. More on this page: [Error-Handling](/docs/out/ErrorHandling.md)
 
 ### Doc-Generator
-The Doc-Generator processes all Doc-Files and executes the PHP-Code examples to ensure that they are valid. More on this page: [Doc-Generator](/docs/Docs.md)
+
+The Doc-Generator processes all Doc-Files and executes the PHP-Code examples to ensure that they are valid. More on this
+page: [Doc-Generator](/docs/Docs.md)
 
 ## License
 

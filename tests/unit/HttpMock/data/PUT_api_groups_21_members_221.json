@@ -1,0 +1,28 @@
+{
+  "data": [
+    {
+      "personId": 211,
+      "person": {
+        "title": "John Smith",
+        "domainType": "person",
+        "domainIdentifier": "211",
+        "apiUrl": "https:\/\/intern.church.tools\/api\/persons\/211",
+        "icon": "user",
+        "domainAttributes": {
+          "firstName": "John",
+          "lastName": "Smith"
+        }
+      },
+      "groupTypeRoleId": 8,
+      "memberStartDate": "2022-09-27",
+      "comment": null,
+      "memberEndDate": null,
+      "waitinglistPosition": null,
+      "fields": [],
+      "personFields": []
+    }
+  ],
+  "meta": {
+    "count": 1
+  }
+}
