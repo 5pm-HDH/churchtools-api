@@ -4,21 +4,24 @@
 namespace CTApi\Models;
 
 
+use CTApi\Models\Interfaces\UpdatableModel;
+use CTApi\Models\Traits\ExtractData;
 use CTApi\Models\Traits\FillWithData;
 use CTApi\Requests\PersonRequest;
 
-class GroupMember extends AbstractModel
+class GroupMember extends AbstractModel implements UpdatableModel
 {
-    use FillWithData;
+    use FillWithData, ExtractData;
 
     protected ?string $personId = null;
     protected ?Person $person = null;
     protected ?string $groupTypeRoleId = null;
-    protected ?string $memberStartDate = null;
     protected ?string $comment = null;
+    protected ?string $memberStartDate = null;
     protected ?string $memberEndDate = null;
     protected ?string $waitinglistPosition = null;
     protected array $fields = [];
+    protected array $personFields = [];
 
 
     protected function fillArrayType(string $key, array $data): void
@@ -30,6 +33,18 @@ class GroupMember extends AbstractModel
             default:
                 $this->fillDefault($key, $data);
         }
+    }
+
+    static function getModifiableAttributes(): array
+    {
+        return [
+            "comment",
+            "fields",
+            "groupTypeRoleId",
+            "memberEndDate",
+            "memberStartDate",
+            "waitinglistPos"
+        ];
     }
 
     public function requestPerson(): ?Person
@@ -192,6 +207,24 @@ class GroupMember extends AbstractModel
     public function setFields(array $fields): GroupMember
     {
         $this->fields = $fields;
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getPersonFields(): array
+    {
+        return $this->personFields;
+    }
+
+    /**
+     * @param array $personFields
+     * @return GroupMember
+     */
+    public function setPersonFields(array $personFields): GroupMember
+    {
+        $this->personFields = $personFields;
         return $this;
     }
 }
