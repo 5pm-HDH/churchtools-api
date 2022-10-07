@@ -93,6 +93,24 @@ class CTRequestException extends RuntimeException
 
                 continue;
             }
+
+            if ('please.enter.valid.email' === $messageKey) {
+                $description = sprintf('Field "%s" has to be a valid e-mail of type string.', $error['fieldId']);
+
+                if (array_key_exists('args', $error) && array_key_exists('value', $error['args'])) {
+                    $value = $error['args']['value'];
+
+                    if ('' === $value) {
+                        $description .= ' If no e-mail address is available set it to null.';
+                    } else {
+                        $description .= sprintf('Provided value was "%s".', $value);
+                    }
+                }
+
+                $errorDescriptions[] = $description;
+
+                continue;
+            }
         }
 
         $msg .= '. ' . implode(' ', $errorDescriptions);
