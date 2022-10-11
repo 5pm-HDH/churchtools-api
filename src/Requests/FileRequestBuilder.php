@@ -54,10 +54,12 @@ class FileRequestBuilder
         }
 
         $csrfToken = CSRFTokenRequest::getOrFail();
+        $url = rtrim(CTConfig::getApiUrl(), '/') . $this->getApiEndpoint();
 
         // Upload file with pure CURL
-        $ch = curl_init(CTConfig::getApiUrl() . $this->getApiEndpoint() . "?login_token=" . CTConfig::getApiKey());
+        $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HTTPHEADER, [
+            "authorization: Login " . CTConfig::getApiKey(),
             "content-type:multipart/form-data",
             "csrf-token:" . $csrfToken
         ]);
