@@ -7,6 +7,7 @@ namespace CTApi\Requests;
 use CTApi\CTClient;
 use CTApi\CTConfig;
 use CTApi\CTLog;
+use CTApi\Exceptions\CTConfigException;
 use CTApi\Exceptions\CTModelException;
 use CTApi\Exceptions\CTRequestException;
 use CTApi\Models\File;
@@ -54,10 +55,16 @@ class FileRequestBuilder
         }
 
         $csrfToken = CSRFTokenRequest::getOrFail();
+        $apiUrl = CTConfig::getApiUrl();
+        if(is_null($apiUrl)){
+            throw new CTConfigException("API-Url cannot be null.");
+        }
+        $url = rtrim($apiUrl, '/') . $this->getApiEndpoint();
 
         // Upload file with pure CURL
-        $ch = curl_init(CTConfig::getApiUrl() . $this->getApiEndpoint() . "?login_token=" . CTConfig::getApiKey());
+        $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HTTPHEADER, [
+            "authorization: Login " . CTConfig::getApiKey(),
             "content-type:multipart/form-data",
             "csrf-token:" . $csrfToken
         ]);

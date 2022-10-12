@@ -16,6 +16,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
+- Sending API key as HTTP header instead of query param in FileRequestBuilder ([PR126](https://github.com/5pm-HDH/churchtools-api/pull/126))
+
 ### Fixed
 
 ## [1.3.5] - 2022-09-22
