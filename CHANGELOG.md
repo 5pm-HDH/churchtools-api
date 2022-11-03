@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Update Song-Arrangement ([PR121](https://github.com/5pm-HDH/churchtools-api/pull/121))
 - Update Song ([PR122](https://github.com/5pm-HDH/churchtools-api/pull/122))
 - Update GroupMembers ([PR124](https://github.com/5pm-HDH/churchtools-api/pull/124))
+- CCLI-Request Lyrics and Chordsheet ([PR127](https://github.com/5pm-HDH/churchtools-api/pull/127))
 - Extended exception handling of invalid or empty email addresses passed to the person API ([PR125](https://github.com/5pm-HDH/churchtools-api/pull/125))
 
 ### Changed
