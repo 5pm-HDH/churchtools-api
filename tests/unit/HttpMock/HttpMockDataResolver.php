@@ -39,10 +39,23 @@ class HttpMockDataResolver
         // convert string to lowercase
         $endpoint = strtolower($endpoint);
 
+        // append page nr
         $pageNr = CTUtil::arrayPathGet($options, "query.page");
         if (!is_null($pageNr) && $pageNr > 1) {
             $endpoint .= "_page_" . $pageNr;
             CTLog::getLog()->debug("Append Page-Number to Endpoint-Filename: " . $endpoint);
+        }
+
+        // append query and func-name for AJAX-Request
+        if($endpoint == "index.php"){
+            $q = CTUtil::arrayPathGet($options, "query.q");
+            if(!is_null($q)){
+                $endpoint .= "_q=".$q;
+            }
+            $func = CTUtil::arrayPathGet($options, "json.func");
+            if(!is_null($func)){
+                $endpoint .= "_func=".$func;
+            }
         }
 
         $file = str_replace('/', '_', strtolower($endpoint)) . '.json';

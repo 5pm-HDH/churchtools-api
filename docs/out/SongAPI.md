@@ -135,7 +135,6 @@
 
 ```
 
-
 ## Update Song
 
 ```php
@@ -181,3 +180,89 @@
         SongArrangementRequest::update($arrangement);
 
 ```
+
+## Retrieve Data from CCLI
+
+**Retrieve Lyrics for CCLI-Number:**
+
+```php
+        use CTApi\Requests\CcliRequest;
+
+        $ccliNumber = 1878670;
+
+        $lyricsData = CcliRequest::forSong($ccliNumber)->retrieveLyrics();
+
+        var_dump( $lyricsData["CCLID"]);
+        // Output: "1878670"
+
+        $authorList = implode("/", $lyricsData["Authors"]);
+        var_dump( $authorList);
+        // Output: "Andres Figueroa/Hank Bentley/Mariah McManus/Mia Fieldes"
+
+        $copyright = implode("/", $lyricsData["Copyright"]);
+        var_dump( $copyright);
+        // Output: "2016 All Essential Music (Admin. by Essential Music Publishing LLC)/Be Essential Songs (Admin. by Essential Music Publishing LLC)/Bentley Street Songs (Admin. by Essential Music Publishing LLC)/Mosaic LA Music (Admin. by Essential Music Publishing LLC)/Mosaic MSC Music (Admin. by Essential Music Publishing LLC)/Tempo Music Investments (Admin. by Essential Music Publishing LLC)"
+
+        var_dump( $lyricsData["Disclaimer"]);
+        // Output: "For ue solely with the SongSelect Terms of Ue.  All rights reserved. www.ccli.com"
+
+        var_dump( $lyricsData["SongID"]);
+        // Output: "4c0ad6fe-402c-e611-9427-0050568927dd"
+
+        var_dump( $lyricsData["SongNumber"]);
+        // Output: "7065049"
+
+        var_dump( $lyricsData["Title"]);
+        // Output: "Tremble"
+
+
+        // Show second lyrics part:
+        var_dump( $lyricsData["LyricParts"][1]["Lyrics"]);
+        // Output: "Still call the sea to still | The rage in me to still | Every wave at Your name"
+
+        var_dump( $lyricsData["LyricParts"][1]["PartType"]);
+        // Output: "Verse"
+
+        var_dump( $lyricsData["LyricParts"][1]["PartTypeNumber"]);
+        // Output: "2"
+
+
+```
+
+**Retrieve Chordsheet for CCLI-Number:**
+
+Parameter for the `retrieveChordsheet`-Method:
+
+* SongArrangementId where the chordsheet pdf should be attached
+* Filename you want to give the pdf file
+* Key of the chordsheet you want to dowload.
+
+The method returns a nullable [File-Model](/../../src/Models/File.php).
+
+- ⚠ If you insert a invalid ccli-number, churchtools creates an empty file. There is no error reported.
+
+```php
+        use CTApi\Requests\CcliRequest;
+
+        $ccliNumber = 1878670;
+        $songArrangementId = 2912;
+        $fileNameOfChordsheet = "Tremble Chordsheet";
+        $chordsheetKey = "C";
+
+        $chordsheetFile = CcliRequest::forSong($ccliNumber)->retrieveChordsheet($songArrangementId, $fileNameOfChordsheet, $chordsheetKey);
+
+        var_dump( $chordsheetFile?->getFilename());
+        // Output: "77fd99.pdf"
+
+        var_dump( $chordsheetFile?->getId());
+        // Output: "110"
+
+        var_dump( $chordsheetFile?->getName());
+        // Output: "Tremble Chordsheet - C.pdf"
+
+        var_dump( $chordsheetFile?->getFileUrl());
+        // Output: "https://example.church.tools//?q=public/filedownload&id=110&filename=77fd99.pdf"
+
+
+```
+
