@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 
 - Sending API key as HTTP header instead of query param in FileRequestBuilder ([PR126](https://github.com/5pm-HDH/churchtools-api/pull/126))
+- Update ChurchTools from 3.90.0 to 3.91.1 ([PR129](https://github.com/5pm-HDH/churchtools-api/pull/129))
 
 ### Fixed
 
