@@ -1,0 +1,39 @@
+{
+  "data": [
+    {
+      "id": 2652,
+      "groupId": 21,
+      "dateFrom": "2022-11-09T18:30:00Z",
+      "dateTo": "2022-11-09T18:30:00Z",
+      "isCompleted": true,
+      "isCanceled": false,
+      "hasEditingStarted": true,
+      "numGuests": 5,
+      "comment": "Hello World",
+      "pollResult": null,
+      "statistics": {
+        "present": 2,
+        "absent": 1,
+        "unsure": 0
+      },
+      "meta": {
+        "modifiedDate": "2022-11-11T12:49:44Z",
+        "modifiedPerson": {
+          "id": 373
+        }
+      }
+    }
+  ],
+  "meta": {
+    "count": 1,
+    "statistics": {
+      "notCanceled": 3,
+      "completed": 3,
+      "notCompletedAndNotCanceledAndInPast": 0,
+      "notCompletedAndNotCanceledAndInFuture": 0,
+      "completedAndNotCanceled": 3
+    },
+    "previous": null,
+    "next": "2022-11-13T16:00:00.000000Z"
+  }
+}
