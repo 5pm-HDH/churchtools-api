@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Update GroupMembers ([PR124](https://github.com/5pm-HDH/churchtools-api/pull/124))
 - CCLI-Request Lyrics and Chordsheet ([PR127](https://github.com/5pm-HDH/churchtools-api/pull/127))
 - Extended exception handling of invalid or empty email addresses passed to the person API ([PR125](https://github.com/5pm-HDH/churchtools-api/pull/125))
+- Group-Meetings Request ([PR130](https://github.com/5pm-HDH/churchtools-api/pull/130))
 
 ### Changed
 
