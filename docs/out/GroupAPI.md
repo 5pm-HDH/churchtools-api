@@ -214,3 +214,83 @@
         GroupMemberRequest::removeMember($groupId, $personId);
 
 ```
+
+## Group-Meetings
+
+```php
+        use CTApi\CTConfig;
+        use CTApi\Models\Group;
+        use CTApi\Requests\GroupMeetingRequest;
+        use CTApi\Requests\GroupRequest;
+
+        $meetings = $this->group->requestGroupMeetings()
+            ?->where("start_date", "2022-11-01")
+            ->where("end_date", "2022-11-15")
+            ->get();
+
+        $meeting = $meetings[0];
+
+        var_dump( $meeting->getId());
+        // Output: 2652
+
+        var_dump( $meeting->getGroupId());
+        // Output: 21
+
+        var_dump( $meeting->getDateFrom());
+        // Output: "2022-11-09T18:30:00Z"
+
+        var_dump( $meeting->getDateTo());
+        // Output: "2022-11-09T18:30:00Z"
+
+        var_dump( $meeting->getIsCompleted());
+        // Output: true
+
+        var_dump( $meeting->getIsCanceled());
+        // Output: false
+
+        var_dump( $meeting->getHasEditingStarted());
+        // Output: true
+
+        var_dump( $meeting->getNumGuests());
+        // Output: 5
+
+        var_dump( $meeting->getComment());
+        // Output: "Hello World"
+
+
+        var_dump( $meeting?->getStatistics()->getPresent());
+        // Output: 2
+
+        var_dump( $meeting?->getStatistics()->getAbsent());
+        // Output: 1
+
+        var_dump( $meeting?->getStatistics()->getUnsure());
+        // Output: 0
+
+
+```
+
+```php
+        use CTApi\CTConfig;
+        use CTApi\Models\Group;
+        use CTApi\Requests\GroupMeetingRequest;
+        use CTApi\Requests\GroupRequest;
+
+        CTConfig::enableDebugging();
+        $meetings = GroupMeetingRequest::forGroup(21)->get();
+        $meeting = $meetings[0];
+
+        $meetingMembers = $meeting->requestMembers()->get();
+        $meetingMember = $meetingMembers[0];
+
+        var_dump( $meetingMember->getIsCheckedIn());
+        // Output: true
+
+        var_dump( $meetingMember->getStatus());
+        // Output: "present"
+
+
+        $groupMember = $meetingMember->getMember();
+        // see GroupMember-Model
+
+```

@@ -1,0 +1,34 @@
+{
+  "data": [
+    {
+      "member": {
+        "personId": 21,
+        "person": {
+          "title": "Lukas Smith",
+          "domainType": "person",
+          "domainIdentifier": "21",
+          "apiUrl": "https:\/\/example.church.tools\/api\/persons\/21",
+          "frontendUrl": "https:\/\/example.church.tools\/?q=churchdb#PersonView\/searchEntry:%2321\/",
+          "imageUrl": "https:\/\/example.church.tools\/images\/11624\/86107e679a19d5d8e7867fabd415fe3445f45de83c73112b1aa8f11f576981b4",
+          "icon": "user",
+          "domainAttributes": {
+            "firstName": "Lukas",
+            "lastName": "Dumberger",
+            "guid": "4AD7AE23-9485-424D-980F-85D34CE93B44"
+          }
+        },
+        "groupTypeRoleId": 12,
+        "memberStartDate": "2022-09-27",
+        "comment": "",
+        "memberEndDate": null,
+        "waitinglistPosition": null
+      },
+      "isCheckedIn": true,
+      "status": "present"
+    }
+  ],
+  "meta": {
+    "count": 1,
+    "totalCheckedIn": 1
+  }
+}

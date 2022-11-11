@@ -9,6 +9,7 @@ use CTApi\Requests\FileRequest;
 use CTApi\Requests\FileRequestBuilder;
 use CTApi\Requests\GroupHierarchieChildrenRequest;
 use CTApi\Requests\GroupHierarchieParentsRequest;
+use CTApi\Requests\GroupMeetingRequestBuilder;
 use CTApi\Requests\GroupMemberRequestBuilder;
 
 class Group extends AbstractModel
@@ -88,6 +89,14 @@ class Group extends AbstractModel
     {
         if (!is_null($this->getId())) {
             return FileRequest::forGroupImage($this->getIdAsInteger());
+        }
+        return null;
+    }
+
+    public function requestGroupMeetings(): ?GroupMeetingRequestBuilder
+    {
+        if (!is_null($this->getId())) {
+            return new GroupMeetingRequestBuilder($this->getIdAsInteger());
         }
         return null;
     }
