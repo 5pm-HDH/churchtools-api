@@ -40,10 +40,16 @@ class CcliRequestBuilder
         if(!is_null($jsonDataAsString)){
             try{
                 $jsonData = json_decode($jsonDataAsString, true);
-                return $jsonData ?? [];
+                if(!is_null($jsonData)){
+                    $data = $jsonData;
+                }
             }catch (\Exception $exception) {
                 CTLog::getLog()->debug("Could not parse JSON-String: ", ["jsonDataAsString" => $jsonDataAsString, "exception" => $exception]);
             }
+        }
+
+        if(array_key_exists("data", $data)){
+            $data = $data["data"];
         }
 
         return $data;
