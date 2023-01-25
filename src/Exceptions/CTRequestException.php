@@ -100,13 +100,26 @@ class CTRequestException extends RuntimeException
                 if (array_key_exists('args', $error) && array_key_exists('value', $error['args'])) {
                     $value = $error['args']['value'];
 
-                    if ('' === $value) {
-                        $description .= ' If no e-mail address is available set it to null.';
+                    if (null === $value) {
+                        $description .= ' Provided value was NULL.';
                     } else {
-                        $description .= sprintf('Provided value was "%s".', $value);
+                        $description .= sprintf(' Provided value was "%s".', $value);
                     }
                 }
 
+                $errorDescriptions[] = $description;
+
+                continue;
+            }
+
+            if (isset($error['message'])) {
+                $args = isset($error['args']) && is_array($error['args']) ? $error['args'] : [];
+
+                $placeholders = array_map(function ($key) {
+                    return sprintf('{%s}', $key);
+                }, array_keys($args));
+
+                $description = strtr($error['message'], array_combine($placeholders, $args));
                 $errorDescriptions[] = $description;
 
                 continue;
