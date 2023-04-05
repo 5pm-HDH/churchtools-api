@@ -8,6 +8,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 
 ### Added
+
+### Changed
+
+### Fixed
+
+## [1.3.6] - 2023-04-05
+
+### Added
 - Request Ajax-Api ([AjaxApi-Trait](src/Requests/Traits/AjaxApi.php))
 - Update Song-Arrangement ([PR121](https://github.com/5pm-HDH/churchtools-api/pull/121))
 - Update Song ([PR122](https://github.com/5pm-HDH/churchtools-api/pull/122))
@@ -22,8 +30,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Update ChurchTools from 3.90.0 to 3.91.1 ([PR129](https://github.com/5pm-HDH/churchtools-api/pull/129))
 - Improved the formatting of ChurchTool's error response ([PR132](https://github.com/5pm-HDH/churchtools-api/pull/132))
 - Breaking-Change: Wrap Song-Lyrics with Model ([PR133](https://github.com/5pm-HDH/churchtools-api/pull/133))
-
-### Fixed
 
 ## [1.3.5] - 2022-09-22
 
