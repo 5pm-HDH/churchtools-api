@@ -4,8 +4,6 @@
 namespace Tests\Integration\Requests;
 
 
-use CTApi\CTConfig;
-use CTApi\Requests\CcliRequest;
 use CTApi\Requests\CcliRequestBuilder;
 use CTApi\Requests\FileRequest;
 use Tests\Integration\TestCaseAuthenticated;
@@ -30,23 +28,25 @@ class CcliRequestTest extends TestCaseAuthenticated
 
     public function testLoadLyrics()
     {
-        $data = (new CcliRequestBuilder($this->ccliId))->retrieveLyrics();
+        $songLyrics = (new CcliRequestBuilder($this->ccliId))->retrieveLyrics();
 
-        $this->assertArrayHasKey("Authors", $data);
-        $this->assertArrayHasKey("CCLID", $data);
-        $this->assertArrayHasKey("Copyright", $data);
-        $this->assertArrayHasKey("Disclaimer", $data);
-        $this->assertArrayHasKey("LyricParts", $data);
-        $this->assertArrayHasKey("SongID", $data);
-        $this->assertArrayHasKey("SongNumber", $data);
-        $this->assertEquals($this->ccliId, $data["SongNumber"]);
-        $this->assertArrayHasKey("Title", $data);
+        $this->assertNotNull($songLyrics);
+        $this->assertNotNull($songLyrics->getTitle());
+        $this->assertNotNull($songLyrics->getSongID());
+        $this->assertNotNull($songLyrics->getSongNumber());
+        $this->assertEquals($this->ccliId, $songLyrics->getSongNumber());
+        $this->assertNotNull($songLyrics->getCclid());
+        $this->assertNotNull($songLyrics->getDisclaimer());
+
+        $this->assertNotEmpty($songLyrics->getAuthors());
+        $this->assertNotEmpty($songLyrics->getCopyrights());
+        $this->assertNotEmpty($songLyrics->getLyricParts());
     }
 
     public function testLoadLyricsInvalidCcli()
     {
-        $data = (new CcliRequestBuilder(99999999))->retrieveLyrics();
-        $this->assertEmpty($data);
+        $songLyrics = (new CcliRequestBuilder(99999999))->retrieveLyrics();
+        $this->assertNull($songLyrics);
     }
 
     public function testLoadChordsheet()

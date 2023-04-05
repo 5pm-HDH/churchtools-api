@@ -14,22 +14,23 @@ class CcliRequestTest extends TestCaseHttpMocked
     {
         $ccliNumber = 1878670;
 
-        $lyricsData = CcliRequest::forSong($ccliNumber)->retrieveLyrics();
+        $songLyrics = CcliRequest::forSong($ccliNumber)->retrieveLyrics();
 
-        $this->assertEquals("1878670", $lyricsData["CCLID"]);
-        $authorList = implode("/", $lyricsData["Authors"]);
+        $this->assertNotNull($songLyrics);
+        $this->assertEquals("1878670", $songLyrics->getCclid());
+        $authorList = implode("/", $songLyrics->getAuthors());
         $this->assertEquals("Andres Figueroa/Hank Bentley/Mariah McManus/Mia Fieldes", $authorList);
-        $copyright = implode("/", $lyricsData["Copyright"]);
-        $this->assertEquals("2016 All Essential Music (Admin. by Essential Music Publishing LLC)/Be Essential Songs (Admin. by Essential Music Publishing LLC)/Bentley Street Songs (Admin. by Essential Music Publishing LLC)/Mosaic LA Music (Admin. by Essential Music Publishing LLC)/Mosaic MSC Music (Admin. by Essential Music Publishing LLC)/Tempo Music Investments (Admin. by Essential Music Publishing LLC)", $copyright);
-        $this->assertEquals("For ue solely with the SongSelect Terms of Ue.  All rights reserved. www.ccli.com", $lyricsData["Disclaimer"]);
-        $this->assertEquals("4c0ad6fe-402c-e611-9427-0050568927dd", $lyricsData["SongID"]);
-        $this->assertEquals("7065049", $lyricsData["SongNumber"]);
-        $this->assertEquals("Tremble", $lyricsData["Title"]);
+        $copyright = implode("/", $songLyrics->getCopyrights());
+        $this->assertEquals("2016 All Essential Music/Be Essential Songs/Bentley Street Songs/Mosaic LA Music/Mosaic MSC Music/Tempo Music Investments", $copyright);
+        $this->assertEquals("For us solely with the SongSelect Terms of us.  All rights reserved. www.ccli.com", $songLyrics->getDisclaimer());
+        $this->assertEquals("4c0ad6fe-402c-e611-9427-0050568927dd", $songLyrics->getSongID());
+        $this->assertEquals("7065049", $songLyrics->getSongNumber());
+        $this->assertEquals("Tremble", $songLyrics->getTitle());
 
         // Show second lyrics part:
-        $this->assertEquals("Still call the sea to still | The rage in me to still | Every wave at Your name", $lyricsData["LyricParts"][1]["Lyrics"]);
-        $this->assertEquals("Verse", $lyricsData["LyricParts"][1]["PartType"]);
-        $this->assertEquals("2", $lyricsData["LyricParts"][1]["PartTypeNumber"]);
+        $this->assertEquals("Still call the sea to still\nThe rage in me to still\nEvery wave at Your name", $songLyrics->getLyricParts()[1]["lyrics"]);
+        $this->assertEquals("Verse", $songLyrics->getLyricParts()[1]["partType"]);
+        $this->assertEquals("2", $songLyrics->getLyricParts()[1]["partTypeNumber"]);
     }
 
     public function testRetrieveChordsheet()
