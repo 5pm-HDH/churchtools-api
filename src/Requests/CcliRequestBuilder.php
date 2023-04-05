@@ -7,7 +7,7 @@ namespace CTApi\Requests;
 use CTApi\CTConfig;
 use CTApi\CTLog;
 use CTApi\Models\File;
-use CTApi\Models\SongArrangement;
+use CTApi\Models\SongLyrics;
 use CTApi\Requests\Traits\AjaxApi;
 use CTApi\Utils\CTResponseUtil;
 use CTApi\Utils\CTUtil;
@@ -24,9 +24,9 @@ class CcliRequestBuilder
 
     /**
      * Retrieve Lyrics-Data from Song of given CCLI-Number. This call does not create any file on the song-arrangement.
-     * @return array
+     * @return ?SongLyrics
      */
-    public function retrieveLyrics(): array
+    public function retrieveLyrics(): ?SongLyrics
     {
         $response = $this->requestAjax("churchservice/ajax", "getCCLILyrics", [
             "songNumber" => $this->ccliNumber
@@ -37,22 +37,28 @@ class CcliRequestBuilder
         $jsonDataAsString = CTUtil::arrayPathGet($data, "data.content");
         CTLog::getLog()->debug("Parse CCLI-Lyrics data:", ["jsonDataAsString" => $jsonDataAsString]);
 
-        if(!is_null($jsonDataAsString)){
-            try{
+        if (!is_null($jsonDataAsString)) {
+            try {
                 $jsonData = json_decode($jsonDataAsString, true);
-                if(!is_null($jsonData)){
+                if (!is_null($jsonData)) {
                     $data = $jsonData;
                 }
-            }catch (\Exception $exception) {
+            } catch (\Exception $exception) {
                 CTLog::getLog()->debug("Could not parse JSON-String: ", ["jsonDataAsString" => $jsonDataAsString, "exception" => $exception]);
             }
         }
 
-        if(array_key_exists("data", $data)){
+        // unpack "data" container
+        if (array_key_exists("data", $data)) {
             $data = $data["data"];
         }
 
-        return $data;
+        // if retrieve is not successful - return empty array
+        if (array_key_exists("success", $data) && $data["success"] == false) {
+            return null;
+        }
+
+        return SongLyrics::createModelFromData($data);
     }
 
     /**
@@ -73,7 +79,7 @@ class CcliRequestBuilder
 
         $data = CTResponseUtil::jsonToArray($response);
 
-        if(CTUtil::arrayPathGet($data, "status") == "success"){
+        if (CTUtil::arrayPathGet($data, "status") == "success") {
             $file = (new File())
                 ->setId(CTUtil::arrayPathGet($data, "data.id"))
                 ->setName(CTUtil::arrayPathGet($data, "data.bezeichnung"))
@@ -81,7 +87,7 @@ class CcliRequestBuilder
 
             // Generate file url
             $file->setFileUrl(
-                CTConfig::getApiUrl() . "/?q=public/filedownload&id=".$file->getId()."&filename=".$file->getFilename()
+                CTConfig::getApiUrl() . "/?q=public/filedownload&id=" . $file->getId() . "&filename=" . $file->getFilename()
             );
 
             return $file;
