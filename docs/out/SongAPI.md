@@ -190,40 +190,41 @@
 
         $ccliNumber = 1878670;
 
-        $lyricsData = CcliRequest::forSong($ccliNumber)->retrieveLyrics();
+        $songLyrics = CcliRequest::forSong($ccliNumber)->retrieveLyrics();
 
-        var_dump( $lyricsData["CCLID"]);
+        $this->assertNotNull($songLyrics);
+        var_dump( $songLyrics->getCclid());
         // Output: "1878670"
 
-        $authorList = implode("/", $lyricsData["Authors"]);
+        $authorList = implode("/", $songLyrics->getAuthors());
         var_dump( $authorList);
         // Output: "Andres Figueroa/Hank Bentley/Mariah McManus/Mia Fieldes"
 
-        $copyright = implode("/", $lyricsData["Copyright"]);
+        $copyright = implode("/", $songLyrics->getCopyrights());
         var_dump( $copyright);
-        // Output: "2016 All Essential Music (Admin. by Essential Music Publishing LLC)/Be Essential Songs (Admin. by Essential Music Publishing LLC)/Bentley Street Songs (Admin. by Essential Music Publishing LLC)/Mosaic LA Music (Admin. by Essential Music Publishing LLC)/Mosaic MSC Music (Admin. by Essential Music Publishing LLC)/Tempo Music Investments (Admin. by Essential Music Publishing LLC)"
+        // Output: "2016 All Essential Music/Be Essential Songs/Bentley Street Songs/Mosaic LA Music/Mosaic MSC Music/Tempo Music Investments"
 
-        var_dump( $lyricsData["Disclaimer"]);
-        // Output: "For ue solely with the SongSelect Terms of Ue.  All rights reserved. www.ccli.com"
+        var_dump( $songLyrics->getDisclaimer());
+        // Output: "For us solely with the SongSelect Terms of us.  All rights reserved. www.ccli.com"
 
-        var_dump( $lyricsData["SongID"]);
+        var_dump( $songLyrics->getSongID());
         // Output: "4c0ad6fe-402c-e611-9427-0050568927dd"
 
-        var_dump( $lyricsData["SongNumber"]);
+        var_dump( $songLyrics->getSongNumber());
         // Output: "7065049"
 
-        var_dump( $lyricsData["Title"]);
+        var_dump( $songLyrics->getTitle());
         // Output: "Tremble"
 
 
         // Show second lyrics part:
-        var_dump( $lyricsData["LyricParts"][1]["Lyrics"]);
-        // Output: "Still call the sea to still | The rage in me to still | Every wave at Your name"
+        var_dump( $songLyrics->getLyricParts()[1]["lyrics"]);
+        // Output: "Still call the sea to still\nThe rage in me to still\nEvery wave at Your name"
 
-        var_dump( $lyricsData["LyricParts"][1]["PartType"]);
+        var_dump( $songLyrics->getLyricParts()[1]["partType"]);
         // Output: "Verse"
 
-        var_dump( $lyricsData["LyricParts"][1]["PartTypeNumber"]);
+        var_dump( $songLyrics->getLyricParts()[1]["partTypeNumber"]);
         // Output: "2"
 
 

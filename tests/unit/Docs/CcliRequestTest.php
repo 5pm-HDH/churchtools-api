@@ -22,7 +22,7 @@ class CcliRequestTest extends TestCaseHttpMocked
         $this->assertEquals("Andres Figueroa/Hank Bentley/Mariah McManus/Mia Fieldes", $authorList);
         $copyright = implode("/", $songLyrics->getCopyrights());
         $this->assertEquals("2016 All Essential Music/Be Essential Songs/Bentley Street Songs/Mosaic LA Music/Mosaic MSC Music/Tempo Music Investments", $copyright);
-        $this->assertEquals("For use solely with the SongSelect Terms of Use.  All rights reserved. www.ccli.com", $songLyrics->getDisclaimer());
+        $this->assertEquals("For us solely with the SongSelect Terms of us.  All rights reserved. www.ccli.com", $songLyrics->getDisclaimer());
         $this->assertEquals("4c0ad6fe-402c-e611-9427-0050568927dd", $songLyrics->getSongID());
         $this->assertEquals("7065049", $songLyrics->getSongNumber());
         $this->assertEquals("Tremble", $songLyrics->getTitle());
