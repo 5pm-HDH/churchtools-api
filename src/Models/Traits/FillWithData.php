@@ -13,6 +13,15 @@ trait FillWithData
      */
     public function toData(): array
     {
+        return $this->convertPropertiesToData();
+    }
+
+    /**
+     * Intern-Method: Serialize the Model-Data to associative array. Also converts all properties that are objects to associative array.
+     * @return array data
+     */
+    private function convertPropertiesToData(): array
+    {
         $data = get_object_vars($this);
         $castedData = [];
         foreach ($data as $propertyKey => $propertyValue) {
