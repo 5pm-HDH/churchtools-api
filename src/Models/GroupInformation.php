@@ -38,13 +38,20 @@ class GroupInformation
 
     protected function fillNonArrayType(string $key, $value): void
     {
-        switch ($key){
+        switch ($key) {
             case "weekday":
                 $this->weekday = [$value];
                 break;
             default:
                 $this->fillDefault($key, $value);
         }
+    }
+
+    public function toData(): array
+    {
+        $data = $this->convertPropertiesToData();
+        $data["imageUrlBanner"] = $this->getImageUrlBanner();
+        return $data;
     }
 
     /**
