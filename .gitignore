@@ -13,3 +13,5 @@ composer.phar
 
 # ignore log-files
 *.log
+
+/http-dump

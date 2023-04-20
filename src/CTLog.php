@@ -11,10 +11,13 @@ class CTLog
 {
     private const LOG_FILE = __DIR__ . '/../churchtools-api.log';
     private const LOG_FILE_WARNING = __DIR__ . '/../churchtools-api-warning.log';
+    private const LOG_HTTP_DATA_DIR = __DIR__ . '/../http-dump/';
 
     private static ?Logger $logger = null;
     private static bool $fileLogEnabled = true;
     private static bool $consoleLogEnabled = true;
+    private static bool $httpLogEnabled = true;
+    private static string $httpLogName = "Log";
 
     // Log-Level: https://github.com/Seldaek/monolog/blob/main/doc/01-usage.md#log-levels
     private static int $consoleLogLevel = Logger::ERROR;
@@ -53,6 +56,29 @@ class CTLog
     {
         self::$consoleLogEnabled = $enabled;
         self::createLog();
+    }
+
+    public static function enableHttpLog($enabled = true): void
+    {
+        $deciple = ["Peter", "John", "James", "Andrew", "Philip", "Bartholomew", "Thomas", "Matthew", "James", "Juda", "Simon", "Judas-Iscariot"];
+        $index = array_rand($deciple, 1);
+
+        self::$httpLogEnabled = $enabled;
+        self::$httpLogName = $deciple[$index] . random_int(100,1000);
+    }
+
+    public static function logHttpData(array $httpData): void
+    {
+        if(!self::$httpLogEnabled){
+            return;
+        }
+
+        if(!file_exists(self::LOG_HTTP_DATA_DIR)){
+            mkdir(self::LOG_HTTP_DATA_DIR);
+        }
+
+        $fileName = date("Y-m-d-H-i-s") . "-" . self::$httpLogName . ".json";
+        file_put_contents(self::LOG_HTTP_DATA_DIR . $fileName, json_encode($httpData, JSON_PRETTY_PRINT));
     }
 
     public static function setConsoleLogLevelError(): void

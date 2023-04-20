@@ -1,6 +1,6 @@
 # CTLog
 
-By default, there are two log types:
+By default, there are three log types:
 
 **File-Log (Info):**
 
@@ -16,6 +16,11 @@ By default, there are two log types:
 
 - Logs by default the log-level: ERROR, CRITICAL, ALERT, EMERGENCY
 - Log is displayed to the php-console
+
+**HTTP-Log**
+
+- Stores all HTTP-Response Data in the folder `http-dump`.
+- Enable with `CTLog::enableHttpLog();`
 
 ## Enable / disable
 

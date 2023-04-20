@@ -4,6 +4,7 @@
 namespace CTApi\Utils;
 
 
+use CTApi\CTLog;
 use Psr\Http\Message\ResponseInterface;
 
 class CTResponseUtil
@@ -20,7 +21,9 @@ class CTResponseUtil
         if ($object == null) {
             return [];
         } else {
-            return (array)$object;
+            $data = (array)$object;
+            CTLog::logHttpData($data);
+            return $data;
         }
     }
 
