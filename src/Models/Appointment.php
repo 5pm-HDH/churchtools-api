@@ -14,6 +14,7 @@ class Appointment extends AbstractModel
     protected ?string $note = null;
     protected ?string $version = null;
     protected ?Calendar $calendar = null;
+    protected ?Address $address = null;
     protected ?string $information = null;
     protected ?string $link = null;
     protected ?bool $isInternal = null;
@@ -41,6 +42,9 @@ class Appointment extends AbstractModel
             case "meta":
                 $this->meta = Meta::createModelFromData($data);
                 break;
+            case "address":
+                $this->address = Address::createModelFromData($data);
+                break;
             default:
                 $this->fillDefault($key, $data);
         }
@@ -53,6 +57,24 @@ class Appointment extends AbstractModel
     public function setId(?string $id): Appointment
     {
         $this->id = $id;
+        return $this;
+    }
+
+    /**
+     * @return Address|null
+     */
+    public function getAddress(): ?Address
+    {
+        return $this->address;
+    }
+
+    /**
+     * @param Address|null $address
+     * @return Appointment
+     */
+    public function setAddress(?Address $address): Appointment
+    {
+        $this->address = $address;
         return $this;
     }
 

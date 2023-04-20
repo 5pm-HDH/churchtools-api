@@ -60,6 +60,62 @@ Load appointments for calendar:
         var_dump( $lastAppointment->getEndDate());
         // Output: "2022-08-07T16:00:00Z"
 
+        var_dump( $lastAppointment->getAllDay());
+        // Output: "false"
+
+
+        var_dump( $lastAppointment->getNote());
+        // Output: "Test Note"
+
+        var_dump( $lastAppointment->getVersion());
+        // Output: 1
+
+        var_dump( $lastAppointment->getInformation());
+        // Output: "Information Text"
+
+        var_dump( $lastAppointment->getLink());
+        // Output: "https://example.com"
+
+        var_dump( $lastAppointment->getIsInternal());
+        // Output: false
+
+
+        // Repeat of Appointment
+        var_dump( $lastAppointment->getRepeatId());
+        // Output: 0
+
+        var_dump( $lastAppointment->getRepeatFrequency());
+        // Output: 1
+
+
+        // Retrieve Address:
+        var_dump( $lastAppointment->getAddress()?->getMeetingAt());
+        // Output: "Evangelische Brückengemeinde"
+
+        var_dump( $lastAppointment->getAddress()?->getStreet());
+        // Output: "Wilhelmstraße 132"
+
+        var_dump( $lastAppointment->getAddress()?->getAddition());
+        // Output: "-"
+
+        var_dump( $lastAppointment->getAddress()?->getDistrict());
+        // Output: "-"
+
+        var_dump( $lastAppointment->getAddress()?->getZip());
+        // Output: "89518"
+
+        var_dump( $lastAppointment->getAddress()?->getCity());
+        // Output: "Heidenheim an der Brenz"
+
+        var_dump( $lastAppointment->getAddress()?->getCountry());
+        // Output: "DE"
+
+        var_dump( $lastAppointment->getAddress()?->getLatitude());
+        // Output: "48.680651"
+
+        var_dump( $lastAppointment->getAddress()?->getLongitude());
+        // Output: "10.130883553439624"
+
 
 ```
 

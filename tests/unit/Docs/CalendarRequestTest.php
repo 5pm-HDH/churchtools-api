@@ -40,6 +40,28 @@ class CalendarRequestTest extends TestCaseHttpMocked
         $this->assertEquals("Service", $lastAppointment->getCaption());
         $this->assertEquals("2022-08-07T15:00:00Z", $lastAppointment->getStartDate());
         $this->assertEquals("2022-08-07T16:00:00Z", $lastAppointment->getEndDate());
+        $this->assertEquals("false", $lastAppointment->getAllDay());
+
+        $this->assertEquals("Test Note", $lastAppointment->getNote());
+        $this->assertEquals(1, $lastAppointment->getVersion());
+        $this->assertEquals("Information Text", $lastAppointment->getInformation());
+        $this->assertEquals("https://example.com", $lastAppointment->getLink());
+        $this->assertEquals(false, $lastAppointment->getIsInternal());
+
+        // Repeat of Appointment
+        $this->assertEquals(0, $lastAppointment->getRepeatId());
+        $this->assertEquals(1, $lastAppointment->getRepeatFrequency());
+
+        // Retrieve Address:
+        $this->assertEquals("Evangelische Brückengemeinde", $lastAppointment->getAddress()?->getMeetingAt());
+        $this->assertEquals("Wilhelmstraße 132", $lastAppointment->getAddress()?->getStreet());
+        $this->assertEquals("-", $lastAppointment->getAddress()?->getAddition());
+        $this->assertEquals("-", $lastAppointment->getAddress()?->getDistrict());
+        $this->assertEquals("89518", $lastAppointment->getAddress()?->getZip());
+        $this->assertEquals("Heidenheim an der Brenz", $lastAppointment->getAddress()?->getCity());
+        $this->assertEquals("DE", $lastAppointment->getAddress()?->getCountry());
+        $this->assertEquals("48.680651", $lastAppointment->getAddress()?->getLatitude());
+        $this->assertEquals("10.130883553439624", $lastAppointment->getAddress()?->getLongitude());
     }
 
     /**
