@@ -4,7 +4,6 @@
 namespace Tests\Integration\Requests;
 
 
-use CTApi\CTConfig;
 use CTApi\Requests\AppointmentRequest;
 use CTApi\Requests\CalendarRequest;
 use Tests\Integration\TestCaseAuthenticated;
@@ -18,6 +17,7 @@ class CalendarRequestTest extends TestCaseAuthenticated
     private ?string $appointmentTo = null;
     private ?string $appointmentId = null;
     private ?string $appointmentCaption = null;
+    private ?string $appointmentStartDate = null;
 
     protected function setUp(): void
     {
@@ -30,6 +30,7 @@ class CalendarRequestTest extends TestCaseAuthenticated
             $this->appointmentTo = TestData::getValue("APPOINTMENT_TO");
             $this->appointmentId = TestData::getValue("APPOINTMENT_ID");
             $this->appointmentCaption = TestData::getValue("APPOINTMENT_CAPTION");
+            $this->appointmentStartDate = TestData::getValue("APPOINTMENT_START_DATE");
         }
     }
 
@@ -63,5 +64,6 @@ class CalendarRequestTest extends TestCaseAuthenticated
         }
         $this->assertNotNull($foundAppointment);
         $this->assertEquals($this->appointmentCaption, $foundAppointment->getCaption());
+        $this->assertEquals($this->appointmentStartDate, $foundAppointment->getStartDate());
     }
 }
