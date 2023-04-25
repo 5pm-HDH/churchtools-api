@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 - Add Address-Property to Appointment ([PR137](https://github.com/5pm-HDH/churchtools-api/pull/137))
+- Integration test to check if start-date is working ([PR138](https://github.com/5pm-HDH/churchtools-api/issues/138))
 
 ### Changed
 
