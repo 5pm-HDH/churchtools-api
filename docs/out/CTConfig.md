@@ -38,37 +38,41 @@ CTConfig::authWithCredentials($email, $password);
 
 ```
 
-This method will log in to the application to the churchtools api and retrieve the api key. For security reasons the
-CTConfig don't store your email or password. Only the api key will be stored. You can display the api key by using the
-getter method:
+This method will log in to the application to the churchtools api and set the session cookie. For security reasons the
+CTConfig don't store your email or password. Only the session cookie will be stored.
+
+To validate if the session is still valid, call the validateAuthentication method:
 
 ```php
 use CTApi\CTConfig;
 
-$apiToken = CTConfig::getApiKey();
-
-```
-
-The api key can also be set manually with the setter method:
-
-```php
-use CTApi\CTConfig;
-
-$apiToken = CTConfig::setApiKey("...");
-
-```
-
-To validate if the api key is still valid, call the validateApiKey method:
-
-```php
-use CTApi\CTConfig;
-
-$isValid = CTConfig::validateApiKey();
+$isValid = CTConfig::validateAuthentication();
 if($isValid){
     echo "ApiKey is still valid!";
 }else{
     echo "ApiKey is not valid anymore!";
 }
+
+```
+You can also retrieve the api key to authenticate the CTConfig. 
+
+```php
+use CTApi\Requests\AuthRequest;
+
+$userId = 21;
+
+AuthRequest::retrieveApiToken($userId);
+
+```
+
+The api key can also be set manually with the setter method. And retrieved by the getter:
+
+```php
+use CTApi\CTConfig;
+
+$apiToken = CTConfig::setApiKey("...");
+$apiToken = CTConfig::getApiKey();
+
 
 ```
 

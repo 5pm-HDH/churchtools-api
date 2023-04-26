@@ -23,12 +23,13 @@ class AuthRequestTest extends TestCase
         $authPassword = TestData::getValue("AUTH_PASSWORD");
 
         $auth = AuthRequest::authWithEmailAndPassword($authEmail, $authPassword);
-
-        $this->assertNotNull($auth->apiKey);
         $this->assertNotNull($auth->userId);
 
         $authUserId = TestData::getValue("AUTH_USER_ID");
         $this->assertEquals($authUserId, $auth->userId);
+
+        $cookie = CTConfig::getSessionCookie();
+        $this->assertNotNull($cookie);
     }
 
 }

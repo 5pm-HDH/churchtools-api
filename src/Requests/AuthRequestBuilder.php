@@ -3,16 +3,13 @@
 namespace CTApi\Requests;
 
 use CTApi\CTClient;
+use CTApi\CTConfig;
 use CTApi\Exceptions\CTAuthException;
 use CTApi\Exceptions\CTRequestException;
 use CTApi\Models\Auth;
 
 class AuthRequestBuilder
 {
-
-    private ?string $userId = null;
-    private ?string $apiKey = null;
-
     public function authWithEmailAndPassword(string $email, string $password): Auth
     {
         $client = CTClient::getClient();
@@ -39,9 +36,8 @@ class AuthRequestBuilder
         if ($response->getStatusCode() == 200) {
             $jsonResponse = json_decode($response->getBody()->__toString());
 
-            $this->userId = (isset($jsonResponse->data) ? $jsonResponse->data->personId : null);
-
-            $this->retrieveLoginToken();
+            $userId = (isset($jsonResponse->data) ? $jsonResponse->data->personId : null);
+            return new Auth($userId);
         } else {
             $jsonResponse = json_decode($response->getBody()->__toString());
             if (isset($jsonResponse->message)) {
@@ -50,20 +46,15 @@ class AuthRequestBuilder
                 throw new CTAuthException("Authentication was not successfully. HTTP Status Code is not 200.");
             }
         }
-
-        return $this->get();
     }
 
-    private function retrieveLoginToken(): void
+    public function retrieveApiToken(string $userId): ?string
     {
-        if ($this->userId == null) {
-            throw new CTAuthException("Authentication was not successfully. UserId is not defined.");
-        }
-
         $client = CTClient::getClient();
+
         try {
             $response = $client->get(
-                '/api/persons/' . $this->userId . '/logintoken',
+                '/api/persons/' . $userId . '/logintoken',
                 [
                     'headers' => [
                         'Cache-Control' => 'no-cache'
@@ -79,11 +70,6 @@ class AuthRequestBuilder
         }
 
         $responseJson = json_decode($response->getBody()->__toString());
-        $this->apiKey = (isset($responseJson->data) ? $responseJson->data : null);
-    }
-
-    public function get(): Auth
-    {
-        return new Auth($this->userId, $this->apiKey);
+        return (isset($responseJson->data) ? $responseJson->data : null);
     }
 }

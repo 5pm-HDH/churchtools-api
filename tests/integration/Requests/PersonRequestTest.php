@@ -9,7 +9,6 @@ use CTApi\Models\Person;
 use CTApi\Models\PersonGroup;
 use CTApi\Requests\AuthRequest;
 use CTApi\Requests\PersonRequest;
-use Exception;
 use Tests\Integration\TestCaseAuthenticated;
 use Tests\Integration\TestData;
 
@@ -88,12 +87,12 @@ class PersonRequestTest extends TestCaseAuthenticated
         $this->assertNotNull($requestEventBuilder);
         $events = $requestEventBuilder->get();
 
-        if(sizeof($events) > 0){
+        if (sizeof($events) > 0) {
             foreach ($events as $event) {
                 $this->assertInstanceOf(Event::class, $event);
             }
-        }else{
-            $this->assertTrue(true,"Executed requestEvents of Person.");
+        } else {
+            $this->assertTrue(true, "Executed requestEvents of Person.");
         }
 
     }

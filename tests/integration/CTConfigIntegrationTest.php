@@ -4,6 +4,8 @@ namespace Tests\Integration;
 
 use CTApi\CTConfig;
 use CTApi\Exceptions\CTAuthException;
+use CTApi\Requests\AuthRequest;
+use CTApi\Requests\AuthRequestBuilder;
 use PHPUnit\Framework\TestCase;
 
 class CTConfigIntegrationTest extends TestCase
@@ -26,9 +28,6 @@ class CTConfigIntegrationTest extends TestCase
         $authPassword = TestData::getValue("AUTH_PASSWORD");
 
         CTConfig::authWithCredentials($authEmail, $authPassword);
-
-        $this->assertNotNull(CTConfig::getApiKey());
-
     }
 
     public function testAuthWithCredentialsFailing(): void
@@ -54,24 +53,23 @@ class CTConfigIntegrationTest extends TestCase
 
     public function testValidateApiKey(): void
     {
-
         $authEmail = TestData::getValue("AUTH_EMAIL");
         $authPassword = TestData::getValue("AUTH_PASSWORD");
         $apiUrl = TestData::getValue("API_URL");
 
         CTConfig::setApiUrl($apiUrl);
-        CTConfig::authWithCredentials($authEmail, $authPassword);
+        $auth = CTConfig::authWithCredentials($authEmail, $authPassword);
 
-        $apiKey = CTConfig::getApiKey();
+        $apiKey = AuthRequest::retrieveApiToken($auth->userId);
 
         //set false API-Key
         CTConfig::setApikey("notvalid-api-key");
         CTConfig::clearCookies();
-        $this->assertFalse(CTConfig::validateApiKey());
+        $this->assertFalse(CTConfig::validateAuthentication());
 
         //set working API-Key
         $this->assertNotNull($apiKey);
         CTConfig::setApiKey($apiKey);
-        $this->assertTrue(CTConfig::validateApiKey());
+        $this->assertTrue(CTConfig::validateAuthentication());
     }
 }

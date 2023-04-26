@@ -68,6 +68,12 @@ class FileRequestBuilder
             "content-type:multipart/form-data",
             "csrf-token:" . $csrfToken
         ]);
+        // Set Cookie
+        $cookie = CTConfig::getSessionCookie();
+        if($cookie != null){
+            curl_setopt($ch, CURLOPT_COOKIE, $cookie["Name"] . '=' . $cookie["Value"]);
+        }
+
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, ["files[]" => curl_file_create($filePath)]);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);

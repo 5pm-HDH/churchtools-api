@@ -13,4 +13,10 @@ class AuthRequest
         CTLog::getLog()->info('AuthRequest: Authenticate CTConfig with credentials.');
         return (new AuthRequestBuilder())->authWithEmailAndPassword($email, $password);
     }
+
+    public static function retrieveApiToken(string $userId): ?string
+    {
+        CTLog::getLog()->info('AuthRequest: Request API-Token.');
+        return (new AuthRequestBuilder())->retrieveApiToken($userId);
+    }
 }
