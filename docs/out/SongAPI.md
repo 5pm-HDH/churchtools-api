@@ -267,3 +267,97 @@ The method returns a nullable [File-Model](/../../src/Models/File.php).
 
 ```
 
+## Retrieve Song Statistics
+
+**Get All Statistics:**
+
+```php
+        use CTApi\Requests\SongRequest;
+        use CTApi\Requests\SongStatisticRequest;
+        use CTApi\Requests\SongStatisticRequestBuilder;
+
+        $data = SongStatisticRequest::all();
+
+        $songStatistic = end($data);
+
+        var_dump( $songStatistic->getCount());
+        // Output: 14
+
+        var_dump( $songStatistic->getCountForCalendars([1, 2]));
+        // Output: 11
+
+
+        $song = $songStatistic->requestSong();
+
+        // Retrieve Dates:
+        $allDates = $songStatistic->getDates();
+        $date = end($allDates);
+        var_dump( $date["date"]);
+        // Output: '2021-12-12 10:30:00'
+
+        var_dump( $date["calendar_id"]);
+        // Output: '3'
+
+
+        $datesForMyServies = $songStatistic->getDatesForCalendars([1, 2]);
+        $dateService = end($datesForMyServies);
+        var_dump( $dateService["date"]);
+        // Output: '2021-07-11 10:30:00'
+
+        var_dump( $dateService["calendar_id"]);
+        // Output: '2'
+
+
+```
+
+**Get Statistics for Song:**
+
+```php
+        use CTApi\Requests\SongRequest;
+        use CTApi\Requests\SongStatisticRequest;
+        use CTApi\Requests\SongStatisticRequestBuilder;
+
+        $song = SongRequest::findOrFail(21);
+        $statistics = $song->requestSongStatistic();
+
+        var_dump( 8);
+        // Output: $statistics?->getCount()
+
+        var_dump( 5);
+        // Output: $statistics?->getCountForCalendars([2])
+
+        var_dump( 0);
+        // Output: $statistics?->getCountForCalendars([21])
+
+
+```
+
+**Lazy-Builder:**
+
+```php
+        use CTApi\Requests\SongRequest;
+        use CTApi\Requests\SongStatisticRequest;
+        use CTApi\Requests\SongStatisticRequestBuilder;
+
+        /**
+         * Lazy-SongStatisticRequestBuilder
+         */
+        $requestBuilderLazy = new SongStatisticRequestBuilder(); // default: lazy-flag is true
+
+        $requestBuilderLazy->find("21");
+        $requestBuilderLazy->find("22");
+
+        // The whole song-statistic will be fetched ones and used for both "find"-calls.
+
+        /**
+         * Not-Lazy-SongStatisticRequestBuilder
+         */
+
+        $requestBuilderNotLazy = new SongStatisticRequestBuilder(false);
+
+        $requestBuilderLazy->find("21");
+        $requestBuilderLazy->find("22");
+
+        // The whole song-statistic will be fetched for every "find"-call.
+
+```

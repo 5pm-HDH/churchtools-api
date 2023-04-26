@@ -9,6 +9,7 @@ use CTApi\Models\Traits\ExtractData;
 use CTApi\Models\Traits\FillWithData;
 use CTApi\Models\Traits\MetaAttribute;
 use CTApi\Requests\SongRequest;
+use CTApi\Requests\SongStatisticRequest;
 
 class Song extends AbstractModel implements UpdatableModel
 {
@@ -99,6 +100,14 @@ class Song extends AbstractModel implements UpdatableModel
         }
 
         return $selectedArrangement;
+    }
+
+    public function requestSongStatistic(): ?SongStatistic
+    {
+        if($this->getId() != null){
+            return SongStatisticRequest::find($this->getIdOrFail());
+        }
+        return null;
     }
 
     /**
