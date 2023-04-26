@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 - Add Address-Property to Appointment ([PR137](https://github.com/5pm-HDH/churchtools-api/pull/137))
+- Add SongStatistic ([PR140](https://github.com/5pm-HDH/churchtools-api/pull/140))
 
 ### Changed
 

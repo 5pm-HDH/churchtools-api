@@ -32,3 +32,16 @@ The method returns a nullable [File-Model](/../../src/Models/File.php).
 
 {{ \Tests\Unit\Docs\CcliRequestTest.testRetrieveChordsheet }}
 
+## Retrieve Song Statistics
+
+**Get All Statistics:**
+
+{{ \Tests\Unit\Docs\SongStatisticRequestTest.testGetAll }}
+
+**Get Statistics for Song:**
+
+{{ \Tests\Unit\Docs\SongStatisticRequestTest.testGetViaSong }}
+
+**Lazy-Builder:**
+
+{{ \Tests\Unit\Docs\SongStatisticRequestTest.testLazy }}
