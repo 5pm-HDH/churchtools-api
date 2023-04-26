@@ -5,6 +5,7 @@ namespace CTApi;
 use CTApi\Exceptions\CTConfigException;
 use CTApi\Exceptions\CTRequestException;
 use CTApi\Middleware\CTCacheMiddleware;
+use CTApi\Models\Auth;
 use CTApi\Requests\AuthRequest;
 use CTApi\Requests\PersonRequest;
 use CTApi\Utils\CTUtil;
@@ -23,6 +24,8 @@ class CTConfig
 
     private static ?CTConfig $config = null;
 
+    private CookieJar $cookieJar;
+
     /**
      * RequestOptions of Guzzle (https://docs.guzzlephp.org/en/stable/request-options.html)
      * @var array with requestOptions
@@ -31,12 +34,15 @@ class CTConfig
 
     private function __construct()
     {
+        $this->cookieJar = new CookieJar();
+
         //set default value for guzzle request
         $this->requestOptions = [
-            "cookies" => new CookieJar(),   //enable cookie storage
+            "cookies" => $this->cookieJar,   //enable cookie storage
             "http_errors" => false,          //disable Exceptions on 4xx & 5xx http-response
             "headers" => [
-                'Content-Type' => 'application/json'
+                'Content-Type' => 'application/json',
+                'User-Agent' => 'ChurchTools-API Client (5pm-hdh/churchtools-api)',
             ]
         ];
     }
@@ -48,7 +54,10 @@ class CTConfig
 
     public static function clearCookies(): void
     {
-        self::setRequestOption("cookies", new CookieJar());
+        $config = self::getConfig();
+        $newCookieJar = new CookieJar();
+        $config->cookieJar = $newCookieJar;
+        self::setRequestOption("cookies", $newCookieJar);
     }
 
     public static function getConfig(): CTConfig
@@ -75,10 +84,19 @@ class CTConfig
         return self::getRequestOption("base_uri");
     }
 
-    public static function authWithCredentials(string $email, string $password): void
+    public static function authWithCredentials(string $email, string $password): Auth
     {
-        $auth = AuthRequest::authWithEmailAndPassword($email, $password);
-        self::setRequestOption(self::PATH_LOGIN_TOKEN, $auth->apiKey);
+        return AuthRequest::authWithEmailAndPassword($email, $password);
+    }
+
+    public static function getSessionCookie(): ?array
+    {
+        $config = self::getConfig();
+        $cookieData = $config->cookieJar->toArray();
+        if(empty($cookieData)){
+            return null;
+        }
+        return end($cookieData);
     }
 
     public static function setApiKey(string $apiKey): void
@@ -99,7 +117,7 @@ class CTConfig
         }
     }
 
-    public static function validateApiKey(): bool
+    public static function validateAuthentication(): bool
     {
         try {
             $ctUser = PersonRequest::whoami();

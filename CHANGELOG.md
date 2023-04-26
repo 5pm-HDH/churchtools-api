@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Add SongStatistic ([PR140](https://github.com/5pm-HDH/churchtools-api/pull/140))
 
 ### Changed
+- Authenticate CTClient with session cookie instead of api-key ([PR142](https://github.com/5pm-HDH/churchtools-api/pull/142))
 
 ### Fixed
 

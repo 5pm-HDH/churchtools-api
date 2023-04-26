@@ -36,7 +36,6 @@ class SongStatisticRequestTest extends TestCaseAuthenticated
 
     public function testRequestSong()
     {
-        CTLog::enableHttpLog();
         $song = SongRequest::findOrFail($this->songId);
         $songStatistic = $song->requestSongStatistic();
 
