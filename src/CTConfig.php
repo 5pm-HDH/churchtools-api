@@ -41,7 +41,8 @@ class CTConfig
             "cookies" => $this->cookieJar,   //enable cookie storage
             "http_errors" => false,          //disable Exceptions on 4xx & 5xx http-response
             "headers" => [
-                'Content-Type' => 'application/json'
+                'Content-Type' => 'application/json',
+                'User-Agent' => 'ChurchTools-API Client (5pm-hdh/churchtools-api)',
             ]
         ];
     }
