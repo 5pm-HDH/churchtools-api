@@ -276,7 +276,6 @@
         use CTApi\Requests\GroupMeetingRequest;
         use CTApi\Requests\GroupRequest;
 
-        CTConfig::enableDebugging();
         $meetings = GroupMeetingRequest::forGroup(21)->get();
         $meeting = $meetings[0];
 
