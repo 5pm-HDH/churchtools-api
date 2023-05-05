@@ -48,7 +48,7 @@ class PersonBirthdayRequestTest extends TestCaseAuthenticated
         }
 
         $this->assertNotNull($foundBirthdayChild, "Could not find the birthday person.");
-        print_r($foundBirthdayChild);
+
         $this->assertEquals($this->personId, $foundBirthdayChild->getPerson()?->getId());
         $this->assertEquals($this->birthdayDate, $foundBirthdayChild->getAnniversaryInitialDate());
         $this->assertEquals($this->anniversaryDate, $foundBirthdayChild->getAnniversary());

@@ -55,8 +55,6 @@ class CalendarRequestTest extends TestCaseAuthenticated
             ->where("from", $this->appointmentFrom)
             ->where("to", $this->appointmentTo)->get();
 
-        print_r($allAppointments);
-
         $this->assertNotEmpty($allAppointments);
         $foundAppointment = null;
         foreach ($allAppointments as $appointment) {

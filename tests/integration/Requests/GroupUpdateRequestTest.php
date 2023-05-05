@@ -61,7 +61,6 @@ class GroupUpdateRequestTest extends TestCaseAuthenticated
 
     public function testUpdateGroupMemberFields()
     {
-        CTConfig::enableDebugging();
         $groupMember = $this->assertPersonIsGroupMember(true);
         $this->assertNotNull($groupMember);
 

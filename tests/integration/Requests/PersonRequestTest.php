@@ -24,7 +24,6 @@ class PersonRequestTest extends TestCaseAuthenticated
 
     public function testFindOrFail(): void
     {
-        CTConfig::enableDebugging();
         $userData = IntegrationTestData::get()->getUserData();
         $id = $userData["id"];
 
@@ -53,7 +52,6 @@ class PersonRequestTest extends TestCaseAuthenticated
     public function testWhere(): void
     {
         $selectedPersons = PersonRequest::where('ids', IntegrationTestData::getFilter("filter_persons", "ids"))->get();
-        print_r($selectedPersons);
         $this->assertEquals(sizeof($selectedPersons), IntegrationTestData::getResult("filter_persons", "number_of_elements"));
     }
 

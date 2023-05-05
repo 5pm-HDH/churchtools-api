@@ -16,7 +16,6 @@ class WikiRequestTest extends TestCaseAuthenticated
     {
         $allCategories = WikiCategoryRequest::all();
 
-        print_r($allCategories);
         $this->assertNotEmpty($allCategories);
         foreach ($allCategories as $category) {
             $this->assertInstanceOf(WikiCategory::class, $category);

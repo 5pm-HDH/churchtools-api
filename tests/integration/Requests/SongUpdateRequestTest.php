@@ -57,7 +57,6 @@ class SongUpdateRequestTest extends TestCaseAuthenticated
 
     public function testUpdateSong()
     {
-        CTConfig::enableDebugging();
         // Update Arrangement
         $this->song->setName("New Song Name")
             ->setCategoryId("1")

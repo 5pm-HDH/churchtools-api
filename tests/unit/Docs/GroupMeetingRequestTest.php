@@ -47,7 +47,6 @@ class GroupMeetingRequestTest extends TestCaseHttpMocked
 
     public function testRetrieveGroupMemberRequest()
     {
-        CTConfig::enableDebugging();
         $meetings = GroupMeetingRequest::forGroup(21)->get();
         $meeting = $meetings[0];
 
