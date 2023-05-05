@@ -4,7 +4,6 @@
 namespace Tests\Integration\Requests;
 
 
-use CTApi\CTConfig;
 use CTApi\Models\Song;
 use CTApi\Requests\SongRequest;
 use Tests\Integration\IntegrationTestData;

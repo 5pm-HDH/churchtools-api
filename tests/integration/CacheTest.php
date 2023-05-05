@@ -10,6 +10,13 @@ class CacheTest extends TestCaseAuthenticated
 {
     private string $cacheDir = __DIR__ . '/../../cache/';
 
+    public function tearDown(): void
+    {
+        parent::tearDown();
+        // disable cache even if cache fails
+        CTConfig::disableCache();
+    }
+
     public function testCacheSpeedsUpRequest(): void
     {
         CTConfig::clearCache();
