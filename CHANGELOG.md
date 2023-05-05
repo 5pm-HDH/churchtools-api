@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 - Authenticate CTClient with session cookie instead of api-key ([PR142](https://github.com/5pm-HDH/churchtools-api/pull/142))
+- GH-Action for integration-tests ([PR143](https://github.com/5pm-HDH/churchtools-api/pull/143))
 
 ### Fixed
 
