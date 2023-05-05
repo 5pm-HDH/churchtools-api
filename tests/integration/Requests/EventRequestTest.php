@@ -3,25 +3,16 @@
 namespace Tests\Integration\Requests;
 
 use CTApi\Exceptions\CTRequestException;
-use CTApi\Models\Calendar;
 use CTApi\Models\DomainAttributeModel;
 use CTApi\Models\Event;
 use CTApi\Models\Person;
 use CTApi\Models\Service;
 use CTApi\Requests\EventRequest;
+use Tests\Integration\IntegrationTestData;
 use Tests\Integration\TestCaseAuthenticated;
-use Tests\Integration\TestData;
 
 class EventRequestTest extends TestCaseAuthenticated
 {
-
-    protected function setUp(): void
-    {
-        if (!TestData::getValue("EVENT_SHOULD_TEST") == "YES") {
-            $this->markTestSkipped("Test suite is disabled in testdata.ini");
-        }
-    }
-
 
     public function testGetAllEvents(): void
     {
@@ -33,22 +24,25 @@ class EventRequestTest extends TestCaseAuthenticated
 
     public function testGetWhereEvents(): void
     {
-        $fromDate = TestData::getValue("EVENT_START_DATE");
-        $toDate = TestData::getValue("EVENT_END_DATE");
+        $testCase = IntegrationTestData::getTestCase("filter_events");
+
+        $fromDate = $testCase->getFilter("start_date");
+        $toDate = $testCase->getFilter("end_date");
 
         $events = EventRequest::where('from', $fromDate)
             ->where('to', $toDate)->get();
 
-        $this->assertEquals(sizeof($events), TestData::getValue("EVENT_NUMBERS"));
+        $this->assertEquals(sizeof($events), $testCase->getResult("number_of_elements"));
         $this->assertInstanceOf(Event::class, $events[0]);
 
-        $this->assertEquals(TestData::getValue("EVENT_FIRST_ID"), $events[0]->getId());
-        $this->assertEquals(TestData::getValue("EVENT_FIRST_NAME"), $events[0]->getName());
+        $this->assertEquals($testCase->getResult("first_element.id"), $events[0]->getId());
+        $this->assertEquals($testCase->getResult("first_element.name"), $events[0]->getName());
     }
 
     public function testFindOrFail(): void
     {
-        $eventId = TestData::getValueAsInteger("EVENT_FIRST_ID");
+        $testCase = IntegrationTestData::getTestCase("get_event");
+        $eventId = $testCase->getFilter("event_id");
 
         $event = EventRequest::find($eventId);
         $eventTwo = EventRequest::findOrFail($eventId);
@@ -57,7 +51,7 @@ class EventRequestTest extends TestCaseAuthenticated
         $this->assertInstanceOf(DomainAttributeModel::class, $event->getCalendar());
 
         $this->assertEquals($event, $eventTwo);
-        $this->assertEquals(TestData::getValue("EVENT_FIRST_NAME"), $eventTwo->getName());
+        $this->assertEquals($testCase->getResult("name"), $eventTwo->getName());
 
         $this->expectException(CTRequestException::class);
         EventRequest::findOrFail(99999999);
@@ -65,19 +59,21 @@ class EventRequestTest extends TestCaseAuthenticated
 
     public function testOrderByEvents(): void
     {
-        $eventOrderAscending = EventRequest::where('from', TestData::getValue("EVENT_START_DATE"))
-            ->where('to', TestData::getValue("EVENT_END_DATE"))
+        $testCase = IntegrationTestData::getTestCase("filter_events");
+
+        $eventOrderAscending = EventRequest::where('from', $testCase->getFilter("start_date"))
+            ->where('to', $testCase->getFilter("end_date"))
             ->orderBy('startDate')
             ->get();
 
-        $eventOrderDescending = EventRequest::where('from', TestData::getValue("EVENT_START_DATE"))
-            ->where('to', TestData::getValue("EVENT_END_DATE"))
+        $eventOrderDescending = EventRequest::where('from', $testCase->getFilter("start_date"))
+            ->where('to', $testCase->getFilter("end_date"))
             ->orderBy('startDate', false)
             ->get();
 
         $eventOrderDescending2 = EventRequest::orderBy('startDate', false)
-            ->where('from', TestData::getValue("EVENT_START_DATE"))
-            ->where('to', TestData::getValue("EVENT_END_DATE"))
+            ->where('from', $testCase->getFilter("start_date"))
+            ->where('to', $testCase->getFilter("end_date"))
             ->get();
 
         $this->assertEquals(sizeof($eventOrderAscending), sizeof($eventOrderDescending));
@@ -96,7 +92,7 @@ class EventRequestTest extends TestCaseAuthenticated
 
     public function testEventServiceGroups(): void
     {
-        $eventId = TestData::getValueAsInteger("EVENT_FIRST_ID");
+        $eventId = IntegrationTestData::getFilter("get_event", "event_id");
 
         $event = EventRequest::find($eventId);
 
@@ -126,7 +122,7 @@ class EventRequestTest extends TestCaseAuthenticated
 
     public function testRequestEventServiceWithServiceId(): void
     {
-        $eventId = TestData::getValueAsInteger("EVENT_FIRST_ID");
+        $eventId = IntegrationTestData::getFilter("get_event", "event_id");
 
         $event = EventRequest::find($eventId);
 

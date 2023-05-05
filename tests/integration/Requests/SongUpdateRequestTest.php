@@ -4,10 +4,11 @@
 namespace Tests\Integration\Requests;
 
 
+use CTApi\CTConfig;
 use CTApi\Models\Song;
 use CTApi\Requests\SongRequest;
+use Tests\Integration\IntegrationTestData;
 use Tests\Integration\TestCaseAuthenticated;
-use Tests\Integration\TestData;
 
 class SongUpdateRequestTest extends TestCaseAuthenticated
 {
@@ -24,7 +25,6 @@ class SongUpdateRequestTest extends TestCaseAuthenticated
     protected function setUp(): void
     {
         parent::setUp();
-        $this->checkIfTestSuiteIsEnabled("SONG_UPDATE");
         $this->song = $this->requestSong();
 
         $this->initName = $this->song->getName();
@@ -57,9 +57,10 @@ class SongUpdateRequestTest extends TestCaseAuthenticated
 
     public function testUpdateSong()
     {
+        CTConfig::enableDebugging();
         // Update Arrangement
         $this->song->setName("New Song Name")
-            ->setCategoryId("2")
+            ->setCategoryId("1")
             ->setShouldPractice(true)
             ->setAuthor("TestAuthor CT-Api")
             ->setCopyright("CT-Api Copyright")
@@ -69,7 +70,7 @@ class SongUpdateRequestTest extends TestCaseAuthenticated
         $this->song = $this->requestSong();
 
         $this->assertEquals("New Song Name", $this->song->getName());
-        $this->assertEquals(2, $this->song->getCategory()?->getId());
+        $this->assertEquals(1, $this->song->getCategory()?->getId());
         $this->assertEquals(true, $this->song->getShouldPractice());
         $this->assertEquals("TestAuthor CT-Api", $this->song->getAuthor());
         $this->assertEquals("CT-Api Copyright", $this->song->getCopyright());
@@ -78,7 +79,7 @@ class SongUpdateRequestTest extends TestCaseAuthenticated
 
     private function requestSong(): Song
     {
-        $songId = TestData::getValueAsInteger("SONG_UPDATE_SONG_ID");
+        $songId = IntegrationTestData::getFilterAsInt("get_song", "song_id");
         return SongRequest::findOrFail($songId);
     }
 }

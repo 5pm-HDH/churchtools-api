@@ -8,8 +8,8 @@ use CTApi\Models\Absence;
 use CTApi\Requests\AbsencePersonRequestBuilder;
 use CTApi\Requests\AbsenceRequest;
 use CTApi\Requests\PersonRequest;
+use Tests\Integration\IntegrationTestData;
 use Tests\Integration\TestCaseAuthenticated;
-use Tests\Integration\TestData;
 
 class AbsenceRequestTest extends TestCaseAuthenticated
 {
@@ -18,33 +18,34 @@ class AbsenceRequestTest extends TestCaseAuthenticated
     private ?string $endDate = null;
     private ?string $absencePersonComment = null;
     private ?string $absencePersonReason = null;
+    private ?string $absenceStartDate = null;
+    private ?string $absenceEndDate = null;
 
     private int $myselfId;
 
     protected function setUp(): void
     {
         parent::setUp();
-        $this->checkIfTestSuiteIsEnabled("ABSENCE");
-        $this->startDate = TestData::getValue("ABSENCE_START_DATE");
-        $this->endDate = TestData::getValue("ABSENCE_END_DATE");
-        $this->absencePersonComment = TestData::getValue("ABSENCE_PERSON_COMMENT");
-        $this->absencePersonReason = TestData::getValue("ABSENCE_PERSON_REASON");
+        $this->myselfId = IntegrationTestData::getFilterAsInt("filter_absence", "person_id");
+        $this->startDate = IntegrationTestData::getFilter("filter_absence", "start_date");
+        $this->endDate = IntegrationTestData::getFilter("filter_absence", "end_date");
 
-        $myself = PersonRequest::whoami();
-        $this->myselfId = $myself->getIdAsInteger();
+        $this->absencePersonComment = IntegrationTestData::getResult("filter_absence", "comment");
+        $this->absencePersonReason = IntegrationTestData::getResult("filter_absence", "reason");
+        $this->absenceStartDate = IntegrationTestData::getResult("filter_absence", "start_date");
+        $this->absenceEndDate = IntegrationTestData::getResult("filter_absence", "end_date");
     }
 
     public function testRequestFacade()
     {
-        $myself = PersonRequest::whoami();
-        $requestBuilder = AbsenceRequest::forPerson($myself->getIdAsInteger());
+        $requestBuilder = AbsenceRequest::forPerson($this->myselfId);
 
         $this->assertAbsenceExists($requestBuilder);
     }
 
     public function testPersonMethod()
     {
-        $requestBuilder = PersonRequest::whoami()->requestAbsence();
+        $requestBuilder = PersonRequest::findOrFail($this->myselfId)->requestAbsence();
         $this->assertNotNull($requestBuilder);
         $this->assertAbsenceExists($requestBuilder);
     }
@@ -64,11 +65,12 @@ class AbsenceRequestTest extends TestCaseAuthenticated
 
         $this->assertNotNull($testAbsence);
         $this->assertEquals($testAbsence->getAbsenceReason()?->getName(), $this->absencePersonReason);
+        $this->assertEquals($testAbsence->getStartDate(), $this->absenceStartDate);
+        $this->assertEquals($testAbsence->getEndDate(), $this->absenceEndDate);
     }
 
     public function testCreateUpdateAndDeleteAbsence()
     {
-
         $absence = $this->createAbsence();
         $this->updateAbsence($absence);
         $this->deleteAbsence($absence);

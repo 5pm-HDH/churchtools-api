@@ -7,8 +7,8 @@ namespace Tests\Integration\Requests;
 use CTApi\Models\GroupMeeting;
 use CTApi\Models\GroupMeetingMember;
 use CTApi\Requests\GroupRequest;
+use Tests\Integration\IntegrationTestData;
 use Tests\Integration\TestCaseAuthenticated;
-use Tests\Integration\TestData;
 
 class GroupMeetingRequestTest extends TestCaseAuthenticated
 {
@@ -17,25 +17,29 @@ class GroupMeetingRequestTest extends TestCaseAuthenticated
     private string $filterStartDate;
     private string $filterEndDate;
 
+    private string $date;
     private int $present;
     private int $absent;
     private int $unsure;
     private int $guests;
     private string $comment;
 
+    private string $anyMememberId;
+
     protected function setUp(): void
     {
-        $this->checkIfTestSuiteIsEnabled("GROUP_MEETING");
-        $this->groupId = TestData::getValueAsInteger("GROUP_MEETING_GROUP_ID");
+        $this->groupId = IntegrationTestData::getFilterAsInt("update_group_meeting", "group_id");
+        $this->filterStartDate = IntegrationTestData::getFilter("update_group_meeting", "start_date");
+        $this->filterEndDate = IntegrationTestData::getFilter("update_group_meeting", "end_date");
 
-        $this->filterStartDate = TestData::getValue("GROUP_MEETING_START_DATE");
-        $this->filterEndDate = TestData::getValue("GROUP_MEETING_END_DATE");
+        $this->date = IntegrationTestData::getResult("update_group_meeting", "last_group_meeting.date");
+        $this->present = IntegrationTestData::getResultAsInt("update_group_meeting", "last_group_meeting.present");
+        $this->absent = IntegrationTestData::getResultAsInt("update_group_meeting", "last_group_meeting.absent");
+        $this->unsure = IntegrationTestData::getResultAsInt("update_group_meeting", "last_group_meeting.unsure");
+        $this->guests = IntegrationTestData::getResultAsInt("update_group_meeting", "last_group_meeting.guests");
+        $this->comment = IntegrationTestData::getResult("update_group_meeting", "last_group_meeting.comment");
 
-        $this->present = TestData::getValueAsInteger("GROUP_MEETING_PRESENT");
-        $this->absent = TestData::getValueAsInteger("GROUP_MEETING_ABSENT");
-        $this->unsure = TestData::getValueAsInteger("GROUP_MEETING_UNSURE");
-        $this->guests = TestData::getValueAsInteger("GROUP_MEETING_GUESTS");
-        $this->comment = TestData::getValue("GROUP_MEETING_COMMENT");
+        $this->anyMememberId = IntegrationTestData::getResult("update_group_meeting", "last_group_meeting.any_member.id");
         parent::setUp();
     }
 
@@ -44,6 +48,8 @@ class GroupMeetingRequestTest extends TestCaseAuthenticated
         $meeting = $this->requestMeeting();
         $this->assertInstanceOf(GroupMeeting::class, $meeting);
 
+        $this->assertEquals($this->date, $meeting->getDateFrom());
+        $this->assertEquals($this->comment, $meeting->getComment());
         $this->assertEquals($this->guests, $meeting->getNumGuests());
 
         $this->assertEquals($this->present, $meeting->getStatistics()?->getPresent());
@@ -72,8 +78,16 @@ class GroupMeetingRequestTest extends TestCaseAuthenticated
 
         $members = $meeting->requestMembers()?->get();
         $this->assertNotNull($members);
+        $foundMember = null;
         foreach ($members as $member) {
             $this->assertInstanceOf(GroupMeetingMember::class, $member);
+            if (is_a($member, GroupMeetingMember::class)) {
+                $personId = $member->getMember()?->getPersonId();
+                if ($personId == $this->anyMememberId) {
+                    $foundMember = $member;
+                }
+            }
         }
+        $this->assertNotNull($foundMember);
     }
 }

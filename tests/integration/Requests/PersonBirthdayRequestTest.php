@@ -4,34 +4,39 @@
 namespace Tests\Integration\Requests;
 
 
-use CTApi\CTConfig;
 use CTApi\Models\BirthdayPerson;
 use CTApi\Requests\PersonRequest;
+use Tests\Integration\IntegrationTestData;
 use Tests\Integration\TestCaseAuthenticated;
-use Tests\Integration\TestData;
 
 class PersonBirthdayRequestTest extends TestCaseAuthenticated
 {
 
     private $personId;
+    private $from;
+    private $to;
+
     private $birthdayDate;
+    private $anniversaryDate;
+    private $age;
 
     protected function setUp(): void
     {
-        parent::setUp();
-        if (!TestData::getValue("BIRTHDAY_SHOULD_TEST") == "YES") {
-            $this->markTestSkipped("Test suite is disabled in testdata.ini");
-        } else {
-            $this->personId = TestData::getValue("BIRTHDAY_PERSON_ID");
-            $this->birthdayDate = TestData::getValue("BIRTHDAY_DATE");
-        }
+        $this->personId = IntegrationTestData::getFilter("list_birthdays", "person_id");
+        $this->from = IntegrationTestData::getFilter("list_birthdays", "from");
+        $this->to = IntegrationTestData::getFilter("list_birthdays", "to");
+
+        $this->birthdayDate = IntegrationTestData::getResult("list_birthdays", "birthday");
+        $this->anniversaryDate = IntegrationTestData::getResult("list_birthdays", "anniversary");
+        $this->age = IntegrationTestData::getResult("list_birthdays", "age");
+
     }
 
     public function testRetrieveBirthday()
     {
         $birthdayPersons = PersonRequest::birthdays()
-            ->where("start_date", "2022-01-01")
-            ->where("end_date", "2022-12-31")
+            ->where("start_date", $this->from)
+            ->where("end_date", $this->to)
             ->get();
 
         $foundBirthdayChild = null;
@@ -43,8 +48,11 @@ class PersonBirthdayRequestTest extends TestCaseAuthenticated
         }
 
         $this->assertNotNull($foundBirthdayChild, "Could not find the birthday person.");
+        print_r($foundBirthdayChild);
         $this->assertEquals($this->personId, $foundBirthdayChild->getPerson()?->getId());
         $this->assertEquals($this->birthdayDate, $foundBirthdayChild->getAnniversaryInitialDate());
+        $this->assertEquals($this->anniversaryDate, $foundBirthdayChild->getAnniversary());
+        $this->assertEquals($this->age, $foundBirthdayChild->getAge());
     }
 
 }

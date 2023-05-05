@@ -7,28 +7,21 @@ use CTApi\Models\Service;
 use CTApi\Models\ServiceGroup;
 use CTApi\Requests\ServiceGroupRequest;
 use CTApi\Requests\ServiceRequest;
+use Tests\Integration\IntegrationTestData;
 use Tests\Integration\TestCaseAuthenticated;
-use Tests\Integration\TestData;
 
 class ServiceRequestTest extends TestCaseAuthenticated
 {
 
-    protected function setUp(): void
-    {
-        if (!TestData::getValue("SERVICE_SHOULD_TEST") == "YES") {
-            $this->markTestSkipped("Test suite is disabled in testdata.ini");
-        }
-    }
-
     public function testFindService(): void
     {
-        $serviceId = TestData::getValueAsInteger("SERVICE_ID");
-        $serviceName = TestData::getValue("SERVICE_NAME");
+        $serviceId = IntegrationTestData::getFilter("get_service", "id");
+        $serviceName = IntegrationTestData::getResult("get_service", "name");
 
         $service = ServiceRequest::find($serviceId);
 
         $this->assertNotNull($service);
-        $this->assertEquals($serviceName, $service->getName());
+        $this->assertEquals(IntegrationTestData::getResult("get_service", "name"), $service->getName());
     }
 
     public function testFindOrFailService(): void
@@ -49,15 +42,17 @@ class ServiceRequestTest extends TestCaseAuthenticated
 
     public function testServiceRequestServiceGroup(): void
     {
-        $serviceId = TestData::getValueAsInteger("SERVICE_ID");
-        $serviceGroupId = TestData::getValueAsInteger("SERVICE_GROUP_ID");
-        $serviceGroupName = TestData::getValue("SERVICE_GROUP_NAME");
+        $serviceId = IntegrationTestData::getFilter("get_service", "id");
 
         $service = ServiceRequest::findOrFail($serviceId);
 
         $serviceGroup = $service->requestServiceGroup();
 
         $this->assertInstanceOf(ServiceGroup::class, $serviceGroup);
+
+        $serviceGroupId = IntegrationTestData::getResult("get_service", "service_group_id");
+        $serviceGroupName = IntegrationTestData::getResult("get_service", "service_group_name");
+
         $this->assertEquals($serviceGroup->getId(), $serviceGroupId);
         $this->assertEquals($serviceGroup->getName(), $serviceGroupName);
 
@@ -68,8 +63,8 @@ class ServiceRequestTest extends TestCaseAuthenticated
 
     public function testFindServiceGroup(): void
     {
-        $serviceGroupId = TestData::getValueAsInteger("SERVICE_GROUP_ID");
-        $serviceGroupName = TestData::getValue("SERVICE_GROUP_NAME");
+        $serviceGroupId = IntegrationTestData::getResult("get_service", "service_group_id");
+        $serviceGroupName = IntegrationTestData::getResult("get_service", "service_group_name");
 
         $serviceGroup = ServiceGroupRequest::find($serviceGroupId);
 
@@ -95,9 +90,9 @@ class ServiceRequestTest extends TestCaseAuthenticated
 
     public function testRequestServicesFromServiceGroup(): void
     {
-        $serviceGroupId = TestData::getValueAsInteger("SERVICE_GROUP_ID");
-        $serviceId = TestData::getValueAsInteger("SERVICE_ID");
-        $serviceName = TestData::getValue("SERVICE_NAME");
+        $serviceGroupId = IntegrationTestData::getResult("get_service", "service_group_id");
+        $serviceId = IntegrationTestData::getFilter("get_service", "id");
+        $serviceName = IntegrationTestData::getResult("get_service", "name");
 
         $serviceGroup = ServiceGroupRequest::findOrFail($serviceGroupId);
 

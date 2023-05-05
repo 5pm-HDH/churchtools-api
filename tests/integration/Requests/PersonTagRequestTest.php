@@ -5,8 +5,8 @@ namespace Tests\Integration\Requests;
 
 
 use CTApi\Requests\PersonRequest;
+use Tests\Integration\IntegrationTestData;
 use Tests\Integration\TestCaseAuthenticated;
-use Tests\Integration\TestData;
 
 class PersonTagRequestTest extends TestCaseAuthenticated
 {
@@ -17,14 +17,9 @@ class PersonTagRequestTest extends TestCaseAuthenticated
 
     protected function setUp(): void
     {
-        parent::setUp();
-        if (!TestData::getValue("PERSON_TAG") == "YES") {
-            $this->markTestSkipped("Test suite is disabled in testdata.ini");
-        } else {
-            $this->personId = TestData::getValue("PERSON_TAG_PERSON_ID");
-            $this->tagId = TestData::getValue("PERSON_TAG_ID");
-            $this->tagName = TestData::getValue("PERSON_TAG_NAME");
-        }
+        $this->personId = IntegrationTestData::getFilter("get_person_tags", "person_id");
+        $this->tagId = IntegrationTestData::getResult("get_person_tags", "any_tag.id");
+        $this->tagName = IntegrationTestData::getResult("get_person_tags", "any_tag.name");
     }
 
     public function testRequestIds()

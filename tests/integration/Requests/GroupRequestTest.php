@@ -8,8 +8,8 @@ use CTApi\Models\Group;
 use CTApi\Models\GroupRole;
 use CTApi\Models\GroupSettings;
 use CTApi\Requests\GroupRequest;
+use Tests\Integration\IntegrationTestData;
 use Tests\Integration\TestCaseAuthenticated;
-use Tests\Integration\TestData;
 
 class GroupRequestTest extends TestCaseAuthenticated
 {
@@ -19,12 +19,8 @@ class GroupRequestTest extends TestCaseAuthenticated
 
     protected function setUp(): void
     {
-        if (!TestData::getValue("GROUP_SHOULD_TEST") == "YES") {
-            $this->markTestSkipped("Test suite is disabled in testdata.ini");
-        } else {
-            $this->groupId = TestData::getValue("GROUP_ID");
-            $this->groupName = TestData::getValue("GROUP_NAME");
-        }
+        $this->groupId = IntegrationTestData::getFilter("get_group", "id");
+        $this->groupName = IntegrationTestData::getResult("get_group", "name");
     }
 
     public function testGetAllGroups(): void

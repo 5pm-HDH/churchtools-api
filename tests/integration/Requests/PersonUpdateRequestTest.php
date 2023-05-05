@@ -4,7 +4,6 @@
 namespace Tests\Integration\Requests;
 
 
-use CTApi\CTConfig;
 use CTApi\Requests\PersonRequest;
 use Tests\Integration\TestCaseAuthenticated;
 
@@ -16,9 +15,6 @@ class PersonUpdateRequestTest extends TestCaseAuthenticated
     protected function setUp(): void
     {
         parent::setUp();
-        $this->checkIfTestSuiteIsEnabled("UPDATE_PERSON_SHOULD_TEST");
-        CTConfig::clearCache();
-        CTConfig::disableCache();
     }
 
     public function testUpdatePersonWholeObject()
