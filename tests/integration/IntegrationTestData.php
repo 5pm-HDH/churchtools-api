@@ -21,13 +21,13 @@ class IntegrationTestData
 
     private function __construct()
     {
-        if(!file_exists(self::$FILE_DIR)){
+        if (!file_exists(self::$FILE_DIR)) {
             throw new \Exception("Could not load integration-test-data.json");
         }
-        $testDataContent  = file_get_contents(self::$FILE_DIR);
+        $testDataContent = file_get_contents(self::$FILE_DIR);
         $testData = json_decode($testDataContent, true);
 
-        if($testDataContent != null && $testData == null){
+        if ($testDataContent != null && $testData == null) {
             throw new \Exception("Could not parse integration-test-data.json to json format.");
         }
 
@@ -38,7 +38,7 @@ class IntegrationTestData
 
     public static function get(): IntegrationTestData
     {
-        if(self::$singleton == null){
+        if (self::$singleton == null) {
             self::$singleton = new IntegrationTestData();
         }
         return self::$singleton;
@@ -94,11 +94,11 @@ class IntegrationTestData
      */
     public function authenticateUser(string $userIdentifier = "default"): Auth
     {
-        if(!array_key_exists($userIdentifier, $this->users)){
-            throw new \Exception("Could not find user in integration-test-data with identifier: ". $userIdentifier);
+        if (!array_key_exists($userIdentifier, $this->users)) {
+            throw new \Exception("Could not find user in integration-test-data with identifier: " . $userIdentifier);
         }
 
-        if(!file_exists(self::$CREDENTIALS_FILE)){
+        if (!file_exists(self::$CREDENTIALS_FILE)) {
             throw new \Exception("Could not find credentials file: " . self::$CREDENTIALS_FILE);
         }
 
@@ -109,8 +109,8 @@ class IntegrationTestData
         $mail = $credentials[$mailKey] ?? null;
         $password = $credentials[$passwordKey] ?? null;
 
-        if($mail == null || $password == null){
-            throw new \Exception("Could not find email or password for user in credentials file. " . $userIdentifier);
+        if ($mail == null || $password == null) {
+            throw new \Exception("Could not find email (Key: " . $mail . ") or password (Key: " . $password . ") for user (" . $userIdentifier . ") in credentials file.");
         }
 
         return CTConfig::authWithCredentials($mail, $password);
@@ -118,8 +118,8 @@ class IntegrationTestData
 
     public function getUserData(string $userIdentifier = "default"): array
     {
-        if(!array_key_exists($userIdentifier, $this->users)){
-            throw new \Exception("Could not find user in integration-test-data with identifier: ". $userIdentifier);
+        if (!array_key_exists($userIdentifier, $this->users)) {
+            throw new \Exception("Could not find user in integration-test-data with identifier: " . $userIdentifier);
         }
 
         return $this->users["default"];
@@ -127,8 +127,8 @@ class IntegrationTestData
 
     private function getTestCaseResult(string $testCaseIdentifier): array
     {
-        if(!array_key_exists($testCaseIdentifier, $this->testCases)){
-            throw new \Exception("Could not find test case: ". $testCaseIdentifier);
+        if (!array_key_exists($testCaseIdentifier, $this->testCases)) {
+            throw new \Exception("Could not find test case: " . $testCaseIdentifier);
         }
         return $this->testCases[$testCaseIdentifier];
     }
