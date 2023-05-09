@@ -1,21 +1,23 @@
 # ChurchTools-API Client
 
-![example workflow](https://github.com/5pm-HDH/churchtools-api/actions/workflows/unit-tests.yml/badge.svg)
+![static-code-analysis workflow](https://github.com/5pm-HDH/churchtools-api/actions/workflows/static-code-analysis.yml/badge.svg)
 
-![example workflow](https://github.com/5pm-HDH/churchtools-api/actions/workflows/static-code-analysis.yml/badge.svg)
+![unit-test workflow](https://github.com/5pm-HDH/churchtools-api/actions/workflows/unit-tests.yml/badge.svg)
 
-ChurchTools-API Client is a php based wrapper of the ChurchTools api. This api is tested with the ChurchTools
-version <version>3.97.1</version>
+![integarion-test workflow](https://github.com/5pm-HDH/churchtools-api/actions/workflows/integration-tests.yml/badge.svg)
+
+The ChurchTools-API Client is a PHP-based wrapper for the ChurchTools API and has been tested with ChurchTools
+version <version>3.97.1</version>.
 
 ## Installation
 
-Go to the project-root and install ChurchTools-api via [composer](https://getcomposer.org/):
+Go to the project-root and install ChurchTools-API via [composer](https://getcomposer.org/):
 
 ```
 composer require 5pm-hdh/churchtools-api
 ```
 
-Load all the dependency-packages into the PHP-Project with the command:
+Load all dependency packages into the PHP project using the following code:
 
 ```php
 <?php
@@ -43,11 +45,11 @@ CTConfig::authWithCredentials(
 ```
 
 For more information visit the [CTConfig documentation](/docs/out/CTConfig.md)
-From now on all features of the ChurchTools-api are available.
+From now on all features of the ChurchTools-API are available.
 
 ### Requests and Models
 
-The whole ChurchTools-api client is build on top of the Requests and Models. [Requests](/docs/out/Requests.md) provide
+The whole ChurchTools-API client is build on top of the Requests and Models. [Requests](/docs/out/Requests.md) provide
 an interface to specify your api call by adding filtering, pagination and sorting. [Models](/docs/out/Models.md)
 represent the data, that the Requests retrieve. More informations can be found in the documentation.
 
@@ -67,8 +69,8 @@ All APIs with examples:
 * [File-API](/docs/out/FileAPI.md)
 * [Search-API](/docs/out/SearchAPI.md)
 
-The following short examples show the power of this ChurchTools-api client and gives a rough overview over the
-possibilities:
+The following brief examples demonstrate the capabilities of the ChurchTools-API client and provide a general overview
+of its potential uses:
 
 #### Example: Person-API
 
@@ -189,7 +191,7 @@ Result:
 
 ## Support / Contribute
 
-Please feel free to Support or Contribute this project.
+We welcome your support and contributions to this project.
 
 ### CTLog - Logging Request
 
@@ -203,8 +205,8 @@ CTLog::enableFileLog( false ); //disable logfile
 CTLog::enableFileLog(); // enable logfile
 ```
 
-By default, all Error, Critical, Alert and Emergency logs will be displayed in the console. If you want to show further
-log-levels on the console you can use the CTConfig-Debug Option or set it direct in the CTLog facade:
+By default, the console will display all logs of Error, Critical, Alert, and Emergency levels. If you wish to display
+additional log levels on the console, you may use the CTConfig-Debug option or set it directly in the CTLog facade:
 
 ```php
 CTConfig::enableDebug();
@@ -230,10 +232,18 @@ Further information on [CTLog-Page](/docs/out/CTLog.md):
 
 The API-Wrapper provides custom exceptions. More on this page: [Error-Handling](/docs/out/ErrorHandling.md)
 
+### Unit- and Integration-Tests
+
+To access the unit tests, navigate to the "tests/unit" directory. You may use the standard PHPUnit\Framework\TestCase to
+test small sections of code, or use TestCaseHttpMocked to simulate an HTTP request.
+
+For integration tests, requests are sent directly to a ChurchTools instance. The "integration-test-data.json" file
+contains all available test data scenarios. All integration tests are automatically executed via Github Actions.
+
 ### Doc-Generator
 
-The Doc-Generator processes all Doc-Files and executes the PHP-Code examples to ensure that they are valid. More on this
-page: [Doc-Generator](/docs/Docs.md)
+The Doc-Generator parses all documentation files and runs the PHP code examples to verify their validity. For additional
+information, please refer to this page: [Doc-Generator](/docs/Docs.md)
 
 ## License
 
