@@ -2,15 +2,15 @@
 
 namespace Tests\Integration\Requests;
 
+use CTApi\CTConfig;
 use CTApi\Exceptions\CTRequestException;
 use CTApi\Models\Event;
 use CTApi\Models\Group;
 use CTApi\Models\Person;
 use CTApi\Models\PersonGroup;
-use CTApi\Requests\AuthRequest;
 use CTApi\Requests\PersonRequest;
+use Tests\Integration\IntegrationTestData;
 use Tests\Integration\TestCaseAuthenticated;
-use Tests\Integration\TestData;
 
 class PersonRequestTest extends TestCaseAuthenticated
 {
@@ -18,20 +18,18 @@ class PersonRequestTest extends TestCaseAuthenticated
     {
         $person = PersonRequest::whoami();
 
-        $this->assertEquals(TestData::getValue('AUTH_FIRST_NAME'), $person->getFirstName());
+        $this->assertEquals(IntegrationTestData::getResult("whoami", "first_name"), $person->getFirstName());
+        $this->assertEquals(IntegrationTestData::getResult("whoami", "last_name"), $person->getLastName());
     }
 
     public function testFindOrFail(): void
     {
-        //we need auth to retrieve userId
-        $auth = AuthRequest::authWithEmailAndPassword(
-            TestData::getValue("AUTH_EMAIL"),
-            TestData::getValue("AUTH_PASSWORD")
-        );
+        $userData = IntegrationTestData::get()->getUserData();
+        $id = $userData["id"];
 
-        $person = PersonRequest::find($auth->userId);
+        $person = PersonRequest::find($id);
         $this->assertNotNull($person);
-        $this->assertEquals(TestData::getValue('AUTH_FIRST_NAME'), $person->getFirstName());
+        $this->assertEquals(IntegrationTestData::getResult("whoami", "first_name"), $person->getFirstName());
 
         $noPerson = PersonRequest::find(0);
         $this->assertNull($noPerson);
@@ -48,15 +46,13 @@ class PersonRequestTest extends TestCaseAuthenticated
     public function testAll(): void
     {
         $allPersons = PersonRequest::all();
-
         $this->assertInstanceOf(Person::class, $allPersons[0]);
     }
 
     public function testWhere(): void
     {
-        $selectedPersons = PersonRequest::where('ids', [4463, 616, 474, 99999])->get();
-
-        $this->assertTrue(sizeof($selectedPersons) <= 4);
+        $selectedPersons = PersonRequest::where('ids', IntegrationTestData::getFilter("filter_persons", "ids"))->get();
+        $this->assertEquals(sizeof($selectedPersons), IntegrationTestData::getResult("filter_persons", "number_of_elements"));
     }
 
     public function testOrderBy(): void
@@ -86,15 +82,10 @@ class PersonRequestTest extends TestCaseAuthenticated
         $requestEventBuilder = $person->requestEvents();
         $this->assertNotNull($requestEventBuilder);
         $events = $requestEventBuilder->get();
-
-        if (sizeof($events) > 0) {
-            foreach ($events as $event) {
-                $this->assertInstanceOf(Event::class, $event);
-            }
-        } else {
-            $this->assertTrue(true, "Executed requestEvents of Person.");
+        $this->assertTrue(sizeof($events) > 0);
+        foreach ($events as $event) {
+            $this->assertInstanceOf(Event::class, $event);
         }
-
     }
 
     public function testRequestGroups(): void
@@ -105,6 +96,7 @@ class PersonRequestTest extends TestCaseAuthenticated
         $this->assertNotNull($groupRequestBuilder);
         $groups = $groupRequestBuilder->get();
 
+        $this->assertFalse(empty($groups));
         foreach ($groups as $group) {
             $this->assertInstanceOf(PersonGroup::class, $group);
             $this->assertInstanceOf(Group::class, $group->getGroup());

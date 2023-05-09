@@ -7,8 +7,8 @@ namespace Tests\Integration\Requests;
 use CTApi\Exceptions\CTRequestException;
 use CTApi\Models\File;
 use CTApi\Requests\FileRequest;
+use Tests\Integration\IntegrationTestData;
 use Tests\Integration\TestCaseAuthenticated;
-use Tests\Integration\TestData;
 
 class FileRequestMultipleFilesTest extends TestCaseAuthenticated
 {
@@ -22,8 +22,7 @@ class FileRequestMultipleFilesTest extends TestCaseAuthenticated
     protected function setUp(): void
     {
         parent::setUp();
-        $this->checkIfTestSuiteIsEnabled("FILE_EVENT");
-        $this->eventId = TestData::getValueAsInteger("FILE_EVENT_ID");
+        $this->eventId = IntegrationTestData::getFilterAsInt("get_event", "event_id");
 
         // No Files should be uploaded at the beginning of any unit-test
         FileRequest::forEvent($this->eventId)->delete();

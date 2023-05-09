@@ -5,8 +5,8 @@ namespace Tests\Integration\Requests;
 
 
 use CTApi\Requests\GroupRequest;
+use Tests\Integration\IntegrationTestData;
 use Tests\Integration\TestCaseAuthenticated;
-use Tests\Integration\TestData;
 
 class GroupHierarchieRequestTest extends TestCaseAuthenticated
 {
@@ -20,16 +20,14 @@ class GroupHierarchieRequestTest extends TestCaseAuthenticated
 
     protected function setUp(): void
     {
-        if (!TestData::getValue("GROUP_HIERARCHIE_SHOULD_TEST") == "YES") {
-            $this->markTestSkipped("Test suite is disabled in testdata.ini");
-        } else {
-            $this->groupId = TestData::getValue("GROUP_HIERARCHIE_ID");
-            $this->groupName = TestData::getValue("GROUP_HIERARCHIE_NAME");
-            $this->groupParentId = TestData::getValue("GROUP_HIERARCHIE_PARENT_ID");
-            $this->groupParentName = TestData::getValue("GROUP_HIERARCHIE_PARENT_NAME");
-            $this->groupChildId = TestData::getValue("GROUP_HIERARCHIE_CHILD_ID");
-            $this->groupChildName = TestData::getValue("GROUP_HIERARCHIE_CHILD_NAME");
-        }
+        $this->groupId = IntegrationTestData::getFilter("get_group_hierarchie", "group_id");
+
+        $this->groupName = IntegrationTestData::getResult("get_group_hierarchie", "group_name");
+        $this->groupParentId = IntegrationTestData::getResult("get_group_hierarchie", "parent_group_id");
+        $this->groupParentName = IntegrationTestData::getResult("get_group_hierarchie", "parent_group_name");
+        $this->groupChildId = IntegrationTestData::getResult("get_group_hierarchie", "child_group_id");
+        $this->groupChildName = IntegrationTestData::getResult("get_group_hierarchie", "child_group_name");
+
     }
 
     public function testRequestGroup()

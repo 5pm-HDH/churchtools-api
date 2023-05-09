@@ -6,8 +6,8 @@ use CTApi\Models\File;
 use CTApi\Models\Song;
 use CTApi\Models\SongArrangement;
 use CTApi\Requests\SongRequest;
+use Tests\Integration\IntegrationTestData;
 use Tests\Integration\TestCaseAuthenticated;
-use Tests\Integration\TestData;
 
 class SongRequestTest extends TestCaseAuthenticated
 {
@@ -18,14 +18,12 @@ class SongRequestTest extends TestCaseAuthenticated
 
     protected function setUp(): void
     {
-        if (!TestData::getValue("SONG_SHOULD_TEST") == "YES") {
-            $this->markTestSkipped("Test suite is disabled in testdata.ini");
-        }
+        $testCase = IntegrationTestData::getTestCase("get_song");
 
-        $this->SONG_ID = TestData::getValueAsInteger("SONG_ID");
-        $this->SONG_NAME = TestData::getValue("SONG_NAME");
-        $this->SONG_ARRANGEMENT_ID = TestData::getValueAsInteger("SONG_ARRANGEMENT_ID");
-        $this->SONG_ARRANGEMENT_NAME = TestData::getValue("SONG_ARRANGEMENT_NAME");
+        $this->SONG_ID = $testCase->getFilterAsInt("song_id");
+        $this->SONG_NAME = $testCase->getFilter("song_name");
+        $this->SONG_ARRANGEMENT_ID = $testCase->getFilterAsInt("arrangement_id");
+        $this->SONG_ARRANGEMENT_NAME = $testCase->getFilter("arrangement_name");
 
     }
 

@@ -4,11 +4,10 @@
 namespace Tests\Integration\Requests;
 
 
-use CTApi\CTConfig;
 use CTApi\Requests\AppointmentRequest;
 use CTApi\Requests\CalendarRequest;
+use Tests\Integration\IntegrationTestData;
 use Tests\Integration\TestCaseAuthenticated;
-use Tests\Integration\TestData;
 
 class CalendarRequestTest extends TestCaseAuthenticated
 {
@@ -18,19 +17,21 @@ class CalendarRequestTest extends TestCaseAuthenticated
     private ?string $appointmentTo = null;
     private ?string $appointmentId = null;
     private ?string $appointmentCaption = null;
+    private ?string $appointmentStartDate = null;
+    private ?string $appointmentEndDate = null;
 
     protected function setUp(): void
     {
-        if (!TestData::getValue("CALENDAR_SHOULD_TEST") == "YES") {
-            $this->markTestSkipped("Test suite is disabled in testdata.ini");
-        } else {
-            $this->calendarId = TestData::getValue("CALENDAR_ID");
-            $this->calendarName = TestData::getValue("CALENDAR_NAME");
-            $this->appointmentFrom = TestData::getValue("APPOINTMENT_FROM");
-            $this->appointmentTo = TestData::getValue("APPOINTMENT_TO");
-            $this->appointmentId = TestData::getValue("APPOINTMENT_ID");
-            $this->appointmentCaption = TestData::getValue("APPOINTMENT_CAPTION");
-        }
+        $this->calendarId = IntegrationTestData::getFilter("filter_calendar", "calendar_id");
+        $this->appointmentFrom = IntegrationTestData::getFilter("filter_calendar", "appointment_from");
+        $this->appointmentTo = IntegrationTestData::getFilter("filter_calendar", "appointment_to");
+
+        $this->calendarName = IntegrationTestData::getResult("filter_calendar", "calendar_name");
+        $this->appointmentId = IntegrationTestData::getResult("filter_calendar", "any_appointment.id");
+        $this->appointmentCaption = IntegrationTestData::getResult("filter_calendar", "any_appointment.caption");
+        $this->appointmentStartDate = IntegrationTestData::getResult("filter_calendar", "any_appointment.start_date");
+        $this->appointmentEndDate = IntegrationTestData::getResult("filter_calendar", "any_appointment.end_date");
+
     }
 
     public function testGetAll()
@@ -63,5 +64,7 @@ class CalendarRequestTest extends TestCaseAuthenticated
         }
         $this->assertNotNull($foundAppointment);
         $this->assertEquals($this->appointmentCaption, $foundAppointment->getCaption());
+        $this->assertEquals($this->appointmentStartDate, $foundAppointment->getStartDate());
+        $this->assertEquals($this->appointmentEndDate, $foundAppointment->getEndDate());
     }
 }

@@ -7,8 +7,8 @@ namespace Tests\Integration\Requests;
 use CTApi\Models\SongArrangement;
 use CTApi\Requests\SongArrangementRequest;
 use CTApi\Requests\SongRequest;
+use Tests\Integration\IntegrationTestData;
 use Tests\Integration\TestCaseAuthenticated;
-use Tests\Integration\TestData;
 
 class SongArrangementUpdateRequestTest extends TestCaseAuthenticated
 {
@@ -24,7 +24,6 @@ class SongArrangementUpdateRequestTest extends TestCaseAuthenticated
     protected function setUp(): void
     {
         parent::setUp();
-        $this->checkIfTestSuiteIsEnabled("SONG_ARRANGEMENT_UPDATE");
         $this->arrangement = $this->requestSongArrangement();
 
         $this->initName = $this->arrangement->getName();
@@ -79,7 +78,7 @@ class SongArrangementUpdateRequestTest extends TestCaseAuthenticated
 
     private function requestSongArrangement(): SongArrangement
     {
-        $songId = TestData::getValueAsInteger("SONG_ARRANGEMENT_UPDATE_SONG_ID");
+        $songId = IntegrationTestData::getFilterAsInt("get_song", "song_id");
         $song = SongRequest::findOrFail($songId);
         $arrangements = $song->getArrangements();
         $this->assertNotEmpty($arrangements);

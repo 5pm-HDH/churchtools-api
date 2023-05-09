@@ -7,21 +7,15 @@ use CTApi\Models\Song;
 use CTApi\Models\SongArrangement;
 use CTApi\Requests\EventAgendaRequest;
 use CTApi\Requests\EventRequest;
+use Tests\Integration\IntegrationTestData;
 use Tests\Integration\TestCaseAuthenticated;
-use Tests\Integration\TestData;
 
 class EventAgendaTest extends TestCaseAuthenticated
 {
-    protected function setUp(): void
-    {
-        if (!TestData::getValue("EVENT_AGENDA_SHOULD_TEST") == "YES") {
-            $this->markTestSkipped("Test suite is disabled in testdata.ini");
-        }
-    }
 
     public function testGetAgenda(): void
     {
-        $eventId = TestData::getValueAsInteger("EVENT_AGENDA_EVENT_ID");
+        $eventId = IntegrationTestData::getFilter("get_event_agenda", "event_id");
 
         $agenda = EventAgendaRequest::fromEvent($eventId)->get();
 
@@ -30,7 +24,7 @@ class EventAgendaTest extends TestCaseAuthenticated
 
     public function testGetAgendaFromEvent(): void
     {
-        $eventId = TestData::getValueAsInteger("EVENT_AGENDA_EVENT_ID");
+        $eventId = IntegrationTestData::getFilter("get_event_agenda", "event_id");
 
         $event = EventRequest::findOrFail($eventId);
 
@@ -40,9 +34,8 @@ class EventAgendaTest extends TestCaseAuthenticated
 
     private function assertAgendaIsValid($agenda): void
     {
-        $agendaId = TestData::getValueAsInteger("EVENT_AGENDA_ID");
-        $numberOfItems = TestData::getValue("EVENT_AGENDA_NUMBER_OF_ITEMS");
-
+        $agendaId = IntegrationTestData::getResult("get_event_agenda", "agenda_id");
+        $numberOfItems = IntegrationTestData::getResult("get_event_agenda", "nr_of_agenda_items");
 
         $this->assertInstanceOf(EventAgenda::class, $agenda);
         $this->assertEquals($agendaId, $agenda->getId());
@@ -51,7 +44,7 @@ class EventAgendaTest extends TestCaseAuthenticated
 
     public function testGetSongsOfAgenda(): void
     {
-        $eventId = TestData::getValueAsInteger("EVENT_AGENDA_EVENT_ID");
+        $eventId = IntegrationTestData::getFilter("get_event_agenda", "event_id");
 
         $agenda = EventAgendaRequest::fromEvent($eventId)->get();
 
@@ -66,7 +59,7 @@ class EventAgendaTest extends TestCaseAuthenticated
 
     public function testCollectSongsOfAgenda(): void
     {
-        $eventId = TestData::getValueAsInteger("EVENT_AGENDA_EVENT_ID");
+        $eventId = IntegrationTestData::getFilter("get_event_agenda", "event_id");
 
         $agenda = EventAgendaRequest::fromEvent($eventId)->get();
         $songs = $agenda->getSongs();
@@ -76,7 +69,7 @@ class EventAgendaTest extends TestCaseAuthenticated
 
     public function testRequestSongsOfAgenda(): void
     {
-        $eventId = TestData::getValueAsInteger("EVENT_AGENDA_EVENT_ID");
+        $eventId = IntegrationTestData::getFilter("get_event_agenda", "event_id");
 
         $agenda = EventAgendaRequest::fromEvent($eventId)->get();
 
@@ -87,8 +80,8 @@ class EventAgendaTest extends TestCaseAuthenticated
 
     public function testRequestSelectedArrangementOfSong(): void
     {
-        $songId = TestData::getValue("EVENT_AGENDA_SONG_ID");
-        $arrangementId = TestData::getValue("EVENT_AGENDA_SONG_ARRANGEMENT_ID");
+        $songId = IntegrationTestData::getFilter("get_event_agenda", "selected_song_id");
+        $arrangementId = IntegrationTestData::getFilter("get_event_agenda", "selected_song_arrangement_id");
 
         $song = new Song();
 
@@ -102,12 +95,12 @@ class EventAgendaTest extends TestCaseAuthenticated
 
         $this->assertNotNull($arrangement);
         $this->assertEquals($arrangementId, $arrangement->getId());
-        $this->assertEquals(TestData::getValue("EVENT_AGENDA_SONG_ARRANGEMENT"), $arrangement->getName());
+        $this->assertEquals(IntegrationTestData::getResult("get_event_agenda", "selected_song_arrangement_name"), $arrangement->getName());
     }
 
     public function testRequestArrangementsOfAgenda(): void
     {
-        $eventId = TestData::getValueAsInteger("EVENT_AGENDA_EVENT_ID");
+        $eventId = IntegrationTestData::getFilter("get_event_agenda", "event_id");
         $agenda = EventAgendaRequest::fromEvent($eventId)->get();
 
         $arrangements = $agenda->requestArrangements()->get();
@@ -125,11 +118,11 @@ class EventAgendaTest extends TestCaseAuthenticated
                 continue;
             }
             if (
-                $song->getName() == TestData::getValue("EVENT_AGENDA_SONG_NAME")
+                $song->getName() == IntegrationTestData::getResult("get_event_agenda", "selected_song_name")
             ) {
 
                 if ($checkForArrangement) {
-                    if ($song->getArrangement() == TestData::getValue("EVENT_AGENDA_SONG_ARRANGEMENT")) {
+                    if ($song->getArrangement() == IntegrationTestData::getResult("get_event_agenda", "selected_song_arrangement_name")) {
                         $foundSong = true;
                     } else {
                         $foundSong = false;

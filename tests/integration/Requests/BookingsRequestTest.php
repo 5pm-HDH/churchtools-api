@@ -4,14 +4,13 @@
 namespace Tests\Integration\Requests;
 
 
-use CTApi\CTConfig;
 use CTApi\Models\Resource;
 use CTApi\Models\ResourceBooking;
 use CTApi\Requests\BookingRequest;
 use CTApi\Requests\ResourceBookingsRequest;
 use CTApi\Requests\ResourceRequest;
+use Tests\Integration\IntegrationTestData;
 use Tests\Integration\TestCaseAuthenticated;
-use Tests\Integration\TestData;
 
 class BookingsRequestTest extends TestCaseAuthenticated
 {
@@ -20,22 +19,43 @@ class BookingsRequestTest extends TestCaseAuthenticated
     private $fromDate = "";
     private $toDate = "";
 
+    private $bookingId1;
+    private $bookingCaption1;
+    private $bookingStartDate1;
+    private $bookingId2;
+    private $bookingCaption2;
+
+
     protected function setUp(): void
     {
-        if (!TestData::getValue("RESOURCE_BOOKINGS_SHOULD_TEST") == "YES") {
-            $this->markTestSkipped("Test suite is disabled in testdata.ini");
-        } else {
-            $this->resourceId1 = TestData::getValue("RESOURCE_BOOKINGS_RESOURCE_ID_1");
-            $this->resourceId2 = TestData::getValue("RESOURCE_BOOKINGS_RESOURCE_ID_2");
-            $this->fromDate = TestData::getValue("RESOURCE_BOOKINGS_FROM_DATE");
-            $this->toDate = TestData::getValue("RESOURCE_BOOKINGS_TO_DATE");
-        }
+        $this->resourceId1 = IntegrationTestData::getFilter("filter_bookings", "resource_1_id");
+        $this->resourceId2 = IntegrationTestData::getFilter("filter_bookings", "resource_2_id");
+        $this->fromDate = IntegrationTestData::getFilter("filter_bookings", "from");
+        $this->toDate = IntegrationTestData::getFilter("filter_bookings", "to");
+
+        $this->bookingId1 = IntegrationTestData::getResult("filter_bookings", "any_booking_for_1.id");
+        $this->bookingCaption1 = IntegrationTestData::getResult("filter_bookings", "any_booking_for_1.caption");
+        $this->bookingStartDate1 = IntegrationTestData::getResult("filter_bookings", "any_booking_for_1.start_date");
+        $this->bookingId2 = IntegrationTestData::getResult("filter_bookings", "any_booking_for_2.id");
+        $this->bookingCaption2 = IntegrationTestData::getResult("filter_bookings", "any_booking_for_2.caption");
     }
 
     public function testRequestAllResources()
     {
         $resources = ResourceRequest::all();
         $this->assertTrue(sizeof($resources) >= 1);
+
+        $foundResource = null;
+        foreach ($resources as $resource) {
+            if ($resource->getId() == IntegrationTestData::getResult("list_resources", "any_resource.id")) {
+                $foundResource = $resource;
+            }
+        }
+
+        $this->assertNotNull($foundResource);
+        $this->assertEqualsTestData("list_resources", "any_resource.id", $foundResource->getId());
+        $this->assertEqualsTestData("list_resources", "any_resource.name", $foundResource->getName());
+        $this->assertEqualsTestData("list_resources", "any_resource.resource_type_name", $foundResource->getResourceType()?->getName());
     }
 
     public function testRequestBookingsOfResource()
@@ -51,6 +71,17 @@ class BookingsRequestTest extends TestCaseAuthenticated
 
         $this->assertTrue(sizeof($bookings) >= 1);
         $this->assertInstanceOf(ResourceBooking::class, end($bookings));
+
+        $foundBooking = null;
+        foreach ($bookings as $booking) {
+            if ($booking->getId() == $this->bookingId1) {
+                $foundBooking = $booking;
+            }
+        }
+
+        $this->assertNotNull($foundBooking);
+        $this->assertEquals($this->bookingCaption1, $foundBooking->getCaption());
+        $this->assertEquals($this->bookingStartDate1, $foundBooking->getStartDate());
     }
 
     public function testRequestBookingsFromRequest()
@@ -71,6 +102,24 @@ class BookingsRequestTest extends TestCaseAuthenticated
 
         $this->assertTrue(sizeof($bookings) >= 1);
         $this->assertInstanceOf(ResourceBooking::class, end($bookings));
+
+        $foundBooking1 = null;
+        $foundBooking2 = null;
+
+        foreach ($bookings as $booking) {
+            if ($booking->getId() == $this->bookingId1) {
+                $foundBooking1 = $booking;
+            }
+            if ($booking->getId() == $this->bookingId2) {
+                $foundBooking2 = $booking;
+            }
+        }
+
+        $this->assertNotNull($foundBooking1);
+        $this->assertEquals($this->bookingCaption1, $foundBooking1->getCaption());
+
+        $this->assertNotNull($foundBooking2);
+        $this->assertEquals($this->bookingCaption2, $foundBooking2->getCaption());
     }
 
 }

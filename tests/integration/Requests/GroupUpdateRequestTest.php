@@ -7,8 +7,8 @@ namespace Tests\Integration\Requests;
 use CTApi\CTConfig;
 use CTApi\Models\GroupMember;
 use CTApi\Requests\GroupMemberRequest;
+use Tests\Integration\IntegrationTestData;
 use Tests\Integration\TestCaseAuthenticated;
-use Tests\Integration\TestData;
 
 class GroupUpdateRequestTest extends TestCaseAuthenticated
 {
@@ -18,9 +18,8 @@ class GroupUpdateRequestTest extends TestCaseAuthenticated
     protected function setUp(): void
     {
         parent::setUp();
-        $this->checkIfTestSuiteIsEnabled("GROUP_MEMBER_UPDATE");
-        $this->groupId = TestData::getValueAsInteger("GROUP_MEMBER_UPDATE_GROUP_ID");
-        $this->personId = TestData::getValueAsInteger("GROUP_MEMBER_UPDATE_PERSON_ID");
+        $this->groupId = IntegrationTestData::getFilterAsInt("update_group_member", "group_id");
+        $this->personId = IntegrationTestData::getFilterAsInt("update_group_member", "person_id");
 
         // Add Person to Group
         GroupMemberRequest::addMember($this->groupId, $this->personId);
@@ -62,7 +61,6 @@ class GroupUpdateRequestTest extends TestCaseAuthenticated
 
     public function testUpdateGroupMemberFields()
     {
-        CTConfig::enableDebugging();
         $groupMember = $this->assertPersonIsGroupMember(true);
         $this->assertNotNull($groupMember);
 

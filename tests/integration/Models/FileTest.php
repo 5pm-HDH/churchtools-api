@@ -4,6 +4,8 @@ namespace Tests\Integration\Models;
 
 use CTApi\CTConfig;
 use CTApi\Models\File;
+use CTApi\Requests\AuthRequest;
+use CTApi\Requests\PersonRequest;
 use CTApi\Requests\SongRequest;
 use Tests\Integration\TestCaseAuthenticated;
 
@@ -15,8 +17,8 @@ class FileTest extends TestCaseAuthenticated
     {
         $exampleFile = $this->collectFile();
 
-        $exampleFile->downloadToPath($this->DOWNLOAD_FOLDER);
-
+        $succeeded = $exampleFile->downloadToPath($this->DOWNLOAD_FOLDER);
+        $this->assertTrue($succeeded, "Could not download File.");
         $this->assertFileExistsInDownloadFolder($exampleFile);
     }
 
@@ -50,7 +52,7 @@ class FileTest extends TestCaseAuthenticated
 
         $this->assertNull($file->getFileUrlAuthenticated());
 
-        $apiToken = CTConfig::getApiKey();
+        $apiToken = AuthRequest::retrieveApiToken(PersonRequest::whoami()->getIdOrFail());
         $file->setFileUrl("https//file.com/?id=291");
         $this->assertEquals("https//file.com/?id=291&login_token=" . $apiToken, $file->getFileUrlAuthenticated());
     }

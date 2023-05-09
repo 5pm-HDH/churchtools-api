@@ -7,8 +7,8 @@ namespace Tests\Integration\Requests;
 use CTApi\Models\GroupInformation;
 use CTApi\Models\TargetGroup;
 use CTApi\Requests\PublicGroupRequest;
+use Tests\Integration\IntegrationTestData;
 use Tests\Integration\TestCaseAuthenticated;
-use Tests\Integration\TestData;
 
 class PublicGroupRequestTest extends TestCaseAuthenticated
 {
@@ -16,16 +16,15 @@ class PublicGroupRequestTest extends TestCaseAuthenticated
     private $publicGroupHash = "";
     private $groupId = "";
     private $groupName = "";
+    private $targetGroupName = "";
 
     protected function setUp(): void
     {
-        if (!TestData::getValue("PUBLIC_GROUP_SHOULD_TEST") == "YES") {
-            $this->markTestSkipped("Test suite is disabled in testdata.ini");
-        } else {
-            $this->publicGroupHash = TestData::getValue("PUBLIC_GROUP_HASH");
-            $this->groupId = TestData::getValue("PUBLIC_GROUP_ID");
-            $this->groupName = TestData::getValue("PUBLIC_GROUP_NAME");
-        }
+        $this->publicGroupHash = IntegrationTestData::getFilter("load_public_group", "hash");
+
+        $this->groupId = IntegrationTestData::getResult("load_public_group", "any_group.id");
+        $this->groupName = IntegrationTestData::getResult("load_public_group", "any_group.name");
+        $this->targetGroupName = IntegrationTestData::getResult("load_public_group", "any_group.target_group_name");
     }
 
     public function testGetPublicGroup()
@@ -47,6 +46,7 @@ class PublicGroupRequestTest extends TestCaseAuthenticated
 
         $this->assertNotNull($foundGroup->getInformation()->getTargetGroup());
         $this->assertInstanceOf(TargetGroup::class, $foundGroup->getInformation()->getTargetGroup());
+        $this->assertEquals($this->targetGroupName, $foundGroup->getInformation()->getTargetGroup()->getName());
 
         $this->assertNotNull($foundGroup->getInformation()->getGroupPlaces());
         $this->assertIsArray($foundGroup->getInformation()->getGroupPlaces());

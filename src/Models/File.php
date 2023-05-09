@@ -5,11 +5,12 @@ namespace CTApi\Models;
 
 
 use CTApi\CTClient;
-use CTApi\CTConfig;
 use CTApi\CTLog;
 use CTApi\Exceptions\CTRequestException;
 use CTApi\Models\Traits\FillWithData;
 use CTApi\Models\Traits\MetaAttribute;
+use CTApi\Requests\AuthRequest;
+use CTApi\Requests\PersonRequest;
 
 class File extends AbstractModel
 {
@@ -76,8 +77,9 @@ class File extends AbstractModel
 
     public function getFileUrlAuthenticated(): ?string
     {
+        $myself = PersonRequest::whoami();
+        $apiKey = AuthRequest::retrieveApiToken($myself->getIdOrFail());
         $fileUrl2 = $this->getFileUrl();
-        $apiKey = CTConfig::getApiKey();
         if (is_null($fileUrl2) || is_null($apiKey)) {
             return null;
         }

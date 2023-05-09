@@ -6,36 +6,35 @@ namespace Tests\Integration\Requests;
 
 use CTApi\Models\SearchResult;
 use CTApi\Requests\SearchRequest;
+use Tests\Integration\IntegrationTestData;
 use Tests\Integration\TestCaseAuthenticated;
-use Tests\Integration\TestData;
 
 class SearchRequestTest extends TestCaseAuthenticated
 {
-    private string $query;
+    private string $queryPerson;
     private string $personLastName;
 
     protected function setUp(): void
     {
-        $this->checkIfTestSuiteIsEnabled("SEARCH_PERSON");
-        $this->query = TestData::getValue("SEARCH_PERSON_QUERY");
-        $this->personLastName = TestData::getValue("SEARCH_PERSON_LAST_NAME");
+        $this->queryPerson = IntegrationTestData::getFilter("search_person", "query");
+        $this->personLastName = IntegrationTestData::getResult("search_person", "any_person.last_name");
     }
 
     public function testSearchUser()
     {
-        $result = SearchRequest::search($this->query)->get();
+        $result = SearchRequest::search($this->queryPerson)->get();
         $this->assertSearchResultContainsPerson($result);
     }
 
     public function testSearchUserWithDomain()
     {
-        $result = SearchRequest::search($this->query)->whereDomainType("person")->get();
+        $result = SearchRequest::search($this->queryPerson)->whereDomainType("person")->get();
         $this->assertSearchResultContainsPerson($result);
     }
 
     public function testSearchUserWithWrongDomain()
     {
-        $result = SearchRequest::search($this->query)->whereDomainType("song")->get();
+        $result = SearchRequest::search($this->queryPerson)->whereDomainType("song")->get();
         $this->assertSearchResultContainsPerson($result, false);
     }
 

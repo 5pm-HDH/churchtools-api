@@ -5,10 +5,9 @@ namespace Tests\Integration\Requests;
 
 
 use CTApi\CTConfig;
-use CTApi\CTLog;
 use CTApi\Requests\InfoRequest;
 use PHPUnit\Framework\TestCase;
-use Tests\Integration\TestData;
+use Tests\Integration\IntegrationTestData;
 
 class APIVersionTest extends TestCase
 {
@@ -18,7 +17,7 @@ class APIVersionTest extends TestCase
 
     protected function setUp(): void
     {
-        CTConfig::setApiUrl(TestData::getValue('API_URL'));
+        CTConfig::setApiUrl(IntegrationTestData::get()->getApiUrl());
     }
 
     /**

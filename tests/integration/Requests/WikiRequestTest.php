@@ -7,33 +7,11 @@ use CTApi\Models\WikiCategory;
 use CTApi\Models\WikiPage;
 use CTApi\Requests\WikiCategoryRequest;
 use CTApi\Requests\WikiSearchRequest;
+use Tests\Integration\IntegrationTestData;
 use Tests\Integration\TestCaseAuthenticated;
-use Tests\Integration\TestData;
 
 class WikiRequestTest extends TestCaseAuthenticated
 {
-
-    private int $CATEGORY_ID = 0;
-    private string $CATEGORY_NAME = "";
-    private string $PAGE_IDENTIFIER = "";
-    private string $PAGE_TITLE = "";
-    private string $SEARCH_QUERY = "";
-    private bool $PAGE_HAS_FILES = false;
-
-    protected function setUp(): void
-    {
-        if (!TestData::getValue("WIKI_SHOULD_TEST") == "YES") {
-            $this->markTestSkipped("Test suite is disabled in testdata.ini");
-        }
-
-        $this->CATEGORY_ID = TestData::getValueAsInteger("WIKI_CATEGORY_ID");
-        $this->CATEGORY_NAME = TestData::getValue("WIKI_CATEGORY_NAME");
-        $this->PAGE_IDENTIFIER = TestData::getValue("WIKI_PAGE_IDENTIFIER");
-        $this->PAGE_TITLE = TestData::getValue("WIKI_PAGE_TITLE");
-        $this->SEARCH_QUERY = TestData::getValue("WIKI_SEARCH_QUERY");
-        $this->PAGE_HAS_FILES = (bool)TestData::getValue("WIKI_PAGE_HAS_FILES");
-    }
-
     public function testWikiCategories(): void
     {
         $allCategories = WikiCategoryRequest::all();
@@ -46,11 +24,14 @@ class WikiRequestTest extends TestCaseAuthenticated
 
     public function testGetWikiCategory(): void
     {
-        $category = WikiCategoryRequest::find($this->CATEGORY_ID);
+        $categoryId = IntegrationTestData::getFilter("get_wiki_category", "id");
+        $category = WikiCategoryRequest::find($categoryId);
 
         $this->assertNotNull($category);
-        $this->assertEquals($this->CATEGORY_ID, $category->getId());
-        $this->assertEquals($this->CATEGORY_NAME, $category->getName());
+        $this->assertEquals($categoryId, $category->getId());
+
+        $categoryName = IntegrationTestData::getResult("get_wiki_category", "name");
+        $this->assertEquals($categoryName, $category->getName());
     }
 
     public function testGetWikiCategoryFailed(): void
@@ -61,7 +42,8 @@ class WikiRequestTest extends TestCaseAuthenticated
 
     public function testRequestWikiPages(): void
     {
-        $category = WikiCategoryRequest::find($this->CATEGORY_ID);
+        $categoryId = IntegrationTestData::getFilter("get_wiki_category", "id");
+        $category = WikiCategoryRequest::find($categoryId);
 
         $pages = $category?->requestPages()?->get();
         $this->assertNotNull($pages);
@@ -71,7 +53,8 @@ class WikiRequestTest extends TestCaseAuthenticated
         foreach ($pages as $page) {
             $this->assertInstanceOf(WikiPage::class, $page);
             $this->assertInstanceOf(WikiCategory::class, $page->getWikiCategory());
-            if ($this->PAGE_IDENTIFIER == $page->getIdentifier() && $this->PAGE_TITLE == $page->getTitle()) {
+            if (IntegrationTestData::getResult("get_wiki_category", "any_page.identifier") == $page->getIdentifier()
+                && IntegrationTestData::getResult("get_wiki_category", "any_page.title") == $page->getTitle()) {
                 $foundTestPage = true;
             }
         }
@@ -88,36 +71,44 @@ class WikiRequestTest extends TestCaseAuthenticated
 
     public function testRequestWikiPage(): void
     {
-        $category = WikiCategoryRequest::find($this->CATEGORY_ID);
-        $page = $category?->requestPage($this->PAGE_IDENTIFIER);
+        $categoryId = IntegrationTestData::getFilterAsInt("get_wiki_page", "category_id");
+        $category = WikiCategoryRequest::find($categoryId);
+        $page = $category?->requestPage(IntegrationTestData::getFilter("get_wiki_page", "page_identifier"));
 
         $this->assertInstanceOf(WikiPage::class, $page);
         $this->assertNotNull($page->getText());
+        $this->assertEquals(IntegrationTestData::getResult("get_wiki_page", "title"), $page->getTitle());
     }
 
     public function testRequestWikiPageFiles(): void
     {
-        if (!$this->PAGE_HAS_FILES) {
-            $this->markTestSkipped('Wiki Page has no files. The Test is skipped.');
-        }
-
-        $category = WikiCategoryRequest::find($this->CATEGORY_ID);
-        $page = $category?->requestPage($this->PAGE_IDENTIFIER);
+        $categoryId = IntegrationTestData::getFilterAsInt("get_wiki_page", "category_id");
+        $category = WikiCategoryRequest::find($categoryId);
+        $page = $category?->requestPage(IntegrationTestData::getFilter("get_wiki_page", "page_identifier"));
 
         $files = $page?->requestFiles()?->get();
 
         $this->assertNotNull($files);
         $this->assertTrue(sizeof($files) > 0, "There should be files.");
 
+        $expectedFileName = IntegrationTestData::getResult("get_wiki_page", "any_file.name");
+
+        $foundFile = false;
         foreach ($files as $file) {
             $this->assertNotNull($file);
             $this->assertInstanceOf(File::class, $file);
+
+            if ($file->getName() == $expectedFileName) {
+                $foundFile = true;
+            }
         }
+        $this->assertTrue($foundFile, "Could not find file on wiki page.");
     }
 
     public function testRequestWikiPageFailed(): void
     {
-        $category = WikiCategoryRequest::find($this->CATEGORY_ID);
+        $categoryId = IntegrationTestData::getFilterAsInt("get_wiki_page", "category_id");
+        $category = WikiCategoryRequest::find($categoryId);
         $page = $category?->requestPage("no-valid-page-key");
 
         $this->assertNull($page);
@@ -125,8 +116,9 @@ class WikiRequestTest extends TestCaseAuthenticated
 
     public function testRequestWikiPageVersions(): void
     {
-        $category = WikiCategoryRequest::find($this->CATEGORY_ID);
-        $page = $category?->requestPage($this->PAGE_IDENTIFIER);
+        $categoryId = IntegrationTestData::getFilterAsInt("get_wiki_page", "category_id");
+        $category = WikiCategoryRequest::find($categoryId);
+        $page = $category?->requestPage(IntegrationTestData::getFilter("get_wiki_page", "page_identifier"));
 
         $versions = $page?->requestVersions()?->get();
 
@@ -146,8 +138,9 @@ class WikiRequestTest extends TestCaseAuthenticated
 
     public function testRequestWikiPageVersion(): void
     {
-        $category = WikiCategoryRequest::find($this->CATEGORY_ID);
-        $page = $category?->requestPage($this->PAGE_IDENTIFIER);
+        $categoryId = IntegrationTestData::getFilterAsInt("get_wiki_page", "category_id");
+        $category = WikiCategoryRequest::find($categoryId);
+        $page = $category?->requestPage(IntegrationTestData::getFilter("get_wiki_page", "page_identifier"));
         $this->assertNotNull($page);
 
         $versions = $page->requestVersions()?->get();
@@ -180,7 +173,7 @@ class WikiRequestTest extends TestCaseAuthenticated
 
     public function testWikiSearch(): void
     {
-        $searchResults = WikiSearchRequest::search($this->SEARCH_QUERY)->get();
+        $searchResults = WikiSearchRequest::search(IntegrationTestData::getFilter("search_wiki_page", "search_query"))->get();
 
         $this->assertGreaterThan(0, sizeof($searchResults));
 
@@ -192,7 +185,8 @@ class WikiRequestTest extends TestCaseAuthenticated
 
     public function testWikiTree(): void
     {
-        $category = WikiCategoryRequest::find($this->CATEGORY_ID);
+        $categoryId = IntegrationTestData::getFilterAsInt("get_wiki_page", "category_id");
+        $category = WikiCategoryRequest::find($categoryId);
         $rootNode = $category?->requestWikiPageTree();
 
         $this->assertNotNull($rootNode);
@@ -202,7 +196,8 @@ class WikiRequestTest extends TestCaseAuthenticated
 
     public function testWikiMeta(): void
     {
-        $category = WikiCategoryRequest::find($this->CATEGORY_ID);
+        $categoryId = IntegrationTestData::getFilterAsInt("get_wiki_page", "category_id");
+        $category = WikiCategoryRequest::find($categoryId);
         $pages = $category?->requestPages()?->get();
 
         $this->assertNotNull($pages);

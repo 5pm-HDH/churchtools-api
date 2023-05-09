@@ -19,7 +19,6 @@ class FileRequestAvatarTest extends TestCaseAuthenticated
     protected function setUp(): void
     {
         parent::setUp();
-        $this->checkIfTestSuiteIsEnabled("FILE_AVATAR");
         $myself = PersonRequest::whoami();
         $this->myselfId = $myself->getIdAsInteger();
 

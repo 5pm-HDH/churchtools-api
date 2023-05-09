@@ -16,7 +16,7 @@ class CTLog
     private static ?Logger $logger = null;
     private static bool $fileLogEnabled = true;
     private static bool $consoleLogEnabled = true;
-    private static bool $httpLogEnabled = true;
+    private static bool $httpLogEnabled = false;
     private static string $httpLogName = "Log";
 
     // Log-Level: https://github.com/Seldaek/monolog/blob/main/doc/01-usage.md#log-levels

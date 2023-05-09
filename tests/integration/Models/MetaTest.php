@@ -2,15 +2,14 @@
 
 namespace Tests\Integration\Models;
 
-use CTApi\Exceptions\CTAuthException;
 use CTApi\Exceptions\CTPermissionException;
 use CTApi\Models\Meta;
 use CTApi\Models\Person;
 use CTApi\Requests\EventAgendaRequest;
 use CTApi\Requests\PersonRequest;
 use CTApi\Requests\SongRequest;
+use Tests\Integration\IntegrationTestData;
 use Tests\Integration\TestCaseAuthenticated;
-use Tests\Integration\TestData;
 
 class MetaTest extends TestCaseAuthenticated
 {
@@ -24,9 +23,7 @@ class MetaTest extends TestCaseAuthenticated
 
     public function testEventAgendaMeta(): void
     {
-        $this->checkIfTestShouldBeSkipped("EVENT_AGENDA_SHOULD_TEST");
-
-        $eventId = TestData::getValueAsInteger("EVENT_AGENDA_EVENT_ID");
+        $eventId = IntegrationTestData::getFilter("get_event", "event_id");
         $agenda = EventAgendaRequest::fromEvent($eventId)->get();
 
         $this->assertModelHasValidMeta($agenda);
@@ -39,8 +36,6 @@ class MetaTest extends TestCaseAuthenticated
 
     public function testSongMeta(): void
     {
-        $this->checkIfTestShouldBeSkipped("SONG_SHOULD_TEST");
-
         $allSongs = SongRequest::all();
         $this->assertNotEmpty($allSongs);
 
@@ -55,33 +50,26 @@ class MetaTest extends TestCaseAuthenticated
         $this->assertModelHasValidMeta($arrangement);
     }
 
-    private function checkIfTestShouldBeSkipped($testIniKey): void
-    {
-        if (!TestData::getValue($testIniKey) == "YES") {
-            $this->markTestSkipped("Test is disabled in testdata.ini");
-        }
-    }
-
     private function assertModelHasValidMeta($model): void
     {
         $this->assertInstanceOf(Meta::class, $model->getMeta());
 
         //validate requestModifiedPerson and requestCreatedPerson
-        try{
+        try {
             $creator = $model->getMeta()->requestCreatedPerson();
             if (!is_null($creator)) {
                 $this->assertInstanceOf(Person::class, $creator);
             }
-        }catch (CTPermissionException $exception){
+        } catch (CTPermissionException $exception) {
             // ignore
         }
 
-        try{
+        try {
             $editor = $model->getMeta()->requestModifiedPerson();
             if (!is_null($editor)) {
                 $this->assertInstanceOf(Person::class, $editor);
             }
-        }catch (CTPermissionException $exception){
+        } catch (CTPermissionException $exception) {
             // ignore
         }
     }

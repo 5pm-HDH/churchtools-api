@@ -6,8 +6,8 @@ namespace Tests\Integration\Requests;
 
 use CTApi\Requests\PermissionRequest;
 use CTApi\Requests\PersonRequest;
+use Tests\Integration\IntegrationTestData;
 use Tests\Integration\TestCaseAuthenticated;
-use Tests\Integration\TestData;
 
 class PermissionRequestTest extends TestCaseAuthenticated
 {
@@ -29,22 +29,18 @@ class PermissionRequestTest extends TestCaseAuthenticated
 
     protected function setUp(): void
     {
-        if (!TestData::getValue("GROUP_HIERARCHIE_SHOULD_TEST") == "YES") {
-            $this->markTestSkipped("Test suite is disabled in testdata.ini");
-        } else {
-            $this->groupId = TestData::getValue("PERMISSION_GROUP_ID");
-            $this->groupAddPersion = TestData::getValue("PERMISSION_GROUP_ADD_PERSON");
+        $this->groupId = IntegrationTestData::getFilter("permission_group", "group_id");
+        $this->groupAddPersion = IntegrationTestData::getResult("permission_group", "add_person");
 
-            $this->personInvitePerson = TestData::getValueAsBool("PERMISSION_PERSON_INVITE_PERSON");
+        $this->personInvitePerson = IntegrationTestData::getResult("permission_person", "invite_person");
 
-            $this->churchCore_AdministerSettings = TestData::getValueAsBool("PERMISSION_GLOBAL_CHURCH_CORE_ADMINISTER_SETTINGS");
-            $this->churchDb_ViewBirthdaylist = TestData::getValueAsBool("PERMISSION_GLOBAL_CHURCH_DB_VIEW_BIRTHDAYLIST");
-            $this->churchCal_AssistanceMode = TestData::getValueAsBool("PERMISSION_GLOBAL_CHURCH_CAL_ASSISTANCE_MODE");
-            $this->churchResource_CreateVirtualBookings = TestData::getValueAsBool("PERMISSION_GLOBAL_CHURCH_RESOURCE_CREATE_VIRTUAL_BOOKINGS");
-            $this->churchService_ViewHistory = TestData::getValueAsBool("PERMISSION_GLOBAL_CHURCH_SERVICE_VIEW_HISTORY");
-            $this->churchWiki_EditMasterdata = TestData::getValueAsBool("PERMISSION_GLOBAL_CHURCH_WIKI_EDIT_MASTERDATA");
-            $this->churchCheckin_CreatePerson = TestData::getValueAsBool("PERMISSION_GLOBAL_CHURCH_CHECKIN_CREATE_PERSON");
-        }
+        $this->churchCore_AdministerSettings = IntegrationTestData::getResult("permission_global", "core_administer_settings");
+        $this->churchDb_ViewBirthdaylist = IntegrationTestData::getResult("permission_global", "db_view_birthdaylist");
+        $this->churchCal_AssistanceMode = IntegrationTestData::getResult("permission_global", "cal_assistance_mode");
+        $this->churchResource_CreateVirtualBookings = IntegrationTestData::getResult("permission_global", "resource_create_virtual_bookings");
+        $this->churchService_ViewHistory = IntegrationTestData::getResult("permission_global", "service_view_history");
+        $this->churchWiki_EditMasterdata = IntegrationTestData::getResult("permission_global", "wiki_edit_masterdata");
+        $this->churchCheckin_CreatePerson = IntegrationTestData::getResult("permission_global", "checkin_create_person");
     }
 
     public function testGroupPermission()

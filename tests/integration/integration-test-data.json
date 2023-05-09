@@ -1,0 +1,341 @@
+{
+  "environment": {
+    "api_url": "https://5pm.church.tools/"
+  },
+  "users": {
+    "default": {
+      "description": "King David has full permission to perform all of the shown test cases.",
+      "id": 12
+    },
+    "jona": {
+      "description": "The user has no rights and is being utilized to test for unauthorized exceptions.",
+      "id": 13
+    }
+  },
+  "testCases": {
+    "whoami": {
+      "description": "Read personal data from ChurchTools.",
+      "result": {
+        "first_name": "David",
+        "last_name": "König"
+      }
+    },
+    "auth": {
+      "description": "Read auth id",
+      "result": {
+        "person_id": 12
+      }
+    },
+    "filter_persons": {
+      "description": "Filter person data from ChurchTools.",
+      "filter": {
+        "ids": [
+          1,
+          12,
+          999
+        ]
+      },
+      "result": {
+        "number_of_elements": 2
+      }
+    },
+    "get_person_tags": {
+      "description": "Get tags from person.",
+      "filter": {
+        "person_id": 12
+      },
+      "result": {
+        "any_tag": {
+          "id": 2,
+          "name": "Lobpreisleiter"
+        }
+      }
+    },
+    "list_birthdays": {
+      "description": "Load birthday list.",
+      "filter": {
+        "person_id": 12,
+        "from": "2022-01-01",
+        "to": "2022-12-31"
+      },
+      "result": {
+        "birthday": "1992-06-02",
+        "anniversary": "2022-06-02",
+        "age": "30"
+      }
+    },
+    "get_group": {
+      "description": "Load group information",
+      "filter": {
+        "id": 9
+      },
+      "result": {
+        "name": "Lobpreisteam"
+      }
+    },
+    "get_group_hierarchie": {
+      "description": "Load group hierarchie",
+      "filter": {
+        "group_id": 10
+      },
+      "result": {
+        "group_name": "Gottesdienst",
+        "parent_group_id": 11,
+        "parent_group_name": "Gemeindeleitung",
+        "child_group_id": 9,
+        "child_group_name": "Lobpreisteam"
+      }
+    },
+    "update_group_member": {
+      "description": "Add person to group and remove them again.",
+      "filter": {
+        "group_id": 9,
+        "person_id": 13
+      }
+    },
+    "update_group_meeting": {
+      "description": "Update Group Meeting",
+      "filter": {
+        "group_id": 9,
+        "start_date": "2023-02-01",
+        "end_date": "2023-03-01"
+      },
+      "result": {
+        "last_group_meeting": {
+          "date": "2023-02-22T09:00:00Z",
+          "present": 1,
+          "absent": 1,
+          "unsure": 0,
+          "guests": 2,
+          "comment": "Test Kommentar",
+          "any_member": {
+            "id": 12
+          }
+        }
+      }
+    },
+    "load_public_group": {
+      "description": "PublicGroup to register on homepage",
+      "filter": {
+        "hash": "N4tkQbuUVtf46mExZw3C0TRDPslMOZOd"
+      },
+      "result": {
+        "any_group": {
+          "id": 17,
+          "name": "Gemeindefreizeit 2062",
+          "target_group_name": "everyone"
+        }
+      }
+    },
+    "filter_events": {
+      "description": "Filter events with given start- and end-dates.",
+      "filter": {
+        "start_date": "2023-05-01",
+        "end_date": "2023-06-01"
+      },
+      "result": {
+        "number_of_elements": 1,
+        "first_element": {
+          "id": 1,
+          "name": "Gottesdienst"
+        }
+      }
+    },
+    "get_event": {
+      "description": "Get one single event",
+      "filter": {
+        "event_id": "1"
+      },
+      "result": {
+        "name": "Gottesdienst"
+      }
+    },
+    "get_event_agenda": {
+      "description": "Request agenda of specific event.",
+      "authorized_users": [
+        "john_doe",
+        "david"
+      ],
+      "filter": {
+        "event_id": 1,
+        "selected_song_id": 1,
+        "selected_song_arrangement_id": 1
+      },
+      "result": {
+        "nr_of_agenda_items": 4,
+        "agenda_id": 1,
+        "first_song": {
+          "id": 1,
+          "name": "Halleluja",
+          "arrangement_id": 1,
+          "arrangement_name": "In C"
+        },
+        "selected_song_name": "Halleluja",
+        "selected_song_arrangement_name": "In C"
+      }
+    },
+    "get_song": {
+      "description": "Request single song.",
+      "filter": {
+        "song_id": 1,
+        "song_name": "Halleluja",
+        "arrangement_id": 1,
+        "arrangement_name": "In C"
+      }
+    },
+    "get_song_statistics": {
+      "description": "Request song statistics.",
+      "filter": {
+        "song_id": 1
+      },
+      "result": {
+        "any_date": {
+          "date": "2023-05-07 11:00:00",
+          "calendar_id": 2
+        }
+      }
+    },
+    "get_service": {
+      "description": "Request single service. The corresponding service-group is stored in result.",
+      "filter": {
+        "id": 9
+      },
+      "result": {
+        "name": "Gesang",
+        "service_group_id": 4,
+        "service_group_name": "Musik"
+      }
+    },
+    "filter_absence": {
+      "description": "Filter absence of person.",
+      "filter": {
+        "person_id": 12,
+        "start_date": "2023-01-01",
+        "end_date": "2023-02-01"
+      },
+      "result": {
+        "comment": "Ski-Urlaub",
+        "reason": "Urlaub",
+        "start_date": "2023-01-02",
+        "end_date": "2023-01-05"
+      }
+    },
+    "get_wiki_category": {
+      "description": "Get content of wiki category",
+      "filter": {
+        "id": 2
+      },
+      "result": {
+        "name": "Worship Wiki",
+        "any_page": {
+          "identifier": "9693e947-f408-467a-9336-01f9a526837c",
+          "title": "Bass-Seite"
+        }
+      }
+    },
+    "get_wiki_page": {
+      "description": "Request content of wiki page.",
+      "filter": {
+        "category_id": 2,
+        "page_identifier": "9693e947-f408-467a-9336-01f9a526837c"
+      },
+      "result": {
+        "title": "Bass-Seite",
+        "any_file": {
+          "name": "5pm-tech-logo.PNG"
+        }
+      }
+    },
+    "search_wiki_page": {
+      "description": "Search in whole wiki",
+      "filter": {
+        "search_query": "bass"
+      }
+    },
+    "list_resources": {
+      "description": "List all ressources",
+      "result": {
+        "any_resource": {
+          "id": 2,
+          "name": "Küche",
+          "resource_type_name": "Raum"
+        }
+      }
+    },
+    "filter_bookings": {
+      "descrpition": "Filter bookings for 'Küche' in given date-range.",
+      "filter": {
+        "resource_1_id": 2,
+        "resource_2_id": 3,
+        "from": "2023-05-02",
+        "to": "2023-05-08"
+      },
+      "result": {
+        "any_booking_for_1": {
+          "id": 2,
+          "caption": "Kuchen backen für Gottesdienst",
+          "start_date": "2023-05-07T07:00:00Z"
+        },
+        "any_booking_for_2": {
+          "id": 1,
+          "caption": "Gottesdienst"
+        }
+      }
+    },
+    "filter_calendar": {
+      "description": "Filter Calendar.",
+      "filter": {
+        "calendar_id": 2,
+        "appointment_from": "2023-05-05",
+        "appointment_to": "2023-05-08"
+      },
+      "result": {
+        "calendar_name": "Gottesdienst",
+        "any_appointment": {
+          "id": 1,
+          "caption": "Gottesdienst",
+          "start_date": "2023-05-07T09:00:00Z",
+          "end_date": "2023-05-07T10:30:00Z"
+        }
+      }
+    },
+    "permission_group": {
+      "description": "Load permission for group.",
+      "filter": {
+        "group_id": 9
+      },
+      "result": {
+        "add_person": true
+      }
+    },
+    "permission_person": {
+      "description": "Load permission for current person.",
+      "result": {
+        "invite_person": true
+      }
+    },
+    "permission_global": {
+      "description": "Load global permission.",
+      "result": {
+        "core_administer_settings": false,
+        "db_view_birthdaylist": false,
+        "cal_assistance_mode": false,
+        "resource_create_virtual_bookings": false,
+        "service_view_history": false,
+        "wiki_edit_masterdata": false,
+        "checkin_create_person": false
+      }
+    },
+    "search_person": {
+      "description": "Use search api to lock up person.",
+      "filter": {
+        "query": "david"
+      },
+      "result": {
+        "any_person": {
+          "last_name": "König"
+        }
+      }
+    }
+  }
+}
