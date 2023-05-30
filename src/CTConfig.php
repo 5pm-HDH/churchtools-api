@@ -84,16 +84,24 @@ class CTConfig
         return self::getRequestOption("base_uri");
     }
 
-    public static function authWithCredentials(string $email, string $password): Auth
+    public static function authWithCredentials(string $email, string $password, ?string $totp = null): Auth
     {
-        return AuthRequest::authWithEmailAndPassword($email, $password);
+        $auth = AuthRequest::authWithEmailAndPassword($email, $password);
+        if ($auth->requireMultiFactorAuthentication) {
+            if ($totp == null) {
+                throw new CTConfigException("Authentication for given user requires TOPT-Code for multi-factor authentication.");
+            } else {
+                AuthRequest::authTwoFactorAuthentication($auth->userId, $totp);
+            }
+        }
+        return $auth;
     }
 
     public static function getSessionCookie(): ?array
     {
         $config = self::getConfig();
         $cookieData = $config->cookieJar->toArray();
-        if(empty($cookieData)){
+        if (empty($cookieData)) {
             return null;
         }
         return end($cookieData);

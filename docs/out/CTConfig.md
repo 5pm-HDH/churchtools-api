@@ -41,6 +41,19 @@ CTConfig::authWithCredentials($email, $password);
 This method will log in to the application to the churchtools api and set the session cookie. For security reasons the
 CTConfig don't store your email or password. Only the session cookie will be stored.
 
+If you use multi factor authentication you can add the TOTP-Token as third parameter:
+
+```php
+use CTApi\CTConfig;
+
+$email = "someEmail@example.com";
+$password = "1234churchtools";
+$totp = "291521";
+
+CTConfig::authWithCredentials($email, $password, $totp);
+
+```
+
 To validate if the session is still valid, call the validateAuthentication method:
 
 ```php
@@ -54,7 +67,8 @@ if($isValid){
 }
 
 ```
-You can also retrieve the api key to authenticate the CTConfig. 
+
+You can also retrieve the api key to authenticate the CTConfig.
 
 ```php
 use CTApi\Requests\AuthRequest;

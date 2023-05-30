@@ -3,7 +3,6 @@
 namespace CTApi\Requests;
 
 use CTApi\CTClient;
-use CTApi\CTConfig;
 use CTApi\Exceptions\CTAuthException;
 use CTApi\Exceptions\CTRequestException;
 use CTApi\Models\Auth;
@@ -37,7 +36,7 @@ class AuthRequestBuilder
             $jsonResponse = json_decode($response->getBody()->__toString());
 
             $userId = (isset($jsonResponse->data) ? $jsonResponse->data->personId : null);
-            return new Auth($userId);
+            return new Auth($userId, (($jsonResponse->data->status ?? null) === "totp"));
         } else {
             $jsonResponse = json_decode($response->getBody()->__toString());
             if (isset($jsonResponse->message)) {
@@ -71,5 +70,11 @@ class AuthRequestBuilder
 
         $responseJson = json_decode($response->getBody()->__toString());
         return (isset($responseJson->data) ? $responseJson->data : null);
+    }
+
+    public function authTwoFactorAuthentication(string $personId, string $totp)
+    {
+        $client = CTClient::getClient();
+        $client->post('/api/login/totp', ["json" => ["personId" => $personId, "code" => $totp]]);
     }
 }
