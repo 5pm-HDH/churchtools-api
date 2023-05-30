@@ -92,7 +92,7 @@ class IntegrationTestData
      * @return Auth
      * @throws \Exception
      */
-    public function authenticateUser(string $userIdentifier = "default"): Auth
+    public function authenticateUser(string $userIdentifier = "default", ?string $totp = null): Auth
     {
         if (!array_key_exists($userIdentifier, $this->users)) {
             throw new \Exception("Could not find user in integration-test-data with identifier: " . $userIdentifier);
@@ -113,7 +113,7 @@ class IntegrationTestData
             throw new \Exception("Could not find email (Key: " . $mail . ") or password (Key: " . $password . ") for user (" . $userIdentifier . ") in credentials file.");
         }
 
-        return CTConfig::authWithCredentials($mail, $password);
+        return CTConfig::authWithCredentials($mail, $password, $totp);
     }
 
     public function getUserData(string $userIdentifier = "default"): array

@@ -1,12 +1,11 @@
 <?php
 
-namespace Tests\Integration;
+namespace Tests\Integration\Config;
 
 use CTApi\CTConfig;
 use CTApi\Exceptions\CTAuthException;
-use CTApi\Requests\AuthRequest;
-use CTApi\Requests\AuthRequestBuilder;
 use PHPUnit\Framework\TestCase;
+use Tests\Integration\IntegrationTestData;
 
 class CTConfigIntegrationTest extends TestCase
 {

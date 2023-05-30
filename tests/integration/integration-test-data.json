@@ -10,6 +10,10 @@
     "jona": {
       "description": "The user has no rights and is being utilized to test for unauthorized exceptions.",
       "id": 13
+    },
+    "ignatius": {
+      "description": "The user has the multi-factor authentication enabled.",
+      "id": 15
     }
   },
   "testCases": {
