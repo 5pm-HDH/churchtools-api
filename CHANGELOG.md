@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Add Address-Property to Appointment ([PR137](https://github.com/5pm-HDH/churchtools-api/pull/137))
 - Add SongStatistic ([PR140](https://github.com/5pm-HDH/churchtools-api/pull/140))
+- Add multi-factor authentication support ([PR146](https://github.com/5pm-HDH/churchtools-api/pull/146))
 
 ### Changed
 - Authenticate CTClient with session cookie instead of api-key ([PR142](https://github.com/5pm-HDH/churchtools-api/pull/142))
