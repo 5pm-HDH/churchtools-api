@@ -331,9 +331,6 @@
         // Output: 54
 
 
-        var_dump( $dbField->getKey());
-        // Output: "nickname"
-
         var_dump( $dbField->getName());
         // Output: "nickname"
 
@@ -344,20 +341,20 @@
         // Output: "spitzname"
 
 
-        var_dump( $dbField->getFieldCategoryCode());
+        var_dump( $dbField->getFieldCategory()?->getInternCode());
         // Output: "f_address"
 
-        var_dump( $dbField->getFieldTypeCode());
+        var_dump( $dbField->getFieldType()?->getInternCode());
         // Output: "text"
 
-        var_dump( $dbField->getFieldTypeId());
+        var_dump( $dbField->getFieldType()?->getId());
         // Output: 1
 
 
         var_dump( $dbField->getLineEnding());
         // Output: "(%) "
 
-        var_dump( $dbField->getSecLevel());
+        var_dump( $dbField->getSecurityLevel());
         // Output: 1
 
         var_dump( $dbField->getLength());

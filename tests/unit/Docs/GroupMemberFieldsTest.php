@@ -36,17 +36,16 @@ class GroupMemberFieldsTest extends TestCaseHttpMocked
         $this->assertEquals("54", $dbField->getId());
         $this->assertEquals(54, $dbField->getIdAsInteger());
 
-        $this->assertEquals("nickname", $dbField->getKey());
         $this->assertEquals("nickname", $dbField->getName());
         $this->assertEquals("Spitzname", $dbField->getNameTranslated());
         $this->assertEquals("spitzname", $dbField->getColumn());
 
-        $this->assertEquals("f_address", $dbField->getFieldCategoryCode());
-        $this->assertEquals("text", $dbField->getFieldTypeCode());
-        $this->assertEquals(1, $dbField->getFieldTypeId());
+        $this->assertEquals("f_address", $dbField->getFieldCategory()?->getInternCode());
+        $this->assertEquals("text", $dbField->getFieldType()?->getInternCode());
+        $this->assertEquals(1, $dbField->getFieldType()?->getId());
 
         $this->assertEquals("(%) ", $dbField->getLineEnding());
-        $this->assertEquals(1, $dbField->getSecLevel());
+        $this->assertEquals(1, $dbField->getSecurityLevel());
         $this->assertEquals(30, $dbField->getLength());
         $this->assertEquals(3, $dbField->getSortKey());
 

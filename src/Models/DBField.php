@@ -11,25 +11,70 @@ class DBField extends AbstractModel
 {
     use FillWithData;
 
-    protected ?string $key = null;
     protected ?string $name = null;
     protected ?string $nameTranslated = null;
-    protected ?string $column = null;
     protected ?string $shorty = null;
-    protected ?string $fieldCategoryCode = null;
-    protected ?string $fieldTypeCode = null;
-    protected ?string $fieldTypeId = null;
-    protected ?string $isActive = null;
+    protected ?string $column = null;
+    protected ?int $length = null;
+
+    protected ?DBFieldCategory $fieldCategory = null;
+    protected ?DBFieldType $fieldType = null;
+
+    protected ?bool $isActive = null;
     protected ?bool $isNewPersonField = null;
     protected ?string $lineEnding = null;
-    protected ?int $secLevel = null;
-    protected ?int $length = null;
+    protected ?int $securityLevel = null;
     protected ?int $sortKey = null;
     protected ?bool $deleteOnArchive = null;
     protected ?bool $nullable = null;
     protected ?bool $hideInFrontend = null;
+    protected ?bool $notConfigurable = null;
     protected ?bool $isBasicInfo = null;
     protected array $options = [];
+
+
+    protected function fillNonArrayType(string $key, $value): void
+    {
+        switch ($key) {
+            case "fieldCategoryCode":
+                if ($this->fieldCategory == null) {
+                    $this->fieldCategory = new DBFieldCategory();
+                }
+                $this->fieldCategory->setInternCode($value);
+                break;
+            case "fieldTypeCode":
+                if ($this->fieldType == null) {
+                    $this->fieldType = new DBFieldType();
+                }
+                $this->fieldType->setInternCode($value);
+                break;
+            case "fieldTypeId":
+                if ($this->fieldType == null) {
+                    $this->fieldType = new DBFieldType();
+                }
+                $this->fieldType->setId($value);
+                break;
+            case "secLevel":
+                $this->securityLevel = $value;
+                break;
+            default:
+                $this->fillDefault($key, $value);
+        }
+    }
+
+    protected function fillArrayType(string $key, array $data): void
+    {
+        switch ($key) {
+            case "fieldCategory":
+                $this->fieldCategory = DBFieldCategory::createModelFromData($data);
+                break;
+            case "fieldType":
+                $this->fieldType = DBFieldType::createModelFromData($data);
+                break;
+            default:
+                $this->fillDefault($key, $data);
+        }
+    }
 
 
     /**
@@ -40,24 +85,6 @@ class DBField extends AbstractModel
     public function setId(?string $id): DBField
     {
         $this->id = $id;
-        return $this;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getKey(): ?string
-    {
-        return $this->key;
-    }
-
-    /**
-     * @param string|null $key
-     * @return DBField
-     */
-    public function setKey(?string $key): DBField
-    {
-        $this->key = $key;
         return $this;
     }
 
@@ -134,74 +161,74 @@ class DBField extends AbstractModel
     }
 
     /**
-     * @return string|null
+     * @return DBFieldCategory|null
      */
-    public function getFieldCategoryCode(): ?string
+    public function getFieldCategory(): ?DBFieldCategory
     {
-        return $this->fieldCategoryCode;
+        return $this->fieldCategory;
     }
 
     /**
-     * @param string|null $fieldCategoryCode
+     * @param DBFieldCategory|null $fieldCategory
      * @return DBField
      */
-    public function setFieldCategoryCode(?string $fieldCategoryCode): DBField
+    public function setFieldCategory(?DBFieldCategory $fieldCategory): DBField
     {
-        $this->fieldCategoryCode = $fieldCategoryCode;
+        $this->fieldCategory = $fieldCategory;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return DBFieldType|null
      */
-    public function getFieldTypeCode(): ?string
+    public function getFieldType(): ?DBFieldType
     {
-        return $this->fieldTypeCode;
+        return $this->fieldType;
     }
 
     /**
-     * @param string|null $fieldTypeCode
+     * @param DBFieldType|null $fieldType
      * @return DBField
      */
-    public function setFieldTypeCode(?string $fieldTypeCode): DBField
+    public function setFieldType(?DBFieldType $fieldType): DBField
     {
-        $this->fieldTypeCode = $fieldTypeCode;
+        $this->fieldType = $fieldType;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return bool|null
      */
-    public function getFieldTypeId(): ?string
-    {
-        return $this->fieldTypeId;
-    }
-
-    /**
-     * @param string|null $fieldTypeId
-     * @return DBField
-     */
-    public function setFieldTypeId(?string $fieldTypeId): DBField
-    {
-        $this->fieldTypeId = $fieldTypeId;
-        return $this;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getIsActive(): ?string
+    public function getIsActive(): ?bool
     {
         return $this->isActive;
     }
 
     /**
-     * @param string|null $isActive
+     * @param bool|null $isActive
      * @return DBField
      */
-    public function setIsActive(?string $isActive): DBField
+    public function setIsActive(?bool $isActive): DBField
     {
         $this->isActive = $isActive;
+        return $this;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function getNotConfigurable(): ?bool
+    {
+        return $this->notConfigurable;
+    }
+
+    /**
+     * @param bool|null $notConfigurable
+     * @return DBField
+     */
+    public function setNotConfigurable(?bool $notConfigurable): DBField
+    {
+        $this->notConfigurable = $notConfigurable;
         return $this;
     }
 
@@ -244,18 +271,18 @@ class DBField extends AbstractModel
     /**
      * @return int|null
      */
-    public function getSecLevel(): ?int
+    public function getSecurityLevel(): ?int
     {
-        return $this->secLevel;
+        return $this->securityLevel;
     }
 
     /**
-     * @param int|null $secLevel
+     * @param int|null $securityLevel
      * @return DBField
      */
-    public function setSecLevel(?int $secLevel): DBField
+    public function setSecurityLevel(?int $securityLevel): DBField
     {
-        $this->secLevel = $secLevel;
+        $this->securityLevel = $securityLevel;
         return $this;
     }
 

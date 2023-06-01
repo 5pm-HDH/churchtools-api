@@ -40,7 +40,7 @@ class GroupMemberFieldsTest extends TestCaseAuthenticated
         foreach ($fields as $field) {
             if (is_a($field, GroupMemberFieldContainer::class)) {
                 $dbField = $field->getDBFieldIfExists();
-                if ($dbField != null && $dbField->getKey() === $this->testCase->getResult("any_field.dbField.key")) {
+                if ($dbField != null && $dbField->getName() === $this->testCase->getResult("any_field.dbField.name")) {
                     $personNicknameField = $dbField;
                 }
             }
@@ -50,12 +50,12 @@ class GroupMemberFieldsTest extends TestCaseAuthenticated
         $this->assertEqualsTestData("get_group_fields", "any_field.dbField.id", $personNicknameField->getId());
         $this->assertEqualsTestData("get_group_fields", "any_field.dbField.name", $personNicknameField->getName());
         $this->assertEqualsTestData("get_group_fields", "any_field.dbField.column", $personNicknameField->getColumn());
-        $this->assertEqualsTestData("get_group_fields", "any_field.dbField.fieldCategoryCode", $personNicknameField->getFieldCategoryCode());
-        $this->assertEqualsTestData("get_group_fields", "any_field.dbField.fieldTypeCode", $personNicknameField->getFieldTypeCode());
-        $this->assertEqualsTestData("get_group_fields", "any_field.dbField.fieldTypeId", $personNicknameField->getFieldTypeId());
+        $this->assertEqualsTestData("get_group_fields", "any_field.dbField.fieldCategoryCode", $personNicknameField->getFieldCategory()?->getInternCode());
+        $this->assertEqualsTestData("get_group_fields", "any_field.dbField.fieldTypeCode", $personNicknameField->getFieldType()?->getInternCode());
+        $this->assertEqualsTestData("get_group_fields", "any_field.dbField.fieldTypeId", $personNicknameField->getFieldType()?->getId());
         $this->assertEqualsTestData("get_group_fields", "any_field.dbField.isActive", $personNicknameField->getIsActive());
         $this->assertEqualsTestData("get_group_fields", "any_field.dbField.isNewPersonField", $personNicknameField->getIsNewPersonField());
-        $this->assertEqualsTestData("get_group_fields", "any_field.dbField.secLevel", $personNicknameField->getSecLevel());
+        $this->assertEqualsTestData("get_group_fields", "any_field.dbField.secLevel", $personNicknameField->getSecurityLevel());
         $this->assertEqualsTestData("get_group_fields", "any_field.dbField.deleteOnArchive", $personNicknameField->getDeleteOnArchive());
         $this->assertEqualsTestData("get_group_fields", "any_field.dbField.nullable", $personNicknameField->getNullable());
         $this->assertEqualsTestData("get_group_fields", "any_field.dbField.hideInFrontend", $personNicknameField->getHideInFrontend());

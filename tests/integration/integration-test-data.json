@@ -129,7 +129,6 @@
           "type": "person",
           "dbField": {
             "id": 54,
-            "key": "nickname",
             "name": "nickname",
             "column": "spitzname",
             "fieldCategoryCode": "f_address",
@@ -376,6 +375,40 @@
       "result": {
         "any_person": {
           "last_name": "König"
+        }
+      }
+    },
+    "get_db_fields": {
+      "description": "Retrieve DBFields.",
+      "filter": {},
+      "result": {
+        "any_db_field": {
+          "id": 141,
+          "name": "5pm Bezeichnung",
+          "shorty": "5pm_name",
+          "column": "5pm_name",
+          "length": 220,
+          "fieldCategory": {
+            "name": "group",
+            "internCode": "f_group",
+            "table": "cdb_gruppe",
+            "id": 4
+          },
+          "fieldType": {
+            "name": "Textfeld",
+            "internCode": "text",
+            "id": 1
+          },
+          "isActive": true,
+          "isNewPersonField": false,
+          "lineEnding": "",
+          "securityLevel": 1,
+          "sortKey": 0,
+          "deleteOnArchive": false,
+          "nullable": true,
+          "hideInFrontend": false,
+          "notConfigurable": false,
+          "isBasicInfo": false
         }
       }
     }

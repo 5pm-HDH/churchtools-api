@@ -180,6 +180,15 @@ trait FillWithData
                 case "false":
                     return false;
             }
+            if(is_numeric($value)){
+                $number = $this->castToInt("string", $value);
+                switch ($number) {
+                    case 0:
+                        return false;
+                    case 1:
+                        return true;
+                }
+            }
         }
         if ($valueType == "int") {
             switch (intval($value)) {
