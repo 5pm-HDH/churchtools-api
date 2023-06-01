@@ -88,7 +88,9 @@ class BookingsRequestTest extends TestCaseAuthenticated
     {
         $resourceIds = [$this->resourceId1, $this->resourceId2];
 
-        $bookings = ResourceBookingsRequest::forResources($resourceIds)->get();
+        $bookings = ResourceBookingsRequest::forResources($resourceIds)
+            ->where("from", $this->fromDate)
+            ->where("to", $this->toDate)->get();
 
         $this->assertTrue(sizeof($bookings) >= 1);
         $this->assertInstanceOf(ResourceBooking::class, end($bookings));
@@ -98,7 +100,9 @@ class BookingsRequestTest extends TestCaseAuthenticated
             Resource::createModelFromData(["id" => $this->resourceId2]),
         ];
 
-        $bookings = ResourceBookingsRequest::forResources($resources)->get();
+        $bookings = ResourceBookingsRequest::forResources($resources)
+            ->where("from", $this->fromDate)
+            ->where("to", $this->toDate)->get();
 
         $this->assertTrue(sizeof($bookings) >= 1);
         $this->assertInstanceOf(ResourceBooking::class, end($bookings));
