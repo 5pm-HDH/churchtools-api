@@ -1,0 +1,55 @@
+{
+  "data": [
+    {
+      "type": "person",
+      "field": {
+        "id": 3,
+        "groupId": 9,
+        "dbField": {
+          "id": 54,
+          "key": "nickname",
+          "name": "nickname",
+          "nameTranslated": "Spitzname",
+          "column": "spitzname",
+          "shorty": "",
+          "fieldCategoryCode": "f_address",
+          "fieldTypeCode": "text",
+          "fieldTypeId": 1,
+          "isActive": "1",
+          "isNewPersonField": false,
+          "lineEnding": "(%) ",
+          "secLevel": 1,
+          "length": 30,
+          "sortKey": 3,
+          "deleteOnArchive": false,
+          "nullable": false,
+          "hideInFrontend": false,
+          "isBasicInfo": "0",
+          "options": []
+        },
+        "sortKey": 0,
+        "requiredInRegistrationForm": false
+      }
+    },
+    {
+      "type": "group",
+      "field": {
+        "id": 3,
+        "groupId": 9,
+        "fieldName": "vocal range",
+        "note": "vocal range of person from key to key",
+        "sortKey": 1,
+        "fieldTypeId": 1,
+        "fieldTypeCode": "text",
+        "securityLevel": 1,
+        "defaultValue": "",
+        "options": [],
+        "useInRegistrationForm": false,
+        "requiredInRegistrationForm": false
+      }
+    }
+  ],
+  "meta": {
+    "count": 2
+  }
+}

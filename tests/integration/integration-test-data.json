@@ -118,6 +118,44 @@
         }
       }
     },
+    "get_group_fields": {
+      "description": "Load group-fields for group",
+      "filter": {
+        "group_id": 9
+      },
+      "result": {
+        "number_of_fields": 2,
+        "any_field": {
+          "type": "person",
+          "dbField": {
+            "id": 54,
+            "key": "nickname",
+            "name": "nickname",
+            "column": "spitzname",
+            "fieldCategoryCode": "f_address",
+            "fieldTypeCode": "text",
+            "fieldTypeId": 1,
+            "isActive": true,
+            "isNewPersonField": false,
+            "secLevel": 1,
+            "deleteOnArchive": false,
+            "nullable": false,
+            "hideInFrontend": false
+          }
+        },
+        "any_other_field": {
+          "type": "group",
+          "id": 3,
+          "fieldName": "vocal range",
+          "note": "vocal range of person from key to key",
+          "sortKey": 1,
+          "fieldTypeId": 1,
+          "fieldTypeCode": "text",
+          "securityLevel": 1,
+          "defaultValue": null
+        }
+      }
+    },
     "load_public_group": {
       "description": "PublicGroup to register on homepage",
       "filter": {
