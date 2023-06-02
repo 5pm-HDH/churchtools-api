@@ -27,6 +27,62 @@
       "hideInFrontend": false,
       "notConfigurable": false,
       "isBasicInfo": false
+    },
+    {
+      "id": 142,
+      "name": "Erstkontakt (5pm)",
+      "shorty": "first_contact",
+      "column": "5pm_first_contact",
+      "length": 20,
+      "fieldCategory": {
+        "id": 2,
+        "name": "information",
+        "internCode": "f_church",
+        "table": "cdb_person"
+      },
+      "fieldType": {
+        "id": 3,
+        "name": "Datumsfeld",
+        "internCode": "date"
+      },
+      "isActive": true,
+      "isNewPersonField": false,
+      "lineEnding": "",
+      "securityLevel": 1,
+      "sortKey": 0,
+      "deleteOnArchive": false,
+      "nullable": true,
+      "hideInFrontend": false,
+      "notConfigurable": false,
+      "isBasicInfo": false
+    },
+    {
+      "id": 134,
+      "name": "color",
+      "shorty": "color",
+      "column": "color",
+      "length": 20,
+      "fieldCategory": {
+        "id": 4,
+        "name": "group",
+        "internCode": "f_group",
+        "table": "cdb_gruppe"
+      },
+      "fieldType": {
+        "id": 1,
+        "name": "Textfeld",
+        "internCode": "text"
+      },
+      "isActive": true,
+      "isNewPersonField": false,
+      "lineEnding": "<br\/>",
+      "securityLevel": 1,
+      "sortKey": 400,
+      "deleteOnArchive": false,
+      "nullable": true,
+      "hideInFrontend": true,
+      "notConfigurable": false,
+      "isBasicInfo": true
     }
   ]
 }

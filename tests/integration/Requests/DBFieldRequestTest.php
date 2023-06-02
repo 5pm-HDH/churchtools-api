@@ -14,7 +14,6 @@ use Tests\Integration\TestCaseAuthenticated;
 
 class DBFieldRequestTest extends TestCaseAuthenticated
 {
-
     public function testRequestAll()
     {
         $dbFields = DBFieldRequest::all();

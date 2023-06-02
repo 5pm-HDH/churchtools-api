@@ -10,7 +10,6 @@ trait HasDBFields
 {
     private array $dbFieldData = [];
 
-
     protected function appendDBField(string $dbFieldKey, $value)
     {
         $this->dbFieldData[$dbFieldKey] = $value;
