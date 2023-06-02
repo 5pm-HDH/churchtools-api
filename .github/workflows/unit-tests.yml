@@ -8,11 +8,13 @@ on:
 
 jobs:
   build:
-    runs-on: ${{ matrix.operationg-system }}
+
+    runs-on: ${{ matrix.operating-system }}
     strategy:
       matrix:
-        operating-system: ['ubuntu-latest', 'windows-latest']
-        php-versions: ['8.0', '8.1', '8.2']
+        operating-system: [ 'windows-latest' ]
+        php-versions: [ '8.0', '8.1', '8.2' ]
+        phpunit-versions: [ 'latest' ]
 
     steps:
     - name: Setup PHP
