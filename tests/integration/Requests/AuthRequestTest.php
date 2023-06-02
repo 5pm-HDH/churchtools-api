@@ -3,6 +3,7 @@
 namespace Tests\Integration\Requests;
 
 use CTApi\CTConfig;
+use CTApi\Requests\AuthRequest;
 use PHPUnit\Framework\TestCase;
 use Tests\Integration\IntegrationTestData;
 
@@ -26,6 +27,33 @@ class AuthRequestTest extends TestCase
 
         $cookie = CTConfig::getSessionCookie();
         $this->assertNotNull($cookie);
+    }
+
+    public function testAuthWithUserIdAndLoginToken()
+    {
+        $auth = IntegrationTestData::get()->authenticateUser();
+        $apiToken = AuthRequest::retrieveApiToken($auth->userId);
+        $this->assertNotNull($apiToken);
+
+        // Recreate Config
+        CTConfig::clearConfig();
+        CTConfig::setApiUrl(IntegrationTestData::get()->getApiUrl());
+
+        $success = CTConfig::authWithLoginToken($auth->userId, $apiToken);
+        $this->assertTrue($success);
+
+        $authValid = CTConfig::validateAuthentication();
+        $this->assertTrue($authValid);
+    }
+
+    public function testAuthWithUserIdAndLoginTokenFailing()
+    {
+        CTConfig::clearConfig();
+
+        CTConfig::setApiUrl(IntegrationTestData::get()->getApiUrl());
+        $success = CTConfig::authWithLoginToken(IntegrationTestData::getResult("auth", "person_id"), "invalid token");
+
+        $this->assertFalse($success);
     }
 
 }
