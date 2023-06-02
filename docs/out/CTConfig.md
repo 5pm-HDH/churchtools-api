@@ -79,14 +79,12 @@ AuthRequest::retrieveApiToken($userId);
 
 ```
 
-The api key can also be set manually with the setter method. And retrieved by the getter:
+Authenticate with user-id and login-token:
 
 ```php
 use CTApi\CTConfig;
 
-$apiToken = CTConfig::setApiKey("...");
-$apiToken = CTConfig::getApiKey();
-
+$success = CTConfig::authWithLoginToken("29", "<login-token>");
 
 ```
 

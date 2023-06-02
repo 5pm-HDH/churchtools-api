@@ -63,7 +63,7 @@ class AuthRequestBuilder
         ]);
         $data = CTResponseUtil::jsonToArray($response);
 
-        return $data["status"] === "success";
+        return array_key_exists("status", $data) ? ($data["status"] === "success") : true;
     }
 
     public function retrieveApiToken(string $userId): ?string
