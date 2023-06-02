@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Authenticate CTClient with session cookie instead of api-key ([PR142](https://github.com/5pm-HDH/churchtools-api/pull/142))
 - GH-Action for integration-tests ([PR143](https://github.com/5pm-HDH/churchtools-api/pull/143), [PR144](https://github.com/5pm-HDH/churchtools-api/pull/144), [PR149](https://github.com/5pm-HDH/churchtools-api/pull/149), [PR153](https://github.com/5pm-HDH/churchtools-api/pull/153))
 - Update Dependencies ([PR154](https://github.com/5pm-HDH/churchtools-api/pull/154))
+- Authenticate with UserId and LoginToken ([PR155](https://github.com/5pm-HDH/churchtools-api/pull/155))
 
 ### Fixed
 
