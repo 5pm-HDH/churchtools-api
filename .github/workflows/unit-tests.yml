@@ -11,10 +11,8 @@ jobs:
     runs-on: ${{ matrix.operationg-system }}
     strategy:
       matrix:
-        operating-system: ['ubuntu-latest', 'windows-latest']
-        php-versions: ['8.0', '8.1', '8.2']
-
-
+        operating-system: [ 'ubuntu-latest', 'windows-latest' ]
+        php-versions: [ '8.0', '8.1', '8.2' ]
 
     steps:
     - name: Setup PHP
