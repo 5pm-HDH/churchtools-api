@@ -48,8 +48,6 @@ class AuthRequestTest extends TestCase
 
     public function testAuthWithUserIdAndLoginTokenFailing()
     {
-        CTConfig::clearConfig();
-
         CTConfig::setApiUrl(IntegrationTestData::get()->getApiUrl());
         $success = CTConfig::authWithLoginToken(IntegrationTestData::getResult("auth", "person_id"), "invalid token");
 
