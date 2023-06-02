@@ -97,6 +97,11 @@ class CTConfig
         return $auth;
     }
 
+    public static function authWithLoginToken(string $userId, string $loginToken): bool
+    {
+        return AuthRequest::authWithUserIdAndLoginToken($userId, $loginToken);
+    }
+
     public static function getSessionCookie(): ?array
     {
         $config = self::getConfig();
@@ -107,11 +112,19 @@ class CTConfig
         return end($cookieData);
     }
 
+    /**
+     * @see CTConfig::authWithLoginToken()
+     * @deprecated Will be removed in further version. Use <code>CTConfig::authWithLoginToken()</code> instead.
+     */
     public static function setApiKey(string $apiKey): void
     {
         self::setRequestOption(self::PATH_LOGIN_TOKEN, $apiKey);
     }
 
+    /**
+     * @see AuthRequest::retrieveApiToken()
+     * @deprecated Will be removed in further version. Use <code>AuthRequest::retrieveApiToken()</code> instead.
+     */
     public static function getApiKey(): ?string
     {
         return self::getRequestOption(self::PATH_LOGIN_TOKEN);

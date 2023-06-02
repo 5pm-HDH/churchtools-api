@@ -6,6 +6,7 @@ use CTApi\CTClient;
 use CTApi\Exceptions\CTAuthException;
 use CTApi\Exceptions\CTRequestException;
 use CTApi\Models\Auth;
+use CTApi\Utils\CTResponseUtil;
 
 class AuthRequestBuilder
 {
@@ -45,6 +46,24 @@ class AuthRequestBuilder
                 throw new CTAuthException("Authentication was not successfully. HTTP Status Code is not 200.");
             }
         }
+    }
+
+    public function authWithUserIdAndLoginToken(string $userId, string $loginToken): bool
+    {
+        $client = CTClient::getClient();
+        $response = $client->post('index.php?q=login/ajax', [
+            'json' => [
+                'func' => 'loginWithToken',
+                'id' => $userId,
+                'token' => $loginToken
+            ],
+            'headers' => [
+                'Cache-Control' => 'no-cache'
+            ]
+        ]);
+        $data = CTResponseUtil::jsonToArray($response);
+
+        return $data["status"] === "success";
     }
 
     public function retrieveApiToken(string $userId): ?string
