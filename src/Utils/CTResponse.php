@@ -4,6 +4,7 @@
 namespace CTApi\Utils;
 
 
+use Psr\Http\Message\MessageInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
@@ -36,7 +37,7 @@ class CTResponse implements ResponseInterface
         return $response;
     }
 
-    public function getProtocolVersion()
+    public function getProtocolVersion(): string
     {
         return $this->protocolVersion;
     }
@@ -44,27 +45,27 @@ class CTResponse implements ResponseInterface
     /**
      * @psalm-suppress InvalidReturnType
      */
-    public function withProtocolVersion($version)
+    public function withProtocolVersion($version): MessageInterface
     {
         $this->protocolVersion = $version;
     }
 
-    public function getHeaders()
+    public function getHeaders(): array
     {
         return $this->headers;
     }
 
-    public function hasHeader($name)
+    public function hasHeader($name): bool
     {
         return array_key_exists($name, $this->headers);
     }
 
-    public function getHeader($name)
+    public function getHeader($name): array
     {
         return ($this->hasHeader($name) ? $this->headers[$name] : []);
     }
 
-    public function getHeaderLine($name)
+    public function getHeaderLine($name): string
     {
         if ($this->hasHeader($name)) {
             return implode(',', $this->getHeader($name));
@@ -73,7 +74,7 @@ class CTResponse implements ResponseInterface
         }
     }
 
-    public function withHeader($name, $value)
+    public function withHeader($name, $value): MessageInterface
     {
         if (!is_array($value)) {
             $value = [$value];
@@ -87,12 +88,12 @@ class CTResponse implements ResponseInterface
         return $this;
     }
 
-    public function withAddedHeader($name, $value)
+    public function withAddedHeader($name, $value): MessageInterface
     {
         return $this->withHeader($name, $value);
     }
 
-    public function withoutHeader($name)
+    public function withoutHeader($name): MessageInterface
     {
         if (array_key_exists($name, $this->headers)) {
             unset($this->headers[$name]);
@@ -100,30 +101,30 @@ class CTResponse implements ResponseInterface
         return $this;
     }
 
-    public function getBody()
+    public function getBody(): StreamInterface
     {
         return $this->body;
     }
 
-    public function withBody(StreamInterface $body)
+    public function withBody(StreamInterface $body): MessageInterface
     {
         $this->body = $body;
         return $this;
     }
 
-    public function getStatusCode()
+    public function getStatusCode(): int
     {
         return $this->statusCode;
     }
 
-    public function withStatus($code, $reasonPhrase = '')
+    public function withStatus($code, $reasonPhrase = ''): ResponseInterface
     {
         $this->statusCode = $code;
         $this->statusReasonPhrase = $reasonPhrase;
         return $this;
     }
 
-    public function getReasonPhrase()
+    public function getReasonPhrase(): string
     {
         return $this->statusReasonPhrase;
     }

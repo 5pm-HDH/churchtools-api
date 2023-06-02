@@ -15,12 +15,12 @@ class CTMessageBody implements StreamInterface
         $this->content = $content;
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         return json_encode($this->content);
     }
 
-    public function close()
+    public function close(): void
     {
         // TODO: Implement close() method.
     }
@@ -30,22 +30,22 @@ class CTMessageBody implements StreamInterface
         // TODO: Implement detach() method.
     }
 
-    public function getSize()
+    public function getSize(): ?int
     {
         return null;
     }
 
-    public function tell()
+    public function tell(): int
     {
         return 0;
     }
 
-    public function eof()
+    public function eof(): bool
     {
         return false;
     }
 
-    public function isSeekable()
+    public function isSeekable(): bool
     {
         return true;
     }
@@ -53,7 +53,7 @@ class CTMessageBody implements StreamInterface
     /**
      * @return void
      */
-    public function seek($offset, $whence = SEEK_SET)
+    public function seek($offset, $whence = SEEK_SET): void
     {
         // TODO: Implement seek() method.
     }
@@ -61,32 +61,32 @@ class CTMessageBody implements StreamInterface
     /**
      * @return void
      */
-    public function rewind()
+    public function rewind(): void
     {
         // TODO: Implement rewind() method.
     }
 
-    public function isWritable()
+    public function isWritable(): bool
     {
         return true;
     }
 
-    public function write($string)
+    public function write($string): int
     {
         return 0;
     }
 
-    public function isReadable()
+    public function isReadable(): bool
     {
         return true;
     }
 
-    public function read($length)
+    public function read($length): string
     {
         return implode(',', $this->content);
     }
 
-    public function getContents()
+    public function getContents(): string
     {
         return implode(',', $this->content);
     }

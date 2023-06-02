@@ -84,7 +84,7 @@ class CTClient
 
     private function handleResponse(ResponseInterface $response): ResponseInterface
     {
-        $responseCode = (int)$response->getStatusCode();
+        $responseCode = $response->getStatusCode();
         if ($responseCode == 401 || $responseCode == 403) {
             throw CTPermissionException::ofErrorResponse($response);
         }
