@@ -5,6 +5,7 @@ namespace CTApi\Utils;
 
 
 use GuzzleHttp\Psr7\Uri;
+use Psr\Http\Message\MessageInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamInterface;
 use Psr\Http\Message\UriInterface;
@@ -23,7 +24,7 @@ class CTRequest implements RequestInterface
         $this->body = new CTMessageBody([]);
     }
 
-    public function getProtocolVersion()
+    public function getProtocolVersion(): string
     {
         return $this->protocolVersion;
     }
@@ -31,27 +32,27 @@ class CTRequest implements RequestInterface
     /**
      * @psalm-suppress InvalidReturnType
      */
-    public function withProtocolVersion($version)
+    public function withProtocolVersion($version): MessageInterface
     {
         $this->protocolVersion = $version;
     }
 
-    public function getHeaders()
+    public function getHeaders(): array
     {
         return $this->headers;
     }
 
-    public function hasHeader($name)
+    public function hasHeader($name): bool
     {
         return array_key_exists($name, $this->headers);
     }
 
-    public function getHeader($name)
+    public function getHeader($name): array
     {
         return ($this->hasHeader($name) ? $this->headers[$name] : []);
     }
 
-    public function getHeaderLine($name)
+    public function getHeaderLine($name): string
     {
         if ($this->hasHeader($name)) {
             return implode(',', $this->getHeader($name));
@@ -60,7 +61,7 @@ class CTRequest implements RequestInterface
         }
     }
 
-    public function withHeader($name, $value)
+    public function withHeader($name, $value): MessageInterface
     {
         if (!is_array($value)) {
             $value = [$value];
@@ -74,12 +75,12 @@ class CTRequest implements RequestInterface
         return $this;
     }
 
-    public function withAddedHeader($name, $value)
+    public function withAddedHeader($name, $value): MessageInterface
     {
         return $this->withHeader($name, $value);
     }
 
-    public function withoutHeader($name)
+    public function withoutHeader($name): MessageInterface
     {
         if (array_key_exists($name, $this->headers)) {
             unset($this->headers[$name]);
@@ -88,45 +89,45 @@ class CTRequest implements RequestInterface
     }
 
 
-    public function getBody()
+    public function getBody(): StreamInterface
     {
         return $this->body;
     }
 
-    public function withBody(StreamInterface $body)
+    public function withBody(StreamInterface $body): MessageInterface
     {
         $this->body = $body;
         return $this;
     }
 
 
-    public function getRequestTarget()
+    public function getRequestTarget(): string
     {
         return "";
     }
 
-    public function withRequestTarget($requestTarget)
+    public function withRequestTarget($requestTarget): RequestInterface
     {
         return $this;
     }
 
-    public function getMethod()
+    public function getMethod(): string
     {
         return $this->method;
     }
 
-    public function withMethod($method)
+    public function withMethod($method): RequestInterface
     {
         $this->method = $method;
         return $this;
     }
 
-    public function getUri()
+    public function getUri(): UriInterface
     {
         return $this->uri;
     }
 
-    public function withUri(UriInterface $uri, $preserveHost = false)
+    public function withUri(UriInterface $uri, $preserveHost = false): RequestInterface
     {
         $this->uri = $uri;
         return $this;

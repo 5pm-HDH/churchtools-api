@@ -7,7 +7,7 @@ namespace Tests\Unit\Models;
 use CTApi\Exceptions\CTModelException;
 use CTApi\Models\AbstractModel;
 use CTApi\Models\Traits\FillWithData;
-use Monolog\Test\TestCase;
+use PHPUnit\Framework\TestCase;
 
 class AbstractModelTest extends TestCase
 {
