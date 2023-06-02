@@ -40,4 +40,9 @@ class DBFieldRequest
             throw CTRequestException::ofModelNotFound(DBField::class);
         }
     }
+
+    public static function findDBFieldsForKeys(array $dbFieldKeys): DBFieldForKeysRequestBuilder
+    {
+        return new DBFieldForKeysRequestBuilder($dbFieldKeys);
+    }
 }

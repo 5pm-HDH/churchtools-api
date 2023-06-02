@@ -13,7 +13,6 @@ class FillWithDataTraitTypeMissmatchTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        CTLog::enableConsoleLog();
     }
 
     /**

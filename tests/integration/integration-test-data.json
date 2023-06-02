@@ -411,6 +411,34 @@
           "isBasicInfo": false
         }
       }
+    },
+    "db_field_group": {
+      "description": "Example DB-Field for Group.",
+      "filter": {
+        "db_field": "5pm_name",
+        "group_id": 9
+      },
+      "result": {
+        "db_field": {
+          "id": 141,
+          "name": "5pm Bezeichnung"
+        },
+        "value": "Worship-Team"
+      }
+    },
+    "db_field_person_information": {
+      "description": "Get custom DB-Field for user information.",
+      "filter": {
+        "db_field": "5pm_first_contact",
+        "person_id": 12
+      },
+      "result": {
+        "db_field": {
+          "id": 142,
+          "name": "Erstkontakt (5pm)"
+        },
+        "value": "1629-06-01"
+      }
     }
   }
 }

@@ -5,6 +5,7 @@ namespace CTApi\Models;
 
 
 use CTApi\Models\Traits\FillWithData;
+use CTApi\Models\Traits\MetaAttribute;
 use CTApi\Requests\FileRequest;
 use CTApi\Requests\FileRequestBuilder;
 use CTApi\Requests\GroupHierarchieChildrenRequest;
@@ -14,7 +15,7 @@ use CTApi\Requests\GroupMemberRequestBuilder;
 
 class Group extends AbstractModel
 {
-    use FillWithData;
+    use FillWithData, MetaAttribute;
 
     protected ?string $guid = null;
     protected ?string $name = null;
@@ -35,6 +36,12 @@ class Group extends AbstractModel
             case "domainIdentifier":
                 $this->setId($value);
                 break;
+            case "modifiedDate":
+                if ($this->meta == null) {
+                    $this->meta = new Meta();
+                }
+                $this->meta->setModifiedDate($value);
+                break;
             default:
                 $this->fillDefault($key, $value);
         }
@@ -51,6 +58,12 @@ class Group extends AbstractModel
                 break;
             case "settings":
                 $this->setSettings(GroupSettings::createModelFromData($data));
+                break;
+            case "modifiedPerson":
+                if ($this->meta == null) {
+                    $this->meta = new Meta();
+                }
+                $this->meta->setModifiedPerson(Person::createModelFromData($data));
                 break;
             default:
                 $this->fillDefault($key, $data);

@@ -4,7 +4,10 @@
 namespace Tests\Integration\Requests;
 
 
+use CTApi\Requests\GroupRequest;
+use CTApi\Requests\PersonRequest;
 use Models\DBField;
+use Models\DBFieldValueContainer;
 use Requests\DBFieldRequest;
 use Tests\Integration\IntegrationTestData;
 use Tests\Integration\TestCaseAuthenticated;
@@ -67,4 +70,70 @@ class DBFieldRequestTest extends TestCaseAuthenticated
         $this->validateDBField($dbField5pmName);
     }
 
+    public function testRetrievePersonInformation()
+    {
+        $personId = IntegrationTestData::getFilterAsInt("db_field_person_information", "person_id");
+        $person = PersonRequest::findOrFail($personId);
+
+        $dbFields = $person->requestDBFields()->get();
+
+        $this->assertDBFieldStoreOnlyContainsDBFields($dbFields);
+
+        $firstContactDBField = null;
+        foreach ($dbFields as $dbField) {
+            if (is_a($dbField, DBFieldValueContainer::class)) {
+                if ($dbField->getDBFieldKey() == IntegrationTestData::getFilter("db_field_person_information", "db_field")) {
+                    $firstContactDBField = $dbField;
+                }
+            }
+        }
+
+        $this->assertNotNull($firstContactDBField);
+        $this->assertNotNull($firstContactDBField->getDBField());
+        $this->assertEqualsTestData("db_field_person_information", "db_field.id", $firstContactDBField->getDBField()?->getIdAsInteger());
+        $this->assertEqualsTestData("db_field_person_information", "db_field.name", $firstContactDBField->getDBField()?->getName());
+        $this->assertEqualsTestData("db_field_person_information", "value", $firstContactDBField->getDBFieldValue());
+    }
+
+    private function assertDBFieldStoreOnlyContainsDBFields($dbFields)
+    {
+        $validationErrors = [];
+        $this->assertNotNull($dbFields);
+        foreach ($dbFields as $dbFieldContainer) {
+            $this->assertInstanceOf(DBFieldValueContainer::class, $dbFieldContainer);
+            $dbField = $dbFieldContainer->getDBField();
+
+            if ($dbField == null) {
+                $validationErrors[] = "The DBField " . $dbFieldContainer->getDBFieldKey() . " dont have any DB-Field Object.";
+            }
+        }
+        $this->assertEmpty($validationErrors, implode("\n", $validationErrors));
+    }
+
+    public function testRetrieveGroupInformation()
+    {
+        $groupId = IntegrationTestData::getFilterAsInt("db_field_group", "group_id");
+
+        $group = GroupRequest::findOrFail($groupId);
+        $groupInformation = $group->getInformation();
+        $this->assertNotNull($groupInformation);
+
+        $dbFields = $groupInformation->requestDBFields()->get();
+        $this->assertDBFieldStoreOnlyContainsDBFields($dbFields);
+
+        $name5pmDBField = null;
+        foreach ($dbFields as $dbField) {
+            if (is_a($dbField, DBFieldValueContainer::class)) {
+                if ($dbField->getDBFieldKey() == IntegrationTestData::getFilter("db_field_group", "db_field")) {
+                    $name5pmDBField = $dbField;
+                }
+            }
+        }
+
+        $this->assertNotNull($name5pmDBField);
+        $this->assertNotNull($name5pmDBField->getDBField());
+        $this->assertEqualsTestData("db_field_group", "db_field.id", $name5pmDBField->getDBField()?->getIdAsInteger());
+        $this->assertEqualsTestData("db_field_group", "db_field.name", $name5pmDBField->getDBField()?->getName());
+        $this->assertEqualsTestData("db_field_group", "value", $name5pmDBField->getDBFieldValue());
+    }
 }

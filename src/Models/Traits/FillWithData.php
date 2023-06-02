@@ -4,6 +4,7 @@ namespace CTApi\Models\Traits;
 
 use CTApi\CTLog;
 use CTApi\Utils\CTUtil;
+use Models\Traits\HasDBFields;
 
 trait FillWithData
 {
@@ -23,6 +24,17 @@ trait FillWithData
     private function convertPropertiesToData(): array
     {
         $data = get_object_vars($this);
+
+        // DB Fields
+        $reflection = new \ReflectionClass($this);
+        $traits = $reflection->getTraitNames();
+        if (in_array(HasDBFields::class, $traits) && method_exists($this, "getDBFieldData")) {
+            if (array_key_exists("dbFieldData", $data)) {
+                unset($data["dbFieldData"]);
+            }
+            $data = array_merge($data, $this->getDBFieldData());
+        }
+
         $castedData = [];
         foreach ($data as $propertyKey => $propertyValue) {
             $castedData[$propertyKey] = $this->castPropertyToData($propertyValue);
@@ -123,7 +135,18 @@ trait FillWithData
                 }
             }
         } else {
-            CTLog::getLog()->warning("FillWithData: Tried to fill data into class " . get_class($this) . " for undefined Property: " . $key . ". Ignore this assignment.");
+            $this->addToDBFieldStoreIfExists($key, $value);
+        }
+    }
+
+    private function addToDBFieldStoreIfExists(string $dbFieldKey, $value)
+    {
+        $reflection = new \ReflectionClass($this);
+        $traits = $reflection->getTraitNames();
+        if (in_array(HasDBFields::class, $traits) && method_exists($this, "appendDBField")) {
+            $this->appendDBField($dbFieldKey, $value);
+        } else {
+            CTLog::getLog()->warning("FillWithData: Tried to fill data into class " . get_class($this) . " for undefined Property: " . $dbFieldKey . ". Ignore this assignment.");
         }
     }
 
@@ -180,7 +203,7 @@ trait FillWithData
                 case "false":
                     return false;
             }
-            if(is_numeric($value)){
+            if (is_numeric($value)) {
                 $number = $this->castToInt("string", $value);
                 switch ($number) {
                     case 0:
