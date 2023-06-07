@@ -48,7 +48,7 @@ class AuthWithLoginTokenTest extends TestCase
         IntegrationTestData::get()->authenticateUser();
         $myself = PersonRequest::whoami();
         $this->assertNotNull($myself->getId());
-        $token = AuthRequest::retrieveApiToken($myself->getId());
+        $token = AuthRequest::retrieveApiToken($myself->getIdOrFail());
         $this->assertNotNull($token);
 
         // Reset CTConfig
