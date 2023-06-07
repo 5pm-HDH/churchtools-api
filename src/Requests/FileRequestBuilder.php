@@ -56,7 +56,7 @@ class FileRequestBuilder
 
         $csrfToken = CSRFTokenRequest::getOrFail();
         $apiUrl = CTConfig::getApiUrl();
-        if(is_null($apiUrl)){
+        if (is_null($apiUrl)) {
             throw new CTConfigException("API-Url cannot be null.");
         }
         $url = rtrim($apiUrl, '/') . $this->getApiEndpoint();
@@ -64,13 +64,12 @@ class FileRequestBuilder
         // Upload file with pure CURL
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HTTPHEADER, [
-            "authorization: Login " . CTConfig::getApiKey(),
             "content-type:multipart/form-data",
             "csrf-token:" . $csrfToken
         ]);
         // Set Cookie
         $cookie = CTConfig::getSessionCookie();
-        if($cookie != null){
+        if ($cookie != null) {
             curl_setopt($ch, CURLOPT_COOKIE, $cookie["Name"] . '=' . $cookie["Value"]);
         }
 
@@ -87,7 +86,7 @@ class FileRequestBuilder
         try {
             $data = json_decode($resultString, true);
         } catch (\Exception $e) {
-            CTLog::getLog()->warning("Could not convert upload response to JSON: ". $resultString);
+            CTLog::getLog()->warning("Could not convert upload response to JSON: " . $resultString);
             $data = [];
         }
 

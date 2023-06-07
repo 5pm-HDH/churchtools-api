@@ -39,7 +39,7 @@ class AuthRequestTest extends TestCase
         CTConfig::clearConfig();
         CTConfig::setApiUrl(IntegrationTestData::get()->getApiUrl());
 
-        $success = CTConfig::authWithLoginToken($auth->userId, $apiToken);
+        $success = CTConfig::authWithUserIdAndLoginToken($auth->userId, $apiToken);
         $this->assertTrue($success);
 
         $authValid = CTConfig::validateAuthentication();
@@ -49,7 +49,7 @@ class AuthRequestTest extends TestCase
     public function testAuthWithUserIdAndLoginTokenFailing()
     {
         CTConfig::setApiUrl(IntegrationTestData::get()->getApiUrl());
-        $success = CTConfig::authWithLoginToken(IntegrationTestData::getResult("auth", "person_id"), "invalid token");
+        $success = CTConfig::authWithUserIdAndLoginToken(IntegrationTestData::getResult("auth", "person_id"), "invalid token");
 
         $this->assertFalse($success);
     }

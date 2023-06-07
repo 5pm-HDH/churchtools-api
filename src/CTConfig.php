@@ -97,7 +97,20 @@ class CTConfig
         return $auth;
     }
 
-    public static function authWithLoginToken(string $userId, string $loginToken): bool
+    public static function authWithLoginToken(string $loginToken): Auth
+    {
+        return AuthRequest::authWithLoginToken($loginToken);
+    }
+
+    /**
+     * Auth via undocumented ajax-API. Use <code>authWithLoginToken()</code> instead.
+     * @param string $userId
+     * @param string $loginToken
+     * @return bool
+     * @deprecated Will be removed in further versions.
+     * @see CTConfig::authWithLoginToken() Authenticate via REST-API.
+     */
+    public static function authWithUserIdAndLoginToken(string $userId, string $loginToken): bool
     {
         return AuthRequest::authWithUserIdAndLoginToken($userId, $loginToken);
     }
