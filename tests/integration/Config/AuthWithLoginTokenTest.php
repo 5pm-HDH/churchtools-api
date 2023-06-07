@@ -17,6 +17,7 @@ class AuthWithLoginTokenTest extends TestCase
 {
     protected function setUp(): void
     {
+        CTConfig::clearConfig();
         CTConfig::setApiUrl(IntegrationTestData::get()->getApiUrl());
     }
 
@@ -57,5 +58,11 @@ class AuthWithLoginTokenTest extends TestCase
         $this->assertFalse($isValidAuth, "AuthReset of CTConfig was not successful.");
 
         return $token;
+    }
+
+    protected function tearDown(): void
+    {
+        CTConfig::clearConfig();
+        parent::tearDown();
     }
 }
