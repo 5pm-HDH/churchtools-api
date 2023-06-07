@@ -14,6 +14,12 @@ class AuthRequest
         return (new AuthRequestBuilder())->authWithEmailAndPassword($email, $password);
     }
 
+    public static function authWithLoginToken(string $loginToken): Auth
+    {
+        CTLog::getLog()->info('AuthRequest: Authenticate CTConfig with Token');
+        return (new AuthRequestBuilder())->authWithLoginToken($loginToken);
+    }
+
     public static function authWithUserIdAndLoginToken(string $userId, string $loginToken): bool
     {
         CTLog::getLog()->info('AuthRequest: Authenticate CTConfig with UserId and Token.');

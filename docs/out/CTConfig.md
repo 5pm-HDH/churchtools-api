@@ -79,12 +79,22 @@ AuthRequest::retrieveApiToken($userId);
 
 ```
 
-Authenticate with user-id and login-token:
+Authenticate via login-token:
 
 ```php
 use CTApi\CTConfig;
 
-$success = CTConfig::authWithLoginToken("29", "<login-token>");
+$auth = CTConfig::authWithLoginToken("<login-token>");
+$auth->userId;
+
+```
+
+Authenticate via old ajax-api with user-id and login-token:
+
+```php
+use CTApi\CTConfig;
+
+$success = CTConfig::authWithUserIdAndLoginToken("29", "<login-token>");
 
 ```
 
