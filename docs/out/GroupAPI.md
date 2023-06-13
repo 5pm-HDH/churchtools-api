@@ -293,3 +293,133 @@
         // see GroupMember-Model
 
 ```
+
+## GroupMemberFields
+
+```php
+        use Requests\GroupMemberFieldsRequest;
+
+        $fields = GroupMemberFieldsRequest::forGroup(9)->get();
+
+        /**
+         * Array of GroupMemberFieldContainer. A GroupMemberFieldContainer can contain in either contain a Person-Field or a GroupMember-Field in its field-property (type: null|GroupMemberField|DBFieldContainer).
+         */
+        $personField = $fields[0];
+        $memberField = $fields[1];
+        // $thirdField = $fields[3];
+        // ... = $fields[...];
+
+        /**
+         * Person Field (DB-Field)
+         */
+        // type can be "person" (Person-Fields) or "group" (Group-Member-Fields)
+        var_dump( $personField->getType());
+        // Output: "person"
+
+
+        // GroupMemberFieldContainer->getField() can contain DBField or GroupMemberField.
+        $dbField = $personField->getDBFieldIfExists();
+        $unknownField = $personField->getGroupMemberFieldIfExists();
+        var_dump( $unknownField);
+        // Output: null
+
+
+        var_dump( $dbField->getId());
+        // Output: "54"
+
+        var_dump( $dbField->getIdAsInteger());
+        // Output: 54
+
+
+        var_dump( $dbField->getName());
+        // Output: "nickname"
+
+        var_dump( $dbField->getNameTranslated());
+        // Output: "Spitzname"
+
+        var_dump( $dbField->getColumn());
+        // Output: "spitzname"
+
+
+        var_dump( $dbField->getFieldCategory()?->getInternCode());
+        // Output: "f_address"
+
+        var_dump( $dbField->getFieldType()?->getInternCode());
+        // Output: "text"
+
+        var_dump( $dbField->getFieldType()?->getId());
+        // Output: 1
+
+
+        var_dump( $dbField->getLineEnding());
+        // Output: "(%) "
+
+        var_dump( $dbField->getSecurityLevel());
+        // Output: 1
+
+        var_dump( $dbField->getLength());
+        // Output: 30
+
+        var_dump( $dbField->getSortKey());
+        // Output: 3
+
+
+        var_dump( $dbField->getIsActive());
+        // Output: true
+
+        var_dump( $dbField->getIsNewPersonField());
+        // Output: false
+
+        var_dump( $dbField->getDeleteOnArchive());
+        // Output: false
+
+        var_dump( $dbField->getNullable());
+        // Output: false
+
+        var_dump( $dbField->getHideInFrontend());
+        // Output: false
+
+        var_dump( $dbField->getIsBasicInfo());
+        // Output: false
+
+
+        var_dump( $dbField->getOptions());
+        // Output: []
+
+
+        /**
+         * GroupMemberField
+         */
+
+        var_dump( $memberField->getType());
+        // Output: "group"
+
+
+        $vocalRangeField = $memberField->getGroupMemberFieldIfExists();
+
+        var_dump( $vocalRangeField->getFieldName());
+        // Output: "vocal range"
+
+        var_dump( $vocalRangeField->getNote());
+        // Output: "vocal range of person from key to key"
+
+        var_dump( $vocalRangeField->getSortKey());
+        // Output: 1
+
+        var_dump( $vocalRangeField->getFieldTypeId());
+        // Output: 1
+
+        var_dump( $vocalRangeField->getFieldTypeCode());
+        // Output: "text"
+
+        var_dump( $vocalRangeField->getSecurityLevel());
+        // Output: 1
+
+        var_dump( $vocalRangeField->getDefaultValue());
+        // Output: null
+
+        var_dump( $vocalRangeField->getOptions());
+        // Output: []
+
+
+```

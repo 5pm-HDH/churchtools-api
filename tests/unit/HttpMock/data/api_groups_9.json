@@ -1,0 +1,161 @@
+{
+    "data": {
+        "id": 9,
+        "guid": "51FB10B6-6840-4682-B498-07DEC119E5F3",
+        "name": "Lobpreisteam",
+        "securityLevelForGroup": 2,
+        "modifiedDate": "2023-06-02T06:04:39Z",
+        "modifiedPerson": {
+            "id": 1
+        },
+        "permissions": {
+            "useChat": true,
+            "startChat": true
+        },
+        "information": {
+            "imageUrl": "",
+            "groupHomepageUrl": null,
+            "groupStatusId": 1,
+            "groupTypeId": 2,
+            "dateOfFoundation": "1903-02-12",
+            "endDate": null,
+            "meetingTime": "17:00",
+            "weekday": 0,
+            "groupCategoryId": 3,
+            "ageGroupIds": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8
+            ],
+            "targetGroupId": 2,
+            "maxMembers": 200,
+            "note": "",
+            "campusId": null,
+            "chatStatus": "NOT_STARTED",
+            "color": "",
+            "signUpOverrideRoleId": null,
+            "5pm_name": "Worship-Team"
+        },
+        "settings": {
+            "isHidden": false,
+            "isOpenForMembers": false,
+            "allowSpouseRegistration": true,
+            "allowChildRegistration": true,
+            "allowSameEmailRegistration": true,
+            "allowOtherRegistration": false,
+            "autoAccept": false,
+            "allowWaitinglist": false,
+            "waitinglistMaxPersons": null,
+            "automaticMoveUp": false,
+            "isPublic": false,
+            "visibility": "restricted",
+            "groupMeeting": {
+                "templateId": null
+            },
+            "qrCodeCheckin": false,
+            "newMember": {
+                "campusId": null,
+                "statusId": null,
+                "departmentId": null
+            }
+        },
+        "followUp": [],
+        "roles": [
+            {
+                "id": 57,
+                "groupTypeId": 2,
+                "name": "Mitarbeiter",
+                "shorty": "MA",
+                "sortKey": 0,
+                "isLeader": false,
+                "type": "participant",
+                "isDefault": true,
+                "isHidden": false,
+                "growPathId": null,
+                "groupTypeRoleId": 15,
+                "forceTwoFactorAuth": false,
+                "receiveQRCode": true,
+                "isActive": true,
+                "canReadChat": true,
+                "canWriteChat": true
+            },
+            {
+                "id": 58,
+                "groupTypeId": 2,
+                "name": "Leiter",
+                "shorty": "L",
+                "sortKey": 1,
+                "isLeader": true,
+                "type": "leader",
+                "isDefault": false,
+                "isHidden": false,
+                "growPathId": null,
+                "groupTypeRoleId": 16,
+                "forceTwoFactorAuth": false,
+                "receiveQRCode": true,
+                "isActive": true,
+                "canReadChat": true,
+                "canWriteChat": true
+            },
+            {
+                "id": 59,
+                "groupTypeId": 2,
+                "name": "Co-Leiter",
+                "shorty": "CoL",
+                "sortKey": 2,
+                "isLeader": true,
+                "type": "leader",
+                "isDefault": false,
+                "isHidden": false,
+                "growPathId": null,
+                "groupTypeRoleId": 17,
+                "forceTwoFactorAuth": false,
+                "receiveQRCode": true,
+                "isActive": true,
+                "canReadChat": true,
+                "canWriteChat": true
+            },
+            {
+                "id": 60,
+                "groupTypeId": 2,
+                "name": "Coach",
+                "shorty": "Coa",
+                "sortKey": 3,
+                "isLeader": false,
+                "type": "participant",
+                "isDefault": false,
+                "isHidden": true,
+                "growPathId": null,
+                "groupTypeRoleId": 18,
+                "forceTwoFactorAuth": false,
+                "receiveQRCode": false,
+                "isActive": true,
+                "canReadChat": false,
+                "canWriteChat": false
+            },
+            {
+                "id": 61,
+                "groupTypeId": 2,
+                "name": "Organisator",
+                "shorty": "O",
+                "sortKey": 4,
+                "isLeader": false,
+                "type": "participant",
+                "isDefault": false,
+                "isHidden": false,
+                "growPathId": null,
+                "groupTypeRoleId": 19,
+                "forceTwoFactorAuth": false,
+                "receiveQRCode": true,
+                "isActive": true,
+                "canReadChat": true,
+                "canWriteChat": true
+            }
+        ]
+    }
+}

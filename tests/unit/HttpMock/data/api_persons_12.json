@@ -1,0 +1,83 @@
+{
+  "data": {
+    "id": 12,
+    "guid": "BF4AC3A9-2C43-46A5-8AA4-D39D795C26B0",
+    "securityLevelForPerson": 99999,
+    "editSecurityLevelForPerson": 99999,
+    "title": "",
+    "firstName": "David",
+    "lastName": "K\u00f6nig",
+    "nickname": "Dave",
+    "job": "Worship-Pastor",
+    "street": "",
+    "addressAddition": "",
+    "zip": "",
+    "city": "",
+    "country": "",
+    "latitude": null,
+    "longitude": null,
+    "latitudeLoose": null,
+    "longitudeLoose": null,
+    "phonePrivate": "",
+    "phoneWork": "",
+    "mobile": "",
+    "fax": "",
+    "birthName": "Doe",
+    "birthday": "1992-06-02",
+    "birthplace": "Bethlehem",
+    "imageUrl": "https:\/\/5pm.church.tools\/images\/875\/2bc0d52971857aebbec193783f8b92d7d16a7342ea9beb220386b2c5872865bc",
+    "familyImageUrl": "",
+    "sexId": 1,
+    "email": "lukas.dumberger+DAVID.5PM@gmail.com",
+    "emails": [
+      {
+        "email": "lukas.dumberger+DAVID.5PM@gmail.com",
+        "isDefault": true,
+        "contactLabelId": 2
+      }
+    ],
+    "cmsUserId": "dk\u00f6nig",
+    "optigemId": "",
+    "privacyPolicyAgreement": {
+      "date": "2023-05-03",
+      "typeId": 3,
+      "whoId": 1
+    },
+    "privacyPolicyAgreementDate": "2023-05-03",
+    "privacyPolicyAgreementTypeId": 3,
+    "privacyPolicyAgreementWhoId": 1,
+    "nationalityId": 0,
+    "familyStatusId": 0,
+    "weddingDate": null,
+    "campusId": 0,
+    "statusId": 0,
+    "departmentIds": [
+      1
+    ],
+    "firstContact": "2023-05-03",
+    "dateOfBelonging": null,
+    "dateOfEntry": null,
+    "dateOfResign": null,
+    "dateOfBaptism": null,
+    "placeOfBaptism": "",
+    "baptisedBy": "",
+    "referredBy": "",
+    "referredTo": "",
+    "growPathId": null,
+    "canChat": false,
+    "invitationStatus": "accepted",
+    "chatActive": true,
+    "isArchived": false,
+    "meta": {
+      "createdDate": "2023-05-03T12:11:35Z",
+      "createdPerson": {
+        "id": -1
+      },
+      "modifiedDate": "2023-06-01T13:57:22Z",
+      "modifiedPerson": {
+        "id": 1
+      }
+    },
+    "5pm_first_contact": "1629-06-01"
+  }
+}

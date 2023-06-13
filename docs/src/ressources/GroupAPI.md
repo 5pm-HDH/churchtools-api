@@ -13,3 +13,7 @@
 {{ \Tests\Unit\Docs\GroupMeetingRequestTest.testRetrieveGroupRequest }}
 
 {{ \Tests\Unit\Docs\GroupMeetingRequestTest.testRetrieveGroupMemberRequest }}
+
+## GroupMemberFields
+
+{{ \Tests\Unit\Docs\GroupMemberFieldsTest.testGetFields }}

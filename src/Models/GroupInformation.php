@@ -5,10 +5,11 @@ namespace CTApi\Models;
 
 
 use CTApi\Models\Traits\FillWithData;
+use Models\Traits\HasDBFields;
 
 class GroupInformation
 {
-    use FillWithData;
+    use FillWithData, HasDBFields;
 
     protected ?string $meetingTime = null;
     protected ?array $weekday = [];
@@ -18,6 +19,18 @@ class GroupInformation
     protected ?string $note = null;
     protected ?string $imageUrl = null;
     protected ?array $groupPlaces = null;
+    protected ?string $groupHomepageUrl = null;
+    protected ?int $groupStatusId = null;
+    protected ?int $groupTypeId = null;
+    protected ?string $dateOfFoundation = null;
+    protected ?string $endDate = null;
+    protected ?int $groupCategoryId = null;
+    protected array $ageGroupIds = [];
+    protected ?int $targetGroupId = null;
+    protected ?int $maxMembers = null;
+    protected ?int $campusId = null;
+    protected ?string $chatStatus = null;
+    protected ?int $signUpOverrideRoleId = null;
 
     protected function fillArrayType(string $key, array $data): void
     {
@@ -52,6 +65,222 @@ class GroupInformation
         $data = $this->convertPropertiesToData();
         $data["imageUrlBanner"] = $this->getImageUrlBanner();
         return $data;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getGroupHomepageUrl(): ?string
+    {
+        return $this->groupHomepageUrl;
+    }
+
+    /**
+     * @param string|null $groupHomepageUrl
+     * @return GroupInformation
+     */
+    public function setGroupHomepageUrl(?string $groupHomepageUrl): GroupInformation
+    {
+        $this->groupHomepageUrl = $groupHomepageUrl;
+        return $this;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getGroupStatusId(): ?int
+    {
+        return $this->groupStatusId;
+    }
+
+    /**
+     * @param int|null $groupStatusId
+     * @return GroupInformation
+     */
+    public function setGroupStatusId(?int $groupStatusId): GroupInformation
+    {
+        $this->groupStatusId = $groupStatusId;
+        return $this;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getGroupTypeId(): ?int
+    {
+        return $this->groupTypeId;
+    }
+
+    /**
+     * @param int|null $groupTypeId
+     * @return GroupInformation
+     */
+    public function setGroupTypeId(?int $groupTypeId): GroupInformation
+    {
+        $this->groupTypeId = $groupTypeId;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getDateOfFoundation(): ?string
+    {
+        return $this->dateOfFoundation;
+    }
+
+    /**
+     * @param string|null $dateOfFoundation
+     * @return GroupInformation
+     */
+    public function setDateOfFoundation(?string $dateOfFoundation): GroupInformation
+    {
+        $this->dateOfFoundation = $dateOfFoundation;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getEndDate(): ?string
+    {
+        return $this->endDate;
+    }
+
+    /**
+     * @param string|null $endDate
+     * @return GroupInformation
+     */
+    public function setEndDate(?string $endDate): GroupInformation
+    {
+        $this->endDate = $endDate;
+        return $this;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getGroupCategoryId(): ?int
+    {
+        return $this->groupCategoryId;
+    }
+
+    /**
+     * @param int|null $groupCategoryId
+     * @return GroupInformation
+     */
+    public function setGroupCategoryId(?int $groupCategoryId): GroupInformation
+    {
+        $this->groupCategoryId = $groupCategoryId;
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getAgeGroupIds(): array
+    {
+        return $this->ageGroupIds;
+    }
+
+    /**
+     * @param array $ageGroupIds
+     * @return GroupInformation
+     */
+    public function setAgeGroupIds(array $ageGroupIds): GroupInformation
+    {
+        $this->ageGroupIds = $ageGroupIds;
+        return $this;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getTargetGroupId(): ?int
+    {
+        return $this->targetGroupId;
+    }
+
+    /**
+     * @param int|null $targetGroupId
+     * @return GroupInformation
+     */
+    public function setTargetGroupId(?int $targetGroupId): GroupInformation
+    {
+        $this->targetGroupId = $targetGroupId;
+        return $this;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getMaxMembers(): ?int
+    {
+        return $this->maxMembers;
+    }
+
+    /**
+     * @param int|null $maxMembers
+     * @return GroupInformation
+     */
+    public function setMaxMembers(?int $maxMembers): GroupInformation
+    {
+        $this->maxMembers = $maxMembers;
+        return $this;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getCampusId(): ?int
+    {
+        return $this->campusId;
+    }
+
+    /**
+     * @param int|null $campusId
+     * @return GroupInformation
+     */
+    public function setCampusId(?int $campusId): GroupInformation
+    {
+        $this->campusId = $campusId;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getChatStatus(): ?string
+    {
+        return $this->chatStatus;
+    }
+
+    /**
+     * @param string|null $chatStatus
+     * @return GroupInformation
+     */
+    public function setChatStatus(?string $chatStatus): GroupInformation
+    {
+        $this->chatStatus = $chatStatus;
+        return $this;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getSignUpOverrideRoleId(): ?int
+    {
+        return $this->signUpOverrideRoleId;
+    }
+
+    /**
+     * @param int|null $signUpOverrideRoleId
+     * @return GroupInformation
+     */
+    public function setSignUpOverrideRoleId(?int $signUpOverrideRoleId): GroupInformation
+    {
+        $this->signUpOverrideRoleId = $signUpOverrideRoleId;
+        return $this;
     }
 
     /**

@@ -14,12 +14,17 @@ use CTApi\Requests\FileRequestBuilder;
 use CTApi\Requests\PersonEventRequestBuilder;
 use CTApi\Requests\PersonGroupRequestBuilder;
 use CTApi\Requests\PersonTagRequestBuilder;
+use Models\Traits\HasDBFields;
 
 class Person extends AbstractModel implements UpdatableModel
 {
-    use FillWithData, ExtractData, MetaAttribute;
+    use FillWithData, ExtractData, MetaAttribute, HasDBFields;
 
     protected ?string $guid = null;
+    protected ?int $securityLevelForPerson = null;
+    protected ?int $editSecurityLevelForPerson = null;
+
+    protected ?string $title = null;
     protected ?string $firstName = null;
     protected ?string $lastName = null;
     protected ?string $nickname = null;
@@ -29,6 +34,10 @@ class Person extends AbstractModel implements UpdatableModel
     protected ?string $zip = null;
     protected ?string $city = null;
     protected ?string $country = null;
+    protected ?string $latitude = null;
+    protected ?string $longitude = null;
+    protected ?string $latitudeLoose = null;
+    protected ?string $longitudeLoose = null;
 
     protected ?string $phonePrivate = null;
     protected ?string $phoneWork = null;
@@ -36,15 +45,45 @@ class Person extends AbstractModel implements UpdatableModel
     protected ?string $fax = null;
 
     protected ?string $birthName = null;
-    protected ?string $birthplace = null;
     protected ?string $birthday = null;
+    protected ?string $birthplace = null;
     protected ?string $imageUrl = null;
+    protected ?string $familyImageUrl = null;
     protected ?string $sexId = null;
     protected ?string $email = null;
+    protected array $emails = [];
+
+    protected ?string $cmsUserId = null;
+    protected ?string $optigemId = null;
+
+    protected array $privacyPolicyAgreement = [];
+    protected ?string $privacyPolicyAgreementDate = null;
+    protected ?int $privacyPolicyAgreementTypeId = null;
+    protected ?int $privacyPolicyAgreementWhoId = null;
+
+    protected ?int $nationalityId = null;
+    protected ?int $familyStatusId = null;
+    protected ?string $weddingDate = null;
 
     protected array $departmentIds = [];
     protected ?int $statusId = null;
     protected ?int $campusId = null;
+
+    protected ?string $firstContact = null;
+    protected ?string $dateOfBelonging = null;
+    protected ?string $dateOfEntry = null;
+    protected ?string $dateOfResign = null;
+    protected ?string $dateOfBaptism = null;
+    protected ?string $placeOfBaptism = null;
+    protected ?string $baptisedBy = null;
+    protected ?string $referredBy = null;
+    protected ?string $referredTo = null;
+    protected ?int $growPathId = null;
+    protected ?bool $canChat = null;
+    protected ?bool $chatActive = null;
+
+    protected ?string $invitationStatus = null;
+    protected ?bool $isArchived = null;
 
     protected ?Meta $meta = null;
 
@@ -581,5 +620,579 @@ class Person extends AbstractModel implements UpdatableModel
         return $this;
     }
 
+    /**
+     * @return int|null
+     */
+    public function getSecurityLevelForPerson(): ?int
+    {
+        return $this->securityLevelForPerson;
+    }
 
+    /**
+     * @param int|null $securityLevelForPerson
+     * @return Person
+     */
+    public function setSecurityLevelForPerson(?int $securityLevelForPerson): Person
+    {
+        $this->securityLevelForPerson = $securityLevelForPerson;
+        return $this;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getEditSecurityLevelForPerson(): ?int
+    {
+        return $this->editSecurityLevelForPerson;
+    }
+
+    /**
+     * @param int|null $editSecurityLevelForPerson
+     * @return Person
+     */
+    public function setEditSecurityLevelForPerson(?int $editSecurityLevelForPerson): Person
+    {
+        $this->editSecurityLevelForPerson = $editSecurityLevelForPerson;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+
+    /**
+     * @param string|null $title
+     * @return Person
+     */
+    public function setTitle(?string $title): Person
+    {
+        $this->title = $title;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getLatitude(): ?string
+    {
+        return $this->latitude;
+    }
+
+    /**
+     * @param string|null $latitude
+     * @return Person
+     */
+    public function setLatitude(?string $latitude): Person
+    {
+        $this->latitude = $latitude;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getLongitude(): ?string
+    {
+        return $this->longitude;
+    }
+
+    /**
+     * @param string|null $longitude
+     * @return Person
+     */
+    public function setLongitude(?string $longitude): Person
+    {
+        $this->longitude = $longitude;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getLatitudeLoose(): ?string
+    {
+        return $this->latitudeLoose;
+    }
+
+    /**
+     * @param string|null $latitudeLoose
+     * @return Person
+     */
+    public function setLatitudeLoose(?string $latitudeLoose): Person
+    {
+        $this->latitudeLoose = $latitudeLoose;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getLongitudeLoose(): ?string
+    {
+        return $this->longitudeLoose;
+    }
+
+    /**
+     * @param string|null $longitudeLoose
+     * @return Person
+     */
+    public function setLongitudeLoose(?string $longitudeLoose): Person
+    {
+        $this->longitudeLoose = $longitudeLoose;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getFamilyImageUrl(): ?string
+    {
+        return $this->familyImageUrl;
+    }
+
+    /**
+     * @param string|null $familyImageUrl
+     * @return Person
+     */
+    public function setFamilyImageUrl(?string $familyImageUrl): Person
+    {
+        $this->familyImageUrl = $familyImageUrl;
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getEmails(): array
+    {
+        return $this->emails;
+    }
+
+    /**
+     * @param array $emails
+     * @return Person
+     */
+    public function setEmails(array $emails): Person
+    {
+        $this->emails = $emails;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getCmsUserId(): ?string
+    {
+        return $this->cmsUserId;
+    }
+
+    /**
+     * @param string|null $cmsUserId
+     * @return Person
+     */
+    public function setCmsUserId(?string $cmsUserId): Person
+    {
+        $this->cmsUserId = $cmsUserId;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getOptigemId(): ?string
+    {
+        return $this->optigemId;
+    }
+
+    /**
+     * @param string|null $optigemId
+     * @return Person
+     */
+    public function setOptigemId(?string $optigemId): Person
+    {
+        $this->optigemId = $optigemId;
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getPrivacyPolicyAgreement(): array
+    {
+        return $this->privacyPolicyAgreement;
+    }
+
+    /**
+     * @param array $privacyPolicyAgreement
+     * @return Person
+     */
+    public function setPrivacyPolicyAgreement(array $privacyPolicyAgreement): Person
+    {
+        $this->privacyPolicyAgreement = $privacyPolicyAgreement;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getPrivacyPolicyAgreementDate(): ?string
+    {
+        return $this->privacyPolicyAgreementDate;
+    }
+
+    /**
+     * @param string|null $privacyPolicyAgreementDate
+     * @return Person
+     */
+    public function setPrivacyPolicyAgreementDate(?string $privacyPolicyAgreementDate): Person
+    {
+        $this->privacyPolicyAgreementDate = $privacyPolicyAgreementDate;
+        return $this;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getPrivacyPolicyAgreementTypeId(): ?int
+    {
+        return $this->privacyPolicyAgreementTypeId;
+    }
+
+    /**
+     * @param int|null $privacyPolicyAgreementTypeId
+     * @return Person
+     */
+    public function setPrivacyPolicyAgreementTypeId(?int $privacyPolicyAgreementTypeId): Person
+    {
+        $this->privacyPolicyAgreementTypeId = $privacyPolicyAgreementTypeId;
+        return $this;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getPrivacyPolicyAgreementWhoId(): ?int
+    {
+        return $this->privacyPolicyAgreementWhoId;
+    }
+
+    /**
+     * @param int|null $privacyPolicyAgreementWhoId
+     * @return Person
+     */
+    public function setPrivacyPolicyAgreementWhoId(?int $privacyPolicyAgreementWhoId): Person
+    {
+        $this->privacyPolicyAgreementWhoId = $privacyPolicyAgreementWhoId;
+        return $this;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getNationalityId(): ?int
+    {
+        return $this->nationalityId;
+    }
+
+    /**
+     * @param int|null $nationalityId
+     * @return Person
+     */
+    public function setNationalityId(?int $nationalityId): Person
+    {
+        $this->nationalityId = $nationalityId;
+        return $this;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getFamilyStatusId(): ?int
+    {
+        return $this->familyStatusId;
+    }
+
+    /**
+     * @param int|null $familyStatusId
+     * @return Person
+     */
+    public function setFamilyStatusId(?int $familyStatusId): Person
+    {
+        $this->familyStatusId = $familyStatusId;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getWeddingDate(): ?string
+    {
+        return $this->weddingDate;
+    }
+
+    /**
+     * @param string|null $weddingDate
+     * @return Person
+     */
+    public function setWeddingDate(?string $weddingDate): Person
+    {
+        $this->weddingDate = $weddingDate;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getFirstContact(): ?string
+    {
+        return $this->firstContact;
+    }
+
+    /**
+     * @param string|null $firstContact
+     * @return Person
+     */
+    public function setFirstContact(?string $firstContact): Person
+    {
+        $this->firstContact = $firstContact;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getDateOfBelonging(): ?string
+    {
+        return $this->dateOfBelonging;
+    }
+
+    /**
+     * @param string|null $dateOfBelonging
+     * @return Person
+     */
+    public function setDateOfBelonging(?string $dateOfBelonging): Person
+    {
+        $this->dateOfBelonging = $dateOfBelonging;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getDateOfEntry(): ?string
+    {
+        return $this->dateOfEntry;
+    }
+
+    /**
+     * @param string|null $dateOfEntry
+     * @return Person
+     */
+    public function setDateOfEntry(?string $dateOfEntry): Person
+    {
+        $this->dateOfEntry = $dateOfEntry;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getDateOfResign(): ?string
+    {
+        return $this->dateOfResign;
+    }
+
+    /**
+     * @param string|null $dateOfResign
+     * @return Person
+     */
+    public function setDateOfResign(?string $dateOfResign): Person
+    {
+        $this->dateOfResign = $dateOfResign;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getDateOfBaptism(): ?string
+    {
+        return $this->dateOfBaptism;
+    }
+
+    /**
+     * @param string|null $dateOfBaptism
+     * @return Person
+     */
+    public function setDateOfBaptism(?string $dateOfBaptism): Person
+    {
+        $this->dateOfBaptism = $dateOfBaptism;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getPlaceOfBaptism(): ?string
+    {
+        return $this->placeOfBaptism;
+    }
+
+    /**
+     * @param string|null $placeOfBaptism
+     * @return Person
+     */
+    public function setPlaceOfBaptism(?string $placeOfBaptism): Person
+    {
+        $this->placeOfBaptism = $placeOfBaptism;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getBaptisedBy(): ?string
+    {
+        return $this->baptisedBy;
+    }
+
+    /**
+     * @param string|null $baptisedBy
+     * @return Person
+     */
+    public function setBaptisedBy(?string $baptisedBy): Person
+    {
+        $this->baptisedBy = $baptisedBy;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getReferredBy(): ?string
+    {
+        return $this->referredBy;
+    }
+
+    /**
+     * @param string|null $referredBy
+     * @return Person
+     */
+    public function setReferredBy(?string $referredBy): Person
+    {
+        $this->referredBy = $referredBy;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getReferredTo(): ?string
+    {
+        return $this->referredTo;
+    }
+
+    /**
+     * @param string|null $referredTo
+     * @return Person
+     */
+    public function setReferredTo(?string $referredTo): Person
+    {
+        $this->referredTo = $referredTo;
+        return $this;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getGrowPathId(): ?int
+    {
+        return $this->growPathId;
+    }
+
+    /**
+     * @param int|null $growPathId
+     * @return Person
+     */
+    public function setGrowPathId(?int $growPathId): Person
+    {
+        $this->growPathId = $growPathId;
+        return $this;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function getCanChat(): ?bool
+    {
+        return $this->canChat;
+    }
+
+    /**
+     * @param bool|null $canChat
+     * @return Person
+     */
+    public function setCanChat(?bool $canChat): Person
+    {
+        $this->canChat = $canChat;
+        return $this;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function getChatActive(): ?bool
+    {
+        return $this->chatActive;
+    }
+
+    /**
+     * @param bool|null $chatActive
+     * @return Person
+     */
+    public function setChatActive(?bool $chatActive): Person
+    {
+        $this->chatActive = $chatActive;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getInvitationStatus(): ?string
+    {
+        return $this->invitationStatus;
+    }
+
+    /**
+     * @param string|null $invitationStatus
+     * @return Person
+     */
+    public function setInvitationStatus(?string $invitationStatus): Person
+    {
+        $this->invitationStatus = $invitationStatus;
+        return $this;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function getIsArchived(): ?bool
+    {
+        return $this->isArchived;
+    }
+
+    /**
+     * @param bool|null $isArchived
+     * @return Person
+     */
+    public function setIsArchived(?bool $isArchived): Person
+    {
+        $this->isArchived = $isArchived;
+        return $this;
+    }
 }

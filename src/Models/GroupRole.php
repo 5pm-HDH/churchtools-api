@@ -13,6 +13,8 @@ class GroupRole extends AbstractModel
     protected ?string $groupTypeId = null;
     protected ?string $name = null;
     protected ?string $shorty = null;
+    protected ?string $type = null;
+    protected ?string $receiveQRCode = null;
     protected ?string $sortKey = null;
     protected ?bool $toDelete = null;
     protected ?bool $hasRequested = null;

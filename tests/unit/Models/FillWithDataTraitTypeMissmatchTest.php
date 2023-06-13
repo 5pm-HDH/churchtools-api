@@ -13,7 +13,6 @@ class FillWithDataTraitTypeMissmatchTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        CTLog::enableConsoleLog();
     }
 
     /**
@@ -77,6 +76,12 @@ class FillWithDataTraitTypeMissmatchTest extends TestCase
         $movie->assertProperty("isReleased", self::TYPE_BOOL, true);
 
         $movie = Movie::createModelFromData(["isReleased" => "false"]);
+        $movie->assertProperty("isReleased", self::TYPE_BOOL, false);
+
+        $movie = Movie::createModelFromData(["isReleased" => "0"]);
+        $movie->assertProperty("isReleased", self::TYPE_BOOL, false);
+
+        $movie = Movie::createModelFromData(["isReleased" => "1"]);
         $movie->assertProperty("isReleased", self::TYPE_BOOL, false);
 
         $movie = Movie::createModelFromData(["isReleased" => "invalid"]);
