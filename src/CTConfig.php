@@ -32,6 +32,8 @@ class CTConfig
      */
     private array $requestOptions;
 
+    private ?int $paginationPageSize = null;
+
     private function __construct()
     {
         $this->cookieJar = new CookieJar();
@@ -141,6 +143,18 @@ class CTConfig
     public static function getApiKey(): ?string
     {
         return self::getRequestOption(self::PATH_LOGIN_TOKEN);
+    }
+
+    public static function setPaginationPageSize(int $pageSize): void
+    {
+        self::getConfig()->paginationPageSize = $pageSize;
+    }
+
+    public static function getPaginationPageSize(): ?int
+    {
+        $config = self::getConfig();
+        $size = $config->paginationPageSize;
+        return $size;
     }
 
     public static function validateConfig(): void

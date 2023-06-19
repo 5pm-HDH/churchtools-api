@@ -56,9 +56,10 @@ From now on all features of the ChurchTools-API are available.
 
 ### Requests and Models
 
-The whole ChurchTools-API client is build on top of the Requests and Models. [Requests](/docs/out/Requests.md) provide
-an interface to specify your api call by adding filtering, pagination and sorting. [Models](/docs/out/Models.md)
-represent the data, that the Requests retrieve. More informations can be found in the documentation.
+The whole ChurchTools-API client is build on top of the Requests and Models. Requests provide an interface to specify your api call by adding filtering, pagination and sorting. Models represent the data, that the Requests retrieve. More informations can be found in the documentation: 
+
+* [Requests](/docs/out/Requests.md)
+* [Models](/docs/out/Models.md)
 
 All APIs with examples:
 

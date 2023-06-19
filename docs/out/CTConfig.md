@@ -137,7 +137,18 @@ $response = $client->get(
 
 ```
 
-## 4. CSRF-Token
+## 4. Pagination
+
+Set Page-Size of Pagination-Requests.
+
+```php
+use CTApi\CTConfig;
+
+CTConfig::setPaginationPageSize(400);
+
+```
+
+## 5. CSRF-Token
 
 ```php
         use CTApi\Requests\CSRFTokenRequest;
