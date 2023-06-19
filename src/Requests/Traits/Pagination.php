@@ -3,6 +3,7 @@
 namespace CTApi\Requests\Traits;
 
 use CTApi\CTClient;
+use CTApi\CTConfig;
 use CTApi\Utils\CTResponseUtil;
 
 trait Pagination
@@ -26,6 +27,7 @@ trait Pagination
         }
 
         //Collect Data from First Page
+        $this->addPaginationPageSizeIfNotExists($options);
         $response = $client->get($url, $options);
 
         $metaInformation = CTResponseUtil::metaAsArray($response);
@@ -46,5 +48,12 @@ trait Pagination
         }
 
         return $collectedData;
+    }
+
+    private function addPaginationPageSizeIfNotExists(&$options)
+    {
+        if (CTConfig::getPaginationPageSize() != null && !array_key_exists("limit", $options["query"])) {
+            $options["query"]["limit"] = CTConfig::getPaginationPageSize();
+        }
     }
 }

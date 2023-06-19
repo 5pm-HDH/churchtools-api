@@ -31,6 +31,14 @@ Iterating over all records is quite easy.
 
 {{ \Tests\Unit\Docs\PaginationTest.testIteratePages }}
 
+If you want to set the Pagination Page-Size for all Requests you can use the CTConfig.
+
+```php
+use CTApi\CTConfig;
+
+CTConfig::setPaginationPageSize(400);
+```
+
 **Get single record**
 
 The `find`-method returns the Model. If there is no record with the given id, it will return null. The `findOrFail`

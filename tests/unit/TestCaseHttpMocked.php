@@ -4,12 +4,13 @@ namespace Tests\Unit;
 
 use CTApi\CTClient;
 use CTApi\CTConfig;
+use CTApi\Utils\CTUtil;
 use PHPUnit\Framework\TestCase;
 use Tests\Unit\HttpMock\CTClientMock;
 
 class TestCaseHttpMocked extends TestCase
 {
-    private $ctClientMock;
+    private CTClientMock $ctClientMock;
 
     protected function setUp(): void
     {
@@ -22,9 +23,15 @@ class TestCaseHttpMocked extends TestCase
         CTClient::setClient($this->ctClientMock);
     }
 
-    protected function setClientMock(CTClientMock $clientMock){
+    protected function setClientMock(CTClientMock $clientMock)
+    {
         $this->ctClientMock = $clientMock;
         CTClient::setClient($this->ctClientMock);
+    }
+
+    protected function getClientMock(): CTClientMock
+    {
+        return $this->ctClientMock;
     }
 
     protected function assertRequestCallExists(string $method, $uri = null): array
