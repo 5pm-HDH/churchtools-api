@@ -27,18 +27,18 @@ class SongStatisticRequestBuilder
 
     private function getStatisticData(): array
     {
-        if($this->isLazy && !empty($this->data)){
+        if ($this->isLazy && !empty($this->data)) {
             return $this->data;
-        }else{
+        } else {
             $response = $this->requestAjax("churchservice/ajax", "getSongStatistic", []);
             $this->data = CTResponseUtil::dataAsArray($response);
             return $this->data;
         }
     }
 
-    public function findOrFail(string $songId)
+    public function findOrFail(string $arrangementId)
     {
-        $model = $this->find($songId);
+        $model = $this->find($arrangementId);
         if ($model != null) {
             return $model;
         } else {
@@ -46,11 +46,11 @@ class SongStatisticRequestBuilder
         }
     }
 
-    public function find(string $songId): ?SongStatistic
+    public function find(string $arrangementId): ?SongStatistic
     {
         $data = $this->getStatisticData();
-        if(array_key_exists($songId, $data)){
-            return SongStatistic::createModelFromAjaxData($songId, $data[$songId]);
+        if (array_key_exists($arrangementId, $data)) {
+            return SongStatistic::createModelFromAjaxData($arrangementId, $data[$arrangementId]);
         }
         return null;
     }
@@ -59,8 +59,7 @@ class SongStatisticRequestBuilder
     {
         $data = $this->getStatisticData();
         $modelArray = [];
-        foreach($data as $songId => $dates)
-        {
+        foreach ($data as $songId => $dates) {
             $modelArray[] = SongStatistic::createModelFromAjaxData($songId, $dates);
         }
         return $modelArray;

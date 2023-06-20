@@ -5,28 +5,21 @@ namespace CTApi\Models;
 
 
 use CTApi\Models\Traits\FillWithData;
+use CTApi\Requests\SongArrangementRequest;
 use CTApi\Requests\SongRequest;
 
 class SongStatistic
 {
     use FillWithData;
 
-    protected ?string $songId;
+    protected ?string $arrangementId;
     protected array $dates = [];
 
     public static function createModelFromAjaxData(string $songId, array $dates): SongStatistic
     {
         $statistics = new SongStatistic();
-        return $statistics->setSongId($songId)
+        return $statistics->setArrangementId($songId)
             ->setDates($dates);
-    }
-
-    public function requestSong(): ?Song
-    {
-        if(!is_null($this->songId)){
-            return SongRequest::find((int) $this->songId);
-        }
-        return null;
     }
 
     public function getDates(): array
@@ -63,18 +56,18 @@ class SongStatistic
     /**
      * @return string|null
      */
-    public function getSongId(): ?string
+    public function getArrangementId(): ?string
     {
-        return $this->songId;
+        return $this->arrangementId;
     }
 
     /**
-     * @param string|null $songId
+     * @param string|null $arrangementId
      * @return SongStatistic
      */
-    public function setSongId(?string $songId): SongStatistic
+    public function setArrangementId(?string $arrangementId): SongStatistic
     {
-        $this->songId = $songId;
+        $this->arrangementId = $arrangementId;
         return $this;
     }
 

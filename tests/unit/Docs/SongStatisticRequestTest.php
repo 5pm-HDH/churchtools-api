@@ -4,6 +4,7 @@
 namespace Tests\Unit\Docs;
 
 
+use CTApi\Models\SongStatistic;
 use CTApi\Requests\SongRequest;
 use CTApi\Requests\SongStatisticRequest;
 use CTApi\Requests\SongStatisticRequestBuilder;
@@ -21,8 +22,6 @@ class SongStatisticRequestTest extends TestCaseHttpMocked
         $this->assertEquals(14, $songStatistic->getCount());
         $this->assertEquals(11, $songStatistic->getCountForCalendars([1, 2]));
 
-        $song = $songStatistic->requestSong();
-
         // Retrieve Dates:
         $allDates = $songStatistic->getDates();
         $date = end($allDates);
@@ -35,14 +34,13 @@ class SongStatisticRequestTest extends TestCaseHttpMocked
         $this->assertEquals('2', $dateService["calendar_id"]);
     }
 
-    public function testGetViaSong()
+    public function testGetViaSongArrangement()
     {
-        $song = SongRequest::findOrFail(21);
-        $statistics = $song->requestSongStatistic();
+        $statistics = SongStatisticRequest::findOrFail("21");
 
-        $this->assertEquals($statistics?->getCount(), 8);
-        $this->assertEquals($statistics?->getCountForCalendars([2]), 5);
-        $this->assertEquals($statistics?->getCountForCalendars([21]), 0);
+        $this->assertEquals($statistics->getCount(), 8);
+        $this->assertEquals($statistics->getCountForCalendars([2]), 5);
+        $this->assertEquals($statistics->getCountForCalendars([21]), 0);
     }
 
     /**

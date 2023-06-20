@@ -14,13 +14,13 @@ class SongStatisticRequest
         return (new SongStatisticRequestBuilder())->all();
     }
 
-    public static function findOrFail(string $id): SongStatistic
+    public static function findOrFail(string $arrangementId): SongStatistic
     {
-        return (new SongStatisticRequestBuilder())->findOrFail($id);
+        return (new SongStatisticRequestBuilder())->findOrFail($arrangementId);
     }
 
-    public static function find(string $id): ?SongStatistic
+    public static function find(string $arrangementId): ?SongStatistic
     {
-        return (new SongStatisticRequestBuilder())->find($id);
+        return (new SongStatisticRequestBuilder())->find($arrangementId);
     }
 }

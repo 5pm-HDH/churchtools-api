@@ -38,9 +38,9 @@ The method returns a nullable [File-Model](/../../src/Models/File.php).
 
 {{ \Tests\Unit\Docs\SongStatisticRequestTest.testGetAll }}
 
-**Get Statistics for Song:**
+**Get Statistics for Song-Arrangement:**
 
-{{ \Tests\Unit\Docs\SongStatisticRequestTest.testGetViaSong }}
+{{ \Tests\Unit\Docs\SongStatisticRequestTest.testGetViaSongArrangement }}
 
 **Lazy-Builder:**
 

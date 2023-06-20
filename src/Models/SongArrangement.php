@@ -8,6 +8,7 @@ use CTApi\Models\Interfaces\UpdatableModel;
 use CTApi\Models\Traits\ExtractData;
 use CTApi\Models\Traits\FillWithData;
 use CTApi\Models\Traits\MetaAttribute;
+use CTApi\Requests\SongStatisticRequest;
 
 class SongArrangement extends AbstractModel implements UpdatableModel
 {
@@ -50,6 +51,14 @@ class SongArrangement extends AbstractModel implements UpdatableModel
             default:
                 $this->fillDefault($key, $data);
         }
+    }
+
+    public function requestSongStatistic(): ?SongStatistic
+    {
+        if ($this->getId() != null) {
+            return SongStatisticRequest::find($this->getIdOrFail());
+        }
+        return null;
     }
 
     /**
