@@ -1,7 +1,7 @@
 # Search-API
 
 ## Search Global
-{{ \Tests\Unit\Docs\SearchRequestTest.testSearchGlobalFor5PM }}
+{{ \CTApi\Test\Unit\Docs\SearchRequestTest.testSearchGlobalFor5PM }}
 
 ## Search in specific Domain-Types
 
@@ -11,4 +11,4 @@
 * song
 * wiki_page
 
-{{ \Tests\Unit\Docs\SearchRequestTest.testSearchDomainFor5PM }}
+{{ \CTApi\Test\Unit\Docs\SearchRequestTest.testSearchDomainFor5PM }}

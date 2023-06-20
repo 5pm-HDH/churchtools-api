@@ -4,6 +4,7 @@
 ```php
         use CTApi\Models\Absence;
         use CTApi\Requests\AbsenceRequest;
+        use CTApi\Test\Unit\TestCaseHttpMocked;
 
         $absences = AbsenceRequest::forPerson(118)
             ->where("from_date", "2022-01-01")
@@ -47,6 +48,7 @@
 ```php
         use CTApi\Models\Absence;
         use CTApi\Requests\AbsenceRequest;
+        use CTApi\Test\Unit\TestCaseHttpMocked;
 
         $absence = new Absence();
         $absence->setStartDate("2020-09-13")->setEndDate("2020-09-14");
@@ -90,6 +92,7 @@
 ```php
         use CTApi\Models\Absence;
         use CTApi\Requests\AbsenceRequest;
+        use CTApi\Test\Unit\TestCaseHttpMocked;
 
         $absence = AbsenceRequest::findOrFail(118, 211); // for person with id 118 and absence with id 211
 
@@ -111,6 +114,7 @@
 ```php
         use CTApi\Models\Absence;
         use CTApi\Requests\AbsenceRequest;
+        use CTApi\Test\Unit\TestCaseHttpMocked;
 
         $absence = AbsenceRequest::findOrFail(118, 211); // for person with id 118 and absence with id 211
 

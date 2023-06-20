@@ -2,12 +2,12 @@
 
 ## Internal Group Permission
 
-{{ \Tests\Unit\Docs\PermissionRequestTest.testGroupPermission }}
+{{ \CTApi\Test\Unit\Docs\PermissionRequestTest.testGroupPermission }}
 
 ## Internal Person Permission
 
-{{ \Tests\Unit\Docs\PermissionRequestTest.testPersonPermission }}
+{{ \CTApi\Test\Unit\Docs\PermissionRequestTest.testPersonPermission }}
 
 ## Global Permission (for logged in user)
 
-{{ \Tests\Unit\Docs\PermissionRequestTest.testGlobalPermission }}
+{{ \CTApi\Test\Unit\Docs\PermissionRequestTest.testGlobalPermission }}

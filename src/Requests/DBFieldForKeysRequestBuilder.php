@@ -1,10 +1,10 @@
 <?php
 
 
-namespace Requests;
+namespace CTApi\Requests;
 
-use Models\DBField;
-use Models\DBFieldValueContainer;
+use CTApi\Models\DBField;
+use CTApi\Models\DBFieldValueContainer;
 
 
 class DBFieldForKeysRequestBuilder

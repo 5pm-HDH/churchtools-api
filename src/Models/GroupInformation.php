@@ -5,7 +5,7 @@ namespace CTApi\Models;
 
 
 use CTApi\Models\Traits\FillWithData;
-use Models\Traits\HasDBFields;
+use CTApi\Models\Traits\HasDBFields;
 
 class GroupInformation
 {

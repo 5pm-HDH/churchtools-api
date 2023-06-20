@@ -2,12 +2,12 @@
 
 Load all Resources that are stored in ChurchTools.
 
-{{ \Tests\Unit\Docs\ResourceRequestTest.testLoadResourceMasterData }}
+{{ \CTApi\Test\Unit\Docs\ResourceRequestTest.testLoadResourceMasterData }}
 
 Load bookings for specific resource:
 
-{{ \Tests\Unit\Docs\ResourceRequestTest.testLoadBookingsFromResource }}
+{{ \CTApi\Test\Unit\Docs\ResourceRequestTest.testLoadBookingsFromResource }}
 
 Load bookings for multiple resoures:
 
-{{ \Tests\Unit\Docs\ResourceRequestTest.testLoadBookingsFromResourceIds }}
+{{ \CTApi\Test\Unit\Docs\ResourceRequestTest.testLoadBookingsFromResourceIds }}

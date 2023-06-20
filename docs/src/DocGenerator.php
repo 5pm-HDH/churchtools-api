@@ -4,7 +4,7 @@ use CTApi\CTClient;
 use CTApi\CTConfig;
 use CTApi\Exceptions\CTAuthException;
 use CTApi\Exceptions\CTRequestException;
-use Tests\Unit\HttpMock\CTClientMock;
+use CTApi\Test\Unit\HttpMock\CTClientMock;
 
 require_once __DIR__ . "/../../vendor/autoload.php";
 

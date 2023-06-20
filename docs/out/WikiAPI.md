@@ -3,6 +3,7 @@
 ```php
         use CTApi\Requests\WikiCategoryRequest;
         use CTApi\Requests\WikiSearchRequest;
+        use CTApi\Test\Unit\TestCaseHttpMocked;
 
         /**
          * WikiCategory - Model

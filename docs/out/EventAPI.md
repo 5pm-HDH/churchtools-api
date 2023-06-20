@@ -4,6 +4,7 @@
 ```php
         use CTApi\Requests\EventAgendaRequest;
         use CTApi\Requests\EventRequest;
+        use CTApi\Test\Unit\TestCaseHttpMocked;
 
         // Retrieve all events
         $allEvents = EventRequest::all();
@@ -67,6 +68,7 @@
 ```php
         use CTApi\Requests\EventAgendaRequest;
         use CTApi\Requests\EventRequest;
+        use CTApi\Test\Unit\TestCaseHttpMocked;
 
         $event = EventRequest::find(21);
 
@@ -113,6 +115,7 @@
 ```php
         use CTApi\Requests\EventAgendaRequest;
         use CTApi\Requests\EventRequest;
+        use CTApi\Test\Unit\TestCaseHttpMocked;
 
         $event = EventRequest::find(21);
         $eventServices = $event?->getEventServices() ?? [];

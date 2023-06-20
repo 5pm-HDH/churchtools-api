@@ -7,6 +7,7 @@ The FileRequestBuilder can be accessed via the FileRequest-Facade:
 ```php
         use CTApi\Models\File;
         use CTApi\Requests\FileRequest;
+        use CTApi\Test\Unit\TestCaseHttpMocked;
 
         FileRequest::forAvatar(21);
         FileRequest::forGroupImage(21);
@@ -26,6 +27,7 @@ Or you can call the builder direct in the model. E.q. in the events-model:
 ```php
         use CTApi\Models\File;
         use CTApi\Requests\FileRequest;
+        use CTApi\Test\Unit\TestCaseHttpMocked;
 
         $event = new \CTApi\Models\Event();
         $event->requestFiles()?->get();
@@ -43,6 +45,7 @@ Returns an array with all available files. The Avatar-Route only contains one fi
 ```php
         use CTApi\Models\File;
         use CTApi\Requests\FileRequest;
+        use CTApi\Test\Unit\TestCaseHttpMocked;
 
         $files = FileRequest::forAvatar(21)->get();
         $avatar = end($files);
@@ -93,6 +96,7 @@ Deletes all files that are attached to the domain-model.
 ```php
         use CTApi\Models\File;
         use CTApi\Requests\FileRequest;
+        use CTApi\Test\Unit\TestCaseHttpMocked;
 
         FileRequest::forAvatar(23)->delete();
 
@@ -110,6 +114,7 @@ If you want to delete one specific file you can use the delete-method:
 ```php
         use CTApi\Models\File;
         use CTApi\Requests\FileRequest;
+        use CTApi\Test\Unit\TestCaseHttpMocked;
 
         $files = FileRequest::forEvent(21)->get();
 
@@ -126,6 +131,7 @@ If you want to delete one specific file you can use the delete-method:
 ```php
         use CTApi\Models\File;
         use CTApi\Requests\FileRequest;
+        use CTApi\Test\Unit\TestCaseHttpMocked;
 
         $files = FileRequest::forAvatar(22)->get();
         $avatarFile = end($files);
@@ -146,6 +152,7 @@ uploaded image. The Event-model e.q. also accepts multiple file-attachements.
 ```php
         use CTApi\Models\File;
         use CTApi\Requests\FileRequest;
+        use CTApi\Test\Unit\TestCaseHttpMocked;
 
         $newFile = (new FileRequestBuilder("avatar", 22))->upload(__DIR__ . "/../../integration/Requests/resources/avatar-1.png");
 

@@ -23,7 +23,7 @@ extends and improves the unit-test suite. The Github CI executes these unit-test
 code. To include a unit-test code-sample, use this template syntax:
 
 ```
-{{ \Tests\Unit\Docs\EventRequestTest.testEventRequestDocExample }}
+{{ \CTApi\Test\Unit\Docs\EventRequestTest.testEventRequestDocExample }}
 ```
 
 The Doc-Generator takes the unit-test code and transforms the assertEquals statements to more readable code. All

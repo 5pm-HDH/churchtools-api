@@ -152,6 +152,7 @@ CTConfig::setPaginationPageSize(400);
 
 ```php
         use CTApi\Requests\CSRFTokenRequest;
+        use CTApi\Test\Unit\TestCaseHttpMocked;
 
         $nullableToken = CSRFTokenRequest::get(); // can be null|string
         $notNullToken = CSRFTokenRequest::getOrFail(); // throws exception if null

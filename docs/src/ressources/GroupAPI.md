@@ -2,18 +2,18 @@
 
 ## Group-Request & Group-Data:
 
-{{ \Tests\Unit\Docs\GroupRequestTest.testDocExample }}
+{{ \CTApi\Test\Unit\Docs\GroupRequestTest.testDocExample }}
 
 ## Add, remove and update group-members:
 
-{{ \Tests\Unit\Docs\GroupMemberUpdateRequestTest.testAddGroupMember }}
+{{ \CTApi\Test\Unit\Docs\GroupMemberUpdateRequestTest.testAddGroupMember }}
 
 ## Group-Meetings
 
-{{ \Tests\Unit\Docs\GroupMeetingRequestTest.testRetrieveGroupRequest }}
+{{ \CTApi\Test\Unit\Docs\GroupMeetingRequestTest.testRetrieveGroupRequest }}
 
-{{ \Tests\Unit\Docs\GroupMeetingRequestTest.testRetrieveGroupMemberRequest }}
+{{ \CTApi\Test\Unit\Docs\GroupMeetingRequestTest.testRetrieveGroupMemberRequest }}
 
 ## GroupMemberFields
 
-{{ \Tests\Unit\Docs\GroupMemberFieldsTest.testGetFields }}
+{{ \CTApi\Test\Unit\Docs\GroupMemberFieldsTest.testGetFields }}

@@ -8,6 +8,7 @@
         use CTApi\Models\SongArrangement;
         use CTApi\Requests\SongArrangementRequest;
         use CTApi\Requests\SongRequest;
+        use CTApi\Test\Unit\TestCaseHttpMocked;
 
         $allSongs = SongRequest::all();
         $practiceSong = SongRequest::where('practice', true)->orderBy('name')->get();
@@ -143,6 +144,7 @@
         use CTApi\Models\SongArrangement;
         use CTApi\Requests\SongArrangementRequest;
         use CTApi\Requests\SongRequest;
+        use CTApi\Test\Unit\TestCaseHttpMocked;
 
         $song = SongRequest::findOrFail(21);
 
@@ -166,6 +168,7 @@
         use CTApi\Models\SongArrangement;
         use CTApi\Requests\SongArrangementRequest;
         use CTApi\Requests\SongRequest;
+        use CTApi\Test\Unit\TestCaseHttpMocked;
 
         $song = SongRequest::findOrFail(21);
         $arrangements = $song->getArrangements();
@@ -187,6 +190,7 @@
 
 ```php
         use CTApi\Requests\CcliRequest;
+        use CTApi\Test\Unit\TestCaseHttpMocked;
 
         $ccliNumber = 1878670;
 
@@ -244,6 +248,7 @@ The method returns a nullable [File-Model](/../../src/Models/File.php).
 
 ```php
         use CTApi\Requests\CcliRequest;
+        use CTApi\Test\Unit\TestCaseHttpMocked;
 
         $ccliNumber = 1878670;
         $songArrangementId = 2912;
@@ -276,6 +281,7 @@ The method returns a nullable [File-Model](/../../src/Models/File.php).
         use CTApi\Requests\SongRequest;
         use CTApi\Requests\SongStatisticRequest;
         use CTApi\Requests\SongStatisticRequestBuilder;
+        use CTApi\Test\Unit\TestCaseHttpMocked;
 
         $data = SongStatisticRequest::all();
 
@@ -316,6 +322,7 @@ The method returns a nullable [File-Model](/../../src/Models/File.php).
         use CTApi\Requests\SongRequest;
         use CTApi\Requests\SongStatisticRequest;
         use CTApi\Requests\SongStatisticRequestBuilder;
+        use CTApi\Test\Unit\TestCaseHttpMocked;
 
         $statistics = SongStatisticRequest::findOrFail("21");
 
@@ -338,6 +345,7 @@ The method returns a nullable [File-Model](/../../src/Models/File.php).
         use CTApi\Requests\SongRequest;
         use CTApi\Requests\SongStatisticRequest;
         use CTApi\Requests\SongStatisticRequestBuilder;
+        use CTApi\Test\Unit\TestCaseHttpMocked;
 
         /**
          * Lazy-SongStatisticRequestBuilder

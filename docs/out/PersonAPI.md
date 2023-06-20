@@ -3,6 +3,7 @@
 ```php
         use CTApi\Models\Person;
         use CTApi\Requests\PersonRequest;
+        use CTApi\Test\Unit\TestCaseHttpMocked;
 
         // logged in user
         $myself = PersonRequest::whoami();
@@ -51,6 +52,7 @@
 ```php
         use CTApi\Models\Person;
         use CTApi\Requests\PersonRequest;
+        use CTApi\Test\Unit\TestCaseHttpMocked;
 
         $person = (new Person())->setId("21");
 
@@ -95,6 +97,7 @@
 ```php
         use CTApi\Models\Person;
         use CTApi\Requests\PersonRequest;
+        use CTApi\Test\Unit\TestCaseHttpMocked;
 
         $birthdayPersons = PersonRequest::birthdays()
             ->where("start_date", "2022-01-01")
@@ -131,6 +134,7 @@
 ```php
         use CTApi\Models\Person;
         use CTApi\Requests\PersonRequest;
+        use CTApi\Test\Unit\TestCaseHttpMocked;
 
         $newPerson = new Person();
         $newPerson->setFirstName("John")
@@ -151,6 +155,7 @@ Therefore you can add the `force` parameter and set it to `true`.
 ```php
         use CTApi\Models\Person;
         use CTApi\Requests\PersonRequest;
+        use CTApi\Test\Unit\TestCaseHttpMocked;
 
         $newPerson = new Person();
         $newPerson->setFirstName("John")
@@ -174,6 +179,7 @@ Follow this example:
 ```php
         use CTApi\Models\Person;
         use CTApi\Requests\PersonRequest;
+        use CTApi\Test\Unit\TestCaseHttpMocked;
 
         $person = PersonRequest::findOrFail(21);
         $person->setEmail('new-mail@example.com');
@@ -190,6 +196,7 @@ data sent to the API, by adding a whitelist of attributes.
 ```php
         use CTApi\Models\Person;
         use CTApi\Requests\PersonRequest;
+        use CTApi\Test\Unit\TestCaseHttpMocked;
 
         $person = PersonRequest::findOrFail(21);
         $person->setEmail('new-mail@example.com');
@@ -207,6 +214,7 @@ The following attributes can be updated:
 ```php
         use CTApi\Models\Person;
         use CTApi\Requests\PersonRequest;
+        use CTApi\Test\Unit\TestCaseHttpMocked;
 
         $person = PersonRequest::findOrFail(21);
 
@@ -225,6 +233,7 @@ Delete person via PersonRequest:
 ```php
         use CTApi\Models\Person;
         use CTApi\Requests\PersonRequest;
+        use CTApi\Test\Unit\TestCaseHttpMocked;
 
         $person = PersonRequest::findOrFail(21);
 

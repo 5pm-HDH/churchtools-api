@@ -5,6 +5,7 @@
         use CTApi\Models\ServiceGroup;
         use CTApi\Requests\ServiceGroupRequest;
         use CTApi\Requests\ServiceRequest;
+        use CTApi\Test\Unit\TestCaseHttpMocked;
 
 
         $serviceGroups = ServiceGroupRequest::all();

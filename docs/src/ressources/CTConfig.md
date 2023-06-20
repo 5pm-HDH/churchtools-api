@@ -140,4 +140,4 @@ CTConfig::setPaginationPageSize(400);
 
 ## 5. CSRF-Token
 
-{{ \Tests\Unit\Docs\CSRFTokenRequestTest.testGetCSRFToken }}
+{{ \CTApi\Test\Unit\Docs\CSRFTokenRequestTest.testGetCSRFToken }}
