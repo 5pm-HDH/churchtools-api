@@ -21,7 +21,6 @@ class SongUpdateRequestTest extends TestCaseAuthenticated
     private ?string $initCcli;
 
     private Song $song;
-    private Song $songBeforeTest;
 
     protected function setUp(): void
     {

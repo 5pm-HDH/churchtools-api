@@ -1,9 +1,9 @@
 parameters:
-    level: 3
+    level: 5
     paths:
         - src
         - tests
-    editorUrl: 'phpstorm://open?file=%%file%%&line=%%line%%'
+        - docs
     ignoreErrors:
         -
             message: '#Method [a-zA-Z0-9\\_]+::where\(\) should return#'
@@ -11,3 +11,4 @@ parameters:
         -
             message: '#Method [a-zA-Z0-9\\_]+::orderBy\(\) should return#'
             path: src/Requests
+        - '#Parameter \#2 \$level of class Monolog\\Handler\\StreamHandler constructor expects#'

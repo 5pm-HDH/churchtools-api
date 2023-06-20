@@ -70,7 +70,7 @@ class Meta
     public function requestCreatedPerson(): ?Person
     {
         if (!is_null($this->getCreatedPerson())) {
-            $id = $this->getCreatedPerson()?->getId();
+            $id = $this->getCreatedPerson()->getId();
             return $this->requestPerson($id);
         }
         return null;

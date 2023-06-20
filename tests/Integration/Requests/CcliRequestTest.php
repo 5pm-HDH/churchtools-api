@@ -19,11 +19,11 @@ class CcliRequestTest extends TestCaseAuthenticated
     protected function setUp(): void
     {
         parent::setUp();
-        $this->markTestSkipped("CCLI is not configured on integration system.");
         $this->ccliId = 7065049;
         $this->songArrangementId = 2020;
         $this->songArrangementKey = "C";
         $this->songArrangementTitle = "Tremble";
+        $this->markTestSkipped("CCLI is not configured on integration system.");
     }
 
     public function testLoadLyrics()

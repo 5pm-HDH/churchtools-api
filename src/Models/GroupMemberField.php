@@ -24,7 +24,7 @@ class GroupMemberField extends AbstractModel
     /**
      * Fluent setter have to be implemented by child-class. Returns instance of model.
      * @param string|null $id
-     * @return mixed
+     * @return GroupMemberField
      */
     public function setId(?string $id): GroupMemberField
     {

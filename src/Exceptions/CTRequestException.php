@@ -112,7 +112,7 @@ class CTRequestException extends RuntimeException
                 continue;
             }
 
-            if (isset($error['message'])) {
+            if ($error['message']) {
                 $args = isset($error['args']) && is_array($error['args']) ? $error['args'] : [];
 
                 $placeholders = array_map(function ($key) {

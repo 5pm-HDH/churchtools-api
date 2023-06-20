@@ -46,7 +46,7 @@ class SearchRequestTest extends TestCaseAuthenticated
         foreach ($searchResult as $result) {
             $this->assertInstanceOf(SearchResult::class, $result);
             $this->assertNotNull($result);
-            if (str_contains($result?->getTitle() ?? "", $this->personLastName)) {
+            if (str_contains($result->getTitle() ?? "", $this->personLastName)) {
                 $foundUserResult = $result;
             }
         }

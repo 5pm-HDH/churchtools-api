@@ -42,12 +42,10 @@ class CTResponse implements ResponseInterface
         return $this->protocolVersion;
     }
 
-    /**
-     * @psalm-suppress InvalidReturnType
-     */
     public function withProtocolVersion($version): MessageInterface
     {
         $this->protocolVersion = $version;
+        return $this;
     }
 
     public function getHeaders(): array

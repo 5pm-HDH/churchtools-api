@@ -103,6 +103,7 @@ class SongRequestTest extends TestCaseAuthenticated
     private function getSong(): Song
     {
         $song = SongRequest::findOrFail($this->SONG_ID);
+        $this->assertEquals($song->getName(), $this->SONG_NAME);
         $this->selectTestArrangementInSong($song);
         return $song;
     }
@@ -111,6 +112,7 @@ class SongRequestTest extends TestCaseAuthenticated
     {
         foreach ($song->getArrangements() as $arrangement) {
             if ($this->SONG_ARRANGEMENT_ID == $arrangement->getId()) {
+                $this->assertEquals($this->SONG_ARRANGEMENT_NAME, $arrangement->getName());
                 return $arrangement;
             }
         }
