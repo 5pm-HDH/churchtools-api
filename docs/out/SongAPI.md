@@ -317,16 +317,16 @@ The method returns a nullable [File-Model](/../../src/Models/File.php).
         use CTApi\Requests\SongStatisticRequest;
         use CTApi\Requests\SongStatisticRequestBuilder;
 
-        $statistics = SongStatisticRequest::findOrFail(21);
+        $statistics = SongStatisticRequest::findOrFail("21");
 
         var_dump( 8);
-        // Output: $statistics?->getCount()
+        // Output: $statistics->getCount()
 
         var_dump( 5);
-        // Output: $statistics?->getCountForCalendars([2])
+        // Output: $statistics->getCountForCalendars([2])
 
         var_dump( 0);
-        // Output: $statistics?->getCountForCalendars([21])
+        // Output: $statistics->getCountForCalendars([21])
 
 
 ```
