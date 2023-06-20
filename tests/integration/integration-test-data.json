@@ -200,7 +200,7 @@
       "filter": {
         "event_id": 1,
         "selected_song_id": 1,
-        "selected_song_arrangement_id": 1
+        "selected_song_arrangement_id": 13
       },
       "result": {
         "nr_of_agenda_items": 4,
@@ -208,11 +208,11 @@
         "first_song": {
           "id": 1,
           "name": "Halleluja",
-          "arrangement_id": 1,
-          "arrangement_name": "In C"
+          "arrangement_id": 13,
+          "arrangement_name": "In D"
         },
         "selected_song_name": "Halleluja",
-        "selected_song_arrangement_name": "In C"
+        "selected_song_arrangement_name": "In D"
       }
     },
     "get_song": {
@@ -225,9 +225,10 @@
       }
     },
     "get_song_statistics": {
-      "description": "Request song statistics.",
+      "description": "Request song statistics for song-arrangement.",
       "filter": {
-        "song_id": 1
+        "song_id": 1,
+        "arrangement_id": 13
       },
       "result": {
         "any_date": {

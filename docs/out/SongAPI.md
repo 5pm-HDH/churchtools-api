@@ -272,6 +272,7 @@ The method returns a nullable [File-Model](/../../src/Models/File.php).
 **Get All Statistics:**
 
 ```php
+        use CTApi\Models\SongStatistic;
         use CTApi\Requests\SongRequest;
         use CTApi\Requests\SongStatisticRequest;
         use CTApi\Requests\SongStatisticRequestBuilder;
@@ -286,8 +287,6 @@ The method returns a nullable [File-Model](/../../src/Models/File.php).
         var_dump( $songStatistic->getCountForCalendars([1, 2]));
         // Output: 11
 
-
-        $song = $songStatistic->requestSong();
 
         // Retrieve Dates:
         $allDates = $songStatistic->getDates();
@@ -310,24 +309,24 @@ The method returns a nullable [File-Model](/../../src/Models/File.php).
 
 ```
 
-**Get Statistics for Song:**
+**Get Statistics for Song-Arrangement:**
 
 ```php
+        use CTApi\Models\SongStatistic;
         use CTApi\Requests\SongRequest;
         use CTApi\Requests\SongStatisticRequest;
         use CTApi\Requests\SongStatisticRequestBuilder;
 
-        $song = SongRequest::findOrFail(21);
-        $statistics = $song->requestSongStatistic();
+        $statistics = SongStatisticRequest::findOrFail("21");
 
         var_dump( 8);
-        // Output: $statistics?->getCount()
+        // Output: $statistics->getCount()
 
         var_dump( 5);
-        // Output: $statistics?->getCountForCalendars([2])
+        // Output: $statistics->getCountForCalendars([2])
 
         var_dump( 0);
-        // Output: $statistics?->getCountForCalendars([21])
+        // Output: $statistics->getCountForCalendars([21])
 
 
 ```
@@ -335,6 +334,7 @@ The method returns a nullable [File-Model](/../../src/Models/File.php).
 **Lazy-Builder:**
 
 ```php
+        use CTApi\Models\SongStatistic;
         use CTApi\Requests\SongRequest;
         use CTApi\Requests\SongStatisticRequest;
         use CTApi\Requests\SongStatisticRequestBuilder;

@@ -51,7 +51,7 @@ class SongStatisticTest extends TestCase
     {
         $songStatistic = SongStatistic::createModelFromAjaxData("21", self::$DATES_AJAX);
 
-        $this->assertEquals("21", $songStatistic->getSongId());
+        $this->assertEquals("21", $songStatistic->getArrangementId());
         // All Calendars
         $this->assertEquals(4, $songStatistic->getCount());
 

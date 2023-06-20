@@ -102,14 +102,6 @@ class Song extends AbstractModel implements UpdatableModel
         return $selectedArrangement;
     }
 
-    public function requestSongStatistic(): ?SongStatistic
-    {
-        if($this->getId() != null){
-            return SongStatisticRequest::find($this->getIdOrFail());
-        }
-        return null;
-    }
-
     /**
      * @param string|null $id
      * @return Song

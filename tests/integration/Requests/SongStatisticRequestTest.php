@@ -13,6 +13,7 @@ use Tests\Integration\TestCaseAuthenticated;
 class SongStatisticRequestTest extends TestCaseAuthenticated
 {
     private int $songId;
+    private int $arrangementId;
 
     private string $date;
     private int $calendar;
@@ -20,6 +21,7 @@ class SongStatisticRequestTest extends TestCaseAuthenticated
     protected function setUp(): void
     {
         $this->songId = IntegrationTestData::getFilterAsInt("get_song_statistics", "song_id");
+        $this->arrangementId = IntegrationTestData::getFilterAsInt("get_song_statistics", "arrangement_id");
         $this->date = IntegrationTestData::getResult("get_song_statistics", "any_date.date");
         $this->calendar = IntegrationTestData::getResultAsInt("get_song_statistics", "any_date.calendar_id");
     }
@@ -27,7 +29,6 @@ class SongStatisticRequestTest extends TestCaseAuthenticated
     public function testRequestAll()
     {
         $data = SongStatisticRequest::all();
-
         $this->assertNotEmpty($data);
 
         $lastSongStatisticElement = end($data);
@@ -51,7 +52,15 @@ class SongStatisticRequestTest extends TestCaseAuthenticated
     public function testRequestSong()
     {
         $song = SongRequest::findOrFail($this->songId);
-        $songStatistic = $song->requestSongStatistic();
+        $foundArrangement = null;
+        foreach ($song->getArrangements() as $arrangement) {
+            if ($arrangement->getIdAsInteger() == $this->arrangementId) {
+                $foundArrangement = $arrangement;
+            }
+        }
+        $this->assertNotNull($foundArrangement);
+
+        $songStatistic = $foundArrangement->requestSongStatistic();
 
         $this->assertNotNull($songStatistic);
         $this->assertEquals($songStatistic->getCount(), sizeof($songStatistic->getDates()));
