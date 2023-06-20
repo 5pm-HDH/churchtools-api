@@ -3,6 +3,7 @@
 ## Search Global
 ```php
         use CTApi\Requests\SearchRequest;
+        use CTApi\Test\Unit\TestCaseHttpMocked;
 
         $results = SearchRequest::search("5pm")->get();
         $firstResult = $results[0];
@@ -44,6 +45,7 @@
 
 ```php
         use CTApi\Requests\SearchRequest;
+        use CTApi\Test\Unit\TestCaseHttpMocked;
 
         $results = SearchRequest::search("5pm")
             ->whereDomainType("wiki_page")

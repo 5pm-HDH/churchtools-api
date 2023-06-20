@@ -4,6 +4,7 @@
 
 ```php
         use CTApi\Requests\PermissionRequest;
+        use CTApi\Test\Unit\TestCaseHttpMocked;
 
         $internalGroupPermission = PermissionRequest::forGroup(21)->get();
 
@@ -24,6 +25,7 @@
 
 ```php
         use CTApi\Requests\PermissionRequest;
+        use CTApi\Test\Unit\TestCaseHttpMocked;
 
         $internalPersonPermission = PermissionRequest::forPerson(23)->get();
 
@@ -49,6 +51,7 @@
 
 ```php
         use CTApi\Requests\PermissionRequest;
+        use CTApi\Test\Unit\TestCaseHttpMocked;
 
         $globalPermission = PermissionRequest::myPermissions()->get();
 

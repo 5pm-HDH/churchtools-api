@@ -1,3 +1,3 @@
 # ServiceAPI
 
-{{ \Tests\Unit\Docs\ServiceRequestTest.testExampleCode }}
+{{ \CTApi\Test\Unit\Docs\ServiceRequestTest.testExampleCode }}

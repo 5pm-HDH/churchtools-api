@@ -14,7 +14,7 @@ use CTApi\Requests\FileRequestBuilder;
 use CTApi\Requests\PersonEventRequestBuilder;
 use CTApi\Requests\PersonGroupRequestBuilder;
 use CTApi\Requests\PersonTagRequestBuilder;
-use Models\Traits\HasDBFields;
+use CTApi\Models\Traits\HasDBFields;
 
 class Person extends AbstractModel implements UpdatableModel
 {

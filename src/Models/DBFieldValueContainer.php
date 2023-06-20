@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Models;
+namespace CTApi\Models;
 
 
 class DBFieldValueContainer

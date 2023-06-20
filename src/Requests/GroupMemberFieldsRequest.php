@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Requests;
+namespace CTApi\Requests;
 
 
 class GroupMemberFieldsRequest

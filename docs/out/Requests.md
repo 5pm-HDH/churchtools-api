@@ -26,6 +26,7 @@ For example if you like to get only the first 3 events of ChurchTools:
 
 ```php
         use CTApi\Requests\EventRequest;
+        use CTApi\Test\Unit\TestCaseHttpMocked;
 
         $eventsPage1 = EventRequest::where("page", 1)
             ->where("limit", 3)->get();
@@ -50,6 +51,7 @@ Iterating over all records is quite easy.
 
 ```php
         use CTApi\Requests\EventRequest;
+        use CTApi\Test\Unit\TestCaseHttpMocked;
 
         $page = 1;
         $limit = 15;

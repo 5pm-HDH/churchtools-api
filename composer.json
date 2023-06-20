@@ -3,10 +3,14 @@
   "description": "API-client for churchtools",
   "type": "library",
   "autoload": {
-    "classmap": [
-      "src/",
-      "tests/"
-    ]
+    "psr-4": {
+      "CTApi\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "CTApi\\Test\\": "tests"
+    }
   },
   "require": {
     "guzzlehttp/guzzle": "^7",

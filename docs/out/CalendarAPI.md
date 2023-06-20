@@ -5,6 +5,7 @@ Load all calendars:
 ```php
         use CTApi\Requests\AppointmentRequest;
         use CTApi\Requests\CalendarRequest;
+        use CTApi\Test\Unit\TestCaseHttpMocked;
 
         $allCalendars = CalendarRequest::all();
         $lastCalendar = end($allCalendars);
@@ -38,6 +39,7 @@ Load appointments for calendar:
 ```php
         use CTApi\Requests\AppointmentRequest;
         use CTApi\Requests\CalendarRequest;
+        use CTApi\Test\Unit\TestCaseHttpMocked;
 
         $allCalendars = CalendarRequest::all();
         $lastCalendar = end($allCalendars);
@@ -124,6 +126,7 @@ Load appointments for multiple calendars:
 ```php
         use CTApi\Requests\AppointmentRequest;
         use CTApi\Requests\CalendarRequest;
+        use CTApi\Test\Unit\TestCaseHttpMocked;
 
         $appointments = AppointmentRequest::forCalendar(21)->get();
         $appointments = AppointmentRequest::forCalendars([21, 22])

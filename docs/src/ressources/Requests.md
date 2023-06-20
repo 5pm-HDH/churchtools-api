@@ -23,13 +23,13 @@ is called *pagination*.
 
 For example if you like to get only the first 3 events of ChurchTools:
 
-{{ \Tests\Unit\Docs\PaginationTest.testCollectSinglePage }}
+{{ \CTApi\Test\Unit\Docs\PaginationTest.testCollectSinglePage }}
 
 This is possible for the other APIs like event or group, too.
 
 Iterating over all records is quite easy.
 
-{{ \Tests\Unit\Docs\PaginationTest.testIteratePages }}
+{{ \CTApi\Test\Unit\Docs\PaginationTest.testIteratePages }}
 
 If you want to set the Pagination Page-Size for all Requests you can use the CTConfig.
 

@@ -1,12 +1,12 @@
 <?php
 
 
-namespace Requests;
+namespace CTApi\Requests;
 
 
 use CTApi\CTClient;
 use CTApi\Utils\CTResponseUtil;
-use Models\GroupMemberFieldContainer;
+use CTApi\Models\GroupMemberFieldContainer;
 
 class GroupMemberFieldsRequestBuilder
 {

@@ -1,3 +1,3 @@
 # Wiki-API
 
-{{ \Tests\Unit\Docs\WikiRequestTest.testExampleCode }}
+{{ \CTApi\Test\Unit\Docs\WikiRequestTest.testExampleCode }}

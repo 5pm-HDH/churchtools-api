@@ -1,18 +1,18 @@
 # PersonAPI
 
-{{ \Tests\Unit\Docs\PersonRequestTest.testExampleCode }}
+{{ \CTApi\Test\Unit\Docs\PersonRequestTest.testExampleCode }}
 
 ## Request Tags from Person
 
-{{ \Tests\Unit\Docs\PersonRequestTest.testRequestTags }}
+{{ \CTApi\Test\Unit\Docs\PersonRequestTest.testRequestTags }}
 
 ## Retrieve Birthdays
 
-{{ \Tests\Unit\Docs\PersonRequestTest.testBirthdayRequest }}
+{{ \CTApi\Test\Unit\Docs\PersonRequestTest.testBirthdayRequest }}
 
 ## Create person
 
-{{ \Tests\Unit\Docs\PersonRequestTest.testCreatePerson }}
+{{ \CTApi\Test\Unit\Docs\PersonRequestTest.testCreatePerson }}
 
 Sometimes it will happen that you have to add a person with the same name
 as an existing one. ChurchTools will respond with an error to prevent you from
@@ -20,7 +20,7 @@ adding duplicates accidently.
 
 Therefore you can add the `force` parameter and set it to `true`.
 
-{{ \Tests\Unit\Docs\PersonRequestTest.testCreatePersonWithEqualName }}
+{{ \CTApi\Test\Unit\Docs\PersonRequestTest.testCreatePersonWithEqualName }}
 
 This will make ChurchTools to insert the record, even if there is a second John Doe.
 
@@ -31,24 +31,24 @@ Use the setters of the person model to modify its data and utilize the
 
 Follow this example:
 
-{{ \Tests\Unit\Docs\PersonRequestTest.testUpdatePerson }}
+{{ \CTApi\Test\Unit\Docs\PersonRequestTest.testUpdatePerson }}
 
 This will send all data of the person to the API and persists them.
 
 If you know that only a specific set of attributes is changed, you can limit the
 data sent to the API, by adding a whitelist of attributes.
 
-{{ \Tests\Unit\Docs\PersonRequestTest.testUpdatePersonSingleAttrbute }}
+{{ \CTApi\Test\Unit\Docs\PersonRequestTest.testUpdatePersonSingleAttrbute }}
 
 Now, only the e-mail will be sent to the API. This may be used to reduce
 unnecessary traffic if you are going to do some bulk updates.
 
 The following attributes can be updated:
 
-{{ \Tests\Unit\Docs\PersonRequestTest.testUpdatePersonModifiableAttributes }}
+{{ \CTApi\Test\Unit\Docs\PersonRequestTest.testUpdatePersonModifiableAttributes }}
 
 ## Delete person
 
 Delete person via PersonRequest:
 
-{{ \Tests\Unit\Docs\PersonRequestTest.testDeletePerson }}
+{{ \CTApi\Test\Unit\Docs\PersonRequestTest.testDeletePerson }}

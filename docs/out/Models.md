@@ -107,6 +107,7 @@ directly:
 ```php
         use CTApi\Models\Event;
         use CTApi\Models\EventAgenda;
+        use CTApi\Test\Unit\TestCaseHttpMocked;
 
         $event = Event::createModelFromData(['id' => 21]);
         $agenda = $event->requestAgenda();
@@ -125,6 +126,7 @@ the [Requests](Requests.md) methods and type:
 ```php
         use CTApi\Models\Event;
         use CTApi\Models\EventAgenda;
+        use CTApi\Test\Unit\TestCaseHttpMocked;
 
         $eventAgenda = EventAgenda::createModelFromData(['id' => 21]);
 

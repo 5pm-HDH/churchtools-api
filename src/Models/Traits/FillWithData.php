@@ -4,7 +4,7 @@ namespace CTApi\Models\Traits;
 
 use CTApi\CTLog;
 use CTApi\Utils\CTUtil;
-use Models\Traits\HasDBFields;
+use CTApi\Models\Traits\HasDBFields;
 
 trait FillWithData
 {

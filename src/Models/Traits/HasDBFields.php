@@ -1,10 +1,10 @@
 <?php
 
 
-namespace Models\Traits;
+namespace CTApi\Models\Traits;
 
 
-use Requests\DBFieldForKeysRequestBuilder;
+use CTApi\Requests\DBFieldForKeysRequestBuilder;
 
 trait HasDBFields
 {

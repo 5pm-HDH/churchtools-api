@@ -1,13 +1,13 @@
 <?php
 
 
-namespace Requests;
+namespace CTApi\Requests;
 
 
 use CTApi\CTClient;
 use CTApi\Exceptions\CTRequestException;
 use CTApi\Utils\CTResponseUtil;
-use Models\DBField;
+use CTApi\Models\DBField;
 
 class DBFieldRequest
 {

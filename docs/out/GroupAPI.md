@@ -5,6 +5,7 @@
 ```php
         use CTApi\Requests\GroupRequest;
         use CTApi\Requests\PersonRequest;
+        use CTApi\Test\Unit\TestCaseHttpMocked;
 
         /**
          * Group-Request
@@ -193,6 +194,7 @@
 
 ```php
         use CTApi\Requests\GroupMemberRequest;
+        use CTApi\Test\Unit\TestCaseHttpMocked;
 
         $groupId = 21;
         $personId = 221;
@@ -222,6 +224,7 @@
         use CTApi\Models\Group;
         use CTApi\Requests\GroupMeetingRequest;
         use CTApi\Requests\GroupRequest;
+        use CTApi\Test\Unit\TestCaseHttpMocked;
 
         $meetings = $this->group->requestGroupMeetings()
             ?->where("start_date", "2022-11-01")
@@ -275,6 +278,7 @@
         use CTApi\Models\Group;
         use CTApi\Requests\GroupMeetingRequest;
         use CTApi\Requests\GroupRequest;
+        use CTApi\Test\Unit\TestCaseHttpMocked;
 
         $meetings = GroupMeetingRequest::forGroup(21)->get();
         $meeting = $meetings[0];
@@ -297,7 +301,8 @@
 ## GroupMemberFields
 
 ```php
-        use Requests\GroupMemberFieldsRequest;
+        use CTApi\Requests\GroupMemberFieldsRequest;
+        use CTApi\Test\Unit\TestCaseHttpMocked;
 
         $fields = GroupMemberFieldsRequest::forGroup(9)->get();
 

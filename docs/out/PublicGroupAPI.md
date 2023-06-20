@@ -4,6 +4,7 @@ Load Data of Group Homepage with Hash-String. This route is public, so no authen
 
 ```php
         use CTApi\Requests\PublicGroupRequest;
+        use CTApi\Test\Unit\TestCaseHttpMocked;
 
         $groupHomepage = PublicGroupRequest::get("wryawBH318GLHasgm27awB0c241aj");
 
@@ -35,6 +36,7 @@ Further the PublicGroup-Model contains the following Methods:
 
 ```php
         use CTApi\Requests\PublicGroupRequest;
+        use CTApi\Test\Unit\TestCaseHttpMocked;
 
         $groupHomepage = PublicGroupRequest::get("wryawBH318GLHasgm27awB0c241aj");
         $group = $groupHomepage->getGroups()[0];

@@ -3,9 +3,11 @@
 ## Retrieve all DB-fields:
 
 ```php
+        use CTApi\CTConfig;
         use CTApi\Requests\GroupRequest;
         use CTApi\Requests\PersonRequest;
-        use Requests\DBFieldRequest;
+        use CTApi\Requests\DBFieldRequest;
+        use CTApi\Test\Unit\TestCaseHttpMocked;
 
         $dbFields = DBFieldRequest::all();
         $dbField5pmName = $dbFields[0];
@@ -82,9 +84,11 @@
 ## Retrieve single DB-field:
 
 ```php
+        use CTApi\CTConfig;
         use CTApi\Requests\GroupRequest;
         use CTApi\Requests\PersonRequest;
-        use Requests\DBFieldRequest;
+        use CTApi\Requests\DBFieldRequest;
+        use CTApi\Test\Unit\TestCaseHttpMocked;
 
         $dbField5pmName = DBFieldRequest::find(141);
         // or
@@ -105,10 +109,13 @@
 To access the custom DBFields, utilize the `getDBFieldData()` method. This will provide an array where the column name of the DBField serves as the key and holds the corresponding value. Alternatively, you can use the `requestDBFields()->get()` method to retrieve a list of DBFieldValueContainers. Each container includes the key, value, and additional details from the DBField model such as name, content-type, and other relevant information. Example for **GroupInformation**:
 
 ```php
+        use CTApi\CTConfig;
         use CTApi\Requests\GroupRequest;
         use CTApi\Requests\PersonRequest;
-        use Requests\DBFieldRequest;
+        use CTApi\Requests\DBFieldRequest;
+        use CTApi\Test\Unit\TestCaseHttpMocked;
 
+        CTConfig::enableDebugging();
         $group = GroupRequest::findOrFail(9);
         $groupInformation = $group->getInformation();
 
@@ -158,9 +165,11 @@ To access the custom DBFields, utilize the `getDBFieldData()` method. This will 
 DBFields are also existing for **Persons**:
 
 ```php
+        use CTApi\CTConfig;
         use CTApi\Requests\GroupRequest;
         use CTApi\Requests\PersonRequest;
-        use Requests\DBFieldRequest;
+        use CTApi\Requests\DBFieldRequest;
+        use CTApi\Test\Unit\TestCaseHttpMocked;
 
         $person = PersonRequest::findOrFail(12);
         $dbFieldContainerList = $person->requestDBFields()->get();

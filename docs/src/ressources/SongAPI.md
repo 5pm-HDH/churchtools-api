@@ -2,21 +2,21 @@
 
 ## Request Song
 
-{{ \Tests\Unit\Docs\SongRequestTest.testExampleCode }}
+{{ \CTApi\Test\Unit\Docs\SongRequestTest.testExampleCode }}
 
 ## Update Song
 
-{{ \Tests\Unit\Docs\SongRequestTest.testUpdateSong }}
+{{ \CTApi\Test\Unit\Docs\SongRequestTest.testUpdateSong }}
 
 ## Update Song-Arrangement
 
-{{ \Tests\Unit\Docs\SongRequestTest.testUpdateArrangement }}
+{{ \CTApi\Test\Unit\Docs\SongRequestTest.testUpdateArrangement }}
 
 ## Retrieve Data from CCLI
 
 **Retrieve Lyrics for CCLI-Number:**
 
-{{ \Tests\Unit\Docs\CcliRequestTest.testRetrieveLyrics }}
+{{ \CTApi\Test\Unit\Docs\CcliRequestTest.testRetrieveLyrics }}
 
 **Retrieve Chordsheet for CCLI-Number:**
 
@@ -30,18 +30,18 @@ The method returns a nullable [File-Model](/../../src/Models/File.php).
 
 - ⚠ If you insert a invalid ccli-number, churchtools creates an empty file. There is no error reported.
 
-{{ \Tests\Unit\Docs\CcliRequestTest.testRetrieveChordsheet }}
+{{ \CTApi\Test\Unit\Docs\CcliRequestTest.testRetrieveChordsheet }}
 
 ## Retrieve Song Statistics
 
 **Get All Statistics:**
 
-{{ \Tests\Unit\Docs\SongStatisticRequestTest.testGetAll }}
+{{ \CTApi\Test\Unit\Docs\SongStatisticRequestTest.testGetAll }}
 
 **Get Statistics for Song-Arrangement:**
 
-{{ \Tests\Unit\Docs\SongStatisticRequestTest.testGetViaSongArrangement }}
+{{ \CTApi\Test\Unit\Docs\SongStatisticRequestTest.testGetViaSongArrangement }}
 
 **Lazy-Builder:**
 
-{{ \Tests\Unit\Docs\SongStatisticRequestTest.testLazy }}
+{{ \CTApi\Test\Unit\Docs\SongStatisticRequestTest.testLazy }}
