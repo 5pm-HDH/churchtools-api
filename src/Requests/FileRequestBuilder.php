@@ -83,9 +83,8 @@ class FileRequestBuilder
         CTLog::getLog()->debug("Upload-File Http-Code: " . CTUtil::arrayPathGet($curlInfo, "http_code"));
         curl_close($ch);
 
-        try {
-            $data = json_decode($resultString, true);
-        } catch (\Exception $e) {
+        $data = json_decode($resultString, true);
+        if($data == null){
             CTLog::getLog()->warning("Could not convert upload response to JSON: " . $resultString);
             $data = [];
         }
@@ -99,7 +98,7 @@ class FileRequestBuilder
             }
         } else {
             $ctResponse = CTResponse::createEmpty();
-            $ctResponse->withBody(new CTMessageBody($data ?? []));
+            $ctResponse->withBody(new CTMessageBody($data));
             throw CTRequestException::ofErrorResponse($ctResponse);
         }
     }

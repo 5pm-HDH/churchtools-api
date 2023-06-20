@@ -27,7 +27,7 @@ class CTMessageBody implements StreamInterface
 
     public function detach()
     {
-        // TODO: Implement detach() method.
+        return null;
     }
 
     public function getSize(): ?int

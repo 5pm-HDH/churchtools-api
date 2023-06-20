@@ -86,7 +86,7 @@
          * Search WikiPages
          */
 
-        $searchResults = WikiSearchRequest::search('sermon');
+        $searchResults = WikiSearchRequest::search('sermon')->get();
 
         foreach ($searchResults as $searchResult) {
             $searchResult->getTitle();

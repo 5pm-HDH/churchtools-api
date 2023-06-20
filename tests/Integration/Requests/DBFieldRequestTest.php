@@ -91,8 +91,8 @@ class DBFieldRequestTest extends TestCaseAuthenticated
 
         $this->assertNotNull($firstContactDBField);
         $this->assertNotNull($firstContactDBField->getDBField());
-        $this->assertEqualsTestData("db_field_person_information", "db_field.id", $firstContactDBField->getDBField()?->getIdAsInteger());
-        $this->assertEqualsTestData("db_field_person_information", "db_field.name", $firstContactDBField->getDBField()?->getName());
+        $this->assertEqualsTestData("db_field_person_information", "db_field.id", $firstContactDBField->getDBField()->getIdAsInteger());
+        $this->assertEqualsTestData("db_field_person_information", "db_field.name", $firstContactDBField->getDBField()->getName());
         $this->assertEqualsTestData("db_field_person_information", "value", $firstContactDBField->getDBFieldValue());
     }
 
@@ -133,8 +133,8 @@ class DBFieldRequestTest extends TestCaseAuthenticated
 
         $this->assertNotNull($name5pmDBField);
         $this->assertNotNull($name5pmDBField->getDBField());
-        $this->assertEqualsTestData("db_field_group", "db_field.id", $name5pmDBField->getDBField()?->getIdAsInteger());
-        $this->assertEqualsTestData("db_field_group", "db_field.name", $name5pmDBField->getDBField()?->getName());
+        $this->assertEqualsTestData("db_field_group", "db_field.id", $name5pmDBField->getDBField()->getIdAsInteger());
+        $this->assertEqualsTestData("db_field_group", "db_field.name", $name5pmDBField->getDBField()->getName());
         $this->assertEqualsTestData("db_field_group", "value", $name5pmDBField->getDBFieldValue());
     }
 }

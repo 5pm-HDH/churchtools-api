@@ -1,0 +1,14 @@
+parameters:
+    level: 5
+    paths:
+        - src
+        - tests
+        - docs
+    ignoreErrors:
+        -
+            message: '#Method [a-zA-Z0-9\\_]+::where\(\) should return#'
+            path: src/Requests
+        -
+            message: '#Method [a-zA-Z0-9\\_]+::orderBy\(\) should return#'
+            path: src/Requests
+        - '#Parameter \#2 \$level of class Monolog\\Handler\\StreamHandler constructor expects#'

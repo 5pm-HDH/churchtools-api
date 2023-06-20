@@ -35,7 +35,7 @@ class SongRequest
 
     public static function update(Song $song)
     {
-        return (new SongUpdateRequestBuilder())->update($song);
+        (new SongUpdateRequestBuilder())->update($song);
     }
 
 }

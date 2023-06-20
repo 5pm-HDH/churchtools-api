@@ -17,13 +17,10 @@ class GroupMemberRequestTest extends TestCaseAuthenticated
 {
 
     private string $groupId = "";
-    private string $groupName = "";
 
     protected function setUp(): void
     {
         $this->groupId = IntegrationTestData::getFilter("get_group", "id");
-        $this->groupName = IntegrationTestData::getResult("get_group", "name");
-
     }
 
     public function testGetGroupMembers(): void

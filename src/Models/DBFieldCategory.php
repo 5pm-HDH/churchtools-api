@@ -18,9 +18,9 @@ class DBFieldCategory extends AbstractModel
     /**
      * Fluent setter have to be implemented by child-class. Returns instance of model.
      * @param string|null $id
-     * @return mixed
+     * @return DBFieldCategory
      */
-    public function setId(?string $id): DBFieldContainer
+    public function setId(?string $id): DBFieldCategory
     {
         $this->id = $id;
         return $this;

@@ -20,7 +20,7 @@
   },
   "require-dev": {
     "phpunit/phpunit": "9.5.4",
-    "vimeo/psalm": "^4.12"
+    "phpstan/phpstan": "^1.10"
   },
   "license": "MIT",
   "authors": [
@@ -35,8 +35,8 @@
     "test-unit-w": "vendor\\bin\\phpunit.bat --testsuite unit",
     "test-integration-w": "vendor\\bin\\phpunit.bat --testsuite integration",
     "test-coverage-w": "vendor\\bin\\phpunit.bat --coverage-html .phpunit.cache/coverage-report",
-    "psalm": "./vendor/bin/psalm",
-    "psalm-w": "vendor\\bin\\psalm.bat",
+    "phpstan": "./vendor/bin/phpstan analyse -c phpstan.neon --memory-limit 1G",
+    "phpstan-w": "vendor\\bin\\phpstan.bat analyse -c phpstan.neon --memory-limit 1G",
     "docs-generator": "php docs/src/DocGenerator.php"
   }
 }

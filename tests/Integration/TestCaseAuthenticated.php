@@ -7,7 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 class TestCaseAuthenticated extends TestCase
 {
-    private static ?string $apiToken = null;
     private static bool $configIsInitialized = false;
 
     public static function setUpBeforeClass(): void
