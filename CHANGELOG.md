@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 - Add Address-Property to Appointment ([PR137](https://github.com/5pm-HDH/churchtools-api/pull/137))
-- Add SongStatistic ([PR140](https://github.com/5pm-HDH/churchtools-api/pull/140))
+- Add SongStatistic ([PR140](https://github.com/5pm-HDH/churchtools-api/pull/140), [PR164](https://github.com/5pm-HDH/churchtools-api/pull/164))
 - Add multi-factor authentication support ([PR146](https://github.com/5pm-HDH/churchtools-api/pull/146))
 - Group-member-fields and DBFields-API ([PR147](https://github.com/5pm-HDH/churchtools-api/issues/147))
 - Pagination Page-Size Option ([PR163](https://github.com/5pm-HDH/churchtools-api/pull/163))
