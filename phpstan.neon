@@ -1,0 +1,13 @@
+parameters:
+    level: 3
+    paths:
+        - src
+        - tests
+    editorUrl: 'phpstorm://open?file=%%file%%&line=%%line%%'
+    ignoreErrors:
+        -
+            message: '#Method [a-zA-Z0-9\\_]+::where\(\) should return#'
+            path: src/Requests
+        -
+            message: '#Method [a-zA-Z0-9\\_]+::orderBy\(\) should return#'
+            path: src/Requests
