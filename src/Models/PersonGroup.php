@@ -6,6 +6,7 @@ namespace CTApi\Models;
 
 use CTApi\Models\Traits\FillWithData;
 use CTApi\Requests\GroupRequest;
+use CTApi\Utils\CTDateTimeService;
 
 class PersonGroup
 {
@@ -34,6 +35,11 @@ class PersonGroup
         } else {
             return null;
         }
+    }
+
+    public function getMemberStartDateAsDateTime(): ?\DateTimeImmutable
+    {
+        return CTDateTimeService::stringToDateTime($this->memberStartDate);
     }
 
     /**

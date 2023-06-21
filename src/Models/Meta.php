@@ -6,6 +6,7 @@ namespace CTApi\Models;
 
 use CTApi\Models\Traits\FillWithData;
 use CTApi\Requests\PersonRequest;
+use CTApi\Utils\CTDateTimeService;
 use CTApi\Utils\CTUtil;
 
 class Meta
@@ -91,6 +92,16 @@ class Meta
             return PersonRequest::find((int)$id);
         }
         return null;
+    }
+
+    public function getModifiedDateAsDateTime(): ?\DateTimeImmutable
+    {
+        return CTDateTimeService::stringToDateTime($this->modifiedDate);
+    }
+
+    public function getCreatedDateAsDateTime(): ?\DateTimeImmutable
+    {
+        return CTDateTimeService::stringToDateTime($this->createdDate);
     }
 
     /**

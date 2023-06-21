@@ -6,6 +6,7 @@ namespace CTApi\Models;
 
 use CTApi\Models\Traits\FillWithData;
 use CTApi\Requests\PersonRequest;
+use CTApi\Utils\CTDateTimeService;
 
 class Tag extends AbstractModel
 {
@@ -32,6 +33,11 @@ class Tag extends AbstractModel
     {
         $this->id = $id;
         return $this;
+    }
+
+    public function getModifiedAtAsDateTime(): ?\DateTimeImmutable
+    {
+        return CTDateTimeService::stringToDateTime($this->modifiedAt);
     }
 
     /**

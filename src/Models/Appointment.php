@@ -5,6 +5,7 @@ namespace CTApi\Models;
 
 
 use CTApi\Models\Traits\FillWithData;
+use CTApi\Utils\CTDateTimeService;
 
 class Appointment extends AbstractModel
 {
@@ -48,6 +49,16 @@ class Appointment extends AbstractModel
             default:
                 $this->fillDefault($key, $data);
         }
+    }
+
+    public function getStartDateAsDateTime(): ?\DateTimeImmutable
+    {
+        return CTDateTimeService::stringToDateTime($this->startDate);
+    }
+
+    public function getEndDateAsDateTime(): ?\DateTimeImmutable
+    {
+        return CTDateTimeService::stringToDateTime($this->endDate);
     }
 
     /**

@@ -47,6 +47,221 @@
 
 ```
 
+## Person Properties
+
+```php
+        use CTApi\Models\Person;
+        use CTApi\Requests\PersonRequest;
+        use CTApi\Test\Unit\TestCaseHttpMocked;
+
+        $person = PersonRequest::findOrFail(12);
+
+        var_dump( $person->getId());
+        // Output: 12
+
+        var_dump( $person->getGuid());
+        // Output: "BF4AC3A9-2C43-46A5-8AA4-D39D795C26B0"
+
+        var_dump( $person->getSecurityLevelForPerson());
+        // Output: 99999
+
+        var_dump( $person->getEditSecurityLevelForPerson());
+        // Output: 99999
+
+        var_dump( $person->getTitle());
+        // Output: ""
+
+        var_dump( $person->getFirstName());
+        // Output: "David"
+
+        var_dump( $person->getLastName());
+        // Output: "König"
+
+        var_dump( $person->getNickname());
+        // Output: "Dave"
+
+        var_dump( $person->getJob());
+        // Output: "Worship-Pastor"
+
+        var_dump( $person->getStreet());
+        // Output: null
+
+        var_dump( $person->getAddressAddition());
+        // Output: null
+
+        var_dump( $person->getZip());
+        // Output: null
+
+        var_dump( $person->getCity());
+        // Output: null
+
+        var_dump( $person->getCountry());
+        // Output: null
+
+        var_dump( $person->getLatitude());
+        // Output: null
+
+        var_dump( $person->getLongitude());
+        // Output: null
+
+        var_dump( $person->getLatitudeLoose());
+        // Output: null
+
+        var_dump( $person->getLongitudeLoose());
+        // Output: null
+
+        var_dump( $person->getPhonePrivate());
+        // Output: null
+
+        var_dump( $person->getPhoneWork());
+        // Output: null
+
+        var_dump( $person->getMobile());
+        // Output: null
+
+        var_dump( $person->getFax());
+        // Output: null
+
+        var_dump( $person->getBirthName());
+        // Output: "Doe"
+
+        var_dump( $person->getBirthday());
+        // Output: "1992-06-02"
+
+        var_dump( $person->getBirthdayAsDateTime()?->format("Y-m-d H:i:s"));
+        // Output: "1992-06-02 00:00:00"
+
+        var_dump( $person->getBirthplace());
+        // Output: "Bethlehem"
+
+        var_dump( $person->getImageUrl());
+        // Output: "https://5pm.church.tools/images/875/2bc0d52971857aebbec193783f8b92d7d16a7342ea9beb220386b2c5872865bc"
+
+        var_dump( $person->getFamilyImageUrl());
+        // Output: null
+
+        var_dump( $person->getSexId());
+        // Output: 1
+
+        var_dump( $person->getEmail());
+        // Output: "DAVID.5PM@gmail.com"
+
+
+        var_dump( $person->getEmails()[0]["email"]);
+        // Output: "DAVID.5PM@gmail.com"
+
+        var_dump( $person->getEmails()[0]["isDefault"]);
+        // Output: true
+
+        var_dump( $person->getEmails()[0]["contactLabelId"]);
+        // Output: 2
+
+
+        var_dump( $person->getCmsUserId());
+        // Output: "dkönig"
+
+        var_dump( $person->getOptigemId());
+        // Output: null
+
+        var_dump( $person->getPrivacyPolicyAgreement()["date"]);
+        // Output: "2023-05-03"
+
+        var_dump( $person->getPrivacyPolicyAgreement()["typeId"]);
+        // Output: 3
+
+        var_dump( $person->getPrivacyPolicyAgreement()["whoId"]);
+        // Output: 1
+
+        var_dump( $person->getPrivacyPolicyAgreementDate());
+        // Output: "2023-05-03"
+
+        var_dump( $person->getPrivacyPolicyAgreementTypeId());
+        // Output: 3
+
+        var_dump( $person->getPrivacyPolicyAgreementWhoId());
+        // Output: 1
+
+        var_dump( $person->getNationalityId());
+        // Output: 0
+
+        var_dump( $person->getFamilyStatusId());
+        // Output: 0
+
+        var_dump( $person->getWeddingDate());
+        // Output: "2023-04-02"
+
+        var_dump( $person->getWeddingDateAsDateTime()?->format("Y-m-d H:i:s"));
+        // Output: "2023-04-02 00:00:00"
+
+        var_dump( $person->getCampusId());
+        // Output: null
+
+        var_dump( $person->getStatusId());
+        // Output: null
+
+        var_dump( $person->getDepartmentIds());
+        // Output: [1]
+
+        var_dump( $person->getFirstContact());
+        // Output: "2023-05-03"
+
+        var_dump( $person->getFirstContactAsDateTime()?->format("Y-m-d H:i:s"));
+        // Output: "2023-05-03 00:00:00"
+
+        var_dump( $person->getDateOfBelonging());
+        // Output: null
+
+        var_dump( $person->getDateOfBelongingAsDateTime()?->format("Y-m-d H:i:s"));
+        // Output: null
+
+        var_dump( $person->getDateOfEntry());
+        // Output: null
+
+        var_dump( $person->getDateOfEntryAsDateTime()?->format("Y-m-d H:i:s"));
+        // Output: null
+
+        var_dump( $person->getDateOfResign());
+        // Output: null
+
+        var_dump( $person->getDateOfResignAsDateTime()?->format("Y-m-d H:i:s"));
+        // Output: null
+
+        var_dump( $person->getDateOfBaptism());
+        // Output: null
+
+        var_dump( $person->getDateOfBaptismAsDateTime()?->format("Y-m-d H:i:s"));
+        // Output: null
+
+        var_dump( $person->getPlaceOfBaptism());
+        // Output: null
+
+        var_dump( $person->getBaptisedBy());
+        // Output: null
+
+        var_dump( $person->getReferredBy());
+        // Output: null
+
+        var_dump( $person->getReferredTo());
+        // Output: null
+
+        var_dump( $person->getGrowPathId());
+        // Output: null
+
+        var_dump( $person->getCanChat());
+        // Output: null
+
+        var_dump( $person->getInvitationStatus());
+        // Output: "accepted"
+
+        var_dump( $person->getChatActive());
+        // Output: true
+
+        var_dump( $person->getIsArchived());
+        // Output: null
+
+
+```
+
 ## Request Tags from Person
 
 ```php
@@ -117,11 +332,26 @@
         // Output: "Snow"
 
 
+        var_dump( $lastBirthdayPerson->getDate());
+        // Output: "1997-03-01"
+
         var_dump( $lastBirthdayPerson->getAnniversaryInitialDate());
         // Output: "1997-03-01"
 
         var_dump( $lastBirthdayPerson->getAnniversary());
         // Output: "2022-03-01"
+
+
+        var_dump( $lastBirthdayPerson->getDateAsDateTime()?->format("Y-m-d H:i:s"));
+        // Output: "1997-03-01 00:00:00"
+
+        var_dump( $lastBirthdayPerson->getAnniversaryInitialDateAsDateTime()?->format("Y-m-d H:i:s"));
+        // Output: "1997-03-01 00:00:00"
+
+        var_dump( $lastBirthdayPerson->getAnniversaryAsDateTime()?->format("Y-m-d H:i:s"));
+        // Output: "2022-03-01 00:00:00"
+
+
 
         var_dump( $lastBirthdayPerson->getAge());
         // Output: "25"

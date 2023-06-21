@@ -7,6 +7,7 @@ namespace CTApi\Models;
 use CTApi\Models\Traits\FillWithData;
 use CTApi\Requests\PersonRequest;
 use CTApi\Requests\ServiceRequest;
+use CTApi\Utils\CTDateTimeService;
 
 class EventService extends AbstractModel
 {
@@ -90,6 +91,11 @@ class EventService extends AbstractModel
             return ServiceRequest::find((int)$this->getServiceId());
         }
         return null;
+    }
+
+    public function getRequestedDateAsDateTime(): ?\DateTimeImmutable
+    {
+        return CTDateTimeService::stringToDateTime($this->requestedDate);
     }
 
     /**

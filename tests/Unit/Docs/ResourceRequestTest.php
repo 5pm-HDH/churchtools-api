@@ -37,6 +37,10 @@ class ResourceRequestTest extends TestCaseHttpMocked
         $this->assertEquals("8", $firstBooking->getVersion());
         $this->assertEquals("Matthew", $firstBooking->requestPerson()?->getFirstName());
         $this->assertEquals("2021-02-24T06:00:00Z", $firstBooking->getStartDate());
+        $this->assertEquals("2022-06-01T11:00:00Z", $firstBooking->getEndDate());
+        $this->assertEquals("2021-02-24 06:00:00", $firstBooking->getStartDateAsDateTime()?->format("Y-m-d H:i:s"));
+        $this->assertEquals("2022-06-01 11:00:00", $firstBooking->getEndDateAsDateTime()?->format("Y-m-d H:i:s"));
+
         $this->assertEquals("2", $firstBooking->getStatusId());
 
         // Status-IDs (see: https://intern.church.tools/api)

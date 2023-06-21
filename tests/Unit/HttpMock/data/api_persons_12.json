@@ -28,10 +28,10 @@
     "imageUrl": "https:\/\/5pm.church.tools\/images\/875\/2bc0d52971857aebbec193783f8b92d7d16a7342ea9beb220386b2c5872865bc",
     "familyImageUrl": "",
     "sexId": 1,
-    "email": "lukas.dumberger+DAVID.5PM@gmail.com",
+    "email": "DAVID.5PM@gmail.com",
     "emails": [
       {
-        "email": "lukas.dumberger+DAVID.5PM@gmail.com",
+        "email": "DAVID.5PM@gmail.com",
         "isDefault": true,
         "contactLabelId": 2
       }
@@ -48,7 +48,7 @@
     "privacyPolicyAgreementWhoId": 1,
     "nationalityId": 0,
     "familyStatusId": 0,
-    "weddingDate": null,
+    "weddingDate": "2023-04-02",
     "campusId": 0,
     "statusId": 0,
     "departmentIds": [

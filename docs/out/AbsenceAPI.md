@@ -28,6 +28,9 @@
         var_dump( $vaccationAbsence->getStartDate());
         // Output: "2022-02-23"
 
+        var_dump( $vaccationAbsence->getStartDateAsDateTime()?->format("Y-m-d H:i:s"));
+        // Output: "2022-02-23 00:00:00"
+
         var_dump( $vaccationAbsence->getStartTime());
         // Output: null
 

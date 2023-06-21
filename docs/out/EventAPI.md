@@ -42,6 +42,12 @@
         var_dump( $christmasService->getEndDate());
         // Output: "2021-09-02 22:00:00"
 
+        var_dump( $christmasService->getStartDateAsDateTime()?->format("Y-m-d H:i:s"));
+        // Output: "2021-09-02 20:15:00"
+
+        var_dump( $christmasService->getEndDateAsDateTime()?->format("Y-m-d H:i:s"));
+        // Output: "2021-09-02 22:00:00"
+
         var_dump( $christmasService->getChatStatus());
         // Output: false
 
@@ -145,6 +151,9 @@
         // Output: true
 
         var_dump( $eventService?->getRequestedDate());
+        // Output: "2001-01-02 02:02:12"
+
+        var_dump( $eventService?->getRequestedDateAsDateTime()?->format("Y-m-d H:i:s"));
         // Output: "2001-01-02 02:02:12"
 
         var_dump( $eventService?->getRequesterPersonId());

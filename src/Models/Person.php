@@ -14,6 +14,7 @@ use CTApi\Requests\FileRequestBuilder;
 use CTApi\Requests\PersonEventRequestBuilder;
 use CTApi\Requests\PersonGroupRequestBuilder;
 use CTApi\Requests\PersonTagRequestBuilder;
+use CTApi\Utils\CTDateTimeService;
 use CTApi\Models\Traits\HasDBFields;
 
 class Person extends AbstractModel implements UpdatableModel
@@ -193,6 +194,41 @@ class Person extends AbstractModel implements UpdatableModel
             return new AbsencePersonRequestBuilder($this->getIdAsInteger());
         }
         return null;
+    }
+
+    public function getBirthdayAsDateTime(): ?\DateTimeImmutable
+    {
+        return CTDateTimeService::stringToDateTime($this->birthday);
+    }
+
+    public function getFirstContactAsDateTime(): ?\DateTimeImmutable
+    {
+        return CTDateTimeService::stringToDateTime($this->firstContact);
+    }
+
+    public function getDateOfBelongingAsDateTime(): ?\DateTimeImmutable
+    {
+        return CTDateTimeService::stringToDateTime($this->dateOfBelonging);
+    }
+
+    public function getDateOfEntryAsDateTime(): ?\DateTimeImmutable
+    {
+        return CTDateTimeService::stringToDateTime($this->dateOfEntry);
+    }
+
+    public function getDateOfResignAsDateTime(): ?\DateTimeImmutable
+    {
+        return CTDateTimeService::stringToDateTime($this->dateOfResign);
+    }
+
+    public function getDateOfBaptismAsDateTime(): ?\DateTimeImmutable
+    {
+        return CTDateTimeService::stringToDateTime($this->dateOfBaptism);
+    }
+
+    public function getWeddingDateAsDateTime(): ?\DateTimeImmutable
+    {
+        return CTDateTimeService::stringToDateTime($this->weddingDate);
     }
 
     /**

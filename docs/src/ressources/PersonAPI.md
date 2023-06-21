@@ -2,6 +2,10 @@
 
 {{ \CTApi\Test\Unit\Docs\PersonRequestTest.testExampleCode }}
 
+## Person Properties
+
+{{ \CTApi\Test\Unit\Docs\PersonRequestTest.testPersonProperties }}
+
 ## Request Tags from Person
 
 {{ \CTApi\Test\Unit\Docs\PersonRequestTest.testRequestTags }}

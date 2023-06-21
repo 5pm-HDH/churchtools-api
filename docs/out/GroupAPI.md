@@ -40,9 +40,6 @@
         var_dump( $group->getPermissions());
         // Output: []
 
-        var_dump( $group->getInformation());
-        // Output: null
-
         var_dump( $group->getFollowUp());
         // Output: []
 
@@ -53,6 +50,62 @@
         // GroupHierarchie
         $childGroups = $group->requestGroupChildren()?->get();
         $parentGroups = $group->requestGroupParents()?->get();
+
+        // GroupInformation
+        $groupInformation = $group->getInformation();
+        var_dump( $groupInformation?->getImageUrl());
+        // Output: null
+
+        var_dump( $groupInformation?->getGroupHomepageUrl());
+        // Output: null
+
+        var_dump( $groupInformation?->getGroupStatusId());
+        // Output: 1
+
+        var_dump( $groupInformation?->getGroupTypeId());
+        // Output: 2
+
+        var_dump( $groupInformation?->getDateOfFoundation());
+        // Output: "1903-02-12"
+
+        var_dump( $groupInformation?->getDateOfFoundationAsDateTime()?->format("Y-m-d H:i:s"));
+        // Output: "1903-02-12 00:00:00"
+
+        var_dump( $groupInformation?->getEndDate());
+        // Output: null
+
+        var_dump( $groupInformation?->getEndDateAsDateTime()?->format("Y-m-d H:i:s"));
+        // Output: null
+
+        var_dump( $groupInformation?->getMeetingTime());
+        // Output: "17:00"
+
+        var_dump( $groupInformation?->getGroupCategoryId());
+        // Output: 3
+
+
+        $ageGroupIdList = implode("/", $groupInformation?->getAgeGroupIds());
+        var_dump( $ageGroupIdList);
+        // Output: "1/8"
+
+        var_dump( $groupInformation?->getTargetGroupId());
+        // Output: 2
+
+        var_dump( $groupInformation?->getMaxMembers());
+        // Output: 200
+
+        var_dump( $groupInformation?->getNote());
+        // Output: "Hello World Note"
+
+        var_dump( $groupInformation?->getCampusId());
+        // Output: null
+
+        var_dump( $groupInformation?->getChatStatus());
+        // Output: "NOT_STARTED"
+
+        var_dump( $groupInformation?->getSignUpOverrideRoleId());
+        // Output: null
+
 
         // GroupSettings;
         var_dump( $group->getSettings()?->getIsHidden());
@@ -149,28 +202,48 @@
         // GroupMembers
         $groupMember = $group->requestMembers()?->get()[0];
 
-        var_dump( $groupMember?->getId());
-        // Output: "21"
-
         var_dump( $groupMember?->getPersonId());
-        // Output: null
+        // Output: 12
 
         var_dump( $groupMember?->getGroupTypeRoleId());
-        // Output: null
+        // Output: 16
+
+        var_dump( $groupMember?->getGroupMemberStatus());
+        // Output: "active"
 
         var_dump( $groupMember?->getMemberStartDate());
-        // Output: null
-
-        var_dump( $groupMember?->getComment());
-        // Output: null
+        // Output: "2023-05-04"
 
         var_dump( $groupMember?->getMemberEndDate());
+        // Output: "2023-06-01"
+
+        var_dump( $groupMember?->getMemberStartDateAsDateTime()?->format("Y-m-d H:i:s"));
+        // Output: "2023-05-04 00:00:00"
+
+        var_dump( $groupMember?->getMemberEndDateAsDateTime()?->format("Y-m-d H:i:s"));
+        // Output: "2023-06-01 00:00:00"
+
+
+        var_dump( $groupMember?->getFollowUpStep());
+        // Output: null
+
+        var_dump( $groupMember?->getFollowUpDiffDays());
+        // Output: null
+
+        var_dump( $groupMember?->getFollowUpUnsuccessfulBackGroupId());
+        // Output: null
+
+
+        var_dump( $groupMember?->getComment());
         // Output: null
 
         var_dump( $groupMember?->getWaitinglistPosition());
         // Output: null
 
         var_dump( $groupMember?->getFields());
+        // Output: []
+
+        var_dump( $groupMember?->getPersonFields());
         // Output: []
 
 
@@ -244,6 +317,13 @@
 
         var_dump( $meeting->getDateTo());
         // Output: "2022-11-09T18:30:00Z"
+
+        var_dump( $meeting->getDateFromAsDateTime()?->format("Y-m-d H:i:s"));
+        // Output: "2022-11-09 18:30:00"
+
+        var_dump( $meeting->getDateToAsDateTime()?->format("Y-m-d H:i:s"));
+        // Output: "2022-11-09 18:30:00"
+
 
         var_dump( $meeting->getIsCompleted());
         // Output: true

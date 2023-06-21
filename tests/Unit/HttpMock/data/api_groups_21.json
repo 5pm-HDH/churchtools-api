@@ -24,6 +24,29 @@
                 "comment": "Hello World"
             }
         ],
+        "information": {
+            "imageUrl": "",
+            "groupHomepageUrl": null,
+            "groupStatusId": 1,
+            "groupTypeId": 2,
+            "dateOfFoundation": "1903-02-12",
+            "endDate": null,
+            "meetingTime": "17:00",
+            "weekday": 0,
+            "groupCategoryId": 3,
+            "ageGroupIds": [
+                1,
+                8
+            ],
+            "targetGroupId": 2,
+            "maxMembers": 200,
+            "note": "Hello World Note",
+            "campusId": null,
+            "chatStatus": "NOT_STARTED",
+            "color": "",
+            "signUpOverrideRoleId": null,
+            "5pm_name": "Worship-Team"
+        },
         "settings": {
             "isHidden": false,
             "isOpenForMembers": true,

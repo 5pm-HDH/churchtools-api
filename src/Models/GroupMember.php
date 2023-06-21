@@ -8,6 +8,7 @@ use CTApi\Models\Interfaces\UpdatableModel;
 use CTApi\Models\Traits\ExtractData;
 use CTApi\Models\Traits\FillWithData;
 use CTApi\Requests\PersonRequest;
+use CTApi\Utils\CTDateTimeService;
 
 class GroupMember extends AbstractModel implements UpdatableModel
 {
@@ -16,6 +17,10 @@ class GroupMember extends AbstractModel implements UpdatableModel
     protected ?string $personId = null;
     protected ?Person $person = null;
     protected ?string $groupTypeRoleId = null;
+    protected ?string $groupMemberStatus = null;
+    protected ?string $followUpStep = null;
+    protected ?string $followUpDiffDays = null;
+    protected ?string $followUpUnsuccessfulBackGroupId = null;
     protected ?string $comment = null;
     protected ?string $memberStartDate = null;
     protected ?string $memberEndDate = null;
@@ -54,6 +59,16 @@ class GroupMember extends AbstractModel implements UpdatableModel
         } else {
             return null;
         }
+    }
+
+    public function getMemberStartDateAsDateTime(): ?\DateTimeImmutable
+    {
+        return CTDateTimeService::stringToDateTime($this->memberStartDate);
+    }
+
+    public function getMemberEndDateAsDateTime(): ?\DateTimeImmutable
+    {
+        return CTDateTimeService::stringToDateTime($this->memberEndDate);
     }
 
     /**
@@ -225,6 +240,78 @@ class GroupMember extends AbstractModel implements UpdatableModel
     public function setPersonFields(array $personFields): GroupMember
     {
         $this->personFields = $personFields;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getGroupMemberStatus(): ?string
+    {
+        return $this->groupMemberStatus;
+    }
+
+    /**
+     * @param string|null $groupMemberStatus
+     * @return GroupMember
+     */
+    public function setGroupMemberStatus(?string $groupMemberStatus): GroupMember
+    {
+        $this->groupMemberStatus = $groupMemberStatus;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getFollowUpStep(): ?string
+    {
+        return $this->followUpStep;
+    }
+
+    /**
+     * @param string|null $followUpStep
+     * @return GroupMember
+     */
+    public function setFollowUpStep(?string $followUpStep): GroupMember
+    {
+        $this->followUpStep = $followUpStep;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getFollowUpDiffDays(): ?string
+    {
+        return $this->followUpDiffDays;
+    }
+
+    /**
+     * @param string|null $followUpDiffDays
+     * @return GroupMember
+     */
+    public function setFollowUpDiffDays(?string $followUpDiffDays): GroupMember
+    {
+        $this->followUpDiffDays = $followUpDiffDays;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getFollowUpUnsuccessfulBackGroupId(): ?string
+    {
+        return $this->followUpUnsuccessfulBackGroupId;
+    }
+
+    /**
+     * @param string|null $followUpUnsuccessfulBackGroupId
+     * @return GroupMember
+     */
+    public function setFollowUpUnsuccessfulBackGroupId(?string $followUpUnsuccessfulBackGroupId): GroupMember
+    {
+        $this->followUpUnsuccessfulBackGroupId = $followUpUnsuccessfulBackGroupId;
         return $this;
     }
 }

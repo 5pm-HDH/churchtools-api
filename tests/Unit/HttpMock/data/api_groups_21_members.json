@@ -1,8 +1,32 @@
 {
   "data": [
     {
-      "id": 21,
-      "name": "Smith"
+      "personId": 12,
+      "person": {
+        "title": "David K\u00f6nig",
+        "domainType": "person",
+        "domainIdentifier": "12",
+        "apiUrl": "https:\/\/5pm.church.tools\/api\/persons\/12",
+        "frontendUrl": "https:\/\/5pm.church.tools\/?q=churchdb#PersonView\/searchEntry:%2312\/",
+        "imageUrl": "https:\/\/5pm.church.tools\/images\/1684\/e02e7ae16bd7f40278698ceee5542accae4ac310ee24433b49cb1d45ff7f7b06",
+        "icon": "user",
+        "domainAttributes": {
+          "firstName": "David",
+          "lastName": "K\u00f6nig",
+          "guid": "BF4AC3A9-2C43-46A5-8AA4-D39D795C26B0"
+        }
+      },
+      "groupTypeRoleId": 16,
+      "groupMemberStatus": "active",
+      "memberStartDate": "2023-05-04",
+      "followUpStep": null,
+      "followUpDiffDays": null,
+      "followUpUnsuccessfulBackGroupId": null,
+      "comment": null,
+      "memberEndDate": "2023-06-01",
+      "waitinglistPosition": null,
+      "fields": [],
+      "personFields": []
     }
   ]
 }

@@ -4,6 +4,7 @@
 namespace CTApi\Test\Integration\Requests;
 
 
+use CTApi\CTLog;
 use CTApi\Models\Group;
 use CTApi\Models\GroupMember;
 use CTApi\Models\Person;
