@@ -37,6 +37,9 @@
         var_dump( $vaccationAbsence->getEndDate());
         // Output: "2022-02-25"
 
+        var_dump( $vaccationAbsence->getEndDateAsDateTime()?->format("Y-m-d H:i:s"));
+        // Output: "2022-02-25 00:00:00"
+
         var_dump( $vaccationAbsence->getEndTime());
         // Output: null
 
