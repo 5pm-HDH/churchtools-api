@@ -4,6 +4,10 @@
 
 {{ \CTApi\Test\Unit\Docs\SongRequestTest.testExampleCode }}
 
+## Retrieve tags for song
+
+{{ \CTApi\Test\Unit\Docs\TagsRequestTest.testRetrieveTagForSong }}
+
 ## Update Song
 
 {{ \CTApi\Test\Unit\Docs\SongRequestTest.testUpdateSong }}

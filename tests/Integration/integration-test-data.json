@@ -74,7 +74,11 @@
         "id": 9
       },
       "result": {
-        "name": "Lobpreisteam"
+        "name": "Lobpreisteam",
+        "any_tag": {
+          "id": 2,
+          "name": "Lobpreisleiter"
+        }
       }
     },
     "get_group_hierarchie": {
@@ -234,6 +238,22 @@
         "any_date": {
           "date": "2023-05-07 11:00:00",
           "calendar_id": 2
+        }
+      }
+    },
+    "get_song_tags": {
+      "description": "Request song tags.",
+      "filter": {
+        "song_id": 6
+      },
+      "result": {
+        "any_tag": {
+          "id": 5,
+          "name": "5pm Songpool"
+        },
+        "another_tag": {
+          "id": 8,
+          "name": "Deprecated"
         }
       }
     },
@@ -439,6 +459,21 @@
           "name": "Erstkontakt (5pm)"
         },
         "value": "1629-06-01"
+      }
+    },
+    "get_tags": {
+      "description": "Retrieve Tags",
+      "filter": {
+        "song_tag_id": 5,
+        "person_tag_id": 2
+      },
+      "result": {
+        "song_tag": {
+          "name": "5pm Songpool"
+        },
+        "person_tag": {
+          "name": "Lobpreisleiter"
+        }
       }
     }
   }

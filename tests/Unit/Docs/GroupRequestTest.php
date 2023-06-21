@@ -2,6 +2,7 @@
 
 namespace CTApi\Test\Unit\Docs;
 
+use CTApi\CTConfig;
 use CTApi\Requests\GroupRequest;
 use CTApi\Requests\PersonRequest;
 use Tests\Unit\TestCaseDocExampleCode;
@@ -120,6 +121,13 @@ class GroupRequestTest extends TestCaseHttpMocked
 
         $personGroupMember = $groupMember?->getPerson();
         $personGroupMember = $groupMember?->requestPerson();
+
+        // Retrieve Group-Tags
+        $tags = $group->requestTags()?->get();
+
+        $tag = end($tags);
+        $this->assertEquals("Leader", $tag->getName());
+        $this->assertEquals(8, $tag->getId());
 
         /**
          * Upadate Group-Image: See FileAPI

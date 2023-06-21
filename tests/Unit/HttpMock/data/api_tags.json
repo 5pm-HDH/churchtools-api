@@ -1,0 +1,27 @@
+{
+    "data": [
+        {
+            "id": 2,
+            "name": "Choral",
+            "count": 1
+        },
+        {
+            "id": 5,
+            "name": "5pm Songpool",
+            "count": 3
+        },
+        {
+            "id": 8,
+            "name": "Deprecated",
+            "count": 1
+        },
+        {
+            "id": 11,
+            "name": "Youth Songpool",
+            "count": 1
+        }
+    ],
+    "meta": {
+        "count": 4
+    }
+}

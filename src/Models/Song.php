@@ -10,6 +10,7 @@ use CTApi\Models\Traits\FillWithData;
 use CTApi\Models\Traits\MetaAttribute;
 use CTApi\Requests\SongRequest;
 use CTApi\Requests\SongStatisticRequest;
+use CTApi\Requests\SongTagRequestBuilder;
 
 class Song extends AbstractModel implements UpdatableModel
 {
@@ -100,6 +101,14 @@ class Song extends AbstractModel implements UpdatableModel
         }
 
         return $selectedArrangement;
+    }
+
+    public function requestTags(): ?SongTagRequestBuilder
+    {
+        if($this->id != null){
+            return new SongTagRequestBuilder($this->getIdAsInteger());
+        }
+        return null;
     }
 
     /**

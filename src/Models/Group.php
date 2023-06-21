@@ -12,6 +12,7 @@ use CTApi\Requests\GroupHierarchieChildrenRequest;
 use CTApi\Requests\GroupHierarchieParentsRequest;
 use CTApi\Requests\GroupMeetingRequestBuilder;
 use CTApi\Requests\GroupMemberRequestBuilder;
+use CTApi\Requests\GroupTagRequestBuilder;
 
 class Group extends AbstractModel
 {
@@ -110,6 +111,14 @@ class Group extends AbstractModel
     {
         if (!is_null($this->getId())) {
             return new GroupMeetingRequestBuilder($this->getIdAsInteger());
+        }
+        return null;
+    }
+
+    public function requestTags(): ?GroupTagRequestBuilder
+    {
+        if (!is_null($this->getId())) {
+            return new GroupTagRequestBuilder($this->getIdAsInteger());
         }
         return null;
     }

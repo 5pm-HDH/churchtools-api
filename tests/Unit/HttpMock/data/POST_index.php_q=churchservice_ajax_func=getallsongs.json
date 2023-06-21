@@ -1,0 +1,193 @@
+{
+  "status": "success",
+  "data": {
+    "songs": {
+      "1": {
+        "id": "1",
+        "bezeichnung": "Halleluja",
+        "songcategory_id": "0",
+        "practice_yn": "0",
+        "author": "",
+        "ccli": "",
+        "copyright": "",
+        "note": "",
+        "created_date": "2023-05-03 13:59:11",
+        "created_pid": "1",
+        "modified_date": "2023-06-21 09:28:48",
+        "modified_pid": "12",
+        "arrangement": {
+          "1": {
+            "id": "1",
+            "bezeichnung": "In C",
+            "default_yn": "1",
+            "tonality": "C",
+            "bpm": "120",
+            "beat": "",
+            "length_min": "5",
+            "length_sec": "0",
+            "note": "",
+            "created_date": "0000-00-00 00:00:00",
+            "created_pid": "1",
+            "modified_date": "2023-05-03 14:30:57",
+            "modified_pid": "1",
+            "files": {
+              "322": {
+                "id": "322",
+                "domain_type": "song_arrangement",
+                "domain_id": "1",
+                "domain_id_int": "1",
+                "bezeichnung": "5pm-tech-logo.PNG",
+                "filename": "03dd741077d03eff1a24eeece501c0c386febd81db63be4b8b599237e1deb00f",
+                "showonlywheneditable_yn": "0",
+                "securitylevel_id": "0",
+                "image_options": "",
+                "sortkey": "0",
+                "modified_date": "2023-05-05 14:22:15",
+                "modified_pid": "1",
+                "deletion_date": null,
+                "modified_username": "Lukas Dumberger"
+              }
+            }
+          },
+          "7": {
+            "id": "7",
+            "bezeichnung": "Update by API",
+            "default_yn": "0",
+            "tonality": "A",
+            "bpm": "21",
+            "beat": "",
+            "length_min": "0",
+            "length_sec": "0",
+            "note": "",
+            "created_date": "2023-05-05 10:23:57",
+            "created_pid": "1",
+            "modified_date": "2023-06-19 17:19:02",
+            "modified_pid": "12"
+          },
+          "13": {
+            "id": "13",
+            "bezeichnung": "In D",
+            "default_yn": "0",
+            "tonality": "D",
+            "bpm": "",
+            "beat": "",
+            "length_min": "0",
+            "length_sec": "0",
+            "note": "",
+            "created_date": "2023-06-20 07:51:44",
+            "created_pid": "1",
+            "modified_date": "2023-06-21 09:28:46",
+            "modified_pid": "12"
+          }
+        },
+        "tags": [
+          "2"
+        ]
+      },
+      "3": {
+        "id": "3",
+        "bezeichnung": "King of my heart",
+        "songcategory_id": "0",
+        "practice_yn": "0",
+        "author": "",
+        "ccli": "",
+        "copyright": "",
+        "note": "",
+        "created_date": "2023-05-03 14:35:02",
+        "created_pid": "1",
+        "modified_date": "2023-05-03 14:35:02",
+        "modified_pid": "1",
+        "arrangement": {
+          "3": {
+            "id": "3",
+            "bezeichnung": "In C",
+            "default_yn": "1",
+            "tonality": "C",
+            "bpm": "",
+            "beat": "",
+            "length_min": "0",
+            "length_sec": "0",
+            "note": "",
+            "created_date": "2023-05-03 14:35:02",
+            "created_pid": "1",
+            "modified_date": "2023-05-03 14:35:07",
+            "modified_pid": "1"
+          }
+        },
+        "tags": [
+          "5"
+        ]
+      },
+      "6": {
+        "id": "6",
+        "bezeichnung": "One way",
+        "songcategory_id": "1",
+        "practice_yn": "0",
+        "author": "",
+        "ccli": "",
+        "copyright": "",
+        "note": "",
+        "created_date": "2023-05-03 14:35:46",
+        "created_pid": "1",
+        "modified_date": "2023-05-03 14:35:46",
+        "modified_pid": "1",
+        "arrangement": {
+          "6": {
+            "id": "6",
+            "bezeichnung": "Standard-Arrangement",
+            "default_yn": "1",
+            "tonality": "",
+            "bpm": "",
+            "beat": "",
+            "length_min": "0",
+            "length_sec": "0",
+            "note": null,
+            "created_date": "2023-05-03 14:35:46",
+            "created_pid": "1",
+            "modified_date": "2023-05-03 14:35:46",
+            "modified_pid": "1"
+          }
+        },
+        "tags": [
+          "5",
+          "8"
+        ]
+      },
+      "21": {
+        "id": "21",
+        "bezeichnung": "Tremble",
+        "songcategory_id": "0",
+        "practice_yn": "0",
+        "author": "",
+        "ccli": "",
+        "copyright": "",
+        "note": "",
+        "created_date": "2023-05-05 12:26:15",
+        "created_pid": "12",
+        "modified_date": "2023-05-05 12:26:15",
+        "modified_pid": "12",
+        "arrangement": {
+          "10": {
+            "id": "10",
+            "bezeichnung": "In C",
+            "default_yn": "1",
+            "tonality": "C",
+            "bpm": "",
+            "beat": "",
+            "length_min": "0",
+            "length_sec": "0",
+            "note": "",
+            "created_date": "2023-05-05 12:26:15",
+            "created_pid": "12",
+            "modified_date": "2023-05-05 12:26:53",
+            "modified_pid": "12"
+          }
+        },
+        "tags": [
+          "5",
+          "11"
+        ]
+      }
+    }
+  }
+}

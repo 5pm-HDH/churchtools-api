@@ -77,6 +77,7 @@ All APIs with examples:
 * [File-API](/docs/out/FileAPI.md)
 * [Search-API](/docs/out/SearchAPI.md)
 * [DB-Fields](/docs/out/DBFields.md)
+* [Tags-API](/docs/out/TagsAPI.md)
 
 The following brief examples demonstrate the capabilities of the ChurchTools-API client and provide a general overview
 of its potential uses:
