@@ -36,6 +36,8 @@ class EventRequestTest extends TestCaseHttpMocked
         $this->assertEquals("Service Description", $christmasService->getDescription());
         $this->assertEquals("2021-09-02 20:15:00", $christmasService->getStartDate());
         $this->assertEquals("2021-09-02 22:00:00", $christmasService->getEndDate());
+        $this->assertEquals("2021-09-02 20:15:00", $christmasService->getStartDateAsDateTime()?->format("Y-m-d H:i:s"));
+        $this->assertEquals("2021-09-02 22:00:00", $christmasService->getEndDateAsDateTime()?->format("Y-m-d H:i:s"));
         $this->assertEquals(false, $christmasService->getChatStatus());
         $this->assertEquals(null, $christmasService->getPermissions());
         $this->assertEquals(null, $christmasService->getCalendar());
@@ -99,6 +101,7 @@ class EventRequestTest extends TestCaseHttpMocked
         $this->assertEquals(true, $eventService?->getAgreed());
         $this->assertEquals(true, $eventService?->getIsValid());
         $this->assertEquals("2001-01-02 02:02:12", $eventService?->getRequestedDate());
+        $this->assertEquals("2001-01-02 02:02:12", $eventService?->getRequestedDateAsDateTime()?->format("Y-m-d H:i:s"));
         $this->assertEquals("21", $eventService?->getRequesterPersonId());
         $this->assertEquals("Smith", $eventService?->getRequesterPerson()?->getLastName());
         $this->assertEquals("No comment!", $eventService?->getComment());

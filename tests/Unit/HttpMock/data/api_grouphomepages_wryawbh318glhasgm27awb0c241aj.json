@@ -26,7 +26,8 @@
               "name": "Freizeitheim Rosenberg",
               "city": "Heilbronn",
               "geoLat": "92.2912",
-              "geoLng": "2.291"
+              "geoLng": "2.291",
+              "createdDate": "2020-02-02"
             }
           ]
         }

@@ -34,6 +34,9 @@ class GroupMeetingRequestTest extends TestCaseHttpMocked
         $this->assertEquals(21, $meeting->getGroupId());
         $this->assertEquals("2022-11-09T18:30:00Z", $meeting->getDateFrom());
         $this->assertEquals("2022-11-09T18:30:00Z", $meeting->getDateTo());
+        $this->assertEquals("2022-11-09 18:30:00", $meeting->getDateFromAsDateTime()?->format("Y-m-d H:i:s"));
+        $this->assertEquals("2022-11-09 18:30:00", $meeting->getDateToAsDateTime()?->format("Y-m-d H:i:s"));
+
         $this->assertEquals(true, $meeting->getIsCompleted());
         $this->assertEquals(false, $meeting->getIsCanceled());
         $this->assertEquals(true, $meeting->getHasEditingStarted());

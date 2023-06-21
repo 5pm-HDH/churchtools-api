@@ -5,6 +5,7 @@ namespace CTApi\Models;
 
 
 use CTApi\Models\Traits\FillWithData;
+use CTApi\Utils\CTDateTimeService;
 
 class BirthdayPerson
 {
@@ -24,6 +25,21 @@ class BirthdayPerson
             return;
         }
         $this->fillDefault($key, $data);
+    }
+
+    public function getDateAsDateTime(): ?\DateTimeImmutable
+    {
+        return CTDateTimeService::stringToDateTime($this->date);
+    }
+
+    public function getAnniversaryInitialDateAsDateTime(): ?\DateTimeImmutable
+    {
+        return CTDateTimeService::stringToDateTime($this->anniversaryInitialDate);
+    }
+
+    public function getAnniversaryAsDateTime(): ?\DateTimeImmutable
+    {
+        return CTDateTimeService::stringToDateTime($this->anniversary);
     }
 
     /**

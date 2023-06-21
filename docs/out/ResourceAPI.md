@@ -54,6 +54,16 @@ Load bookings for specific resource:
         var_dump( $firstBooking->getStartDate());
         // Output: "2021-02-24T06:00:00Z"
 
+        var_dump( $firstBooking->getEndDate());
+        // Output: "2022-06-01T11:00:00Z"
+
+        var_dump( $firstBooking->getStartDateAsDateTime()?->format("Y-m-d H:i:s"));
+        // Output: "2021-02-24 06:00:00"
+
+        var_dump( $firstBooking->getEndDateAsDateTime()?->format("Y-m-d H:i:s"));
+        // Output: "2022-06-01 11:00:00"
+
+
         var_dump( $firstBooking->getStatusId());
         // Output: "2"
 

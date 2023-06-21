@@ -86,6 +86,12 @@ Further the PublicGroup-Model contains the following Methods:
         var_dump( "GeoLng: " . $group->getInformation()?->getGroupPlaces()[0]?->getGeoLng());
         // Output: "GeoLng: 2.291"
 
+        var_dump( $group->getInformation()?->getGroupPlaces()[0]?->getCreatedDate());
+        // Output: "2020-02-02"
+
+        var_dump( $group->getInformation()?->getGroupPlaces()[0]?->getCreatedDateAsDateTime()?->format("Y-m-d H:i:s"));
+        // Output: "2020-02-02 00:00:00"
+
 
 ```
 

@@ -7,6 +7,7 @@ namespace CTApi\Models;
 use CTApi\Models\Traits\FillWithData;
 use CTApi\Models\Traits\MetaAttribute;
 use CTApi\Requests\GroupMeetingMemberRequestBuilder;
+use CTApi\Utils\CTDateTimeService;
 
 class GroupMeeting extends AbstractModel
 {
@@ -43,6 +44,16 @@ class GroupMeeting extends AbstractModel
             return new GroupMeetingMemberRequestBuilder($this->groupId, $this->getIdAsInteger());
         }
         return null;
+    }
+
+    public function getDateFromAsDateTime(): ?\DateTimeImmutable
+    {
+        return CTDateTimeService::stringToDateTime($this->dateFrom);
+    }
+
+    public function getDateToAsDateTime(): ?\DateTimeImmutable
+    {
+        return CTDateTimeService::stringToDateTime($this->dateTo);
     }
 
     /**

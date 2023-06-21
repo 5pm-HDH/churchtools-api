@@ -53,5 +53,7 @@ class PublicGroupRequestTest extends TestCaseHttpMocked
         $this->assertEquals("Stadt: Heilbronn", "Stadt: " . $group->getInformation()?->getGroupPlaces()[0]?->getCity());
         $this->assertEquals("GeoLat: 92.2912", "GeoLat: " . $group->getInformation()?->getGroupPlaces()[0]?->getGeoLat());
         $this->assertEquals("GeoLng: 2.291", "GeoLng: " . $group->getInformation()?->getGroupPlaces()[0]?->getGeoLng());
+        $this->assertEquals("2020-02-02", $group->getInformation()?->getGroupPlaces()[0]?->getCreatedDate());
+        $this->assertEquals("2020-02-02 00:00:00", $group->getInformation()?->getGroupPlaces()[0]?->getCreatedDateAsDateTime()?->format("Y-m-d H:i:s"));
     }
 }

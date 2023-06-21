@@ -5,6 +5,7 @@ namespace CTApi\Models;
 
 
 use CTApi\Models\Traits\FillWithData;
+use CTApi\Utils\CTDateTimeService;
 use CTApi\Models\Traits\HasDBFields;
 
 class GroupInformation
@@ -65,6 +66,16 @@ class GroupInformation
         $data = $this->convertPropertiesToData();
         $data["imageUrlBanner"] = $this->getImageUrlBanner();
         return $data;
+    }
+
+    public function getDateOfFoundationAsDateTime(): ?\DateTimeImmutable
+    {
+        return CTDateTimeService::stringToDateTime($this->dateOfFoundation);
+    }
+
+    public function getEndDateAsDateTime(): ?\DateTimeImmutable
+    {
+        return CTDateTimeService::stringToDateTime($this->endDate);
     }
 
     /**

@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Add multi-factor authentication support ([PR146](https://github.com/5pm-HDH/churchtools-api/pull/146))
 - Group-member-fields and DBFields-API ([PR147](https://github.com/5pm-HDH/churchtools-api/issues/147))
 - Pagination Page-Size Option ([PR163](https://github.com/5pm-HDH/churchtools-api/pull/163))
+- DateTime-Getter ([PR167](https://github.com/5pm-HDH/churchtools-api/pull/167))
 
 ### Changed
 - Refactor Imports ([PR165](https://github.com/5pm-HDH/churchtools-api/pull/165))

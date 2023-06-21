@@ -25,8 +25,10 @@ class AbsenceRequestTest extends TestCaseHttpMocked
         $this->assertEquals("2", $vaccationAbsence->getAbsenceReason()?->getId());
         $this->assertEquals("Urlaub", $vaccationAbsence->getAbsenceReason()?->getName());
         $this->assertEquals("2022-02-23", $vaccationAbsence->getStartDate());
+        $this->assertEquals("2022-02-23 00:00:00", $vaccationAbsence->getStartDateAsDateTime()?->format("Y-m-d H:i:s"));
         $this->assertEquals(null, $vaccationAbsence->getStartTime());
         $this->assertEquals("2022-02-25", $vaccationAbsence->getEndDate());
+        $this->assertEquals("2022-02-25 00:00:00", $vaccationAbsence->getEndDateAsDateTime()?->format("Y-m-d H:i:s"));
         $this->assertEquals(null, $vaccationAbsence->getEndTime());
         $this->assertEquals("Matthew", $vaccationAbsence->getPerson()?->getFirstName());
     }

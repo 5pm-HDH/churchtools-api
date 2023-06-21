@@ -40,6 +40,9 @@ class CalendarRequestTest extends TestCaseHttpMocked
         $this->assertEquals("Service", $lastAppointment->getCaption());
         $this->assertEquals("2022-08-07T15:00:00Z", $lastAppointment->getStartDate());
         $this->assertEquals("2022-08-07T16:00:00Z", $lastAppointment->getEndDate());
+        $this->assertEquals("2022-08-07 15:00:00", $lastAppointment->getStartDateAsDateTime()?->format("Y-m-d H:i:s"));
+        $this->assertEquals("2022-08-07 16:00:00", $lastAppointment->getEndDateAsDateTime()?->format("Y-m-d H:i:s"));
+
         $this->assertEquals("false", $lastAppointment->getAllDay());
 
         $this->assertEquals("Test Note", $lastAppointment->getNote());

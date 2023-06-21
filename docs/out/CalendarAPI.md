@@ -62,6 +62,13 @@ Load appointments for calendar:
         var_dump( $lastAppointment->getEndDate());
         // Output: "2022-08-07T16:00:00Z"
 
+        var_dump( $lastAppointment->getStartDateAsDateTime()?->format("Y-m-d H:i:s"));
+        // Output: "2022-08-07 15:00:00"
+
+        var_dump( $lastAppointment->getEndDateAsDateTime()?->format("Y-m-d H:i:s"));
+        // Output: "2022-08-07 16:00:00"
+
+
         var_dump( $lastAppointment->getAllDay());
         // Output: "false"
 

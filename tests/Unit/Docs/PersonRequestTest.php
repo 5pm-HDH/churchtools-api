@@ -48,6 +48,80 @@ class PersonRequestTest extends TestCaseHttpMocked
         //$personA->requestAvatar()->upload("new-avatar.png");
     }
 
+    public function testPersonProperties()
+    {
+        $person = PersonRequest::findOrFail(12);
+
+        $this->assertEquals(12, $person->getId());
+        $this->assertEquals("BF4AC3A9-2C43-46A5-8AA4-D39D795C26B0", $person->getGuid());
+        $this->assertEquals(99999, $person->getSecurityLevelForPerson());
+        $this->assertEquals(99999, $person->getEditSecurityLevelForPerson());
+        $this->assertEquals("", $person->getTitle());
+        $this->assertEquals("David", $person->getFirstName());
+        $this->assertEquals("König", $person->getLastName());
+        $this->assertEquals("Dave", $person->getNickname());
+        $this->assertEquals("Worship-Pastor", $person->getJob());
+        $this->assertEquals(null, $person->getStreet());
+        $this->assertEquals(null, $person->getAddressAddition());
+        $this->assertEquals(null, $person->getZip());
+        $this->assertEquals(null, $person->getCity());
+        $this->assertEquals(null, $person->getCountry());
+        $this->assertEquals(null, $person->getLatitude());
+        $this->assertEquals(null, $person->getLongitude());
+        $this->assertEquals(null, $person->getLatitudeLoose());
+        $this->assertEquals(null, $person->getLongitudeLoose());
+        $this->assertEquals(null, $person->getPhonePrivate());
+        $this->assertEquals(null, $person->getPhoneWork());
+        $this->assertEquals(null, $person->getMobile());
+        $this->assertEquals(null, $person->getFax());
+        $this->assertEquals("Doe", $person->getBirthName());
+        $this->assertEquals("1992-06-02", $person->getBirthday());
+        $this->assertEquals("1992-06-02 00:00:00", $person->getBirthdayAsDateTime()?->format("Y-m-d H:i:s"));
+        $this->assertEquals("Bethlehem", $person->getBirthplace());
+        $this->assertEquals("https://5pm.church.tools/images/875/2bc0d52971857aebbec193783f8b92d7d16a7342ea9beb220386b2c5872865bc", $person->getImageUrl());
+        $this->assertEquals(null, $person->getFamilyImageUrl());
+        $this->assertEquals(1, $person->getSexId());
+        $this->assertEquals("DAVID.5PM@gmail.com", $person->getEmail());
+
+        $this->assertEquals("DAVID.5PM@gmail.com", $person->getEmails()[0]["email"]);
+        $this->assertEquals(true, $person->getEmails()[0]["isDefault"]);
+        $this->assertEquals(2, $person->getEmails()[0]["contactLabelId"]);
+
+        $this->assertEquals("dkönig", $person->getCmsUserId());
+        $this->assertEquals(null, $person->getOptigemId());
+        $this->assertEquals("2023-05-03", $person->getPrivacyPolicyAgreement()["date"]);
+        $this->assertEquals(3, $person->getPrivacyPolicyAgreement()["typeId"]);
+        $this->assertEquals(1, $person->getPrivacyPolicyAgreement()["whoId"]);
+        $this->assertEquals("2023-05-03", $person->getPrivacyPolicyAgreementDate());
+        $this->assertEquals(3, $person->getPrivacyPolicyAgreementTypeId());
+        $this->assertEquals(1, $person->getPrivacyPolicyAgreementWhoId());
+        $this->assertEquals(0, $person->getNationalityId());
+        $this->assertEquals(0, $person->getFamilyStatusId());
+        $this->assertEquals("2023-04-02", $person->getWeddingDate());
+        $this->assertEquals("2023-04-02 00:00:00", $person->getWeddingDateAsDateTime()?->format("Y-m-d H:i:s"));
+        $this->assertEquals(null, $person->getCampusId());
+        $this->assertEquals(null, $person->getStatusId());
+        $this->assertEquals([1], $person->getDepartmentIds());
+        $this->assertEquals("2023-05-03", $person->getFirstContact());
+        $this->assertEquals("2023-05-03 00:00:00", $person->getFirstContactAsDateTime()?->format("Y-m-d H:i:s"));
+        $this->assertEquals(null, $person->getDateOfBelonging());
+        $this->assertEquals(null, $person->getDateOfBelongingAsDateTime()?->format("Y-m-d H:i:s"));
+        $this->assertEquals(null, $person->getDateOfEntry());
+        $this->assertEquals(null, $person->getDateOfEntryAsDateTime()?->format("Y-m-d H:i:s"));
+        $this->assertEquals(null, $person->getDateOfResign());
+        $this->assertEquals(null, $person->getDateOfResignAsDateTime()?->format("Y-m-d H:i:s"));
+        $this->assertEquals(null, $person->getDateOfBaptism());
+        $this->assertEquals(null, $person->getDateOfBaptismAsDateTime()?->format("Y-m-d H:i:s"));
+        $this->assertEquals(null, $person->getPlaceOfBaptism());
+        $this->assertEquals(null, $person->getBaptisedBy());
+        $this->assertEquals(null, $person->getReferredBy());
+        $this->assertEquals(null, $person->getReferredTo());
+        $this->assertEquals(null, $person->getGrowPathId());
+        $this->assertEquals(null, $person->getCanChat());
+        $this->assertEquals("accepted", $person->getInvitationStatus());
+        $this->assertEquals(true, $person->getChatActive());
+        $this->assertEquals(null, $person->getIsArchived());
+    }
 
     /**
      * @doesNotPerformAssertions
@@ -134,8 +208,15 @@ class PersonRequestTest extends TestCaseHttpMocked
         $this->assertEquals("John", $lastBirthdayPerson->getPerson()?->getFirstName());
         $this->assertEquals("Snow", $lastBirthdayPerson->getPerson()?->getLastName());
 
+        $this->assertEquals("1997-03-01", $lastBirthdayPerson->getDate());
         $this->assertEquals("1997-03-01", $lastBirthdayPerson->getAnniversaryInitialDate());
         $this->assertEquals("2022-03-01", $lastBirthdayPerson->getAnniversary());
+
+        $this->assertEquals("1997-03-01 00:00:00", $lastBirthdayPerson->getDateAsDateTime()?->format("Y-m-d H:i:s"));
+        $this->assertEquals("1997-03-01 00:00:00", $lastBirthdayPerson->getAnniversaryInitialDateAsDateTime()?->format("Y-m-d H:i:s"));
+        $this->assertEquals("2022-03-01 00:00:00", $lastBirthdayPerson->getAnniversaryAsDateTime()?->format("Y-m-d H:i:s"));
+
+
         $this->assertEquals("25", $lastBirthdayPerson->getAge());
     }
 

@@ -35,13 +35,34 @@ class GroupRequestTest extends TestCaseHttpMocked
         $this->assertEquals("Sermon Group", $group->getName());
         $this->assertEquals("High", $group->getSecurityLevelForGroup());
         $this->assertEquals([], $group->getPermissions());
-        $this->assertEquals(null, $group->getInformation());
         $this->assertEquals([], $group->getFollowUp());
         $this->assertEquals("Admin", $group->getRoles()[0]->getName());
 
         // GroupHierarchie
         $childGroups = $group->requestGroupChildren()?->get();
         $parentGroups = $group->requestGroupParents()?->get();
+
+        // GroupInformation
+        $groupInformation = $group->getInformation();
+        $this->assertEquals(null, $groupInformation?->getImageUrl());
+        $this->assertEquals(null, $groupInformation?->getGroupHomepageUrl());
+        $this->assertEquals(1, $groupInformation?->getGroupStatusId());
+        $this->assertEquals(2, $groupInformation?->getGroupTypeId());
+        $this->assertEquals("1903-02-12", $groupInformation?->getDateOfFoundation());
+        $this->assertEquals("1903-02-12 00:00:00", $groupInformation?->getDateOfFoundationAsDateTime()?->format("Y-m-d H:i:s"));
+        $this->assertEquals(null, $groupInformation?->getEndDate());
+        $this->assertEquals(null, $groupInformation?->getEndDateAsDateTime()?->format("Y-m-d H:i:s"));
+        $this->assertEquals("17:00", $groupInformation?->getMeetingTime());
+        $this->assertEquals(3, $groupInformation?->getGroupCategoryId());
+
+        $ageGroupIdList = implode("/", $groupInformation?->getAgeGroupIds());
+        $this->assertEquals("1/8", $ageGroupIdList);
+        $this->assertEquals(2, $groupInformation?->getTargetGroupId());
+        $this->assertEquals(200, $groupInformation?->getMaxMembers());
+        $this->assertEquals("Hello World Note", $groupInformation?->getNote());
+        $this->assertEquals(null, $groupInformation?->getCampusId());
+        $this->assertEquals("NOT_STARTED", $groupInformation?->getChatStatus());
+        $this->assertEquals(null, $groupInformation?->getSignUpOverrideRoleId());
 
         // GroupSettings;
         $this->assertEquals(false, $group->getSettings()?->getIsHidden());
@@ -80,14 +101,22 @@ class GroupRequestTest extends TestCaseHttpMocked
         // GroupMembers
         $groupMember = $group->requestMembers()?->get()[0];
 
-        $this->assertEquals("21", $groupMember?->getId());
-        $this->assertEquals(null, $groupMember?->getPersonId());
-        $this->assertEquals(null, $groupMember?->getGroupTypeRoleId());
-        $this->assertEquals(null, $groupMember?->getMemberStartDate());
+        $this->assertEquals(12, $groupMember?->getPersonId());
+        $this->assertEquals(16, $groupMember?->getGroupTypeRoleId());
+        $this->assertEquals("active", $groupMember?->getGroupMemberStatus());
+        $this->assertEquals("2023-05-04", $groupMember?->getMemberStartDate());
+        $this->assertEquals("2023-06-01", $groupMember?->getMemberEndDate());
+        $this->assertEquals("2023-05-04 00:00:00", $groupMember?->getMemberStartDateAsDateTime()?->format("Y-m-d H:i:s"));
+        $this->assertEquals("2023-06-01 00:00:00", $groupMember?->getMemberEndDateAsDateTime()?->format("Y-m-d H:i:s"));
+
+        $this->assertEquals(null, $groupMember?->getFollowUpStep());
+        $this->assertEquals(null, $groupMember?->getFollowUpDiffDays());
+        $this->assertEquals(null, $groupMember?->getFollowUpUnsuccessfulBackGroupId());
+
         $this->assertEquals(null, $groupMember?->getComment());
-        $this->assertEquals(null, $groupMember?->getMemberEndDate());
         $this->assertEquals(null, $groupMember?->getWaitinglistPosition());
         $this->assertEquals([], $groupMember?->getFields());
+        $this->assertEquals([], $groupMember?->getPersonFields());
 
         $personGroupMember = $groupMember?->getPerson();
         $personGroupMember = $groupMember?->requestPerson();

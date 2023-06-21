@@ -7,6 +7,7 @@ namespace CTApi\Models;
 use CTApi\Models\Traits\FillWithData;
 use CTApi\Models\Traits\MetaAttribute;
 use CTApi\Requests\PersonRequest;
+use CTApi\Utils\CTDateTimeService;
 
 class ResourceBooking extends AbstractModel
 {
@@ -68,6 +69,16 @@ class ResourceBooking extends AbstractModel
     {
         $this->id = $id;
         return $this;
+    }
+
+    public function getStartDateAsDateTime(): ?\DateTimeImmutable
+    {
+        return CTDateTimeService::stringToDateTime($this->startDate);
+    }
+
+    public function getEndDateAsDateTime(): ?\DateTimeImmutable
+    {
+        return CTDateTimeService::stringToDateTime($this->endDate);
     }
 
     /**

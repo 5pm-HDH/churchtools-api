@@ -8,6 +8,7 @@ use CTApi\Models\Traits\FillWithData;
 use CTApi\Requests\EventAgendaRequestBuilder;
 use CTApi\Requests\FileRequest;
 use CTApi\Requests\FileRequestBuilder;
+use CTApi\Utils\CTDateTimeService;
 
 class Event extends AbstractModel
 {
@@ -64,6 +65,16 @@ class Event extends AbstractModel
             return $requestedEventServices[array_key_first($requestedEventServices)];
         }
         return null;
+    }
+
+    public function getStartDateAsDateTime(): ?\DateTimeImmutable
+    {
+        return CTDateTimeService::stringToDateTime($this->startDate);
+    }
+
+    public function getEndDateAsDateTime(): ?\DateTimeImmutable
+    {
+        return CTDateTimeService::stringToDateTime($this->endDate);
     }
 
     /**

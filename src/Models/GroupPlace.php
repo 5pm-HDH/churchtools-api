@@ -5,6 +5,7 @@ namespace CTApi\Models;
 
 
 use CTApi\Models\Traits\FillWithData;
+use CTApi\Utils\CTDateTimeService;
 
 class GroupPlace
 {
@@ -30,6 +31,11 @@ class GroupPlace
             default:
                 $this->fillDefault($key, $data);
         }
+    }
+
+    public function getCreatedDateAsDateTime(): ?\DateTimeImmutable
+    {
+        return CTDateTimeService::stringToDateTime($this->createdDate);
     }
 
     /**

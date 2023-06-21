@@ -7,6 +7,7 @@ namespace CTApi\Models;
 use CTApi\Models\Interfaces\UpdatableModel;
 use CTApi\Models\Traits\ExtractData;
 use CTApi\Models\Traits\FillWithData;
+use CTApi\Utils\CTDateTimeService;
 
 class Absence extends AbstractModel implements UpdatableModel
 {
@@ -45,6 +46,16 @@ class Absence extends AbstractModel implements UpdatableModel
             "startDate",
             "startTime"
         ];
+    }
+
+    public function getStartDateAsDateTime()
+    {
+        return CTDateTimeService::stringToDateTime($this->startDate);
+    }
+
+    public function getEndDateAsDateTime()
+    {
+        return CTDateTimeService::stringToDateTime($this->endDate);
     }
 
     /**
