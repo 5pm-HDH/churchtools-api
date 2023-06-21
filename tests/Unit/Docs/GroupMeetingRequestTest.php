@@ -4,10 +4,9 @@
 namespace CTApi\Test\Unit\Docs;
 
 
-use CTApi\CTConfig;
-use CTApi\Models\Group;
-use CTApi\Requests\GroupMeetingRequest;
-use CTApi\Requests\GroupRequest;
+use CTApi\Models\Groups\Group\Group;
+use CTApi\Models\Groups\Group\GroupRequest;
+use CTApi\Models\Groups\GroupMeeting\GroupMeetingRequest;
 use CTApi\Test\Unit\TestCaseHttpMocked;
 
 class GroupMeetingRequestTest extends TestCaseHttpMocked

@@ -4,15 +4,10 @@
 namespace CTApi\Test\Integration\Requests;
 
 
-use CTApi\CTClient;
-use CTApi\CTConfig;
-use CTApi\CTLog;
-use CTApi\Models\Tag;
-use CTApi\Requests\GroupRequest;
-use CTApi\Requests\TagRequest;
+use CTApi\Models\Common\Tag\TagRequest;
+use CTApi\Models\Groups\Group\GroupRequest;
 use CTApi\Test\Integration\IntegrationTestData;
 use CTApi\Test\Integration\TestCaseAuthenticated;
-use CTApi\Utils\CTResponseUtil;
 
 class TagRequestTest extends TestCaseAuthenticated
 {

@@ -2,15 +2,14 @@
 
 namespace CTApi\Test\Integration\Requests;
 
-use CTApi\Models\EventAgenda;
-use CTApi\Models\Song;
-use CTApi\Models\SongArrangement;
-use CTApi\Requests\EventAgendaRequest;
-use CTApi\Requests\EventRequest;
+use CTApi\Models\Events\Event\EventAgenda;
+use CTApi\Models\Events\Event\EventAgendaRequest;
+use CTApi\Models\Events\Event\EventRequest;
+use CTApi\Models\Events\Song\Song;
+use CTApi\Models\Events\Song\SongArrangement;
 use CTApi\Test\Integration\IntegrationTestData;
-
-
 use CTApi\Test\Integration\TestCaseAuthenticated;
+
 
 class EventAgendaTest extends TestCaseAuthenticated
 {

@@ -85,7 +85,7 @@ of its potential uses:
 #### Example: Person-API
 
 ```php
-use CTApi\Requests\PersonRequest;
+use CTApi\Models\Groups\Person\PersonRequest;
 
 $myself = PersonRequest::whoami();
 echo "Hello ".$myself->getLastName() . $myself->getFirstName();
@@ -111,8 +111,7 @@ $personB = PersonRequest::findOrFail(22); // throws exception if id is invalid
 #### Example: Event-API
 
 ```php
-use CTApi\Requests\EventAgendaRequest;
-use CTApi\Requests\EventRequest;
+use CTApi\Models\Events\Event\EventAgendaRequest;use CTApi\Models\Events\Event\EventRequest;
 
 // Retrieve all events
 $allEvents = EventRequest::all();
@@ -147,7 +146,7 @@ foreach($songsOnChristmas as $song){
 #### Example: Wiki-API
 
 ```php
-use CTApi\Requests\WikiCategoryRequest;
+use CTApi\Models\Wiki\WikiCategory\WikiCategoryRequest;
 
 $wikiCategory = WikiCategoryRequest::find(21);
 

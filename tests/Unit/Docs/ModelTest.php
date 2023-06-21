@@ -4,7 +4,7 @@
 namespace CTApi\Test\Unit\Docs;
 
 
-use CTApi\Models\Person;
+use CTApi\Models\Groups\Person\Person;
 use PHPUnit\Framework\TestCase;
 
 class ModelTest extends TestCase

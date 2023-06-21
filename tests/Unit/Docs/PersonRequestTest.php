@@ -4,8 +4,8 @@
 namespace CTApi\Test\Unit\Docs;
 
 
-use CTApi\Models\Person;
-use CTApi\Requests\PersonRequest;
+use CTApi\Models\Groups\Person\Person;
+use CTApi\Models\Groups\Person\PersonRequest;
 use CTApi\Test\Unit\TestCaseHttpMocked;
 
 class PersonRequestTest extends TestCaseHttpMocked

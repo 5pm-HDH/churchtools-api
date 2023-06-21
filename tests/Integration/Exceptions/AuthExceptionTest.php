@@ -4,7 +4,7 @@ namespace CTApi\Test\Integration\Exceptions;
 
 use CTApi\CTConfig;
 use CTApi\Exceptions\CTAuthException;
-use CTApi\Requests\PersonRequest;
+use CTApi\Models\Groups\Person\PersonRequest;
 use CTApi\Test\Integration\IntegrationTestData;
 use PHPUnit\Framework\TestCase;
 

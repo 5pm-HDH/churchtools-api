@@ -2,7 +2,7 @@
 
 namespace CTApi\Test\Unit\Requests;
 
-use CTApi\Requests\EventRequest;
+use CTApi\Models\Events\Event\EventRequest;
 use CTApi\Test\Unit\TestCaseHttpMocked;
 
 class EventRequestUnitTest extends TestCaseHttpMocked

@@ -4,7 +4,7 @@
 namespace CTApi\Test\Unit\Docs;
 
 
-use CTApi\Requests\CSRFTokenRequest;
+use CTApi\Models\Common\Auth\CSRFTokenRequest;
 use CTApi\Test\Unit\TestCaseHttpMocked;
 
 class CSRFTokenRequestTest extends TestCaseHttpMocked

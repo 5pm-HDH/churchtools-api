@@ -9,7 +9,7 @@ All Models are build similar and share the same structure of methods.
 Create a single model filled with data:
 
 ```php
-        use CTApi\Models\Person;
+        use CTApi\Models\Groups\Person\Person;
 
         $data = [
             "id" => 21,
@@ -25,7 +25,7 @@ Create a single model filled with data:
 Create a collection of models filled with data:
 
 ```php
-        use CTApi\Models\Person;
+        use CTApi\Models\Groups\Person\Person;
 
         $dataPersons = [
             ["id" => 21, "firstName" => "Joe", "lastName" => "Kling", /*...*/],
@@ -49,7 +49,7 @@ Create a collection of models filled with data:
 Convert a model with the `toData`-method (FillWithData-Trait):
 
 ```php
-        use CTApi\Models\Person;
+
 
         $data = $this->person->toData();
 
@@ -68,7 +68,7 @@ Convert a model with the `toData`-method (FillWithData-Trait):
 The attributes of a model can be used accessed with getters and setter.
 
 ```php
-        use CTApi\Models\Person;
+        use CTApi\Models\Groups\Person\Person;
 
         $person = new Person();
 
@@ -80,7 +80,7 @@ The attributes of a model can be used accessed with getters and setter.
 The model id can be retrieved with the `getId` getter. There is also a null-safe getter (`getIdOrFail`) and a integer casted getter (`getIdAsInteger`):
 
 ```php
-        use CTApi\Models\Person;
+
 
         // can be null:
         var_dump( $this->person->getId());
@@ -105,9 +105,7 @@ Any `requestXYZ`-method that requests a single model, will request all informati
 directly:
 
 ```php
-        use CTApi\Models\Event;
-        use CTApi\Models\EventAgenda;
-        use CTApi\Test\Unit\TestCaseHttpMocked;
+        use CTApi\Models\Events\Event\Event;
 
         $event = Event::createModelFromData(['id' => 21]);
         $agenda = $event->requestAgenda();
@@ -124,9 +122,7 @@ Any `requestXYZ`-method that returns multiple models, returns a RequestBuilder a
 the [Requests](Requests.md) methods and type:
 
 ```php
-        use CTApi\Models\Event;
-        use CTApi\Models\EventAgenda;
-        use CTApi\Test\Unit\TestCaseHttpMocked;
+        use CTApi\Models\Events\Event\EventAgenda;
 
         $eventAgenda = EventAgenda::createModelFromData(['id' => 21]);
 

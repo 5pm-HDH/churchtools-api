@@ -7,10 +7,9 @@ namespace CTApi\Test\Integration\Config;
 use CTApi\CTConfig;
 use CTApi\Exceptions\CTConfigException;
 use CTApi\Exceptions\CTRequestException;
-use CTApi\Requests\GroupRequest;
-use PHPUnit\Framework\TestCase;
+use CTApi\Models\Groups\Group\GroupRequest;
 use CTApi\Test\Integration\IntegrationTestData;
-
+use PHPUnit\Framework\TestCase;
 
 
 class TwoFactorAuthenticationTest extends TestCase

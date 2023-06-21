@@ -3,15 +3,14 @@
 namespace CTApi\Test\Integration\Models;
 
 use CTApi\Exceptions\CTPermissionException;
-use CTApi\Models\Meta;
-use CTApi\Models\Person;
-use CTApi\Requests\EventAgendaRequest;
-use CTApi\Requests\PersonRequest;
-use CTApi\Requests\SongRequest;
+use CTApi\Models\Common\Domain\Meta;
+use CTApi\Models\Events\Event\EventAgendaRequest;
+use CTApi\Models\Events\Song\SongRequest;
+use CTApi\Models\Groups\Person\Person;
+use CTApi\Models\Groups\Person\PersonRequest;
 use CTApi\Test\Integration\IntegrationTestData;
-
-
 use CTApi\Test\Integration\TestCaseAuthenticated;
+
 
 class MetaTest extends TestCaseAuthenticated
 {

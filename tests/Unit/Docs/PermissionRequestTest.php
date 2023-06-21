@@ -4,7 +4,7 @@
 namespace CTApi\Test\Unit\Docs;
 
 
-use CTApi\Requests\PermissionRequest;
+use CTApi\Models\Common\Permission\PermissionRequest;
 use CTApi\Test\Unit\TestCaseHttpMocked;
 
 class PermissionRequestTest extends TestCaseHttpMocked

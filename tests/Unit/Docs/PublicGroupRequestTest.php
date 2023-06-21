@@ -4,7 +4,7 @@
 namespace CTApi\Test\Unit\Docs;
 
 
-use CTApi\Requests\PublicGroupRequest;
+use CTApi\Models\Groups\PublicGroup\PublicGroupRequest;
 use CTApi\Test\Unit\TestCaseHttpMocked;
 
 class PublicGroupRequestTest extends TestCaseHttpMocked

@@ -2,7 +2,7 @@
 
 namespace CTApi\Test\Unit\Models;
 
-use CTApi\Models\SongArrangement;
+use CTApi\Models\Events\Song\SongArrangement;
 use PHPUnit\Framework\TestCase;
 
 class SongArrangementTest extends TestCase

@@ -4,11 +4,10 @@
 namespace CTApi\Test\Integration\Requests;
 
 
-use CTApi\Requests\PersonRequest;
+use CTApi\Models\Groups\Person\PersonRequest;
 use CTApi\Test\Integration\IntegrationTestData;
-
-
 use CTApi\Test\Integration\TestCaseAuthenticated;
+
 
 class PersonTagRequestTest extends TestCaseAuthenticated
 {

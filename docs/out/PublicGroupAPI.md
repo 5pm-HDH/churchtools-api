@@ -3,8 +3,7 @@
 Load Data of Group Homepage with Hash-String. This route is public, so no authentication of the CTConfig is necessary.
 
 ```php
-        use CTApi\Requests\PublicGroupRequest;
-        use CTApi\Test\Unit\TestCaseHttpMocked;
+        use CTApi\Models\Groups\PublicGroup\PublicGroupRequest;
 
         $groupHomepage = PublicGroupRequest::get("wryawBH318GLHasgm27awB0c241aj");
 
@@ -35,8 +34,7 @@ PublicGroup: [GroupAPI](GroupAPI.md)
 Further the PublicGroup-Model contains the following Methods:
 
 ```php
-        use CTApi\Requests\PublicGroupRequest;
-        use CTApi\Test\Unit\TestCaseHttpMocked;
+        use CTApi\Models\Groups\PublicGroup\PublicGroupRequest;
 
         $groupHomepage = PublicGroupRequest::get("wryawBH318GLHasgm27awB0c241aj");
         $group = $groupHomepage->getGroups()[0];

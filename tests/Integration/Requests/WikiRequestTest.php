@@ -2,15 +2,14 @@
 
 namespace CTApi\Test\Integration\Requests;
 
-use CTApi\Models\File;
-use CTApi\Models\WikiCategory;
-use CTApi\Models\WikiPage;
-use CTApi\Requests\WikiCategoryRequest;
-use CTApi\Requests\WikiSearchRequest;
+use CTApi\Models\Common\File\File;
+use CTApi\Models\Wiki\WikiCategory\WikiCategory;
+use CTApi\Models\Wiki\WikiCategory\WikiCategoryRequest;
+use CTApi\Models\Wiki\WikiPage\WikiPage;
+use CTApi\Models\Wiki\WikiSearch\WikiSearchRequest;
 use CTApi\Test\Integration\IntegrationTestData;
-
-
 use CTApi\Test\Integration\TestCaseAuthenticated;
+
 
 class WikiRequestTest extends TestCaseAuthenticated
 {

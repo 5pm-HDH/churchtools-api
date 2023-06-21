@@ -4,14 +4,13 @@
 namespace CTApi\Test\Integration\Requests;
 
 
-use CTApi\Models\Absence;
-use CTApi\Requests\AbsencePersonRequestBuilder;
-use CTApi\Requests\AbsenceRequest;
-use CTApi\Requests\PersonRequest;
+use CTApi\Models\Events\Absence\Absence;
+use CTApi\Models\Events\Absence\AbsencePersonRequestBuilder;
+use CTApi\Models\Events\Absence\AbsenceRequest;
+use CTApi\Models\Groups\Person\PersonRequest;
 use CTApi\Test\Integration\IntegrationTestData;
-
-
 use CTApi\Test\Integration\TestCaseAuthenticated;
+
 
 class AbsenceRequestTest extends TestCaseAuthenticated
 {

@@ -4,8 +4,8 @@
 namespace CTApi\Test\Unit\Docs;
 
 
-use CTApi\Models\Absence;
-use CTApi\Requests\AbsenceRequest;
+use CTApi\Models\Events\Absence\Absence;
+use CTApi\Models\Events\Absence\AbsenceRequest;
 use CTApi\Test\Unit\TestCaseHttpMocked;
 
 class AbsenceRequestTest extends TestCaseHttpMocked

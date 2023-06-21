@@ -5,8 +5,8 @@ namespace CTApi\Test\Integration\Requests;
 
 
 use CTApi\CTLog;
-use CTApi\Models\Tag;
-use CTApi\Requests\SongTagRequestBuilder;
+use CTApi\Models\Common\Tag\Tag;
+use CTApi\Models\Events\Song\SongTagRequestBuilder;
 use CTApi\Test\Integration\IntegrationTestData;
 use CTApi\Test\Integration\TestCaseAuthenticated;
 

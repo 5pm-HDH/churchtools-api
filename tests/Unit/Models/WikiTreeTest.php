@@ -3,8 +3,8 @@
 namespace CTApi\Test\Unit\Models;
 
 use CTApi\Exceptions\CTModelException;
-use CTApi\Models\WikiPage;
-use CTApi\Models\WikiPageTreeNode;
+use CTApi\Models\Wiki\WikiPage\WikiPage;
+use CTApi\Models\Wiki\WikiPage\WikiPageTreeNode;
 use PHPUnit\Framework\TestCase;
 
 class WikiTreeTest extends TestCase

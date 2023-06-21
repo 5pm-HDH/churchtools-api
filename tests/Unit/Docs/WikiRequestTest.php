@@ -3,8 +3,8 @@
 
 namespace CTApi\Test\Unit\Docs;
 
-use CTApi\Requests\WikiCategoryRequest;
-use CTApi\Requests\WikiSearchRequest;
+use CTApi\Models\Wiki\WikiCategory\WikiCategoryRequest;
+use CTApi\Models\Wiki\WikiSearch\WikiSearchRequest;
 use CTApi\Test\Unit\TestCaseHttpMocked;
 
 class WikiRequestTest extends TestCaseHttpMocked

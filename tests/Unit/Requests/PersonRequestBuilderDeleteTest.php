@@ -6,8 +6,8 @@ namespace CTApi\Test\Unit\Requests;
 
 use CTApi\CTClient;
 use CTApi\Exceptions\CTModelException;
-use CTApi\Models\Person;
-use CTApi\Requests\PersonRequest;
+use CTApi\Models\Groups\Person\Person;
+use CTApi\Models\Groups\Person\PersonRequest;
 use CTApi\Test\Unit\TestCaseHttpMocked;
 
 class PersonRequestBuilderDeleteTest extends TestCaseHttpMocked

@@ -4,11 +4,8 @@
 namespace CTApi\Test\Unit\Requests;
 
 
-use CTApi\CTClient;
 use CTApi\CTConfig;
-use CTApi\Requests\EventRequest;
-use CTApi\Requests\PersonRequest;
-use CTApi\Test\Unit\HttpMock\CTClientMock;
+use CTApi\Models\Events\Event\EventRequest;
 use CTApi\Test\Unit\TestCaseHttpMocked;
 
 class PaginationTest extends TestCaseHttpMocked

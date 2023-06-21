@@ -4,15 +4,14 @@
 namespace CTApi\Test\Integration\Requests;
 
 
-use CTApi\Requests\GroupRequest;
-use CTApi\Requests\PersonRequest;
-use CTApi\Models\DBField;
-use CTApi\Models\DBFieldValueContainer;
-use CTApi\Requests\DBFieldRequest;
+use CTApi\Models\Common\DBField\DBField;
+use CTApi\Models\Common\DBField\DBFieldRequest;
+use CTApi\Models\Common\DBField\DBFieldValueContainer;
+use CTApi\Models\Groups\Group\GroupRequest;
+use CTApi\Models\Groups\Person\PersonRequest;
 use CTApi\Test\Integration\IntegrationTestData;
-
-
 use CTApi\Test\Integration\TestCaseAuthenticated;
+
 
 class DBFieldRequestTest extends TestCaseAuthenticated
 {

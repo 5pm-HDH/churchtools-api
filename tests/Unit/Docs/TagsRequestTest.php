@@ -4,8 +4,8 @@
 namespace CTApi\Test\Unit\Docs;
 
 
-use CTApi\Requests\SongRequest;
-use CTApi\Requests\TagRequest;
+use CTApi\Models\Common\Tag\TagRequest;
+use CTApi\Models\Events\Song\SongRequest;
 use CTApi\Test\Unit\TestCaseHttpMocked;
 
 class TagsRequestTest extends TestCaseHttpMocked

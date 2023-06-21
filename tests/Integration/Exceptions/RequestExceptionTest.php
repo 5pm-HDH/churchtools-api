@@ -3,7 +3,7 @@
 namespace CTApi\Test\Integration\Exceptions;
 
 use CTApi\Exceptions\CTRequestException;
-use CTApi\Requests\EventRequest;
+use CTApi\Models\Events\Event\EventRequest;
 use CTApi\Test\Integration\TestCaseAuthenticated;
 
 class RequestExceptionTest extends TestCaseAuthenticated

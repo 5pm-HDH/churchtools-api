@@ -5,10 +5,10 @@ namespace CTApi\Test\Unit\Requests;
 
 
 use CTApi\Exceptions\CTModelException;
-use CTApi\Models\Person;
-use CTApi\Models\Traits\ExtractData;
-use CTApi\Models\Traits\FillWithData;
-use CTApi\Requests\PersonRequest;
+use CTApi\Models\Groups\Person\Person;
+use CTApi\Models\Groups\Person\PersonRequest;
+use CTApi\Traits\Model\ExtractData;
+use CTApi\Traits\Model\FillWithData;
 use CTApi\Utils\CTUtil;
 
 class PersonRequestBuilderUpdateTest extends \CTApi\Test\Unit\TestCaseHttpMocked

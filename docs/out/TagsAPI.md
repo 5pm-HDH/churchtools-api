@@ -3,9 +3,7 @@
 ## Retrieve all tags
 
 ```php
-        use CTApi\Requests\SongRequest;
-        use CTApi\Requests\TagRequest;
-        use CTApi\Test\Unit\TestCaseHttpMocked;
+        use CTApi\Models\Common\Tag\TagRequest;
 
         $personTags = TagRequest::allPersonTags();
         $songTags = TagRequest::allSongTags();
@@ -24,9 +22,7 @@
 ## Retrieve tags for song
 
 ```php
-        use CTApi\Requests\SongRequest;
-        use CTApi\Requests\TagRequest;
-        use CTApi\Test\Unit\TestCaseHttpMocked;
+        use CTApi\Models\Events\Song\SongRequest;
 
         $song = SongRequest::findOrFail(21);
         $tags = $song->requestTags()?->get() ?? [];

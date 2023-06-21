@@ -4,12 +4,11 @@
 namespace CTApi\Test\Integration\Requests;
 
 
-use CTApi\Requests\PermissionRequest;
-use CTApi\Requests\PersonRequest;
+use CTApi\Models\Common\Permission\PermissionRequest;
+use CTApi\Models\Groups\Person\PersonRequest;
 use CTApi\Test\Integration\IntegrationTestData;
-
-
 use CTApi\Test\Integration\TestCaseAuthenticated;
+
 
 class PermissionRequestTest extends TestCaseAuthenticated
 {

@@ -4,8 +4,8 @@
 namespace integration\Requests;
 
 
-use CTApi\Models\GroupMemberFieldContainer;
-use CTApi\Requests\GroupMemberFieldsRequest;
+use CTApi\Models\Groups\GroupMember\GroupMemberFieldContainer;
+use CTApi\Models\Groups\GroupMember\GroupMemberFieldsRequest;
 use CTApi\Test\Integration\IntegrationTestCase;
 use CTApi\Test\Integration\IntegrationTestData;
 use CTApi\Test\Integration\TestCaseAuthenticated;

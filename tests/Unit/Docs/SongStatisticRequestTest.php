@@ -4,10 +4,8 @@
 namespace CTApi\Test\Unit\Docs;
 
 
-use CTApi\Models\SongStatistic;
-use CTApi\Requests\SongRequest;
-use CTApi\Requests\SongStatisticRequest;
-use CTApi\Requests\SongStatisticRequestBuilder;
+use CTApi\Models\Events\SongStatistic\SongStatisticRequest;
+use CTApi\Models\Events\SongStatistic\SongStatisticRequestBuilder;
 use CTApi\Test\Unit\TestCaseHttpMocked;
 
 class SongStatisticRequestTest extends TestCaseHttpMocked

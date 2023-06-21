@@ -5,10 +5,9 @@ namespace CTApi\Test\Integration\Requests;
 
 
 use CTApi\CTConfig;
-use CTApi\Requests\InfoRequest;
-use PHPUnit\Framework\TestCase;
+use CTApi\Models\Common\Info\InfoRequest;
 use CTApi\Test\Integration\IntegrationTestData;
-
+use PHPUnit\Framework\TestCase;
 
 
 class APIVersionTest extends TestCase

@@ -5,9 +5,7 @@
 The FileRequestBuilder can be accessed via the FileRequest-Facade:
 
 ```php
-        use CTApi\Models\File;
-        use CTApi\Requests\FileRequest;
-        use CTApi\Test\Unit\TestCaseHttpMocked;
+        use CTApi\Models\Common\File\FileRequest;
 
         FileRequest::forAvatar(21);
         FileRequest::forGroupImage(21);
@@ -25,11 +23,9 @@ The FileRequestBuilder can be accessed via the FileRequest-Facade:
 Or you can call the builder direct in the model. E.q. in the events-model:
 
 ```php
-        use CTApi\Models\File;
-        use CTApi\Requests\FileRequest;
-        use CTApi\Test\Unit\TestCaseHttpMocked;
 
-        $event = new \CTApi\Models\Event();
+
+        $event = new \CTApi\Models\Events\Event\Event();
         $event->requestFiles()?->get();
         $event->requestFiles()?->delete();
         // ... see methods below
@@ -43,9 +39,7 @@ Or you can call the builder direct in the model. E.q. in the events-model:
 Returns an array with all available files. The Avatar-Route only contains one file:
 
 ```php
-        use CTApi\Models\File;
-        use CTApi\Requests\FileRequest;
-        use CTApi\Test\Unit\TestCaseHttpMocked;
+        use CTApi\Models\Common\File\FileRequest;
 
         $files = FileRequest::forAvatar(21)->get();
         $avatar = end($files);
@@ -94,9 +88,7 @@ Returns an array with all available files. The Avatar-Route only contains one fi
 Deletes all files that are attached to the domain-model.
 
 ```php
-        use CTApi\Models\File;
-        use CTApi\Requests\FileRequest;
-        use CTApi\Test\Unit\TestCaseHttpMocked;
+        use CTApi\Models\Common\File\FileRequest;
 
         FileRequest::forAvatar(23)->delete();
 
@@ -112,9 +104,7 @@ Deletes all files that are attached to the domain-model.
 If you want to delete one specific file you can use the delete-method:
 
 ```php
-        use CTApi\Models\File;
-        use CTApi\Requests\FileRequest;
-        use CTApi\Test\Unit\TestCaseHttpMocked;
+        use CTApi\Models\Common\File\FileRequest;
 
         $files = FileRequest::forEvent(21)->get();
 
@@ -129,9 +119,7 @@ If you want to delete one specific file you can use the delete-method:
 ### Rename file
 
 ```php
-        use CTApi\Models\File;
-        use CTApi\Requests\FileRequest;
-        use CTApi\Test\Unit\TestCaseHttpMocked;
+        use CTApi\Models\Common\File\FileRequest;
 
         $files = FileRequest::forAvatar(22)->get();
         $avatarFile = end($files);
@@ -150,9 +138,7 @@ The avatar-model only accepts one image. If you upload a image the current used 
 uploaded image. The Event-model e.q. also accepts multiple file-attachements.
 
 ```php
-        use CTApi\Models\File;
-        use CTApi\Requests\FileRequest;
-        use CTApi\Test\Unit\TestCaseHttpMocked;
+
 
         $newFile = (new FileRequestBuilder("avatar", 22))->upload(__DIR__ . "/../../integration/Requests/resources/avatar-1.png");
 

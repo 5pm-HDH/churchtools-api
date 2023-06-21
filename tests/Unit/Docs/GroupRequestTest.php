@@ -2,11 +2,10 @@
 
 namespace CTApi\Test\Unit\Docs;
 
-use CTApi\CTConfig;
-use CTApi\Requests\GroupRequest;
-use CTApi\Requests\PersonRequest;
-use Tests\Unit\TestCaseDocExampleCode;
+use CTApi\Models\Groups\Group\GroupRequest;
+use CTApi\Models\Groups\Person\PersonRequest;
 use CTApi\Test\Unit\TestCaseHttpMocked;
+use Tests\Unit\TestCaseDocExampleCode;
 
 class GroupRequestTest extends TestCaseHttpMocked
 {

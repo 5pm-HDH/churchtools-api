@@ -3,7 +3,7 @@
 namespace CTApi\Test\Unit\Requests;
 
 use CTApi\Exceptions\CTRequestException;
-use CTApi\Requests\Traits\WhereCondition;
+use CTApi\Traits\Request\WhereCondition;
 use PHPUnit\Framework\TestCase;
 
 class WhereConditionTest extends TestCase

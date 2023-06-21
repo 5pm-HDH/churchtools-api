@@ -3,9 +3,9 @@
 namespace CTApi\Test\Integration\Requests;
 
 use CTApi\CTConfig;
-use CTApi\Requests\AuthRequest;
-use PHPUnit\Framework\TestCase;
+use CTApi\Models\Common\Auth\AuthRequest;
 use CTApi\Test\Integration\IntegrationTestData;
+use PHPUnit\Framework\TestCase;
 
 class AuthRequestTest extends TestCase
 {

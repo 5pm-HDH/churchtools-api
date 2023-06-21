@@ -4,7 +4,7 @@ namespace CTApi\Test\Integration;
 
 use CTApi\CTConfig;
 use CTApi\CTLog;
-use CTApi\Requests\SongRequest;
+use CTApi\Models\Events\Song\SongRequest;
 
 class CacheTest extends TestCaseAuthenticated
 {

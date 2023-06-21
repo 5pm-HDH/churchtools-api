@@ -3,8 +3,7 @@
 ## Internal Group Permission
 
 ```php
-        use CTApi\Requests\PermissionRequest;
-        use CTApi\Test\Unit\TestCaseHttpMocked;
+        use CTApi\Models\Common\Permission\PermissionRequest;
 
         $internalGroupPermission = PermissionRequest::forGroup(21)->get();
 
@@ -24,8 +23,7 @@
 ## Internal Person Permission
 
 ```php
-        use CTApi\Requests\PermissionRequest;
-        use CTApi\Test\Unit\TestCaseHttpMocked;
+        use CTApi\Models\Common\Permission\PermissionRequest;
 
         $internalPersonPermission = PermissionRequest::forPerson(23)->get();
 
@@ -50,8 +48,7 @@
 ## Global Permission (for logged in user)
 
 ```php
-        use CTApi\Requests\PermissionRequest;
-        use CTApi\Test\Unit\TestCaseHttpMocked;
+        use CTApi\Models\Common\Permission\PermissionRequest;
 
         $globalPermission = PermissionRequest::myPermissions()->get();
 

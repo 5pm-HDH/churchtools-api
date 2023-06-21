@@ -4,8 +4,7 @@
 namespace CTApi\Test\Unit\Models;
 
 
-use CTApi\CTLog;
-use CTApi\Models\Traits\FillWithData;
+use CTApi\Traits\Model\FillWithData;
 use PHPUnit\Framework\TestCase;
 
 class FillWithDataTraitTypeMissmatchTest extends TestCase

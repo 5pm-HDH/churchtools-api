@@ -4,15 +4,14 @@
 namespace CTApi\Test\Integration\Requests;
 
 
-use CTApi\Models\Resource;
-use CTApi\Models\ResourceBooking;
+use CTApi\Models\Calendars\Resource\Resource;
+use CTApi\Models\Calendars\Resource\ResourceBooking;
+use CTApi\Models\Calendars\Resource\ResourceBookingsRequest;
+use CTApi\Models\Calendars\Resource\ResourceRequest;
 use CTApi\Requests\BookingRequest;
-use CTApi\Requests\ResourceBookingsRequest;
-use CTApi\Requests\ResourceRequest;
 use CTApi\Test\Integration\IntegrationTestData;
-
-
 use CTApi\Test\Integration\TestCaseAuthenticated;
+
 
 class BookingsRequestTest extends TestCaseAuthenticated
 {

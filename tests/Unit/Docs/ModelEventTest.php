@@ -4,8 +4,8 @@
 namespace CTApi\Test\Unit\Docs;
 
 
-use CTApi\Models\Event;
-use CTApi\Models\EventAgenda;
+use CTApi\Models\Events\Event\Event;
+use CTApi\Models\Events\Event\EventAgenda;
 use CTApi\Test\Unit\TestCaseHttpMocked;
 
 class ModelEventTest extends TestCaseHttpMocked

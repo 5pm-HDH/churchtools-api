@@ -1,11 +1,7 @@
 # ServiceAPI
 
 ```php
-        use CTApi\Models\Service;
-        use CTApi\Models\ServiceGroup;
-        use CTApi\Requests\ServiceGroupRequest;
-        use CTApi\Requests\ServiceRequest;
-        use CTApi\Test\Unit\TestCaseHttpMocked;
+        use CTApi\Models\Events\Service\Service;use CTApi\Models\Events\Service\ServiceGroup;use CTApi\Models\Events\Service\ServiceGroupRequest;use CTApi\Models\Events\Service\ServiceRequest;
 
 
         $serviceGroups = ServiceGroupRequest::all();

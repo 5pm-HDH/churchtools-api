@@ -7,7 +7,10 @@ parameters:
     ignoreErrors:
         -
             message: '#Method [a-zA-Z0-9\\_]+::where\(\) should return#'
-            path: src/Requests
+            path: src/Models
         -
             message: '#Method [a-zA-Z0-9\\_]+::orderBy\(\) should return#'
             path: src/Requests
+            path: src/Models
+
+        - '#Parameter \#2 \$level of class Monolog\\Handler\\StreamHandler constructor expects#'
