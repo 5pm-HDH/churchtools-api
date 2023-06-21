@@ -3,6 +3,7 @@
 ## Group-Request & Group-Data:
 
 ```php
+        use CTApi\CTConfig;
         use CTApi\Requests\GroupRequest;
         use CTApi\Requests\PersonRequest;
         use CTApi\Test\Unit\TestCaseHttpMocked;
@@ -249,6 +250,17 @@
 
         $personGroupMember = $groupMember?->getPerson();
         $personGroupMember = $groupMember?->requestPerson();
+
+        // Retrieve Group-Tags
+        $tags = $group->requestTags()?->get();
+
+        $tag = end($tags);
+        var_dump( $tag->getName());
+        // Output: "Leader"
+
+        var_dump( $tag->getId());
+        // Output: 8
+
 
         /**
          * Upadate Group-Image: See FileAPI
