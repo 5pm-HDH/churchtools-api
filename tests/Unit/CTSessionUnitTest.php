@@ -10,6 +10,12 @@ use CTApi\CTSession;
 
 class CTSessionUnitTest extends TestCaseHttpMocked
 {
+    protected function setUp(): void
+    {
+        parent::setUp();
+        CTSession::clearSessions();
+    }
+
     public function testSwitchSession()
     {
         $configDefault = CTConfig::getConfig();

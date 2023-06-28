@@ -58,4 +58,10 @@ class CTSession
         $keysClient = array_keys(self::$ctConfigs);
         return array_intersect($keysConfig, $keysClient);
     }
+
+    public static function clearSessions()
+    {
+        self::$ctClients = [];
+        self::$ctConfigs = [];
+    }
 }
