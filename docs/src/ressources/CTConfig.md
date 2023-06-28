@@ -91,7 +91,29 @@ use CTApi\CTConfig;
 $success = CTConfig::authWithUserIdAndLoginToken("29", "<login-token>");
 ```
 
-## 3. Cache Requests
+## 3. CT-Session
+
+To manage various ChurchTools connections with different logins within a single application, you can utilize the CTSession feature to switch between different configurations.
+
+To create and switch to a new session, use the following code:
+
+```php
+use CTApi\CTSession;
+
+CTSession::switchSession("person_a_session");
+```
+
+When switching to a new session, you need to reinitialize the ChurchTools API and authenticate the client.
+
+By default, if no session configuration is specified, the "default" session is used. To switch back to the default session, you can use the following code:
+
+```php
+use CTApi\CTSession;
+
+CTSession::switchSession();
+```
+
+## 4. Cache Requests
 
 To increase performance enable the caching-mechanism with:
 
@@ -128,7 +150,7 @@ $response = $client->get(
             );
 ```
 
-## 4. Pagination
+## 5. Pagination
 
 Set Page-Size of Pagination-Requests.
 
@@ -138,6 +160,6 @@ use CTApi\CTConfig;
 CTConfig::setPaginationPageSize(400);
 ```
 
-## 5. CSRF-Token
+## 6. CSRF-Token
 
 {{ \CTApi\Test\Unit\Docs\CSRFTokenRequestTest.testGetCSRFToken }}
