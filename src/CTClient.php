@@ -14,9 +14,6 @@ use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\HandlerStack;
 use Psr\Http\Message\ResponseInterface;
 
-/**
- * @psalm-suppress InvalidExtendClass
- */
 class CTClient
 {
     private Client $guzzleClient;
@@ -109,7 +106,7 @@ class CTClient
     public static function getClient(): CTClient
     {
         if (is_null(self::$client)) {
-            self::createClient();
+            self::$client = self::createClient();
         }
         if (isset(self::$client)) {
             return self::$client;
@@ -122,12 +119,12 @@ class CTClient
         self::$client = $client;
     }
 
-    public static function createClient(?HandlerStack $handlerStack = null): void
+    public static function createClient(?HandlerStack $handlerStack = null): CTClient
     {
         if (is_null($handlerStack)) {
-            self::$client = new CTClient();
+            return new CTClient();
         } else {
-            self::$client = new CTClient(['handler' => $handlerStack]);
+            return new CTClient(['handler' => $handlerStack]);
         }
     }
 }

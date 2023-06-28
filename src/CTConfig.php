@@ -51,7 +51,12 @@ class CTConfig
 
     public static function clearConfig(): void
     {
-        self::$config = new CTConfig();
+        self::$config = CTConfig::createConfig();
+    }
+
+    public static function createConfig(): CTConfig
+    {
+        return new CTConfig();
     }
 
     public static function clearCookies(): void
@@ -65,15 +70,39 @@ class CTConfig
     public static function getConfig(): CTConfig
     {
         if (is_null(self::$config)) {
-            self::$config = new CTConfig();
+            self::$config = CTConfig::createConfig();
         }
         return self::$config;
+    }
+
+    public static function setConfig(CTConfig $config)
+    {
+        self::$config = $config;
+    }
+
+    private static function setRequestOption(string $path, $value): void
+    {
+        CTUtil::arrayPathSet(self::getConfig()->requestOptions, $path, $value);
     }
 
     public static function getRequestConfig(): array
     {
         self::validateConfig();
         return self::getConfig()->requestOptions;
+    }
+
+    public static function validateConfig(): void
+    {
+        $apiUrl = self::getRequestOption('base_uri');
+        if ($apiUrl == null) {
+            throw new CTConfigException("CTConfig invalid: ApiUrl cannot be null. Set it with: CTConfig::setApiUrl('https://example.com')");
+        }
+    }
+
+    private static function getRequestOption(string $path)
+    {
+        $array = self::getConfig()->requestOptions;
+        return CTUtil::arrayPathGet($array, $path);
     }
 
     public static function setApiUrl(string $apiUrl): void
@@ -157,14 +186,6 @@ class CTConfig
         return $size;
     }
 
-    public static function validateConfig(): void
-    {
-        $apiUrl = self::getRequestOption('base_uri');
-        if ($apiUrl == null) {
-            throw new CTConfigException("CTConfig invalid: ApiUrl cannot be null. Set it with: CTConfig::setApiUrl('https://example.com')");
-        }
-    }
-
     public static function validateAuthentication(): bool
     {
         try {
@@ -177,17 +198,6 @@ class CTConfig
         } catch (CTRequestException $exception) {
             return false;
         }
-    }
-
-    private static function setRequestOption(string $path, $value): void
-    {
-        CTUtil::arrayPathSet(self::getConfig()->requestOptions, $path, $value);
-    }
-
-    private static function getRequestOption(string $path)
-    {
-        $array = self::getConfig()->requestOptions;
-        return CTUtil::arrayPathGet($array, $path);
     }
 
     public static function enableDebugging(): void
@@ -224,13 +234,15 @@ class CTConfig
         $stack->push(CTCacheMiddleware::create());
 
         CTLog::getLog()->info("CTConfig: Create cache-middleware and recreate CTClient");
-        CTClient::createClient($stack);
+        $client = CTClient::createClient($stack);
+        CTClient::setClient($client);
     }
 
     public static function disableCache(): void
     {
         CTLog::getLog()->info("CTConfig: Recreate CTClient without cache-middleware");
-        CTClient::createClient();
+        $client = CTClient::createClient();
+        CTClient::setClient($client);
     }
 
     public static function clearCache(): void
