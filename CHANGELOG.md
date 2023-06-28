@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Pagination Page-Size Option ([PR163](https://github.com/5pm-HDH/churchtools-api/pull/163))
 - DateTime-Getter ([PR167](https://github.com/5pm-HDH/churchtools-api/pull/167))
 - Song-Tags ([PR168](https://github.com/5pm-HDH/churchtools-api/pull/168))
+- CTSession ([PR170](https://github.com/5pm-HDH/churchtools-api/pull/170))
 
 ### Changed
 - Refactor Imports ([PR165](https://github.com/5pm-HDH/churchtools-api/pull/165))
