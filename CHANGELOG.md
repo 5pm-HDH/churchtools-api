@@ -8,6 +8,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 
 ### Added
+
+### Changed
+
+### Fixed
+
+## [1.3.7] - 2023-08-30
+
+### Added
 - Add Address-Property to Appointment ([PR137](https://github.com/5pm-HDH/churchtools-api/pull/137))
 - Add SongStatistic ([PR140](https://github.com/5pm-HDH/churchtools-api/pull/140), [PR164](https://github.com/5pm-HDH/churchtools-api/pull/164))
 - Add multi-factor authentication support ([PR146](https://github.com/5pm-HDH/churchtools-api/pull/146))
