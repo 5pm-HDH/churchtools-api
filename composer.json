@@ -14,8 +14,8 @@
   },
   "require": {
     "guzzlehttp/guzzle": "^7",
-    "php": ">=8.0",
-    "monolog/monolog": "^2.2",
+    "php": ">=8.1",
+    "monolog/monolog": "^3",
     "doctrine/cache": "^1.11"
   },
   "require-dev": {

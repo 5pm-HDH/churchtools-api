@@ -5,6 +5,7 @@ namespace CTApi;
 
 
 use Monolog\Handler\StreamHandler;
+use Monolog\Level;
 use Monolog\Logger;
 
 class CTLog
@@ -20,7 +21,7 @@ class CTLog
     private static string $httpLogName = "Log";
 
     // Log-Level: https://github.com/Seldaek/monolog/blob/main/doc/01-usage.md#log-levels
-    private static int $consoleLogLevel = Logger::ERROR;
+    private static Level $consoleLogLevel = Level::Error;
 
     public static function getLog(): Logger
     {
@@ -38,8 +39,8 @@ class CTLog
         self::$logger = new Logger('CTApi');
 
         if (self::$fileLogEnabled) {
-            self::$logger->pushHandler(new StreamHandler(self::LOG_FILE, Logger::INFO));
-            self::$logger->pushHandler(new StreamHandler(self::LOG_FILE_WARNING, Logger::WARNING));
+            self::$logger->pushHandler(new StreamHandler(self::LOG_FILE, Level::Info));
+            self::$logger->pushHandler(new StreamHandler(self::LOG_FILE_WARNING, Level::Warning));
         }
         if (self::$consoleLogEnabled) {
             self::$logger->pushHandler(new StreamHandler('php://stdout', self::$consoleLogLevel));
@@ -83,13 +84,13 @@ class CTLog
 
     public static function setConsoleLogLevelError(): void
     {
-        self::$consoleLogLevel = Logger::ERROR;
+        self::$consoleLogLevel = Level::Error;
         self::createLog();
     }
 
     public static function setConsoleLogLevelDebug(): void
     {
-        self::$consoleLogLevel = Logger::DEBUG;
+        self::$consoleLogLevel = Level::Debug;
         self::createLog();
     }
 }
