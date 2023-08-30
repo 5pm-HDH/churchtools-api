@@ -4,13 +4,12 @@
 namespace CTApi\Test\Integration\Requests;
 
 
-use CTApi\Models\SongStatistic;
-use CTApi\Requests\SongRequest;
-use CTApi\Requests\SongStatisticRequest;
+use CTApi\Models\Events\Song\SongRequest;
+use CTApi\Models\Events\SongStatistic\SongStatistic;
+use CTApi\Models\Events\SongStatistic\SongStatisticRequest;
 use CTApi\Test\Integration\IntegrationTestData;
-
-
 use CTApi\Test\Integration\TestCaseAuthenticated;
+
 
 class SongStatisticRequestTest extends TestCaseAuthenticated
 {

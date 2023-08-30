@@ -4,12 +4,11 @@
 namespace CTApi\Test\Integration\Requests;
 
 
-use CTApi\Models\SearchResult;
-use CTApi\Requests\SearchRequest;
+use CTApi\Models\Common\Search\SearchRequest;
+use CTApi\Models\Common\Search\SearchResult;
 use CTApi\Test\Integration\IntegrationTestData;
-
-
 use CTApi\Test\Integration\TestCaseAuthenticated;
+
 
 class SearchRequestTest extends TestCaseAuthenticated
 {

@@ -3,7 +3,7 @@
 namespace CTApi\Test\Unit\Requests;
 
 use CTApi\Exceptions\CTRequestException;
-use CTApi\Requests\Traits\OrderByCondition;
+use CTApi\Traits\Request\OrderByCondition;
 use PHPUnit\Framework\TestCase;
 
 class OrderByConditionTest extends TestCase

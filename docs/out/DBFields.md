@@ -4,10 +4,9 @@
 
 ```php
         use CTApi\CTConfig;
-        use CTApi\Requests\GroupRequest;
-        use CTApi\Requests\PersonRequest;
-        use CTApi\Requests\DBFieldRequest;
-        use CTApi\Test\Unit\TestCaseHttpMocked;
+        use CTApi\Models\Common\DBField\DBFieldRequest;
+        use CTApi\Models\Groups\Group\GroupRequest;
+        use CTApi\Models\Groups\Person\PersonRequest;
 
         $dbFields = DBFieldRequest::all();
         $dbField5pmName = $dbFields[0];
@@ -85,10 +84,9 @@
 
 ```php
         use CTApi\CTConfig;
-        use CTApi\Requests\GroupRequest;
-        use CTApi\Requests\PersonRequest;
-        use CTApi\Requests\DBFieldRequest;
-        use CTApi\Test\Unit\TestCaseHttpMocked;
+        use CTApi\Models\Common\DBField\DBFieldRequest;
+        use CTApi\Models\Groups\Group\GroupRequest;
+        use CTApi\Models\Groups\Person\PersonRequest;
 
         $dbField5pmName = DBFieldRequest::find(141);
         // or
@@ -110,10 +108,9 @@ To access the custom DBFields, utilize the `getDBFieldData()` method. This will 
 
 ```php
         use CTApi\CTConfig;
-        use CTApi\Requests\GroupRequest;
-        use CTApi\Requests\PersonRequest;
-        use CTApi\Requests\DBFieldRequest;
-        use CTApi\Test\Unit\TestCaseHttpMocked;
+        use CTApi\Models\Common\DBField\DBFieldRequest;
+        use CTApi\Models\Groups\Group\GroupRequest;
+        use CTApi\Models\Groups\Person\PersonRequest;
 
         CTConfig::enableDebugging();
         $group = GroupRequest::findOrFail(9);
@@ -166,10 +163,9 @@ DBFields are also existing for **Persons**:
 
 ```php
         use CTApi\CTConfig;
-        use CTApi\Requests\GroupRequest;
-        use CTApi\Requests\PersonRequest;
-        use CTApi\Requests\DBFieldRequest;
-        use CTApi\Test\Unit\TestCaseHttpMocked;
+        use CTApi\Models\Common\DBField\DBFieldRequest;
+        use CTApi\Models\Groups\Group\GroupRequest;
+        use CTApi\Models\Groups\Person\PersonRequest;
 
         $person = PersonRequest::findOrFail(12);
         $dbFieldContainerList = $person->requestDBFields()->get();

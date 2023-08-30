@@ -4,7 +4,7 @@
 namespace CTApi\Test\Unit\Docs;
 
 
-use CTApi\Requests\CcliRequest;
+use CTApi\Models\Events\Song\CcliRequest;
 use CTApi\Test\Unit\TestCaseHttpMocked;
 
 class CcliRequestTest extends TestCaseHttpMocked

@@ -3,14 +3,13 @@
 namespace CTApi\Test\Integration\Requests;
 
 use CTApi\Exceptions\CTRequestException;
-use CTApi\Models\Service;
-use CTApi\Models\ServiceGroup;
-use CTApi\Requests\ServiceGroupRequest;
-use CTApi\Requests\ServiceRequest;
+use CTApi\Models\Events\Service\Service;
+use CTApi\Models\Events\Service\ServiceGroup;
+use CTApi\Models\Events\Service\ServiceGroupRequest;
+use CTApi\Models\Events\Service\ServiceRequest;
 use CTApi\Test\Integration\IntegrationTestData;
-
-
 use CTApi\Test\Integration\TestCaseAuthenticated;
+
 
 class ServiceRequestTest extends TestCaseAuthenticated
 {

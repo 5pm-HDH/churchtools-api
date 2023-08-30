@@ -2,14 +2,13 @@
 
 namespace CTApi\Test\Integration\Requests;
 
-use CTApi\Models\File;
-use CTApi\Models\Song;
-use CTApi\Models\SongArrangement;
-use CTApi\Requests\SongRequest;
+use CTApi\Models\Common\File\File;
+use CTApi\Models\Events\Song\Song;
+use CTApi\Models\Events\Song\SongArrangement;
+use CTApi\Models\Events\Song\SongRequest;
 use CTApi\Test\Integration\IntegrationTestData;
-
-
 use CTApi\Test\Integration\TestCaseAuthenticated;
+
 
 class SongRequestTest extends TestCaseAuthenticated
 {

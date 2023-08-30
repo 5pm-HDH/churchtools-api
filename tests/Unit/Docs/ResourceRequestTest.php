@@ -4,8 +4,8 @@
 namespace CTApi\Test\Unit\Docs;
 
 
-use CTApi\Requests\ResourceBookingsRequest;
-use CTApi\Requests\ResourceRequest;
+use CTApi\Models\Calendars\Resource\ResourceBookingsRequest;
+use CTApi\Models\Calendars\Resource\ResourceRequest;
 use CTApi\Test\Unit\TestCaseHttpMocked;
 
 class ResourceRequestTest extends TestCaseHttpMocked

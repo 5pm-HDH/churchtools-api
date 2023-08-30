@@ -5,12 +5,11 @@ namespace CTApi\Test\Integration\Requests;
 
 
 use CTApi\Exceptions\CTRequestException;
-use CTApi\Models\File;
-use CTApi\Requests\FileRequest;
+use CTApi\Models\Common\File\File;
+use CTApi\Models\Common\File\FileRequest;
 use CTApi\Test\Integration\IntegrationTestData;
-
-
 use CTApi\Test\Integration\TestCaseAuthenticated;
+
 
 class FileRequestMultipleFilesTest extends TestCaseAuthenticated
 {

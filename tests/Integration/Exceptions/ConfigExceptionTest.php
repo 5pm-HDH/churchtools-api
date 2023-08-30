@@ -4,7 +4,7 @@ namespace CTApi\Test\Integration\Exceptions;
 
 use CTApi\CTConfig;
 use CTApi\Exceptions\CTConfigException;
-use CTApi\Requests\PersonRequest;
+use CTApi\Models\Groups\Person\PersonRequest;
 use PHPUnit\Framework\TestCase;
 
 class ConfigExceptionTest extends TestCase

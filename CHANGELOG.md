@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [Unreleased]
+## [1.4.0 Unreleased]
 
 ### Added
 - Add Address-Property to Appointment ([PR137](https://github.com/5pm-HDH/churchtools-api/pull/137))
@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 - Refactor Imports ([PR165](https://github.com/5pm-HDH/churchtools-api/pull/165))
+- Reorganize Codebase ([PR173](https://github.com/5pm-HDH/churchtools-api/pull/173))
 - Authenticate CTClient with session cookie instead of api-key ([PR142](https://github.com/5pm-HDH/churchtools-api/pull/142))
 - GH-Action for integration-tests ([PR143](https://github.com/5pm-HDH/churchtools-api/pull/143), [PR144](https://github.com/5pm-HDH/churchtools-api/pull/144), [PR149](https://github.com/5pm-HDH/churchtools-api/pull/149), [PR153](https://github.com/5pm-HDH/churchtools-api/pull/153))
 - Update Dependencies ([PR154](https://github.com/5pm-HDH/churchtools-api/pull/154))

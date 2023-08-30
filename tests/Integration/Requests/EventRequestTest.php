@@ -3,15 +3,14 @@
 namespace CTApi\Test\Integration\Requests;
 
 use CTApi\Exceptions\CTRequestException;
-use CTApi\Models\DomainAttributeModel;
-use CTApi\Models\Event;
-use CTApi\Models\Person;
-use CTApi\Models\Service;
-use CTApi\Requests\EventRequest;
+use CTApi\Models\Common\Domain\DomainAttributeModel;
+use CTApi\Models\Events\Event\Event;
+use CTApi\Models\Events\Event\EventRequest;
+use CTApi\Models\Events\Service\Service;
+use CTApi\Models\Groups\Person\Person;
 use CTApi\Test\Integration\IntegrationTestData;
-
-
 use CTApi\Test\Integration\TestCaseAuthenticated;
+
 
 class EventRequestTest extends TestCaseAuthenticated
 {

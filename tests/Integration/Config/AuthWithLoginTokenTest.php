@@ -6,13 +6,10 @@ namespace CTApi\Test\Integration\Config;
 
 use CTApi\CTConfig;
 use CTApi\Exceptions\CTAuthException;
-use CTApi\Exceptions\CTRequestException;
-use CTApi\Models\Person;
-use CTApi\Requests\AuthRequest;
-use CTApi\Requests\PersonRequest;
-use PHPUnit\Framework\TestCase;
+use CTApi\Models\Common\Auth\AuthRequest;
+use CTApi\Models\Groups\Person\PersonRequest;
 use CTApi\Test\Integration\IntegrationTestData;
-
+use PHPUnit\Framework\TestCase;
 
 
 class AuthWithLoginTokenTest extends TestCase

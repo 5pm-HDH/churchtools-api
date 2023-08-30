@@ -5,7 +5,7 @@ namespace CTApi\Test\Unit\Cache;
 use CTApi\CTConfig;
 use CTApi\CTLog;
 use CTApi\Middleware\CTCacheMiddleware;
-use CTApi\Models\Event;
+use CTApi\Models\Events\Event\Event;
 use CTApi\Utils\CTMessageBody;
 use CTApi\Utils\CTRequest;
 use CTApi\Utils\CTResponse;

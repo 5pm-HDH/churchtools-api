@@ -4,8 +4,8 @@
 namespace CTApi\Test\Integration\Requests;
 
 
-use CTApi\Requests\CcliRequestBuilder;
-use CTApi\Requests\FileRequest;
+use CTApi\Models\Common\File\FileRequest;
+use CTApi\Models\Events\Song\CcliRequestBuilder;
 use CTApi\Test\Integration\TestCaseAuthenticated;
 use Tests\Integration\TestData;
 

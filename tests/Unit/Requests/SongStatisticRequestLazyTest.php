@@ -5,7 +5,7 @@ namespace CTApi\Test\Unit\Requests;
 
 
 use CTApi\CTClient;
-use CTApi\Requests\SongStatisticRequestBuilder;
+use CTApi\Models\Events\SongStatistic\SongStatisticRequestBuilder;
 use CTApi\Test\Unit\HttpMock\CTClientMock;
 use CTApi\Test\Unit\TestCaseHttpMocked;
 

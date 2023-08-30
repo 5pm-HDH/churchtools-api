@@ -2,9 +2,8 @@
 
 ## Event-Request
 ```php
-        use CTApi\Requests\EventAgendaRequest;
-        use CTApi\Requests\EventRequest;
-        use CTApi\Test\Unit\TestCaseHttpMocked;
+        use CTApi\Models\Events\Event\EventAgendaRequest;
+        use CTApi\Models\Events\Event\EventRequest;
 
         // Retrieve all events
         $allEvents = EventRequest::all();
@@ -72,9 +71,8 @@
 ## Event-Agenda
 
 ```php
-        use CTApi\Requests\EventAgendaRequest;
-        use CTApi\Requests\EventRequest;
-        use CTApi\Test\Unit\TestCaseHttpMocked;
+        use CTApi\Models\Events\Event\EventAgendaRequest;
+        use CTApi\Models\Events\Event\EventRequest;
 
         $event = EventRequest::find(21);
 
@@ -119,9 +117,8 @@
 ## Event-Services of Event
 
 ```php
-        use CTApi\Requests\EventAgendaRequest;
-        use CTApi\Requests\EventRequest;
-        use CTApi\Test\Unit\TestCaseHttpMocked;
+        use CTApi\Models\Events\Event\EventAgendaRequest;
+        use CTApi\Models\Events\Event\EventRequest;
 
         $event = EventRequest::find(21);
         $eventServices = $event?->getEventServices() ?? [];

@@ -4,11 +4,10 @@
 namespace CTApi\Test\Integration\Requests;
 
 
-use CTApi\Requests\GroupRequest;
+use CTApi\Models\Groups\Group\GroupRequest;
 use CTApi\Test\Integration\IntegrationTestData;
-
-
 use CTApi\Test\Integration\TestCaseAuthenticated;
+
 
 class GroupHierarchieRequestTest extends TestCaseAuthenticated
 {

@@ -4,7 +4,7 @@
 namespace CTApi\Test\Unit\Docs;
 
 
-use CTApi\Requests\GroupMemberRequest;
+use CTApi\Models\Groups\GroupMember\GroupMemberRequest;
 use CTApi\Test\Unit\TestCaseHttpMocked;
 
 class GroupMemberUpdateRequestTest extends TestCaseHttpMocked

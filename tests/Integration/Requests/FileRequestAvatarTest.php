@@ -5,8 +5,8 @@ namespace CTApi\Test\Integration\Requests;
 
 
 use CTApi\Exceptions\CTModelException;
-use CTApi\Requests\FileRequest;
-use CTApi\Requests\PersonRequest;
+use CTApi\Models\Common\File\FileRequest;
+use CTApi\Models\Groups\Person\PersonRequest;
 use CTApi\Test\Integration\TestCaseAuthenticated;
 
 class FileRequestAvatarTest extends TestCaseAuthenticated

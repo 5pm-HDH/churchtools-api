@@ -4,7 +4,7 @@
 namespace CTApi\Test\Unit\Models;
 
 
-use CTApi\Models\SongStatistic;
+use CTApi\Models\Events\SongStatistic\SongStatistic;
 use PHPUnit\Framework\TestCase;
 
 class SongStatisticTest extends TestCase

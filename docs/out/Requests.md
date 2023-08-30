@@ -9,7 +9,7 @@ the [Details](#details) section.
 **Get all data**
 
 ```php
-use \CTApi\Requests\PersonRequest;
+use CTApi\Models\Groups\Person\PersonRequest;
 
 
 $allPersons = PersonRequest::all();
@@ -25,8 +25,7 @@ is called *pagination*.
 For example if you like to get only the first 3 events of ChurchTools:
 
 ```php
-        use CTApi\Requests\EventRequest;
-        use CTApi\Test\Unit\TestCaseHttpMocked;
+        use CTApi\Models\Events\Event\EventRequest;
 
         $eventsPage1 = EventRequest::where("page", 1)
             ->where("limit", 3)->get();
@@ -50,8 +49,7 @@ This is possible for the other APIs like event or group, too.
 Iterating over all records is quite easy.
 
 ```php
-        use CTApi\Requests\EventRequest;
-        use CTApi\Test\Unit\TestCaseHttpMocked;
+        use CTApi\Models\Events\Event\EventRequest;
 
         $page = 1;
         $limit = 15;
@@ -86,7 +84,7 @@ The `find`-method returns the Model. If there is no record with the given id, it
 -method throw an `CTModelException` if no record with the given in id could be found.
 
 ```php
-use \CTApi\Requests\PersonRequest;
+use CTApi\Models\Groups\Person\PersonRequest;
 
 $joe = PersonRequest::find(21);
 
@@ -104,7 +102,7 @@ The `where`-method allows filtering and set custom filter criteria to the reques
 concatenated for more complex filtering. All available filter-criteria are described in the [detail-section](#details)
 
 ```php
-use \CTApi\Requests\PersonRequest;
+use CTApi\Models\Groups\Person\PersonRequest;
 
 $teenager = PersonRequest::where('birthday_before', '2007-01-01')
                     ->where('birthday_after', '2003-01-01')
@@ -121,7 +119,7 @@ the sort direction (ascending or descending).
 The second example first selects three persons, then sort them by their birthday and secondly by their sex.
 
 ```php
-use \CTApi\Requests\PersonRequest;
+use CTApi\Models\Groups\Person\PersonRequest;
 
 $sortedPerson = PersonRequest::orderBy('birthday')->get();
 
@@ -138,7 +136,7 @@ The `get`-method executes the created query and retrieved the data. This method 
 a created Request. In this example we get the two persons with the ids 219 and 318.
 
 ```php
-use \CTApi\Requests\PersonRequest;
+use CTApi\Models\Groups\Person\PersonRequest;
 
 $twoPersons = PersonRequest::where('ids', [219, 318])->get();
 

@@ -5,7 +5,7 @@ namespace CTApi\Test\Integration\Exceptions;
 
 use CTApi\CTConfig;
 use CTApi\Exceptions\CTConnectException;
-use CTApi\Requests\PersonRequest;
+use CTApi\Models\Groups\Person\PersonRequest;
 use PHPUnit\Framework\TestCase;
 
 class ConnectExceptionTest extends TestCase

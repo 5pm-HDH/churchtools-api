@@ -67,7 +67,7 @@ if($isValid){
 You can also retrieve the api key to authenticate the CTConfig.
 
 ```php
-use CTApi\Requests\AuthRequest;
+use CTApi\Models\Common\Auth\AuthRequest;
 
 $userId = 21;
 

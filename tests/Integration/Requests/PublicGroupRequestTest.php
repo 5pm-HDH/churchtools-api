@@ -4,13 +4,12 @@
 namespace CTApi\Test\Integration\Requests;
 
 
-use CTApi\Models\GroupInformation;
-use CTApi\Models\TargetGroup;
-use CTApi\Requests\PublicGroupRequest;
+use CTApi\Models\Groups\Group\GroupInformation;
+use CTApi\Models\Groups\Group\TargetGroup;
+use CTApi\Models\Groups\PublicGroup\PublicGroupRequest;
 use CTApi\Test\Integration\IntegrationTestData;
-
-
 use CTApi\Test\Integration\TestCaseAuthenticated;
+
 
 class PublicGroupRequestTest extends TestCaseAuthenticated
 {

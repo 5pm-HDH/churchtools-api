@@ -4,7 +4,7 @@
 namespace CTApi\Test\Unit\Docs;
 
 
-use CTApi\Requests\SearchRequest;
+use CTApi\Models\Common\Search\SearchRequest;
 use CTApi\Test\Unit\TestCaseHttpMocked;
 
 class SearchRequestTest extends TestCaseHttpMocked

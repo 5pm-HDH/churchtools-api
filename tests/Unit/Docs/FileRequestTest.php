@@ -3,8 +3,8 @@
 
 namespace CTApi\Test\Unit\Docs;
 
-use CTApi\Models\File;
-use CTApi\Requests\FileRequest;
+use CTApi\Models\Common\File\File;
+use CTApi\Models\Common\File\FileRequest;
 use CTApi\Test\Unit\TestCaseHttpMocked;
 
 class FileRequestTest extends TestCaseHttpMocked
@@ -32,7 +32,7 @@ class FileRequestTest extends TestCaseHttpMocked
      */
     public function testRequestBuilderViaModel()
     {
-        $event = new \CTApi\Models\Event();
+        $event = new \CTApi\Models\Events\Event\Event();
         $event->requestFiles()?->get();
         $event->requestFiles()?->delete();
         // ... see methods below
@@ -99,7 +99,7 @@ class FileRequestTest extends TestCaseHttpMocked
 
 }
 
-class FileRequestBuilder extends \CTApi\Requests\FileRequestBuilder
+class FileRequestBuilder extends \CTApi\Models\Common\File\FileRequestBuilder
 {
 
     public function __construct(string $domainType, int $domainIdentifier)

@@ -5,7 +5,7 @@ namespace CTApi\Test\Unit\Models;
 
 
 use CTApi\CTConfig;
-use CTApi\Models\PublicGroup;
+use CTApi\Models\Groups\PublicGroup\PublicGroup;
 use PHPUnit\Framework\TestCase;
 
 class PublicGroupTest extends TestCase

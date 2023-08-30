@@ -4,9 +4,7 @@
 namespace CTApi\Test\Unit\Models;
 
 
-use CTApi\Models\Traits\FillWithData;
-use CTApi\Requests\SongRequest;
-use PHPUnit\Framework\TestCase;
+use CTApi\Models\Events\Song\SongRequest;
 use CTApi\Test\Unit\TestCaseHttpMocked;
 
 class FillWithDataTraitToData extends TestCaseHttpMocked

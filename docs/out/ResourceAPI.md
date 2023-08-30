@@ -3,9 +3,8 @@
 Load all Resources that are stored in ChurchTools.
 
 ```php
-        use CTApi\Requests\ResourceBookingsRequest;
-        use CTApi\Requests\ResourceRequest;
-        use CTApi\Test\Unit\TestCaseHttpMocked;
+        use CTApi\Models\Calendars\Resource\ResourceBookingsRequest;
+        use CTApi\Models\Calendars\Resource\ResourceRequest;
 
         $allResources = ResourceRequest::all();
         $firstResource = $allResources[0];
@@ -25,9 +24,8 @@ Load all Resources that are stored in ChurchTools.
 Load bookings for specific resource:
 
 ```php
-        use CTApi\Requests\ResourceBookingsRequest;
-        use CTApi\Requests\ResourceRequest;
-        use CTApi\Test\Unit\TestCaseHttpMocked;
+        use CTApi\Models\Calendars\Resource\ResourceBookingsRequest;
+        use CTApi\Models\Calendars\Resource\ResourceRequest;
 
         $allResources = ResourceRequest::all();
         $firstResource = $allResources[0];
@@ -79,9 +77,8 @@ Load bookings for specific resource:
 Load bookings for multiple resoures:
 
 ```php
-        use CTApi\Requests\ResourceBookingsRequest;
-        use CTApi\Requests\ResourceRequest;
-        use CTApi\Test\Unit\TestCaseHttpMocked;
+        use CTApi\Models\Calendars\Resource\ResourceBookingsRequest;
+        use CTApi\Models\Calendars\Resource\ResourceRequest;
 
         $bookings = ResourceBookingsRequest::forResources([21, 22, 23])
             ->where("from", "2021-02-22")

@@ -71,7 +71,7 @@ if($isValid){
 You can also retrieve the api key to authenticate the CTConfig.
 
 ```php
-use CTApi\Requests\AuthRequest;
+use CTApi\Models\Common\Auth\AuthRequest;
 
 $userId = 21;
 
@@ -175,8 +175,7 @@ CTConfig::setPaginationPageSize(400);
 ## 6. CSRF-Token
 
 ```php
-        use CTApi\Requests\CSRFTokenRequest;
-        use CTApi\Test\Unit\TestCaseHttpMocked;
+        use CTApi\Models\Common\Auth\CSRFTokenRequest;
 
         $nullableToken = CSRFTokenRequest::get(); // can be null|string
         $notNullToken = CSRFTokenRequest::getOrFail(); // throws exception if null

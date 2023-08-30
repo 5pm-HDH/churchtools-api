@@ -4,15 +4,13 @@
 namespace CTApi\Test\Integration\Requests;
 
 
-use CTApi\CTLog;
-use CTApi\Models\Group;
-use CTApi\Models\GroupMember;
-use CTApi\Models\Person;
-use CTApi\Requests\GroupRequest;
+use CTApi\Models\Groups\Group\Group;
+use CTApi\Models\Groups\Group\GroupRequest;
+use CTApi\Models\Groups\GroupMember\GroupMember;
+use CTApi\Models\Groups\Person\Person;
 use CTApi\Test\Integration\IntegrationTestData;
-
-
 use CTApi\Test\Integration\TestCaseAuthenticated;
+
 
 class GroupMemberRequestTest extends TestCaseAuthenticated
 {

@@ -3,12 +3,11 @@
 ## Request Song
 
 ```php
-        use CTApi\Models\File;
-        use CTApi\Models\Song;
-        use CTApi\Models\SongArrangement;
-        use CTApi\Requests\SongArrangementRequest;
-        use CTApi\Requests\SongRequest;
-        use CTApi\Test\Unit\TestCaseHttpMocked;
+        use CTApi\Models\Common\File\File;
+        use CTApi\Models\Events\Song\Song;
+        use CTApi\Models\Events\Song\SongArrangement;
+        use CTApi\Models\Events\Song\SongArrangementRequest;
+        use CTApi\Models\Events\Song\SongRequest;
 
         $allSongs = SongRequest::all();
         $practiceSong = SongRequest::where('practice', true)->orderBy('name')->get();
@@ -139,9 +138,8 @@
 ## Retrieve tags for song
 
 ```php
-        use CTApi\Requests\SongRequest;
-        use CTApi\Requests\TagRequest;
-        use CTApi\Test\Unit\TestCaseHttpMocked;
+        use CTApi\Models\Common\Tag\TagRequest;
+        use CTApi\Models\Events\Song\SongRequest;
 
         $song = SongRequest::findOrFail(21);
         $tags = $song->requestTags()?->get() ?? [];
@@ -160,12 +158,11 @@
 ## Update Song
 
 ```php
-        use CTApi\Models\File;
-        use CTApi\Models\Song;
-        use CTApi\Models\SongArrangement;
-        use CTApi\Requests\SongArrangementRequest;
-        use CTApi\Requests\SongRequest;
-        use CTApi\Test\Unit\TestCaseHttpMocked;
+        use CTApi\Models\Common\File\File;
+        use CTApi\Models\Events\Song\Song;
+        use CTApi\Models\Events\Song\SongArrangement;
+        use CTApi\Models\Events\Song\SongArrangementRequest;
+        use CTApi\Models\Events\Song\SongRequest;
 
         $song = SongRequest::findOrFail(21);
 
@@ -184,12 +181,11 @@
 ## Update Song-Arrangement
 
 ```php
-        use CTApi\Models\File;
-        use CTApi\Models\Song;
-        use CTApi\Models\SongArrangement;
-        use CTApi\Requests\SongArrangementRequest;
-        use CTApi\Requests\SongRequest;
-        use CTApi\Test\Unit\TestCaseHttpMocked;
+        use CTApi\Models\Common\File\File;
+        use CTApi\Models\Events\Song\Song;
+        use CTApi\Models\Events\Song\SongArrangement;
+        use CTApi\Models\Events\Song\SongArrangementRequest;
+        use CTApi\Models\Events\Song\SongRequest;
 
         $song = SongRequest::findOrFail(21);
         $arrangements = $song->getArrangements();
@@ -210,8 +206,7 @@
 **Retrieve Lyrics for CCLI-Number:**
 
 ```php
-        use CTApi\Requests\CcliRequest;
-        use CTApi\Test\Unit\TestCaseHttpMocked;
+        use CTApi\Models\Events\Song\CcliRequest;
 
         $ccliNumber = 1878670;
 
@@ -268,8 +263,7 @@ The method returns a nullable [File-Model](/../../src/Models/File.php).
 - ⚠ If you insert a invalid ccli-number, churchtools creates an empty file. There is no error reported.
 
 ```php
-        use CTApi\Requests\CcliRequest;
-        use CTApi\Test\Unit\TestCaseHttpMocked;
+        use CTApi\Models\Events\Song\CcliRequest;
 
         $ccliNumber = 1878670;
         $songArrangementId = 2912;
@@ -298,11 +292,8 @@ The method returns a nullable [File-Model](/../../src/Models/File.php).
 **Get All Statistics:**
 
 ```php
-        use CTApi\Models\SongStatistic;
-        use CTApi\Requests\SongRequest;
-        use CTApi\Requests\SongStatisticRequest;
-        use CTApi\Requests\SongStatisticRequestBuilder;
-        use CTApi\Test\Unit\TestCaseHttpMocked;
+        use CTApi\Models\Events\SongStatistic\SongStatisticRequest;
+        use CTApi\Models\Events\SongStatistic\SongStatisticRequestBuilder;
 
         $data = SongStatisticRequest::all();
 
@@ -339,11 +330,8 @@ The method returns a nullable [File-Model](/../../src/Models/File.php).
 **Get Statistics for Song-Arrangement:**
 
 ```php
-        use CTApi\Models\SongStatistic;
-        use CTApi\Requests\SongRequest;
-        use CTApi\Requests\SongStatisticRequest;
-        use CTApi\Requests\SongStatisticRequestBuilder;
-        use CTApi\Test\Unit\TestCaseHttpMocked;
+        use CTApi\Models\Events\SongStatistic\SongStatisticRequest;
+        use CTApi\Models\Events\SongStatistic\SongStatisticRequestBuilder;
 
         $statistics = SongStatisticRequest::findOrFail("21");
 
@@ -362,11 +350,8 @@ The method returns a nullable [File-Model](/../../src/Models/File.php).
 **Lazy-Builder:**
 
 ```php
-        use CTApi\Models\SongStatistic;
-        use CTApi\Requests\SongRequest;
-        use CTApi\Requests\SongStatisticRequest;
-        use CTApi\Requests\SongStatisticRequestBuilder;
-        use CTApi\Test\Unit\TestCaseHttpMocked;
+        use CTApi\Models\Events\SongStatistic\SongStatisticRequest;
+        use CTApi\Models\Events\SongStatistic\SongStatisticRequestBuilder;
 
         /**
          * Lazy-SongStatisticRequestBuilder

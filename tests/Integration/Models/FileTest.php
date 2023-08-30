@@ -2,11 +2,10 @@
 
 namespace CTApi\Test\Integration\Models;
 
-use CTApi\CTConfig;
-use CTApi\Models\File;
-use CTApi\Requests\AuthRequest;
-use CTApi\Requests\PersonRequest;
-use CTApi\Requests\SongRequest;
+use CTApi\Models\Common\Auth\AuthRequest;
+use CTApi\Models\Common\File\File;
+use CTApi\Models\Events\Song\SongRequest;
+use CTApi\Models\Groups\Person\PersonRequest;
 use CTApi\Test\Integration\TestCaseAuthenticated;
 
 class FileTest extends TestCaseAuthenticated

@@ -4,8 +4,8 @@
 namespace unit\Models;
 
 
-use CTApi\Models\Traits\FillWithData;
-use CTApi\Models\Traits\HasDBFields;
+use CTApi\Traits\Model\FillWithData;
+use CTApi\Traits\Model\HasDBFields;
 use PHPUnit\Framework\TestCase;
 
 class DBFieldsTraitTest extends TestCase

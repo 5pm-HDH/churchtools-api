@@ -4,12 +4,11 @@
 namespace CTApi\Test\Integration\Requests;
 
 
-use CTApi\Requests\AppointmentRequest;
-use CTApi\Requests\CalendarRequest;
+use CTApi\Models\Calendars\Appointment\AppointmentRequest;
+use CTApi\Models\Calendars\Calendar\CalendarRequest;
 use CTApi\Test\Integration\IntegrationTestData;
-
-
 use CTApi\Test\Integration\TestCaseAuthenticated;
+
 
 class CalendarRequestTest extends TestCaseAuthenticated
 {

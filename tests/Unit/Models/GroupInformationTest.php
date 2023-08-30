@@ -4,7 +4,7 @@
 namespace CTApi\Test\Unit\Models;
 
 
-use CTApi\Models\GroupInformation;
+use CTApi\Models\Groups\Group\GroupInformation;
 use PHPUnit\Framework\TestCase;
 
 class GroupInformationTest extends TestCase

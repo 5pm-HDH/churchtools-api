@@ -2,7 +2,7 @@
 
 namespace CTApi\Test\Unit\Models\Traits;
 
-use CTApi\Models\Traits\ExtractData;
+use CTApi\Traits\Model\ExtractData;
 use PHPUnit\Framework\TestCase;
 
 class ExtractDataTest extends TestCase
@@ -23,7 +23,7 @@ class ExtractDataTest extends TestCase
     }
 }
 
-class ModelMock implements \CTApi\Models\Interfaces\UpdatableModel
+class ModelMock implements \CTApi\Interfaces\UpdatableModel
 {
     use ExtractData;
 

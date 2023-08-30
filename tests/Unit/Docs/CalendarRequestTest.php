@@ -4,8 +4,8 @@
 namespace CTApi\Test\Unit\Docs;
 
 
-use CTApi\Requests\AppointmentRequest;
-use CTApi\Requests\CalendarRequest;
+use CTApi\Models\Calendars\Appointment\AppointmentRequest;
+use CTApi\Models\Calendars\Calendar\CalendarRequest;
 use CTApi\Test\Unit\TestCaseHttpMocked;
 
 class CalendarRequestTest extends TestCaseHttpMocked

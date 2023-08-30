@@ -212,7 +212,7 @@ class DocGenerator
         $stringImports = "";
         foreach($imports[0] as $key => $importStatement){
             $importClass = $imports[1][$key];
-            if(!str_starts_with($importClass, "Tests")
+            if(!str_starts_with($importClass, "CTApi\Test")
             && !str_starts_with($importClass, "PHPUnit")){
                 $stringImports .= "        ".$importStatement."\n";
             }

@@ -5,7 +5,7 @@ namespace CTApi\Test\Integration;
 
 
 use CTApi\CTConfig;
-use CTApi\Models\Auth;
+use CTApi\Models\Common\Auth\Auth;
 use CTApi\Utils\CTUtil;
 
 class IntegrationTestData
