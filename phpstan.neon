@@ -11,5 +11,3 @@ parameters:
         -
             message: '#Method [a-zA-Z0-9\\_]+Request::orderBy\(\) should return#'
             path: src/Models
-
-        - '#Parameter \#2 \$level of class Monolog\\Handler\\StreamHandler constructor expects#'
