@@ -25,6 +25,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Authenticate with UserId and LoginToken ([PR155](https://github.com/5pm-HDH/churchtools-api/pull/155), [PR156](https://github.com/5pm-HDH/churchtools-api/pull/156), [PR157](https://github.com/5pm-HDH/churchtools-api/pull/157))
 - ChurchTools Release ([PR159](https://github.com/5pm-HDH/churchtools-api/pull/159))
 - Replace Psalm PHP with PHP-Stan ([PR166](https://github.com/5pm-HDH/churchtools-api/pull/166))
+- Upgrade Monolog to v3 ([PR171](https://github.com/5pm-HDH/churchtools-api/pull/171))
+- Upgrade required PHP version from 8.0 to 8.1 ([PR171](https://github.com/5pm-HDH/churchtools-api/pull/171))
 
 ### Fixed
 
