@@ -6,11 +6,10 @@ parameters:
         - docs
     ignoreErrors:
         -
-            message: '#Method [a-zA-Z0-9\\_]+::where\(\) should return#'
+            message: '#Method [a-zA-Z0-9\\_]+Request::where\(\) should return#'
             path: src/Models
         -
-            message: '#Method [a-zA-Z0-9\\_]+::orderBy\(\) should return#'
-            path: src/Requests
+            message: '#Method [a-zA-Z0-9\\_]+Request::orderBy\(\) should return#'
             path: src/Models
 
         - '#Parameter \#2 \$level of class Monolog\\Handler\\StreamHandler constructor expects#'
