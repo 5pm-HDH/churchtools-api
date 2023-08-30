@@ -49,7 +49,7 @@ Create a collection of models filled with data:
 Convert a model with the `toData`-method (FillWithData-Trait):
 
 ```php
-
+        use CTApi\Models\Groups\Person\Person;
 
         $data = $this->person->toData();
 
@@ -80,7 +80,7 @@ The attributes of a model can be used accessed with getters and setter.
 The model id can be retrieved with the `getId` getter. There is also a null-safe getter (`getIdOrFail`) and a integer casted getter (`getIdAsInteger`):
 
 ```php
-
+        use CTApi\Models\Groups\Person\Person;
 
         // can be null:
         var_dump( $this->person->getId());
@@ -106,6 +106,7 @@ directly:
 
 ```php
         use CTApi\Models\Events\Event\Event;
+        use CTApi\Models\Events\Event\EventAgenda;
 
         $event = Event::createModelFromData(['id' => 21]);
         $agenda = $event->requestAgenda();
@@ -122,6 +123,7 @@ Any `requestXYZ`-method that returns multiple models, returns a RequestBuilder a
 the [Requests](Requests.md) methods and type:
 
 ```php
+        use CTApi\Models\Events\Event\Event;
         use CTApi\Models\Events\Event\EventAgenda;
 
         $eventAgenda = EventAgenda::createModelFromData(['id' => 21]);

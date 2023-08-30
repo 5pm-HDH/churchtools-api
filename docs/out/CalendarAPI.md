@@ -3,6 +3,7 @@
 Load all calendars:
 
 ```php
+        use CTApi\Models\Calendars\Appointment\AppointmentRequest;
         use CTApi\Models\Calendars\Calendar\CalendarRequest;
 
         $allCalendars = CalendarRequest::all();
@@ -35,6 +36,7 @@ Load all calendars:
 Load appointments for calendar:
 
 ```php
+        use CTApi\Models\Calendars\Appointment\AppointmentRequest;
         use CTApi\Models\Calendars\Calendar\CalendarRequest;
 
         $allCalendars = CalendarRequest::all();
@@ -128,6 +130,7 @@ Load appointments for multiple calendars:
 
 ```php
         use CTApi\Models\Calendars\Appointment\AppointmentRequest;
+        use CTApi\Models\Calendars\Calendar\CalendarRequest;
 
         $appointments = AppointmentRequest::forCalendar(21)->get();
         $appointments = AppointmentRequest::forCalendars([21, 22])

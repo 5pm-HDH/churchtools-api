@@ -3,7 +3,9 @@
 ## Group-Request & Group-Data:
 
 ```php
-        use CTApi\Models\Groups\Group\GroupRequest;use CTApi\Models\Groups\Person\PersonRequest;
+        use CTApi\Models\Groups\Group\GroupRequest;
+        use CTApi\Models\Groups\Person\PersonRequest;
+        use Tests\Unit\TestCaseDocExampleCode;
 
         /**
          * Group-Request
@@ -301,7 +303,9 @@
 ## Group-Meetings
 
 ```php
-
+        use CTApi\Models\Groups\Group\Group;
+        use CTApi\Models\Groups\Group\GroupRequest;
+        use CTApi\Models\Groups\GroupMeeting\GroupMeetingRequest;
 
         $meetings = $this->group->requestGroupMeetings()
             ?->where("start_date", "2022-11-01")
@@ -358,6 +362,8 @@
 ```
 
 ```php
+        use CTApi\Models\Groups\Group\Group;
+        use CTApi\Models\Groups\Group\GroupRequest;
         use CTApi\Models\Groups\GroupMeeting\GroupMeetingRequest;
 
         $meetings = GroupMeetingRequest::forGroup(21)->get();

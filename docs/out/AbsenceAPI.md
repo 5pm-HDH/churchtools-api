@@ -1,8 +1,8 @@
 # AbsenceAPI
 
 ## Absence-Request
-
 ```php
+        use CTApi\Models\Events\Absence\Absence;
         use CTApi\Models\Events\Absence\AbsenceRequest;
 
         $absences = AbsenceRequest::forPerson(118)
@@ -51,7 +51,8 @@
 ## Create Absence
 
 ```php
-        use CTApi\Models\Events\Absence\Absence;use CTApi\Models\Events\Absence\AbsenceRequest;
+        use CTApi\Models\Events\Absence\Absence;
+        use CTApi\Models\Events\Absence\AbsenceRequest;
 
         $absence = new Absence();
         $absence->setStartDate("2020-09-13")->setEndDate("2020-09-14");
@@ -93,6 +94,7 @@
 ## Update Absence
 
 ```php
+        use CTApi\Models\Events\Absence\Absence;
         use CTApi\Models\Events\Absence\AbsenceRequest;
 
         $absence = AbsenceRequest::findOrFail(118, 211); // for person with id 118 and absence with id 211
@@ -113,6 +115,7 @@
 ## Delete Absence
 
 ```php
+        use CTApi\Models\Events\Absence\Absence;
         use CTApi\Models\Events\Absence\AbsenceRequest;
 
         $absence = AbsenceRequest::findOrFail(118, 211); // for person with id 118 and absence with id 211

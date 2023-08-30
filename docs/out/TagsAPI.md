@@ -4,6 +4,7 @@
 
 ```php
         use CTApi\Models\Common\Tag\TagRequest;
+        use CTApi\Models\Events\Song\SongRequest;
 
         $personTags = TagRequest::allPersonTags();
         $songTags = TagRequest::allSongTags();
@@ -22,6 +23,7 @@
 ## Retrieve tags for song
 
 ```php
+        use CTApi\Models\Common\Tag\TagRequest;
         use CTApi\Models\Events\Song\SongRequest;
 
         $song = SongRequest::findOrFail(21);

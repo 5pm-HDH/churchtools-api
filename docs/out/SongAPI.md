@@ -3,7 +3,11 @@
 ## Request Song
 
 ```php
-        use CTApi\Models\Common\File\File;use CTApi\Models\Events\Song\SongRequest;
+        use CTApi\Models\Common\File\File;
+        use CTApi\Models\Events\Song\Song;
+        use CTApi\Models\Events\Song\SongArrangement;
+        use CTApi\Models\Events\Song\SongArrangementRequest;
+        use CTApi\Models\Events\Song\SongRequest;
 
         $allSongs = SongRequest::all();
         $practiceSong = SongRequest::where('practice', true)->orderBy('name')->get();
@@ -134,6 +138,7 @@
 ## Retrieve tags for song
 
 ```php
+        use CTApi\Models\Common\Tag\TagRequest;
         use CTApi\Models\Events\Song\SongRequest;
 
         $song = SongRequest::findOrFail(21);
@@ -153,7 +158,11 @@
 ## Update Song
 
 ```php
-        use CTApi\Models\Events\Song\Song;use CTApi\Models\Events\Song\SongRequest;
+        use CTApi\Models\Common\File\File;
+        use CTApi\Models\Events\Song\Song;
+        use CTApi\Models\Events\Song\SongArrangement;
+        use CTApi\Models\Events\Song\SongArrangementRequest;
+        use CTApi\Models\Events\Song\SongRequest;
 
         $song = SongRequest::findOrFail(21);
 
@@ -172,7 +181,11 @@
 ## Update Song-Arrangement
 
 ```php
-        use CTApi\Models\Events\Song\SongArrangement;use CTApi\Models\Events\Song\SongArrangementRequest;use CTApi\Models\Events\Song\SongRequest;
+        use CTApi\Models\Common\File\File;
+        use CTApi\Models\Events\Song\Song;
+        use CTApi\Models\Events\Song\SongArrangement;
+        use CTApi\Models\Events\Song\SongArrangementRequest;
+        use CTApi\Models\Events\Song\SongRequest;
 
         $song = SongRequest::findOrFail(21);
         $arrangements = $song->getArrangements();
@@ -280,6 +293,7 @@ The method returns a nullable [File-Model](/../../src/Models/File.php).
 
 ```php
         use CTApi\Models\Events\SongStatistic\SongStatisticRequest;
+        use CTApi\Models\Events\SongStatistic\SongStatisticRequestBuilder;
 
         $data = SongStatisticRequest::all();
 
@@ -317,6 +331,7 @@ The method returns a nullable [File-Model](/../../src/Models/File.php).
 
 ```php
         use CTApi\Models\Events\SongStatistic\SongStatisticRequest;
+        use CTApi\Models\Events\SongStatistic\SongStatisticRequestBuilder;
 
         $statistics = SongStatisticRequest::findOrFail("21");
 
@@ -335,6 +350,7 @@ The method returns a nullable [File-Model](/../../src/Models/File.php).
 **Lazy-Builder:**
 
 ```php
+        use CTApi\Models\Events\SongStatistic\SongStatisticRequest;
         use CTApi\Models\Events\SongStatistic\SongStatisticRequestBuilder;
 
         /**

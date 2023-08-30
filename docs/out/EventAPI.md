@@ -1,8 +1,8 @@
 # EventAPI
 
 ## Event-Request
-
 ```php
+        use CTApi\Models\Events\Event\EventAgendaRequest;
         use CTApi\Models\Events\Event\EventRequest;
 
         // Retrieve all events
@@ -71,7 +71,8 @@
 ## Event-Agenda
 
 ```php
-        use CTApi\Models\Events\Event\EventAgendaRequest;use CTApi\Models\Events\Event\EventRequest;
+        use CTApi\Models\Events\Event\EventAgendaRequest;
+        use CTApi\Models\Events\Event\EventRequest;
 
         $event = EventRequest::find(21);
 
@@ -116,6 +117,7 @@
 ## Event-Services of Event
 
 ```php
+        use CTApi\Models\Events\Event\EventAgendaRequest;
         use CTApi\Models\Events\Event\EventRequest;
 
         $event = EventRequest::find(21);

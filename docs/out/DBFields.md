@@ -3,7 +3,10 @@
 ## Retrieve all DB-fields:
 
 ```php
+        use CTApi\CTConfig;
         use CTApi\Models\Common\DBField\DBFieldRequest;
+        use CTApi\Models\Groups\Group\GroupRequest;
+        use CTApi\Models\Groups\Person\PersonRequest;
 
         $dbFields = DBFieldRequest::all();
         $dbField5pmName = $dbFields[0];
@@ -80,7 +83,10 @@
 ## Retrieve single DB-field:
 
 ```php
+        use CTApi\CTConfig;
         use CTApi\Models\Common\DBField\DBFieldRequest;
+        use CTApi\Models\Groups\Group\GroupRequest;
+        use CTApi\Models\Groups\Person\PersonRequest;
 
         $dbField5pmName = DBFieldRequest::find(141);
         // or
@@ -101,7 +107,10 @@
 To access the custom DBFields, utilize the `getDBFieldData()` method. This will provide an array where the column name of the DBField serves as the key and holds the corresponding value. Alternatively, you can use the `requestDBFields()->get()` method to retrieve a list of DBFieldValueContainers. Each container includes the key, value, and additional details from the DBField model such as name, content-type, and other relevant information. Example for **GroupInformation**:
 
 ```php
-        use CTApi\CTConfig;use CTApi\Models\Groups\Group\GroupRequest;
+        use CTApi\CTConfig;
+        use CTApi\Models\Common\DBField\DBFieldRequest;
+        use CTApi\Models\Groups\Group\GroupRequest;
+        use CTApi\Models\Groups\Person\PersonRequest;
 
         CTConfig::enableDebugging();
         $group = GroupRequest::findOrFail(9);
@@ -153,6 +162,9 @@ To access the custom DBFields, utilize the `getDBFieldData()` method. This will 
 DBFields are also existing for **Persons**:
 
 ```php
+        use CTApi\CTConfig;
+        use CTApi\Models\Common\DBField\DBFieldRequest;
+        use CTApi\Models\Groups\Group\GroupRequest;
         use CTApi\Models\Groups\Person\PersonRequest;
 
         $person = PersonRequest::findOrFail(12);

@@ -1,7 +1,8 @@
 # Wiki-API
 
 ```php
-        use CTApi\Models\Wiki\WikiCategory\WikiCategoryRequest;use CTApi\Models\Wiki\WikiSearch\WikiSearchRequest;
+        use CTApi\Models\Wiki\WikiCategory\WikiCategoryRequest;
+        use CTApi\Models\Wiki\WikiSearch\WikiSearchRequest;
 
         /**
          * WikiCategory - Model

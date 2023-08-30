@@ -1,7 +1,6 @@
 # Search-API
 
 ## Search Global
-
 ```php
         use CTApi\Models\Common\Search\SearchRequest;
 

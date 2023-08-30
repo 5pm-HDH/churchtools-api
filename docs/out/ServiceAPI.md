@@ -1,7 +1,10 @@
 # ServiceAPI
 
 ```php
-        use CTApi\Models\Events\Service\Service;use CTApi\Models\Events\Service\ServiceGroup;use CTApi\Models\Events\Service\ServiceGroupRequest;use CTApi\Models\Events\Service\ServiceRequest;
+        use CTApi\Models\Events\Service\Service;
+        use CTApi\Models\Events\Service\ServiceGroup;
+        use CTApi\Models\Events\Service\ServiceGroupRequest;
+        use CTApi\Models\Events\Service\ServiceRequest;
 
 
         $serviceGroups = ServiceGroupRequest::all();
