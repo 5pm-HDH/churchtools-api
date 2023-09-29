@@ -39,11 +39,29 @@ class Event extends AbstractModel
             case "calendar":
                 $this->setCalendar(DomainAttributeModel::createModelFromData($data));
                 break;
+            case "domainAttributes":
+                if(key_exists("startDate", $data)){
+                    $this->setStartDate($data["startDate"]);
+                }
+                break;
             default:
                 $this->fillDefault($key, $data);
         }
     }
 
+    protected function fillNonArrayType(string $key, $value): void
+    {
+        switch ($key){
+            case "title":
+                $this->setName($value);
+                break;
+            case "domainIdentifier":
+                $this->setId($value);
+                break;
+            default:
+                $this->fillDefault($key, $value);
+        }
+    }
 
     public function requestAgenda(): EventAgenda
     {

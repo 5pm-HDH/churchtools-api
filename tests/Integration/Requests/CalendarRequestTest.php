@@ -4,8 +4,11 @@
 namespace CTApi\Test\Integration\Requests;
 
 
+use CTApi\CTLog;
 use CTApi\Models\Calendars\Appointment\AppointmentRequest;
 use CTApi\Models\Calendars\Calendar\CalendarRequest;
+use CTApi\Models\Calendars\CombinedAppointment\CombinedAppointmentRequest;
+use CTApi\Models\Common\File\File;
 use CTApi\Test\Integration\IntegrationTestData;
 use CTApi\Test\Integration\TestCaseAuthenticated;
 
@@ -67,5 +70,35 @@ class CalendarRequestTest extends TestCaseAuthenticated
         $this->assertEquals($this->appointmentCaption, $foundAppointment->getCaption());
         $this->assertEquals($this->appointmentStartDate, $foundAppointment->getStartDate());
         $this->assertEquals($this->appointmentEndDate, $foundAppointment->getEndDate());
+    }
+
+    public function testCombinedAppointmentRequest()
+    {
+        $testCase = IntegrationTestData::getTestCase("combined_appointment");
+
+        $calendarId = $testCase->getFilter("calendar_id");
+        $appointmentId = $testCase->getFilter("appointment_id");
+        $startDate = $testCase->getFilter("start_date");
+
+        $combinedAppointment = CombinedAppointmentRequest::forAppointment($calendarId, $appointmentId, $startDate)->get();
+
+        $appointment = $combinedAppointment->getAppointment();
+        $this->assertEqualsTestData("combined_appointment", "appointment.caption", $appointment->getCaption());
+        $this->assertEqualsTestData("combined_appointment", "appointment.information", $appointment->getInformation());
+        $this->assertInstanceOf(File::class, $appointment->getImage());
+        $this->assertEqualsTestData("combined_appointment", "appointment.image.id", $appointment->getImage()?->getId());
+        $this->assertEqualsTestData("combined_appointment", "appointment.image.name", $appointment->getImage()?->getName());
+
+
+        $event = $combinedAppointment->getEvent();
+        $this->assertEqualsTestData("combined_appointment", "event.id", $event->getId());
+        $this->assertEqualsTestData("combined_appointment", "event.name", $event->getName());
+        $this->assertEqualsTestData("combined_appointment", "event.startDate", $event->getStartDate());
+
+        $bookings = $combinedAppointment->getBookings();
+        $oneBooking = end($bookings);
+        $this->assertEqualsTestData("combined_appointment", "any_booking.id", $oneBooking->getId());
+        $this->assertEqualsTestData("combined_appointment", "any_booking.resource.id", $oneBooking->getResource()?->getId());
+        $this->assertEqualsTestData("combined_appointment", "any_booking.resource.name", $oneBooking->getResource()?->getName());
     }
 }

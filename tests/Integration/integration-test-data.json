@@ -361,6 +361,36 @@
         }
       }
     },
+    "combined_appointment": {
+      "description": "Filter Calendar-Appointments with Events.",
+      "filter": {
+        "calendar_id": 2,
+        "appointment_id": 13,
+        "start_date": "2023-10-01"
+      },
+      "result": {
+        "appointment": {
+          "caption": "Gottesdienst - Erntedank",
+          "information": "Erntedankgottesdienst.",
+          "image": {
+            "id": 1756,
+            "name": "5pm-tech-logo.PNG"
+          }
+        },
+        "event": {
+          "id": 13,
+          "name": "Gottesdienst - Erntedank",
+          "startDate": "2023-10-01T09:00:00Z"
+        },
+        "any_booking": {
+          "id": 10,
+          "resource": {
+            "id": 1,
+            "name": "Saal"
+          }
+        }
+      }
+    },
     "permission_group": {
       "description": "Load permission for group.",
       "filter": {
