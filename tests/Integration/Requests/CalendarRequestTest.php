@@ -4,7 +4,6 @@
 namespace CTApi\Test\Integration\Requests;
 
 
-use CTApi\CTLog;
 use CTApi\Models\Calendars\Appointment\AppointmentRequest;
 use CTApi\Models\Calendars\Calendar\CalendarRequest;
 use CTApi\Models\Calendars\CombinedAppointment\CombinedAppointmentRequest;
@@ -86,8 +85,8 @@ class CalendarRequestTest extends TestCaseAuthenticated
         $this->assertEqualsTestData("combined_appointment", "appointment.caption", $appointment->getCaption());
         $this->assertEqualsTestData("combined_appointment", "appointment.information", $appointment->getInformation());
         $this->assertInstanceOf(File::class, $appointment->getImage());
-        $this->assertEqualsTestData("combined_appointment", "appointment.image.id", $appointment->getImage()?->getId());
-        $this->assertEqualsTestData("combined_appointment", "appointment.image.name", $appointment->getImage()?->getName());
+        $this->assertEqualsTestData("combined_appointment", "appointment.image.id", $appointment->getImage()->getId());
+        $this->assertEqualsTestData("combined_appointment", "appointment.image.name", $appointment->getImage()->getName());
 
 
         $event = $combinedAppointment->getEvent();
