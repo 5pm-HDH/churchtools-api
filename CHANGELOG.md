@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - DateTime-Getter ([PR167](https://github.com/5pm-HDH/churchtools-api/pull/167))
 - Song-Tags ([PR168](https://github.com/5pm-HDH/churchtools-api/pull/168))
 - CTSession ([PR170](https://github.com/5pm-HDH/churchtools-api/pull/170))
+- CombinedAppointment ([PR174](https://github.com/5pm-HDH/churchtools-api/pull/174))
 
 ### Changed
 - Refactor Imports ([PR165](https://github.com/5pm-HDH/churchtools-api/pull/165))
@@ -28,6 +29,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Replace Psalm PHP with PHP-Stan ([PR166](https://github.com/5pm-HDH/churchtools-api/pull/166))
 - Upgrade Monolog to v3 ([PR171](https://github.com/5pm-HDH/churchtools-api/pull/171))
 - Upgrade required PHP version from 8.0 to 8.1 ([PR171](https://github.com/5pm-HDH/churchtools-api/pull/171))
+- Add Image-Property to Appointment ([PR174](https://github.com/5pm-HDH/churchtools-api/pull/174))
 
 ### Fixed
 
