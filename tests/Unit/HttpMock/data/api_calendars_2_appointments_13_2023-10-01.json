@@ -1,0 +1,145 @@
+{
+    "data": {
+        "appointment": {
+            "base": {
+                "id": 13,
+                "caption": "Gottesdienst - Erntedank",
+                "note": "",
+                "address": null,
+                "version": 3,
+                "calendar": {
+                    "id": 2,
+                    "name": "Gottesdienst",
+                    "nameTranslated": "Gottesdienst",
+                    "sortKey": 10,
+                    "color": "black",
+                    "isPublic": true,
+                    "isPrivate": false,
+                    "randomUrl": "30a2d4d8ea19c0a52c54ef59d1b76196",
+                    "iCalSourceUrl": null,
+                    "campusId": null,
+                    "eventTemplateId": null,
+                    "meta": {
+                        "modifiedDate": "2023-05-03T11:59:11Z",
+                        "modifiedPid": -1
+                    }
+                },
+                "information": "Erntedankgottesdienst.",
+                "image": {
+                    "id": 1756,
+                    "domainType": "appointment_image",
+                    "domainId": "13",
+                    "name": "5pm-tech-logo.PNG",
+                    "filename": "03dd741077d03eff1a24eeece501c0c386febd81db63be4b8b599237e1deb00f",
+                    "fileUrl": "https:\/\/5pm.church.tools\/?q=public\/filedownload&id=1756&filename=03dd741077d03eff1a24eeece501c0c386febd81db63be4b8b599237e1deb00f",
+                    "imageUrl": "https:\/\/5pm.church.tools\/images\/1756\/8792342e6dd89318e427b030f428927ffd3fab4ebd1a0dd31267b0bb1b49071c",
+                    "relativeUrl": "?q=public\/filedownload&id=1756&filename=03dd741077d03eff1a24eeece501c0c386febd81db63be4b8b599237e1deb00f",
+                    "showOnlyWhenEditable": false,
+                    "securityLevelId": 0,
+                    "type": "file",
+                    "size": null,
+                    "additionalInfos": [],
+                    "meta": {
+                        "createdDate": "2023-09-29T05:33:15Z",
+                        "createdPerson": null,
+                        "modifiedDate": "2023-09-29T05:33:15Z",
+                        "modifiedPerson": null
+                    }
+                },
+                "link": "",
+                "isInternal": false,
+                "startDate": "2023-10-01T09:00:00Z",
+                "endDate": "2023-10-01T10:30:00Z",
+                "allDay": false,
+                "repeatId": 0,
+                "repeatFrequency": null,
+                "repeatUntil": null,
+                "repeatOption": null,
+                "additions": [],
+                "exceptions": [],
+                "signup": null,
+                "meta": {
+                    "createdDate": "2023-09-29T05:32:00Z",
+                    "createdPerson": {
+                        "id": 1
+                    },
+                    "modifiedDate": "2023-09-29T05:34:16Z",
+                    "modifiedPerson": {
+                        "id": 1
+                    }
+                },
+                "onBehalfOfPid": null
+            },
+            "calculated": {
+                "startDate": "2023-10-01T09:00:00Z",
+                "endDate": "2023-10-01T10:30:00Z"
+            }
+        },
+        "event": {
+            "title": "Gottesdienst - Erntedank",
+            "domainType": "event",
+            "domainIdentifier": "13",
+            "apiUrl": "https:\/\/5pm.church.tools\/api\/events\/13",
+            "frontendUrl": "https:\/\/5pm.church.tools\/?q=churchservice#ListView\/searchEntry:%2313\/",
+            "imageUrl": null,
+            "icon": "calendar-day",
+            "domainAttributes": {
+                "startDate": "2023-10-01T09:00:00Z"
+            }
+        },
+        "group": null,
+        "bookings": [
+            {
+                "base": {
+                    "id": 10,
+                    "caption": "Gottesdienst - Erntedank",
+                    "note": "",
+                    "version": 0,
+                    "resource": {
+                        "id": 1,
+                        "name": "Saal",
+                        "nameTranslated": "Saal",
+                        "sortKey": 10,
+                        "resourceTypeId": 1,
+                        "location": null,
+                        "iCalLocation": null,
+                        "isAutoAccept": false,
+                        "doesRequireCalEntry": false,
+                        "isVirtual": false,
+                        "adminIds": null,
+                        "randomString": "PNAZTMxNHPYHJ6uAs5Nc"
+                    },
+                    "location": "",
+                    "appointmentId": 13,
+                    "onBehalfOfPid": 1,
+                    "showInCal": false,
+                    "statusId": 1,
+                    "startDate": "2023-10-01T08:45:00Z",
+                    "endDate": "2023-10-01T10:45:00Z",
+                    "allDay": false,
+                    "repeatId": 0,
+                    "repeatFrequency": 0,
+                    "repeatUntil": null,
+                    "repeatOption": null,
+                    "additionals": [],
+                    "exceptions": [],
+                    "meta": {
+                        "createdDate": "2023-09-29T05:32:00Z",
+                        "createdPerson": {
+                            "id": 1
+                        },
+                        "modifiedDate": "2023-09-29T05:34:16Z",
+                        "modifiedPerson": {
+                            "id": 1
+                        }
+                    }
+                },
+                "calculated": {
+                    "startDate": "2023-10-01T08:45:00Z",
+                    "endDate": "2023-10-01T10:45:00Z"
+                }
+            }
+        ],
+        "meetingRequests": []
+    }
+}

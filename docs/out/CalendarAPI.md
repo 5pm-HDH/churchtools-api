@@ -1,6 +1,6 @@
 # CalendarAPI
 
-Load all calendars:
+## Load all calendars:
 
 ```php
         use CTApi\Models\Calendars\Appointment\AppointmentRequest;
@@ -33,7 +33,7 @@ Load all calendars:
 
 ```
 
-Load appointments for calendar:
+## Load appointments for calendar:
 
 ```php
         use CTApi\Models\Calendars\Appointment\AppointmentRequest;
@@ -126,7 +126,7 @@ Load appointments for calendar:
 
 ```
 
-Load appointments for multiple calendars:
+## Load appointments for multiple calendars:
 
 ```php
         use CTApi\Models\Calendars\Appointment\AppointmentRequest;
@@ -136,5 +136,59 @@ Load appointments for multiple calendars:
         $appointments = AppointmentRequest::forCalendars([21, 22])
             ->where("from", "2020-02-01")
             ->where("to", "2022-02-01")->get();
+
+```
+
+## Load appointment with event and bookings (CombinedAppointment):
+
+Load single appointment including the event and bookings for this appointment.
+
+**Parameters:**
+- calendarId (in example: 2)
+- appointmentId (in example: 13)
+- startDate (in example: 2023-10-01)
+
+```php
+        use CTApi\Models\Calendars\CombinedAppointment\CombinedAppointmentRequest;
+
+        $combinedAppointment = CombinedAppointmentRequest::forAppointment(2, 13, "2023-10-01")->get();
+
+        $appointment = $combinedAppointment->getAppointment();
+        var_dump( $appointment->getId());
+        // Output: 13
+
+        var_dump( $appointment->getCaption());
+        // Output: "Gottesdienst - Erntedank"
+
+        var_dump( $appointment->getInformation());
+        // Output: "Erntedankgottesdienst."
+
+        // see Appointment-Model
+
+        $event = $combinedAppointment->getEvent();
+        var_dump( $event->getId());
+        // Output: 13
+
+        var_dump( $event->getName());
+        // Output: "Gottesdienst - Erntedank"
+
+        var_dump( $event->getStartDate());
+        // Output: "2023-10-01T09:00:00Z"
+
+        // see Event-Model
+
+        $bookings = $combinedAppointment->getBookings();
+        $booking = end($bookings);
+        var_dump( $booking->getId());
+        // Output: 10
+
+        var_dump( $booking->getCaption());
+        // Output: "Gottesdienst - Erntedank"
+
+        // see Booking-Model
+        var_dump( $booking->getResource()?->getName());
+        // Output: "Saal"
+
+        // see Resource-Model
 
 ```

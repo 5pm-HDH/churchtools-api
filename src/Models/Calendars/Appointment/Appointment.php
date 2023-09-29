@@ -8,6 +8,7 @@ use CTApi\Models\AbstractModel;
 use CTApi\Models\Calendars\Calendar\Calendar;
 use CTApi\Models\Common\Domain\Meta;
 use CTApi\Traits\Model\FillWithData;
+use CTApi\Models\Common\File\File;
 use CTApi\Utils\CTDateTimeService;
 
 class Appointment extends AbstractModel
@@ -20,6 +21,7 @@ class Appointment extends AbstractModel
     protected ?Calendar $calendar = null;
     protected ?Address $address = null;
     protected ?string $information = null;
+    protected ?File $image = null;
     protected ?string $link = null;
     protected ?bool $isInternal = null;
     protected ?string $startDate = null;
@@ -48,6 +50,9 @@ class Appointment extends AbstractModel
                 break;
             case "address":
                 $this->address = Address::createModelFromData($data);
+                break;
+            case "image":
+                $this->image = File::createModelFromData($data);
                 break;
             default:
                 $this->fillDefault($key, $data);
@@ -92,6 +97,24 @@ class Appointment extends AbstractModel
         return $this;
     }
 
+    /**
+     * @return File|null
+     */
+    public function getImage(): ?File
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param File|null $image
+     * @return Appointment
+     */
+    public function setImage(?File $image): Appointment
+    {
+        $this->image= $image;
+        return $this;
+    }
+    
     /**
      * @return string|null
      */
