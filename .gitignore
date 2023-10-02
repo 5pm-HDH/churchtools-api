@@ -15,3 +15,4 @@ composer.phar
 *.log
 
 /http-dump
+/nbproject/private/
