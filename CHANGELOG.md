@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [1.4.0 Unreleased]
 
 ### Added
+- Add get config request ([175](https://github.com/5pm-HDH/churchtools-api/pull/175))
 - Add Address-Property to Appointment ([PR137](https://github.com/5pm-HDH/churchtools-api/pull/137))
 - Add SongStatistic ([PR140](https://github.com/5pm-HDH/churchtools-api/pull/140), [PR164](https://github.com/5pm-HDH/churchtools-api/pull/164))
 - Add multi-factor authentication support ([PR146](https://github.com/5pm-HDH/churchtools-api/pull/146))
