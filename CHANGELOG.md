@@ -32,6 +32,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Upgrade Monolog to v3 ([PR171](https://github.com/5pm-HDH/churchtools-api/pull/171))
 - Upgrade required PHP version from 8.0 to 8.1 ([PR171](https://github.com/5pm-HDH/churchtools-api/pull/171))
 - Add Image-Property to Appointment ([PR174](https://github.com/5pm-HDH/churchtools-api/pull/174))
+- Update CT-Version ([PR178](https://github.com/5pm-HDH/churchtools-api/pull/178))
 
 ### Fixed
 

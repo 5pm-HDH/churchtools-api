@@ -7,7 +7,7 @@
 ![integarion-test workflow](https://github.com/5pm-HDH/churchtools-api/actions/workflows/integration-tests.yml/badge.svg)
 
 The ChurchTools-API Client is a PHP-based wrapper for the ChurchTools API and has been tested with ChurchTools
-version <version>3.101.1</version>.
+version <version>3.102.0</version>.
 
 ## Installation
 
