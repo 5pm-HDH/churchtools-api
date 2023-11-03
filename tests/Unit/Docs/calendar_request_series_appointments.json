@@ -1,0 +1,121 @@
+{
+    "data": [
+        {
+            "base": {
+                "id": 15,
+                "caption": "Seminar series",
+                "note": "Letters to the first Christian churches",
+                "address": null,
+                "version": 0,
+                "calendar": {
+                    "id": 3,
+                    "name": "Gottesdienst",
+                    "nameTranslated": "Gottesdienst",
+                    "sortKey": 10,
+                    "color": "black",
+                    "isPublic": true,
+                    "isPrivate": false,
+                    "randomUrl": "30a2d4d8ea19c0a52c54ef59d1b76196",
+                    "iCalSourceUrl": null,
+                    "campusId": null,
+                    "eventTemplateId": null,
+                    "meta": {
+                        "modifiedDate": "2023-05-03T11:59:11Z",
+                        "modifiedPid": -1
+                    }
+                },
+                "information": "",
+                "image": null,
+                "link": "",
+                "isInternal": false,
+                "startDate": "2023-11-03T17:00:00Z",
+                "endDate": "2023-11-03T18:30:00Z",
+                "allDay": false,
+                "repeatId": 7,
+                "repeatFrequency": 1,
+                "repeatUntil": "2023-11-10",
+                "repeatOption": null,
+                "additionals": [],
+                "exceptions": [],
+                "signup": null,
+                "meta": {
+                    "createdDate": "2023-11-03T07:27:38Z",
+                    "createdPerson": {
+                        "id": 1
+                    },
+                    "modifiedDate": "2023-11-03T07:27:38Z",
+                    "modifiedPerson": {
+                        "id": 1
+                    }
+                },
+                "onBehalfOfPid": null,
+                "@deprecated": "additions",
+                "additions": []
+            },
+            "calculated": {
+                "startDate": "2023-11-03T17:00:00Z",
+                "endDate": "2023-11-03T18:30:00Z"
+            }
+        },
+        {
+            "base": {
+                "id": 15,
+                "caption": "Seminar series",
+                "note": "Letters to the first Christian churches",
+                "address": null,
+                "version": 0,
+                "calendar": {
+                    "id": 3,
+                    "name": "Gottesdienst",
+                    "nameTranslated": "Gottesdienst",
+                    "sortKey": 10,
+                    "color": "black",
+                    "isPublic": true,
+                    "isPrivate": false,
+                    "randomUrl": "30a2d4d8ea19c0a52c54ef59d1b76196",
+                    "iCalSourceUrl": null,
+                    "campusId": null,
+                    "eventTemplateId": null,
+                    "meta": {
+                        "modifiedDate": "2023-05-03T11:59:11Z",
+                        "modifiedPid": -1
+                    }
+                },
+                "information": "",
+                "image": null,
+                "link": "",
+                "isInternal": false,
+                "startDate": "2023-11-03T17:00:00Z",
+                "endDate": "2023-11-03T18:30:00Z",
+                "allDay": false,
+                "repeatId": 7,
+                "repeatFrequency": 1,
+                "repeatUntil": "2023-11-10",
+                "repeatOption": null,
+                "additionals": [],
+                "exceptions": [],
+                "signup": null,
+                "meta": {
+                    "createdDate": "2023-11-03T07:27:38Z",
+                    "createdPerson": {
+                        "id": 1
+                    },
+                    "modifiedDate": "2023-11-03T07:27:38Z",
+                    "modifiedPerson": {
+                        "id": 1
+                    }
+                },
+                "onBehalfOfPid": null,
+                "@deprecated": "additions",
+                "additions": []
+            },
+            "calculated": {
+                "startDate": "2023-11-10T17:00:00Z",
+                "endDate": "2023-11-10T18:30:00Z"
+            }
+        }
+    ],
+    "meta": {
+        "count": 2
+    }
+}
