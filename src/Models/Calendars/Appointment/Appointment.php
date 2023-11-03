@@ -7,8 +7,8 @@ namespace CTApi\Models\Calendars\Appointment;
 use CTApi\Models\AbstractModel;
 use CTApi\Models\Calendars\Calendar\Calendar;
 use CTApi\Models\Common\Domain\Meta;
-use CTApi\Traits\Model\FillWithData;
 use CTApi\Models\Common\File\File;
+use CTApi\Traits\Model\FillWithData;
 use CTApi\Utils\CTDateTimeService;
 
 class Appointment extends AbstractModel
@@ -24,8 +24,14 @@ class Appointment extends AbstractModel
     protected ?File $image = null;
     protected ?string $link = null;
     protected ?bool $isInternal = null;
-    protected ?string $startDate = null;
-    protected ?string $endDate = null;
+
+    protected ?string $base_startDate = null;
+    protected ?string $base_endDate = null;
+
+    protected ?string $calculated_startDate = null;
+    protected ?string $calculated_endDate = null;
+
+
     protected ?string $allDay = null;
     protected ?string $repeatId = null;
     protected ?string $repeatFrequency = null;
@@ -37,9 +43,11 @@ class Appointment extends AbstractModel
     {
         switch ($key) {
             case "base":
+                $this->processStartAndEndDate(true, $data);
                 $this->fillWithData($data); // inline "base"-array attributes
                 break;
             case "calculated":
+                $this->processStartAndEndDate(false, $data);
                 $this->fillWithData($data); // inline "calculated"-array attributes
                 break;
             case "calendar":
@@ -59,14 +67,56 @@ class Appointment extends AbstractModel
         }
     }
 
+    private function processStartAndEndDate(bool $isBase, array &$data)
+    {
+        if ($isBase) {
+            $this->base_startDate = $data['startDate'] ?? null;
+            $this->base_endDate = $data['endDate'] ?? null;
+        } else {
+            $this->calculated_startDate = $data['startDate'] ?? null;
+            $this->calculated_endDate = $data['endDate'] ?? null;
+        }
+
+        unset($data['startDate']);
+        unset($data['endDate']);
+    }
+
     public function getStartDateAsDateTime(): ?\DateTimeImmutable
     {
-        return CTDateTimeService::stringToDateTime($this->startDate);
+        return CTDateTimeService::stringToDateTime($this->getStartDate());
     }
 
     public function getEndDateAsDateTime(): ?\DateTimeImmutable
     {
-        return CTDateTimeService::stringToDateTime($this->endDate);
+        return CTDateTimeService::stringToDateTime($this->getEndDate());
+    }
+
+    public function getCalculatedStartDateAsDateTime(): ?\DateTimeImmutable
+    {
+        return CTDateTimeService::stringToDateTime($this->getCalculatedStartDate());
+    }
+
+    public function getCalculatedEndDateAsDateTime(): ?\DateTimeImmutable
+    {
+        return CTDateTimeService::stringToDateTime($this->getCalculatedEndDate());
+    }
+
+    public function getBaseStartDateAsDateTime(): ?\DateTimeImmutable
+    {
+        return CTDateTimeService::stringToDateTime($this->getBaseStartDate());
+    }
+
+    public function getBaseEndDateAsDateTime(): ?\DateTimeImmutable
+    {
+        return CTDateTimeService::stringToDateTime($this->getBaseEndDate());
+    }
+
+    public function toData(): array
+    {
+        $data = $this->convertPropertiesToData();
+        $data["startDate"] = $this->getStartDate();
+        $data["endDate"] = $this->getEndDate();
+        return $data;
     }
 
     /**
@@ -111,10 +161,10 @@ class Appointment extends AbstractModel
      */
     public function setImage(?File $image): Appointment
     {
-        $this->image= $image;
+        $this->image = $image;
         return $this;
     }
-    
+
     /**
      * @return string|null
      */
@@ -246,17 +296,10 @@ class Appointment extends AbstractModel
      */
     public function getStartDate(): ?string
     {
-        return $this->startDate;
-    }
-
-    /**
-     * @param string|null $startDate
-     * @return Appointment
-     */
-    public function setStartDate(?string $startDate): Appointment
-    {
-        $this->startDate = $startDate;
-        return $this;
+        if ($this->calculated_startDate != null) {
+            return $this->calculated_startDate;
+        }
+        return $this->base_startDate;
     }
 
     /**
@@ -264,17 +307,10 @@ class Appointment extends AbstractModel
      */
     public function getEndDate(): ?string
     {
-        return $this->endDate;
-    }
-
-    /**
-     * @param string|null $endDate
-     * @return Appointment
-     */
-    public function setEndDate(?string $endDate): Appointment
-    {
-        $this->endDate = $endDate;
-        return $this;
+        if ($this->calculated_endDate != null) {
+            return $this->calculated_endDate;
+        }
+        return $this->base_endDate;
     }
 
     /**
@@ -383,5 +419,45 @@ class Appointment extends AbstractModel
     {
         $this->meta = $meta;
         return $this;
+    }
+
+    public function getBaseStartDate(): ?string
+    {
+        return $this->base_startDate;
+    }
+
+    public function setBaseStartDate(?string $base_startDate): void
+    {
+        $this->base_startDate = $base_startDate;
+    }
+
+    public function getBaseEndDate(): ?string
+    {
+        return $this->base_endDate;
+    }
+
+    public function setBaseEndDate(?string $base_endDate): void
+    {
+        $this->base_endDate = $base_endDate;
+    }
+
+    public function getCalculatedStartDate(): ?string
+    {
+        return $this->calculated_startDate;
+    }
+
+    public function setCalculatedStartDate(?string $calculated_startDate): void
+    {
+        $this->calculated_startDate = $calculated_startDate;
+    }
+
+    public function getCalculatedEndDate(): ?string
+    {
+        return $this->calculated_endDate;
+    }
+
+    public function setCalculatedEndDate(?string $calculated_endDate): void
+    {
+        $this->calculated_endDate = $calculated_endDate;
     }
 }

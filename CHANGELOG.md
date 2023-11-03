@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Song-Tags ([PR168](https://github.com/5pm-HDH/churchtools-api/pull/168))
 - CTSession ([PR170](https://github.com/5pm-HDH/churchtools-api/pull/170))
 - CombinedAppointment ([PR174](https://github.com/5pm-HDH/churchtools-api/pull/174))
+- Appointment property for calculated and Base StartDate/EndDate ([PR177](https://github.com/5pm-HDH/churchtools-api/pull/177))
 
 ### Changed
 - Refactor Imports ([PR165](https://github.com/5pm-HDH/churchtools-api/pull/165))

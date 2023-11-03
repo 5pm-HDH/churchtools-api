@@ -4,6 +4,8 @@
 namespace CTApi\Test\Integration\Requests;
 
 
+use CTApi\CTLog;
+use CTApi\Models\Calendars\Appointment\Appointment;
 use CTApi\Models\Calendars\Appointment\AppointmentRequest;
 use CTApi\Models\Calendars\Calendar\CalendarRequest;
 use CTApi\Models\Calendars\CombinedAppointment\CombinedAppointmentRequest;
@@ -99,5 +101,40 @@ class CalendarRequestTest extends TestCaseAuthenticated
         $this->assertEqualsTestData("combined_appointment", "any_booking.id", $oneBooking->getId());
         $this->assertEqualsTestData("combined_appointment", "any_booking.resource.id", $oneBooking->getResource()?->getId());
         $this->assertEqualsTestData("combined_appointment", "any_booking.resource.name", $oneBooking->getResource()?->getName());
+    }
+
+    public function testSeriesAppointment()
+    {
+        $testCase = IntegrationTestData::getTestCase("appointment_series");
+
+        $calendar_id = $testCase->getFilterAsInt("calendar_id");
+        $from = $testCase->getFilter("from");
+        $to = $testCase->getFilter("to");
+
+        $appointments = AppointmentRequest::forCalendar($calendar_id)
+            ->where("from", $from)
+            ->where("to", $to)->get();
+
+        $this->assertTrue(sizeof($appointments) >= 2);
+
+        $firstSeriesAppointment = null;
+        $first_startDate = $testCase->getResult("first_series_appointment.calculated_start_date");
+        $secondSeriesAppointment = null;
+        $second_startDate = $testCase->getResult("second_series_appointment.calculated_start_date");
+
+        foreach($appointments as $appointment){
+            if($first_startDate === $appointment->getStartDate()){
+                $firstSeriesAppointment = $appointment;
+            }
+            if($second_startDate === $appointment->getStartDate()){
+                $secondSeriesAppointment = $appointment;
+            }
+        }
+
+        $this->assertNotNull($firstSeriesAppointment);
+        $this->assertEquals($testCase->getResult("first_series_appointment.base_start_date"), $firstSeriesAppointment->getBaseStartDate());
+
+        $this->assertNotNull($secondSeriesAppointment);
+        $this->assertEquals($testCase->getResult("second_series_appointment.base_start_date"), $secondSeriesAppointment->getBaseStartDate());
     }
 }

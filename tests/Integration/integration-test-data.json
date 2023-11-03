@@ -391,6 +391,26 @@
         }
       }
     },
+    "appointment_series": {
+      "description": "Filter series appointment.",
+      "filter": {
+        "calendar_id": 2,
+        "from": "2023-11-02",
+        "to": "2023-11-11"
+      },
+      "result": {
+        "first_series_appointment": {
+          "id": 14,
+          "base_start_date": "2023-11-03T17:00:00Z",
+          "calculated_start_date": "2023-11-03T17:00:00Z"
+        },
+        "second_series_appointment": {
+          "id": 14,
+          "base_start_date": "2023-11-03T17:00:00Z",
+          "calculated_start_date": "2023-11-10T17:00:00Z"
+        }
+      }
+    },
     "permission_group": {
       "description": "Load permission for group.",
       "filter": {

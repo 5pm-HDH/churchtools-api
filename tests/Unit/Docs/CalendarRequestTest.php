@@ -4,6 +4,7 @@
 namespace CTApi\Test\Unit\Docs;
 
 
+use CTApi\Models\Calendars\Appointment\Appointment;
 use CTApi\Models\Calendars\Appointment\AppointmentRequest;
 use CTApi\Models\Calendars\Calendar\CalendarRequest;
 use CTApi\Test\Unit\TestCaseHttpMocked;
@@ -31,9 +32,9 @@ class CalendarRequestTest extends TestCaseHttpMocked
         $lastCalendar = end($allCalendars);
 
         $appointments = $lastCalendar->requestAppointments()
-                ?->where("from", "2020-01-01")
-                ?->where("to", "2022-01-01")
-                ?->get() ?? [];
+            ?->where("from", "2020-01-01")
+            ?->where("to", "2022-01-01")
+            ?->get() ?? [];
         $lastAppointment = end($appointments);
 
         $this->assertEquals(848, $lastAppointment->getId());
@@ -76,6 +77,79 @@ class CalendarRequestTest extends TestCaseHttpMocked
         $appointments = AppointmentRequest::forCalendars([21, 22])
             ->where("from", "2020-02-01")
             ->where("to", "2022-02-01")->get();
+    }
+
+
+    public function testGetSeriesAppointments()
+    {
+        /**
+         * Load Seminar series:
+         * Consists of 2 series appointments
+         * - #1: Friday 03.11.2023
+         * - #2: Friday 10.11.2023
+         */
+        $appointments = $this->loadSeriesAppointments();
+
+        $firstSeriesAppointment = $appointments[0];
+        $secondSeriesAppointment = $appointments[1];
+
+        /**
+         * ID PROPERTY:
+         * For every calculated series appointment the id stays the same as the base appointment:
+         */
+        $this->assertEquals(15, $firstSeriesAppointment->getId());
+        $this->assertEquals(15, $firstSeriesAppointment->getId());
+
+        /**
+         * START_DATE / END_DATE PROPERTY:
+         * Shows the start date / end date of the series appointment.
+         */
+        $this->assertEquals("2023-11-03T17:00:00Z", $firstSeriesAppointment->getStartDate());
+        $this->assertEquals("2023-11-03T18:30:00Z", $firstSeriesAppointment->getEndDate());
+
+        $this->assertEquals("2023-11-10T17:00:00Z", $secondSeriesAppointment->getStartDate());
+        $this->assertEquals("2023-11-10T18:30:00Z", $secondSeriesAppointment->getEndDate());
+
+        /**
+         * BASE START_DATE / END_DATE PROPERTY:
+         * Refers for every appointment to the base appointment, where the series starts:
+         */
+        $this->assertEquals("2023-11-03T17:00:00Z", $firstSeriesAppointment->getBaseStartDate());
+        $this->assertEquals("2023-11-03T18:30:00Z", $firstSeriesAppointment->getBaseEndDate());
+
+        $this->assertEquals("2023-11-03T17:00:00Z", $secondSeriesAppointment->getBaseStartDate());
+        $this->assertEquals("2023-11-03T18:30:00Z", $secondSeriesAppointment->getBaseEndDate());
+
+        /**
+         * CALCULATED START_DATE / END_DATE PROPERTY:
+         * Same as default startDate / endDate property. Contains the calculated date for the specific appointment.
+         */
+        $this->assertEquals("2023-11-03T17:00:00Z", $firstSeriesAppointment->getCalculatedStartDate());
+        $this->assertEquals("2023-11-03T18:30:00Z", $firstSeriesAppointment->getCalculatedEndDate());
+
+        $this->assertEquals("2023-11-10T17:00:00Z", $secondSeriesAppointment->getCalculatedStartDate());
+        $this->assertEquals("2023-11-10T18:30:00Z", $secondSeriesAppointment->getCalculatedEndDate());
+
+        /**
+         * DATE_TIME:
+         * All string properties can be casted to date time.
+         */
+        $firstSeriesAppointment->getStartDateAsDateTime();
+        $firstSeriesAppointment->getBaseStartDateAsDateTime();
+        $firstSeriesAppointment->getCalculatedStartDateAsDateTime();
+        $firstSeriesAppointment->getEndDateAsDateTime();
+        $firstSeriesAppointment->getBaseEndDateAsDateTime();
+        $firstSeriesAppointment->getCalculatedEndDateAsDateTime();
+    }
+
+    /**
+     * @return Appointment[]
+     */
+    private function loadSeriesAppointments(): array
+    {
+        $fileContent = file_get_contents(__DIR__ . '/calendar_request_series_appointments.json');
+        $json = json_decode($fileContent, true);
+        return Appointment::createModelsFromArray($json["data"]);
     }
 
 }

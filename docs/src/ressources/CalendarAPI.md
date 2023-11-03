@@ -12,6 +12,10 @@
 
 {{ \CTApi\Test\Unit\Docs\CalendarRequestTest.testGetAppointmentsViaBuilder }}
 
+## Series appointments:
+
+{{ \CTApi\Test\Unit\Docs\CalendarRequestTest.testGetSeriesAppointments}}
+
 ## Load appointment with event and bookings (CombinedAppointment):
 
 Load single appointment including the event and bookings for this appointment.
