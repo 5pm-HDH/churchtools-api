@@ -9,6 +9,9 @@
 The ChurchTools-API Client is a PHP-based wrapper for the ChurchTools API and has been tested with ChurchTools
 version <version>3.102.0</version>.
 
+> [!NOTE]
+> Version 1.4 has been launched, featuring a restructured code base and numerous new features. If you're upgrading from version 1.3 to 1.4, please consult the [Upgrade Guide](https://github.com/5pm-HDH/churchtools-api/blob/master/CHANGELOG.md#upgrade-guide---upgrading-from-13-to-14).
+
 ## Installation
 
 Go to the project-root and install ChurchTools-API via [composer](https://getcomposer.org/):
