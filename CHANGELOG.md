@@ -92,6 +92,17 @@ We upgraded monolog to v3 to be compatible with Laravel 10. There is now action 
 
 No action required.
 
+### Contributors:
+
+Special thanks to the dedicated contributors who are the driving force behind this project, advancing it, enhancing its quality, and introducing new features.
+
+- [@stollr](https://github.com/stollr) enhanced the person-api and implemented the capability to update data in churchtools and create new persons.
+- [@devdot](https://github.com/devdot) upgraded Monolog to ensure compatibility with Laravel 10.
+- [@a-schild](https://github.com/a-schild) provided valuable input for the appointment API, included the configuration request, and introduced the CombinedAppointment request.
+- [@BiKi05](https://github.com/BiKi05) provided the inspiration for the song-statistic API and the DateTime cast.
+- [@piridium](https://github.com/piridium) implemented a security fix.
+- [@castilma](https://github.com/castilma) proposed documentation for handling exceptions.
+
 ## [1.3.6] - 2023-04-05
 
 ### Added
