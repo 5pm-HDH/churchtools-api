@@ -5,38 +5,92 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [1.4.0 Unreleased]
+## [Unreleased]
 
 ### Added
-- Add get config request ([175](https://github.com/5pm-HDH/churchtools-api/pull/175))
-- Add Address-Property to Appointment ([PR137](https://github.com/5pm-HDH/churchtools-api/pull/137))
-- Add SongStatistic ([PR140](https://github.com/5pm-HDH/churchtools-api/pull/140), [PR164](https://github.com/5pm-HDH/churchtools-api/pull/164))
-- Add multi-factor authentication support ([PR146](https://github.com/5pm-HDH/churchtools-api/pull/146))
-- Group-member-fields and DBFields-API ([PR147](https://github.com/5pm-HDH/churchtools-api/issues/147))
-- Pagination Page-Size Option ([PR163](https://github.com/5pm-HDH/churchtools-api/pull/163))
-- DateTime-Getter ([PR167](https://github.com/5pm-HDH/churchtools-api/pull/167))
-- Song-Tags ([PR168](https://github.com/5pm-HDH/churchtools-api/pull/168))
-- CTSession ([PR170](https://github.com/5pm-HDH/churchtools-api/pull/170))
-- CombinedAppointment ([PR174](https://github.com/5pm-HDH/churchtools-api/pull/174))
-- Appointment property for calculated and Base StartDate/EndDate ([PR177](https://github.com/5pm-HDH/churchtools-api/pull/177))
 
 ### Changed
-- Refactor Imports ([PR165](https://github.com/5pm-HDH/churchtools-api/pull/165))
-- Reorganize Codebase ([PR173](https://github.com/5pm-HDH/churchtools-api/pull/173))
-- Authenticate CTClient with session cookie instead of api-key ([PR142](https://github.com/5pm-HDH/churchtools-api/pull/142))
-- GH-Action for integration-tests ([PR143](https://github.com/5pm-HDH/churchtools-api/pull/143), [PR144](https://github.com/5pm-HDH/churchtools-api/pull/144), [PR149](https://github.com/5pm-HDH/churchtools-api/pull/149), [PR153](https://github.com/5pm-HDH/churchtools-api/pull/153))
-- Update Dependencies ([PR154](https://github.com/5pm-HDH/churchtools-api/pull/154))
-- Authenticate with UserId and LoginToken ([PR155](https://github.com/5pm-HDH/churchtools-api/pull/155), [PR156](https://github.com/5pm-HDH/churchtools-api/pull/156), [PR157](https://github.com/5pm-HDH/churchtools-api/pull/157))
-- ChurchTools Release ([PR159](https://github.com/5pm-HDH/churchtools-api/pull/159))
-- Replace Psalm PHP with PHP-Stan ([PR166](https://github.com/5pm-HDH/churchtools-api/pull/166))
-- Upgrade Monolog to v3 ([PR171](https://github.com/5pm-HDH/churchtools-api/pull/171))
-- Upgrade required PHP version from 8.0 to 8.1 ([PR171](https://github.com/5pm-HDH/churchtools-api/pull/171))
-- Add Image-Property to Appointment ([PR174](https://github.com/5pm-HDH/churchtools-api/pull/174))
-- Update CT-Version ([PR178](https://github.com/5pm-HDH/churchtools-api/pull/178))
 
 ### Fixed
 
+## [1.4.0]
+
+### Added
+
+**New Requests:**
+- Get config request `ConfigRequest:getConfig()` ([175](https://github.com/5pm-HDH/churchtools-api/pull/175))
+- Get SongStatistic `SongStatisticRequest::all()` ([PR140](https://github.com/5pm-HDH/churchtools-api/pull/140), [PR164](https://github.com/5pm-HDH/churchtools-api/pull/164))
+- Song-Tags (`$song->requestTags()`) and Group-Tags (`$group->requestTags()`) ([PR168](https://github.com/5pm-HDH/churchtools-api/pull/168))
+- Get CombinedAppointment consisting of appointment, booking and event ([PR174](https://github.com/5pm-HDH/churchtools-api/pull/174))
+
+**New Properties:**
+- Add Address-Property on Appointment ([PR137](https://github.com/5pm-HDH/churchtools-api/pull/137))
+- Group-member-fields and DBFields-API ([PR147](https://github.com/5pm-HDH/churchtools-api/issues/147))
+- All date properties get DateTime-Getter (`$vaccationAbsence->getEndDateAsDateTime()`) ([PR167](https://github.com/5pm-HDH/churchtools-api/pull/167))
+- Appointment property for calculated and base StartDate/EndDate ([PR177](https://github.com/5pm-HDH/churchtools-api/pull/177))
 - Add ImageUrlBanner to GroupInformation data ([PR136](https://github.com/5pm-HDH/churchtools-api/pull/136))
+- Add Image-Property to Appointment ([PR174](https://github.com/5pm-HDH/churchtools-api/pull/174))
+
+**Configuration:**
+- Add HTTP-Log to log http request data ([PR137](https://github.com/5pm-HDH/churchtools-api/pull/137))
+- Pagination Page-Size Option `CTConfig::setPaginationPageSize(400)` ([PR163](https://github.com/5pm-HDH/churchtools-api/pull/163))
+- CTSession to handle multiple ct-instances and login-tokens ([PR170](https://github.com/5pm-HDH/churchtools-api/pull/170))
+
+**Authentication:**
+- Add multi-factor authentication support ([PR146](https://github.com/5pm-HDH/churchtools-api/pull/146))
+
+### Changed
+
+**Breaking Changes:**
+- Refactor Imports to follow PSR-4 ([PR165](https://github.com/5pm-HDH/churchtools-api/pull/165))
+- Reorganize Codebase ([PR173](https://github.com/5pm-HDH/churchtools-api/pull/173))
+
+- Authenticate CT-API-Client with cookie session instead of sending api-key in every request. ([PR142](https://github.com/5pm-HDH/churchtools-api/pull/142))
+- Authenticate with UserId and LoginToken ([PR155](https://github.com/5pm-HDH/churchtools-api/pull/155), [PR156](https://github.com/5pm-HDH/churchtools-api/pull/156), [PR157](https://github.com/5pm-HDH/churchtools-api/pull/157))
+
+**Intern Changes:**
+- Add integration-test that interact with a reallife churchtools instance ([PR143](https://github.com/5pm-HDH/churchtools-api/pull/143), [PR144](https://github.com/5pm-HDH/churchtools-api/pull/144), [PR149](https://github.com/5pm-HDH/churchtools-api/pull/149), [PR153](https://github.com/5pm-HDH/churchtools-api/pull/153))
+- Update Dependencies ([PR154](https://github.com/5pm-HDH/churchtools-api/pull/154))
+- Update tested CT-Version in Docs ([PR178](https://github.com/5pm-HDH/churchtools-api/pull/178), [PR159](https://github.com/5pm-HDH/churchtools-api/pull/159))
+- Replace Psalm PHP with PHP-Stan ([PR166](https://github.com/5pm-HDH/churchtools-api/pull/166))
+- Upgrade Monolog to v3 ([PR171](https://github.com/5pm-HDH/churchtools-api/pull/171))
+- Upgrade required PHP version from 8.0 to 8.1 ([PR171](https://github.com/5pm-HDH/churchtools-api/pull/171))
+
+## Upgrade Guide - Upgrading from 1.3 to 1.4
+
+For version 1.4 we refactor the complete code base to provide a better overview and split the code in the diffrent churchtools parts (groups, events, calendars, bookings). To migrate your from version 1.3 to 1.4 please check out this upgrade guide:
+
+### High Impact Changes:
+
+**Reorganizce Coadebase and refactor imports ([PR173](https://github.com/5pm-HDH/churchtools-api/pull/173), [PR165](https://github.com/5pm-HDH/churchtools-api/pull/165))**
+
+Please update the imports in your code for each Request and Model. You can make use of your IDE's intellisense or refer to the [documentation](https://github.com/5pm-HDH/churchtools-api#requests-and-models) to find the correct namespaces.
+
+**Upgrade PHP Version to 8.1 and dump support for 8.0 ([PR171](https://github.com/5pm-HDH/churchtools-api/pull/171))**
+
+With security support for PHP 8.0 set to expire on November 26, the focus will shift away from 8.0 in favor of embracing new language features in PHP 8.1. You can find more information about supported PHP versions at https://www.php.net/supported-versions.php.
+
+Update your PHP Version on your system and reinstall the composer dependencies.
+
+### Medium Impact Changes:
+
+**Changed Authentication of CT-Client ([PR142](https://github.com/5pm-HDH/churchtools-api/pull/142))**
+
+The authentication method for the churchtools API has been updated. Previously, the API-token was included in every request. Now, authentication will be based on the provided cookie session, which will significantly improve request speed. To be up to date with the authentication methods please check out the [documentation](https://github.com/5pm-HDH/churchtools-api/blob/master/docs/out/CTConfig.md#2-authentication). As a result of this change, the Config API has also been modified:
+
+- `CTConfig::validateApiKey()` is replaced with `CTConfig::validateAuthentication()`
+- `CTConfig::authWithLoginToken($userId, $loginToken)` now only needs loginToken as parameter, because userId is not required: `CTConfig::authWithLoginToken($loginToken)`.
+- `AuthRequest::retrieveApiToken()` now needs the userId as parameter.
+
+### Low Impact Changes:
+
+**Upgrade Monolog to v3 ([PR171](https://github.com/5pm-HDH/churchtools-api/pull/171))**
+
+We upgraded monolog to v3 to be compatible with Laravel 10. There is now action required.
+
+**Ugrade Guzzle from 7.4 to 7.7 ([PR154](https://github.com/5pm-HDH/churchtools-api/pull/154))**
+
+No action required.
 
 ## [1.3.6] - 2023-04-05
 
