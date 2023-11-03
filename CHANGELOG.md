@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 
-## [1.4.0]
+## [2.0.0]
 
 ### Added
 
@@ -56,9 +56,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Upgrade Monolog to v3 ([PR171](https://github.com/5pm-HDH/churchtools-api/pull/171))
 - Upgrade required PHP version from 8.0 to 8.1 ([PR171](https://github.com/5pm-HDH/churchtools-api/pull/171))
 
-## Upgrade Guide - Upgrading from 1.3 to 1.4
+## Upgrade Guide - Upgrading from v1 to v2
 
-For version 1.4 we refactor the complete code base to provide a better overview and split the code in the diffrent churchtools parts (groups, events, calendars, bookings). To migrate your from version 1.3 to 1.4 please check out this upgrade guide:
+For version 2 we refactor the complete code base to provide a better overview and split the code in the diffrent churchtools parts (groups, events, calendars, bookings). To migrate your from version 1 to 2 please check out this upgrade guide:
 
 ### High Impact Changes:
 
