@@ -9,6 +9,9 @@
 The ChurchTools-API Client is a PHP-based wrapper for the ChurchTools API and has been tested with ChurchTools
 version <version>3.102.0</version>.
 
+> [!NOTE]
+> Version 1.4 has been launched, featuring a restructured code base and numerous new features. If you're upgrading from version 1.3 to 1.4, please consult the [Upgrade Guide](https://github.com/5pm-HDH/churchtools-api/blob/master/CHANGELOG.md#upgrade-guide---upgrading-from-13-to-14).
+
 ## Installation
 
 Go to the project-root and install ChurchTools-API via [composer](https://getcomposer.org/):
@@ -257,3 +260,21 @@ information, please refer to this page: [Doc-Generator](/docs/Docs.md)
 ## License
 
 This project is licensed under MIT-License feel free to use it or to contribute.
+
+## Showcase:
+
+To provide you with an idea of the ChurchTools-API Client's potential uses, here are a few examples. If you're working on a project too, please consider contributing and adding it to this list:
+
+**Administration Tools:**
+- **ChurchTools-CLI** by [@5pm-HDH](https://github.com/5pm-HDH/churchtools-cli): With the ChurchTools-CLI-Tool, you can access data from your ChurchTools application instance directly through a CLI application, using simple commands that are easy to learn. The tool is compatible with cmd on Windows, terminal on Mac, and bash on Linux.
+- **ChurchTools GroupMeetings** by [@a-schild](https://github.com/a-schild/churchtools-groupmeetings): Create ical feed from group meetings
+- **ChurchTools PDF Calendar** by [@a-schild](https://github.com/a-schild/churchtools-pdfcalendar): Generate PDF month calendars from churchtools
+- **ECGPB Member List Administration** by [@stollr](https://github.com/stollr/ecgpb-memberlist): This application is written for the christian church Evangeliums-Christengemeinde e.V. and its main purpose is the administration of its members and to generate a printable member list.
+
+**Wordpress Plugins:**
+
+- **ChurchTools WP Calendarsync** by [@a-schild](https://github.com/a-schild/churchtools-wp-calendarsync): This wordpress plugin does take the events from the churchtools calendar and imports them as events in wordpress.
+- **Wordpress Plugin für ChurchTools Anmeldungen** by [@5pm-HDH](https://github.com/5pm-HDH/wp-plugin-churchtools-anmeldungen): Mit diesem Wordpress-Plugin kannst du das von ChurchTools zur Verfügung gestellte iFrame für die Anmeldungen ersetzen durch einen eigenen Template-basierten Ansatz.
+
+**Other Applications:**
+- **FreeScout Module** by [@churcholution](https://github.com/churcholution/freescout-churchtoolsauth): Login to FreeScout with ChurchTools credentials and manage permissions based on group/role memberships.
