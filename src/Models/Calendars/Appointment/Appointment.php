@@ -111,6 +111,14 @@ class Appointment extends AbstractModel
         return CTDateTimeService::stringToDateTime($this->getBaseEndDate());
     }
 
+    public function toData(): array
+    {
+        $data = $this->convertPropertiesToData();
+        $data["startDate"] = $this->getStartDate();
+        $data["endDate"] = $this->getEndDate();
+        return $data;
+    }
+
     /**
      * @param string|null $id
      * @return Appointment

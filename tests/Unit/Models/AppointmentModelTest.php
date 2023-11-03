@@ -87,4 +87,31 @@ class AppointmentModelTest extends TestCase
         $this->assertEquals(CTDateTimeService::stringToDateTime("2022-08-07T15:00:00Z"), $appointment->getBaseStartDateAsDateTime());
         $this->assertEquals(CTDateTimeService::stringToDateTime("2022-08-07T16:00:00Z"), $appointment->getBaseEndDateAsDateTime());
     }
+
+    public function testToData()
+    {
+        $dataA = [
+            "base" => [
+                "id" => 848,
+                "caption" => "Service",
+                "startDate" => "2022-08-07T15:00:00Z",
+                "endDate" => "2022-08-07T16:00:00Z",
+            ],
+            "calculated" => [
+                "startDate" => "2022-01-07T15:00:00Z",
+                "endDate" => "2022-01-07T16:00:00Z",
+            ]
+        ];
+
+        $appointment = Appointment::createModelFromData($dataA);
+
+        $data = $appointment->toData();
+
+        $this->assertArrayHasKey("base_startDate", $data);
+        $this->assertArrayHasKey("base_endDate", $data);
+        $this->assertArrayHasKey("calculated_startDate", $data);
+        $this->assertArrayHasKey("calculated_endDate", $data);
+        $this->assertArrayHasKey("startDate", $data);
+        $this->assertArrayHasKey("endDate", $data);
+    }
 }
