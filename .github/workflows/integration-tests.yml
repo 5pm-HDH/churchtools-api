@@ -41,9 +41,9 @@ jobs:
 
     - name: Create integration-config file
       run: |
-        printf "$INTEGRATION_CONFIG" >> tests/integration/integration.ini
+        printf "$INTEGRATION_CONFIG" >> tests/Integration/integration.ini
         printf "$INTEGRATION_CONFIG"
-        cat tests/integration/integration.ini
+        cat tests/Integration/integration.ini
       shell: bash
       env:
         INTEGRATION_CONFIG: ${{ secrets.INTEGRATION_CONFIG }}
