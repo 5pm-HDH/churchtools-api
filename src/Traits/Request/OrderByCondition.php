@@ -41,9 +41,9 @@ trait OrderByCondition
                     }
                 } else if (is_string($valueA) || is_string($valueB)) {
                     if ($sortAscending) {
-                        return strcmp($valueA, $valueB);
+                        return strcmp($valueA ?? "", $valueB ?? "");
                     } else {
-                        return strcmp($valueB, $valueA);
+                        return strcmp($valueB ?? "", $valueA ?? "");
                     }
                 } else {
                     return 0;
