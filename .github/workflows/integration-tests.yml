@@ -41,14 +41,13 @@ jobs:
 
     - name: Create integration-config file
       run: |
-        printf '%s\n' "$INTEGRATION_CONFIG" > tests/Integration/integration.ini
+        printf '%s' "$INTEGRATION_CONFIG" > tests/Integration/integration.ini
       shell: bash
       env:
         INTEGRATION_CONFIG: ${{ secrets.INTEGRATION_CONFIG }}
 
     - name: Check if integration-config file exists
       run: |
-        ls
         if [ -f "tests/Integration/integration.ini" ]
         then
           echo "Integration file exists"
@@ -56,10 +55,13 @@ jobs:
           echo "Error: Could not find integration config file"
           throw "Error: Could not find integration config file"
         fi
+        echo "FILE SIZES IN tests/Integration:\n"
+        cd tests
+        cd Integration
+        ls -lh
 
     - name: Check if integration file is empty
       run: |
-        ls
         if [ -s "tests/Integration/integration.ini" ]
         then
           echo "Integration config file is not empty"
