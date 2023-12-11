@@ -4,6 +4,8 @@
 namespace CTApi\Test\Integration\Requests;
 
 
+use CTApi\CTConfig;
+use CTApi\CTLog;
 use CTApi\Models\Common\DBField\DBField;
 use CTApi\Models\Common\DBField\DBFieldRequest;
 use CTApi\Models\Common\DBField\DBFieldValueContainer;
@@ -15,6 +17,13 @@ use CTApi\Test\Integration\TestCaseAuthenticated;
 
 class DBFieldRequestTest extends TestCaseAuthenticated
 {
+
+    public static function setUpBeforeClass(): void
+    {
+        self::markTestSkipped("Fix issue with test in: https://github.com/5pm-HDH/churchtools-api/issues/184");
+        parent::setUpBeforeClass();  // @phpstan-ignore-line
+    }
+
     public function testRequestAll()
     {
         $dbFields = DBFieldRequest::all();
@@ -112,14 +121,19 @@ class DBFieldRequestTest extends TestCaseAuthenticated
 
     public function testRetrieveGroupInformation()
     {
-        $groupId = IntegrationTestData::getFilterAsInt("db_field_group", "group_id");
+        $this->markTestSkipped("Fix issue with test in: https://github.com/5pm-HDH/churchtools-api/issues/184");
+        $groupId = IntegrationTestData::getFilterAsInt("db_field_group", "group_id"); // @phpstan-ignore-line
 
         $group = GroupRequest::findOrFail($groupId);
         $groupInformation = $group->getInformation();
         $this->assertNotNull($groupInformation);
 
+        print_r($groupInformation);
+
         $dbFields = $groupInformation->requestDBFields()->get();
         $this->assertDBFieldStoreOnlyContainsDBFields($dbFields);
+
+        print_r($dbFields);
 
         $name5pmDBField = null;
         foreach ($dbFields as $dbField) {

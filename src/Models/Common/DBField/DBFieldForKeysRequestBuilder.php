@@ -37,7 +37,7 @@ class DBFieldForKeysRequestBuilder
     private function findDBField(string $dbFieldKey): ?DBField
     {
         foreach ($this->allDBFields as $dbField) {
-            if ($dbField->getColumn() == $dbFieldKey) {
+            if ($dbField->getKey() == $dbFieldKey) {
                 return $dbField;
             }
         }
