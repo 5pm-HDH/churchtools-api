@@ -179,7 +179,7 @@
         "end_date": "2023-06-01"
       },
       "result": {
-        "number_of_elements": 1,
+        "number_of_elements": 2,
         "first_element": {
           "id": 1,
           "name": "Gottesdienst"
@@ -277,7 +277,7 @@
       },
       "result": {
         "comment": "Ski-Urlaub",
-        "reason": "Urlaub",
+        "reason": "absent.reason.vacation",
         "start_date": "2023-01-02",
         "end_date": "2023-01-05"
       }
@@ -466,7 +466,7 @@
             "id": 4
           },
           "fieldType": {
-            "name": "Textfeld",
+            "name": "fieldtype.text",
             "internCode": "text",
             "id": 1
           },

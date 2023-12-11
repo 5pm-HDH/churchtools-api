@@ -3,6 +3,8 @@
 namespace CTApi\Test\Integration;
 
 use CTApi\CTConfig;
+use CTApi\Exceptions\CTRequestException;
+use CTApi\Models\Groups\Person\PersonRequest;
 use PHPUnit\Framework\TestCase;
 
 class TestCaseAuthenticated extends TestCase
@@ -12,6 +14,14 @@ class TestCaseAuthenticated extends TestCase
     public static function setUpBeforeClass(): void
     {
         parent::setUpBeforeClass();
+
+        if(self::$configIsInitialized){
+            try{
+                PersonRequest::whoami();
+            }catch(CTRequestException $exception){
+                self::reauthenticateChurchToolsUser();
+            }
+        }
 
         if (self::$configIsInitialized == false || self::cookieJarIsEmpty()) {
             self::reauthenticateChurchToolsUser();

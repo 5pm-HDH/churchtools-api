@@ -4,6 +4,9 @@
 namespace CTApi\Test\Integration\Requests;
 
 
+use CTApi\CTConfig;
+use CTApi\CTLog;
+use CTApi\Models\Common\Auth\AuthRequest;
 use CTApi\Models\Groups\Group\GroupRequest;
 use CTApi\Test\Integration\IntegrationTestData;
 use CTApi\Test\Integration\TestCaseAuthenticated;
@@ -14,10 +17,10 @@ class GroupHierarchieRequestTest extends TestCaseAuthenticated
 
     private $groupId = "";
     private $groupName = "";
-    private $groupParentId = "";
-    private $groupParentName = "";
-    private $groupChildId = "";
-    private $groupChildName = "";
+    private $groupParentId = ""; /** @phpstan-ignore-line */
+    private $groupParentName = ""; /** @phpstan-ignore-line */
+    private $groupChildId = ""; /** @phpstan-ignore-line */
+    private $groupChildName = ""; /** @phpstan-ignore-line */
 
     protected function setUp(): void
     {
@@ -39,7 +42,8 @@ class GroupHierarchieRequestTest extends TestCaseAuthenticated
 
     public function testRequestGroupParents()
     {
-        $group = GroupRequest::findOrFail($this->groupId);
+        $this->markTestSkipped("ChurchTools API Endpoint is broken. Fix in issue: https://github.com/5pm-HDH/churchtools-api/issues/183");
+        $group = GroupRequest::findOrFail($this->groupId); /** @phpstan-ignore-line */
 
         $parents = $group->requestGroupParents()?->get();
         $this->assertNotNull($parents);
@@ -57,10 +61,18 @@ class GroupHierarchieRequestTest extends TestCaseAuthenticated
 
     public function testRequestGroupChildren()
     {
-        $group = GroupRequest::findOrFail($this->groupId);
+        $this->markTestSkipped("ChurchTools API Endpoint is broken. Fix in issue: https://github.com/5pm-HDH/churchtools-api/issues/183");
+        $group = GroupRequest::findOrFail($this->groupId); /** @phpstan-ignore-line */
+
+        CTLog::enableConsoleLog();
+        CTConfig::enableDebugging();
+        CTLog::enableHttpLog();
+        echo "\n". AuthRequest::retrieveApiToken(12) . "\n";
 
         $children = $group->requestGroupChildren()?->get();
         $this->assertNotNull($children);
+
+        print_r($children);
 
         $foundChild = null;
         foreach ($children as $child) {
@@ -68,7 +80,6 @@ class GroupHierarchieRequestTest extends TestCaseAuthenticated
                 $foundChild = $child;
             }
         }
-
         $this->assertNotNull($foundChild);
         $this->assertEquals($this->groupChildName, $foundChild->getName());
     }
