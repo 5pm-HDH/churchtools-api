@@ -29,7 +29,7 @@ class AuthRequestBuilder
         } catch (CTRequestException $e) {
             throw new CTAuthException(
                 "Authentication was not successfully. HTTP Exception occurred.",
-                null,
+                0,
                 $e);
         }
 
