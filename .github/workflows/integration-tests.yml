@@ -41,12 +41,32 @@ jobs:
 
     - name: Create integration-config file
       run: |
-        printf "$INTEGRATION_CONFIG" >> tests/Integration/integration.ini
-        printf "$INTEGRATION_CONFIG"
-        cat tests/Integration/integration.ini
+        printf '%s\n' "$INTEGRATION_CONFIG" > tests/Integration/integration.ini
       shell: bash
       env:
         INTEGRATION_CONFIG: ${{ secrets.INTEGRATION_CONFIG }}
+
+    - name: Check if integration-config file exists
+      run: |
+        ls
+        if [ -f "tests/Integration/integration.ini" ]
+        then
+          echo "Integration file exists"
+        else
+          echo "Error: Could not find integration config file"
+          throw "Error: Could not find integration config file"
+        fi
+
+    - name: Check if integration file is empty
+      run: |
+        ls
+        if [ -s "tests/Integration/integration.ini" ]
+        then
+          echo "Integration config file is not empty"
+        else
+          echo "Error: Integration config file is empty"
+          throw "Error: Integration config file is empty"
+        fi
 
     - name: Run integration test suite
       run: composer run-script test-integration
