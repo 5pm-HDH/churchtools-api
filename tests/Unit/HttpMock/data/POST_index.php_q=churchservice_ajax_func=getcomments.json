@@ -1,0 +1,14 @@
+{
+  "status": "success",
+  "data": {
+    "2": {
+      "id": "2",
+      "domain_type": "arrangement",
+      "domain_id": "3",
+      "securitylevel_id": null,
+      "text": "Ich finde den Song super!",
+      "modified_date": "2023-12-11 13:06:35",
+      "modified_pid": "12"
+    }
+  }
+}

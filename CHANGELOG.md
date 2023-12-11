@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 
 ### Added
+- Retrieve, create and delete SongArrangement comments ([PR187](https://github.com/5pm-HDH/churchtools-api/pull/187))
 
 ### Changed
 
@@ -20,7 +21,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 
 **New Requests:**
-- Get config request `ConfigRequest:getConfig()` ([175](https://github.com/5pm-HDH/churchtools-api/pull/175))
+- Get config request `ConfigRequest:getConfig()` ([PR175](https://github.com/5pm-HDH/churchtools-api/pull/175))
 - Get SongStatistic `SongStatisticRequest::all()` ([PR140](https://github.com/5pm-HDH/churchtools-api/pull/140), [PR164](https://github.com/5pm-HDH/churchtools-api/pull/164))
 - Song-Tags (`$song->requestTags()`) and Group-Tags (`$group->requestTags()`) ([PR168](https://github.com/5pm-HDH/churchtools-api/pull/168))
 - Get CombinedAppointment consisting of appointment, booking and event ([PR174](https://github.com/5pm-HDH/churchtools-api/pull/174))

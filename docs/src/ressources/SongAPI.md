@@ -16,6 +16,21 @@
 
 {{ \CTApi\Test\Unit\Docs\SongRequestTest.testUpdateArrangement }}
 
+## Retrieve, create and delete comments:
+
+**Retrieve comments:**
+
+{{ \CTApi\Test\Unit\Docs\SongCommentRequestTest.testGetAllComments }}
+
+**Create comment:**
+
+{{ \CTApi\Test\Unit\Docs\SongCommentRequestTest.testCreateComments }}
+
+**Delete comments:**
+
+{{ \CTApi\Test\Unit\Docs\SongCommentRequestTest.testDeleteComments }}
+
+
 ## Retrieve Data from CCLI
 
 **Retrieve Lyrics for CCLI-Number:**

@@ -80,8 +80,8 @@ class Meta
 
     public function requestModifiedPerson(): ?Person
     {
-        if (!is_null($this->getCreatedPerson())) {
-            $id = $this->getModifiedPerson()?->getId();
+        if (!is_null($this->getModifiedPerson())) {
+            $id = $this->getModifiedPerson()->getId();
             return $this->requestPerson($id);
         }
         return null;
