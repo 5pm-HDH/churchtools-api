@@ -257,6 +257,26 @@
         }
       }
     },
+    "get_song_comments": {
+      "description": "Request song comments",
+      "filter": {
+        "song_arrangement_id": 3
+      },
+      "result": {
+        "any_comment": {
+          "id": 2,
+          "text": "Ich finde den Song super!",
+          "modified_date": "2023-12-11 13:06:35",
+          "modified_person_id": 1
+        }
+      }
+    },
+    "create_and_delete_song_comments": {
+      "description": "Create and delete song comments",
+      "filter": {
+        "song_arrangement_id": 14
+      }
+    },
     "get_service": {
       "description": "Request single service. The corresponding service-group is stored in result.",
       "filter": {
