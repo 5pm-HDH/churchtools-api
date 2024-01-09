@@ -493,11 +493,11 @@
       "filter": {},
       "result": {
         "any_db_field": {
-          "id": 141,
-          "name": "5pm Bezeichnung",
+          "id": 145,
+          "name": "5PM Name",
           "shorty": "5pm_name",
           "column": "5pm_name",
-          "length": 220,
+          "length": 20,
           "fieldCategory": {
             "name": "group",
             "internCode": "f_group",
@@ -530,8 +530,8 @@
       },
       "result": {
         "db_field": {
-          "id": 141,
-          "name": "5pm Bezeichnung"
+          "id": 145,
+          "name": "5PM Name"
         },
         "value": "Worship-Team"
       }

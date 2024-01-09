@@ -122,12 +122,12 @@ class DBFieldRequestTest extends TestCaseAuthenticated
         $groupInformation = $group->getInformation();
         $this->assertNotNull($groupInformation);
 
-        print_r($groupInformation);
+        //print_r($groupInformation);
 
         $dbFields = $groupInformation->requestDBFields()->get();
         $this->assertDBFieldStoreOnlyContainsDBFields($dbFields);
 
-        print_r($dbFields);
+        //print_r($dbFields);
 
         $name5pmDBField = null;
         foreach ($dbFields as $dbField) {
