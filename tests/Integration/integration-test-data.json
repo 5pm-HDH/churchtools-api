@@ -94,6 +94,25 @@
         "child_group_name": "Lobpreisteam"
       }
     },
+    "group_types": {
+      "description": "Get defined group types.",
+      "result": {
+        "any_group_type_1": {
+          "id": 1,
+          "name": "Kleingruppe",
+          "namePlural": "Kleingruppen",
+          "permissionDepth": 1,
+          "shorty": "KG"
+        },
+        "any_group_type_2": {
+          "id": 2,
+          "name": "Dienst",
+          "namePlural": "Dienste",
+          "permissionDepth": 1,
+          "shorty": "DT"
+        }
+      }
+    },
     "update_group_member": {
       "description": "Add person to group and remove them again.",
       "filter": {
