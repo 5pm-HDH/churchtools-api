@@ -4,22 +4,19 @@
 namespace CTApi\Models\Groups\Group;
 
 
-class GroupHierarchieParentsRequest extends GroupHierarchieAbstractRequest
+use CTApi\CTClient;
+use CTApi\Utils\CTResponseUtil;
+
+class GroupHierarchieParentsRequest
 {
+    public function __construct(private readonly int $groupId)
+    {
+    }
+
     public function get(): array
     {
-        $hierarchie = $this->requestHierarchieObject();
-        $parents = [];
-        foreach ($hierarchie as $hierarchieItem) {
-            if (array_key_exists("parents", $hierarchieItem)) {
-                foreach ($hierarchieItem["parents"] as $parentId) {
-                    $group = GroupRequest::find($parentId);
-                    if ($group != null) {
-                        $parents[] = $group;
-                    }
-                }
-            }
-        }
-        return $parents;
+        $response = CTClient::getClient()->get('api/groups/' . $this->groupId . '/parents');
+        $data = CTResponseUtil::dataAsArray($response);
+        return Group::createModelsFromArray($data);
     }
 }
