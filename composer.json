@@ -20,7 +20,8 @@
   },
   "require-dev": {
     "phpunit/phpunit": "9.5.5",
-    "phpstan/phpstan": "^1.10"
+    "phpstan/phpstan": "^1.10",
+    "friendsofphp/php-cs-fixer": "^3.46"
   },
   "license": "MIT",
   "authors": [
@@ -37,6 +38,7 @@
     "test-coverage-w": "vendor\\bin\\phpunit.bat --coverage-html .phpunit.cache/coverage-report",
     "phpstan": "./vendor/bin/phpstan analyse -c phpstan.neon --memory-limit 1G",
     "phpstan-w": "vendor\\bin\\phpstan.bat analyse -c phpstan.neon --memory-limit 1G",
+    "php-cs-fixer": "vendor/bin/php-cs-fixer fix",
     "docs-generator": "php docs/src/DocGenerator.php"
   }
 }
