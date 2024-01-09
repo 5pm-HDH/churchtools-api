@@ -9,7 +9,7 @@ use CTApi\Traits\Model\ExtractData;
 use CTApi\Traits\Model\FillWithData;
 use CTApi\Utils\CTDateTimeService;
 
-class      Absence extends AbstractModel implements UpdatableModel
+class Absence extends AbstractModel implements UpdatableModel
 {
     use FillWithData;
     use ExtractData;

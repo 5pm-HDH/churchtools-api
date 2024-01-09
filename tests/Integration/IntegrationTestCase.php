@@ -6,8 +6,10 @@ use CTApi\Utils\CTUtil;
 
 class IntegrationTestCase
 {
-    public function __construct(private string $testCase,
-        private array $data) {
+    public function __construct(
+        private string $testCase,
+        private array $data
+    ) {
     }
 
     public function getFilter(string $filterPath)
