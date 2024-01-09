@@ -42,7 +42,7 @@ jobs:
       run: composer run-script docs-generator
 
     - name: Check if Docs are already generated
-      uses: tj-actions/verify-changed-files@v8.8
+      uses: tj-actions/verify-changed-files@v17
       id: verify-changed-files
       with:
         files: |
