@@ -3,12 +3,6 @@
 namespace CTApi\Models\Groups\Group;
 
 use CTApi\Models\AbstractModel;
-use CTApi\Models\Common\Domain\Meta;
-use CTApi\Models\Common\File\FileRequest;
-use CTApi\Models\Common\File\FileRequestBuilder;
-use CTApi\Models\Groups\GroupMeeting\GroupMeetingRequestBuilder;
-use CTApi\Models\Groups\GroupMember\GroupMemberRequestBuilder;
-use CTApi\Models\Groups\Person\Person;
 use CTApi\Traits\Model\FillWithData;
 use CTApi\Traits\Model\MetaAttribute;
 
@@ -29,9 +23,9 @@ class GroupType extends AbstractModel
 
     /**
      * @param string|null $id
-     * @return Group
+     * @return GroupType
      */
-    public function setId(?string $id): Group
+    public function setId(?string $id): GroupType
     {
         $this->id = $id;
         return $this;
