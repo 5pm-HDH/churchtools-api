@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Models\Calendars\Appointment;
-
 
 use CTApi\Traits\Request\OrderByCondition;
 use CTApi\Traits\Request\Pagination;
@@ -10,12 +8,13 @@ use CTApi\Traits\Request\WhereCondition;
 
 class AppointmentRequestBuilder
 {
-    use WhereCondition, OrderByCondition, Pagination;
+    use WhereCondition;
+    use OrderByCondition;
+    use Pagination;
 
     public function __construct(
         private array $calendarIds
-    )
-    {
+    ) {
     }
 
     public function get(): array

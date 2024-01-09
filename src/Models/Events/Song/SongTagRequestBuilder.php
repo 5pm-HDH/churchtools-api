@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Models\Events\Song;
-
 
 use CTApi\Models\Common\Tag\TagRequestBuilder;
 use CTApi\Traits\Request\AjaxApi;
@@ -14,8 +12,7 @@ class SongTagRequestBuilder
 
     public function __construct(
         private int $songId
-    )
-    {
+    ) {
     }
 
     public function get(): array
@@ -46,9 +43,9 @@ class SongTagRequestBuilder
         $response = $this->requestAjax("churchservice/ajax", "getAllSongs", []);
         $data = CTResponseUtil::dataAsArray($response);
 
-        if(array_key_exists("songs", $data)){
+        if(array_key_exists("songs", $data)) {
             return $data["songs"];
-        }else{
+        } else {
             return $data;
         }
     }

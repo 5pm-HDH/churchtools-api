@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Models\Common\DBField;
-
 
 use CTApi\Models\AbstractModel;
 use CTApi\Traits\Model\FillWithData;
@@ -16,9 +14,9 @@ class DBFieldContainer extends AbstractModel
 
     protected function fillArrayType(string $key, array $data): void
     {
-        if($key == "dbField"){
+        if($key == "dbField") {
             $this->dbField = DBField::createModelFromData($data);
-        }else{
+        } else {
             $this->fillDefault($key, $data);
         }
     }

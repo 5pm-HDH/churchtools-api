@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Test\Integration\Config;
-
 
 use CTApi\CTConfig;
 use CTApi\Exceptions\CTConfigException;
@@ -11,10 +9,8 @@ use CTApi\Models\Groups\Group\GroupRequest;
 use CTApi\Test\Integration\IntegrationTestData;
 use PHPUnit\Framework\TestCase;
 
-
 class TwoFactorAuthenticationTest extends TestCase
 {
-
     public static function setUpBeforeClass(): void
     {
         parent::setUpBeforeClass();

@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Test\Integration;
-
 
 use CTApi\CTConfig;
 use CTApi\Models\Common\Auth\Auth;

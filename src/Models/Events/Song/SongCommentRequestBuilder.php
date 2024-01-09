@@ -7,13 +7,11 @@ use CTApi\Utils\CTResponseUtil;
 
 class SongCommentRequestBuilder
 {
-
     use AjaxApi;
 
     public function __construct(
         private int $arrangementId
-    )
-    {
+    ) {
     }
 
     public function getComments()

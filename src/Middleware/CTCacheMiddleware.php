@@ -14,7 +14,6 @@ use Psr\Http\Message\ResponseInterface;
 
 class CTCacheMiddleware
 {
-
     private static ?CTCacheMiddleware $instance = null;
     private static ?CacheProvider $cacheDriver = null;
     private static string $cacheDir = __DIR__ . '/../../cache/';

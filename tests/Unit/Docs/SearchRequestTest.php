@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Test\Unit\Docs;
-
 
 use CTApi\Models\Common\Search\SearchRequest;
 use CTApi\Test\Unit\TestCaseHttpMocked;

@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Models\Common\Permission;
-
 
 use CTApi\CTClient;
 use CTApi\Models\Groups\Person\InternalPersonPermission;
@@ -12,8 +10,7 @@ class PermissionPersonRequestBuilder
 {
     public function __construct(
         private int $personId
-    )
-    {
+    ) {
     }
 
     public function get(): InternalPersonPermission

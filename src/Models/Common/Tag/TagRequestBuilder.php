@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Models\Common\Tag;
-
 
 use CTApi\CTClient;
 use CTApi\Exceptions\CTRequestException;
@@ -14,8 +12,7 @@ class TagRequestBuilder
 
     public function __construct(
         private string $type
-    )
-    {
+    ) {
         $this->tags = $this->retrieveData();
     }
 
@@ -29,11 +26,11 @@ class TagRequestBuilder
 
     private function filterTag(int $tagId): ?Tag
     {
-        $filteredTags = array_filter($this->tags, function(Tag $tag) use ($tagId){
-           return $tag->getIdAsInteger() == $tagId;
+        $filteredTags = array_filter($this->tags, function (Tag $tag) use ($tagId) {
+            return $tag->getIdAsInteger() == $tagId;
         });
         $foundTag = end($filteredTags);
-        if($foundTag === false){
+        if($foundTag === false) {
             return null;
         }
         return $foundTag;
@@ -47,7 +44,7 @@ class TagRequestBuilder
     public function findOrFail(int $id): Tag
     {
         $tag = $this->find($id);
-        if($tag == null){
+        if($tag == null) {
             throw CTRequestException::ofModelNotFound(Tag::class);
         }
         return $tag;

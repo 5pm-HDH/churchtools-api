@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Test\Integration\Requests;
-
 
 use CTApi\Exceptions\CTModelException;
 use CTApi\Models\Common\File\FileRequest;

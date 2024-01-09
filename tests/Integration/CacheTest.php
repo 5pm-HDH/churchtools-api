@@ -42,7 +42,7 @@ class CacheTest extends TestCaseAuthenticated
         CTLog::getLog()->info("CacheTest: Execution-time with cache: " . $timeWithCache . " secs");
         CTLog::getLog()->info("CacheTest: With cache the whole execution was " . ((int)($percentFaster * 100)) . " % faster");
 
-        $this->assertGreaterThan($timeWithCache, $timeWithoutCache,);
+        $this->assertGreaterThan($timeWithCache, $timeWithoutCache, );
         $this->assertGreaterThan(0.1, $percentFaster);
 
     }

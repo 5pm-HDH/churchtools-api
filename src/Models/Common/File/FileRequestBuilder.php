@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Models\Common\File;
-
 
 use CTApi\CTClient;
 use CTApi\CTConfig;
@@ -21,8 +19,7 @@ class FileRequestBuilder
     public function __construct(
         protected string $domainType,
         protected int $domainIdentifier
-    )
-    {
+    ) {
     }
 
     protected function getApiEndpoint(): string
@@ -84,7 +81,7 @@ class FileRequestBuilder
         curl_close($ch);
 
         $data = json_decode($resultString, true);
-        if($data == null){
+        if($data == null) {
             CTLog::getLog()->warning("Could not convert upload response to JSON: " . $resultString);
             $data = [];
         }

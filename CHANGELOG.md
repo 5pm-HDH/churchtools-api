@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Retrieve, create and delete SongArrangement comments ([PR187](https://github.com/5pm-HDH/churchtools-api/pull/187))
 - Get GroupTypes ([PR188](https://github.com/5pm-HDH/churchtools-api/pull/188))
+- PHP coding standard ([PR193](https://github.com/5pm-HDH/churchtools-api/pull/193))
 
 ### Changed
 

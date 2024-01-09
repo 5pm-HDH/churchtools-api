@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Models\Groups\GroupMember;
-
 
 use CTApi\Interfaces\UpdatableModel;
 use CTApi\Models\AbstractModel;
@@ -14,7 +12,8 @@ use CTApi\Utils\CTDateTimeService;
 
 class GroupMember extends AbstractModel implements UpdatableModel
 {
-    use FillWithData, ExtractData;
+    use FillWithData;
+    use ExtractData;
 
     protected ?string $personId = null;
     protected ?Person $person = null;
@@ -42,7 +41,7 @@ class GroupMember extends AbstractModel implements UpdatableModel
         }
     }
 
-    static function getModifiableAttributes(): array
+    public static function getModifiableAttributes(): array
     {
         return [
             "comment",

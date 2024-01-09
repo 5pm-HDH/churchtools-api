@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Models\Wiki\WikiSearch;
-
 
 class WikiSearchRequest
 {

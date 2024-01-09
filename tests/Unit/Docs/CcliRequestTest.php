@@ -1,15 +1,12 @@
 <?php
 
-
 namespace CTApi\Test\Unit\Docs;
-
 
 use CTApi\Models\Events\Song\CcliRequest;
 use CTApi\Test\Unit\TestCaseHttpMocked;
 
 class CcliRequestTest extends TestCaseHttpMocked
 {
-
     public function testRetrieveLyrics()
     {
         $ccliNumber = 1878670;

@@ -1,15 +1,12 @@
 <?php
 
-
 namespace CTApi\Test\Unit\Docs;
-
 
 use CTApi\Models\Groups\GroupMember\GroupMemberFieldsRequest;
 use CTApi\Test\Unit\TestCaseHttpMocked;
 
 class GroupMemberFieldsTest extends TestCaseHttpMocked
 {
-
     public function testGetFields()
     {
         $fields = GroupMemberFieldsRequest::forGroup(9)->get();

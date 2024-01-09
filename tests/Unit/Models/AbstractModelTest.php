@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Test\Unit\Models;
-
 
 use CTApi\Exceptions\CTModelException;
 use CTApi\Models\AbstractModel;
@@ -71,7 +69,6 @@ class AbstractModelTest extends TestCase
 
 class CarModel extends AbstractModel
 {
-
     use FillWithData;
 
     protected ?string $name = null;

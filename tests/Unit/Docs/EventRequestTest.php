@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Test\Unit\Docs;
-
 
 use CTApi\Models\Events\Event\EventAgendaRequest;
 use CTApi\Models\Events\Event\EventRequest;

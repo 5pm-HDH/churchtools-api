@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Models\Common\DBField;
-
 
 use CTApi\CTClient;
 use CTApi\Exceptions\CTRequestException;

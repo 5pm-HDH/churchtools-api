@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Tests\Unit\Utils;
-
 
 use CTApi\Utils\CTDateTimeService;
 use PHPUnit\Framework\TestCase;

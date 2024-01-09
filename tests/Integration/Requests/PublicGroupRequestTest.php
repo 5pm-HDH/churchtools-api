@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Test\Integration\Requests;
-
 
 use CTApi\Models\Groups\Group\GroupInformation;
 use CTApi\Models\Groups\Group\TargetGroup;
@@ -10,10 +8,8 @@ use CTApi\Models\Groups\PublicGroup\PublicGroupRequest;
 use CTApi\Test\Integration\IntegrationTestData;
 use CTApi\Test\Integration\TestCaseAuthenticated;
 
-
 class PublicGroupRequestTest extends TestCaseAuthenticated
 {
-
     private $publicGroupHash = "";
     private $groupId = "";
     private $groupName = "";

@@ -9,7 +9,6 @@ use PHPUnit\Framework\TestCase;
 
 class CTConfigUnitTest extends TestCase
 {
-
     public function setUp(): void
     {
         CTConfig::clearConfig();

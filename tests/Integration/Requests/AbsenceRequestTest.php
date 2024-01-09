@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Test\Integration\Requests;
-
 
 use CTApi\Models\Events\Absence\Absence;
 use CTApi\Models\Events\Absence\AbsencePersonRequestBuilder;
@@ -11,10 +9,8 @@ use CTApi\Models\Groups\Person\PersonRequest;
 use CTApi\Test\Integration\IntegrationTestData;
 use CTApi\Test\Integration\TestCaseAuthenticated;
 
-
 class AbsenceRequestTest extends TestCaseAuthenticated
 {
-
     private ?string $startDate = null;
     private ?string $endDate = null;
     private ?string $absencePersonComment = null;

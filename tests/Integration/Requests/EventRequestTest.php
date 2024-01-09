@@ -11,10 +11,8 @@ use CTApi\Models\Groups\Person\Person;
 use CTApi\Test\Integration\IntegrationTestData;
 use CTApi\Test\Integration\TestCaseAuthenticated;
 
-
 class EventRequestTest extends TestCaseAuthenticated
 {
-
     public function testGetAllEvents(): void
     {
         $allEvents = EventRequest::all();

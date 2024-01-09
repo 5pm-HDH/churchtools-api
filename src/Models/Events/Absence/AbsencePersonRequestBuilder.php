@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Models\Events\Absence;
-
 
 use CTApi\CTClient;
 use CTApi\Exceptions\CTModelException;
@@ -12,8 +10,7 @@ class AbsencePersonRequestBuilder extends AbstractRequestBuilder
 {
     public function __construct(
         private int $personId
-    )
-    {
+    ) {
     }
 
     protected function getApiEndpoint(): string

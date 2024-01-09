@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Test\Unit\Requests;
-
 
 use CTApi\CTClient;
 use CTApi\Exceptions\CTModelException;

@@ -1,6 +1,5 @@
 <?php
 
-
 namespace CTApi\Traits\Request;
 
 use CTApi\Exceptions\CTRequestException;

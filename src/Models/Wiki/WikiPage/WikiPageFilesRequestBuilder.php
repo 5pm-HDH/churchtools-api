@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Models\Wiki\WikiPage;
-
 
 use CTApi\CTClient;
 use CTApi\Exceptions\CTRequestException;

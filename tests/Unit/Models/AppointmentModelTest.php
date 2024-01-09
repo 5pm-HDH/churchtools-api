@@ -8,7 +8,6 @@ use Monolog\Test\TestCase;
 
 class AppointmentModelTest extends TestCase
 {
-
     public function testProcessBaseAttributes()
     {
         $dataA = [

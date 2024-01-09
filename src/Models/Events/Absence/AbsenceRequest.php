@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Models\Events\Absence;
-
 
 class AbsenceRequest
 {

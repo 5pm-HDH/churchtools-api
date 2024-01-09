@@ -9,7 +9,6 @@ use CTApi\Test\Integration\TestCaseAuthenticated;
 
 class GroupTypeRequestTest extends TestCaseAuthenticated
 {
-
     private int $groupTypeId1;
     private int $groupTypeId2;
 

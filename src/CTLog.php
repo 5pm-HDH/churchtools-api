@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi;
-
 
 use Monolog\Handler\StreamHandler;
 use Monolog\Level;
@@ -65,16 +63,16 @@ class CTLog
         $index = array_rand($deciple, 1);
 
         self::$httpLogEnabled = $enabled;
-        self::$httpLogName = $deciple[$index] . random_int(100,1000);
+        self::$httpLogName = $deciple[$index] . random_int(100, 1000);
     }
 
     public static function logHttpData(array $httpData): void
     {
-        if(!self::$httpLogEnabled){
+        if(!self::$httpLogEnabled) {
             return;
         }
 
-        if(!file_exists(self::LOG_HTTP_DATA_DIR)){
+        if(!file_exists(self::LOG_HTTP_DATA_DIR)) {
             mkdir(self::LOG_HTTP_DATA_DIR);
         }
 

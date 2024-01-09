@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Models\Groups\Person;
-
 
 use CTApi\Models\Groups\Group\Group;
 use CTApi\Models\Groups\Group\GroupRequest;

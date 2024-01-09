@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Models\Wiki\WikiCategory;
-
 
 use CTApi\Models\AbstractModel;
 use CTApi\Models\Wiki\WikiPage\WikiPage;
@@ -44,7 +42,7 @@ class WikiCategory extends AbstractModel
     public function requestPage(string $identifier): ?WikiPage
     {
         if (!is_null($this->getId())) {
-            return WikiPageRequestBuilder::requestPageFromCategoryAndIdentifier( $this->getIdOrFail(), $identifier);
+            return WikiPageRequestBuilder::requestPageFromCategoryAndIdentifier($this->getIdOrFail(), $identifier);
         } else {
             return null;
         }

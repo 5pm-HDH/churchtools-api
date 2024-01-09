@@ -9,7 +9,6 @@ use CTApi\Models\Events\Song\SongRequest;
 use CTApi\Test\Integration\IntegrationTestData;
 use CTApi\Test\Integration\TestCaseAuthenticated;
 
-
 class SongRequestTest extends TestCaseAuthenticated
 {
     private int $SONG_ID = 0;

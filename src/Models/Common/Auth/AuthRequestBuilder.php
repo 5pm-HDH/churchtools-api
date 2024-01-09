@@ -30,7 +30,8 @@ class AuthRequestBuilder
             throw new CTAuthException(
                 "Authentication was not successfully. HTTP Exception occurred.",
                 0,
-                $e);
+                $e
+            );
         }
 
         if ($response->getStatusCode() == 200) {

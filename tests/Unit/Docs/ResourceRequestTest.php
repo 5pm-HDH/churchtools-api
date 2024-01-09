@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Test\Unit\Docs;
-
 
 use CTApi\Models\Calendars\Resource\ResourceBookingsRequest;
 use CTApi\Models\Calendars\Resource\ResourceRequest;

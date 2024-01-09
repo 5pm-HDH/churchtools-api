@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Models\Common\Permission;
-
 
 class PermissionRequest
 {

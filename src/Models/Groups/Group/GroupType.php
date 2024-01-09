@@ -8,7 +8,8 @@ use CTApi\Traits\Model\MetaAttribute;
 
 class GroupType extends AbstractModel
 {
-    use FillWithData, MetaAttribute;
+    use FillWithData;
+    use MetaAttribute;
 
 
     protected ?bool $availableForNewPerson = null;

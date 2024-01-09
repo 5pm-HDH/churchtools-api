@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Models\Groups\Group;
-
 
 use CTApi\Models\Groups\Person\Person;
 use CTApi\Traits\Model\FillWithData;
@@ -25,7 +23,7 @@ class GroupPlace
 
     protected function fillArrayType(string $key, array $data): void
     {
-        switch ($key){
+        switch ($key) {
             case "createdPerson":
                 $this->createdPerson = Person::createModelFromData($data);
                 break;

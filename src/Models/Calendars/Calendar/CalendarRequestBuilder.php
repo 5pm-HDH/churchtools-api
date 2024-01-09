@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Models\Calendars\Calendar;
-
 
 use CTApi\Models\AbstractRequestBuilder;
 

@@ -15,11 +15,11 @@ interface UpdatableModel
      * @see \CTApi\Traits\Model\ExtractData::extractData()
      *      for a ready to use implementation.
      */
-    function extractData(): array;
+    public function extractData(): array;
 
     /**
      * Get all attribute names from the model, which are modifiable in the
      * ChurchTool API.
      */
-    static function getModifiableAttributes(): array;
+    public static function getModifiableAttributes(): array;
 }

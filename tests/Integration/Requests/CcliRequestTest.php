@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Test\Integration\Requests;
-
 
 use CTApi\Models\Common\File\FileRequest;
 use CTApi\Models\Events\Song\CcliRequestBuilder;

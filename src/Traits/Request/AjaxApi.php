@@ -1,15 +1,12 @@
 <?php
 
-
 namespace CTApi\Traits\Request;
-
 
 use CTApi\CTClient;
 use Psr\Http\Message\ResponseInterface;
 
 trait AjaxApi
 {
-
     private array $keyTranslation = [];
 
     protected function setAjaxKeyTranslation($modelKey, $ajaxKey)

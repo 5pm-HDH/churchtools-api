@@ -1,18 +1,14 @@
 <?php
 
-
 namespace CTApi\Test\Integration\Requests;
-
 
 use CTApi\CTConfig;
 use CTApi\Models\Common\Info\InfoRequest;
 use CTApi\Test\Integration\IntegrationTestData;
 use PHPUnit\Framework\TestCase;
 
-
 class APIVersionTest extends TestCase
 {
-
     private static string $README_FILE = __DIR__ . '/../../../README.md';
     private static string $VERSION_REGEX = "/<version>(.*)<\/version>/";
 

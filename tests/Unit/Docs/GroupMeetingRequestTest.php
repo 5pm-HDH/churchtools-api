@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Test\Unit\Docs;
-
 
 use CTApi\Models\Groups\Group\Group;
 use CTApi\Models\Groups\Group\GroupRequest;
@@ -11,7 +9,6 @@ use CTApi\Test\Unit\TestCaseHttpMocked;
 
 class GroupMeetingRequestTest extends TestCaseHttpMocked
 {
-
     private Group $group;
 
     protected function setUp(): void

@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Test\Unit\Requests;
-
 
 use CTApi\Exceptions\CTModelException;
 use CTApi\Models\Groups\Person\Person;
@@ -131,7 +129,8 @@ class PersonRequestBuilderUpdateTest extends \CTApi\Test\Unit\TestCaseHttpMocked
 
 class CarModelMock extends Person
 {
-    use FillWithData, ExtractData;
+    use FillWithData;
+    use ExtractData;
 
     protected ?string $color = null;
     protected ?string $brand = null;

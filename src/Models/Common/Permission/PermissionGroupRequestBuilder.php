@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Models\Common\Permission;
-
 
 use CTApi\CTClient;
 use CTApi\Models\Groups\Group\InternalGroupPermission;
@@ -12,8 +10,7 @@ class PermissionGroupRequestBuilder
 {
     public function __construct(
         private int $groupId
-    )
-    {
+    ) {
     }
 
     public function get(): InternalGroupPermission

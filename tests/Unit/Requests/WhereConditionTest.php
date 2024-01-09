@@ -8,7 +8,6 @@ use PHPUnit\Framework\TestCase;
 
 class WhereConditionTest extends TestCase
 {
-
     public function testNoDoubleWhereClauses(): void
     {
         $exampleRequest = new ExampleRequest();

@@ -1,6 +1,5 @@
 <?php
 
-
 namespace CTApi\Models\Groups\Person;
 
 class PersonRequest

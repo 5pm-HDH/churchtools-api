@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Models\Events\Song;
-
 
 use CTApi\CTConfig;
 use CTApi\CTLog;
@@ -17,8 +15,7 @@ class CcliRequestBuilder
 
     public function __construct(
         protected int $ccliNumber
-    )
-    {
+    ) {
     }
 
     /**

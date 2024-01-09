@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Models\Groups\GroupMeeting;
-
 
 use CTApi\CTClient;
 use CTApi\Traits\Request\WhereCondition;
@@ -14,8 +12,7 @@ class GroupMeetingRequestBuilder
 
     public function __construct(
         protected int $groupId
-    )
-    {
+    ) {
     }
 
     public function get(): array

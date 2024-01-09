@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Models\Events\Service;
-
 
 use CTApi\Models\AbstractModel;
 use CTApi\Models\Groups\Person\Person;
@@ -12,7 +10,6 @@ use CTApi\Utils\CTDateTimeService;
 
 class EventService extends AbstractModel
 {
-
     use FillWithData;
 
     protected ?string $personId = null;

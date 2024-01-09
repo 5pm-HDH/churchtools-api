@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Models\Events\Service;
-
 
 use CTApi\Models\AbstractModel;
 use CTApi\Traits\Model\FillWithData;

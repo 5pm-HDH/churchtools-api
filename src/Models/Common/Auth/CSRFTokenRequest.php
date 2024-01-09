@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Models\Common\Auth;
-
 
 use CTApi\CTClient;
 use CTApi\Exceptions\CTRequestException;

@@ -7,7 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 class SongArrangementTest extends TestCase
 {
-
     private SongArrangement $EMPTY_ARRANGEMENT;
     private SongArrangement $FULL_ARRANGEMENT;
 

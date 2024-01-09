@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Test\Unit\Docs;
-
 
 use CTApi\Models\Events\SongStatistic\SongStatisticRequest;
 use CTApi\Models\Events\SongStatistic\SongStatisticRequestBuilder;
@@ -10,7 +8,6 @@ use CTApi\Test\Unit\TestCaseHttpMocked;
 
 class SongStatisticRequestTest extends TestCaseHttpMocked
 {
-
     public function testGetAll()
     {
         $data = SongStatisticRequest::all();

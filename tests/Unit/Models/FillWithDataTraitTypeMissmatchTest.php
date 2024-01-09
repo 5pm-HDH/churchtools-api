@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Test\Unit\Models;
-
 
 use CTApi\Traits\Model\FillWithData;
 use PHPUnit\Framework\TestCase;
@@ -23,14 +21,14 @@ class FillWithDataTraitTypeMissmatchTest extends TestCase
      * <li>null</li>
      */
 
-    const TYPE_STRING = 0;
-    const TYPE_INT = 1;
-    const TYPE_ARRAY = 2;
-    const TYPE_CLASS = 3;
-    const TYPE_NULL = 4;
-    const TYPE_NONE = 5;
-    const TYPE_BOOL = 6;
-    const TYPE_FLOAT = 7;
+    public const TYPE_STRING = 0;
+    public const TYPE_INT = 1;
+    public const TYPE_ARRAY = 2;
+    public const TYPE_CLASS = 3;
+    public const TYPE_NULL = 4;
+    public const TYPE_NONE = 5;
+    public const TYPE_BOOL = 6;
+    public const TYPE_FLOAT = 7;
 
     /**
      * Test: String
@@ -407,7 +405,6 @@ class FillWithDataTraitTypeMissmatchTest extends TestCase
 
 class Movie
 {
-
     use FillWithData;
 
     protected ?int $id = null;

@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Models\Groups\GroupMeeting;
-
 
 use CTApi\Models\Groups\GroupMember\GroupMember;
 use CTApi\Traits\Model\FillWithData;

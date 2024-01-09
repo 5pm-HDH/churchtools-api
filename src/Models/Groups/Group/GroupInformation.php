@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Models\Groups\Group;
-
 
 use CTApi\Traits\Model\FillWithData;
 use CTApi\Traits\Model\HasDBFields;
@@ -10,7 +8,8 @@ use CTApi\Utils\CTDateTimeService;
 
 class GroupInformation
 {
-    use FillWithData, HasDBFields;
+    use FillWithData;
+    use HasDBFields;
 
     protected ?string $meetingTime = null;
     protected ?array $weekday = [];

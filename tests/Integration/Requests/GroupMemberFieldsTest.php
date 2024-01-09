@@ -1,8 +1,6 @@
 <?php
 
-
 namespace integration\Requests;
-
 
 use CTApi\Models\Groups\GroupMember\GroupMemberFieldContainer;
 use CTApi\Models\Groups\GroupMember\GroupMemberFieldsRequest;

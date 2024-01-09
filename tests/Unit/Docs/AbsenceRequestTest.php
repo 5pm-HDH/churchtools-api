@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Test\Unit\Docs;
-
 
 use CTApi\Models\Events\Absence\Absence;
 use CTApi\Models\Events\Absence\AbsenceRequest;
@@ -10,7 +8,6 @@ use CTApi\Test\Unit\TestCaseHttpMocked;
 
 class AbsenceRequestTest extends TestCaseHttpMocked
 {
-
     public function testRequestAllAbsences()
     {
         $absences = AbsenceRequest::forPerson(118)

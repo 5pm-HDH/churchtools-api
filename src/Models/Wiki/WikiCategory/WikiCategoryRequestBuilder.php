@@ -1,15 +1,12 @@
 <?php
 
-
 namespace CTApi\Models\Wiki\WikiCategory;
-
 
 use CTApi\Exceptions\CTRequestException;
 use CTApi\Traits\Request\Pagination;
 
 class WikiCategoryRequestBuilder
 {
-
     use Pagination;
 
     public function all(): array

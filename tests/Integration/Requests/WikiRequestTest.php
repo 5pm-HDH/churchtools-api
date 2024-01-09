@@ -10,7 +10,6 @@ use CTApi\Models\Wiki\WikiSearch\WikiSearchRequest;
 use CTApi\Test\Integration\IntegrationTestData;
 use CTApi\Test\Integration\TestCaseAuthenticated;
 
-
 class WikiRequestTest extends TestCaseAuthenticated
 {
     public function testWikiCategories(): void

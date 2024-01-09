@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Utils;
-
 
 class CTDateTimeService
 {
@@ -14,24 +12,23 @@ class CTDateTimeService
 
     public static function stringToDateTime(?string $dateTime, bool $strictFormat = false): ?\DateTimeImmutable
     {
-        if($dateTime == null){
+        if($dateTime == null) {
             return null;
         }
 
         $date = null;
 
-        foreach(self::$churchToolsDateFormats as $dateFormat)
-        {
+        foreach(self::$churchToolsDateFormats as $dateFormat) {
             $dateOrFalse = \DateTimeImmutable::createFromFormat($dateFormat, $dateTime);
-            if($dateOrFalse != false){
+            if($dateOrFalse != false) {
                 $date = $dateOrFalse;
                 continue;
             }
         }
 
-        if($date == null && $strictFormat == false){
+        if($date == null && $strictFormat == false) {
             $unixTimestamp = strtotime($dateTime);
-            if($unixTimestamp == false){
+            if($unixTimestamp == false) {
                 return null;
             }
 

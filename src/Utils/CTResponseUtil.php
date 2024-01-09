@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Utils;
-
 
 use CTApi\CTLog;
 use Psr\Http\Message\ResponseInterface;

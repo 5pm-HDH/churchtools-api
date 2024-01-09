@@ -1,6 +1,5 @@
 <?php
 
-
 namespace CTApi\Models;
 
 use CTApi\CTClient;
@@ -14,8 +13,9 @@ use CTApi\Utils\CTResponseUtil;
 
 abstract class AbstractRequestBuilder
 {
-
-    use Pagination, WhereCondition, OrderByCondition;
+    use Pagination;
+    use WhereCondition;
+    use OrderByCondition;
 
     public function all(): array
     {

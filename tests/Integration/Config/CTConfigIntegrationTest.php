@@ -7,11 +7,8 @@ use CTApi\Exceptions\CTAuthException;
 use PHPUnit\Framework\TestCase;
 use CTApi\Test\Integration\IntegrationTestData;
 
-
-
 class CTConfigIntegrationTest extends TestCase
 {
-
     public function setUp(): void
     {
         CTConfig::clearConfig();

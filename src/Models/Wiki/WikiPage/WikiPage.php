@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Models\Wiki\WikiPage;
-
 
 use CTApi\Models\Common\Domain\Meta;
 use CTApi\Models\Wiki\WikiCategory\WikiCategory;
@@ -11,7 +9,8 @@ use CTApi\Traits\Model\MetaAttribute;
 
 class WikiPage
 {
-    use FillWithData, MetaAttribute;
+    use FillWithData;
+    use MetaAttribute;
 
     protected ?string $identifier = null;
     protected ?string $title = null;

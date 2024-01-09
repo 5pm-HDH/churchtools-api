@@ -1,18 +1,14 @@
 <?php
 
-
 namespace CTApi\Models\Common\DBField;
-
 
 class DBFieldValueContainer
 {
-
     public function __construct(
         private string $dbFieldKey,
         private $dbFieldValue,
         private ?DBField $DBField
-    )
-    {
+    ) {
     }
 
     /**

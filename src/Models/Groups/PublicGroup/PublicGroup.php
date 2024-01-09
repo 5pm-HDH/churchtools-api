@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Models\Groups\PublicGroup;
-
 
 use CTApi\CTConfig;
 use CTApi\Models\Groups\Group\Group;

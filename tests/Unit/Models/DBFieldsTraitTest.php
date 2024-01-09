@@ -1,8 +1,6 @@
 <?php
 
-
 namespace unit\Models;
-
 
 use CTApi\Traits\Model\FillWithData;
 use CTApi\Traits\Model\HasDBFields;
@@ -67,8 +65,8 @@ class Car
 
 class CarWithDBFields extends Car
 {
-
-    use FillWithData, HasDBFields;
+    use FillWithData;
+    use HasDBFields;
 }
 
 class Driver

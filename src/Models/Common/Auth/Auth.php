@@ -4,11 +4,10 @@ namespace CTApi\Models\Common\Auth;
 
 class Auth
 {
-    function __construct(
+    public function __construct(
         public $userId,
         public bool $requireMultiFactorAuthentication = false
-    )
-    {
+    ) {
 
     }
 

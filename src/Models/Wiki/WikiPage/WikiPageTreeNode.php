@@ -1,14 +1,11 @@
 <?php
 
-
 namespace CTApi\Models\Wiki\WikiPage;
-
 
 use CTApi\Exceptions\CTModelException;
 
 class WikiPageTreeNode
 {
-
     protected ?WikiPage $wikiPage = null;
     protected ?WikiPageTreeNode $parentNode = null;
     protected array $childNodes = [];
@@ -44,9 +41,9 @@ class WikiPageTreeNode
                 $linkString = '[[' . htmlentities($subPage->getTitle()) . ']]';
 
                 // => Found Link to $subPage   <=
-                if (str_contains( (string) $page->getText(), $linkString)) {
+                if (str_contains((string) $page->getText(), $linkString)) {
                     $subPagesArray[] = [
-                        'stringPos' => strpos( (string) $page->getText(), $linkString),
+                        'stringPos' => strpos((string) $page->getText(), $linkString),
                         'node' => self::processWikiPage($subPage, $pages, $pageTreeNode)
                     ];
                 }

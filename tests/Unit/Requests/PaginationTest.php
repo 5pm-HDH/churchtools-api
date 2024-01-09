@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Test\Unit\Requests;
-
 
 use CTApi\CTConfig;
 use CTApi\Models\Events\Event\EventRequest;
@@ -10,7 +8,6 @@ use CTApi\Test\Unit\TestCaseHttpMocked;
 
 class PaginationTest extends TestCaseHttpMocked
 {
-
     public function testPagination()
     {
         CTConfig::setPaginationPageSize(6);

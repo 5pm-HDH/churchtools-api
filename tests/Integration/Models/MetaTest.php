@@ -11,7 +11,6 @@ use CTApi\Models\Groups\Person\PersonRequest;
 use CTApi\Test\Integration\IntegrationTestData;
 use CTApi\Test\Integration\TestCaseAuthenticated;
 
-
 class MetaTest extends TestCaseAuthenticated
 {
     public function testPersonMeta(): void

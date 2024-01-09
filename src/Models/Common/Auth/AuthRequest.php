@@ -4,7 +4,6 @@ namespace CTApi\Models\Common\Auth;
 
 use CTApi\CTLog;
 
-
 class AuthRequest
 {
     public static function authWithEmailAndPassword(string $email, string $password): Auth

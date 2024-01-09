@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Models\Groups\Person;
-
 
 use CTApi\Models\Events\Event\Event;
 use CTApi\Traits\Request\OrderByCondition;
@@ -11,8 +9,9 @@ use CTApi\Traits\Request\WhereCondition;
 
 class PersonEventRequestBuilder
 {
-
-    use Pagination, WhereCondition, OrderByCondition;
+    use Pagination;
+    use WhereCondition;
+    use OrderByCondition;
 
     private int $personId;
 

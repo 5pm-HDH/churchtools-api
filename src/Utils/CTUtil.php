@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Utils;
-
 
 class CTUtil
 {
@@ -60,7 +58,7 @@ class CTUtil
 
             if (!array_key_exists($key, $array)) {
                 $array[$key] = $value;
-            } else if (is_array($array[$key])) {
+            } elseif (is_array($array[$key])) {
                 if (is_array($value)) {
                     $array[$key] = array_merge(
                         $array[$key],

@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Models\Calendars\CombinedAppointment;
-
 
 use CTApi\Models\Calendars\Appointment\Appointment;
 use CTApi\Models\Calendars\Resource\ResourceBooking;
@@ -18,10 +16,10 @@ class CombinedAppointment
     protected ?Event $event = null;
     protected ?Group $group = null;
     protected ?array $bookings = null;
-//
-// Base class not yet implemented
-// 
-//        protected array $meetingRequests= null;
+    //
+    // Base class not yet implemented
+    //
+    //        protected array $meetingRequests= null;
 
 
     protected function fillArrayType(string $key, array $data): void
@@ -98,25 +96,25 @@ class CombinedAppointment
         return $this;
     }
 
-//
-//  Not yet implemented, missing MeetingRequests base class implementation
-//
-//    /**
-//     * @return array of MeetingRequest or NULL
-//     */
-//    public function getMeetingRequests(): ?array
-//    {
-//        return $this->meetingRequests;
-//    }
-//
-//    /**
-//     * @param array of MeetingRequests $meetingRequests
-//     * @return CombinedAppointment
-//     */
-//    public function setMeetingRequests(?array $meetingRequests): CombinedAppointment
-//    {
-//        $this->meetingRequests = $meetingRequests;
-//        return $this;
-//    }
-//
+    //
+    //  Not yet implemented, missing MeetingRequests base class implementation
+    //
+    //    /**
+    //     * @return array of MeetingRequest or NULL
+    //     */
+    //    public function getMeetingRequests(): ?array
+    //    {
+    //        return $this->meetingRequests;
+    //    }
+    //
+    //    /**
+    //     * @param array of MeetingRequests $meetingRequests
+    //     * @return CombinedAppointment
+    //     */
+    //    public function setMeetingRequests(?array $meetingRequests): CombinedAppointment
+    //    {
+    //        $this->meetingRequests = $meetingRequests;
+    //        return $this;
+    //    }
+    //
 }

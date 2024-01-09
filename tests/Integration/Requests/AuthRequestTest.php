@@ -9,7 +9,6 @@ use PHPUnit\Framework\TestCase;
 
 class AuthRequestTest extends TestCase
 {
-
     public function setUp(): void
     {
         $apiUrl = IntegrationTestData::get()->getApiUrl();

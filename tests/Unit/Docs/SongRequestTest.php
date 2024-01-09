@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Test\Unit\Docs;
-
 
 use CTApi\Models\Common\File\File;
 use CTApi\Models\Events\Song\Song;
@@ -10,7 +8,6 @@ use CTApi\Models\Events\Song\SongArrangement;
 use CTApi\Models\Events\Song\SongArrangementRequest;
 use CTApi\Models\Events\Song\SongRequest;
 use CTApi\Test\Unit\TestCaseHttpMocked;
-
 
 class SongRequestTest extends TestCaseHttpMocked
 {

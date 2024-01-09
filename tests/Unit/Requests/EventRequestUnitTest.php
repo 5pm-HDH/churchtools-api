@@ -7,7 +7,6 @@ use CTApi\Test\Unit\TestCaseHttpMocked;
 
 class EventRequestUnitTest extends TestCaseHttpMocked
 {
-
     public function testGetAllEvents(): void
     {
         $allEvents = EventRequest::all();

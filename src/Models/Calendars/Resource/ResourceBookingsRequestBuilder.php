@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Models\Calendars\Resource;
-
 
 use CTApi\CTClient;
 use CTApi\Traits\Request\WhereCondition;

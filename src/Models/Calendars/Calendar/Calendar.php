@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Models\Calendars\Calendar;
-
 
 use CTApi\Models\AbstractModel;
 use CTApi\Models\Calendars\Appointment\AppointmentRequestBuilder;
@@ -12,7 +10,8 @@ use CTApi\Traits\Model\MetaAttribute;
 
 class Calendar extends AbstractModel
 {
-    use FillWithData, MetaAttribute;
+    use FillWithData;
+    use MetaAttribute;
 
     protected ?string $name = null;
     protected ?string $nameTranslated = null;
@@ -37,9 +36,9 @@ class Calendar extends AbstractModel
 
     public function requestAppointments(): ?AppointmentRequestBuilder
     {
-        if(!is_null($this->getId())){
+        if(!is_null($this->getId())) {
             return new AppointmentRequestBuilder([$this->getId()]);
-        }else{
+        } else {
             return null;
         }
     }
