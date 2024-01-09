@@ -42,7 +42,7 @@ jobs:
       run: composer run-script php-cs-fixer
 
     - name: Check if code are already generated
-      uses: tj-actions/verify-changed-files@v8.8
+      uses: tj-actions/verify-changed-files@v17
       id: verify-changed-files
       with:
         files: |
