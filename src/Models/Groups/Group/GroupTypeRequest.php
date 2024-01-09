@@ -5,9 +5,9 @@ namespace CTApi\Models\Groups\Group;
 
 class GroupTypeRequest
 {
-    public static function all(): array
+    public static function all(): GroupTypeCollection
     {
-        return (new GroupTypeRequestBuilder())->all();
+        return new GroupTypeCollection((new GroupTypeRequestBuilder())->all());
     }
 
     public static function where(string $key, $value): GroupTypeRequestBuilder
