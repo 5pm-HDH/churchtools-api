@@ -15,7 +15,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 - PHPUnit and PHP8.1 compatibility ([PR181](https://github.com/5pm-HDH/churchtools-api/pull/181))
-
+- Fix GroupHierarchie ([PR192](https://github.com/5pm-HDH/churchtools-api/pull/192))
 
 ## [2.0.0]
 

@@ -17,10 +17,10 @@ class GroupHierarchieRequestTest extends TestCaseAuthenticated
 
     private $groupId = "";
     private $groupName = "";
-    private $groupParentId = ""; /** @phpstan-ignore-line */
-    private $groupParentName = ""; /** @phpstan-ignore-line */
-    private $groupChildId = ""; /** @phpstan-ignore-line */
-    private $groupChildName = ""; /** @phpstan-ignore-line */
+    private $groupParentId = "";
+    private $groupParentName = "";
+    private $groupChildId = "";
+    private $groupChildName = "";
 
     protected function setUp(): void
     {
@@ -42,8 +42,7 @@ class GroupHierarchieRequestTest extends TestCaseAuthenticated
 
     public function testRequestGroupParents()
     {
-        $this->markTestSkipped("ChurchTools API Endpoint is broken. Fix in issue: https://github.com/5pm-HDH/churchtools-api/issues/183");
-        $group = GroupRequest::findOrFail($this->groupId); /** @phpstan-ignore-line */
+        $group = GroupRequest::findOrFail($this->groupId);
 
         $parents = $group->requestGroupParents()?->get();
         $this->assertNotNull($parents);
@@ -61,18 +60,10 @@ class GroupHierarchieRequestTest extends TestCaseAuthenticated
 
     public function testRequestGroupChildren()
     {
-        $this->markTestSkipped("ChurchTools API Endpoint is broken. Fix in issue: https://github.com/5pm-HDH/churchtools-api/issues/183");
-        $group = GroupRequest::findOrFail($this->groupId); /** @phpstan-ignore-line */
-
-        CTLog::enableConsoleLog();
-        CTConfig::enableDebugging();
-        CTLog::enableHttpLog();
-        echo "\n". AuthRequest::retrieveApiToken(12) . "\n";
+        $group = GroupRequest::findOrFail($this->groupId);
 
         $children = $group->requestGroupChildren()?->get();
         $this->assertNotNull($children);
-
-        print_r($children);
 
         $foundChild = null;
         foreach ($children as $child) {
@@ -83,5 +74,4 @@ class GroupHierarchieRequestTest extends TestCaseAuthenticated
         $this->assertNotNull($foundChild);
         $this->assertEquals($this->groupChildName, $foundChild->getName());
     }
-
 }
