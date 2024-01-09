@@ -513,3 +513,61 @@
 
 
 ```
+
+## Group-Types
+
+```php
+        use CTApi\Models\Groups\Group\GroupType;
+        use CTApi\Models\Groups\Group\GroupTypeRequest;
+
+        $groupTypes = GroupTypeRequest::all();
+
+        $groupTypeNames = array_map(function (GroupType $groupType) {
+            return $groupType->getName();
+        }, $groupTypes);
+
+        $groupTypeNameList = implode("/", $groupTypeNames);
+        var_dump( $groupTypeNameList);
+        // Output: "Dienst/Kleingruppe/Maßnahme/Merkmal"
+
+
+```
+
+```php
+        use CTApi\Models\Groups\Group\GroupType;
+        use CTApi\Models\Groups\Group\GroupTypeRequest;
+
+        $groupType = GroupTypeRequest::find(2);
+
+        var_dump( $groupType?->getName());
+        // Output: "Dienst"
+
+        var_dump( $groupType?->getNameTranslated());
+        // Output: "Dienst"
+
+        var_dump( $groupType?->getNamePlural());
+        // Output: "Dienste"
+
+        var_dump( $groupType?->getNamePluralTranslated());
+        // Output: "Dienste"
+
+        var_dump( $groupType?->getShorty());
+        // Output: "DT"
+
+        var_dump( $groupType?->getDescription());
+        // Output: ""
+
+        var_dump( $groupType?->getIsLeaderNecessary());
+        // Output: false
+
+        var_dump( $groupType?->getAvailableForNewPerson());
+        // Output: false
+
+        var_dump( $groupType?->getPermissionDepth());
+        // Output: 1
+
+        var_dump( $groupType?->getSortKey());
+        // Output: 0
+
+
+```

@@ -1,0 +1,59 @@
+{
+    "data": [
+        {
+            "id": 2,
+            "name": "Dienst",
+            "nameTranslated": "Dienst",
+            "namePlural": "Dienste",
+            "namePluralTranslated": "Dienste",
+            "shorty": "DT",
+            "description": null,
+            "isLeaderNecessary": false,
+            "availableForNewPerson": false,
+            "permissionDepth": 1,
+            "sortKey": 0
+        },
+        {
+            "id": 1,
+            "name": "Kleingruppe",
+            "nameTranslated": "Kleingruppe",
+            "namePlural": "Kleingruppen",
+            "namePluralTranslated": "Kleingruppen",
+            "shorty": "KG",
+            "description": null,
+            "isLeaderNecessary": true,
+            "availableForNewPerson": false,
+            "permissionDepth": 1,
+            "sortKey": 0
+        },
+        {
+            "id": 3,
+            "name": "Ma\u00dfnahme",
+            "nameTranslated": "Ma\u00dfnahme",
+            "namePlural": "Ma\u00dfnahmen",
+            "namePluralTranslated": "Ma\u00dfnahmen",
+            "shorty": "MN",
+            "description": null,
+            "isLeaderNecessary": false,
+            "availableForNewPerson": true,
+            "permissionDepth": 1,
+            "sortKey": 0
+        },
+        {
+            "id": 4,
+            "name": "Merkmal",
+            "nameTranslated": "Merkmal",
+            "namePlural": "Merkmale",
+            "namePluralTranslated": "Merkmale",
+            "shorty": "MM",
+            "description": null,
+            "isLeaderNecessary": false,
+            "availableForNewPerson": true,
+            "permissionDepth": 1,
+            "sortKey": 0
+        }
+    ],
+    "meta": {
+        "count": 4
+    }
+}

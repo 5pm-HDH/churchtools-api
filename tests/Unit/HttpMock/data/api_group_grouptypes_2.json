@@ -1,0 +1,18 @@
+{
+  "data": {
+    "id": 2,
+    "name": "Dienst",
+    "nameTranslated": "Dienst",
+    "namePlural": "Dienste",
+    "namePluralTranslated": "Dienste",
+    "shorty": "DT",
+    "description": null,
+    "isLeaderNecessary": false,
+    "availableForNewPerson": false,
+    "permissionDepth": 1,
+    "sortKey": 0
+  },
+  "meta": {
+    "count": 4
+  }
+}

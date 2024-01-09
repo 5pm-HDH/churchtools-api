@@ -20,6 +20,7 @@ class GroupType extends AbstractModel
     protected ?int $permissionDepth = null;
     protected ?string $shorty = null;
     protected ?int $sortKey = null;
+    protected ?string $description = null;
 
     /**
      * @param string|null $id
@@ -127,6 +128,17 @@ class GroupType extends AbstractModel
     public function setSortKey(?int $sortKey): static
     {
         $this->sortKey = $sortKey;
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): GroupType
+    {
+        $this->description = $description;
         return $this;
     }
 }
