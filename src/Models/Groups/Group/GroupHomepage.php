@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Models\Groups\Group;
-
 
 use CTApi\Models\AbstractModel;
 use CTApi\Models\Common\Domain\Meta;
@@ -12,7 +10,8 @@ use CTApi\Traits\Model\MetaAttribute;
 
 class GroupHomepage extends AbstractModel
 {
-    use FillWithData, MetaAttribute;
+    use FillWithData;
+    use MetaAttribute;
 
     protected ?string $parentGroup = null;
     protected ?bool $isEnabled = null;

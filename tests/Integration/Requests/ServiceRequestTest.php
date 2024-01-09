@@ -10,10 +10,8 @@ use CTApi\Models\Events\Service\ServiceRequest;
 use CTApi\Test\Integration\IntegrationTestData;
 use CTApi\Test\Integration\TestCaseAuthenticated;
 
-
 class ServiceRequestTest extends TestCaseAuthenticated
 {
-
     public function testFindService(): void
     {
         $serviceId = IntegrationTestData::getFilter("get_service", "id");

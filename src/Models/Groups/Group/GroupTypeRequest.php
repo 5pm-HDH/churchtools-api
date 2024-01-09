@@ -2,7 +2,6 @@
 
 namespace CTApi\Models\Groups\Group;
 
-
 class GroupTypeRequest
 {
     public static function all(): array

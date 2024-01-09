@@ -15,10 +15,10 @@ class TestCaseAuthenticated extends TestCase
     {
         parent::setUpBeforeClass();
 
-        if(self::$configIsInitialized){
-            try{
+        if(self::$configIsInitialized) {
+            try {
                 PersonRequest::whoami();
-            }catch(CTRequestException $exception){
+            } catch(CTRequestException $exception) {
                 self::reauthenticateChurchToolsUser();
             }
         }

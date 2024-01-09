@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Models\Common\Search;
-
 
 use CTApi\CTClient;
 use CTApi\Utils\CTResponseUtil;
@@ -14,13 +12,12 @@ class SearchRequestBuilder
 
     public function __construct(
         private string $query
-    )
-    {
+    ) {
     }
 
     public function whereDomainType(string $domainType)
     {
-        if(!in_array($domainType, $this->domainTypes)){
+        if(!in_array($domainType, $this->domainTypes)) {
             $this->domainTypes[] = $domainType;
         }
         return $this;
@@ -34,8 +31,8 @@ class SearchRequestBuilder
             ]
         ];
 
-        if(!empty($this->domainTypes)){
-            CTUtil::arrayPathSet($options,"json.domainTypes", $this->domainTypes);
+        if(!empty($this->domainTypes)) {
+            CTUtil::arrayPathSet($options, "json.domainTypes", $this->domainTypes);
         }
 
         $client = CTClient::getClient();

@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Test\Integration\Requests;
-
 
 use CTApi\Models\Groups\Person\PersonRequest;
 use CTApi\Test\Integration\TestCaseAuthenticated;

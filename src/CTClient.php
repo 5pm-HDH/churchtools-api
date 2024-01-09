@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi;
-
 
 use CTApi\Exceptions\CTConnectException;
 use CTApi\Exceptions\CTPermissionException;
@@ -97,7 +95,7 @@ class CTClient
     {
         if ($exception instanceof ConnectException) {
             throw new CTConnectException($exception->getMessage(), $exception->getCode(), $exception);
-        } else if ($exception instanceof GuzzleException) {
+        } elseif ($exception instanceof GuzzleException) {
             throw new CTRequestException($exception->getMessage(), $exception->getCode(), $exception);
         }
         throw $exception;

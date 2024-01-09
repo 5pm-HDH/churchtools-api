@@ -8,7 +8,6 @@ use CTApi\Test\Integration\TestCaseAuthenticated;
 
 class SongCommentRequestTest extends TestCaseAuthenticated
 {
-
     private int $arrangementId;
 
     protected function setUp(): void

@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Models\Calendars\Appointment;
-
 
 use CTApi\Models\AbstractModel;
 use CTApi\Models\Calendars\Calendar\Calendar;

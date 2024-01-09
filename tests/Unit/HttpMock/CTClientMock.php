@@ -12,7 +12,6 @@ use Psr\Http\Message\ResponseInterface;
 
 class CTClientMock extends CTClient
 {
-
     private array $requestCalls = [];
     private array $responses = [];
 

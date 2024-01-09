@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Test\Unit\Requests;
-
 
 use CTApi\CTClient;
 use CTApi\Models\Events\SongStatistic\SongStatisticRequestBuilder;
@@ -11,7 +9,6 @@ use CTApi\Test\Unit\TestCaseHttpMocked;
 
 class SongStatisticRequestLazyTest extends TestCaseHttpMocked
 {
-
     public function testLazy()
     {
         $builder = new SongStatisticRequestBuilder(true);

@@ -1,6 +1,5 @@
 <?php
 
-
 namespace CTApi\Models\Groups\Person;
 
 use CTApi\CTClient;

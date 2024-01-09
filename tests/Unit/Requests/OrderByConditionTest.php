@@ -8,7 +8,6 @@ use PHPUnit\Framework\TestCase;
 
 class OrderByConditionTest extends TestCase
 {
-
     protected RequestBuilder $exampleRequestBuilder;
     protected array $data = [
         ["id" => 21, "name" => "Joe", "tags" => [21, 23, 42]],

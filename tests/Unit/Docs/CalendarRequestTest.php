@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Test\Unit\Docs;
-
 
 use CTApi\Models\Calendars\Appointment\Appointment;
 use CTApi\Models\Calendars\Appointment\AppointmentRequest;
@@ -11,7 +9,6 @@ use CTApi\Test\Unit\TestCaseHttpMocked;
 
 class CalendarRequestTest extends TestCaseHttpMocked
 {
-
     public function testGetCalendars()
     {
         $allCalendars = CalendarRequest::all();

@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Test\Integration\Config;
-
 
 use CTApi\CTConfig;
 use CTApi\Exceptions\CTAuthException;
@@ -10,7 +8,6 @@ use CTApi\Models\Common\Auth\AuthRequest;
 use CTApi\Models\Groups\Person\PersonRequest;
 use CTApi\Test\Integration\IntegrationTestData;
 use PHPUnit\Framework\TestCase;
-
 
 class AuthWithLoginTokenTest extends TestCase
 {

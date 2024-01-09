@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Test\Integration\Requests;
-
 
 use CTApi\Models\Groups\Group\Group;
 use CTApi\Models\Groups\Group\GroupRequest;
@@ -11,10 +9,8 @@ use CTApi\Models\Groups\Person\Person;
 use CTApi\Test\Integration\IntegrationTestData;
 use CTApi\Test\Integration\TestCaseAuthenticated;
 
-
 class GroupMemberRequestTest extends TestCaseAuthenticated
 {
-
     private string $groupId = "";
 
     protected function setUp(): void

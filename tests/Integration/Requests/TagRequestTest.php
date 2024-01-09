@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Test\Integration\Requests;
-
 
 use CTApi\Models\Common\Tag\TagRequest;
 use CTApi\Models\Groups\Group\GroupRequest;
@@ -31,8 +29,8 @@ class TagRequestTest extends TestCaseAuthenticated
         $allSongTags = TagRequest::allSongTags();
 
         $foundSongTag = null;
-        foreach($allSongTags as $tag){
-            if($tag->getId() == $this->songTagId){
+        foreach($allSongTags as $tag) {
+            if($tag->getId() == $this->songTagId) {
                 $foundSongTag = $tag;
             }
         }
@@ -51,8 +49,8 @@ class TagRequestTest extends TestCaseAuthenticated
         $allPersonTags = TagRequest::allPersonTags();
 
         $foundPersonTag = null;
-        foreach($allPersonTags as $tag){
-            if($tag->getId() == $this->personTagId){
+        foreach($allPersonTags as $tag) {
+            if($tag->getId() == $this->personTagId) {
                 $foundPersonTag = $tag;
             }
         }
@@ -75,8 +73,8 @@ class TagRequestTest extends TestCaseAuthenticated
 
         $this->assertNotEmpty($tags);
         $foundTag = null;
-        foreach($tags as $tag){
-            if($tag->getId() == $searchedTagId){
+        foreach($tags as $tag) {
+            if($tag->getId() == $searchedTagId) {
                 $foundTag = $tag;
             }
         }

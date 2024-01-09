@@ -8,7 +8,6 @@ use CTApi\Test\Unit\TestCaseHttpMocked;
 
 class GroupTypeRequestTest extends TestCaseHttpMocked
 {
-
     public function testGetAll()
     {
         $groupTypes = GroupTypeRequest::all();

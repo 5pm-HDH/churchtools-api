@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Traits\Model;
-
 
 use CTApi\Models\Common\Domain\Meta;
 

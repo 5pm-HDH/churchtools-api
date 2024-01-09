@@ -1,19 +1,18 @@
 <?php
 
-
 namespace CTApi\Models\Groups\GroupMember;
-
 
 use CTApi\Traits\Request\OrderByCondition;
 use CTApi\Traits\Request\Pagination;
 
 class GroupMemberRequestBuilder
 {
-    use Pagination, OrderByCondition;
+    use Pagination;
+    use OrderByCondition;
 
     private int $groupId;
 
-    function __construct(int $groupId)
+    public function __construct(int $groupId)
     {
         $this->groupId = $groupId;
     }

@@ -1,20 +1,16 @@
 <?php
 
-
 namespace CTApi\Models\Groups\GroupMeeting;
-
 
 use CTApi\CTClient;
 use CTApi\Utils\CTResponseUtil;
 
 class GroupMeetingMemberRequestBuilder
 {
-
     public function __construct(
         private int $groupId,
         private int $meetingId
-    )
-    {
+    ) {
     }
 
     public function get(): array

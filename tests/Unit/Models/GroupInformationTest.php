@@ -1,15 +1,12 @@
 <?php
 
-
 namespace CTApi\Test\Unit\Models;
-
 
 use CTApi\Models\Groups\Group\GroupInformation;
 use PHPUnit\Framework\TestCase;
 
 class GroupInformationTest extends TestCase
 {
-
     private $imageUrl = "https://example.church.tools/86ace43925d8cbc6f67a42559e7860884aae0e1002672f49d28a15092a585a2f";
     private $imageUrlBanner = "https://example.church.tools/86ace43925d8cbc6f67a42559e7860884aae0e1002672f49d28a15092a585a2f?p=group-tile";
 

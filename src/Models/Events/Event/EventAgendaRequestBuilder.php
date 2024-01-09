@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Models\Events\Event;
-
 
 use CTApi\CTClient;
 use CTApi\Utils\CTResponseUtil;

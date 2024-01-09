@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Test\Unit\Docs;
-
 
 use CTApi\CTConfig;
 use CTApi\Models\Common\DBField\DBFieldRequest;

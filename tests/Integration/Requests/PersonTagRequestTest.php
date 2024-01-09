@@ -1,17 +1,13 @@
 <?php
 
-
 namespace CTApi\Test\Integration\Requests;
-
 
 use CTApi\Models\Groups\Person\PersonRequest;
 use CTApi\Test\Integration\IntegrationTestData;
 use CTApi\Test\Integration\TestCaseAuthenticated;
 
-
 class PersonTagRequestTest extends TestCaseAuthenticated
 {
-
     private $personId;
     private $tagId;
     private $tagName;

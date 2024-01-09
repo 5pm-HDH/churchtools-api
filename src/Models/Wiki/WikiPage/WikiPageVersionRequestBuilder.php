@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Models\Wiki\WikiPage;
-
 
 use CTApi\CTClient;
 use CTApi\Exceptions\CTRequestException;
@@ -10,7 +8,6 @@ use CTApi\Utils\CTResponseUtil;
 
 class WikiPageVersionRequestBuilder
 {
-
     public function __construct(private $wikiCategory, private $pageIdentifier)
     {
     }

@@ -1,6 +1,5 @@
 <?php
 
-
 namespace CTApi\Test\Unit\Docs;
 
 use CTApi\Models\Events\Service\Service;
@@ -11,7 +10,6 @@ use CTApi\Test\Unit\TestCaseHttpMocked;
 
 class ServiceRequestTest extends TestCaseHttpMocked
 {
-
     public function testExampleCode()
     {
 

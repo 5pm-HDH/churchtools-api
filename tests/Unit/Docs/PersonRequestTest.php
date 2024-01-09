@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Test\Unit\Docs;
-
 
 use CTApi\Models\Groups\Person\Person;
 use CTApi\Models\Groups\Person\PersonRequest;
@@ -10,7 +8,6 @@ use CTApi\Test\Unit\TestCaseHttpMocked;
 
 class PersonRequestTest extends TestCaseHttpMocked
 {
-
     public function testExampleCode()
     {
         // logged in user

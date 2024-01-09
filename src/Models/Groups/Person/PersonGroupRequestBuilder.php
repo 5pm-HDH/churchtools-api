@@ -1,15 +1,14 @@
 <?php
 
-
 namespace CTApi\Models\Groups\Person;
-
 
 use CTApi\Traits\Request\OrderByCondition;
 use CTApi\Traits\Request\Pagination;
 
 class PersonGroupRequestBuilder
 {
-    use Pagination, OrderByCondition;
+    use Pagination;
+    use OrderByCondition;
 
     private int $personId;
 

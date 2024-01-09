@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Models\Groups\GroupMember;
-
 
 use CTApi\CTClient;
 use CTApi\Exceptions\CTModelException;
@@ -10,10 +8,9 @@ use CTApi\Utils\CTResponseUtil;
 
 class GroupMemberUpdateRequestBuilder
 {
-
     public function __construct(
-        private int $groupId)
-    {
+        private int $groupId
+    ) {
     }
 
     public function addMember(int $personId): GroupMember

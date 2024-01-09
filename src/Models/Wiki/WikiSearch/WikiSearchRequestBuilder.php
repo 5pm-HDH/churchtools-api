@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Models\Wiki\WikiSearch;
-
 
 use CTApi\CTClient;
 use CTApi\Exceptions\CTRequestException;
@@ -14,10 +12,11 @@ use CTApi\Utils\CTResponseUtil;
 
 class WikiSearchRequestBuilder
 {
+    use Pagination;
+    use WhereCondition;
+    use OrderByCondition;
 
     private string $query = "";
-
-    use Pagination, WhereCondition, OrderByCondition;
 
     public function search(string $query): self
     {

@@ -1,15 +1,12 @@
 <?php
 
-
 namespace CTApi\Test\Unit\Docs;
-
 
 use CTApi\Models\Common\Auth\CSRFTokenRequest;
 use CTApi\Test\Unit\TestCaseHttpMocked;
 
 class CSRFTokenRequestTest extends TestCaseHttpMocked
 {
-
     public function testGetCSRFToken()
     {
         $nullableToken = CSRFTokenRequest::get(); // can be null|string

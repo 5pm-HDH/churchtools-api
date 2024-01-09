@@ -1,14 +1,11 @@
 <?php
 
-
 namespace CTApi\Test\Integration\Requests;
-
 
 use CTApi\Models\Groups\GroupMember\GroupMember;
 use CTApi\Models\Groups\GroupMember\GroupMemberRequest;
 use CTApi\Test\Integration\IntegrationTestData;
 use CTApi\Test\Integration\TestCaseAuthenticated;
-
 
 class GroupUpdateRequestTest extends TestCaseAuthenticated
 {

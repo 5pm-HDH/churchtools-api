@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Models\Groups\Person;
-
 
 use CTApi\Traits\Model\FillWithData;
 

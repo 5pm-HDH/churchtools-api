@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Models;
-
 
 use CTApi\Exceptions\CTModelException;
 

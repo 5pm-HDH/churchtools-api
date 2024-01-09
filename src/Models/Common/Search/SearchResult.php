@@ -1,15 +1,14 @@
 <?php
 
-
 namespace CTApi\Models\Common\Search;
-
 
 use CTApi\Traits\Model\DomainAttribute;
 use CTApi\Traits\Model\FillWithData;
 
 class SearchResult
 {
-    use FillWithData, DomainAttribute;
+    use FillWithData;
+    use DomainAttribute;
 
     protected ?string $icon = null;
 

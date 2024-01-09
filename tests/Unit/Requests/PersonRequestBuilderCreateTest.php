@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Test\Unit\Requests;
-
 
 use CTApi\Exceptions\CTModelException;
 use CTApi\Models\Groups\Person\Person;
@@ -13,10 +11,8 @@ use CTApi\Utils\CTResponse;
 use CTApi\Utils\CTUtil;
 use Psr\Http\Message\ResponseInterface;
 
-
 class PersonRequestBuilderCreateTest extends TestCaseHttpMocked
 {
-
     public function testIdMustNotBeSet()
     {
         $person = new Person();
@@ -95,7 +91,6 @@ class PersonRequestBuilderCreateTest extends TestCaseHttpMocked
 
 final class ClientMockCreatePerson extends \CTApi\Test\Unit\HttpMock\CTClientMock
 {
-
     public function post($uri, array $options = []): ResponseInterface
     {
         parent::post($uri, $options);

@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Utils;
-
 
 use Psr\Http\Message\StreamInterface;
 

@@ -1,20 +1,17 @@
 <?php
 
-
 namespace CTApi\Models\Events\Song;
-
 
 use CTApi\Models\AbstractModel;
 use CTApi\Traits\Model\FillWithData;
 
 class SongCategory extends AbstractModel
 {
+    use FillWithData;
     protected ?string $name = null;
     protected ?string $nameTranslated = null;
     protected ?string $sortKey = null;
     protected ?string $campusId = null;
-
-    use FillWithData;
 
     /**
      * @param string|null $id

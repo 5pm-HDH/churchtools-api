@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Test\Unit;
-
 
 use CTApi\CTClient;
 use CTApi\CTConfig;

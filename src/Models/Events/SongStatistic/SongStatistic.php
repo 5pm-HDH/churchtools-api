@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Models\Events\SongStatistic;
-
 
 use CTApi\Traits\Model\FillWithData;
 

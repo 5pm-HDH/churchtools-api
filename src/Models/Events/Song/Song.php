@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Models\Events\Song;
-
 
 use CTApi\Interfaces\UpdatableModel;
 use CTApi\Models\AbstractModel;
@@ -13,7 +11,9 @@ use CTApi\Traits\Model\MetaAttribute;
 
 class Song extends AbstractModel implements UpdatableModel
 {
-    use FillWithData, MetaAttribute, ExtractData;
+    use FillWithData;
+    use MetaAttribute;
+    use ExtractData;
 
     protected ?string $arrangementId = null;
     protected ?string $name = null;
@@ -30,7 +30,7 @@ class Song extends AbstractModel implements UpdatableModel
     protected ?string $bpm = null;
     protected ?bool $isDefault = null;
 
-    static function getModifiableAttributes(): array
+    public static function getModifiableAttributes(): array
     {
         return [
             "name",
@@ -104,7 +104,7 @@ class Song extends AbstractModel implements UpdatableModel
 
     public function requestTags(): ?SongTagRequestBuilder
     {
-        if($this->id != null){
+        if($this->id != null) {
             return new SongTagRequestBuilder($this->getIdAsInteger());
         }
         return null;

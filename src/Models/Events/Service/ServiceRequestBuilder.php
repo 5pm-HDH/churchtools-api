@@ -1,14 +1,11 @@
 <?php
 
-
 namespace CTApi\Models\Events\Service;
-
 
 use CTApi\Models\AbstractRequestBuilder;
 
 class ServiceRequestBuilder extends AbstractRequestBuilder
 {
-
     protected function getApiEndpoint(): string
     {
         return '/api/services';

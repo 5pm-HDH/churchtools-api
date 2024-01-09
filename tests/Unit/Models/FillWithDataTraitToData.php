@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Test\Unit\Models;
-
 
 use CTApi\Models\Events\Song\SongRequest;
 use CTApi\Test\Unit\TestCaseHttpMocked;

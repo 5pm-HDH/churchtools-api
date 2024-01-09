@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Models\Calendars\Resource;
-
 
 use CTApi\Models\AbstractModel;
 use CTApi\Models\Common\Domain\Meta;
@@ -14,7 +12,8 @@ use CTApi\Utils\CTDateTimeService;
 
 class ResourceBooking extends AbstractModel
 {
-    use FillWithData, MetaAttribute;
+    use FillWithData;
+    use MetaAttribute;
 
     protected ?string $caption = null;
     protected ?string $note = null;

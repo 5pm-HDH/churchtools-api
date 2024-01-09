@@ -10,10 +10,8 @@ use CTApi\Models\Events\Song\SongArrangement;
 use CTApi\Test\Integration\IntegrationTestData;
 use CTApi\Test\Integration\TestCaseAuthenticated;
 
-
 class EventAgendaTest extends TestCaseAuthenticated
 {
-
     public function testGetAgenda(): void
     {
         $eventId = IntegrationTestData::getFilter("get_event_agenda", "event_id");

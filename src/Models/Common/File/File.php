@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Models\Common\File;
-
 
 use CTApi\CTClient;
 use CTApi\CTLog;
@@ -16,7 +14,8 @@ use CTApi\Traits\Model\MetaAttribute;
 
 class File extends AbstractModel
 {
-    use FillWithData, MetaAttribute;
+    use FillWithData;
+    use MetaAttribute;
 
     protected ?string $imageUrl = null;
     protected ?string $type = null;

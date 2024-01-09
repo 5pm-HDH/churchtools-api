@@ -2,7 +2,6 @@
 
 namespace CTApi\Test\Integration\Exceptions;
 
-
 use CTApi\CTConfig;
 use CTApi\Exceptions\CTConnectException;
 use CTApi\Models\Groups\Person\PersonRequest;

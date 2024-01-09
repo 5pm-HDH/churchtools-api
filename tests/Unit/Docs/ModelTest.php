@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Test\Unit\Docs;
-
 
 use CTApi\Models\Groups\Person\Person;
 use PHPUnit\Framework\TestCase;

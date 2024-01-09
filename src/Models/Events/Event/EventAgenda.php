@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Models\Events\Event;
-
 
 use CTApi\CTLog;
 use CTApi\Models\AbstractModel;
@@ -16,7 +14,8 @@ use CTApi\Traits\Model\MetaAttribute;
 
 class EventAgenda extends AbstractModel
 {
-    use FillWithData, MetaAttribute;
+    use FillWithData;
+    use MetaAttribute;
 
     protected ?string $name = null;
     protected ?string $series = null;

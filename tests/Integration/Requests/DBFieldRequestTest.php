@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Test\Integration\Requests;
-
 
 use CTApi\CTConfig;
 use CTApi\CTLog;
@@ -14,10 +12,8 @@ use CTApi\Models\Groups\Person\PersonRequest;
 use CTApi\Test\Integration\IntegrationTestData;
 use CTApi\Test\Integration\TestCaseAuthenticated;
 
-
 class DBFieldRequestTest extends TestCaseAuthenticated
 {
-
     public static function setUpBeforeClass(): void
     {
         self::markTestSkipped("Fix issue with test in: https://github.com/5pm-HDH/churchtools-api/issues/184");

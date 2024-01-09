@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Utils;
-
 
 use GuzzleHttp\Psr7\Uri;
 use Psr\Http\Message\MessageInterface;

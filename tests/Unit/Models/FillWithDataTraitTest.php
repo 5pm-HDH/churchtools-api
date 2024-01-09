@@ -7,14 +7,13 @@ use PHPUnit\Framework\TestCase;
 
 class FillWithDataTraitTest extends TestCase
 {
-
-    const DATA_CONTAINER = [
+    public const DATA_CONTAINER = [
         'id' => 21,
         'name' => "Robin Hood",
         'age' => 32
     ];
 
-    const DATA_LIST = [
+    public const DATA_LIST = [
         ['id' => 22, 'name' => "Big James", 'age' => 94],
         ['id' => 23, 'name' => "Little John", 'age' => 23],
         ['id' => 24, 'name' => "Joe", 'age' => 32],

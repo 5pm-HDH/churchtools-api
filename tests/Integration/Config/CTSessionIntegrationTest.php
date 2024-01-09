@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Test\Integration\Config;
-
 
 use CTApi\CTConfig;
 use CTApi\CTSession;

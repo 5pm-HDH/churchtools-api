@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Models\Common\DBField;
-
 
 class DBFieldForKeysRequestBuilder
 {
@@ -14,8 +12,7 @@ class DBFieldForKeysRequestBuilder
      */
     public function __construct(
         private array $dbFieldData
-    )
-    {
+    ) {
     }
 
     public function get(): array

@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Models\Events\SongStatistic;
-
 
 use CTApi\Exceptions\CTRequestException;
 use CTApi\Traits\Request\AjaxApi;
@@ -20,8 +18,7 @@ class SongStatisticRequestBuilder
      */
     public function __construct(
         private bool $isLazy = true
-    )
-    {
+    ) {
     }
 
     private function getStatisticData(): array

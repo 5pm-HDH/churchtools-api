@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Models\Common\Search;
-
 
 class SearchRequest
 {

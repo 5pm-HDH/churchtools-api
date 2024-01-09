@@ -1,15 +1,12 @@
 <?php
 
-
 namespace CTApi\Test\Integration\Requests;
-
 
 use CTApi\Models\Events\Song\SongArrangement;
 use CTApi\Models\Events\Song\SongArrangementRequest;
 use CTApi\Models\Events\Song\SongRequest;
 use CTApi\Test\Integration\IntegrationTestData;
 use CTApi\Test\Integration\TestCaseAuthenticated;
-
 
 class SongArrangementUpdateRequestTest extends TestCaseAuthenticated
 {

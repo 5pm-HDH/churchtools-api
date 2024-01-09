@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Test\Integration\Requests;
-
 
 use CTApi\CTLog;
 use CTApi\Models\Calendars\Appointment\Appointment;
@@ -12,7 +10,6 @@ use CTApi\Models\Calendars\CombinedAppointment\CombinedAppointmentRequest;
 use CTApi\Models\Common\File\File;
 use CTApi\Test\Integration\IntegrationTestData;
 use CTApi\Test\Integration\TestCaseAuthenticated;
-
 
 class CalendarRequestTest extends TestCaseAuthenticated
 {
@@ -122,11 +119,11 @@ class CalendarRequestTest extends TestCaseAuthenticated
         $secondSeriesAppointment = null;
         $second_startDate = $testCase->getResult("second_series_appointment.calculated_start_date");
 
-        foreach($appointments as $appointment){
-            if($first_startDate === $appointment->getStartDate()){
+        foreach($appointments as $appointment) {
+            if($first_startDate === $appointment->getStartDate()) {
                 $firstSeriesAppointment = $appointment;
             }
-            if($second_startDate === $appointment->getStartDate()){
+            if($second_startDate === $appointment->getStartDate()) {
                 $secondSeriesAppointment = $appointment;
             }
         }

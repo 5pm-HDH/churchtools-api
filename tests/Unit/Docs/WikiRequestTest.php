@@ -1,6 +1,5 @@
 <?php
 
-
 namespace CTApi\Test\Unit\Docs;
 
 use CTApi\Models\Wiki\WikiCategory\WikiCategoryRequest;

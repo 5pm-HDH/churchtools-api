@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Models\Groups\GroupMember;
-
 
 use CTApi\Models\Common\DBField\DBField;
 use CTApi\Models\Common\DBField\DBFieldContainer;
@@ -21,7 +19,7 @@ class GroupMemberFieldContainer
 
     protected function fillNonArrayType(string $key, $value): void
     {
-        if($key == "type"){
+        if($key == "type") {
             $this->type = $value;
             $this->loadFieldLazy();
         }
@@ -30,7 +28,7 @@ class GroupMemberFieldContainer
 
     protected function fillArrayType(string $key, array $data): void
     {
-        switch ($key){
+        switch ($key) {
             case "field":
                 $this->fieldData = $data;
                 $this->loadFieldLazy();
@@ -42,8 +40,8 @@ class GroupMemberFieldContainer
 
     private function loadFieldLazy()
     {
-        if($this->type != null && $this->fieldData != null && $this->field == null){
-            switch ($this->type){
+        if($this->type != null && $this->fieldData != null && $this->field == null) {
+            switch ($this->type) {
                 case "group":
                     $this->field = GroupMemberField::createModelFromData($this->fieldData);
                     break;
@@ -56,7 +54,7 @@ class GroupMemberFieldContainer
 
     public function getDBFieldIfExists(): ?DBField
     {
-        if(is_a($this->field, DBFieldContainer::class)){
+        if(is_a($this->field, DBFieldContainer::class)) {
             return $this->field->getDbField();
         }
         return null;
@@ -64,7 +62,7 @@ class GroupMemberFieldContainer
 
     public function getGroupMemberFieldIfExists(): ?GroupMemberField
     {
-        if(is_a($this->field, GroupMemberField::class)){
+        if(is_a($this->field, GroupMemberField::class)) {
             return $this->field;
         }
         return null;

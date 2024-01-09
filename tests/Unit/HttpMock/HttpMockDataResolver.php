@@ -7,9 +7,9 @@ use CTApi\Utils\CTUtil;
 
 class HttpMockDataResolver
 {
-    const HTTP_DATA_DIR = __DIR__ . '/data/';
+    public const HTTP_DATA_DIR = __DIR__ . '/data/';
 
-    static function resolveEndpoint(string $endpoint, array $options = [], string $method = "GET"): array
+    public static function resolveEndpoint(string $endpoint, array $options = [], string $method = "GET"): array
     {
         CTLog::getLog()->debug("HttpMockDataResolver. Resolve endpoint: " . $endpoint);
         return self::getData($endpoint, $options, $method);
@@ -47,13 +47,13 @@ class HttpMockDataResolver
         }
 
         // append query and func-name for AJAX-Request
-        if($endpoint == "index.php"){
+        if($endpoint == "index.php") {
             $q = CTUtil::arrayPathGet($options, "query.q");
-            if(!is_null($q)){
+            if(!is_null($q)) {
                 $endpoint .= "_q=".$q;
             }
             $func = CTUtil::arrayPathGet($options, "json.func");
-            if(!is_null($func)){
+            if(!is_null($func)) {
                 $endpoint .= "_func=".$func;
             }
         }

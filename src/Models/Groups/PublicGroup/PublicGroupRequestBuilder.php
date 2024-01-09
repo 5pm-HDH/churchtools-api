@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Models\Groups\PublicGroup;
-
 
 use CTApi\CTClient;
 use CTApi\Models\Groups\Group\GroupHomepage;
@@ -10,7 +8,6 @@ use CTApi\Utils\CTResponseUtil;
 
 class PublicGroupRequestBuilder
 {
-
     private $hash;
 
     public function __construct(string $hash)

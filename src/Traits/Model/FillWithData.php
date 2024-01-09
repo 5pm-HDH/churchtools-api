@@ -45,7 +45,7 @@ trait FillWithData
     {
         if (is_object($propertyValue)) { // cast objects
             return $this->castObjectToData($propertyValue);
-        } else if (is_array($propertyValue)) {
+        } elseif (is_array($propertyValue)) {
             return $this->castArrayToData($propertyValue);
         } else {
             return $propertyValue;
@@ -75,7 +75,7 @@ trait FillWithData
         foreach ($array as $key => $value) {
             if (is_object($value)) {
                 $this->fillObjectType($key, $value);
-            } else if (is_array($value)) {
+            } elseif (is_array($value)) {
                 $this->fillArrayType($key, $value);
             } else {
                 $this->fillNonArrayType($key, $value);
@@ -257,7 +257,7 @@ trait FillWithData
     {
         if ($valueType == "bool") {
             return $value ? "true" : "false";
-        } else if ($valueType == "int" || $valueType == "float") {
+        } elseif ($valueType == "int" || $valueType == "float") {
             return strval($value);
         }
 

@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Test\Unit\Models;
-
 
 use CTApi\CTConfig;
 use CTApi\Models\Groups\PublicGroup\PublicGroup;
@@ -10,7 +8,6 @@ use PHPUnit\Framework\TestCase;
 
 class PublicGroupTest extends TestCase
 {
-
     public function testGenerateRegistrationLink()
     {
         // WITHOUT SLASH IN THE END OF URL

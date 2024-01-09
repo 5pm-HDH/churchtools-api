@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Models\Groups\GroupMeeting;
-
 
 use CTApi\Models\AbstractModel;
 use CTApi\Models\Common\Domain\Meta;
@@ -12,7 +10,8 @@ use CTApi\Utils\CTDateTimeService;
 
 class GroupMeeting extends AbstractModel
 {
-    use FillWithData, MetaAttribute;
+    use FillWithData;
+    use MetaAttribute;
 
     protected ?int $groupId = null;
     protected ?string $dateFrom = null;

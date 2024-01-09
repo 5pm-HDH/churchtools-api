@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Exceptions;
-
 
 use CTApi\CTLog;
 use Throwable;

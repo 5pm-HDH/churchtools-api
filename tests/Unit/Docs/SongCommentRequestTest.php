@@ -7,7 +7,6 @@ use CTApi\Test\Unit\TestCaseHttpMocked;
 
 class SongCommentRequestTest extends TestCaseHttpMocked
 {
-
     public function testGetAllComments()
     {
         $comments = SongCommentRequest::getForSongArrangement(2);

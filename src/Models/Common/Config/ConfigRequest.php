@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Models\Common\Config;
-
 
 use CTApi\CTClient;
 use CTApi\Utils\CTResponseUtil;

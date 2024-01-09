@@ -9,8 +9,7 @@ use Tests\Unit\TestCaseDocExampleCode;
 
 class GroupRequestTest extends TestCaseHttpMocked
 {
-
-    function testDocExample()
+    public function testDocExample()
     {
         /**
          * Group-Request

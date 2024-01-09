@@ -1,19 +1,15 @@
 <?php
 
-
 namespace CTApi\Models\Groups\GroupMember;
-
 
 use CTApi\CTClient;
 use CTApi\Utils\CTResponseUtil;
 
 class GroupMemberFieldsRequestBuilder
 {
-
     public function __construct(
         private int $groupId
-    )
-    {
+    ) {
     }
 
     public function get(): array

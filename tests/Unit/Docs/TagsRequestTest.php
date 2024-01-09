@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Test\Unit\Docs;
-
 
 use CTApi\Models\Common\Tag\TagRequest;
 use CTApi\Models\Events\Song\SongRequest;
@@ -10,7 +8,6 @@ use CTApi\Test\Unit\TestCaseHttpMocked;
 
 class TagsRequestTest extends TestCaseHttpMocked
 {
-
     public function testRetrieveTags()
     {
         $personTags = TagRequest::allPersonTags();

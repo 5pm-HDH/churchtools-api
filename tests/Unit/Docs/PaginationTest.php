@@ -1,15 +1,12 @@
 <?php
 
-
 namespace CTApi\Test\Unit\Docs;
-
 
 use CTApi\Models\Events\Event\EventRequest;
 use CTApi\Test\Unit\TestCaseHttpMocked;
 
 class PaginationTest extends TestCaseHttpMocked
 {
-
     public function testCollectPages()
     {
         $events = EventRequest::all();

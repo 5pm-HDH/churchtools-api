@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Models\Events\Event;
-
 
 use CTApi\Models\AbstractModel;
 use CTApi\Models\Common\Domain\DomainAttributeModel;
@@ -40,7 +38,7 @@ class Event extends AbstractModel
                 $this->setCalendar(DomainAttributeModel::createModelFromData($data));
                 break;
             case "domainAttributes":
-                if(key_exists("startDate", $data)){
+                if(key_exists("startDate", $data)) {
                     $this->setStartDate($data["startDate"]);
                 }
                 break;
@@ -51,7 +49,7 @@ class Event extends AbstractModel
 
     protected function fillNonArrayType(string $key, $value): void
     {
-        switch ($key){
+        switch ($key) {
             case "title":
                 $this->setName($value);
                 break;

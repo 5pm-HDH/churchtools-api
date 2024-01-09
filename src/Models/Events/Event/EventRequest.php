@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Models\Events\Event;
-
 
 class EventRequest
 {

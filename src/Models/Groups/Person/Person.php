@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Models\Groups\Person;
-
 
 use CTApi\Interfaces\UpdatableModel;
 use CTApi\Models\AbstractModel;
@@ -18,7 +16,10 @@ use CTApi\Utils\CTDateTimeService;
 
 class Person extends AbstractModel implements UpdatableModel
 {
-    use FillWithData, ExtractData, MetaAttribute, HasDBFields;
+    use FillWithData;
+    use ExtractData;
+    use MetaAttribute;
+    use HasDBFields;
 
     protected ?string $guid = null;
     protected ?int $securityLevelForPerson = null;

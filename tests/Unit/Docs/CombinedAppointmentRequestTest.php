@@ -7,7 +7,6 @@ use CTApi\Test\Unit\TestCaseHttpMocked;
 
 class CombinedAppointmentRequestTest extends TestCaseHttpMocked
 {
-
     public function testCombinedAppointment()
     {
         $combinedAppointment = CombinedAppointmentRequest::forAppointment(2, 13, "2023-10-01")->get();

@@ -1,6 +1,5 @@
 <?php
 
-
 namespace CTApi\Test\Unit\Docs;
 
 use CTApi\Models\Common\File\File;
@@ -9,7 +8,6 @@ use CTApi\Test\Unit\TestCaseHttpMocked;
 
 class FileRequestTest extends TestCaseHttpMocked
 {
-
     /**
      * @doesNotPerformAssertions
      */
@@ -101,7 +99,6 @@ class FileRequestTest extends TestCaseHttpMocked
 
 class FileRequestBuilder extends \CTApi\Models\Common\File\FileRequestBuilder
 {
-
     public function __construct(string $domainType, int $domainIdentifier)
     {
         parent::__construct($domainType, $domainIdentifier);

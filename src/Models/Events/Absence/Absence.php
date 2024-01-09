@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CTApi\Models\Events\Absence;
-
 
 use CTApi\Interfaces\UpdatableModel;
 use CTApi\Models\AbstractModel;
@@ -13,7 +11,8 @@ use CTApi\Utils\CTDateTimeService;
 
 class Absence extends AbstractModel implements UpdatableModel
 {
-    use FillWithData, ExtractData;
+    use FillWithData;
+    use ExtractData;
 
     protected ?string $comment = null;
     protected ?string $absenceReasonId = null;
@@ -38,7 +37,7 @@ class Absence extends AbstractModel implements UpdatableModel
         }
     }
 
-    static function getModifiableAttributes(): array
+    public static function getModifiableAttributes(): array
     {
         return [
             "comment",
