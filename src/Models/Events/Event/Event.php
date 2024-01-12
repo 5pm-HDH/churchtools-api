@@ -147,7 +147,7 @@ class Event extends AbstractModel
     }
 
     /**
-     * @deprecated use note
+     * @deprecated use "note"
      * @return string|null
      */
     public function getDescription(): ?string
@@ -156,7 +156,7 @@ class Event extends AbstractModel
     }
 
     /**
-     * @deprecated use note
+     * @deprecated use "note"
      * @param string|null $description
      * @return Event
      */
