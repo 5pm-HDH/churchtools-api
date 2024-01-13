@@ -2,7 +2,6 @@
 
 namespace CTApi\Models\Groups\GroupTypeRole;
 
-
 class GroupTypeRoleRequest
 {
     public static function all(): array
@@ -25,7 +24,7 @@ class GroupTypeRoleRequest
         return (new GroupTypeRoleRequestBuilder())->findOrFail($id);
     }
 
-    public static function find(int $id): ?GroupType
+    public static function find(int $id): ?GroupTypeRole
     {
         return (new GroupTypeRoleRequestBuilder())->find($id);
     }
