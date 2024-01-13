@@ -1,6 +1,6 @@
 <?php
 
-namespace CTApi\Models\Groups\Group;
+namespace CTApi\Models\Groups\GroupType;
 
 use CTApi\Models\AbstractModel;
 use CTApi\Traits\Model\FillWithData;

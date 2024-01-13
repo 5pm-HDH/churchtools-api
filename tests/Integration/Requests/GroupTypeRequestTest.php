@@ -3,7 +3,7 @@
 namespace CTApi\Test\Integration\Requests;
 
 use CTApi\Exceptions\CTRequestException;
-use CTApi\Models\Groups\Group\GroupTypeRequest;
+use CTApi\Models\Groups\GroupType\GroupTypeRequest;
 use CTApi\Test\Integration\IntegrationTestData;
 use CTApi\Test\Integration\TestCaseAuthenticated;
 

@@ -2,8 +2,8 @@
 
 namespace CTApi\Test\Unit\Docs;
 
-use CTApi\Models\Groups\Group\GroupType;
-use CTApi\Models\Groups\Group\GroupTypeRequest;
+use CTApi\Models\Groups\GroupType\GroupType;
+use CTApi\Models\Groups\GroupType\GroupTypeRequest;
 use CTApi\Test\Unit\TestCaseHttpMocked;
 
 class GroupTypeRequestTest extends TestCaseHttpMocked
