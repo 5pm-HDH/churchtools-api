@@ -1,6 +1,6 @@
 <?php
 
-namespace CTApi\Models\Groups\Group;
+namespace CTApi\Models\Groups\GroupType;
 
 class GroupTypeRequest
 {
