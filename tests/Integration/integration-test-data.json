@@ -113,6 +113,30 @@
         }
       }
     },
+    "group_type_roles": {
+      "description": "Get group type roles.",
+      "result": {
+        "any_group_type_role": {
+          "id": 12,
+          "groupType": {
+            "id": 1,
+            "availableForNewPerson": false,
+            "isLeaderNecessary": true,
+            "name": "Kleingruppe",
+            "permissionDepth": 1,
+            "shorty": "KG",
+            "sortKey": 0
+          },
+          "name": "Organisator",
+          "shorty": "O",
+          "type": "participant",
+          "isDefault": false,
+          "isHidden": false,
+          "isLeader": false,
+          "sortKey": 4
+        }
+      }
+    },
     "update_group_member": {
       "description": "Add person to group and remove them again.",
       "filter": {

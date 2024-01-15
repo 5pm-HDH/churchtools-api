@@ -571,3 +571,45 @@
 
 
 ```
+
+## Group Roles
+
+```php
+        use CTApi\Models\Groups\GroupTypeRole\GroupTypeRoleRequest;
+
+        $roles = GroupTypeRoleRequest::all();
+        $role = $roles[0];
+
+        var_dump( $role->getId());
+        // Output: 15
+
+        var_dump( $role->getGroupTypeId());
+        // Output: 2
+
+        $groupType = $role->requestGroupType();
+        var_dump( $role->getGrowPathId());
+        // Output: null
+
+        var_dump( $role->getName());
+        // Output: "Mitarbeiter"
+
+        var_dump( $role->getShorty());
+        // Output: "MA"
+
+        var_dump( $role->getType());
+        // Output: "participant"
+
+        var_dump( $role->getIsDefault());
+        // Output: true
+
+        var_dump( $role->getIsHidden());
+        // Output: false
+
+        var_dump( $role->getIsLeader());
+        // Output: false
+
+        var_dump( $role->getSortKey());
+        // Output: 0
+
+
+```
