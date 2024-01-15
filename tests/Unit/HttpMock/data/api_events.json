@@ -2,30 +2,36 @@
   "data": [
     {
       "id": 21,
+      "appointmentId": 221,
       "guid": "guid21",
       "name": "Sunday Service",
       "description": "Service Description",
+      "note": "Service Description",
       "startDate": "2021-09-02 20:15:00",
       "endDate": "2021-09-02 22:00:00",
-      "chatStatus": false
+      "chatStatus": "NOT_STARTED"
     },
     {
       "id": 22,
+      "appointmentId": 222,
       "guid": "guid22",
       "name": "Sunday Service",
       "description": "Service Description",
+      "note": "Service Description",
       "startDate": "2021-09-08 20:15:00",
       "endDate": "2021-09-08 22:00:00",
-      "chatStatus": true
+      "chatStatus": "NOT_STARTED"
     },
     {
       "id": 23,
+      "appointmentId": 223,
       "guid": "guid23",
       "name": "Sunday Service",
       "description": "Service Description",
+      "note": "Service Description",
       "startDate": "2021-09-21 20:15:00",
       "endDate": "2021-09-21 22:00:00",
-      "chatStatus": false
+      "chatStatus": "NOT_STARTED"
     }
   ],
   "meta": {

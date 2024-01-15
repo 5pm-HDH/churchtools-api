@@ -32,8 +32,15 @@
         var_dump( $christmasService->getName());
         // Output: "Sunday Service"
 
-        var_dump( $christmasService->getDescription());
+        // getDescription is deprecated. Use getNote instead.
+        var_dump( $christmasService->getNote());
         // Output: "Service Description"
+
+        var_dump( $christmasService->getAppointmentId());
+        // Output: "221"
+
+        var_dump( $christmasService->getIsCanceled());
+        // Output: false
 
         var_dump( $christmasService->getStartDate());
         // Output: "2021-09-02 20:15:00"
@@ -48,7 +55,7 @@
         // Output: "2021-09-02 22:00:00"
 
         var_dump( $christmasService->getChatStatus());
-        // Output: false
+        // Output: "NOT_STARTED"
 
         var_dump( $christmasService->getPermissions());
         // Output: null
@@ -57,6 +64,9 @@
         // Output: null
 
         var_dump( $christmasService->getEventServices());
+        // Output: []
+
+        var_dump( $christmasService->getAdminIds());
         // Output: []
 
 
