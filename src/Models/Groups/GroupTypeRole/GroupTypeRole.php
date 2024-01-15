@@ -3,8 +3,8 @@
 namespace CTApi\Models\Groups\GroupTypeRole;
 
 use CTApi\Models\AbstractModel;
-use CTApi\Models\Groups\Group\GroupType;
-use CTApi\Models\Groups\Group\GroupTypeRequest;
+use CTApi\Models\Groups\GroupType\GroupType;
+use CTApi\Models\Groups\GroupType\GroupTypeRequest;
 use CTApi\Traits\Model\FillWithData;
 use CTApi\Traits\Model\MetaAttribute;
 
