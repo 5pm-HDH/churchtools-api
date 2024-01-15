@@ -23,3 +23,7 @@
 {{ \CTApi\Test\Unit\Docs\GroupTypeRequestTest.testGetAll }}
 
 {{ \CTApi\Test\Unit\Docs\GroupTypeRequestTest.testFind }}
+
+## Group Roles
+
+{{ \CTApi\Test\Unit\Docs\GroupTypeRoleRequestTest.testGetGroupTypeRoleRequest }}
