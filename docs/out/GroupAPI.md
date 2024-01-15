@@ -517,8 +517,8 @@
 ## Group-Types
 
 ```php
-        use CTApi\Models\Groups\Group\GroupType;
-        use CTApi\Models\Groups\Group\GroupTypeRequest;
+        use CTApi\Models\Groups\GroupType\GroupType;
+        use CTApi\Models\Groups\GroupType\GroupTypeRequest;
 
         $groupTypes = GroupTypeRequest::all();
 
@@ -534,8 +534,8 @@
 ```
 
 ```php
-        use CTApi\Models\Groups\Group\GroupType;
-        use CTApi\Models\Groups\Group\GroupTypeRequest;
+        use CTApi\Models\Groups\GroupType\GroupType;
+        use CTApi\Models\Groups\GroupType\GroupTypeRequest;
 
         $groupType = GroupTypeRequest::find(2);
 

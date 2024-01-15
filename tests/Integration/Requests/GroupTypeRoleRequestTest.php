@@ -3,7 +3,7 @@
 namespace CTApi\Test\Integration\Requests;
 
 use CTApi\CTLog;
-use CTApi\Models\Groups\Group\GroupType;
+use CTApi\Models\Groups\GroupType\GroupType;
 use CTApi\Models\Groups\GroupTypeRole\GroupTypeRole;
 use CTApi\Models\Groups\GroupTypeRole\GroupTypeRoleRequest;
 use CTApi\Test\Integration\IntegrationTestData;
