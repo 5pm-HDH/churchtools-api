@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Fix GroupHierarchie ([PR192](https://github.com/5pm-HDH/churchtools-api/pull/192))
 - Fix action dependency ([PR195](https://github.com/5pm-HDH/churchtools-api/pull/195))
 - Fix GroupHierarchie test, Fix DB-Fields test ([PR192](https://github.com/5pm-HDH/churchtools-api/pull/192), [PR194](https://github.com/5pm-HDH/churchtools-api/pull/194))
+- Fix breaking changes Event-API ([PR196](https://github.com/5pm-HDH/churchtools-api/pull/196))
 
 ## [2.0.0]
 

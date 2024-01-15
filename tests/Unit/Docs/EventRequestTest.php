@@ -31,15 +31,19 @@ class EventRequestTest extends TestCaseHttpMocked
         $this->assertEquals(21, $christmasService->getId());
         $this->assertEquals("guid21", $christmasService->getGuid());
         $this->assertEquals("Sunday Service", $christmasService->getName());
-        $this->assertEquals("Service Description", $christmasService->getDescription());
+        // getDescription is deprecated. Use getNote instead.
+        $this->assertEquals("Service Description", $christmasService->getNote());
+        $this->assertEquals("221", $christmasService->getAppointmentId());
+        $this->assertEquals(false, $christmasService->getIsCanceled());
         $this->assertEquals("2021-09-02 20:15:00", $christmasService->getStartDate());
         $this->assertEquals("2021-09-02 22:00:00", $christmasService->getEndDate());
         $this->assertEquals("2021-09-02 20:15:00", $christmasService->getStartDateAsDateTime()?->format("Y-m-d H:i:s"));
         $this->assertEquals("2021-09-02 22:00:00", $christmasService->getEndDateAsDateTime()?->format("Y-m-d H:i:s"));
-        $this->assertEquals(false, $christmasService->getChatStatus());
+        $this->assertEquals("NOT_STARTED", $christmasService->getChatStatus());
         $this->assertEquals(null, $christmasService->getPermissions());
         $this->assertEquals(null, $christmasService->getCalendar());
         $this->assertEquals([], $christmasService->getEventServices());
+        $this->assertEquals([], $christmasService->getAdminIds());
 
         /**
          * Update Attachments -> see FileAPI

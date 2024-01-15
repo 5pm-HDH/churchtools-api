@@ -16,14 +16,21 @@ class Event extends AbstractModel
 
     protected ?string $guid = null;
     protected ?string $name = null;
+    /**
+     * @deprecated use note instead
+     */
     protected ?string $description = null;
+    protected ?string $appointmentId = null;
+    protected ?string $note = null;
     protected ?string $startDate = null;
     protected ?string $endDate = null;
-    protected ?bool $chatStatus = null;
+    protected ?bool $isCanceled = null;
+    protected ?string $chatStatus = null;
     protected ?array $permissions = null;
     protected ?DomainAttributeModel $calendar = null;
     protected ?EventAgenda $agenda = null;
     protected ?array $eventServices = [];
+    protected ?array $adminIds = [];
 
     protected function fillArrayType(string $key, array $data): void
     {
@@ -38,9 +45,12 @@ class Event extends AbstractModel
                 $this->setCalendar(DomainAttributeModel::createModelFromData($data));
                 break;
             case "domainAttributes":
-                if(key_exists("startDate", $data)) {
+                if (key_exists("startDate", $data)) {
                     $this->setStartDate($data["startDate"]);
                 }
+                break;
+            case "adminIds":
+                $this->setAdminIds($data);
                 break;
             default:
                 $this->fillDefault($key, $data);
@@ -123,6 +133,28 @@ class Event extends AbstractModel
         return $this;
     }
 
+    public function getAppointmentId(): ?string
+    {
+        return $this->appointmentId;
+    }
+
+    public function setAppointmentId(?string $appointmentId): Event
+    {
+        $this->appointmentId = $appointmentId;
+        return $this;
+    }
+
+    public function getIsCanceled(): ?bool
+    {
+        return $this->isCanceled;
+    }
+
+    public function setIsCanceled(?bool $isCanceled): Event
+    {
+        $this->isCanceled = $isCanceled;
+        return $this;
+    }
+
     /**
      * @return string|null
      */
@@ -143,6 +175,7 @@ class Event extends AbstractModel
 
     /**
      * @return string|null
+     * @deprecated use "note" instead
      */
     public function getDescription(): ?string
     {
@@ -152,10 +185,29 @@ class Event extends AbstractModel
     /**
      * @param string|null $description
      * @return Event
+     * @deprecated use "note" instead
      */
     public function setDescription(?string $description): Event
     {
         $this->description = $description;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getNote(): ?string
+    {
+        return $this->note;
+    }
+
+    /**
+     * @param string|null $note
+     * @return Event
+     */
+    public function setNote(?string $note): Event
+    {
+        $this->note = $note;
         return $this;
     }
 
@@ -195,19 +247,12 @@ class Event extends AbstractModel
         return $this;
     }
 
-    /**
-     * @return bool|null
-     */
-    public function getChatStatus(): ?bool
+    public function getChatStatus(): ?string
     {
         return $this->chatStatus;
     }
 
-    /**
-     * @param bool|null $chatStatus
-     * @return Event
-     */
-    public function setChatStatus(?bool $chatStatus): Event
+    public function setChatStatus(?string $chatStatus): Event
     {
         $this->chatStatus = $chatStatus;
         return $this;
@@ -282,6 +327,24 @@ class Event extends AbstractModel
     public function setEventServices(?array $eventServices): Event
     {
         $this->eventServices = $eventServices;
+        return $this;
+    }
+
+    /**
+     * @return array|null
+     */
+    public function getAdminIds(): ?array
+    {
+        return $this->adminIds;
+    }
+
+    /**
+     * @param array|null $adminIds
+     * @return Event
+     */
+    public function setAdminIds(?array $adminIds): Event
+    {
+        $this->adminIds = $adminIds;
         return $this;
     }
 }
