@@ -3,6 +3,8 @@
 namespace CTApi\Models\Groups\GroupTypeRole;
 
 use CTApi\Models\AbstractModel;
+use CTApi\Models\Groups\Group\GroupType;
+use CTApi\Models\Groups\Group\GroupTypeRequest;
 use CTApi\Traits\Model\FillWithData;
 use CTApi\Traits\Model\MetaAttribute;
 
@@ -26,6 +28,14 @@ class GroupTypeRole extends AbstractModel
     {
         $this->id = $id;
         return $this;
+    }
+
+    public function requestGroupType(): ?GroupType
+    {
+        if($this->groupTypeId != null) {
+            return GroupTypeRequest::find((int) $this->groupTypeId);
+        }
+        return null;
     }
 
     public function getGroupTypeId(): ?int
