@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Get GroupTypes ([PR188](https://github.com/5pm-HDH/churchtools-api/pull/188), [PR198](https://github.com/5pm-HDH/churchtools-api/pull/198))
 - Get GroupTypeRoles ([PR197](https://github.com/5pm-HDH/churchtools-api/pull/197))
 - PHP coding standard ([PR193](https://github.com/5pm-HDH/churchtools-api/pull/193))
+- Added new property 'postsEnabled' to the group type model ([PR204](https://github.com/5pm-HDH/churchtools-api/pull/204))
 
 ### Changed
 

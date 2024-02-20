@@ -19,6 +19,7 @@ class GroupType extends AbstractModel
     protected ?string $namePluralTranslated = null;
     protected ?string $nameTranslated = null;
     protected ?int $permissionDepth = null;
+    protected ?bool $postsEnabled = null;
     protected ?string $shorty = null;
     protected ?int $sortKey = null;
     protected ?string $description = null;
@@ -107,6 +108,17 @@ class GroupType extends AbstractModel
     public function setPermissionDepth(?int $permissionDepth): static
     {
         $this->permissionDepth = $permissionDepth;
+        return $this;
+    }
+
+    public function getPostsEnabled(): ?bool
+    {
+        return $this->postsEnabled;
+    }
+
+    public function setPostsEnabled(?bool $postsEnabled)
+    {
+        $this->postsEnabled = $postsEnabled;
         return $this;
     }
 
