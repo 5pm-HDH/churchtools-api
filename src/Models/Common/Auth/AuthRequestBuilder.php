@@ -71,6 +71,28 @@ class AuthRequestBuilder
         throw new CTAuthException("Authentication was not successfull.");
     }
 
+    public function authWithSessionCookie(string $cookieString): Auth
+    {
+        $client = CTClient::getClient();
+
+        try {
+            $response = $client->get('/api/whoami', [
+                'headers' => [
+                    'cookie' => $cookieString,
+                ]
+            ]);
+            $data = CTResponseUtil::dataAsArray($response);
+            $person = Person::createModelFromData($data);
+        } catch (CTRequestException $exception) {
+            throw new CTAuthException("Authentication was not successfull: " . $exception->getMessage(), $exception->getCode(), $exception);
+        }
+
+        if ($person->getId() != null && $person->getId() != -1 && $person->getId() != "-1") {
+            return new Auth($person->getId(), false);
+        }
+        throw new CTAuthException("Authentication was not successfull.");
+    }
+
     public function authWithUserIdAndLoginToken(string $userId, string $loginToken): bool
     {
         $client = CTClient::getClient();

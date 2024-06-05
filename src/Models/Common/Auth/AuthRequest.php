@@ -18,6 +18,12 @@ class AuthRequest
         return (new AuthRequestBuilder())->authWithLoginToken($loginToken);
     }
 
+    public static function authWithSessionCookie(string $sessionCookie): Auth
+    {
+        CTLog::getLog()->info('AuthRequest: Authenticate CTConfig with Session');
+        return (new AuthRequestBuilder())->authWithSessionCookie($sessionCookie);
+    }
+
     public static function authWithUserIdAndLoginToken(string $userId, string $loginToken): bool
     {
         CTLog::getLog()->info('AuthRequest: Authenticate CTConfig with UserId and Token.');
