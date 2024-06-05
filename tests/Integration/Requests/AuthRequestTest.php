@@ -28,6 +28,28 @@ class AuthRequestTest extends TestCase
         $this->assertNotNull($cookie);
     }
 
+    public function testAuthWithSessionCookie(): void
+    {
+        $auth = IntegrationTestData::get()->authenticateUser();
+        $userId = $auth->userId;
+        $this->assertNotNull($userId);
+
+        $cookie = CTConfig::getSessionCookieString();
+        $this->assertNotNull($cookie);
+
+        // clear config
+        CTConfig::clearConfig();
+        CTConfig::setApiUrl(IntegrationTestData::get()->getApiUrl());
+
+        // verify that we are not logged in now
+        $this->assertFalse(CTConfig::validateAuthentication());
+
+        // login using the cookie
+        $auth = CTConfig::authWithSessionCookie($cookie);
+        $this->assertSame($userId, $auth->userId);
+        $this->assertTrue(CTConfig::validateAuthentication());
+    }
+
     public function testAuthWithUserIdAndLoginToken()
     {
         $auth = IntegrationTestData::get()->authenticateUser();
