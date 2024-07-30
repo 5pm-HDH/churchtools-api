@@ -7,6 +7,7 @@ use CTApi\Exceptions\CTAuthException;
 use CTApi\Exceptions\CTRequestException;
 use CTApi\Models\Groups\Person\Person;
 use CTApi\Utils\CTResponseUtil;
+use GuzzleHttp\Cookie\SetCookie;
 
 class AuthRequestBuilder
 {
@@ -74,12 +75,13 @@ class AuthRequestBuilder
     public function authWithSessionCookie(string $cookieString): Auth
     {
         $client = CTClient::getClient();
+        $cookie = SetCookie::fromString($cookieString);
 
         try {
             $response = $client->get('/api/whoami', [
                 'headers' => [
-                    'cookie' => $cookieString,
-                ]
+                    'cookie' => $cookie->getName() . '=' . $cookie->getValue(),
+                ],
             ]);
             $data = CTResponseUtil::dataAsArray($response);
             $person = Person::createModelFromData($data);
