@@ -38,11 +38,14 @@ class AuthRequestTest extends TestCase
         $this->assertNotNull($cookie);
 
         // clear config
-        CTConfig::clearConfig();
-        CTConfig::setApiUrl(IntegrationTestData::get()->getApiUrl());
+        CTConfig::clearCookies();
 
         // verify that we are not logged in now
-        $this->assertNull(CTConfig::getSessionCookieString());
+        CTConfig::setApiUrl(IntegrationTestData::get()->getApiUrl());
+        $this->assertFalse(CTConfig::validateAuthentication());
+
+        // clear again
+        CTConfig::clearCookies();
 
         // login using the cookie
         $auth = CTConfig::authWithSessionCookie($cookie);
@@ -55,6 +58,7 @@ class AuthRequestTest extends TestCase
 
         // confirm the session cookie was updated (but not replaced)
         $updatedCookie = CTConfig::getSessionCookieString();
+        $this->assertNotNull($updatedCookie);
         $this->assertSame(explode(';', $cookie, 2)[0], explode(';', $updatedCookie, 2)[0]);
     }
 
