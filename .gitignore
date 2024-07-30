@@ -3,13 +3,16 @@
 composer.phar
 
 # ignore testdata with credentials
-/tests/integration/testdata.ini
-/tests/integration/integration.ini
+/tests/Integration/testdata.ini
+/tests/Integration/integration.ini
 # ignore ide configuration
 .idea/
 
 # ignore phpunit-cache
 .phpunit.result.cache
+
+# ignore php-cs-fixer cache
+.php-cs-fixer.cache
 
 # ignore log-files
 *.log
