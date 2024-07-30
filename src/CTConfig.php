@@ -159,7 +159,7 @@ class CTConfig
         if (empty($cookieData)) {
             return null;
         }
-        return end($cookieData);
+        return array_pop($cookieData);
     }
 
     public static function getSessionCookieString(): ?string
