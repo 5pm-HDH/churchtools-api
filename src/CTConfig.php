@@ -168,6 +168,12 @@ class CTConfig
         return $cookieData ? (string) (new SetCookie($cookieData)) : null;
     }
 
+    public static function setSessionCookie(string $cookieString): void
+    {
+        $cookie = SetCookie::fromString($cookieString);
+        self::getConfig()->cookieJar->setCookie($cookie);
+    }
+
     /**
      * @see CTConfig::authWithLoginToken()
      * @deprecated Will be removed in further version. Use <code>CTConfig::authWithLoginToken()</code> instead.
