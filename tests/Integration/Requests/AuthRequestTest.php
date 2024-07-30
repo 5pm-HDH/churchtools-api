@@ -42,12 +42,20 @@ class AuthRequestTest extends TestCase
         CTConfig::setApiUrl(IntegrationTestData::get()->getApiUrl());
 
         // verify that we are not logged in now
-        $this->assertFalse(CTConfig::validateAuthentication());
+        $this->assertNull(CTConfig::getSessionCookieString());
 
         // login using the cookie
         $auth = CTConfig::authWithSessionCookie($cookie);
-        $this->assertSame($userId, $auth->userId);
+        $this->assertEquals($userId, $auth->userId);
         $this->assertTrue(CTConfig::validateAuthentication());
+
+        // confirm we are still logged in
+        $authValid = CTConfig::validateAuthentication();
+        $this->assertTrue($authValid);
+
+        // confirm the session cookie was updated (but not replaced)
+        $updatedCookie = CTConfig::getSessionCookieString();
+        $this->assertSame(explode(';', $cookie, 2)[0], explode(';', $updatedCookie, 2)[0]);
     }
 
     public function testAuthWithUserIdAndLoginToken()
