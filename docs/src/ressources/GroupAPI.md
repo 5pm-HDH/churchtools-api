@@ -27,3 +27,21 @@
 ## Group Roles
 
 {{ \CTApi\Test\Unit\Docs\GroupTypeRoleRequestTest.testGetGroupTypeRoleRequest }}
+
+## Group Notes / Comments
+
+Retrieve all notes:
+
+{{ \CTApi\Test\Unit\Docs\NoteRequest.testRequestNotes }}
+
+Create new note:
+
+{{ \CTApi\Test\Unit\Docs\NoteRequest.testCreateNote }}
+
+Update note:
+
+{{ \CTApi\Test\Unit\Docs\NoteRequest.testUpdateNote }}
+
+Delete note:
+
+{{ \CTApi\Test\Unit\Docs\NoteRequest.testDeleteNote }}

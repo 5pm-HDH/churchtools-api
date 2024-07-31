@@ -16,20 +16,9 @@
 
 {{ \CTApi\Test\Unit\Docs\SongRequestTest.testUpdateArrangement }}
 
-## Retrieve, create and delete comments:
+## Create Song-Arrangement Notes
 
-**Retrieve comments:**
-
-{{ \CTApi\Test\Unit\Docs\SongCommentRequestTest.testGetAllComments }}
-
-**Create comment:**
-
-{{ \CTApi\Test\Unit\Docs\SongCommentRequestTest.testCreateComments }}
-
-**Delete comments:**
-
-{{ \CTApi\Test\Unit\Docs\SongCommentRequestTest.testDeleteComments }}
-
+{{ \CTApi\Test\Unit\Docs\NoteRequest.testUpdateSongArrangementNotes }}
 
 ## Retrieve Data from CCLI
 

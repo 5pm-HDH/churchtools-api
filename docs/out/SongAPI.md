@@ -201,64 +201,9 @@
 
 ```
 
-## Retrieve, create and delete comments:
+## Create Song-Arrangement Notes
 
-**Retrieve comments:**
-
-```php
-        use CTApi\Models\Events\Song\SongCommentRequest;
-
-        $comments = SongCommentRequest::getForSongArrangement(2);
-        $comment = $comments[0];
-
-        var_dump( $comment->getId());
-        // Output: 2
-
-        var_dump( $comment->getDomainId());
-        // Output: 3
-
-        var_dump( $comment->getDomainType());
-        // Output: "arrangement"
-
-        var_dump( $comment->getText());
-        // Output: "Ich finde den Song super!"
-
-        var_dump( $comment->getMeta()?->getModifiedDate());
-        // Output: "2023-12-11 13:06:35"
-
-        var_dump( $comment->getMeta()?->getModifiedPerson()?->getId());
-        // Output: 12
-
-
-        $person = $comment->getMeta()?->requestModifiedPerson();
-
-        var_dump( $person->getFirstName());
-        // Output: "David"
-
-
-```
-
-**Create comment:**
-
-```php
-        use CTApi\Models\Events\Song\SongCommentRequest;
-
-        SongCommentRequest::create(2, "Die Tonart ist super für Sopran.");
-
-```
-
-**Delete comments:**
-
-```php
-        use CTApi\Models\Events\Song\SongCommentRequest;
-
-        $comments = SongCommentRequest::getForSongArrangement(2);
-        $comment = $comments[0];
-
-        SongCommentRequest::delete($comment->getIdAsInteger());
-
-```
-
+(EXAMPLE CODE IS MISSING)
 
 ## Retrieve Data from CCLI
 
