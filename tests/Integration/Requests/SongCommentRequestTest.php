@@ -13,8 +13,8 @@ class SongCommentRequestTest extends TestCaseAuthenticated
     protected function setUp(): void
     {
         parent::setUp();
-        $this->markTestSkipped('Broken implementation of churchtools todo in #215');
         $this->arrangementId = IntegrationTestData::getFilterAsInt("get_song_comments", "song_arrangement_id");
+        $this->markTestSkipped('Broken implementation of churchtools todo in #215');
     }
 
     public function testGetSongArrangement()
