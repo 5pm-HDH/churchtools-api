@@ -10,6 +10,7 @@ use CTApi\Models\Common\Auth\AuthRequest;
 use CTApi\Models\Groups\Person\PersonRequest;
 use CTApi\Utils\CTUtil;
 use GuzzleHttp\Cookie\CookieJar;
+use GuzzleHttp\Cookie\SetCookie;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\TransferStats;
 use Kevinrob\GuzzleCache\CacheMiddleware;
@@ -133,6 +134,11 @@ class CTConfig
         return AuthRequest::authWithLoginToken($loginToken);
     }
 
+    public static function authWithSessionCookie(string $cookieString): Auth
+    {
+        return AuthRequest::authWithSessionCookie($cookieString);
+    }
+
     /**
      * Auth via undocumented ajax-API. Use <code>authWithLoginToken()</code> instead.
      * @param string $userId
@@ -153,7 +159,19 @@ class CTConfig
         if (empty($cookieData)) {
             return null;
         }
-        return end($cookieData);
+        return array_pop($cookieData);
+    }
+
+    public static function getSessionCookieString(): ?string
+    {
+        $cookieData = self::getSessionCookie();
+        return $cookieData ? (string) (new SetCookie($cookieData)) : null;
+    }
+
+    public static function setSessionCookie(string $cookieString): void
+    {
+        $cookie = SetCookie::fromString($cookieString);
+        self::getConfig()->cookieJar->setCookie($cookie);
     }
 
     /**

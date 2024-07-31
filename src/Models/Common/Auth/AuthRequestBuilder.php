@@ -7,6 +7,7 @@ use CTApi\Exceptions\CTAuthException;
 use CTApi\Exceptions\CTRequestException;
 use CTApi\Models\Groups\Person\Person;
 use CTApi\Utils\CTResponseUtil;
+use GuzzleHttp\Cookie\SetCookie;
 
 class AuthRequestBuilder
 {
@@ -58,6 +59,29 @@ class AuthRequestBuilder
                 'headers' => [
                     'authorization' => 'Login ' . $loginToken
                 ]
+            ]);
+            $data = CTResponseUtil::dataAsArray($response);
+            $person = Person::createModelFromData($data);
+        } catch (CTRequestException $exception) {
+            throw new CTAuthException("Authentication was not successfull: " . $exception->getMessage(), $exception->getCode(), $exception);
+        }
+
+        if ($person->getId() != null && $person->getId() != -1 && $person->getId() != "-1") {
+            return new Auth($person->getId(), false);
+        }
+        throw new CTAuthException("Authentication was not successfull.");
+    }
+
+    public function authWithSessionCookie(string $cookieString): Auth
+    {
+        $client = CTClient::getClient();
+        $cookie = SetCookie::fromString($cookieString);
+
+        try {
+            $response = $client->get('/api/whoami', [
+                'headers' => [
+                    'cookie' => $cookie->getName() . '=' . $cookie->getValue(),
+                ],
             ]);
             $data = CTResponseUtil::dataAsArray($response);
             $person = Person::createModelFromData($data);
