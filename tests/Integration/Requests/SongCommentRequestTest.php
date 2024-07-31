@@ -14,6 +14,7 @@ class SongCommentRequestTest extends TestCaseAuthenticated
     {
         parent::setUp();
         $this->arrangementId = IntegrationTestData::getFilterAsInt("get_song_comments", "song_arrangement_id");
+        $this->markTestSkipped('Broken implementation of churchtools todo in #215');
     }
 
     public function testGetSongArrangement()
