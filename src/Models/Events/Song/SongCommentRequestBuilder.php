@@ -2,9 +2,14 @@
 
 namespace CTApi\Models\Events\Song;
 
+use CTApi\CTClient;
+use CTApi\Models\Common\Note\NoteRequest;
 use CTApi\Traits\Request\AjaxApi;
 use CTApi\Utils\CTResponseUtil;
 
+/**
+ * @deprecated Use NoteRequest::forSongArrangement() instead. This class will be removed in the next major-release v3.
+ */
 class SongCommentRequestBuilder
 {
     use AjaxApi;
@@ -16,29 +21,23 @@ class SongCommentRequestBuilder
 
     public function getComments()
     {
-        $response = $this->requestAjax("churchservice/ajax", "getComments", [
-            "domain_type" => "arrangement",
-            "domain_id" => $this->arrangementId
-        ]);
-
+        $ctClient = CTClient::getClient();
+        $response = $ctClient->get("/api/notes/song_arrangement/" . $this->arrangementId);
         $data = CTResponseUtil::dataAsArray($response);
-        return SongComment::createModelsFromArray(array_values($data));
+        if (empty($data)) {
+            return [];
+        } else {
+            return SongComment::createModelsFromArray($data);
+        }
     }
 
     public function createComment(string $text): void
     {
-        $this->requestAjax("churchservice/ajax", "addComment", [
-            "domain_type" => "arrangement",
-            "domain_id" => $this->arrangementId,
-            "text" => $text
-        ]);
+        NoteRequest::forSongArrangement($this->arrangementId)->create($text);
     }
 
     public function deleteComment(int $commentId): void
     {
-        $this->requestAjax("churchservice/ajax", "delComment", [
-            "id" => $commentId,
-        ]);
+        NoteRequest::forSongArrangement($this->arrangementId)->delete($commentId);
     }
-
 }

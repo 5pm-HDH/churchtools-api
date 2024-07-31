@@ -1,0 +1,24 @@
+{
+    "data":
+    {
+        "id": 212,
+        "domainType": "group",
+        "domainId": 17,
+        "securityLevelId": null,
+        "text": "Updated comment.",
+        "meta": {
+            "createdDate": "2024-07-31T13:44:52Z",
+            "createdPerson": {
+                "id": 12
+            },
+            "modifiedDate": "2024-07-31T13:44:52Z",
+            "modifiedPerson": {
+                "id": 12
+            }
+        }
+    }
+    ,
+    "meta": {
+        "count": 1
+    }
+}

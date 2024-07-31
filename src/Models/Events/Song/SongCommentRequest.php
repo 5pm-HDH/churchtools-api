@@ -2,6 +2,9 @@
 
 namespace CTApi\Models\Events\Song;
 
+/**
+ * @deprecated Use NoteRequest::forSongArrangement() instead. This class will be removed in the next major-release v3.
+ */
 class SongCommentRequest
 {
     public static function getForSongArrangement(int $arrangementId): array

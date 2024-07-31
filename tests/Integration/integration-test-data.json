@@ -202,6 +202,12 @@
         }
       }
     },
+    "group_note": {
+      "description": "Add and remove note from group. All notes from group are removed.",
+      "filter": {
+        "group_id": 17
+      }
+    },
     "load_public_group": {
       "description": "PublicGroup to register on homepage",
       "filter": {
@@ -307,10 +313,10 @@
       },
       "result": {
         "any_comment": {
-          "id": 2,
+          "id": 179,
           "text": "Ich finde den Song super!",
-          "modified_date": "2023-12-11 13:06:35",
-          "modified_person_id": 1
+          "modified_date": "2024-07-31T10:09:27Z",
+          "modified_person_id": 12
         }
       }
     },
