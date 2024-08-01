@@ -20,6 +20,9 @@ class PersonEventRequestBuilder
         $this->personId = $personId;
     }
 
+    /**
+     * @return Event[]
+     */
     public function get(): array
     {
         $options = [];

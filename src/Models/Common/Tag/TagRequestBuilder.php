@@ -8,7 +8,10 @@ use CTApi\Utils\CTResponseUtil;
 
 class TagRequestBuilder
 {
-    private $tags = [];
+    /**
+     * @var Tag[]
+     */
+    private array $tags = [];
 
     public function __construct(
         private string $type
@@ -16,6 +19,9 @@ class TagRequestBuilder
         $this->tags = $this->retrieveData();
     }
 
+    /**
+     * @return Tag[]
+     */
     private function retrieveData(): array
     {
         $client = CTClient::getClient();
@@ -50,6 +56,9 @@ class TagRequestBuilder
         return $tag;
     }
 
+    /**
+     * @return Tag[]
+     */
     public function all(): array
     {
         return $this->tags;

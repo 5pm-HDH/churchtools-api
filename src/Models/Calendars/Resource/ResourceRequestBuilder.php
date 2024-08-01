@@ -7,6 +7,9 @@ use CTApi\Utils\CTResponseUtil;
 
 class ResourceRequestBuilder
 {
+    /**
+     * @return Resource[]
+     */
     public function all(): array
     {
         $client = CTClient::getClient();

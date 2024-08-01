@@ -2,6 +2,7 @@
 
 namespace CTApi\Models\Events\Song;
 
+use CTApi\Models\Common\Tag\Tag;
 use CTApi\Models\Common\Tag\TagRequestBuilder;
 use CTApi\Traits\Request\AjaxApi;
 use CTApi\Utils\CTResponseUtil;
@@ -15,6 +16,9 @@ class SongTagRequestBuilder
     ) {
     }
 
+    /**
+     * @return Tag[]
+     */
     public function get(): array
     {
         $songData = $this->getTagData();

@@ -15,6 +15,9 @@ class GroupMeetingRequestBuilder
     ) {
     }
 
+    /**
+     * @return GroupMeeting[]
+     */
     public function get(): array
     {
         $options = [];

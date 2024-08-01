@@ -7,6 +7,10 @@ namespace CTApi\Models\Events\Song;
  */
 class SongCommentRequest
 {
+    /**
+     * @param int $arrangementId
+     * @return SongComment[]
+     */
     public static function getForSongArrangement(int $arrangementId): array
     {
         $builder = new SongCommentRequestBuilder($arrangementId);

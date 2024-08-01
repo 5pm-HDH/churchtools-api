@@ -14,6 +14,9 @@ class PersonRequest
         return new PersonBirthdayRequestBuilder();
     }
 
+    /**
+     * @return Person[]
+     */
     public static function all(): array
     {
         return (new PersonRequestBuilder())->all();

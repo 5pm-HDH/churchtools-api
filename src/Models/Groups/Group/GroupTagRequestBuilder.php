@@ -13,6 +13,9 @@ class GroupTagRequestBuilder
     ) {
     }
 
+    /**
+     * @return Tag[]
+     */
     public function get(): array
     {
         $client = CTClient::getClient();

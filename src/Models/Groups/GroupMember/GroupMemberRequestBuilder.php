@@ -17,6 +17,9 @@ class GroupMemberRequestBuilder
         $this->groupId = $groupId;
     }
 
+    /**
+     * @return GroupMember[]
+     */
     public function get(): array
     {
         $data = $this->collectDataFromPages('/api/groups/' . $this->groupId . '/members');

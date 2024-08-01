@@ -23,6 +23,9 @@ class EventAgenda extends AbstractModel
     protected ?string $eventStartPosition = null;
     protected ?string $calendarId = null;
     protected ?string $total = null;
+    /**
+     * @var EventAgendaItem[]
+     */
     protected array $items = [];
 
 
@@ -40,6 +43,9 @@ class EventAgenda extends AbstractModel
         }
     }
 
+    /**
+     * @return Song[]
+     */
     public function getSongs(): array
     {
         CTLog::getLog()->info('EventAgenda: Collect all songs from agenda.');
@@ -200,7 +206,7 @@ class EventAgenda extends AbstractModel
     }
 
     /**
-     * @return array
+     * @return EventAgendaItem[]
      */
     public function getItems(): array
     {

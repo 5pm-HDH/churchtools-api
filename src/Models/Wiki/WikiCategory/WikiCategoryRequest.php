@@ -4,6 +4,9 @@ namespace CTApi\Models\Wiki\WikiCategory;
 
 class WikiCategoryRequest
 {
+    /**
+     * @return WikiCategory[]
+     */
     public static function all(): array
     {
         return (new WikiCategoryRequestBuilder())->all();

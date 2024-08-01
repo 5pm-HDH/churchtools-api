@@ -4,11 +4,17 @@ namespace CTApi\Models\Common\Tag;
 
 class TagRequest
 {
+    /**
+     * @return Tag[]
+     */
     public static function allPersonTags(): array
     {
         return (new TagRequestBuilder("persons"))->all();
     }
 
+    /**
+     * @return Tag[]
+     */
     public static function allSongTags(): array
     {
         return (new TagRequestBuilder("songs"))->all();

@@ -39,9 +39,9 @@ class GroupMeetingRequestTest extends TestCaseHttpMocked
         $this->assertEquals(5, $meeting->getNumGuests());
         $this->assertEquals("Hello World", $meeting->getComment());
 
-        $this->assertEquals(2, $meeting?->getStatistics()->getPresent());
-        $this->assertEquals(1, $meeting?->getStatistics()->getAbsent());
-        $this->assertEquals(0, $meeting?->getStatistics()->getUnsure());
+        $this->assertEquals(2, $meeting->getStatistics()->getPresent());
+        $this->assertEquals(1, $meeting->getStatistics()->getAbsent());
+        $this->assertEquals(0, $meeting->getStatistics()->getUnsure());
     }
 
     public function testRetrieveGroupMemberRequest()

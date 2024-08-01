@@ -8,6 +8,9 @@ class WikiPageTreeNode
 {
     protected ?WikiPage $wikiPage = null;
     protected ?WikiPageTreeNode $parentNode = null;
+    /**
+     * @var WikiPageTreeNode[]
+     */
     protected array $childNodes = [];
 
     public static function processWikiPagesReturnRootNode(array $pages): WikiPageTreeNode
@@ -117,7 +120,7 @@ class WikiPageTreeNode
     }
 
     /**
-     * @return array
+     * @return WikiPageTreeNode[]
      */
     public function getChildNodes(): array
     {

@@ -17,6 +17,9 @@ class PersonGroupRequestBuilder
         $this->personId = $personId;
     }
 
+    /**
+     * @return PersonGroup[]
+     */
     public function get(): array
     {
         $data = $this->collectDataFromPages('/api/persons/' . $this->personId . '/groups');

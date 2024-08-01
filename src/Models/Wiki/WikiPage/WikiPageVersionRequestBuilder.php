@@ -12,6 +12,9 @@ class WikiPageVersionRequestBuilder
     {
     }
 
+    /**
+     * @return WikiPage[]
+     */
     public function get(): array
     {
         try {

@@ -11,6 +11,9 @@ class ServiceFromServiceGroupBuilder
         $this->serviceGroupId = $serviceGroupId;
     }
 
+    /**
+     * @return Service[]
+     */
     public function get(): array
     {
         $allServices = ServiceRequest::all();

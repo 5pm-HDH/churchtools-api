@@ -2,6 +2,7 @@
 
 namespace integration\Requests;
 
+use CTApi\Models\Groups\GroupMember\GroupMemberField;
 use CTApi\Models\Groups\GroupMember\GroupMemberFieldContainer;
 use CTApi\Models\Groups\GroupMember\GroupMemberFieldsRequest;
 use CTApi\Test\Integration\IntegrationTestCase;

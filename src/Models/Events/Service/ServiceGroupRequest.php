@@ -4,6 +4,9 @@ namespace CTApi\Models\Events\Service;
 
 class ServiceGroupRequest
 {
+    /**
+     * @return ServiceGroup[]
+     */
     public static function all(): array
     {
         return (new ServiceGroupRequestBuilder())->all();

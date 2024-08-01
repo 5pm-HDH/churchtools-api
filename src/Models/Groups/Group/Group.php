@@ -24,6 +24,9 @@ class Group extends AbstractModel
     protected ?GroupInformation $information = null;
     protected ?GroupSettings $settings = null;
     protected array $followUp = [];
+    /**
+     * @var GroupRole[]
+     */
     protected array $roles = [];
 
 
@@ -259,7 +262,7 @@ class Group extends AbstractModel
     }
 
     /**
-     * @return array
+     * @return GroupRole[]
      */
     public function getRoles(): array
     {

@@ -349,13 +349,13 @@
         // Output: "Hello World"
 
 
-        var_dump( $meeting?->getStatistics()->getPresent());
+        var_dump( $meeting->getStatistics()->getPresent());
         // Output: 2
 
-        var_dump( $meeting?->getStatistics()->getAbsent());
+        var_dump( $meeting->getStatistics()->getAbsent());
         // Output: 1
 
-        var_dump( $meeting?->getStatistics()->getUnsure());
+        var_dump( $meeting->getStatistics()->getUnsure());
         // Output: 0
 
 

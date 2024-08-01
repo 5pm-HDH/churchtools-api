@@ -23,6 +23,9 @@ class AbsencePersonRequestBuilder extends AbstractRequestBuilder
         return Absence::class;
     }
 
+    /**
+     * @return Absence[]
+     */
     public function get(): array
     {
         $options = [];
