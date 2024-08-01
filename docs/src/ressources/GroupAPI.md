@@ -32,16 +32,16 @@
 
 Retrieve all notes:
 
-{{ \CTApi\Test\Unit\Docs\NoteRequest.testRequestNotes }}
+{{ \CTApi\Test\Unit\Docs\NoteRequestTest.testRequestNotes }}
 
 Create new note:
 
-{{ \CTApi\Test\Unit\Docs\NoteRequest.testCreateNote }}
+{{ \CTApi\Test\Unit\Docs\NoteRequestTest.testCreateNote }}
 
 Update note:
 
-{{ \CTApi\Test\Unit\Docs\NoteRequest.testUpdateNote }}
+{{ \CTApi\Test\Unit\Docs\NoteRequestTest.testUpdateNote }}
 
 Delete note:
 
-{{ \CTApi\Test\Unit\Docs\NoteRequest.testDeleteNote }}
+{{ \CTApi\Test\Unit\Docs\NoteRequestTest.testDeleteNote }}
