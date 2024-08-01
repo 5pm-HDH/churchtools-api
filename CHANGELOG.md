@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 
 ### Fixed
+- Add array annotation for methods ([219](https://github.com/5pm-HDH/churchtools-api/pull/219))
 
 ### Fixed - ChurchTools Breaking Change
 
