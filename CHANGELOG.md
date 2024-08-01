@@ -8,24 +8,36 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 
 ### Added
-- Retrieve, create and delete SongArrangement comments ([PR187](https://github.com/5pm-HDH/churchtools-api/pull/187))
-- Get GroupTypes ([PR188](https://github.com/5pm-HDH/churchtools-api/pull/188), [PR198](https://github.com/5pm-HDH/churchtools-api/pull/198))
-- Get GroupTypeRoles ([PR197](https://github.com/5pm-HDH/churchtools-api/pull/197))
-- PHP coding standard ([PR193](https://github.com/5pm-HDH/churchtools-api/pull/193))
-- Added new property 'postsEnabled' to the group type model ([PR204](https://github.com/5pm-HDH/churchtools-api/pull/204))
-- Add Note for Group and SongArrangement ([PR216](https://github.com/5pm-HDH/churchtools-api/pull/216), [PR217](https://github.com/5pm-HDH/churchtools-api/pull/217))
-- Login with Session Cookie ([PR207](https://github.com/5pm-HDH/churchtools-api/pull/207))
 
 ### Changed
 
 ### Fixed
+
+### Fixed - ChurchTools Breaking Change
+
+## [2.1.0]
+
+### Added
+- AJAX-Api for SongArrangement comment (notes) ([PR187](https://github.com/5pm-HDH/churchtools-api/pull/187))
+- Replace AJAX-Api with REST-API for Group and SongArrangement comments (notes) ([PR216](https://github.com/5pm-HDH/churchtools-api/pull/216))
+- Retrieve GroupTypes ([PR188](https://github.com/5pm-HDH/churchtools-api/pull/188), [PR198](https://github.com/5pm-HDH/churchtools-api/pull/198))
+- Retrieve GroupTypeRoles ([PR197](https://github.com/5pm-HDH/churchtools-api/pull/197))
+- Added new property 'postsEnabled' to the group type model ([PR204](https://github.com/5pm-HDH/churchtools-api/pull/204))
+- Login with Session Cookie (undocumented) ([PR207](https://github.com/5pm-HDH/churchtools-api/pull/207))
+
+### Changed
+- Add PHP coding styling ([PR193](https://github.com/5pm-HDH/churchtools-api/pull/193))
+
+### Fixed
 - PHPUnit and PHP8.1 compatibility ([PR181](https://github.com/5pm-HDH/churchtools-api/pull/181))
-- Fix GroupHierarchie ([PR192](https://github.com/5pm-HDH/churchtools-api/pull/192))
-- Fix action dependency ([PR195](https://github.com/5pm-HDH/churchtools-api/pull/195))
+- Use children endpoint for GroupHierarchie ([PR192](https://github.com/5pm-HDH/churchtools-api/pull/192))
+- Fix action dependency issue ([PR195](https://github.com/5pm-HDH/churchtools-api/pull/195))
+- Fix gitignore ([PR213](https://github.com/5pm-HDH/churchtools-api/pull/213))
+
+### Fixed - ChurchTools Breaking Change
 - Fix GroupHierarchie test, Fix DB-Fields test ([PR192](https://github.com/5pm-HDH/churchtools-api/pull/192), [PR194](https://github.com/5pm-HDH/churchtools-api/pull/194))
 - Fix breaking changes Event-API ([PR196](https://github.com/5pm-HDH/churchtools-api/pull/196))
 - Issue search for person ([PR210](https://github.com/5pm-HDH/churchtools-api/pull/210))
-- Fix issue with changelog ([PR213](https://github.com/5pm-HDH/churchtools-api/pull/213))
 
 ## [2.0.0]
 
