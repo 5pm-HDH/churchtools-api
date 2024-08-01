@@ -51,6 +51,9 @@ class SongStatisticRequestBuilder
         return null;
     }
 
+    /**
+     * @return SongStatistic[]
+     */
     public function all(): array
     {
         $data = $this->getStatisticData();

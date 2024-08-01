@@ -23,6 +23,9 @@ class SearchRequestBuilder
         return $this;
     }
 
+    /**
+     * @return SearchResult[]
+     */
     public function get(): array
     {
         $options = [

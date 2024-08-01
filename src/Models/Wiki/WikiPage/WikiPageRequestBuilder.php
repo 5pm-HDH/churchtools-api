@@ -15,6 +15,9 @@ class WikiPageRequestBuilder
         $this->categoryId = $categoryId;
     }
 
+    /**
+     * @return WikiPage[]
+     */
     public function get(): array
     {
         try {

@@ -17,6 +17,9 @@ class PersonRequestBuilder extends AbstractRequestBuilder
         return Person::createModelFromData($data);
     }
 
+    /**
+     * @return Person[]
+     */
     public function get(): array
     {
         $options = [

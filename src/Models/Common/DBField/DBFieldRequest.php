@@ -8,6 +8,9 @@ use CTApi\Utils\CTResponseUtil;
 
 class DBFieldRequest
 {
+    /**
+     * @return DBField[]
+     */
     public static function all(): array
     {
         $client = CTClient::getClient();

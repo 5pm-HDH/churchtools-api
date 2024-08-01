@@ -4,6 +4,9 @@ namespace CTApi\Models\Calendars\Calendar;
 
 class CalendarRequest
 {
+    /**
+     * @return Calendar[]
+     */
     public static function all(): array
     {
         return (new CalendarRequestBuilder())->all();

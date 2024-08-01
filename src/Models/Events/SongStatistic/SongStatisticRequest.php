@@ -4,6 +4,9 @@ namespace CTApi\Models\Events\SongStatistic;
 
 class SongStatisticRequest
 {
+    /**
+     * @return SongStatistic[]
+     */
     public static function all(): array
     {
         return (new SongStatisticRequestBuilder())->all();

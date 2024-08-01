@@ -27,6 +27,9 @@ class FileRequestBuilder
         return "/api/files/" . $this->domainType . "/" . $this->domainIdentifier;
     }
 
+    /**
+     * @return File[]
+     */
     public function get(): array
     {
         $ctClient = CTClient::getClient();

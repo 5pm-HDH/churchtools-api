@@ -13,6 +13,9 @@ class GroupMeetingMemberRequestBuilder
     ) {
     }
 
+    /**
+     * @return GroupMeetingMember[]
+     */
     public function get(): array
     {
         $client = CTClient::getClient();

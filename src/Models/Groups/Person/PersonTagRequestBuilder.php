@@ -13,6 +13,9 @@ class PersonTagRequestBuilder
     ) {
     }
 
+    /**
+     * @return Tag[]
+     */
     public function get(): array
     {
         $client = CTClient::getClient();

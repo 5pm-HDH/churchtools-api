@@ -17,6 +17,9 @@ class AppointmentRequestBuilder
     ) {
     }
 
+    /**
+     * @return Appointment[]
+     */
     public function get(): array
     {
         $options = [

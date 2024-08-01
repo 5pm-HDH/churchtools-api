@@ -25,7 +25,13 @@ class SongArrangement extends AbstractModel implements UpdatableModel
     protected ?string $beat = null;
     protected ?string $duration = null;
     protected ?string $note = null;
+    /**
+     * @var File[]
+     */
     protected array $links = [];
+    /**
+     * @var File[]
+     */
     protected array $files = [];
 
     public static function getModifiableAttributes(): array
@@ -243,7 +249,7 @@ class SongArrangement extends AbstractModel implements UpdatableModel
     }
 
     /**
-     * @return array
+     * @return File[]
      */
     public function getLinks(): array
     {
@@ -261,7 +267,7 @@ class SongArrangement extends AbstractModel implements UpdatableModel
     }
 
     /**
-     * @return array
+     * @return File[]
      */
     public function getFiles(): array
     {

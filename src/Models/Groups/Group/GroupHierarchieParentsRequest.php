@@ -11,6 +11,9 @@ class GroupHierarchieParentsRequest
     {
     }
 
+    /**
+     * @return Group[]
+     */
     public function get(): array
     {
         $response = CTClient::getClient()->get('api/groups/' . $this->groupId . '/parents');

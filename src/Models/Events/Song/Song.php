@@ -18,6 +18,9 @@ class Song extends AbstractModel implements UpdatableModel
     protected ?string $arrangementId = null;
     protected ?string $name = null;
     protected ?string $arrangement = null;
+    /**
+     * @var SongArrangement[]
+     */
     protected array $arrangements = [];
     protected ?SongCategory $category = null;
     protected ?string $category_id = null;
@@ -175,7 +178,7 @@ class Song extends AbstractModel implements UpdatableModel
     }
 
     /**
-     * @return array
+     * @return SongArrangement[]
      */
     public function getArrangements(): array
     {

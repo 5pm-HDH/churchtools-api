@@ -17,6 +17,9 @@ class ResourceBookingsRequestBuilder
         $this->resourceIds = $resourceIds;
     }
 
+    /**
+     * @return ResourceBooking[]
+     */
     public function get(): array
     {
         $options = [];

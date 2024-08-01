@@ -11,6 +11,9 @@ class PersonBirthdayRequestBuilder
     use WhereCondition;
 
 
+    /**
+     * @return BirthdayPerson[]
+     */
     public function get(): array
     {
         $options = [];

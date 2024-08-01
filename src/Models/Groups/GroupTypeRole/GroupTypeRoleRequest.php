@@ -4,6 +4,9 @@ namespace CTApi\Models\Groups\GroupTypeRole;
 
 class GroupTypeRoleRequest
 {
+    /**
+     * @return GroupTypeRole[]
+     */
     public static function all(): array
     {
         return (new GroupTypeRoleRequestBuilder())->all();

@@ -13,6 +13,9 @@ class WikiPageFilesRequestBuilder
     {
     }
 
+    /**
+     * @return File[]
+     */
     public function get(): array
     {
         try {

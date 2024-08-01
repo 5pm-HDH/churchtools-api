@@ -9,6 +9,9 @@ class WikiCategoryRequestBuilder
 {
     use Pagination;
 
+    /**
+     * @return WikiCategory[]
+     */
     public function all(): array
     {
         $data = $this->collectDataFromPages('/api/wiki/categories', []);

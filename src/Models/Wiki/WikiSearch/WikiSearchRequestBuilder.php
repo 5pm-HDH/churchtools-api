@@ -24,6 +24,9 @@ class WikiSearchRequestBuilder
         return $this;
     }
 
+    /**
+     * @return WikiSearchResult[]
+     */
     public function get(): array
     {
         $options = [

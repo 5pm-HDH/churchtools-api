@@ -152,7 +152,7 @@ class WikiRequestTest extends TestCaseAuthenticated
         if (sizeof($versions) > 0) {
             $version = $versions[0];
 
-            $versionRequested = $page->requestVersion($version->getVersion());
+            $versionRequested = $page->requestVersion((int) $version->getVersion());
 
             $this->assertNotNull($versionRequested);
             $this->assertEquals($version->getIdentifier(), $versionRequested->getIdentifier());

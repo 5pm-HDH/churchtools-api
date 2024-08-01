@@ -43,12 +43,12 @@ class SongRequestTest extends TestCaseAuthenticated
         $lastSong = end($allSongs);
 
         //Retrieve from Find
-        $oneSong = SongRequest::find($lastSong->getId());
+        $oneSong = SongRequest::find($lastSong->getIdAsInteger());
         $this->assertNotNull($oneSong);
         $this->assertEquals($lastSong->getName(), $oneSong->getName());
 
         //Retrieve from FindOrFail
-        $oneSong = SongRequest::findOrFail($lastSong->getId());
+        $oneSong = SongRequest::findOrFail($lastSong->getIdAsInteger());
         $this->assertEquals($lastSong->getName(), $oneSong->getName());
     }
 

@@ -6,6 +6,7 @@ use CTApi\CTClient;
 use CTApi\Exceptions\CTModelException;
 use CTApi\Exceptions\CTRequestException;
 use CTApi\Interfaces\UpdatableModel;
+use CTApi\Models\Events\Event\Event;
 use CTApi\Traits\Request\OrderByCondition;
 use CTApi\Traits\Request\Pagination;
 use CTApi\Traits\Request\WhereCondition;

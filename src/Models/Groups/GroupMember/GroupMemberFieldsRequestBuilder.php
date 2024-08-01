@@ -12,6 +12,9 @@ class GroupMemberFieldsRequestBuilder
     ) {
     }
 
+    /**
+     * @return GroupMemberFieldContainer[]
+     */
     public function get(): array
     {
         $client = CTClient::getClient();

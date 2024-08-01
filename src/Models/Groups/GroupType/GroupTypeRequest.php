@@ -4,6 +4,9 @@ namespace CTApi\Models\Groups\GroupType;
 
 class GroupTypeRequest
 {
+    /**
+     * @return GroupType[]
+     */
     public static function all(): array
     {
         return (new GroupTypeRequestBuilder())->all();

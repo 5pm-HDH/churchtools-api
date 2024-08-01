@@ -4,6 +4,9 @@ namespace CTApi\Models\Events\Event;
 
 class EventRequest
 {
+    /**
+     * @return Event[]
+     */
     public static function all(): array
     {
         return (new EventRequestBuilder())->all();

@@ -15,6 +15,9 @@ class DBFieldForKeysRequestBuilder
     ) {
     }
 
+    /**
+     * @return DBFieldValueContainer[]
+     */
     public function get(): array
     {
         $this->allDBFields = DBFieldRequest::all();

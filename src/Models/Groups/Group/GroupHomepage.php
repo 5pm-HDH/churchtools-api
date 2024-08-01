@@ -268,7 +268,7 @@ class GroupHomepage extends AbstractModel
     }
 
     /**
-     * @return array
+     * @return PublicGroup[]
      */
     public function getGroups(): array
     {
