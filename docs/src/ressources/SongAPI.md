@@ -18,7 +18,7 @@
 
 ## Create Song-Arrangement Notes
 
-{{ \CTApi\Test\Unit\Docs\NoteRequest.testUpdateSongArrangementNotes }}
+{{ \CTApi\Test\Unit\Docs\NoteRequestTest.testUpdateSongArrangementNotes }}
 
 ## Retrieve Data from CCLI
 
