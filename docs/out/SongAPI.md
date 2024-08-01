@@ -203,7 +203,31 @@
 
 ## Create Song-Arrangement Notes
 
-(EXAMPLE CODE IS MISSING)
+```php
+        use CTApi\Models\Common\Note\NoteRequest;
+
+        $notes = NoteRequest::forSongArrangement(21)->get();
+
+        var_dump( $notes[0]->getText());
+        // Output: "Hello new comment!"
+
+        var_dump( $notes[0]->getDomainId());
+        // Output: "17"
+
+        var_dump( $notes[0]->getDomainType());
+        // Output: "group"
+
+        var_dump( $notes[0]->getId());
+        // Output: "212"
+
+
+        $securityLevelId = 2;
+        $note = NoteRequest::forSongArrangement(21)->create("New comment", $securityLevelId);
+        $note = NoteRequest::forSongArrangement(21)->update(2, "New comment");
+
+        NoteRequest::forSongArrangement(21)->delete(2);
+
+```
 
 ## Retrieve Data from CCLI
 

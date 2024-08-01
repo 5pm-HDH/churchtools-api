@@ -618,16 +618,54 @@
 
 Retrieve all notes:
 
-(EXAMPLE CODE IS MISSING)
+```php
+        use CTApi\Models\Common\Note\NoteRequest;
+
+        $notes = NoteRequest::forGroup(212)->get();
+        var_dump( $notes[0]->getText());
+        // Output: "Hello new comment!"
+
+        var_dump( $notes[0]->getDomainId());
+        // Output: "17"
+
+        var_dump( $notes[0]->getDomainType());
+        // Output: "group"
+
+        var_dump( $notes[0]->getId());
+        // Output: "212"
+
+
+```
 
 Create new note:
 
-(EXAMPLE CODE IS MISSING)
+```php
+        use CTApi\Models\Common\Note\NoteRequest;
+
+        $note = NoteRequest::forGroup(52)->create("Add new comment.");
+        var_dump( $note->getText());
+        // Output: "Add new comment."
+
+
+```
 
 Update note:
 
-(EXAMPLE CODE IS MISSING)
+```php
+        use CTApi\Models\Common\Note\NoteRequest;
+
+        $note = NoteRequest::forGroup(52)->update(25, "Updated comment.");
+        var_dump( $note->getText());
+        // Output: "Updated comment."
+
+
+```
 
 Delete note:
 
-(EXAMPLE CODE IS MISSING)
+```php
+        use CTApi\Models\Common\Note\NoteRequest;
+
+        NoteRequest::forGroup(52)->delete(25);
+
+```
