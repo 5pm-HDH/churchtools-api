@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 
 ### Fixed
+- Ignore empty strings when creating new records ([PR220](https://github.com/5pm-HDH/churchtools-api/pull/220))
 
 ### Fixed - ChurchTools Breaking Change
 
