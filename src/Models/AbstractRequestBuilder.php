@@ -78,10 +78,10 @@ abstract class AbstractRequestBuilder
         $allData = $model->extractData();
         $data = array_intersect_key($allData, array_flip($createAttributes));
 
-        // We can remove null values from the data, because they are irrelevant
+        // We can remove empty values from the data, because they are irrelevant
         // for the creation of a new data record.
         $data = array_filter($data, function ($value) {
-            return !is_null($value);
+            return !is_null($value) && $value !== '';
         });
 
         $responseData = $this->createData($data, $force);
