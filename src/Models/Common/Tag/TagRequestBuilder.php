@@ -19,7 +19,7 @@ class TagRequestBuilder
     private function retrieveData(): array
     {
         $client = CTClient::getClient();
-        $response = $client->get("/api/tags", ["query" => ["type" => $this->type]]);
+        $response = $client->get("/api/tags/".$this->type);
         $data = CTResponseUtil::dataAsArray($response);
         return Tag::createModelsFromArray($data);
     }

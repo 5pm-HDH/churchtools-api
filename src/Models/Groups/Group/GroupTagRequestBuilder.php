@@ -16,7 +16,7 @@ class GroupTagRequestBuilder
     public function get(): array
     {
         $client = CTClient::getClient();
-        $response = $client->get('/api/groups/'.$this->groupId.'/tags');
+        $response = $client->get('/api/tags/group/'.$this->groupId);
         $data = CTResponseUtil::dataAsArray($response);
         return Tag::createModelsFromArray($data);
     }

@@ -16,7 +16,7 @@ class PersonTagRequestBuilder
     public function get(): array
     {
         $client = CTClient::getClient();
-        $response = $client->get('/api/persons/'.$this->personId.'/tags');
+        $response = $client->get('/api/tags/person/'.$this->personId);
         $data = CTResponseUtil::dataAsArray($response);
         return Tag::createModelsFromArray($data);
     }
