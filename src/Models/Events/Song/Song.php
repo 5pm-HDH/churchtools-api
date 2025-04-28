@@ -20,11 +20,17 @@ class Song extends AbstractModel implements UpdatableModel
     protected ?string $arrangement = null;
     protected array $arrangements = [];
     protected ?SongCategory $category = null;
+    /**
+     * @deprecated use $category->getId()
+     */
     protected ?string $category_id = null;
     protected ?bool $shouldPractice = null;
     protected ?string $author = null;
     protected ?string $ccli = null;
     protected ?string $copyright = null;
+    /**
+     * @deprecated
+     */
     protected ?string $note = null;
     protected ?string $key = null;
     protected ?string $bpm = null;
@@ -41,7 +47,7 @@ class Song extends AbstractModel implements UpdatableModel
             "ccli"
         ];
     }
-
+    
     protected function fillArrayType(string $key, array $data): void
     {
         switch ($key) {
@@ -68,9 +74,6 @@ class Song extends AbstractModel implements UpdatableModel
                 break;
             case "title":
                 $this->setName($value);
-                break;
-            case "category":
-                $this->setCategory(SongCategory::createModelFromData(["name" => $value]));
                 break;
             default:
                 $this->fillDefault($key, $value);
@@ -212,6 +215,7 @@ class Song extends AbstractModel implements UpdatableModel
 
     /**
      * @return string|null
+     * @deprecated not filled by CT anymore
      */
     public function getCategoryId(): ?string
     {
@@ -221,6 +225,7 @@ class Song extends AbstractModel implements UpdatableModel
     /**
      * @param string|null $category_id
      * @return Song
+     * @deprecated not filled by CT anymore
      */
     public function setCategoryId(?string $category_id): Song
     {
@@ -302,6 +307,7 @@ class Song extends AbstractModel implements UpdatableModel
 
     /**
      * @return string|null
+     * @deprecated not filled by CT anymore
      */
     public function getNote(): ?string
     {
@@ -311,6 +317,7 @@ class Song extends AbstractModel implements UpdatableModel
     /**
      * @param string|null $note
      * @return Song
+     * @deprecated not filled by CT anymore
      */
     public function setNote(?string $note): Song
     {

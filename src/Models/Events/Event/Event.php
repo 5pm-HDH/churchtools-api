@@ -31,6 +31,7 @@ class Event extends AbstractModel
     protected ?EventAgenda $agenda = null;
     protected ?array $eventServices = [];
     protected ?array $adminIds = [];
+    protected ?array $eventFiles = [];
 
     protected function fillArrayType(string $key, array $data): void
     {
@@ -51,6 +52,12 @@ class Event extends AbstractModel
                 break;
             case "adminIds":
                 $this->setAdminIds($data);
+                break;
+            case "eventAdminIds":
+                //deprecated field
+                break;
+            case "eventFiles":
+                $this->setEventFiles(DomainAttributeModel::createModelsFromArray($data));
                 break;
             default:
                 $this->fillDefault($key, $data);
@@ -327,6 +334,24 @@ class Event extends AbstractModel
     public function setEventServices(?array $eventServices): Event
     {
         $this->eventServices = $eventServices;
+        return $this;
+    }
+    
+    /**
+     * @return array|null
+     */
+    public function getEventFiles(): ?array
+    {
+        return $this->eventFiles;
+    }
+    
+    /**
+     * @param array|null $eventFiles
+     * @return Event
+     */
+    public function setEventFiles(?array $eventFiles): Event
+    {
+        $this->eventFiles = $eventFiles;
         return $this;
     }
 

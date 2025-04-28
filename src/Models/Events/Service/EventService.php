@@ -24,6 +24,14 @@ class EventService extends AbstractModel
     protected ?string $comment = null;
     protected ?string $counter = null;
     protected ?bool $allowChat = null;
+    
+    protected function fillNonArrayType(string $key, $value): void
+    {
+        if ($key == "permissions" || $key == "event")
+            //empty/unused fields
+            return;
+        $this->fillDefault($key, $value);
+    }
 
     protected function fillArrayType(string $key, array $data): void
     {

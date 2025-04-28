@@ -73,6 +73,8 @@ trait FillWithData
     public function fillWithData(array $array): void
     {
         foreach ($array as $key => $value) {
+            if ($key == "@deprecated") 
+                continue;
             if (is_object($value)) {
                 $this->fillObjectType($key, $value);
             } elseif (is_array($value)) {
@@ -82,7 +84,7 @@ trait FillWithData
             }
         }
     }
-
+    
     protected function fillNonArrayType(string $key, $value): void
     {
         $this->fillDefault($key, $value);

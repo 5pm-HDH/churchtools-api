@@ -9,16 +9,25 @@ use CTApi\Models\Groups\Person\PersonRequest;
 use CTApi\Traits\Model\ExtractData;
 use CTApi\Traits\Model\FillWithData;
 use CTApi\Utils\CTDateTimeService;
+use CTApi\Models\Common\Domain\DomainAttributeModel;
 
 class GroupMember extends AbstractModel implements UpdatableModel
 {
+    //TODO Adapt fields!
     use FillWithData;
     use ExtractData;
 
+    protected ?DomainAttributeModel $group = null;
+    /**
+     * @deprecated use $person->getId()
+     */
     protected ?string $personId = null;
     protected ?Person $person = null;
     protected ?string $groupTypeRoleId = null;
     protected ?string $groupMemberStatus = null;
+    protected ?string $roleChangedDate = null;
+    protected ?string $statusChangedDate = null;
+    protected ?int $registeredBy = null;
     protected ?string $followUpStep = null;
     protected ?string $followUpDiffDays = null;
     protected ?string $followUpUnsuccessfulBackGroupId = null;
@@ -35,6 +44,9 @@ class GroupMember extends AbstractModel implements UpdatableModel
         switch ($key) {
             case "person":
                 $this->setPerson(Person::createModelFromData($data));
+                break;
+            case "group":
+                $this->group = DomainAttributeModel::createModelFromData($data);
                 break;
             default:
                 $this->fillDefault($key, $data);
@@ -84,6 +96,7 @@ class GroupMember extends AbstractModel implements UpdatableModel
 
     /**
      * @return string|null
+     * @deprecated use $person->getId()
      */
     public function getPersonId(): ?string
     {
@@ -93,6 +106,7 @@ class GroupMember extends AbstractModel implements UpdatableModel
     /**
      * @param string|null $personId
      * @return GroupMember
+     * @deprecated use $person->getId()
      */
     public function setPersonId(?string $personId): GroupMember
     {
@@ -313,6 +327,60 @@ class GroupMember extends AbstractModel implements UpdatableModel
     public function setFollowUpUnsuccessfulBackGroupId(?string $followUpUnsuccessfulBackGroupId): GroupMember
     {
         $this->followUpUnsuccessfulBackGroupId = $followUpUnsuccessfulBackGroupId;
+        return $this;
+    }
+    
+    /**
+     * @return string|null
+     */
+    public function getRoleChangedDate(): ?string
+    {
+        return $this->roleChangedDate;
+    }
+    
+    /**
+     * @param string|null $roleChangedDay
+     * @return GroupMember
+     */
+    public function setRoleChangedDate(?string $roleChangedDay): GroupMember
+    {
+        $this->roleChangedDate = $roleChangedDay;
+        return $this;
+    }
+    
+    /**
+     * @return string|null
+     */
+    public function getStatusChangedDate(): ?string
+    {
+        return $this->statusChangedDate;
+    }
+    
+    /**
+     * @param string|null $statusChangedDay
+     * @return GroupMember
+     */
+    public function setStatusChangedDate(?string $statusChangedDay): GroupMember
+    {
+        $this->statusChangedDate = $statusChangedDay;
+        return $this;
+    }
+    
+    /**
+     * @return int|null
+     */
+    public function getRegisteredBy(): ?int
+    {
+        return $this->registeredBy;
+    }
+    
+    /**
+     * @param int|null $registeredBy
+     * @return GroupMember
+     */
+    public function setRegisteredBy(?string $registeredBy): GroupMember
+    {
+        $this->registeredBy = $registeredBy;
         return $this;
     }
 }

@@ -11,22 +11,32 @@ class GroupRole extends AbstractModel
 
     protected ?string $groupTypeId = null;
     protected ?string $name = null;
+    protected ?string $nameTranslated = null;
     protected ?string $shorty = null;
-    protected ?string $type = null;
-    protected ?string $receiveQRCode = null;
     protected ?string $sortKey = null;
-    protected ?bool $toDelete = null;
-    protected ?bool $hasRequested = null;
     protected ?bool $isLeader = null;
+    protected ?string $type = null;
     protected ?bool $isDefault = null;
     protected ?bool $isHidden = null;
-    protected ?string $growPathId = null;
-    protected ?string $groupTypeRoleId = null;
+    protected ?int $growPathId = null;
+    protected ?int $groupTypeRoleId = null;
     protected ?bool $forceTwoFactorAuth = null;
+    protected ?string $receiveQRCode = null;
     protected ?bool $isActive = null;
+    protected ?bool $countsTowardsSeats	= null;
     protected ?bool $canReadChat = null;
     protected ?bool $canWriteChat = null;
-
+    protected ?array $htmlTemplateIds = null;
+    
+    /**
+     * @deprecated not filled anymore by CT
+     */
+    protected ?bool $toDelete = null;
+    /**
+     * @deprecated not filled anymore by CT
+     */
+    protected ?bool $hasRequested = null;
+    
     /**
      * @param string|null $id
      * @return GroupRole
@@ -72,6 +82,24 @@ class GroupRole extends AbstractModel
         $this->name = $name;
         return $this;
     }
+    
+    /**
+     * @return string|null
+     */
+    public function getNameTranslated(): ?string
+    {
+        return $this->nameTranslated;
+    }
+    
+    /**
+     * @param string|null $nameTranslated
+     * @return GroupRole
+     */
+    public function setNameTranslated(?string $nameTranslated): GroupRole
+    {
+        $this->nameTranslated = $nameTranslated;
+        return $this;
+    }
 
     /**
      * @return string|null
@@ -111,6 +139,7 @@ class GroupRole extends AbstractModel
 
     /**
      * @return bool|null
+     * @deprecated not filled anymore by CT
      */
     public function getToDelete(): ?bool
     {
@@ -120,6 +149,7 @@ class GroupRole extends AbstractModel
     /**
      * @param bool|null $toDelete
      * @return GroupRole
+     * @deprecated not filled anymore by CT
      */
     public function setToDelete(?bool $toDelete): GroupRole
     {
@@ -129,6 +159,7 @@ class GroupRole extends AbstractModel
 
     /**
      * @return bool|null
+     * @deprecated not filled anymore by CT
      */
     public function getHasRequested(): ?bool
     {
@@ -138,6 +169,7 @@ class GroupRole extends AbstractModel
     /**
      * @param bool|null $hasRequested
      * @return GroupRole
+     * @deprecated not filled anymore by CT
      */
     public function setHasRequested(?bool $hasRequested): GroupRole
     {
@@ -200,36 +232,36 @@ class GroupRole extends AbstractModel
     }
 
     /**
-     * @return string|null
+     * @return int|null
      */
-    public function getGrowPathId(): ?string
+    public function getGrowPathId(): ?int
     {
         return $this->growPathId;
     }
 
     /**
-     * @param string|null $growPathId
+     * @param int|null $growPathId
      * @return GroupRole
      */
-    public function setGrowPathId(?string $growPathId): GroupRole
+    public function setGrowPathId(?int $growPathId): GroupRole
     {
         $this->growPathId = $growPathId;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return int|null
      */
-    public function getGroupTypeRoleId(): ?string
+    public function getGroupTypeRoleId(): ?int
     {
         return $this->groupTypeRoleId;
     }
 
     /**
-     * @param string|null $groupTypeRoleId
+     * @param int|null $groupTypeRoleId
      * @return GroupRole
      */
-    public function setGroupTypeRoleId(?string $groupTypeRoleId): GroupRole
+    public function setGroupTypeRoleId(?int $groupTypeRoleId): GroupRole
     {
         $this->groupTypeRoleId = $groupTypeRoleId;
         return $this;
@@ -304,6 +336,42 @@ class GroupRole extends AbstractModel
     public function setCanWriteChat(?bool $canWriteChat): GroupRole
     {
         $this->canWriteChat = $canWriteChat;
+        return $this;
+    }
+    
+    /**
+     * @return bool|null
+     */
+    public function getCountsTowardsSeats(): ?bool
+    {
+        return $this->countsTowardsSeats;
+    }
+    
+    /**
+     * @param bool|null $canWriteChat
+     * @return GroupRole
+     */
+    public function setCountsTowardsSeats(?bool $countsTowardsSeats): GroupRole
+    {
+        $this->countsTowardsSeats = $countsTowardsSeats;
+        return $this;
+    }
+    
+    /**
+     * @return array|null
+     */
+    public function getHtmlTemplateIds(): ?array
+    {
+        return $this->htmlTemplateIds;
+    }
+    
+    /**
+     * @param array|null $canWriteChat
+     * @return GroupRole
+     */
+    public function setHtmlTemplateIds(?array $htmlTemplateIds): GroupRole
+    {
+        $this->htmlTemplateIds = $htmlTemplateIds;
         return $this;
     }
 }

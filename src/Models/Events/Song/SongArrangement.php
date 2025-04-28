@@ -20,11 +20,26 @@ class SongArrangement extends AbstractModel implements UpdatableModel
 
     protected ?string $name = null;
     protected ?bool $isDefault = null;
+    /**
+     * @deprecated use key instead
+     */
     protected ?string $keyOfArrangement = null;
+    protected ?string $key = null;
+    /**
+     * @deprecated use tempo instead
+     */
     protected ?string $bpm = null;
+    protected ?string $tempo = null;
     protected ?string $beat = null;
     protected ?string $duration = null;
+    /**
+     * @deprecated use description instead
+     */
     protected ?string $note = null;
+    protected ?string $description = null;
+    protected ?string $sourceName = null;
+    protected ?string $sourceReference = null;
+    
     protected array $links = [];
     protected array $files = [];
 
@@ -151,9 +166,28 @@ class SongArrangement extends AbstractModel implements UpdatableModel
         $this->isDefault = $isDefault;
         return $this;
     }
+    
+    /**
+     * @return string|null
+     */
+    public function getKey(): ?string
+    {
+        return $this->key;
+    }
+    
+    /**
+     * @param string|null $key
+     * @return SongArrangement
+     */
+    public function setKey(?string $key): SongArrangement
+    {
+        $this->key = $key;
+        return $this;
+    }
 
     /**
      * @return string|null
+     * @deprecated use key instead
      */
     public function getKeyOfArrangement(): ?string
     {
@@ -163,6 +197,7 @@ class SongArrangement extends AbstractModel implements UpdatableModel
     /**
      * @param string|null $keyOfArrangement
      * @return SongArrangement
+     * @deprecated use key instead
      */
     public function setKeyOfArrangement(?string $keyOfArrangement): SongArrangement
     {
@@ -173,6 +208,25 @@ class SongArrangement extends AbstractModel implements UpdatableModel
     /**
      * @return string|null
      */
+    public function getTempo() : ?string
+    {
+        return $this->tempo;
+    }
+    
+    /**
+     * @param string|null $tempo
+     * @return SongArrangement
+     */
+    public function setTempo($tempo) : SongArrangement
+    {
+        $this->tempo = $tempo;
+        return $this;
+    }
+    
+    /**
+     * @return string|null
+     * @deprecated use tempo instead
+     */
     public function getBpm(): ?string
     {
         return $this->bpm;
@@ -181,6 +235,7 @@ class SongArrangement extends AbstractModel implements UpdatableModel
     /**
      * @param string|null $bpm
      * @return SongArrangement
+     * @deprecated use tempo instead
      */
     public function setBpm(?string $bpm): SongArrangement
     {
@@ -226,6 +281,7 @@ class SongArrangement extends AbstractModel implements UpdatableModel
 
     /**
      * @return string|null
+     * @deprecated use description instead
      */
     public function getNote(): ?string
     {
@@ -235,10 +291,65 @@ class SongArrangement extends AbstractModel implements UpdatableModel
     /**
      * @param string|null $note
      * @return SongArrangement
+     * @deprecated use description instead
      */
     public function setNote(?string $note): SongArrangement
     {
         $this->note = $note;
+        return $this;
+    }
+    
+    /**
+     * @return string|null
+     */
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+    
+    /**
+     * @param string|null $description
+     * @return SongArrangement
+     */
+    public function setDescription(?string $description): SongArrangement
+    {
+        $this->description = $description;
+        return $this;
+    }
+    
+    /**
+     * @return string|null
+     */
+    public function getSourceName(): ?string
+    {
+        return $this->sourceName;
+    }
+    
+    /**
+     * @param string|null $sourceName
+     * @return SongArrangement
+     */
+    public function setSourceName(?string $sourceName): SongArrangement
+    {
+        $this->sourceName = $sourceName;
+        return $this;
+    }
+    
+    /**
+     * @return string|null
+     */
+    public function getSourceReference(): ?string
+    {
+        return $this->sourceReference;
+    }
+    
+    /**
+     * @param string|null $sourceReference
+     * @return SongArrangement
+     */
+    public function setSourceReference(?string $sourceReference): SongArrangement
+    {
+        $this->sourceReference = $sourceReference;
         return $this;
     }
 

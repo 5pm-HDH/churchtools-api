@@ -11,7 +11,11 @@ trait DomainAttribute
     protected ?string $frontendUrl = null;
     protected ?string $imageUrl = null;
     protected array $domainAttributes = [];
-
+    protected ?string $icon = null;
+    protected ?array $color = null;
+    protected ?string $initials = null;
+    protected array $infos = [];
+    
     /**
      * @return String|null
      */
@@ -135,6 +139,24 @@ trait DomainAttribute
     public function setDomainAttributes(array $domainAttributes): self
     {
         $this->domainAttributes = $domainAttributes;
+        return $this;
+    }
+    
+    /**
+     * @return ?array
+     */
+    public function getColor(): ?array
+    {
+        return $this->color;
+    }
+    
+    /**
+     * @param array $color
+     * @return self
+     */
+    public function setColor(?array $color): self
+    {
+        $this->color = $color;
         return $this;
     }
 }
